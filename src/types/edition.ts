@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { EditionStatus, Language } from "./enums.js";
+import { EditionIdSchema } from "./run-ledger.js";
 
 /** Strategic angle selected by the Strategist agent. */
 export const StrategicAngleSchema = z.object({
@@ -72,15 +73,46 @@ export const PerformanceMetricsSchema = z.object({
 });
 export type PerformanceMetrics = z.infer<typeof PerformanceMetricsSchema>;
 
-/** Complete newsletter edition record — accumulates data as it flows through the pipeline. */
+/**
+ * Complete newsletter edition record.
+ * Accumulates data as it flows through the pipeline.
+ *
+ * Key flat fields (EN_body, ES_body, subject_EN, subject_ES) are the
+ * authoritative final copy used for Beehiiv delivery.  The `content` array
+ * holds the richer sectioned representation produced by the Writer agent.
+ */
 export const EditionSchema = z.object({
-  editionId: z.string().uuid(),
+  /** Week-based edition identifier in YYYY-Www format (e.g. "2026-W08"). */
+  editionId: EditionIdSchema,
   runId: z.string().uuid(),
   editionNumber: z.number().int().positive(),
   status: EditionStatus,
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
-  publishedAt: z.string().datetime().optional(),
+
+  /** Rendered English body — full HTML/Markdown ready for delivery. */
+  ENBody: z.string().optional(),
+  /** Rendered Spanish body — full HTML/Markdown ready for delivery. */
+  ESBody: z.string().optional(),
+  /** Email subject line in English. */
+  subjectEN: z.string().optional(),
+  /** Email subject line in Spanish. */
+  subjectES: z.string().optional(),
+  /** UTC datetime when the edition should be published / was published. */
+  publishDatetime: z.string().datetime().optional(),
+  /**
+   * Composite quality score 0–100 assigned by the Validator agent.
+   * Must reach the configured threshold before human approval is requested.
+   */
+  QAScore: z.number().min(0).max(100).optional(),
+  /** Email or username of the human who approved this edition. */
+  approvalUser: z.string().optional(),
+  /** SHA-256 hex digest of the canonical content payload (ENBody + ESBody). */
+  contentHash: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/, "contentHash must be a SHA-256 hex digest")
+    .optional(),
+
   angle: StrategicAngleSchema.optional(),
   content: z.array(LocalizedContentSchema).optional(),
   validation: ValidationResultSchema.optional(),

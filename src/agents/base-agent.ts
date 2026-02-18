@@ -62,8 +62,9 @@ export abstract class BaseAgent<TInput = unknown, TOutput = unknown> {
         editionId: input.editionId,
         timestamp: new Date().toISOString(),
         durationMs,
-        success: false,
-        error: errorMessage,
+        status: "error",
+        tokens: { input: 0, output: 0 },
+        errors: [errorMessage],
         cost,
         data: undefined as unknown as TOutput,
       };
@@ -85,7 +86,9 @@ export abstract class BaseAgent<TInput = unknown, TOutput = unknown> {
       editionId: input.editionId,
       timestamp: new Date().toISOString(),
       durationMs,
-      success: true,
+      status: "success",
+      tokens: { input: cost.inputTokens, output: cost.outputTokens },
+      errors: [],
       cost,
       data: validatedData,
     };

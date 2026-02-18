@@ -17,10 +17,59 @@ import {
   DistributionRecordSchema,
   PerformanceMetricsSchema,
   EditionSchema,
-  AgentRunEntrySchema,
   RunLedgerSchema,
+  PipelineRunSchema,
+  EditionIdSchema,
+  TokenUsageSchema,
   AppConfigSchema,
 } from "../../src/types/index.js";
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+const EDITION_ID = "2026-W08";
+
+function makeStepTimestamps() {
+  return { startedAt: new Date().toISOString() };
+}
+
+function makeTokenUsage() {
+  return { input: 1000, output: 500 };
+}
+
+function makeCost() {
+  return {
+    model: "claude-sonnet-4-5-20250514",
+    inputTokens: 1000,
+    outputTokens: 500,
+    costUsd: 0.01,
+  };
+}
+
+function makeSourceItem(overrides: object = {}) {
+  return {
+    id: randomUUID(),
+    sourceType: "rss",
+    title: "AI Trends 2026",
+    url: "https://example.com/article",
+    publishDate: new Date().toISOString(),
+    summary: "A summary of the article",
+    verbatimFacts: [
+      "Fact one from the article.",
+      "Fact two from the article.",
+      "Fact three from the article.",
+    ],
+    relevanceScore: 0.85,
+    recencyHours: 6,
+    tags: ["ai", "strategy"],
+    ...overrides,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
 
 describe("Enums", () => {
   it("AgentName accepts valid values", () => {
@@ -68,15 +117,51 @@ describe("Enums", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// EditionId
+// ---------------------------------------------------------------------------
+
+describe("EditionId", () => {
+  it("accepts YYYY-Www format", () => {
+    expect(EditionIdSchema.parse("2026-W08")).toBe("2026-W08");
+    expect(EditionIdSchema.parse("2025-W01")).toBe("2025-W01");
+    expect(EditionIdSchema.parse("2026-W52")).toBe("2026-W52");
+  });
+
+  it("rejects UUID format", () => {
+    expect(() => EditionIdSchema.parse(randomUUID())).toThrow();
+  });
+
+  it("rejects free-form strings", () => {
+    expect(() => EditionIdSchema.parse("2026-08")).toThrow();
+    expect(() => EditionIdSchema.parse("W08-2026")).toThrow();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// TokenUsage
+// ---------------------------------------------------------------------------
+
+describe("TokenUsage", () => {
+  it("validates correct token counts", () => {
+    expect(TokenUsageSchema.parse({ input: 1000, output: 500 })).toEqual({
+      input: 1000,
+      output: 500,
+    });
+  });
+
+  it("rejects negative input tokens", () => {
+    expect(() => TokenUsageSchema.parse({ input: -1, output: 0 })).toThrow();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// CostEntry
+// ---------------------------------------------------------------------------
+
 describe("CostEntry", () => {
   it("validates a correct cost entry", () => {
-    const entry = {
-      model: "claude-sonnet-4-5-20250514",
-      inputTokens: 1000,
-      outputTokens: 500,
-      costUsd: 0.01,
-    };
-    expect(CostEntrySchema.parse(entry)).toEqual(entry);
+    expect(CostEntrySchema.parse(makeCost())).toEqual(makeCost());
   });
 
   it("rejects negative token counts", () => {
@@ -91,61 +176,125 @@ describe("CostEntry", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// AgentOutput
+// ---------------------------------------------------------------------------
+
 describe("AgentOutput", () => {
-  it("validates a correct agent output", () => {
+  it("validates a successful agent output", () => {
     const output = {
       agentName: "radar",
       runId: randomUUID(),
-      editionId: randomUUID(),
+      editionId: EDITION_ID,
       timestamp: new Date().toISOString(),
       durationMs: 1500,
-      success: true,
-      cost: {
-        model: "claude-sonnet-4-5-20250514",
-        inputTokens: 1000,
-        outputTokens: 500,
-        costUsd: 0.01,
-      },
+      status: "success",
+      tokens: makeTokenUsage(),
+      cost: makeCost(),
+      errors: [],
       data: { some: "data" },
     };
     expect(AgentOutputSchema.parse(output)).toBeDefined();
   });
+
+  it("validates an error output with messages", () => {
+    const output = {
+      agentName: "writer",
+      runId: randomUUID(),
+      editionId: EDITION_ID,
+      timestamp: new Date().toISOString(),
+      durationMs: 200,
+      status: "error",
+      tokens: { input: 0, output: 0 },
+      cost: makeCost(),
+      errors: ["Timeout after 30s", "Retries exhausted"],
+      data: null,
+    };
+    expect(AgentOutputSchema.parse(output)).toBeDefined();
+  });
+
+  it("rejects unknown status values", () => {
+    expect(() =>
+      AgentOutputSchema.parse({
+        agentName: "radar",
+        runId: randomUUID(),
+        editionId: EDITION_ID,
+        timestamp: new Date().toISOString(),
+        durationMs: 100,
+        status: "unknown",
+        tokens: makeTokenUsage(),
+        cost: makeCost(),
+        errors: [],
+        data: null,
+      }),
+    ).toThrow();
+  });
 });
 
-describe("SourceItem", () => {
-  const validItem = {
-    id: randomUUID(),
-    sourceType: "rss",
-    title: "AI Trends 2026",
-    url: "https://example.com/article",
-    publishedAt: new Date().toISOString(),
-    summary: "A summary of the article",
-    relevanceScore: 0.85,
-    tags: ["ai", "strategy"],
-  };
+// ---------------------------------------------------------------------------
+// SourceItem
+// ---------------------------------------------------------------------------
 
+describe("SourceItem", () => {
   it("validates a correct source item", () => {
-    expect(SourceItemSchema.parse(validItem)).toBeDefined();
+    expect(SourceItemSchema.parse(makeSourceItem())).toBeDefined();
   });
 
   it("rejects relevanceScore > 1", () => {
     expect(() =>
-      SourceItemSchema.parse({ ...validItem, relevanceScore: 1.5 }),
+      SourceItemSchema.parse(makeSourceItem({ relevanceScore: 1.5 })),
     ).toThrow();
   });
 
   it("rejects empty title", () => {
     expect(() =>
-      SourceItemSchema.parse({ ...validItem, title: "" }),
+      SourceItemSchema.parse(makeSourceItem({ title: "" })),
+    ).toThrow();
+  });
+
+  it("rejects verbatimFacts with fewer than 3 items", () => {
+    expect(() =>
+      SourceItemSchema.parse(makeSourceItem({ verbatimFacts: ["Only one fact.", "Two facts."] })),
+    ).toThrow();
+  });
+
+  it("rejects verbatimFacts with more than 7 items", () => {
+    expect(() =>
+      SourceItemSchema.parse(
+        makeSourceItem({
+          verbatimFacts: ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8"],
+        }),
+      ),
+    ).toThrow();
+  });
+
+  it("accepts verbatimFacts at the boundaries (3 and 7)", () => {
+    expect(
+      SourceItemSchema.parse(makeSourceItem({ verbatimFacts: ["A", "B", "C"] })),
+    ).toBeDefined();
+    expect(
+      SourceItemSchema.parse(
+        makeSourceItem({ verbatimFacts: ["A", "B", "C", "D", "E", "F", "G"] }),
+      ),
+    ).toBeDefined();
+  });
+
+  it("rejects negative recencyHours", () => {
+    expect(() =>
+      SourceItemSchema.parse(makeSourceItem({ recencyHours: -1 })),
     ).toThrow();
   });
 });
+
+// ---------------------------------------------------------------------------
+// SourceBundle
+// ---------------------------------------------------------------------------
 
 describe("SourceBundle", () => {
   it("requires at least one item", () => {
     expect(() =>
       SourceBundleSchema.parse({
-        editionId: randomUUID(),
+        editionId: EDITION_ID,
         scannedAt: new Date().toISOString(),
         totalScanned: 50,
         totalSelected: 0,
@@ -154,7 +303,37 @@ describe("SourceBundle", () => {
       }),
     ).toThrow();
   });
+
+  it("validates a bundle with one valid item", () => {
+    expect(
+      SourceBundleSchema.parse({
+        editionId: EDITION_ID,
+        scannedAt: new Date().toISOString(),
+        totalScanned: 50,
+        totalSelected: 1,
+        items: [makeSourceItem()],
+        metadata: { feedsScanned: 5, timeWindowHours: 24, filterCriteria: ["ai"] },
+      }),
+    ).toBeDefined();
+  });
+
+  it("rejects invalid editionId format", () => {
+    expect(() =>
+      SourceBundleSchema.parse({
+        editionId: randomUUID(),
+        scannedAt: new Date().toISOString(),
+        totalScanned: 1,
+        totalSelected: 1,
+        items: [makeSourceItem()],
+        metadata: { feedsScanned: 1, timeWindowHours: 24, filterCriteria: [] },
+      }),
+    ).toThrow();
+  });
 });
+
+// ---------------------------------------------------------------------------
+// StrategicAngle
+// ---------------------------------------------------------------------------
 
 describe("StrategicAngle", () => {
   it("validates a correct strategic angle", () => {
@@ -182,6 +361,10 @@ describe("StrategicAngle", () => {
     ).toThrow();
   });
 });
+
+// ---------------------------------------------------------------------------
+// LocalizedContent
+// ---------------------------------------------------------------------------
 
 describe("LocalizedContent", () => {
   it("validates a correct localized content", () => {
@@ -222,6 +405,10 @@ describe("LocalizedContent", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// ValidationResult
+// ---------------------------------------------------------------------------
+
 describe("ValidationResult", () => {
   it("validates a correct result with issues", () => {
     const result = {
@@ -260,6 +447,10 @@ describe("ValidationResult", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// DistributionRecord
+// ---------------------------------------------------------------------------
+
 describe("DistributionRecord", () => {
   it("validates a correct distribution record", () => {
     const record = {
@@ -271,6 +462,10 @@ describe("DistributionRecord", () => {
     expect(DistributionRecordSchema.parse(record)).toBeDefined();
   });
 });
+
+// ---------------------------------------------------------------------------
+// PerformanceMetrics
+// ---------------------------------------------------------------------------
 
 describe("PerformanceMetrics", () => {
   it("validates with partial metrics", () => {
@@ -291,10 +486,14 @@ describe("PerformanceMetrics", () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// Edition
+// ---------------------------------------------------------------------------
+
 describe("Edition", () => {
   it("validates a minimal early-pipeline edition", () => {
     const edition = {
-      editionId: randomUUID(),
+      editionId: EDITION_ID,
       runId: randomUUID(),
       editionNumber: 1,
       status: "draft",
@@ -303,43 +502,162 @@ describe("Edition", () => {
     };
     expect(EditionSchema.parse(edition)).toBeDefined();
   });
+
+  it("validates a fully-populated edition", () => {
+    const edition = {
+      editionId: EDITION_ID,
+      runId: randomUUID(),
+      editionNumber: 1,
+      status: "approved",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      ENBody: "# AI Week\n\nEnglish body here.",
+      ESBody: "# Semana de IA\n\nSpanish body here.",
+      subjectEN: "Your AI briefing for the week",
+      subjectES: "Tu resumen de IA de la semana",
+      publishDatetime: new Date().toISOString(),
+      QAScore: 92,
+      approvalUser: "editor@example.com",
+      contentHash: "a".repeat(64),
+    };
+    expect(EditionSchema.parse(edition)).toBeDefined();
+  });
+
+  it("rejects QAScore > 100", () => {
+    expect(() =>
+      EditionSchema.parse({
+        editionId: EDITION_ID,
+        runId: randomUUID(),
+        editionNumber: 1,
+        status: "draft",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        QAScore: 101,
+      }),
+    ).toThrow();
+  });
+
+  it("rejects invalid contentHash format", () => {
+    expect(() =>
+      EditionSchema.parse({
+        editionId: EDITION_ID,
+        runId: randomUUID(),
+        editionNumber: 1,
+        status: "draft",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        contentHash: "not-a-hash",
+      }),
+    ).toThrow();
+  });
+
+  it("rejects invalid editionId format", () => {
+    expect(() =>
+      EditionSchema.parse({
+        editionId: randomUUID(),
+        runId: randomUUID(),
+        editionNumber: 1,
+        status: "draft",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      }),
+    ).toThrow();
+  });
 });
 
+// ---------------------------------------------------------------------------
+// RunLedger (flat per-step record)
+// ---------------------------------------------------------------------------
+
 describe("RunLedger", () => {
-  it("validates a correct run ledger", () => {
-    const ledger = {
+  function makeRunLedger(overrides: object = {}) {
+    return {
       runId: randomUUID(),
-      editionId: randomUUID(),
+      editionId: EDITION_ID,
+      stepId: randomUUID(),
+      agentName: "radar",
+      promptVersion: "1.2.0",
+      voiceBibleVersion: "2.0.0",
+      modelUsed: "claude-sonnet-4-5-20250514",
+      tokenUsage: makeTokenUsage(),
+      costUsd: 0.05,
       status: "running",
-      startedAt: new Date().toISOString(),
-      triggeredBy: "manual",
-      currentAgent: "radar",
-      agentRuns: [
-        {
-          agentName: "radar",
-          startedAt: new Date().toISOString(),
-          retryCount: 0,
-        },
-      ],
-      totalCostUsd: 0.05,
+      retryCount: 0,
+      timestamps: makeStepTimestamps(),
+      ...overrides,
     };
-    expect(RunLedgerSchema.parse(ledger)).toBeDefined();
+  }
+
+  it("validates a correct run ledger step", () => {
+    expect(RunLedgerSchema.parse(makeRunLedger())).toBeDefined();
+  });
+
+  it("validates with optional outputHash and publishIdempotencyKey", () => {
+    expect(
+      RunLedgerSchema.parse(
+        makeRunLedger({
+          outputHash: "b".repeat(64),
+          publishIdempotencyKey: "run-2026-W08-distributor-1",
+        }),
+      ),
+    ).toBeDefined();
+  });
+
+  it("rejects invalid outputHash (not 64 hex chars)", () => {
+    expect(() =>
+      RunLedgerSchema.parse(makeRunLedger({ outputHash: "tooshort" })),
+    ).toThrow();
+  });
+
+  it("rejects negative costUsd", () => {
+    expect(() =>
+      RunLedgerSchema.parse(makeRunLedger({ costUsd: -1 })),
+    ).toThrow();
+  });
+
+  it("rejects invalid editionId format", () => {
+    expect(() =>
+      RunLedgerSchema.parse(makeRunLedger({ editionId: randomUUID() })),
+    ).toThrow();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// PipelineRun (aggregate run record)
+// ---------------------------------------------------------------------------
+
+describe("PipelineRun", () => {
+  it("validates an empty-steps pipeline run", () => {
+    const run = {
+      runId: randomUUID(),
+      editionId: EDITION_ID,
+      status: "running",
+      triggeredBy: "manual",
+      startedAt: new Date().toISOString(),
+      steps: [],
+      totalCostUsd: 0,
+    };
+    expect(PipelineRunSchema.parse(run)).toBeDefined();
   });
 
   it("rejects invalid triggeredBy", () => {
     expect(() =>
-      RunLedgerSchema.parse({
+      PipelineRunSchema.parse({
         runId: randomUUID(),
-        editionId: randomUUID(),
+        editionId: EDITION_ID,
         status: "pending",
         startedAt: new Date().toISOString(),
         triggeredBy: "webhook",
-        agentRuns: [],
+        steps: [],
         totalCostUsd: 0,
       }),
     ).toThrow();
   });
 });
+
+// ---------------------------------------------------------------------------
+// AppConfig
+// ---------------------------------------------------------------------------
 
 describe("AppConfig", () => {
   it("applies defaults for optional fields", () => {

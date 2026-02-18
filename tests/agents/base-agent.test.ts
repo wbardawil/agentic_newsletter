@@ -39,7 +39,7 @@ function makeDeps(): AgentDeps {
 function makeInput(payload: TestInput): AgentInput<TestInput> {
   return {
     runId: randomUUID(),
-    editionId: randomUUID(),
+    editionId: "2026-W08",
     agentName: "radar",
     payload,
   };
@@ -53,12 +53,14 @@ describe("BaseAgent", () => {
 
     const output = await agent.run(makeInput({ value: "hello" }));
 
-    expect(output.success).toBe(true);
+    expect(output.status).toBe("success");
+    expect(output.errors).toEqual([]);
     expect(output.data.result).toBe("HELLO");
     expect(output.agentName).toBe("radar");
     expect(output.durationMs).toBeGreaterThanOrEqual(0);
     expect(output.timestamp).toBeDefined();
     expect(output.cost).toBeDefined();
+    expect(output.tokens).toBeDefined();
   });
 
   it("rejects invalid input", async () => {
@@ -68,15 +70,15 @@ describe("BaseAgent", () => {
     await expect(agent.run(input)).rejects.toThrow();
   });
 
-  it("returns failure output when execute throws", async () => {
+  it("returns error status when execute throws", async () => {
     const agent = new TestAgent(makeDeps(), async () => {
       throw new Error("test failure");
     });
 
     const output = await agent.run(makeInput({ value: "test" }));
 
-    expect(output.success).toBe(false);
-    expect(output.error).toBe("test failure");
+    expect(output.status).toBe("error");
+    expect(output.errors).toContain("test failure");
   });
 
   it("measures duration", async () => {

@@ -26,13 +26,13 @@ describe("RadarAgent", () => {
     const agent = new RadarAgent(deps);
     const input: AgentInput<{ timeWindowHours: number; maxItems: number }> = {
       runId: randomUUID(),
-      editionId: randomUUID(),
+      editionId: "2026-W08",
       agentName: "radar",
       payload: { timeWindowHours: 24, maxItems: 20 },
     };
 
     const output = await agent.run(input);
-    expect(output.success).toBe(false);
-    expect(output.error).toContain("not implemented");
+    expect(output.status).toBe("error");
+    expect(output.errors[0]).toContain("not implemented");
   });
 });
