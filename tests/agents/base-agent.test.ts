@@ -39,7 +39,7 @@ function makeDeps(): AgentDeps {
 function makeInput(payload: TestInput): AgentInput<TestInput> {
   return {
     runId: randomUUID(),
-    editionId: "2026-W08",
+    editionId: "2026-07",
     agentName: "radar",
     payload,
   };
@@ -53,6 +53,7 @@ describe("BaseAgent", () => {
 
     const output = await agent.run(makeInput({ value: "hello" }));
 
+    expect(output.success).toBe(true);
     expect(output.status).toBe("success");
     expect(output.errors).toEqual([]);
     expect(output.data.result).toBe("HELLO");
@@ -70,14 +71,16 @@ describe("BaseAgent", () => {
     await expect(agent.run(input)).rejects.toThrow();
   });
 
-  it("returns error status when execute throws", async () => {
+  it("returns error output with both success=false and status=error when execute throws", async () => {
     const agent = new TestAgent(makeDeps(), async () => {
       throw new Error("test failure");
     });
 
     const output = await agent.run(makeInput({ value: "test" }));
 
+    expect(output.success).toBe(false);
     expect(output.status).toBe("error");
+    expect(output.error).toBe("test failure");
     expect(output.errors).toContain("test failure");
   });
 

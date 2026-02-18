@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { SourceType } from "./enums.js";
-import { EditionIdSchema } from "./run-ledger.js";
+import { SourceType, EditionIdSchema } from "./enums.js";
 
 /**
  * A single source item curated by the Radar agent.
@@ -15,7 +14,7 @@ export const SourceItemSchema = z.object({
   /** Canonical URL of the source. */
   url: z.string().url(),
   /** ISO-8601 date-time when the article was originally published. */
-  publishDate: z.string().datetime(),
+  publishedAt: z.string().datetime(),
   author: z.string().optional(),
   outlet: z.string().optional(),
   summary: z.string(),

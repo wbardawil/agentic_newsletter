@@ -6,6 +6,8 @@ import {
   EditionStatus,
   Language,
   SourceType,
+  EditionIdSchema,
+  TokenUsageSchema,
   AgentOutputSchema,
   CostEntrySchema,
   SourceItemSchema,
@@ -17,10 +19,9 @@ import {
   DistributionRecordSchema,
   PerformanceMetricsSchema,
   EditionSchema,
+  AgentRunEntrySchema,
   RunLedgerSchema,
   PipelineRunSchema,
-  EditionIdSchema,
-  TokenUsageSchema,
   AppConfigSchema,
 } from "../../src/types/index.js";
 
@@ -28,7 +29,7 @@ import {
 // Helpers
 // ---------------------------------------------------------------------------
 
-const EDITION_ID = "2026-W08";
+const EDITION_ID = "2026-07";
 
 function makeStepTimestamps() {
   return { startedAt: new Date().toISOString() };
@@ -53,7 +54,7 @@ function makeSourceItem(overrides: object = {}) {
     sourceType: "rss",
     title: "AI Trends 2026",
     url: "https://example.com/article",
-    publishDate: new Date().toISOString(),
+    publishedAt: new Date().toISOString(),
     summary: "A summary of the article",
     verbatimFacts: [
       "Fact one from the article.",
@@ -122,19 +123,24 @@ describe("Enums", () => {
 // ---------------------------------------------------------------------------
 
 describe("EditionId", () => {
-  it("accepts YYYY-Www format", () => {
-    expect(EditionIdSchema.parse("2026-W08")).toBe("2026-W08");
-    expect(EditionIdSchema.parse("2025-W01")).toBe("2025-W01");
-    expect(EditionIdSchema.parse("2026-W52")).toBe("2026-W52");
+  it("accepts YYYY-WW format (no W prefix)", () => {
+    expect(EditionIdSchema.parse("2026-07")).toBe("2026-07");
+    expect(EditionIdSchema.parse("2025-01")).toBe("2025-01");
+    expect(EditionIdSchema.parse("2026-52")).toBe("2026-52");
+  });
+
+  it("rejects YYYY-Www format (W prefix)", () => {
+    expect(() => EditionIdSchema.parse("2026-W07")).toThrow();
+    expect(() => EditionIdSchema.parse("2025-W01")).toThrow();
   });
 
   it("rejects UUID format", () => {
     expect(() => EditionIdSchema.parse(randomUUID())).toThrow();
   });
 
-  it("rejects free-form strings", () => {
-    expect(() => EditionIdSchema.parse("2026-08")).toThrow();
+  it("rejects other free-form strings", () => {
     expect(() => EditionIdSchema.parse("W08-2026")).toThrow();
+    expect(() => EditionIdSchema.parse("2026-7")).toThrow();
   });
 });
 
@@ -181,13 +187,14 @@ describe("CostEntry", () => {
 // ---------------------------------------------------------------------------
 
 describe("AgentOutput", () => {
-  it("validates a successful agent output", () => {
+  it("validates a successful agent output with both success and status", () => {
     const output = {
       agentName: "radar",
       runId: randomUUID(),
       editionId: EDITION_ID,
       timestamp: new Date().toISOString(),
       durationMs: 1500,
+      success: true,
       status: "success",
       tokens: makeTokenUsage(),
       cost: makeCost(),
@@ -197,20 +204,36 @@ describe("AgentOutput", () => {
     expect(AgentOutputSchema.parse(output)).toBeDefined();
   });
 
-  it("validates an error output with messages", () => {
+  it("validates an error output with success=false and error string", () => {
     const output = {
       agentName: "writer",
       runId: randomUUID(),
       editionId: EDITION_ID,
       timestamp: new Date().toISOString(),
       durationMs: 200,
+      success: false,
+      error: "Timeout after 30s",
       status: "error",
-      tokens: { input: 0, output: 0 },
       cost: makeCost(),
-      errors: ["Timeout after 30s", "Retries exhausted"],
+      errors: ["Timeout after 30s"],
       data: null,
     };
     expect(AgentOutputSchema.parse(output)).toBeDefined();
+  });
+
+  it("rejects missing success field", () => {
+    expect(() =>
+      AgentOutputSchema.parse({
+        agentName: "radar",
+        runId: randomUUID(),
+        editionId: EDITION_ID,
+        timestamp: new Date().toISOString(),
+        durationMs: 100,
+        status: "success",
+        cost: makeCost(),
+        data: null,
+      }),
+    ).toThrow();
   });
 
   it("rejects unknown status values", () => {
@@ -221,10 +244,9 @@ describe("AgentOutput", () => {
         editionId: EDITION_ID,
         timestamp: new Date().toISOString(),
         durationMs: 100,
+        success: true,
         status: "unknown",
-        tokens: makeTokenUsage(),
         cost: makeCost(),
-        errors: [],
         data: null,
       }),
     ).toThrow();
@@ -503,7 +525,7 @@ describe("Edition", () => {
     expect(EditionSchema.parse(edition)).toBeDefined();
   });
 
-  it("validates a fully-populated edition", () => {
+  it("validates a fully-populated edition with renamed fields", () => {
     const edition = {
       editionId: EDITION_ID,
       runId: randomUUID(),
@@ -511,19 +533,19 @@ describe("Edition", () => {
       status: "approved",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      ENBody: "# AI Week\n\nEnglish body here.",
-      ESBody: "# Semana de IA\n\nSpanish body here.",
+      enBody: "# AI Week\n\nEnglish body here.",
+      esBody: "# Semana de IA\n\nSpanish body here.",
       subjectEN: "Your AI briefing for the week",
       subjectES: "Tu resumen de IA de la semana",
       publishDatetime: new Date().toISOString(),
-      QAScore: 92,
+      qaScore: 92,
       approvalUser: "editor@example.com",
       contentHash: "a".repeat(64),
     };
     expect(EditionSchema.parse(edition)).toBeDefined();
   });
 
-  it("rejects QAScore > 100", () => {
+  it("rejects qaScore > 100", () => {
     expect(() =>
       EditionSchema.parse({
         editionId: EDITION_ID,
@@ -532,7 +554,7 @@ describe("Edition", () => {
         status: "draft",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        QAScore: 101,
+        qaScore: 101,
       }),
     ).toThrow();
   });
@@ -560,6 +582,50 @@ describe("Edition", () => {
         status: "draft",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+      }),
+    ).toThrow();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// AgentRunEntry (restored with new optional fields)
+// ---------------------------------------------------------------------------
+
+describe("AgentRunEntry", () => {
+  it("validates a minimal entry (original fields)", () => {
+    const entry = {
+      agentName: "radar",
+      startedAt: new Date().toISOString(),
+      retryCount: 0,
+    };
+    expect(AgentRunEntrySchema.parse(entry)).toBeDefined();
+  });
+
+  it("validates an entry with all new optional spec fields", () => {
+    const entry = {
+      agentName: "writer",
+      startedAt: new Date().toISOString(),
+      completedAt: new Date().toISOString(),
+      durationMs: 3200,
+      success: true,
+      retryCount: 1,
+      promptVersion: "2.1.0",
+      voiceBibleVersion: "3.0.0",
+      modelUsed: "claude-opus-4-6-20250415",
+      tokenUsage: { input: 5000, output: 2000 },
+      outputHash: "c".repeat(64),
+      cost: makeCost(),
+    };
+    expect(AgentRunEntrySchema.parse(entry)).toBeDefined();
+  });
+
+  it("rejects invalid outputHash (not 64 hex chars)", () => {
+    expect(() =>
+      AgentRunEntrySchema.parse({
+        agentName: "radar",
+        startedAt: new Date().toISOString(),
+        retryCount: 0,
+        outputHash: "tooshort",
       }),
     ).toThrow();
   });
@@ -597,7 +663,7 @@ describe("RunLedger", () => {
       RunLedgerSchema.parse(
         makeRunLedger({
           outputHash: "b".repeat(64),
-          publishIdempotencyKey: "run-2026-W08-distributor-1",
+          publishIdempotencyKey: "run-2026-07-distributor-1",
         }),
       ),
     ).toBeDefined();

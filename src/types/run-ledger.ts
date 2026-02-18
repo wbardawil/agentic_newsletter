@@ -1,17 +1,6 @@
 import { z } from "zod";
-import { AgentName, RunStatus } from "./enums.js";
-
-/** YYYY-Www edition identifier, e.g. "2026-W08". */
-export const EditionIdSchema = z
-  .string()
-  .regex(/^\d{4}-W\d{2}$/, "Edition ID must be in YYYY-Www format (e.g. 2026-W08)");
-
-/** Token usage breakdown for a single agent invocation. */
-export const TokenUsageSchema = z.object({
-  input: z.number().int().nonnegative(),
-  output: z.number().int().nonnegative(),
-});
-export type TokenUsage = z.infer<typeof TokenUsageSchema>;
+import { AgentName, RunStatus, EditionIdSchema, TokenUsageSchema } from "./enums.js";
+import { CostEntrySchema } from "./agent-io.js";
 
 /** Timestamps for a single ledger step. */
 export const StepTimestampsSchema = z.object({
@@ -21,13 +10,39 @@ export const StepTimestampsSchema = z.object({
 export type StepTimestamps = z.infer<typeof StepTimestampsSchema>;
 
 /**
+ * Per-step agent execution entry within a run.
+ * Restored for backward compatibility; new optional fields added per spec.
+ */
+export const AgentRunEntrySchema = z.object({
+  agentName: AgentName,
+  startedAt: z.string().datetime(),
+  completedAt: z.string().datetime().optional(),
+  durationMs: z.number().int().nonnegative().optional(),
+  success: z.boolean().optional(),
+  error: z.string().optional(),
+  cost: CostEntrySchema.optional(),
+  retryCount: z.number().int().nonnegative(),
+  /** Semver of the prompt template used for this step. */
+  promptVersion: z.string().optional(),
+  /** Semver of the voice-bible used for this step. */
+  voiceBibleVersion: z.string().optional(),
+  /** Model identifier used for inference. */
+  modelUsed: z.string().optional(),
+  /** Token counts for this step's primary LLM call. */
+  tokenUsage: TokenUsageSchema.optional(),
+  /** SHA-256 hex digest of the agent's serialised output payload. */
+  outputHash: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+});
+export type AgentRunEntry = z.infer<typeof AgentRunEntrySchema>;
+
+/**
  * Flat per-step audit record written for every agent invocation.
  * One RunLedger row is created each time an agent starts executing.
  */
 export const RunLedgerSchema = z.object({
   /** UUID identifying the overall pipeline run. */
   runId: z.string().uuid(),
-  /** Week-based edition identifier in YYYY-Www format. */
+  /** Week-based edition identifier in YYYY-WW format. */
   editionId: EditionIdSchema,
   /** UUID uniquely identifying this step within the run. */
   stepId: z.string().uuid(),

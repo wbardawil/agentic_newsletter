@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { EditionStatus, Language } from "./enums.js";
-import { EditionIdSchema } from "./run-ledger.js";
+import { EditionStatus, Language, EditionIdSchema } from "./enums.js";
 
 /** Strategic angle selected by the Strategist agent. */
 export const StrategicAngleSchema = z.object({
@@ -77,12 +76,12 @@ export type PerformanceMetrics = z.infer<typeof PerformanceMetricsSchema>;
  * Complete newsletter edition record.
  * Accumulates data as it flows through the pipeline.
  *
- * Key flat fields (EN_body, ES_body, subject_EN, subject_ES) are the
- * authoritative final copy used for Beehiiv delivery.  The `content` array
+ * Flat delivery fields (enBody, esBody, subjectEN, subjectES) are the
+ * authoritative final copy used for Beehiiv delivery. The `content` array
  * holds the richer sectioned representation produced by the Writer agent.
  */
 export const EditionSchema = z.object({
-  /** Week-based edition identifier in YYYY-Www format (e.g. "2026-W08"). */
+  /** Week-based edition identifier in YYYY-WW format (e.g. "2026-07"). */
   editionId: EditionIdSchema,
   runId: z.string().uuid(),
   editionNumber: z.number().int().positive(),
@@ -91,9 +90,9 @@ export const EditionSchema = z.object({
   updatedAt: z.string().datetime(),
 
   /** Rendered English body — full HTML/Markdown ready for delivery. */
-  ENBody: z.string().optional(),
+  enBody: z.string().optional(),
   /** Rendered Spanish body — full HTML/Markdown ready for delivery. */
-  ESBody: z.string().optional(),
+  esBody: z.string().optional(),
   /** Email subject line in English. */
   subjectEN: z.string().optional(),
   /** Email subject line in Spanish. */
@@ -104,10 +103,10 @@ export const EditionSchema = z.object({
    * Composite quality score 0–100 assigned by the Validator agent.
    * Must reach the configured threshold before human approval is requested.
    */
-  QAScore: z.number().min(0).max(100).optional(),
+  qaScore: z.number().min(0).max(100).optional(),
   /** Email or username of the human who approved this edition. */
   approvalUser: z.string().optional(),
-  /** SHA-256 hex digest of the canonical content payload (ENBody + ESBody). */
+  /** SHA-256 hex digest of the canonical content payload (enBody + esBody). */
   contentHash: z
     .string()
     .regex(/^[a-f0-9]{64}$/, "contentHash must be a SHA-256 hex digest")

@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { AgentName } from "./enums.js";
-import { TokenUsageSchema } from "./run-ledger.js";
+import { AgentName, TokenUsageSchema } from "./enums.js";
 
 /** Per-call cost details stored alongside token usage. */
 export const CostEntrySchema = z.object({
@@ -14,11 +13,8 @@ export type CostEntry = z.infer<typeof CostEntrySchema>;
 /**
  * Generic output envelope returned by every agent.
  *
- * - `status`  — explicit outcome; avoids boolean ambiguity.
- * - `tokens`  — raw token counts for the agent's primary LLM call.
- * - `cost`    — cost breakdown (model + tokens → USD).
- * - `errors`  — ordered list of error messages; empty on success.
- * - `data`    — agent-specific payload; each agent narrows it with its own schema.
+ * Backward-compat fields (`success`, `error`) are kept alongside the newer
+ * enum-based `status`, optional `tokens`, and `errors` array.
  */
 export const AgentOutputSchema = z.object({
   agentName: AgentName,
@@ -26,14 +22,18 @@ export const AgentOutputSchema = z.object({
   editionId: z.string(),
   timestamp: z.string().datetime(),
   durationMs: z.number().int().nonnegative(),
-  /** Explicit execution status. */
+  /** Boolean outcome — kept for backward compatibility. */
+  success: z.boolean(),
+  /** Error message string — kept for backward compatibility. */
+  error: z.string().optional(),
+  /** Explicit execution status enum. */
   status: z.enum(["success", "error", "retrying"]),
   /** Token breakdown for the primary LLM invocation. */
-  tokens: TokenUsageSchema,
+  tokens: TokenUsageSchema.optional(),
   /** Cost breakdown for this agent invocation. */
   cost: CostEntrySchema,
-  /** Ordered error messages — empty array on success. */
-  errors: z.array(z.string()),
+  /** Ordered error messages — empty on success. */
+  errors: z.array(z.string()).optional(),
   data: z.unknown(),
 });
 export type AgentOutput<T = unknown> = Omit<

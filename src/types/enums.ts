@@ -46,3 +46,15 @@ export type Language = z.infer<typeof Language>;
 /** Source types the Radar agent can ingest. */
 export const SourceType = z.enum(["rss", "api", "manual", "social"]);
 export type SourceType = z.infer<typeof SourceType>;
+
+/** YYYY-WW edition identifier, e.g. "2026-07". */
+export const EditionIdSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}$/, "Edition ID must be in YYYY-WW format (e.g. 2026-07)");
+
+/** Token usage breakdown for a single agent invocation. */
+export const TokenUsageSchema = z.object({
+  input: z.number().int().nonnegative(),
+  output: z.number().int().nonnegative(),
+});
+export type TokenUsage = z.infer<typeof TokenUsageSchema>;

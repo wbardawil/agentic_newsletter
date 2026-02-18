@@ -26,7 +26,7 @@ describe("RadarAgent", () => {
     const agent = new RadarAgent(deps);
     const input: AgentInput<{ timeWindowHours: number; maxItems: number }> = {
       runId: randomUUID(),
-      editionId: "2026-W08",
+      editionId: "2026-07",
       agentName: "radar",
       payload: { timeWindowHours: 24, maxItems: 20 },
     };
