@@ -1,5 +1,5 @@
 # Voice Bible — The Transformation Letter
-*Master editorial guide. Version 1.0. This document governs every word published.*
+*Master editorial guide. Version 2.0. This document governs every word published.*
 
 ---
 
@@ -78,6 +78,16 @@ The values that shape this letter are visible in the advice itself — not in de
 
 10. **Never write from above. Write from alongside.**
 
+11. **The reframe is the core content unit.** Every Insight section must contain one explicit reframe. The sequence: state what the conventional understanding is → name why it is wrong or incomplete → offer the correct frame. The sequence cannot be reversed. The reader must feel the wrongness of the prior belief before the new frame can land. *Example: "Most advisors call this an alignment problem and prescribe more all-hands meetings. It is not an alignment problem. It is a missing artifact."*
+
+12. **Name the misdiagnosis before the diagnosis.** The reader has already tried the conventional solution — the all-hands meeting, the consultant, the new software. Name what they tried. Name why it didn't work — not because they implemented it wrong, but because they were solving the wrong problem. This is the moment the reader feels most seen: when someone names the failure they've been too embarrassed to discuss.
+
+13. **Short sentences create rhythm. Rhythm creates forward pull.** Three declarative sentences in sequence create the feeling of inevitability — the reader cannot stop mid-sequence because each sentence leaves a micro-question only the next sentence answers. Every paragraph in the Insight should end with a sentence that opens a small loop. *Pattern: "He sent a planning deck. Nobody had looked at it since. It was not a strategy. It was memory."*
+
+14. **The shareability test is a publication checkpoint.** Before publishing, identify the one sentence in the Insight section the reader would most likely screenshot and send to a peer. If you cannot identify that sentence, the insight is not ready. The shareable sentence names something the reader experiences but has never articulated — it is a precise diagnosis, not a great turn of phrase.
+
+15. **Intellectual credibility is built through constraint, not claim.** Never write "as an expert" or imply universal applicability. Instead, name the specific pattern observed, the mechanism believed to explain it, and — when honest — the specific thing that would change your mind. A writer who states the limits of their framework earns more trust than one who never acknowledges limits.
+
 ---
 
 ## Bilingual Guidelines
@@ -89,6 +99,8 @@ The Spanish edition is not a translation. It is a transcreation — the same ins
 - The warmth in Spanish is slightly warmer. The directness is equally direct.
 - Never use machine translation as the final output. The Spanish edition requires a bilingual operator who is also a business practitioner.
 - Data points, framework names, and section headers remain consistent across both editions for brand recognition.
+
+**Translate the situation, not the sentence.** In the Spanish edition, the default example company is Latin American — a family-owned enterprise navigating intergenerational dynamics, regulatory complexity, and relationship-based deal-making. The relational frame must be visible from the first sentence, not as warmth language but as structural assumption. The English edition can afford to lead with analysis. The Spanish edition must lead with relationship. The test: would a business owner in Monterrey or Bogotá feel this was written specifically for them — or would they feel it was an English letter with Spanish words?
 
 ---
 
@@ -104,6 +116,8 @@ One fully developed idea inside one of the three OS pillars. Structure: Problem 
 
 **THE FIELD REPORT** (~150 words)
 One observation from the US-LATAM corridor. A company worth studying, a market pattern, a signal. 3–4 short paragraphs. Demonstrates fluency in both sides of the corridor. Factual, brief, pointed.
+
+*The intelligence standard:* The Field Report must deliver intelligence, not news. The test: does the reader gain information they could not have found in 5 minutes on Google News? If yes, it qualifies. If not, find a different story. Intelligence means pattern recognition from corridor-specific observation — not curation of events already reported elsewhere. The story earns its place by showing what the event reveals about a larger shift the reader needs to act on.
 
 **THE COMPASS** (~75 words)
 A question the writer is genuinely sitting with. May relate to business, leadership, character, or the intersection of faith and work. Not answered. Present as an honest open position.
