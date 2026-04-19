@@ -14,6 +14,8 @@ const RadarInputSchema = z.object({
   timeWindowHours: z.number().positive(),
   maxItems: z.number().int().positive(),
   focusTopics: z.array(z.string()).optional(),
+  /** Override the per-feed RSS parser timeout in ms (default: from config). */
+  rssTimeoutMs: z.number().positive().int().optional(),
 });
 type RadarInput = z.infer<typeof RadarInputSchema>;
 
@@ -596,7 +598,9 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
     payload: RadarInput,
     context: AgentInput<RadarInput>,
   ): Promise<SourceBundle> {
-    const parser = new Parser({ timeout: 12000 });
+    const timeoutMs =
+      payload.rssTimeoutMs ?? this.deps.apiClients.rssParserTimeoutMs;
+    const parser = new Parser({ timeout: timeoutMs });
     const scannedAt = new Date().toISOString();
 
     // Fetch all feeds in parallel — with 30 feeds sequential would be ~6 min worst-case
@@ -606,6 +610,14 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
         parsed: await parser.parseURL(feed.url),
       })),
     );
+
+    const rejected = results.filter((r) => r.status === "rejected").length;
+    if (rejected > 0) {
+      this.logger.warn(
+        `Radar: ${rejected}/${results.length} feeds failed to load`,
+        { runId: context.runId },
+      );
+    }
 
     const allItems: SourceItem[] = [];
     let feedsScanned = 0;

@@ -80,7 +80,8 @@ export const DistributionRecordSchema = z.object({
   platform: z.enum(["beehiiv", "linkedin", "twitter"]),
   distributedAt: z.string().datetime(),
   externalId: z.string().optional(),
-  status: z.enum(["sent", "scheduled", "failed"]),
+  /** draft = created in Beehiiv but not yet scheduled/sent */
+  status: z.enum(["draft", "sent", "scheduled", "failed"]),
   error: z.string().optional(),
 });
 export type DistributionRecord = z.infer<typeof DistributionRecordSchema>;

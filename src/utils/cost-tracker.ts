@@ -28,7 +28,9 @@ export function createCostTracker(): CostTracker {
   ): number {
     const pricing = MODEL_PRICING[model];
     if (!pricing) {
-      return 0;
+      throw new Error(
+        `Unknown model "${model}" — add it to MODEL_PRICING in cost-tracker.ts`,
+      );
     }
     return (
       (inputTokens / 1_000_000) * pricing.input +

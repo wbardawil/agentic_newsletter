@@ -12,6 +12,7 @@ import {
   StrategicAngleSchema,
   type LocalizedContent,
 } from "../types/edition.js";
+import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
 const LocalizerInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -69,14 +70,6 @@ function buildPrompt(
     .replace("{{doorId}}", getSectionId(content, "cta"));
 }
 
-function extractJson(text: string): string {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (fenced?.[1]) return fenced[1].trim();
-  const brace = text.indexOf("{");
-  if (brace !== -1) return text.slice(brace);
-  return text.trim();
-}
-
 // ── Localizer agent ───────────────────────────────────────────────────────────
 
 export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> {
@@ -107,10 +100,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
       message.usage.output_tokens,
     );
 
-    const rawText =
-      message.content.find((b) => b.type === "text")?.text ?? "{}";
-    const parsed = JSON.parse(extractJson(rawText)) as unknown;
-
-    return LocalizedContentSchema.parse(parsed);
+    const rawText = extractTextFromMessage(message.content);
+    return LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
   }
 }

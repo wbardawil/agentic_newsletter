@@ -17,6 +17,7 @@ import {
   loadVoiceBible,
   formatVoiceBibleForPrompt,
 } from "../utils/voice-bible-loader.js";
+import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
 const WriterInputSchema = z.object({
   angle: StrategicAngleSchema,
@@ -70,7 +71,7 @@ function buildSystemPrompt(
   const sourceMaterial = payload.sources
     .map(
       (item: SourceItem) =>
-        `**${item.title}** (${item.outlet ?? "Unknown"}, ${item.publishedAt.split("T")[0]})\n` +
+        `**${item.title}** (${item.outlet ?? "Unknown"}, ${(item.publishedAt ?? "").split("T")[0]})\n` +
         `URL: ${item.url}\n` +
         `Summary: ${item.summary}\n` +
         `Key facts:\n${item.verbatimFacts.map((f: string) => `  - ${f}`).join("\n")}`,
@@ -90,14 +91,6 @@ function buildSystemPrompt(
     .replace("{{input}}", sourceMaterial);
 }
 
-function extractJson(text: string): string {
-  const fenceMatch = /```(?:json)?\s*([\s\S]*?)```/.exec(text);
-  if (fenceMatch?.[1]) return fenceMatch[1].trim();
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start !== -1 && end !== -1) return text.slice(start, end + 1);
-  return text.trim();
-}
 
 function transformToLocalizedContent(
   output: WriterOutput,
@@ -185,20 +178,14 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
 
     const message = await stream.finalMessage();
 
-    this.deps.costTracker.recordUsage(
+    this.costTracker.recordUsage(
       MODEL,
       message.usage.input_tokens,
       message.usage.output_tokens,
     );
 
-    const rawText =
-      message.content
-        .filter((b) => b.type === "text")
-        .map((b) => (b as { type: "text"; text: string }).text)
-        .join("") ?? "";
-
-    const jsonStr = extractJson(rawText);
-    const parsed = JSON.parse(jsonStr) as unknown;
+    const rawText = extractTextFromMessage(message.content);
+    const parsed = parseLlmJson(rawText, "WriterAgent");
     const writerOutput = WriterOutputSchema.parse(parsed);
 
     if (writerOutput.reviewFlags.length > 0) {

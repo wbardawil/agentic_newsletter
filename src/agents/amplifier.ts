@@ -10,6 +10,7 @@ import {
   StrategicAngleSchema,
   type LocalizedContent,
 } from "../types/edition.js";
+import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
 const AmplifierInputSchema = z.object({
   enContent: LocalizedContentSchema,
@@ -72,14 +73,6 @@ function buildPrompt(
     .replace("{{shareableSentence}}", shareableSentence ?? "(none identified)");
 }
 
-function extractJson(text: string): string {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (fenced?.[1]) return fenced[1].trim();
-  const brace = text.indexOf("{");
-  if (brace !== -1) return text.slice(brace);
-  return text.trim();
-}
-
 function enforceTwitterLimit(posts: SocialPost[]): SocialPost[] {
   return posts.map((post) => {
     if (post.platform !== "twitter") return post;
@@ -120,9 +113,8 @@ export class AmplifierAgent extends BaseAgent<AmplifierInput, AmplifierOutput> {
       message.usage.output_tokens,
     );
 
-    const rawText =
-      message.content.find((b) => b.type === "text")?.text ?? "{}";
-    const parsed = JSON.parse(extractJson(rawText)) as unknown;
+    const rawText = extractTextFromMessage(message.content);
+    const parsed = parseLlmJson(rawText, "AmplifierAgent");
 
     const validated = AmplifierOutputSchema.parse(parsed);
     const posts = enforceTwitterLimit(validated.posts);

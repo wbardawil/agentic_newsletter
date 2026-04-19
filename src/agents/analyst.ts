@@ -73,8 +73,8 @@ export class AnalystAgent extends BaseAgent<AnalystInput, PerformanceMetrics> {
     payload: AnalystInput,
     context: AgentInput<AnalystInput>,
   ): Promise<PerformanceMetrics> {
-    const apiKey = process.env["BEEHIIV_API_KEY"];
-    const publicationId = process.env["BEEHIIV_PUBLICATION_ID"];
+    const { beehiivApiKey: apiKey, beehiivPublicationId: publicationId } =
+      this.deps.apiClients;
 
     if (!apiKey || !publicationId) {
       throw new Error(

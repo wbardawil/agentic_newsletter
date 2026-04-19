@@ -71,20 +71,21 @@ interface BeehiivPostBody {
   subtitle: string;
   content_tags: string[];
   authors: string[];
-  send_at?: number; // Unix timestamp
+  send_at?: number;
   status: "draft" | "confirmed";
   displayed_date?: number;
-  web_subtitle?: string;
-  meta_title?: string;
-  meta_default_description?: string;
-  content?: {
-    free?: { web?: string; email?: string };
-  };
+  content?: { free?: { web?: string; email?: string } };
 }
 
-async function createBeehiivDraft(
+interface BeehiivCreateResponse {
+  data?: { id?: string };
+  errors?: string[];
+}
+
+async function createBeehiivPost(
   apiKey: string,
   publicationId: string,
+  author: string,
   subject: string,
   preheader: string,
   body: string,
@@ -92,23 +93,27 @@ async function createBeehiivDraft(
 ): Promise<string> {
   const url = `https://api.beehiiv.com/v2/publications/${publicationId}/posts`;
 
+  let send_at: number | undefined;
+  if (scheduledAt) {
+    const scheduledDate = new Date(scheduledAt);
+    if (isNaN(scheduledDate.getTime())) {
+      throw new Error(`Invalid scheduledAt timestamp: "${scheduledAt}"`);
+    }
+    send_at = Math.floor(scheduledDate.getTime() / 1000);
+  }
+
   const postBody: BeehiivPostBody = {
     title: subject,
     subtitle: preheader,
     content_tags: ["transformation-letter"],
-    authors: ["Wadi Bardawil"],
-    status: scheduledAt ? "confirmed" : "draft",
-    content: {
-      free: {
-        web: body,
-        email: body,
-      },
-    },
+    authors: [author],
+    status: send_at ? "confirmed" : "draft",
+    content: { free: { web: body, email: body } },
   };
 
-  if (scheduledAt) {
-    postBody.send_at = Math.floor(new Date(scheduledAt).getTime() / 1000);
-    postBody.displayed_date = postBody.send_at;
+  if (send_at) {
+    postBody.send_at = send_at;
+    postBody.displayed_date = send_at;
   }
 
   const response = await fetch(url, {
@@ -125,10 +130,13 @@ async function createBeehiivDraft(
     throw new Error(`Beehiiv API error ${response.status}: ${errorText}`);
   }
 
-  const data = (await response.json()) as { data?: { id?: string } };
-  const postId = data.data?.id;
-  if (!postId) throw new Error("Beehiiv response missing post ID");
-  return postId;
+  const data = (await response.json()) as BeehiivCreateResponse;
+  if (!data.data?.id) {
+    const details = data.errors?.join("; ") ?? "no id in response";
+    throw new Error(`Beehiiv post created but no ID returned: ${details}`);
+  }
+
+  return data.data.id;
 }
 
 // ── Distributor agent ─────────────────────────────────────────────────────────
@@ -149,10 +157,10 @@ export class DistributorAgent extends BaseAgent<
     payload: DistributorInput,
     context: AgentInput<DistributorInput>,
   ): Promise<DistributionRecord[]> {
-    const apiKey = process.env["BEEHIIV_API_KEY"];
-    const publicationId = process.env["BEEHIIV_PUBLICATION_ID"];
+    const { beehiivApiKey, beehiivPublicationId, newsletterAuthor } =
+      this.deps.apiClients;
 
-    if (!apiKey || !publicationId) {
+    if (!beehiivApiKey || !beehiivPublicationId) {
       throw new Error(
         "BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID must be set to distribute",
       );
@@ -160,20 +168,21 @@ export class DistributorAgent extends BaseAgent<
 
     const records: DistributionRecord[] = [];
     const now = new Date().toISOString();
+    const scheduled = Boolean(payload.scheduledAt);
 
     // ── English edition ──────────────────────────────────────────────────────
     try {
-      const enBody = renderToMarkdown(payload.enContent);
-      const enPostId = await createBeehiivDraft(
-        apiKey,
-        publicationId,
+      const enPostId = await createBeehiivPost(
+        beehiivApiKey,
+        beehiivPublicationId,
+        newsletterAuthor,
         payload.enContent.subject,
         payload.enContent.preheader,
-        enBody,
+        renderToMarkdown(payload.enContent),
         payload.scheduledAt,
       );
 
-      this.logger.info("Beehiiv EN draft created", {
+      this.logger.info("Beehiiv EN post created", {
         runId: context.runId,
         postId: enPostId,
       });
@@ -182,7 +191,7 @@ export class DistributorAgent extends BaseAgent<
         platform: "beehiiv",
         distributedAt: now,
         externalId: enPostId,
-        status: payload.scheduledAt ? "scheduled" : "sent",
+        status: scheduled ? "scheduled" : "draft",
       });
     } catch (err) {
       records.push({
@@ -195,17 +204,17 @@ export class DistributorAgent extends BaseAgent<
 
     // ── Spanish edition ──────────────────────────────────────────────────────
     try {
-      const esBody = renderToMarkdown(payload.esContent);
-      const esPostId = await createBeehiivDraft(
-        apiKey,
-        publicationId,
+      const esPostId = await createBeehiivPost(
+        beehiivApiKey,
+        beehiivPublicationId,
+        newsletterAuthor,
         payload.esContent.subject,
         payload.esContent.preheader,
-        esBody,
+        renderToMarkdown(payload.esContent),
         payload.scheduledAt,
       );
 
-      this.logger.info("Beehiiv ES draft created", {
+      this.logger.info("Beehiiv ES post created", {
         runId: context.runId,
         postId: esPostId,
       });
@@ -214,7 +223,7 @@ export class DistributorAgent extends BaseAgent<
         platform: "beehiiv",
         distributedAt: now,
         externalId: esPostId,
-        status: payload.scheduledAt ? "scheduled" : "sent",
+        status: scheduled ? "scheduled" : "draft",
       });
     } catch (err) {
       records.push({

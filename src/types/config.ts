@@ -27,5 +27,11 @@ export const AppConfigSchema = z.object({
   logLevel: z.enum(["debug", "info", "warn", "error"]).default("info"),
   dryRun: z.boolean().default(false),
   maxCostPerRunUsd: z.number().positive().default(5.0),
+
+  // Publishing
+  /** Display name used as post author in Beehiiv. */
+  newsletterAuthor: z.string().min(1).default("Wadi Bardawil"),
+  /** Per-feed timeout for the RSS parser (ms). */
+  rssParserTimeoutMs: z.number().positive().int().default(12000),
 });
 export type AppConfig = z.infer<typeof AppConfigSchema>;

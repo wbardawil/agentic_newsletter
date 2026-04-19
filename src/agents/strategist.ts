@@ -11,6 +11,7 @@ import {
   type StrategicAngle,
   type OsPillar,
 } from "../types/edition.js";
+import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
 const StrategistInputSchema = SourceBundleSchema;
 type StrategistInput = SourceBundle;
@@ -93,16 +94,6 @@ function buildPrompt(
     .replace("{{input}}", sourceSummary);
 }
 
-function extractJson(text: string): string {
-  // Strip markdown code fences if present
-  const fenceMatch = /```(?:json)?\s*([\s\S]*?)```/.exec(text);
-  if (fenceMatch?.[1]) return fenceMatch[1].trim();
-  // Find the first { and last }
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start !== -1 && end !== -1) return text.slice(start, end + 1);
-  return text.trim();
-}
 
 export class StrategistAgent extends BaseAgent<StrategistInput, StrategicAngle> {
   readonly name: AgentName = "strategist";
@@ -135,23 +126,14 @@ export class StrategistAgent extends BaseAgent<StrategistInput, StrategicAngle> 
 
     const message = await stream.finalMessage();
 
-    this.deps.costTracker.recordUsage(
+    this.costTracker.recordUsage(
       MODEL,
       message.usage.input_tokens,
       message.usage.output_tokens,
     );
 
-    const rawText =
-      message.content
-        .filter((b) => b.type === "text")
-        .map((b) => (b as { type: "text"; text: string }).text)
-        .join("") ?? "";
-
-    const jsonStr = extractJson(rawText);
-    const parsed = JSON.parse(jsonStr) as unknown;
-
-    // Validate osPillar is one of the three allowed values
-    const angle = StrategicAngleSchema.parse(parsed);
-    return angle;
+    const rawText = extractTextFromMessage(message.content);
+    const parsed = parseLlmJson(rawText, "StrategistAgent");
+    return StrategicAngleSchema.parse(parsed);
   }
 }

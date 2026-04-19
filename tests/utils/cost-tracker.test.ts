@@ -21,11 +21,11 @@ describe("createCostTracker", () => {
     expect(cost.costUsd).toBeCloseTo(4.5, 2);
   });
 
-  it("records zero cost for unknown models", () => {
+  it("throws on unknown models to prevent silent cost miscalculation", () => {
     const tracker = createCostTracker();
-    tracker.recordUsage("unknown-model", 1000, 500);
-
-    expect(tracker.getCurrentCost().costUsd).toBe(0);
+    expect(() => tracker.recordUsage("unknown-model", 1000, 500)).toThrow(
+      /Unknown model "unknown-model"/,
+    );
   });
 
   it("accumulates across multiple calls", () => {

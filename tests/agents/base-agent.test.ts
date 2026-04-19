@@ -4,8 +4,7 @@ import { randomUUID } from "node:crypto";
 import { BaseAgent, type AgentDeps } from "../../src/agents/base-agent.js";
 import type { AgentName } from "../../src/types/enums.js";
 import type { AgentInput } from "../../src/types/agent-io.js";
-import { createLogger } from "../../src/utils/logger.js";
-import { createCostTracker } from "../../src/utils/cost-tracker.js";
+import { makeDeps as makeBaseDeps } from "../helpers/make-deps.js";
 
 const TestInputSchema = z.object({ value: z.string() });
 const TestOutputSchema = z.object({ result: z.string() });
@@ -30,11 +29,7 @@ class TestAgent extends BaseAgent<TestInput, TestOutput> {
 }
 
 function makeDeps(): AgentDeps {
-  return {
-    logger: createLogger("error"),
-    costTracker: createCostTracker(),
-    apiClients: { anthropic: {} as never },
-  };
+  return makeBaseDeps();
 }
 
 function makeInput(payload: TestInput): AgentInput<TestInput> {

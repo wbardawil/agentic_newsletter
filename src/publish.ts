@@ -29,10 +29,13 @@ import {
   LocalizedContentSchema,
   StrategicAngleSchema,
   ValidationResultSchema,
+  DistributionRecordSchema,
   type LocalizedContent,
   type StrategicAngle,
   type DistributionRecord,
 } from "./types/edition.js";
+import { EditionIdSchema } from "./types/enums.js";
+import { z } from "zod";
 import type { SocialPost } from "./agents/amplifier.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -131,6 +134,15 @@ async function main(): Promise<void> {
   const scheduleArg = args.find((a, i) => args[i - 1] === "--schedule");
   const metricsOnly = args.includes("--metrics");
 
+  if (editionArg) {
+    try {
+      EditionIdSchema.parse(editionArg);
+    } catch {
+      console.error(`❌ Invalid --edition value: "${editionArg}". Expected format: YYYY-WW (e.g. 2026-17)`);
+      process.exit(1);
+    }
+  }
+
   const config = AppConfigSchema.parse({
     anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
     beehiivApiKey: process.env["BEEHIIV_API_KEY"],
@@ -143,9 +155,13 @@ async function main(): Promise<void> {
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
     logLevel: process.env["LOG_LEVEL"],
     dryRun: process.env["DRY_RUN"] === "true",
-    maxCostPerRunUsd: process.env["MAX_COST_PER_RUN_USD"]
-      ? Number(process.env["MAX_COST_PER_RUN_USD"])
-      : undefined,
+    maxCostPerRunUsd: (() => {
+      const raw = process.env["MAX_COST_PER_RUN_USD"];
+      if (!raw) return undefined;
+      const n = Number(raw);
+      if (isNaN(n)) throw new Error(`Invalid MAX_COST_PER_RUN_USD: "${raw}" is not a number`);
+      return n;
+    })(),
   });
 
   const logger = createLogger(config.logLevel);
@@ -183,9 +199,15 @@ async function main(): Promise<void> {
       process.exit(1);
     }
 
-    const distRecords = JSON.parse(
-      readFileSync(distributionPath, "utf-8"),
-    ) as DistributionRecord[];
+    let distRecords: DistributionRecord[];
+    try {
+      distRecords = z.array(DistributionRecordSchema).parse(
+        JSON.parse(readFileSync(distributionPath, "utf-8")),
+      );
+    } catch (err) {
+      console.error(`❌ Failed to load distribution record: ${err instanceof Error ? err.message : String(err)}`);
+      process.exit(1);
+    }
     const beehiivIds = distRecords
       .filter((r) => r.platform === "beehiiv" && r.externalId)
       .map((r) => r.externalId as string);
@@ -302,6 +324,9 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
-  console.error("Fatal error:", err instanceof Error ? err.message : err);
+  console.error("Fatal error:", err instanceof Error ? err.message : String(err));
+  if (process.env["LOG_LEVEL"] === "debug" && err instanceof Error && err.stack) {
+    console.error(err.stack);
+  }
   process.exit(1);
 });

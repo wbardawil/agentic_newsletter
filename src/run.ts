@@ -15,8 +15,8 @@ import { randomUUID } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import Anthropic from "@anthropic-ai/sdk";
 import { AppConfigSchema } from "./types/config.js";
+import { EditionIdSchema } from "./types/enums.js";
 import { createLogger } from "./utils/logger.js";
 import { createCostTracker } from "./utils/cost-tracker.js";
 import { createApiClients } from "./utils/api-clients.js";
@@ -130,6 +130,14 @@ function renderMarkdown(
 async function main(): Promise<void> {
   // Allow --edition YYYY-WW override from CLI args
   const editionArg = process.argv.find((a, i) => process.argv[i - 1] === "--edition");
+  if (editionArg) {
+    try {
+      EditionIdSchema.parse(editionArg);
+    } catch {
+      console.error(`❌ Invalid --edition value: "${editionArg}". Expected format: YYYY-WW (e.g. 2026-17)`);
+      process.exit(1);
+    }
+  }
 
   const config = AppConfigSchema.parse({
     anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
@@ -143,9 +151,13 @@ async function main(): Promise<void> {
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
     logLevel: process.env["LOG_LEVEL"],
     dryRun: process.env["DRY_RUN"] === "true",
-    maxCostPerRunUsd: process.env["MAX_COST_PER_RUN_USD"]
-      ? Number(process.env["MAX_COST_PER_RUN_USD"])
-      : undefined,
+    maxCostPerRunUsd: (() => {
+      const raw = process.env["MAX_COST_PER_RUN_USD"];
+      if (!raw) return undefined;
+      const n = Number(raw);
+      if (isNaN(n)) throw new Error(`Invalid MAX_COST_PER_RUN_USD: "${raw}" is not a number`);
+      return n;
+    })(),
   });
 
   const logger = createLogger(config.logLevel);
@@ -169,7 +181,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "radar",
-    payload: { timeWindowHours: 168, maxItems: 20 },
+    payload: { timeWindowHours: 168, maxItems: 20, rssTimeoutMs: config.rssParserTimeoutMs },
   });
 
   if (!radarOutput.success) {
@@ -341,6 +353,9 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
-  console.error("Fatal error:", err instanceof Error ? err.message : err);
+  console.error("Fatal error:", err instanceof Error ? err.message : String(err));
+  if (process.env["LOG_LEVEL"] === "debug" && err instanceof Error && err.stack) {
+    console.error(err.stack);
+  }
   process.exit(1);
 });

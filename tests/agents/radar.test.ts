@@ -2,15 +2,10 @@ import { describe, it, expect } from "vitest";
 import { randomUUID } from "node:crypto";
 import { RadarAgent } from "../../src/agents/radar.js";
 import type { AgentInput } from "../../src/types/agent-io.js";
-import { createLogger } from "../../src/utils/logger.js";
-import { createCostTracker } from "../../src/utils/cost-tracker.js";
+import { makeDeps } from "../helpers/make-deps.js";
 
 describe("RadarAgent", () => {
-  const deps = {
-    logger: createLogger("error"),
-    costTracker: createCostTracker(),
-    apiClients: { anthropic: {} as never },
-  };
+  const deps = makeDeps();
 
   it("has the correct agent name", () => {
     const agent = new RadarAgent(deps);

@@ -12,6 +12,7 @@ import {
   type ValidationResult,
   type ValidationIssue,
 } from "../types/edition.js";
+import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
 const ValidatorInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -67,6 +68,24 @@ const BANNED_PHRASES: string[] = [
   "world-class",
 ];
 
+// ── Compiled regex constants (not recreated per call) ─────────────────────────
+
+const BULLET_RE = /^\s*[-*•]/m;
+const SENTENCE_SPLIT_RE = /(?<=[.!?])\s+/;
+// Word-boundary patterns built once from BANNED_PHRASES list (populated below)
+let _bannedPhrasePatterns: RegExp[] | null = null;
+function getBannedPhrasePatterns(): RegExp[] {
+  if (_bannedPhrasePatterns) return _bannedPhrasePatterns;
+  _bannedPhrasePatterns = BANNED_PHRASES.map(
+    (phrase) =>
+      new RegExp(
+        `\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
+        "i",
+      ),
+  );
+  return _bannedPhrasePatterns;
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function countWords(text: string): number {
@@ -75,18 +94,18 @@ function countWords(text: string): number {
 
 function findLongSentences(text: string, maxWords = 25): string[] {
   return text
-    .split(/(?<=[.!?])\s+/)
+    .split(SENTENCE_SPLIT_RE)
     .filter((s) => countWords(s) > maxWords)
     .slice(0, 3);
 }
 
 function findBannedPhrases(text: string): string[] {
-  const lower = text.toLowerCase();
-  return BANNED_PHRASES.filter((phrase) => lower.includes(phrase));
+  const patterns = getBannedPhrasePatterns();
+  return BANNED_PHRASES.filter((_, i) => patterns[i]?.test(text));
 }
 
 function hasBulletPoints(text: string): boolean {
-  return /^\s*[-*•]/m.test(text);
+  return BULLET_RE.test(text);
 }
 
 function getSectionText(
@@ -125,14 +144,6 @@ function buildPrompt(
     .replace("{{insight}}", sections["insight"] ?? "")
     .replace("{{fieldReport}}", sections["fieldReport"] ?? "")
     .replace("{{compass}}", sections["compass"] ?? "");
-}
-
-function extractJson(text: string): string {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (fenced?.[1]) return fenced[1].trim();
-  const brace = text.indexOf("{");
-  if (brace !== -1) return text.slice(brace);
-  return text.trim();
 }
 
 // ── LLM response schema ───────────────────────────────────────────────────────
@@ -296,11 +307,8 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
       message.usage.output_tokens,
     );
 
-    const rawText =
-      message.content.find((b) => b.type === "text")?.text ?? "{}";
-    const llmData = LlmResponseSchema.parse(
-      JSON.parse(extractJson(rawText)),
-    );
+    const rawText = extractTextFromMessage(message.content);
+    const llmData = LlmResponseSchema.parse(parseLlmJson(rawText, "ValidatorAgent"));
 
     // Convert LLM boolean checks to issues
     if (!llmData.hasExplicitReframe) {
