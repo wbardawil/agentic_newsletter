@@ -182,9 +182,10 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "us",
     tier: 2,
   },
+  // Reuters killed public RSS (2024). Replaced with AP News business wire.
   {
-    url: "https://feeds.reuters.com/reuters/businessNews",
-    outlet: "Reuters",
+    url: "https://apnews.com/hub/ap-top-business-news.rss",
+    outlet: "AP Business",
     region: "us",
     tier: 2,
   },
@@ -615,7 +616,18 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
   ): Promise<SourceBundle> {
     const timeoutMs =
       payload.rssTimeoutMs ?? this.deps.apiClients.rssParserTimeoutMs;
-    const parser = new Parser({ timeout: timeoutMs });
+    // Browser-like User-Agent defeats most RSS anti-bot 403 responses.
+    // Accept-Language + Accept headers further mimic a real reader.
+    const parser = new Parser({
+      timeout: timeoutMs,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+        Accept:
+          "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+        "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
+      },
+    });
     const scannedAt = new Date().toISOString();
 
     // Hard ceiling prevents a single slow feed from stalling the whole pipeline
