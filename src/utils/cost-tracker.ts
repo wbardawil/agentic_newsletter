@@ -2,8 +2,9 @@ import type { CostEntry } from "../types/agent-io.js";
 
 /** USD per 1M tokens — update as Anthropic pricing changes. */
 const MODEL_PRICING: Record<string, { input: number; output: number }> = {
-  "claude-sonnet-4-5-20250514": { input: 3.0, output: 15.0 },
-  "claude-opus-4-6-20250415": { input: 15.0, output: 75.0 },
+  "claude-sonnet-4-5": { input: 3.0, output: 15.0 },
+  "claude-opus-4-6": { input: 5.0, output: 25.0 },
+  "claude-opus-4-7": { input: 5.0, output: 25.0 },
 };
 
 export interface CostTracker {

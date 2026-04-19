@@ -157,7 +157,7 @@ Before producing output, verify:
 
 ## Output Format
 
-Respond with valid JSON matching the WriterOutput schema:
+Respond with valid JSON only — no preamble, no markdown wrapper:
 
 ```json
 {
@@ -165,6 +165,8 @@ Respond with valid JSON matching the WriterOutput schema:
   "runId": "{{runId}}",
   "editionId": "{{editionId}}",
   "osPillar": "{{osPillar}}",
+  "subject": "Email subject line (under 60 characters, no clickbait)",
+  "preheader": "Email preheader text (under 120 characters)",
   "sections": {
     "apertura": "...",
     "insight": "...",

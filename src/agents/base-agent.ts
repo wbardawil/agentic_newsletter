@@ -3,10 +3,12 @@ import type { AgentName } from "../types/enums.js";
 import type { AgentInput, AgentOutput, CostEntry } from "../types/agent-io.js";
 import type { Logger } from "../utils/logger.js";
 import type { CostTracker } from "../utils/cost-tracker.js";
+import type { ApiClients } from "../utils/api-clients.js";
 
 export interface AgentDeps {
   logger: Logger;
   costTracker: CostTracker;
+  apiClients: ApiClients;
 }
 
 /**

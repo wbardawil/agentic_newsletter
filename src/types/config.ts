@@ -4,15 +4,15 @@ import { z } from "zod";
 export const AppConfigSchema = z.object({
   // Anthropic
   anthropicApiKey: z.string().min(1),
-  defaultModel: z.string().default("claude-sonnet-4-5-20250514"),
-  writerModel: z.string().default("claude-opus-4-6-20250415"),
+  defaultModel: z.string().default("claude-sonnet-4-5"),
+  writerModel: z.string().default("claude-opus-4-7"),
 
-  // Beehiiv
-  beehiivApiKey: z.string().min(1),
-  beehiivPublicationId: z.string().min(1),
+  // Beehiiv (required for distribution — optional in Phase 2 draft mode)
+  beehiivApiKey: z.string().optional(),
+  beehiivPublicationId: z.string().optional(),
 
-  // Feedly
-  feedlyApiKey: z.string().min(1),
+  // Feedly (optional — Radar uses direct RSS in Phase 2)
+  feedlyApiKey: z.string().optional(),
 
   // Social (optional)
   linkedinAccessToken: z.string().optional(),

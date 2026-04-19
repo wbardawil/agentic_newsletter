@@ -9,6 +9,7 @@ describe("RadarAgent", () => {
   const deps = {
     logger: createLogger("error"),
     costTracker: createCostTracker(),
+    apiClients: { anthropic: {} as never },
   };
 
   it("has the correct agent name", () => {
@@ -22,7 +23,7 @@ describe("RadarAgent", () => {
     expect(agent.outputSchema).toBeDefined();
   });
 
-  it("throws 'not implemented' when run", async () => {
+  it("returns an error when no RSS feeds are reachable", async () => {
     const agent = new RadarAgent(deps);
     const input: AgentInput<{ timeWindowHours: number; maxItems: number }> = {
       runId: randomUUID(),
@@ -31,8 +32,8 @@ describe("RadarAgent", () => {
       payload: { timeWindowHours: 24, maxItems: 20 },
     };
 
+    // In a test environment without network access the agent will fail gracefully.
     const output = await agent.run(input);
     expect(output.status).toBe("error");
-    expect(output.errors[0]).toContain("not implemented");
   });
 });

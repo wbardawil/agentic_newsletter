@@ -366,6 +366,8 @@ describe("StrategicAngle", () => {
       relevanceToAudience: "Direct impact on operational costs",
       suggestedSources: [randomUUID()],
       talkingPoints: ["Point 1", "Point 2"],
+      osPillar: "Strategy OS",
+      quarterlyTheme: "The Machine",
     };
     expect(StrategicAngleSchema.parse(angle)).toBeDefined();
   });
@@ -729,15 +731,12 @@ describe("AppConfig", () => {
   it("applies defaults for optional fields", () => {
     const config = AppConfigSchema.parse({
       anthropicApiKey: "sk-test",
-      beehiivApiKey: "bh-test",
-      beehiivPublicationId: "pub-test",
-      feedlyApiKey: "fl-test",
     });
     expect(config.logLevel).toBe("info");
     expect(config.dryRun).toBe(false);
     expect(config.maxCostPerRunUsd).toBe(5.0);
-    expect(config.defaultModel).toBe("claude-sonnet-4-5-20250514");
-    expect(config.writerModel).toBe("claude-opus-4-6-20250415");
+    expect(config.defaultModel).toBe("claude-sonnet-4-5");
+    expect(config.writerModel).toBe("claude-opus-4-7");
   });
 
   it("rejects missing required API keys", () => {

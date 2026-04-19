@@ -11,10 +11,10 @@ describe("createCostTracker", () => {
   it("records usage and calculates cost for known models", () => {
     const tracker = createCostTracker();
     // claude-sonnet-4-5: $3/1M input, $15/1M output
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 1_000_000, 100_000);
+    tracker.recordUsage("claude-sonnet-4-5", 1_000_000, 100_000);
 
     const cost = tracker.getCurrentCost();
-    expect(cost.model).toBe("claude-sonnet-4-5-20250514");
+    expect(cost.model).toBe("claude-sonnet-4-5");
     expect(cost.inputTokens).toBe(1_000_000);
     expect(cost.outputTokens).toBe(100_000);
     // $3.00 input + $1.50 output = $4.50
@@ -30,8 +30,8 @@ describe("createCostTracker", () => {
 
   it("accumulates across multiple calls", () => {
     const tracker = createCostTracker();
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 500_000, 50_000);
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 500_000, 50_000);
+    tracker.recordUsage("claude-sonnet-4-5", 500_000, 50_000);
+    tracker.recordUsage("claude-sonnet-4-5", 500_000, 50_000);
 
     const cost = tracker.getCurrentCost();
     expect(cost.inputTokens).toBe(1_000_000);
@@ -41,7 +41,7 @@ describe("createCostTracker", () => {
 
   it("reset clears current but not total", () => {
     const tracker = createCostTracker();
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 1_000_000, 100_000);
+    tracker.recordUsage("claude-sonnet-4-5", 1_000_000, 100_000);
 
     const totalBefore = tracker.getTotalCost();
     tracker.reset();
@@ -53,9 +53,9 @@ describe("createCostTracker", () => {
 
   it("total accumulates across resets", () => {
     const tracker = createCostTracker();
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 1_000_000, 0);
+    tracker.recordUsage("claude-sonnet-4-5", 1_000_000, 0);
     tracker.reset();
-    tracker.recordUsage("claude-sonnet-4-5-20250514", 1_000_000, 0);
+    tracker.recordUsage("claude-sonnet-4-5", 1_000_000, 0);
 
     // $3.00 + $3.00 = $6.00
     expect(tracker.getTotalCost()).toBeCloseTo(6.0, 2);
@@ -65,10 +65,10 @@ describe("createCostTracker", () => {
 
   it("handles claude-opus-4-6 pricing", () => {
     const tracker = createCostTracker();
-    // claude-opus-4-6: $15/1M input, $75/1M output
-    tracker.recordUsage("claude-opus-4-6-20250415", 100_000, 10_000);
+    // claude-opus-4-6: $5/1M input, $25/1M output
+    tracker.recordUsage("claude-opus-4-6", 100_000, 10_000);
 
-    // $1.50 input + $0.75 output = $2.25
-    expect(tracker.getCurrentCost().costUsd).toBeCloseTo(2.25, 2);
+    // $0.50 input + $0.25 output = $0.75
+    expect(tracker.getCurrentCost().costUsd).toBeCloseTo(0.75, 2);
   });
 });

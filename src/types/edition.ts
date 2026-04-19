@@ -1,6 +1,14 @@
 import { z } from "zod";
 import { EditionStatus, Language, EditionIdSchema } from "./enums.js";
 
+/** The three layers of the Business Transformation OS. */
+export const OsPillarSchema = z.enum([
+  "Strategy OS",
+  "Operating Model OS",
+  "Technology OS",
+]);
+export type OsPillar = z.infer<typeof OsPillarSchema>;
+
 /** Strategic angle selected by the Strategist agent. */
 export const StrategicAngleSchema = z.object({
   headline: z.string().min(1),
@@ -9,6 +17,10 @@ export const StrategicAngleSchema = z.object({
   relevanceToAudience: z.string(),
   suggestedSources: z.array(z.string().uuid()),
   talkingPoints: z.array(z.string()).min(1),
+  /** Which OS layer this issue's Insight lives in. */
+  osPillar: OsPillarSchema,
+  /** Quarterly narrative theme (e.g. "The Machine"). */
+  quarterlyTheme: z.string().min(1),
 });
 export type StrategicAngle = z.infer<typeof StrategicAngleSchema>;
 

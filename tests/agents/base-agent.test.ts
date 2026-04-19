@@ -33,6 +33,7 @@ function makeDeps(): AgentDeps {
   return {
     logger: createLogger("error"),
     costTracker: createCostTracker(),
+    apiClients: { anthropic: {} as never },
   };
 }
 
