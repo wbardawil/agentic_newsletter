@@ -1,0 +1,307 @@
+/**
+ * Publish pipeline — CLI entry point.
+ *
+ * Usage:
+ *   pnpm publish:edition                         (publishes latest draft as Beehiiv drafts)
+ *   pnpm publish:edition --edition 2026-17       (specific edition)
+ *   pnpm publish:edition --schedule 2026-04-22T09:00:00Z
+ *   pnpm publish:edition --metrics               (collect stats for a previously sent edition)
+ *
+ * Requires drafts/YYYY-WW-draft.json produced by `pnpm draft`.
+ * Runs: Distributor → Amplifier → (optional) Analyst
+ * Saves: drafts/YYYY-WW-social.json + drafts/YYYY-WW-metrics.json
+ */
+
+import "dotenv/config";
+import { randomUUID } from "node:crypto";
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { AppConfigSchema } from "./types/config.js";
+import { createLogger } from "./utils/logger.js";
+import { createCostTracker } from "./utils/cost-tracker.js";
+import { createApiClients } from "./utils/api-clients.js";
+import type { AgentDeps } from "./agents/base-agent.js";
+import { DistributorAgent } from "./agents/distributor.js";
+import { AmplifierAgent } from "./agents/amplifier.js";
+import { AnalystAgent } from "./agents/analyst.js";
+import {
+  LocalizedContentSchema,
+  StrategicAngleSchema,
+  ValidationResultSchema,
+  type LocalizedContent,
+  type StrategicAngle,
+  type DistributionRecord,
+} from "./types/edition.js";
+import type { SocialPost } from "./agents/amplifier.js";
+
+// ── helpers ──────────────────────────────────────────────────────────────────
+
+function getISOWeek(date: Date): number {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+  const yearStart = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+}
+
+function getCurrentEditionId(override?: string): string {
+  if (override) return override;
+  const now = new Date();
+  const year = now.getFullYear();
+  const week = String(getISOWeek(now)).padStart(2, "0");
+  return `${year}-${week}`;
+}
+
+interface DraftJson {
+  runId: string;
+  editionId: string;
+  angle: unknown;
+  enContent: unknown;
+  esContent: unknown;
+  validation?: unknown;
+}
+
+function loadDraft(
+  draftsDir: string,
+  editionId: string,
+): {
+  runId: string;
+  angle: StrategicAngle;
+  enContent: LocalizedContent;
+  esContent: LocalizedContent | null;
+  shareableSentence: string | null;
+} {
+  const jsonPath = join(draftsDir, `${editionId}-draft.json`);
+  if (!existsSync(jsonPath)) {
+    throw new Error(
+      `Draft not found: ${jsonPath}\nRun \`pnpm draft\` first to generate the draft.`,
+    );
+  }
+
+  const raw = JSON.parse(readFileSync(jsonPath, "utf-8")) as DraftJson;
+  const angle = StrategicAngleSchema.parse(raw.angle);
+  const enContent = LocalizedContentSchema.parse(raw.enContent);
+  const esContent = raw.esContent
+    ? LocalizedContentSchema.parse(raw.esContent)
+    : null;
+
+  let shareableSentence: string | null = null;
+  if (raw.validation) {
+    try {
+      const v = ValidationResultSchema.parse(raw.validation);
+      shareableSentence = v.shareableSentence;
+    } catch {
+      // validation data missing or invalid — not fatal
+    }
+  }
+
+  return { runId: raw.runId, angle, enContent, esContent, shareableSentence };
+}
+
+function formatSocialPosts(posts: SocialPost[]): string {
+  const linkedin = posts.filter((p) => p.platform === "linkedin");
+  const twitter = posts.filter((p) => p.platform === "twitter");
+  const lines: string[] = [];
+
+  lines.push("# Social Posts\n");
+
+  lines.push("## LinkedIn\n");
+  for (const [i, post] of linkedin.entries()) {
+    lines.push(`### Post ${i + 1}${post.angle ? ` — ${post.angle}` : ""}\n`);
+    lines.push(post.content);
+    lines.push("");
+  }
+
+  lines.push("## X / Twitter\n");
+  for (const [i, post] of twitter.entries()) {
+    lines.push(`### Tweet ${i + 1} (${post.content.length} chars)\n`);
+    lines.push(post.content);
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+// ── main ─────────────────────────────────────────────────────────────────────
+
+async function main(): Promise<void> {
+  const args = process.argv;
+  const editionArg = args.find((a, i) => args[i - 1] === "--edition");
+  const scheduleArg = args.find((a, i) => args[i - 1] === "--schedule");
+  const metricsOnly = args.includes("--metrics");
+
+  const config = AppConfigSchema.parse({
+    anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
+    beehiivApiKey: process.env["BEEHIIV_API_KEY"],
+    beehiivPublicationId: process.env["BEEHIIV_PUBLICATION_ID"],
+    feedlyApiKey: process.env["FEEDLY_API_KEY"],
+    linkedinAccessToken: process.env["LINKEDIN_ACCESS_TOKEN"],
+    twitterApiKey: process.env["TWITTER_API_KEY"],
+    twitterApiSecret: process.env["TWITTER_API_SECRET"],
+    airtableApiKey: process.env["AIRTABLE_API_KEY"],
+    airtableBaseId: process.env["AIRTABLE_BASE_ID"],
+    logLevel: process.env["LOG_LEVEL"],
+    dryRun: process.env["DRY_RUN"] === "true",
+    maxCostPerRunUsd: process.env["MAX_COST_PER_RUN_USD"]
+      ? Number(process.env["MAX_COST_PER_RUN_USD"])
+      : undefined,
+  });
+
+  const logger = createLogger(config.logLevel);
+  const costTracker = createCostTracker();
+  const apiClients = createApiClients(config);
+  const deps: AgentDeps = { logger, costTracker, apiClients };
+
+  const runId = randomUUID();
+  const editionId = getCurrentEditionId(editionArg);
+  const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+  const draftsDir = join(rootDir, "drafts");
+  mkdirSync(draftsDir, { recursive: true });
+
+  console.log(`\n📮 The Transformation Letter — Publish Pipeline`);
+  console.log(`   Run:     ${runId}`);
+  console.log(`   Edition: ${editionId}`);
+  if (scheduleArg) console.log(`   Scheduled: ${scheduleArg}`);
+  console.log(`   Time:    ${new Date().toISOString()}\n`);
+
+  // ── Load draft ─────────────────────────────────────────────────────────────
+  const { angle, enContent, esContent, shareableSentence } = loadDraft(
+    draftsDir,
+    editionId,
+  );
+
+  // ── Metrics-only mode ──────────────────────────────────────────────────────
+  if (metricsOnly) {
+    const metricsPath = join(draftsDir, `${editionId}-metrics.json`);
+    const distributionPath = join(draftsDir, `${editionId}-distribution.json`);
+
+    if (!existsSync(distributionPath)) {
+      console.error(
+        `❌ No distribution record found at ${distributionPath}\nRun without --metrics first.`,
+      );
+      process.exit(1);
+    }
+
+    const distRecords = JSON.parse(
+      readFileSync(distributionPath, "utf-8"),
+    ) as DistributionRecord[];
+    const beehiivIds = distRecords
+      .filter((r) => r.platform === "beehiiv" && r.externalId)
+      .map((r) => r.externalId as string);
+
+    console.log(`📊 Collecting metrics for ${beehiivIds.length} Beehiiv posts...`);
+    const analystAgent = new AnalystAgent(deps);
+    const analystOutput = await analystAgent.run({
+      runId,
+      editionId,
+      agentName: "analyst",
+      payload: { editionId, beehiivPostIds: beehiivIds },
+    });
+
+    if (!analystOutput.success) {
+      console.error(`❌ Analyst failed: ${analystOutput.error}`);
+      process.exit(1);
+    }
+
+    writeFileSync(metricsPath, JSON.stringify(analystOutput.data, null, 2), "utf-8");
+    const m = analystOutput.data;
+    console.log(`\n📈 Metrics collected:`);
+    if (m.openRate != null) console.log(`   Open rate:  ${(m.openRate * 100).toFixed(1)}%`);
+    if (m.clickRate != null) console.log(`   Click rate: ${(m.clickRate * 100).toFixed(1)}%`);
+    console.log(`   Saved: ${metricsPath}\n`);
+    return;
+  }
+
+  // ── Distributor ────────────────────────────────────────────────────────────
+  if (!esContent) {
+    console.error("❌ Spanish edition missing from draft. Re-run `pnpm draft` first.");
+    process.exit(1);
+  }
+
+  console.log("📧 Step 1/2 — Distributor: creating Beehiiv posts...");
+  const distributorAgent = new DistributorAgent(deps);
+  const distributorOutput = await distributorAgent.run({
+    runId,
+    editionId,
+    agentName: "distributor",
+    payload: {
+      enContent,
+      esContent,
+      scheduledAt: scheduleArg,
+    },
+  });
+
+  if (!distributorOutput.success) {
+    console.error(`❌ Distributor failed: ${distributorOutput.error}`);
+    process.exit(1);
+  }
+
+  const distributionRecords = distributorOutput.data;
+  const failed = distributionRecords.filter((r) => r.status === "failed");
+  const succeeded = distributionRecords.filter((r) => r.status !== "failed");
+
+  for (const r of succeeded) {
+    const label = scheduleArg ? "scheduled" : "created";
+    console.log(`   ✓ Beehiiv post ${label}: ${r.externalId ?? "unknown"}`);
+  }
+  for (const r of failed) {
+    console.warn(`   ⚠️  Beehiiv post failed: ${r.error ?? "unknown error"}`);
+  }
+
+  const distributionPath = join(draftsDir, `${editionId}-distribution.json`);
+  writeFileSync(
+    distributionPath,
+    JSON.stringify(distributionRecords, null, 2),
+    "utf-8",
+  );
+
+  // ── Amplifier ──────────────────────────────────────────────────────────────
+  console.log("\n📣 Step 2/2 — Amplifier: generating social posts...");
+  const amplifierAgent = new AmplifierAgent(deps);
+  const amplifierOutput = await amplifierAgent.run({
+    runId,
+    editionId,
+    agentName: "amplifier",
+    payload: { enContent, angle, shareableSentence: shareableSentence ?? null },
+  });
+
+  if (!amplifierOutput.success) {
+    console.warn(`   ⚠️  Amplifier failed: ${amplifierOutput.error}. Social posts skipped.`);
+  } else {
+    const posts = amplifierOutput.data.posts;
+    const linkedin = posts.filter((p) => p.platform === "linkedin").length;
+    const twitter = posts.filter((p) => p.platform === "twitter").length;
+    console.log(`   ✓ ${linkedin} LinkedIn posts, ${twitter} X posts generated`);
+
+    const socialJsonPath = join(draftsDir, `${editionId}-social.json`);
+    const socialMdPath = join(draftsDir, `${editionId}-social.md`);
+    writeFileSync(socialJsonPath, JSON.stringify(amplifierOutput.data, null, 2), "utf-8");
+    writeFileSync(socialMdPath, formatSocialPosts(posts), "utf-8");
+    console.log(`   📄 ${socialMdPath}`);
+  }
+
+  // ── Summary ────────────────────────────────────────────────────────────────
+  const amplifierCostUsd = amplifierOutput.success ? amplifierOutput.cost.costUsd : 0;
+  console.log(`\n💰 Cost breakdown:`);
+  console.log(`   Distributor: $0.0000 (API calls only)`);
+  console.log(`   Amplifier:   $${amplifierCostUsd.toFixed(4)}`);
+  console.log(`   Total:       $${amplifierCostUsd.toFixed(4)}`);
+
+  if (failed.length > 0) {
+    console.warn(`\n⚠️  ${failed.length} distribution(s) failed — check logs above.`);
+  } else {
+    const action = scheduleArg ? "scheduled" : "created as drafts";
+    console.log(
+      `\n✅ Done — ${succeeded.length} Beehiiv post(s) ${action}. Review social posts in ${editionId}-social.md\n`,
+    );
+  }
+
+  console.log(`💡 To collect metrics 48h after send:`);
+  console.log(`   pnpm publish:edition --edition ${editionId} --metrics\n`);
+}
+
+main().catch((err) => {
+  console.error("Fatal error:", err instanceof Error ? err.message : err);
+  process.exit(1);
+});
