@@ -18,6 +18,10 @@ export const AppConfigSchema = z.object({
   linkedinAccessToken: z.string().optional(),
   twitterApiKey: z.string().optional(),
   twitterApiSecret: z.string().optional(),
+  /** Twitter OAuth 1.0a user access token (required for posting tweets). */
+  twitterAccessToken: z.string().optional(),
+  /** Twitter OAuth 1.0a user access token secret. */
+  twitterAccessSecret: z.string().optional(),
 
   // Airtable (optional)
   airtableApiKey: z.string().optional(),

@@ -131,6 +131,15 @@ async function createBeehiivPost(
     body: JSON.stringify(postBody),
   });
 
+  // 409 Conflict means the idempotency key was already used — extract the existing post ID
+  if (response.status === 409) {
+    const data = (await response.json()) as BeehiivCreateResponse;
+    const existingId = data.data?.id;
+    if (existingId) return existingId;
+    // Beehiiv doesn't always echo the original ID on 409 — treat as duplicate and skip
+    throw new Error(`Beehiiv 409: duplicate post for idempotency key "${idempotencyKey}" — no post ID in response`);
+  }
+
   if (!response.ok) {
     const errorText = await response.text();
     throw new Error(sanitizeBeehiivError(`Beehiiv API error ${response.status}: ${errorText}`));
@@ -163,13 +172,24 @@ export class DistributorAgent extends BaseAgent<
     payload: DistributorInput,
     context: AgentInput<DistributorInput>,
   ): Promise<DistributionRecord[]> {
-    const { beehiivApiKey, beehiivPublicationId, newsletterAuthor } =
+    const { beehiivApiKey, beehiivPublicationId, newsletterAuthor, dryRun } =
       this.deps.apiClients;
 
     if (!beehiivApiKey || !beehiivPublicationId) {
       throw new Error(
         "BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID must be set to distribute",
       );
+    }
+
+    if (dryRun) {
+      this.logger.info("Distributor: dry-run mode — skipping Beehiiv API calls", {
+        runId: context.runId,
+      });
+      const now = new Date().toISOString();
+      return [
+        { platform: "beehiiv", distributedAt: now, status: "draft", externalId: "dry-run-en" },
+        { platform: "beehiiv", distributedAt: now, status: "draft", externalId: "dry-run-es" },
+      ];
     }
 
     const records: DistributionRecord[] = [];

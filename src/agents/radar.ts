@@ -9,6 +9,7 @@ import {
   type SourceBundle,
   type SourceItem,
 } from "../types/source-bundle.js";
+import { fetchFeedlyStream } from "../utils/feedly.js";
 
 const RadarInputSchema = z.object({
   timeWindowHours: z.number().positive(),
@@ -689,6 +690,61 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           tags: itemTags,
           rawContent,
         });
+      }
+    }
+
+    // ── Feedly supplemental source (additive, never required) ─────────────────
+    const { feedlyApiKey } = this.deps.apiClients;
+    if (feedlyApiKey) {
+      try {
+        const newerThan = Date.now() - payload.timeWindowHours * 60 * 60 * 1000;
+        const feedlyItems = await fetchFeedlyStream(feedlyApiKey, 50, newerThan);
+        let feedlyAdded = 0;
+
+        for (const fi of feedlyItems) {
+          const url = fi.canonical?.[0]?.href ?? fi.originId ?? "";
+          const title = fi.title?.trim() ?? "";
+          if (!url || !title) continue;
+
+          const pubDate = fi.published ? new Date(fi.published) : new Date();
+          const recencyHours = (Date.now() - pubDate.getTime()) / (1000 * 60 * 60);
+          if (recencyHours > payload.timeWindowHours) continue;
+
+          const rawContent = (fi.content?.content ?? fi.summary?.content ?? "").substring(0, 3000);
+          const summary = fi.summary?.content
+            ? fi.summary.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 600)
+            : title;
+          const outlet = fi.origin?.title ?? "Feedly";
+          const tags = (fi.tags ?? []).map((t) => t.label ?? "").filter(Boolean);
+          const verbatimFacts = extractFacts(rawContent, title, outlet);
+          const relevanceScore = scoreRelevance(title, summary, tags, { region: "global", tier: 2 } as FeedConfig);
+
+          allItems.push({
+            id: randomUUID(),
+            sourceType: "rss",
+            title,
+            url,
+            publishedAt: pubDate.toISOString(),
+            outlet,
+            summary,
+            verbatimFacts,
+            relevanceScore,
+            recencyHours,
+            tags,
+            rawContent,
+          });
+          feedlyAdded++;
+          totalScanned++;
+        }
+
+        this.logger.info(`Radar: added ${feedlyAdded} items from Feedly`, {
+          runId: context.runId,
+        });
+      } catch (err) {
+        this.logger.warn(
+          `Radar: Feedly fetch failed (continuing with RSS only) — ${err instanceof Error ? err.message : String(err)}`,
+          { runId: context.runId },
+        );
       }
     }
 

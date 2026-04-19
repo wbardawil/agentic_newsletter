@@ -30,6 +30,7 @@ import { LocalizerAgent } from "./agents/localizer.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
+import { writeRunSummary } from "./utils/airtable.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -135,6 +136,8 @@ async function main(): Promise<void> {
     }
   }
 
+  const costJsonFlag = process.argv.includes("--cost-json");
+
   const config = AppConfigSchema.parse({
     anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
     beehiivApiKey: process.env["BEEHIIV_API_KEY"],
@@ -143,6 +146,8 @@ async function main(): Promise<void> {
     linkedinAccessToken: process.env["LINKEDIN_ACCESS_TOKEN"],
     twitterApiKey: process.env["TWITTER_API_KEY"],
     twitterApiSecret: process.env["TWITTER_API_SECRET"],
+    twitterAccessToken: process.env["TWITTER_ACCESS_TOKEN"],
+    twitterAccessSecret: process.env["TWITTER_ACCESS_SECRET"],
     airtableApiKey: process.env["AIRTABLE_API_KEY"],
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
     logLevel: process.env["LOG_LEVEL"],
@@ -365,7 +370,75 @@ async function main(): Promise<void> {
   console.log(`   Validator:  $${validatorCostUsd.toFixed(4)}`);
   console.log(`   Localizer:  $${localizerCostUsd.toFixed(4)}`);
   console.log(`   Total:      $${totalCost.toFixed(4)}`);
-  console.log(`\n✅ Done — open ${editionId}-en.md to review and edit.\n`);
+
+  if (costJsonFlag) {
+    process.stdout.write(
+      JSON.stringify({
+        runId,
+        editionId,
+        totalCostUsd: totalCost,
+        breakdown: {
+          radar: radarOutput.cost.costUsd,
+          strategist: strategistOutput.cost.costUsd,
+          writer: writerOutput.cost.costUsd,
+          validator: validatorCostUsd,
+          localizer: localizerCostUsd,
+        },
+      }) + "\n",
+    );
+  }
+
+  // ── Airtable run ledger ────────────────────────────────────────────────────
+  const { airtableApiKey, airtableBaseId } = apiClients;
+  if (airtableApiKey && airtableBaseId) {
+    try {
+      await writeRunSummary(airtableApiKey, airtableBaseId, {
+        runId,
+        editionId,
+        status: "draft_complete",
+        triggeredAt: new Date().toISOString(),
+        completedAt: new Date().toISOString(),
+        totalCostUsd: totalCost,
+        radarCostUsd: radarOutput.cost.costUsd,
+        strategistCostUsd: strategistOutput.cost.costUsd,
+        writerCostUsd: writerOutput.cost.costUsd,
+        validatorCostUsd,
+        localizerCostUsd,
+      });
+      logger.info("Airtable run summary written", { runId, editionId });
+    } catch (err) {
+      logger.warn(
+        `Airtable write failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`,
+        { runId },
+      );
+    }
+  }
+
+  // ── Human approval gate ────────────────────────────────────────────────────
+  if (process.stdin.isTTY) {
+    process.stdout.write(`\n📋 Review the draft at ${editionId}-en.md, then approve to publish.\n`);
+    process.stdout.write("   Approve and run publish pipeline? [y/N]: ");
+    const answer = await new Promise<string>((resolve) => {
+      process.stdin.setEncoding("utf8");
+      process.stdin.once("data", (chunk) => resolve(String(chunk).trim().toLowerCase()));
+    });
+
+    if (answer === "y" || answer === "yes") {
+      console.log("\n🚀 Approval granted — launching publish pipeline...\n");
+      const { spawn } = await import("node:child_process");
+      const args = ["--import", "tsx", "src/publish.ts", "--edition", editionId];
+      const child = spawn(process.execPath, args, { stdio: "inherit", env: process.env });
+      await new Promise<void>((resolve, reject) => {
+        child.on("close", (code) =>
+          code === 0 ? resolve() : reject(new Error(`publish exited with code ${String(code)}`)),
+        );
+      });
+    } else {
+      console.log("\n⏸️  Publish skipped. Run `pnpm publish:edition` when ready.\n");
+    }
+  } else {
+    console.log(`\n✅ Done — open ${editionId}-en.md to review and edit.\n`);
+  }
 }
 
 main().catch((err) => {

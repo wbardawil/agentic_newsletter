@@ -13,6 +13,24 @@ export interface ApiClients {
   rssParserTimeoutMs: number;
   /** Hard cap on total USD spend per pipeline run (enforced in base-agent). */
   maxCostPerRunUsd: number;
+  /** When true, skip all external writes (Beehiiv, social, Airtable). */
+  dryRun: boolean;
+  /** Feedly developer token — undefined if not configured. */
+  feedlyApiKey: string | undefined;
+  /** LinkedIn OAuth 2.0 access token. */
+  linkedinAccessToken: string | undefined;
+  /** Twitter API key (OAuth 1.0a consumer key). */
+  twitterApiKey: string | undefined;
+  /** Twitter API secret (OAuth 1.0a consumer secret). */
+  twitterApiSecret: string | undefined;
+  /** Twitter OAuth 1.0a user access token. */
+  twitterAccessToken: string | undefined;
+  /** Twitter OAuth 1.0a user access token secret. */
+  twitterAccessSecret: string | undefined;
+  /** Airtable personal access token. */
+  airtableApiKey: string | undefined;
+  /** Airtable base ID (e.g. "appXXXXXXXX"). */
+  airtableBaseId: string | undefined;
 }
 
 export function createApiClients(config: AppConfig): ApiClients {
@@ -27,5 +45,14 @@ export function createApiClients(config: AppConfig): ApiClients {
     newsletterAuthor: config.newsletterAuthor,
     rssParserTimeoutMs: config.rssParserTimeoutMs,
     maxCostPerRunUsd: config.maxCostPerRunUsd,
+    dryRun: config.dryRun,
+    feedlyApiKey: config.feedlyApiKey,
+    linkedinAccessToken: config.linkedinAccessToken,
+    twitterApiKey: config.twitterApiKey,
+    twitterApiSecret: config.twitterApiSecret,
+    twitterAccessToken: config.twitterAccessToken,
+    twitterAccessSecret: config.twitterAccessSecret,
+    airtableApiKey: config.airtableApiKey,
+    airtableBaseId: config.airtableBaseId,
   };
 }

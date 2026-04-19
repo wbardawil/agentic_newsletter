@@ -37,6 +37,7 @@ import {
 } from "./types/edition.js";
 import { EditionIdSchema } from "./types/enums.js";
 import { z } from "zod";
+import { writeRunSummary } from "./utils/airtable.js";
 import type { SocialPost } from "./agents/amplifier.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -55,6 +56,7 @@ interface DraftJson {
 function loadDraft(
   draftsDir: string,
   editionId: string,
+  skipHashCheck = false,
 ): {
   runId: string;
   angle: StrategicAngle;
@@ -72,7 +74,7 @@ function loadDraft(
   const raw = JSON.parse(readFileSync(jsonPath, "utf-8")) as DraftJson;
 
   // Verify the markdown files haven't been corrupted or swapped since draft generation
-  if (raw.contentHash) {
+  if (raw.contentHash && !skipHashCheck) {
     const enMdPath = join(draftsDir, `${editionId}-en.md`);
     const esMdPath = join(draftsDir, `${editionId}-es.md`);
     const enMd = existsSync(enMdPath) ? readFileSync(enMdPath, "utf-8") : "";
@@ -158,6 +160,9 @@ async function main(): Promise<void> {
     }
   }
 
+  const skipHashCheck = args.includes("--skip-hash-check");
+  const costJsonFlag = args.includes("--cost-json");
+
   const config = AppConfigSchema.parse({
     anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
     beehiivApiKey: process.env["BEEHIIV_API_KEY"],
@@ -166,6 +171,8 @@ async function main(): Promise<void> {
     linkedinAccessToken: process.env["LINKEDIN_ACCESS_TOKEN"],
     twitterApiKey: process.env["TWITTER_API_KEY"],
     twitterApiSecret: process.env["TWITTER_API_SECRET"],
+    twitterAccessToken: process.env["TWITTER_ACCESS_TOKEN"],
+    twitterAccessSecret: process.env["TWITTER_ACCESS_SECRET"],
     airtableApiKey: process.env["AIRTABLE_API_KEY"],
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
     logLevel: process.env["LOG_LEVEL"],
@@ -200,6 +207,7 @@ async function main(): Promise<void> {
   const { angle, enContent, esContent, shareableSentence } = loadDraft(
     draftsDir,
     editionId,
+    skipHashCheck,
   );
 
   // ── Metrics-only mode ──────────────────────────────────────────────────────
@@ -336,6 +344,40 @@ async function main(): Promise<void> {
 
   console.log(`💡 To collect metrics 48h after send:`);
   console.log(`   pnpm publish:edition --edition ${editionId} --metrics\n`);
+
+  if (costJsonFlag) {
+    process.stdout.write(
+      JSON.stringify({
+        runId,
+        editionId,
+        amplifierCostUsd: amplifierCostUsd,
+        totalCostUsd: amplifierCostUsd,
+      }) + "\n",
+    );
+  }
+
+  // ── Airtable run ledger ────────────────────────────────────────────────────
+  const { airtableApiKey, airtableBaseId } = apiClients;
+  if (airtableApiKey && airtableBaseId) {
+    try {
+      await writeRunSummary(airtableApiKey, airtableBaseId, {
+        runId,
+        editionId,
+        status: "published",
+        triggeredAt: new Date().toISOString(),
+        completedAt: new Date().toISOString(),
+        totalCostUsd: amplifierCostUsd,
+        amplifierCostUsd,
+        notes: scheduleArg ? `Scheduled for ${scheduleArg}` : "Draft mode",
+      });
+      logger.info("Airtable publish summary written", { runId, editionId });
+    } catch (err) {
+      logger.warn(
+        `Airtable write failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`,
+        { runId },
+      );
+    }
+  }
 }
 
 main().catch((err) => {

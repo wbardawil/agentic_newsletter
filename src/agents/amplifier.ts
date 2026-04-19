@@ -11,6 +11,7 @@ import {
   type LocalizedContent,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { postToLinkedIn, postToTwitter } from "../utils/social-publisher.js";
 
 const AmplifierInputSchema = z.object({
   enContent: LocalizedContentSchema,
@@ -30,8 +31,18 @@ const SocialPostSchema = z.object({
 });
 export type SocialPost = z.infer<typeof SocialPostSchema>;
 
+const PublishedPostSchema = SocialPostSchema.extend({
+  /** External post/tweet ID returned by the platform API. */
+  externalId: z.string().optional(),
+  /** Public URL of the published post. */
+  externalUrl: z.string().optional(),
+  publishedAt: z.string().datetime().optional(),
+  publishError: z.string().optional(),
+});
+export type PublishedPost = z.infer<typeof PublishedPostSchema>;
+
 const AmplifierOutputSchema = z.object({
-  posts: z.array(SocialPostSchema).min(1),
+  posts: z.array(PublishedPostSchema).min(1),
 });
 export type AmplifierOutput = z.infer<typeof AmplifierOutputSchema>;
 
@@ -117,13 +128,65 @@ export class AmplifierAgent extends BaseAgent<AmplifierInput, AmplifierOutput> {
     const parsed = parseLlmJson(rawText, "AmplifierAgent");
 
     const validated = AmplifierOutputSchema.parse(parsed);
-    const posts = enforceTwitterLimit(validated.posts);
+    const generated = enforceTwitterLimit(validated.posts);
 
     this.logger.info("Amplifier posts generated", {
       runId: context.runId,
-      linkedin: posts.filter((p) => p.platform === "linkedin").length,
-      twitter: posts.filter((p) => p.platform === "twitter").length,
+      linkedin: generated.filter((p) => p.platform === "linkedin").length,
+      twitter: generated.filter((p) => p.platform === "twitter").length,
     });
+
+    // ── Publish to platforms (skipped in dry-run mode) ─────────────────────
+    const {
+      dryRun,
+      linkedinAccessToken,
+      twitterApiKey,
+      twitterApiSecret,
+      twitterAccessToken,
+      twitterAccessSecret,
+    } = this.deps.apiClients;
+
+    const publishedAt = new Date().toISOString();
+    const posts: PublishedPost[] = await Promise.all(
+      generated.map(async (post): Promise<PublishedPost> => {
+        if (dryRun) {
+          return { ...post, publishedAt };
+        }
+
+        try {
+          if (post.platform === "linkedin" && linkedinAccessToken) {
+            const result = await postToLinkedIn(linkedinAccessToken, post.content);
+            return { ...post, externalId: result.postId, externalUrl: result.url, publishedAt };
+          }
+
+          if (
+            post.platform === "twitter" &&
+            twitterApiKey &&
+            twitterApiSecret &&
+            twitterAccessToken &&
+            twitterAccessSecret
+          ) {
+            const result = await postToTwitter(
+              twitterApiKey,
+              twitterApiSecret,
+              twitterAccessToken,
+              twitterAccessSecret,
+              post.content,
+            );
+            return { ...post, externalId: result.tweetId, externalUrl: result.url, publishedAt };
+          }
+
+          // Credentials not configured — save post content for manual publishing
+          return { ...post, publishedAt };
+        } catch (err) {
+          const publishError = err instanceof Error ? err.message : String(err);
+          this.logger.warn(`Amplifier: ${post.platform} publish failed — ${publishError}`, {
+            runId: context.runId,
+          });
+          return { ...post, publishError, publishedAt };
+        }
+      }),
+    );
 
     return { posts };
   }

@@ -13,6 +13,16 @@ export function makeDeps(): AgentDeps {
       beehiivPublicationId: undefined,
       newsletterAuthor: "Test Author",
       rssParserTimeoutMs: 5000,
+      maxCostPerRunUsd: 10,
+      dryRun: false,
+      feedlyApiKey: undefined,
+      linkedinAccessToken: undefined,
+      twitterApiKey: undefined,
+      twitterApiSecret: undefined,
+      twitterAccessToken: undefined,
+      twitterAccessSecret: undefined,
+      airtableApiKey: undefined,
+      airtableBaseId: undefined,
     },
   };
 }
