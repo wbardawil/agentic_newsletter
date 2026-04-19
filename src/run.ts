@@ -111,6 +111,85 @@ function renderMarkdown(
   ].join("\n");
 }
 
+function mdToHtml(md: string): string {
+  const lines = md.split("\n");
+  const out: string[] = [];
+  let inList = false;
+
+  const inline = (s: string) =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+
+    if (line.startsWith("# ")) {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push(`<h1>${inline(line.slice(2))}</h1>`);
+    } else if (line.startsWith("## ")) {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push(`<h2>${inline(line.slice(3))}</h2>`);
+    } else if (line.startsWith("### ")) {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push(`<h3>${inline(line.slice(4))}</h3>`);
+    } else if (line.startsWith("- ") || line.startsWith("* ")) {
+      if (!inList) { out.push("<ul>"); inList = true; }
+      out.push(`<li>${inline(line.slice(2))}</li>`);
+    } else if (line.startsWith("> ")) {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`);
+    } else if (line === "---" || line === "***") {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push("<hr>");
+    } else if (line === "") {
+      if (inList) { out.push("</ul>"); inList = false; }
+    } else {
+      if (inList) { out.push("</ul>"); inList = false; }
+      out.push(`<p>${inline(line)}</p>`);
+    }
+  }
+  if (inList) out.push("</ul>");
+  return out.join("\n");
+}
+
+function renderHtml(
+  editionId: string,
+  angle: StrategicAngle,
+  content: LocalizedContent,
+  language: "en" | "es",
+): string {
+  const md = renderMarkdown(editionId, angle, content, language);
+  const body = mdToHtml(md);
+  return `<!DOCTYPE html>
+<html lang="${language}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${content.subject}</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.7; }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2.5rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  h3 { font-size: 1rem; }
+  p { margin: 1rem 0; }
+  blockquote { border-left: 3px solid #888; margin: 1.5rem 0; padding-left: 1rem; color: #555; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+  ul { padding-left: 1.5rem; }
+  li { margin: .4rem 0; }
+  strong { font-weight: 700; }
+</style>
+</head>
+<body>
+${body}
+</body>
+</html>`;
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 
 // Graceful shutdown on SIGTERM/SIGINT (e.g. docker stop, Ctrl-C)
@@ -308,11 +387,13 @@ async function main(): Promise<void> {
 
   const enMdContent = renderMarkdown(editionId, angle, content, "en");
   writeFileSync(enMdPath, enMdContent, "utf-8");
+  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
     esMdContent = renderMarkdown(editionId, angle, esContent, "es");
     writeFileSync(esMdPath, esMdContent, "utf-8");
+    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
   }
 
   // Content hash lets publish.ts verify the draft was not corrupted or swapped
@@ -361,7 +442,11 @@ async function main(): Promise<void> {
 
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
-  if (esContent) console.log(`   ${esMdPath}`);
+  console.log(`   ${join(draftsDir, `${editionId}-en.html`)} ← open in browser to copy into Beehiiv`);
+  if (esContent) {
+    console.log(`   ${esMdPath}`);
+    console.log(`   ${join(draftsDir, `${editionId}-es.html`)} ← open in browser to copy into Beehiiv`);
+  }
   console.log(`   ${jsonPath}`);
   console.log(`\n💰 Cost breakdown:`);
   console.log(`   Radar:      $${radarOutput.cost.costUsd.toFixed(4)}`);
