@@ -27,10 +27,12 @@ import { StrategistAgent } from "./agents/strategist.js";
 import { WriterAgent } from "./agents/writer.js";
 import { ValidatorAgent } from "./agents/validator.js";
 import { LocalizerAgent } from "./agents/localizer.js";
+import { QualityGateAgent, type QualityGateResult } from "./agents/quality-gate.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
+import { loadAngleHistory, recordAngle } from "./utils/angle-history.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -375,6 +377,64 @@ async function main(): Promise<void> {
   const draftsDir = join(rootDir, "drafts");
   mkdirSync(draftsDir, { recursive: true });
 
+  // ── Quality Gate ──────────────────────────────────────────────────────────
+  console.log("🛡️  Quality Gate: fact-check + originality + voice + diversity...");
+  const priorAngles = loadAngleHistory(draftsDir);
+  const qualityGateAgent = new QualityGateAgent(deps);
+  const qualityGateOutput = await qualityGateAgent.run({
+    runId,
+    editionId,
+    agentName: "qualityGate",
+    payload: {
+      enContent: content,
+      esContent: esContent ?? null,
+      angle,
+      sourceBundle: bundle,
+      priorAngles,
+    },
+  });
+
+  let qualityGate: QualityGateResult | undefined;
+  if (!qualityGateOutput.success) {
+    console.warn(
+      `   ⚠️  Quality Gate failed: ${qualityGateOutput.error}. Continuing without fact verification.\n`,
+    );
+  } else {
+    qualityGate = qualityGateOutput.data as QualityGateResult;
+    if (qualityGate.passed) {
+      console.log(
+        `   ✅ Passed — ${qualityGate.factCheck.verifiedClaims.length} claims verified, ` +
+          `voice ${qualityGate.voiceMatch.voiceScore}/100, ` +
+          `${qualityGate.sourceDiversity.outletCount} outlets\n`,
+      );
+    } else {
+      console.error(`   ❌ HARD FAIL — unverifiable claims detected:`);
+      for (const f of qualityGate.hardFailures) console.error(`     • ${f}`);
+      for (const c of qualityGate.factCheck.unverifiedClaims) {
+        console.error(`     • [${c.language}/${c.section ?? "?"}] "${c.claim}"`);
+      }
+      console.error(`\n   Draft cannot ship with fabricated claims. Aborting.\n`);
+      process.exit(2);
+    }
+    if (qualityGate.angleOriginality.recommendation === "consider rerun") {
+      console.warn(
+        `   ⚠️  Angle similar to prior: "${qualityGate.angleOriginality.closestPriorAngle}" ` +
+          `(${(qualityGate.angleOriginality.similarityScore * 100).toFixed(0)}% overlap)\n`,
+      );
+    }
+    for (const d of qualityGate.voiceMatch.deviations) {
+      console.warn(`   ⚠️  Voice deviation: ${d}`);
+    }
+    if (qualityGate.sourceDiversity.outletCount < 3) {
+      console.warn(
+        `   ⚠️  Low source diversity: only ${qualityGate.sourceDiversity.outletCount} outlets cited\n`,
+      );
+    }
+  }
+
+  // Record this angle in history for future originality checks
+  recordAngle(draftsDir, editionId, angle);
+
   const enMdPath = join(draftsDir, `${editionId}-en.md`);
   const esMdPath = join(draftsDir, `${editionId}-es.md`);
   const jsonPath = join(draftsDir, `${editionId}-draft.json`);
@@ -403,6 +463,7 @@ async function main(): Promise<void> {
 
   const validatorCostUsd = validatorOutput.success ? validatorOutput.cost.costUsd : 0;
   const localizerCostUsd = localizerOutput.success ? localizerOutput.cost.costUsd : 0;
+  const qualityGateCostUsd = qualityGateOutput.success ? qualityGateOutput.cost.costUsd : 0;
 
   const jsonContent = JSON.stringify(
     {
@@ -414,18 +475,21 @@ async function main(): Promise<void> {
       enContent: content,
       esContent: esContent ?? null,
       validation: validatorOutput.success ? validation : null,
+      qualityGate: qualityGate ?? null,
       costs: {
         radar: radarOutput.cost,
         strategist: strategistOutput.cost,
         writer: writerOutput.cost,
         validator: validatorOutput.cost,
         localizer: localizerOutput.cost,
+        qualityGate: qualityGateOutput.cost,
         totalUsd:
           radarOutput.cost.costUsd +
           strategistOutput.cost.costUsd +
           writerOutput.cost.costUsd +
           validatorCostUsd +
-          localizerCostUsd,
+          localizerCostUsd +
+          qualityGateCostUsd,
       },
     },
     null,
@@ -438,7 +502,8 @@ async function main(): Promise<void> {
     strategistOutput.cost.costUsd +
     writerOutput.cost.costUsd +
     validatorCostUsd +
-    localizerCostUsd;
+    localizerCostUsd +
+    qualityGateCostUsd;
 
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
@@ -454,6 +519,7 @@ async function main(): Promise<void> {
   console.log(`   Writer:     $${writerOutput.cost.costUsd.toFixed(4)}`);
   console.log(`   Validator:  $${validatorCostUsd.toFixed(4)}`);
   console.log(`   Localizer:  $${localizerCostUsd.toFixed(4)}`);
+  console.log(`   QualityGate:$${qualityGateCostUsd.toFixed(4)}`);
   console.log(`   Total:      $${totalCost.toFixed(4)}`);
 
   if (costJsonFlag) {

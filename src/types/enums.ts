@@ -8,6 +8,7 @@ export const AgentName = z.enum([
   "writer",
   "localizer",
   "validator",
+  "qualityGate",
   "distributor",
   "amplifier",
   "analyst",
