@@ -1,8 +1,21 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { randomUUID } from "node:crypto";
-import { RadarAgent } from "../../src/agents/radar.js";
 import type { AgentInput } from "../../src/types/agent-io.js";
 import { makeDeps } from "../helpers/make-deps.js";
+
+// Mock rss-parser before importing RadarAgent so every parseURL call throws.
+// Guarantees the "no feeds reachable" code path without depending on network.
+vi.mock("rss-parser", () => {
+  return {
+    default: class MockParser {
+      async parseURL(_url: string): Promise<never> {
+        throw new Error("Mocked network failure — test isolated from real feeds");
+      }
+    },
+  };
+});
+
+const { RadarAgent } = await import("../../src/agents/radar.js");
 
 describe("RadarAgent", () => {
   const deps = makeDeps();
@@ -24,11 +37,9 @@ describe("RadarAgent", () => {
       runId: randomUUID(),
       editionId: "2026-07",
       agentName: "radar",
-      // 1ms per-feed timeout guarantees every HTTP request fails — deterministic on any network.
-      payload: { timeWindowHours: 24, maxItems: 20, rssTimeoutMs: 1 },
+      payload: { timeWindowHours: 24, maxItems: 20, rssTimeoutMs: 100 },
     };
 
-    // In a test environment without network access the agent will fail gracefully.
     const output = await agent.run(input);
     expect(output.status).toBe("error");
   }, 15_000);
