@@ -11,14 +11,21 @@ export interface ApiClients {
   newsletterAuthor: string;
   /** RSS parser per-feed timeout in milliseconds. */
   rssParserTimeoutMs: number;
+  /** Hard cap on total USD spend per pipeline run (enforced in base-agent). */
+  maxCostPerRunUsd: number;
 }
 
 export function createApiClients(config: AppConfig): ApiClients {
   return {
-    anthropic: new Anthropic({ apiKey: config.anthropicApiKey }),
+    // llmTimeoutMs is applied at the SDK client level — all requests inherit it
+    anthropic: new Anthropic({
+      apiKey: config.anthropicApiKey,
+      timeout: config.llmTimeoutMs,
+    }),
     beehiivApiKey: config.beehiivApiKey,
     beehiivPublicationId: config.beehiivPublicationId,
     newsletterAuthor: config.newsletterAuthor,
     rssParserTimeoutMs: config.rssParserTimeoutMs,
+    maxCostPerRunUsd: config.maxCostPerRunUsd,
   };
 }

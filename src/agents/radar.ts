@@ -603,13 +603,24 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
     const parser = new Parser({ timeout: timeoutMs });
     const scannedAt = new Date().toISOString();
 
+    // Hard ceiling prevents a single slow feed from stalling the whole pipeline
+    const AGGREGATE_TIMEOUT_MS = 10 * 60 * 1000;
+
     // Fetch all feeds in parallel — with 30 feeds sequential would be ~6 min worst-case
-    const results = await Promise.allSettled(
-      RSS_FEEDS.map(async (feed) => ({
-        feed,
-        parsed: await parser.parseURL(feed.url),
-      })),
-    );
+    const results = await Promise.race([
+      Promise.allSettled(
+        RSS_FEEDS.map(async (feed) => ({
+          feed,
+          parsed: await parser.parseURL(feed.url),
+        })),
+      ),
+      new Promise<never>((_, reject) =>
+        setTimeout(
+          () => reject(new Error(`Radar: RSS aggregate timeout after ${AGGREGATE_TIMEOUT_MS / 1000}s`)),
+          AGGREGATE_TIMEOUT_MS,
+        ),
+      ),
+    ]);
 
     const rejected = results.filter((r) => r.status === "rejected").length;
     if (rejected > 0) {

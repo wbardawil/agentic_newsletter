@@ -11,12 +11,13 @@
  */
 
 import "dotenv/config";
-import { randomUUID } from "node:crypto";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { randomUUID, createHash } from "node:crypto";
+import { mkdirSync, writeFileSync, existsSync, copyFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AppConfigSchema } from "./types/config.js";
 import { EditionIdSchema } from "./types/enums.js";
+import { getCurrentEditionId } from "./utils/edition-id.js";
 import { createLogger } from "./utils/logger.js";
 import { createCostTracker } from "./utils/cost-tracker.js";
 import { createApiClients } from "./utils/api-clients.js";
@@ -31,22 +32,6 @@ import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
-
-function getISOWeek(date: Date): number {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-  const yearStart = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
-}
-
-function getCurrentEditionId(override?: string): string {
-  if (override) return override;
-  const now = new Date();
-  const year = now.getFullYear();
-  const week = String(getISOWeek(now)).padStart(2, "0");
-  return `${year}-${week}`;
-}
 
 function renderMarkdown(
   editionId: string,
@@ -127,6 +112,17 @@ function renderMarkdown(
 
 // ── main ─────────────────────────────────────────────────────────────────────
 
+// Graceful shutdown on SIGTERM/SIGINT (e.g. docker stop, Ctrl-C)
+let _shuttingDown = false;
+const _shutdown = (signal: string) => {
+  if (_shuttingDown) return;
+  _shuttingDown = true;
+  console.error(`\n${signal} received — shutting down gracefully...`);
+  process.exit(130);
+};
+process.on("SIGTERM", () => _shutdown("SIGTERM"));
+process.on("SIGINT", () => _shutdown("SIGINT"));
+
 async function main(): Promise<void> {
   // Allow --edition YYYY-WW override from CLI args
   const editionArg = process.argv.find((a, i) => process.argv[i - 1] === "--edition");
@@ -167,6 +163,14 @@ async function main(): Promise<void> {
 
   const runId = randomUUID();
   const editionId = getCurrentEditionId(editionArg);
+
+  // Pre-flight: verify required files exist before starting expensive API calls
+  const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+  const voiceBiblePath = join(rootDir, "src", "voice-bible", "voice-bible.md");
+  if (!existsSync(voiceBiblePath)) {
+    console.error(`❌ Voice Bible not found at ${voiceBiblePath}`);
+    process.exit(1);
+  }
 
   logger.info(`Starting draft pipeline`, { runId, editionId });
   console.log(`\n📰 The Transformation Letter — Draft Pipeline`);
@@ -284,7 +288,6 @@ async function main(): Promise<void> {
   }
 
   // ── Save draft ─────────────────────────────────────────────────────────────
-  const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
   const draftsDir = join(rootDir, "drafts");
   mkdirSync(draftsDir, { recursive: true });
 
@@ -292,13 +295,25 @@ async function main(): Promise<void> {
   const esMdPath = join(draftsDir, `${editionId}-es.md`);
   const jsonPath = join(draftsDir, `${editionId}-draft.json`);
 
+  // Overwrite protection: back up existing draft before clobbering
+  if (existsSync(jsonPath)) {
+    copyFileSync(jsonPath, `${jsonPath}.bak`);
+    logger.info(`Backed up existing draft to ${jsonPath}.bak`);
+  }
+
   const enMdContent = renderMarkdown(editionId, angle, content, "en");
   writeFileSync(enMdPath, enMdContent, "utf-8");
 
+  let esMdContent = "";
   if (esContent) {
-    const esMdContent = renderMarkdown(editionId, angle, esContent, "es");
+    esMdContent = renderMarkdown(editionId, angle, esContent, "es");
     writeFileSync(esMdPath, esMdContent, "utf-8");
   }
+
+  // Content hash lets publish.ts verify the draft was not corrupted or swapped
+  const contentHash = createHash("sha256")
+    .update(enMdContent + esMdContent)
+    .digest("hex");
 
   const validatorCostUsd = validatorOutput.success ? validatorOutput.cost.costUsd : 0;
   const localizerCostUsd = localizerOutput.success ? localizerOutput.cost.costUsd : 0;
@@ -308,6 +323,7 @@ async function main(): Promise<void> {
       runId,
       editionId,
       generatedAt: new Date().toISOString(),
+      contentHash,
       angle,
       enContent: content,
       esContent: esContent ?? null,

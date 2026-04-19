@@ -33,6 +33,10 @@ interface BeehiivPostResponse {
   data?: BeehiivPostData;
 }
 
+function sanitizeBeehiivError(msg: string): string {
+  return msg.replace(/Bearer\s+[A-Za-z0-9._\-]+/gi, "Bearer ***");
+}
+
 async function fetchPostStats(
   apiKey: string,
   publicationId: string,
@@ -45,7 +49,7 @@ async function fetchPostStats(
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Beehiiv stats error ${response.status} for ${postId}: ${text}`);
+    throw new Error(sanitizeBeehiivError(`Beehiiv stats error ${response.status} for ${postId}: ${text}`));
   }
 
   const body = (await response.json()) as BeehiivPostResponse;

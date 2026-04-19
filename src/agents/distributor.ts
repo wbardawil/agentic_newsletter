@@ -82,6 +82,10 @@ interface BeehiivCreateResponse {
   errors?: string[];
 }
 
+function sanitizeBeehiivError(msg: string): string {
+  return msg.replace(/Bearer\s+[A-Za-z0-9._\-]+/gi, "Bearer ***");
+}
+
 async function createBeehiivPost(
   apiKey: string,
   publicationId: string,
@@ -89,6 +93,7 @@ async function createBeehiivPost(
   subject: string,
   preheader: string,
   body: string,
+  idempotencyKey: string,
   scheduledAt?: string,
 ): Promise<string> {
   const url = `https://api.beehiiv.com/v2/publications/${publicationId}/posts`;
@@ -121,13 +126,14 @@ async function createBeehiivPost(
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
+      "Idempotency-Key": idempotencyKey,
     },
     body: JSON.stringify(postBody),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`Beehiiv API error ${response.status}: ${errorText}`);
+    throw new Error(sanitizeBeehiivError(`Beehiiv API error ${response.status}: ${errorText}`));
   }
 
   const data = (await response.json()) as BeehiivCreateResponse;
@@ -179,6 +185,7 @@ export class DistributorAgent extends BaseAgent<
         payload.enContent.subject,
         payload.enContent.preheader,
         renderToMarkdown(payload.enContent),
+        `${context.editionId}-en`,
         payload.scheduledAt,
       );
 
@@ -211,6 +218,7 @@ export class DistributorAgent extends BaseAgent<
         payload.esContent.subject,
         payload.esContent.preheader,
         renderToMarkdown(payload.esContent),
+        `${context.editionId}-es`,
         payload.scheduledAt,
       );
 

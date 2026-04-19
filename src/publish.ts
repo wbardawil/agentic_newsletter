@@ -13,11 +13,12 @@
  */
 
 import "dotenv/config";
-import { randomUUID } from "node:crypto";
+import { randomUUID, createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { AppConfigSchema } from "./types/config.js";
+import { getCurrentEditionId } from "./utils/edition-id.js";
 import { createLogger } from "./utils/logger.js";
 import { createCostTracker } from "./utils/cost-tracker.js";
 import { createApiClients } from "./utils/api-clients.js";
@@ -40,25 +41,11 @@ import type { SocialPost } from "./agents/amplifier.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
-function getISOWeek(date: Date): number {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-  const yearStart = new Date(d.getFullYear(), 0, 1);
-  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
-}
-
-function getCurrentEditionId(override?: string): string {
-  if (override) return override;
-  const now = new Date();
-  const year = now.getFullYear();
-  const week = String(getISOWeek(now)).padStart(2, "0");
-  return `${year}-${week}`;
-}
-
 interface DraftJson {
   runId: string;
   editionId: string;
+  /** SHA-256 hex of enMdContent + esMdContent — set by run.ts, verified here. */
+  contentHash?: string;
   angle: unknown;
   enContent: unknown;
   esContent: unknown;
@@ -83,6 +70,23 @@ function loadDraft(
   }
 
   const raw = JSON.parse(readFileSync(jsonPath, "utf-8")) as DraftJson;
+
+  // Verify the markdown files haven't been corrupted or swapped since draft generation
+  if (raw.contentHash) {
+    const enMdPath = join(draftsDir, `${editionId}-en.md`);
+    const esMdPath = join(draftsDir, `${editionId}-es.md`);
+    const enMd = existsSync(enMdPath) ? readFileSync(enMdPath, "utf-8") : "";
+    const esMd = existsSync(esMdPath) ? readFileSync(esMdPath, "utf-8") : "";
+    const actualHash = createHash("sha256").update(enMd + esMd).digest("hex");
+    if (actualHash !== raw.contentHash) {
+      throw new Error(
+        `Draft content integrity check failed for edition ${editionId}.\n` +
+        "The markdown files may have been edited after the draft was generated.\n" +
+        "Re-run `pnpm draft` to regenerate, or delete the .md files and re-run.",
+      );
+    }
+  }
+
   const angle = StrategicAngleSchema.parse(raw.angle);
   const enContent = LocalizedContentSchema.parse(raw.enContent);
   const esContent = raw.esContent
@@ -125,6 +129,17 @@ function formatSocialPosts(posts: SocialPost[]): string {
 
   return lines.join("\n");
 }
+
+// Graceful shutdown on SIGTERM/SIGINT (e.g. docker stop, Ctrl-C)
+let _shuttingDown = false;
+const _shutdown = (signal: string) => {
+  if (_shuttingDown) return;
+  _shuttingDown = true;
+  console.error(`\n${signal} received — shutting down gracefully...`);
+  process.exit(130);
+};
+process.on("SIGTERM", () => _shutdown("SIGTERM"));
+process.on("SIGINT", () => _shutdown("SIGINT"));
 
 // ── main ─────────────────────────────────────────────────────────────────────
 

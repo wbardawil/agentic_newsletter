@@ -22,23 +22,51 @@ const LOG_LEVELS: Record<LogLevel, number> = {
   error: 3,
 };
 
-function createChildLogger(
-  minLevel: number,
-  parentContext: LogContext,
-): Logger {
-  function log(
-    level: LogLevel,
-    message: string,
-    context?: LogContext,
-  ): void {
+// Keys whose values are always redacted in log output
+const SECRET_KEYS = new Set([
+  "apikey",
+  "api_key",
+  "apitoken",
+  "api_token",
+  "authorization",
+  "password",
+  "secret",
+  "token",
+  "beehiivapikey",
+  "beehiiv_api_key",
+  "anthropicapikey",
+  "anthropic_api_key",
+  "accesstoken",
+  "access_token",
+]);
+
+function redactSecrets(obj: Record<string, unknown>, depth = 0): Record<string, unknown> {
+  if (depth > 5) return obj; // Guard against deeply nested or circular structures
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (SECRET_KEYS.has(key.toLowerCase())) {
+      result[key] = "***";
+    } else if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+      result[key] = redactSecrets(value as Record<string, unknown>, depth + 1);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+function createChildLogger(minLevel: number, parentContext: LogContext): Logger {
+  function log(level: LogLevel, message: string, context?: LogContext): void {
     if (LOG_LEVELS[level] < minLevel) return;
+
+    const merged = { ...parentContext, ...context };
+    const safe = redactSecrets(merged as Record<string, unknown>);
 
     const entry = {
       level,
       timestamp: new Date().toISOString(),
       message,
-      ...parentContext,
-      ...context,
+      ...safe,
     };
 
     const output = JSON.stringify(entry);

@@ -26,6 +26,7 @@ export const AppConfigSchema = z.object({
   // App
   logLevel: z.enum(["debug", "info", "warn", "error"]).default("info"),
   dryRun: z.boolean().default(false),
+  /** Hard cap on total USD spend per pipeline run. */
   maxCostPerRunUsd: z.number().positive().default(5.0),
 
   // Publishing
@@ -33,5 +34,7 @@ export const AppConfigSchema = z.object({
   newsletterAuthor: z.string().min(1).default("Wadi Bardawil"),
   /** Per-feed timeout for the RSS parser (ms). */
   rssParserTimeoutMs: z.number().positive().int().default(12000),
+  /** Timeout for LLM API calls in ms (applies to all Anthropic requests). */
+  llmTimeoutMs: z.number().positive().int().default(120_000),
 });
 export type AppConfig = z.infer<typeof AppConfigSchema>;

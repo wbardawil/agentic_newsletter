@@ -20,15 +20,16 @@ describe("RadarAgent", () => {
 
   it("returns an error when no RSS feeds are reachable", async () => {
     const agent = new RadarAgent(deps);
-    const input: AgentInput<{ timeWindowHours: number; maxItems: number }> = {
+    const input: AgentInput<{ timeWindowHours: number; maxItems: number; rssTimeoutMs: number }> = {
       runId: randomUUID(),
       editionId: "2026-07",
       agentName: "radar",
-      payload: { timeWindowHours: 24, maxItems: 20 },
+      // Short per-feed timeout so all feeds fail fast; withRetry still fires 3× but delays = 3s
+      payload: { timeWindowHours: 24, maxItems: 20, rssTimeoutMs: 200 },
     };
 
     // In a test environment without network access the agent will fail gracefully.
     const output = await agent.run(input);
     expect(output.status).toBe("error");
-  });
+  }, 15_000);
 });
