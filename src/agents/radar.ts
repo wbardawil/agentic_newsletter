@@ -220,6 +220,96 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "global",
     tier: 1,
   },
+
+  // ── AI in Business (tier 2 — Tech OS pillar raw material) ─────────────────
+  {
+    url: "https://venturebeat.com/category/ai/feed/",
+    outlet: "VentureBeat AI",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
+    outlet: "ZDNet AI",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://feeds.hbr.org/harvardbusiness/ai",
+    outlet: "HBR — AI",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.wired.com/feed/category/business/latest/rss",
+    outlet: "Wired Business",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Business Transformation Research (tier 1 — highest signal) ────────────
+  {
+    url: "https://www.mckinsey.com/insights/rss",
+    outlet: "McKinsey Insights",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://knowledge.wharton.upenn.edu/feed/",
+    outlet: "Knowledge@Wharton",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www2.deloitte.com/us/en/insights/rss.xml",
+    outlet: "Deloitte Insights",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.bcg.com/rss",
+    outlet: "BCG Perspectives",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.gartner.com/en/newsroom/rss",
+    outlet: "Gartner",
+    region: "global",
+    tier: 1,
+  },
+
+  // ── SMB Research & Statistics (tier 1 — data anchors the Insight) ─────────
+  {
+    url: "https://www.nfib.com/rss/research/",
+    outlet: "NFIB Small Business Research",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.uschamber.com/feed",
+    outlet: "US Chamber of Commerce",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.score.org/feed",
+    outlet: "SCORE Small Business",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.kauffman.org/feed/",
+    outlet: "Kauffman Foundation",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.weforum.org/rss.xml",
+    outlet: "World Economic Forum",
+    region: "global",
+    tier: 1,
+  },
 ];
 
 interface ScoredKeyword {
@@ -331,14 +421,43 @@ const RELEVANCE_KEYWORDS: ScoredKeyword[] = [
   { term: "reshoring", weight: 2.0 },
   { term: "friend-shoring", weight: 2.0 },
 
-  // ── Tech OS topics (lower weight — last in the sequence) ──────────────────
+  // ── Tech OS / AI topics (moderate weight — third in the sequence) ────────
   { term: "digital transformation", weight: 1.0 },
   { term: "transformación digital", weight: 1.0 },
-  { term: "artificial intelligence", weight: 0.5 },
-  { term: "inteligencia artificial", weight: 0.5 },
-  { term: "data governance", weight: 1.5 },
-  { term: "gobernanza de datos", weight: 1.5 },
+  { term: "artificial intelligence", weight: 1.5 },
+  { term: "inteligencia artificial", weight: 1.5 },
+  { term: "ai adoption", weight: 2.0 },
+  { term: "adopción de ia", weight: 2.0 },
+  { term: "ai for business", weight: 2.5 },
+  { term: "ai in the workplace", weight: 2.0 },
+  { term: "generative ai", weight: 1.5 },
+  { term: "ia generativa", weight: 1.5 },
+  { term: "large language model", weight: 1.0 },
+  { term: "automation", weight: 1.5 },
+  { term: "data governance", weight: 2.0 },
+  { term: "gobernanza de datos", weight: 2.0 },
   { term: "information systems", weight: 1.0 },
+  { term: "enterprise software", weight: 1.5 },
+  { term: "software empresarial", weight: 1.5 },
+
+  // ── SMB research & statistics (high weight — validates ICP claims) ─────────
+  { term: "small business", weight: 2.5 },
+  { term: "pequeña empresa", weight: 2.5 },
+  { term: "sme", weight: 2.5 },
+  { term: "pyme", weight: 2.5 },
+  { term: "mid-size", weight: 2.0 },
+  { term: "growth rate", weight: 1.0 },
+  { term: "revenue growth", weight: 1.5 },
+  { term: "business owner", weight: 2.5 },
+  { term: "dueño de negocio", weight: 2.5 },
+  { term: "entrepreneur survey", weight: 2.5 },
+  { term: "business confidence", weight: 2.0 },
+  { term: "confianza empresarial", weight: 2.0 },
+  { term: "workforce", weight: 1.0 },
+  { term: "talent retention", weight: 1.5 },
+  { term: "retención de talento", weight: 1.5 },
+  { term: "profitability", weight: 1.5 },
+  { term: "rentabilidad", weight: 1.5 },
 ];
 
 function scoreRelevance(
