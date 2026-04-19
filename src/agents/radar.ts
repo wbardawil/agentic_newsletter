@@ -32,7 +32,8 @@ interface FeedConfig {
 }
 
 const RSS_FEEDS: FeedConfig[] = [
-  // ── Strategy & Management (tier 1) ────────────────────────────────────────
+  // ── Consulting & Strategy Research — Tier 1 Anchors ──────────────────────
+  // Scored 80–92 in pipeline audit. Highest framework depth per item.
   {
     url: "https://feeds.hbr.org/harvardbusiness",
     outlet: "Harvard Business Review",
@@ -47,10 +48,116 @@ const RSS_FEEDS: FeedConfig[] = [
   },
   {
     url: "https://www.strategy-business.com/rss",
-    outlet: "Strategy+Business",
+    outlet: "Strategy+Business (PwC)",
     region: "global",
     tier: 1,
   },
+  {
+    url: "https://www.mckinsey.com/insights/rss",
+    outlet: "McKinsey Insights",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www2.deloitte.com/us/en/insights/rss.xml",
+    outlet: "Deloitte Insights",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.bcg.com/rss",
+    outlet: "BCG Perspectives",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://knowledge.wharton.upenn.edu/feed/",
+    outlet: "Knowledge@Wharton",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.gartner.com/en/newsroom/rss",
+    outlet: "Gartner",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://knowledge.insead.edu/rss/list",
+    outlet: "INSEAD Knowledge",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://blogs.lse.ac.uk/businessreview/feed/",
+    outlet: "LSE Business Review",
+    region: "global",
+    tier: 1,
+  },
+
+  // ── Mid-Market & LATAM Institutional Research (NEW — scored 82–91) ────────
+  // RSM is the only major consulting firm with a dedicated mid-market
+  // publication. IDB and CAF are the primary LATAM corridor research bodies.
+  {
+    url: "https://realeconomy.rsmus.com/feed/",
+    outlet: "RSM Real Economy (Middle Market)",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://publications.iadb.org/en/rss",
+    outlet: "IDB — Inter-American Development Bank",
+    region: "latam",
+    tier: 1,
+  },
+  {
+    url: "https://www.caf.com/en/currently/rss-channels/",
+    outlet: "CAF — Development Bank of Latin America",
+    region: "latam",
+    tier: 1,
+  },
+  {
+    url: "https://agenda.weforum.org/feed/",
+    outlet: "World Economic Forum",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://blog.iese.edu/feed/",
+    outlet: "IESE Business School",
+    region: "latam",
+    tier: 1,
+  },
+
+  // ── Leadership, Org Design & Transformation (NEW + existing) ─────────────
+  // Korn Ferry is the primary research institution on CEO/talent/org structure.
+  // Atlantic Council adds the US-LATAM geopolitical trade layer.
+  {
+    url: "https://kornferryinstitute.libsyn.com/rss",
+    outlet: "Korn Ferry Briefings on Talent & Leadership",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.atlanticcouncil.org/category/commentary/feature/feed/",
+    outlet: "Atlantic Council (GeoEconomics)",
+    region: "latam",
+    tier: 1,
+  },
+  {
+    url: "https://chiefexecutive.net/feed/",
+    outlet: "Chief Executive Magazine",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.cfo.com/feed/",
+    outlet: "CFO Magazine",
+    region: "us",
+    tier: 1,
+  },
+
+  // ── The Economist ─────────────────────────────────────────────────────────
   {
     url: "https://www.economist.com/finance-and-economics/rss.xml",
     outlet: "The Economist",
@@ -64,7 +171,8 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
 
-  // ── US Business News (tier 2) ─────────────────────────────────────────────
+  // ── US Business News — Signal Layer (tier 2) ──────────────────────────────
+  // High-frequency pulse; lower framework depth. Use to detect emerging angles.
   {
     url: "https://feeds.bloomberg.com/markets/news.rss",
     outlet: "Bloomberg",
@@ -84,26 +192,8 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
-    outlet: "New York Times",
-    region: "us",
-    tier: 2,
-  },
-  {
     url: "https://fortune.com/feed/",
     outlet: "Fortune",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://www.inc.com/rss.xml",
-    outlet: "Inc. Magazine",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://www.entrepreneur.com/latest.rss",
-    outlet: "Entrepreneur",
     region: "us",
     tier: 2,
   },
@@ -114,48 +204,24 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://www.cnbc.com/id/10001147/device/rss/rss.html",
-    outlet: "CNBC Business",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://www.forbes.com/business/feed/",
-    outlet: "Forbes",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://chiefexecutive.net/feed/",
-    outlet: "Chief Executive Magazine",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://www.cfo.com/feed/",
-    outlet: "CFO Magazine",
-    region: "us",
-    tier: 1,
-  },
-  {
     url: "https://api.axios.com/feed/",
     outlet: "Axios Business",
     region: "us",
     tier: 2,
   },
   {
-    url: "https://www.bizjournals.com/feeds/bizjournals/stories.rss",
-    outlet: "Biz Journals",
-    region: "us",
+    url: "https://www.ft.com/rss/home",
+    outlet: "Financial Times",
+    region: "global",
     tier: 2,
   },
 
-  // ── LATAM Business — Mexico (tier 1 elevated in scoring) ──────────────────
+  // ── LATAM Business — Mexico ────────────────────────────────────────────────
   {
     url: "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/economia/portada",
     outlet: "El País Economía",
     region: "latam",
-    tier: 1,
+    tier: 2,
   },
   {
     url: "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/",
@@ -222,17 +288,17 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
 
-  // ── Supply Chain, Trade & Nearshore (tier 3) ──────────────────────────────
-  {
-    url: "https://www.supplychaindive.com/feeds/news/",
-    outlet: "Supply Chain Dive",
-    region: "us",
-    tier: 3,
-  },
+  // ── Supply Chain, Trade & Nearshore ───────────────────────────────────────
   {
     url: "https://nearshoreamericas.com/feed/",
     outlet: "Nearshore Americas",
     region: "latam",
+    tier: 2,
+  },
+  {
+    url: "https://www.supplychaindive.com/feeds/news/",
+    outlet: "Supply Chain Dive",
+    region: "us",
     tier: 3,
   },
   {
@@ -242,83 +308,8 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 3,
   },
 
-  // ── Europe & UK — Business Transformation Reference (tier 1/2) ───────────
-  // UK/Europe sets the global standard for org design, Mittelstand mid-market,
-  // and operating model research. Critical reference for the framework pillars.
-  {
-    url: "https://www.ft.com/rss/home",
-    outlet: "Financial Times",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://feeds.bbci.co.uk/news/business/rss.xml",
-    outlet: "BBC Business",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://knowledge.insead.edu/rss.xml",
-    outlet: "INSEAD Knowledge",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://blogs.lse.ac.uk/businessreview/feed/",
-    outlet: "LSE Business Review",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www.managementtoday.co.uk/rss",
-    outlet: "Management Today (UK)",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www.handelsblatt.com/rss/english.rss",
-    outlet: "Handelsblatt Global",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://sifted.eu/feed/",
-    outlet: "Sifted (Europe)",
-    region: "global",
-    tier: 2,
-  },
-
-  // ── Asia-Pacific — Transformation Reference (tier 2) ─────────────────────
-  // Singapore is the transformation hub for SE Asia; Nikkei covers Japan/Asia
-  // operating model innovation; ADB tracks emerging-market business trends.
-  {
-    url: "https://www.businesstimes.com.sg/rss/all",
-    outlet: "Singapore Business Times",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://asia.nikkei.com/rss/feed/nar",
-    outlet: "Nikkei Asia",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://www.scmp.com/rss/91/feed",
-    outlet: "South China Morning Post — Business",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://www.adb.org/feeds/news",
-    outlet: "Asian Development Bank",
-    region: "global",
-    tier: 1,
-  },
-
   // ── Reference Newsletters — Competitive Awareness ────────────────────────
-  // Items from these feeds are tagged competitive:true in the SourceBundle.
-  // The Strategist uses this to avoid angles already saturated this week.
+  // Items tagged competitive:true — Strategist avoids angles already covered.
   {
     url: "https://www.notboring.co/feed",
     outlet: "Not Boring (Packy McCormick)",
@@ -334,13 +325,6 @@ const RSS_FEEDS: FeedConfig[] = [
     competitive: true,
   },
   {
-    url: "https://contrarycapital.substack.com/feed",
-    outlet: "Contrarian Thinking (Codie Sanchez)",
-    region: "us",
-    tier: 3,
-    competitive: true,
-  },
-  {
     url: "https://thegeneralist.substack.com/feed",
     outlet: "The Generalist",
     region: "global",
@@ -348,32 +332,18 @@ const RSS_FEEDS: FeedConfig[] = [
     competitive: true,
   },
 
-  // ── Technology for Business (tier 3) ──────────────────────────────────────
+  // ── Technology & AI in Business ────────────────────────────────────────────
   {
-    url: "https://www.technologyreview.com/feed/",
-    outlet: "MIT Technology Review",
+    url: "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+    outlet: "MIT Technology Review — AI",
     region: "global",
-    tier: 3,
+    tier: 2,
   },
   {
     url: "https://hbr.org/resources/rss/topics/digital-transformation",
     outlet: "HBR — Digital Transformation",
     region: "global",
     tier: 1,
-  },
-
-  // ── AI in Business (tier 2 — Tech OS pillar raw material) ─────────────────
-  {
-    url: "https://venturebeat.com/category/ai/feed/",
-    outlet: "VentureBeat AI",
-    region: "global",
-    tier: 2,
-  },
-  {
-    url: "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
-    outlet: "ZDNet AI",
-    region: "global",
-    tier: 2,
   },
   {
     url: "https://feeds.hbr.org/harvardbusiness/ai",
@@ -382,74 +352,22 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
   {
+    url: "https://venturebeat.com/category/ai/feed/",
+    outlet: "VentureBeat AI",
+    region: "global",
+    tier: 2,
+  },
+  {
     url: "https://www.wired.com/feed/category/business/latest/rss",
     outlet: "Wired Business",
     region: "global",
     tier: 2,
   },
-
-  // ── Business Transformation Research (tier 1 — highest signal) ────────────
   {
-    url: "https://www.mckinsey.com/insights/rss",
-    outlet: "McKinsey Insights",
+    url: "https://a16z.com/feed/",
+    outlet: "a16z (Andreessen Horowitz)",
     region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://knowledge.wharton.upenn.edu/feed/",
-    outlet: "Knowledge@Wharton",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www2.deloitte.com/us/en/insights/rss.xml",
-    outlet: "Deloitte Insights",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www.bcg.com/rss",
-    outlet: "BCG Perspectives",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www.gartner.com/en/newsroom/rss",
-    outlet: "Gartner",
-    region: "global",
-    tier: 1,
-  },
-
-  // ── SMB Research & Statistics (tier 1 — data anchors the Insight) ─────────
-  {
-    url: "https://www.nfib.com/rss/research/",
-    outlet: "NFIB Small Business Research",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://www.uschamber.com/feed",
-    outlet: "US Chamber of Commerce",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://www.score.org/feed",
-    outlet: "SCORE Small Business",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://www.kauffman.org/feed/",
-    outlet: "Kauffman Foundation",
-    region: "global",
-    tier: 1,
-  },
-  {
-    url: "https://www.weforum.org/rss.xml",
-    outlet: "World Economic Forum",
-    region: "global",
-    tier: 1,
+    tier: 2,
   },
 ];
 
