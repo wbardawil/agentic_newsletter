@@ -27,7 +27,7 @@ export type StrategicAngle = z.infer<typeof StrategicAngleSchema>;
 /** A single content section within a newsletter edition. */
 export const ContentSectionSchema = z.object({
   id: z.string().uuid(),
-  type: z.enum(["lead", "analysis", "spotlight", "quickTakes", "cta"]),
+  type: z.enum(["news", "lead", "analysis", "spotlight", "tool", "quickTakes", "cta"]),
   heading: z.string(),
   body: z.string(),
   sourceRefs: z.array(z.string().uuid()),
@@ -62,9 +62,11 @@ export const ValidationResultSchema = z.object({
   score: z.number().min(0).max(100),
   issues: z.array(ValidationIssueSchema),
   wordCounts: z.object({
+    signal: z.number().int().nonnegative(),
     apertura: z.number().int().nonnegative(),
     insight: z.number().int().nonnegative(),
     fieldReport: z.number().int().nonnegative(),
+    tool: z.number().int().nonnegative(),
     compass: z.number().int().nonnegative(),
     total: z.number().int().nonnegative(),
   }),

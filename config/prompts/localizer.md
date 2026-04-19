@@ -29,6 +29,9 @@ rooted in Latin America.
 ### Preheader
 {{preheaderEN}}
 
+### THE SIGNAL
+{{signal}}
+
 ### THE APERTURA
 {{apertura}}
 
@@ -37,6 +40,9 @@ rooted in Latin America.
 
 ### THE FIELD REPORT
 {{fieldReport}}
+
+### THE TOOL
+{{tool}}
 
 ### THE COMPASS
 {{compass}}
@@ -93,7 +99,18 @@ rooted in Latin America.
    must be traceable to `verbatimFacts`. If you can't cite it, you cannot
    claim it. Use general market framing instead.
 
-7. **Framework names stay in English** (Strategy OS, Operating Model OS,
+7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish. Keep
+   all source links intact. Adjust the implication sentence to speak directly
+   to the Mexican/LATAM operator context where relevant (e.g. trade news has
+   different implications for a Monterrey exporter than a US manufacturer).
+   Do not add or remove bullets — always exactly 3.
+
+8. **THE TOOL transcreation:** Translate the tool description into Spanish.
+   Keep the tool name in its original language. If the tool has a Spanish-
+   language version or resource, mention it. Otherwise translate the description
+   only and keep the link.
+
+9. **Framework names stay in English** (Strategy OS, Operating Model OS,
    Technology OS) for brand consistency. All other content transcreates fully.
 
 8. **Subject line and preheader in Spanish** must land with the same impact
@@ -103,7 +120,7 @@ rooted in Latin America.
    register for the $5M–$100M executive audience in the corridor. Never tuteo
    in this context.
 
-10. **THE DOOR section is fixed** — use this exact text:
+11. **THE DOOR section is fixed** — use this exact text:
    "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.
    Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
 
@@ -131,6 +148,13 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "preheader": "Preheader in Spanish (max 150 chars)",
   "sections": [
     {
+      "id": "{{signalId}}",
+      "type": "news",
+      "heading": "LA SEÑAL",
+      "body": "3 bullets in Spanish. Each: fact + implication for LATAM operator + [source link]. Exactly 3 bullets.",
+      "sourceRefs": []
+    },
+    {
       "id": "{{aperturaId}}",
       "type": "lead",
       "heading": "LA APERTURA",
@@ -149,6 +173,13 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "type": "spotlight",
       "heading": "EL REPORTE DE CAMPO",
       "body": "Full transcreated Field Report in Spanish (~150 words)",
+      "sourceRefs": []
+    },
+    {
+      "id": "{{toolId}}",
+      "type": "tool",
+      "heading": "LA HERRAMIENTA",
+      "body": "**[Nombre de la herramienta]** — qué es (una oración). Por qué importa (una oración). [link o descripción]",
       "sourceRefs": []
     },
     {

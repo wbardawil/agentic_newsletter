@@ -105,6 +105,25 @@ consistent with this pillar. Do not blend pillars. If the source material
 suggests a Technology OS framing but this issue is Strategy OS, find the
 Strategy OS dimension of the same problem.
 
+### Section 0 — THE SIGNAL (~80 words)
+
+3 news bullets from this week that matter to a $5M–$100M owner. This is the
+only section that is purely informational. It anchors the issue to the current
+moment — what happened *this week* that a corridor operator needs to know.
+
+Rules:
+- Exactly 3 bullets. No more, no fewer.
+- Each bullet: one sentence of fact + one sentence of why it matters to this
+  audience. Total ~25 words per bullet.
+- Every bullet must end with a Markdown link to the source article.
+  Pull only from sources in `verbatimFacts` — do not invent URLs.
+- Topics must be relevant to the US-LATAM corridor ($5M–$100M businesses):
+  regulatory shifts, supply chain, credit/rates, labor, trade, M&A signals.
+- No politics. No consumer news. No tech product launches unless they have
+  direct operational implications for mid-market operators.
+- Do not editorialize beyond the one-sentence implication. The Insight is for
+  frameworks. The Signal is for facts.
+
 ### Section 1 — THE APERTURA (~100 words)
 
 Write a placeholder Apertura that follows the correct structure:
@@ -168,6 +187,21 @@ Rules:
 - No press release summaries.
 - **Every specific claim has a source link.** If you can't cite it, don't claim it.
 
+### Section 3.5 — THE TOOL (~60 words)
+
+One tool, book, framework, or resource per edition. Something Wadi actually
+uses or recommends. Keeps the newsletter from being purely conceptual.
+
+Rules:
+- Format exactly: **[Name]** — What it is (one sentence). Why it matters to
+  this audience (one sentence). Where to find it (Markdown link or description).
+- No affiliate links. No sponsored placements.
+- Must be directly applicable to the $5M–$100M operator — not a startup tool,
+  not an enterprise tool.
+- If no strong tool recommendation exists in the source material, suggest one
+  from the framework developed in The Insight (e.g. a named template, a
+  one-page document, a specific diagnostic question).
+
 ### Section 4 — THE COMPASS (~75 words)
 
 A question the writer is genuinely sitting with. This must feel earned by
@@ -196,14 +230,16 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-1. The Insight follows Problem → Diagnosis → Framework → Application in that order
-2. No banned phrases appear (see Voice Bible — Banned Phrases section)
-3. The OS pillar is consistent throughout The Insight
-4. The Insight contains at least one sentence that would produce the aha moment
-5. The Field Report has a clear operational implication for corridor operators
-6. The Compass question is specific enough to feel genuine
-7. Total word count is between 900–1,000 words (excluding metadata)
-8. The Door text is reproduced exactly
+1. The Signal has exactly 3 bullets, each with a source link
+2. The Insight follows Problem → Diagnosis → Framework → Application in that order
+3. No banned phrases appear (see Voice Bible — Banned Phrases section)
+4. The OS pillar is consistent throughout The Insight
+5. The Insight contains at least one sentence that would produce the aha moment
+6. The Field Report has a clear operational implication for corridor operators
+7. The Tool recommendation is specific and linked or clearly described
+8. The Compass question is specific enough to feel genuine
+9. Total word count is between 1,000–1,200 words (excluding metadata)
+10. The Door text is reproduced exactly
 
 ---
 
@@ -220,9 +256,11 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
+    "signal": "3 bullets — each: fact sentence + implication sentence + [source link]",
     "apertura": "...",
     "insight": "...",
     "fieldReport": "...",
+    "tool": "**[Tool Name]** — what it is. Why it matters. [link or description]",
     "compass": "...",
     "door": "..."
   },

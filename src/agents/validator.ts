@@ -33,13 +33,15 @@ interface WordCountTarget {
 }
 
 const WORD_COUNT_TARGETS: Record<string, WordCountTarget> = {
+  signal: { errorMin: 40, errorMax: 150, warnMin: 55, warnMax: 100, label: "Signal" },
   apertura: { errorMin: 50, errorMax: 200, warnMin: 70, warnMax: 130, label: "Apertura" },
   insight: { errorMin: 300, errorMax: 650, warnMin: 380, warnMax: 520, label: "Insight" },
   fieldReport: { errorMin: 75, errorMax: 300, warnMin: 110, warnMax: 190, label: "Field Report" },
+  tool: { errorMin: 20, errorMax: 120, warnMin: 30, warnMax: 80, label: "Tool" },
   compass: { errorMin: 30, errorMax: 150, warnMin: 55, warnMax: 95, label: "Compass" },
 };
 
-const TOTAL_WORD_TARGET = { warnMin: 800, warnMax: 1100 };
+const TOTAL_WORD_TARGET = { warnMin: 950, warnMax: 1300 };
 
 // ── Banned phrases (deterministic, case-insensitive) ─────────────────────────
 
@@ -201,23 +203,29 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     context: AgentInput<ValidatorInput>,
   ): Promise<ValidationResult> {
     const sections = {
+      signal: getSectionText(payload.content, "news"),
       apertura: getSectionText(payload.content, "lead"),
       insight: getSectionText(payload.content, "analysis"),
       fieldReport: getSectionText(payload.content, "spotlight"),
+      tool: getSectionText(payload.content, "tool"),
       compass: getSectionText(payload.content, "quickTakes"),
     };
 
     const wordCounts = {
+      signal: countWords(sections["signal"]),
       apertura: countWords(sections["apertura"]),
       insight: countWords(sections["insight"]),
       fieldReport: countWords(sections["fieldReport"]),
+      tool: countWords(sections["tool"]),
       compass: countWords(sections["compass"]),
       total: 0,
     };
     wordCounts.total =
+      wordCounts.signal +
       wordCounts.apertura +
       wordCounts.insight +
       wordCounts.fieldReport +
+      wordCounts.tool +
       wordCounts.compass;
 
     // ── Deterministic checks ────────────────────────────────────────────────

@@ -44,9 +44,11 @@ function renderMarkdown(
   language: "en" | "es",
 ): string {
   const sections = content.sections;
+  const signal = sections.find((s) => s.type === "news");
   const apertura = sections.find((s) => s.type === "lead");
   const insight = sections.find((s) => s.type === "analysis");
   const fieldReport = sections.find((s) => s.type === "spotlight");
+  const tool = sections.find((s) => s.type === "tool");
   const compass = sections.find((s) => s.type === "quickTakes");
   const door = sections.find((s) => s.type === "cta");
 
@@ -54,9 +56,11 @@ function renderMarkdown(
   const isEs = language === "es";
 
   const label = isEs ? "ES" : "EN";
+  const signalHeading = isEs ? "LA SEÑAL" : "THE SIGNAL";
   const aperturaHeading = isEs ? "LA APERTURA" : "THE APERTURA";
   const insightHeading = isEs ? "EL INSIGHT" : "THE INSIGHT";
   const fieldReportHeading = isEs ? "EL REPORTE DE CAMPO" : "THE FIELD REPORT";
+  const toolHeading = isEs ? "LA HERRAMIENTA" : "THE TOOL";
   const compassHeading = isEs ? "LA BRÚJULA" : "THE COMPASS";
   const doorHeading = isEs ? "LA PUERTA" : "THE DOOR";
   const reviewNote = isEs
@@ -78,6 +82,12 @@ function renderMarkdown(
     ``,
     `---`,
     ``,
+    `## ${signalHeading}`,
+    ``,
+    signal?.body ?? "",
+    ``,
+    `---`,
+    ``,
     `## ${aperturaHeading}`,
     ``,
     reviewNote,
@@ -95,6 +105,12 @@ function renderMarkdown(
     `## ${fieldReportHeading}`,
     ``,
     fieldReport?.body ?? "",
+    ``,
+    `---`,
+    ``,
+    `## ${toolHeading}`,
+    ``,
+    tool?.body ?? "",
     ``,
     `---`,
     ``,
