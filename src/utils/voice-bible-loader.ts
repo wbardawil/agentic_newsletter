@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
@@ -31,12 +31,18 @@ const DEFAULT_VOICE_BIBLE_DIR = join(
 export function loadVoiceBible(voiceBibleDir?: string): VoiceBible {
   const dir = voiceBibleDir ?? DEFAULT_VOICE_BIBLE_DIR;
 
-  const versionRaw = JSON.parse(
-    readFileSync(join(dir, "version.json"), "utf-8"),
-  ) as unknown;
+  const versionPath = join(dir, "version.json");
+  if (!existsSync(versionPath)) {
+    throw new Error(`Voice Bible version file not found: ${versionPath}`);
+  }
+  const versionRaw = JSON.parse(readFileSync(versionPath, "utf-8")) as unknown;
   const version = VoiceBibleVersionSchema.parse(versionRaw);
 
-  const content = readFileSync(join(dir, "voice-bible.md"), "utf-8");
+  const contentPath = join(dir, "voice-bible.md");
+  if (!existsSync(contentPath)) {
+    throw new Error(`Voice Bible content file not found: ${contentPath}`);
+  }
+  const content = readFileSync(contentPath, "utf-8");
 
   const goldenExamples: GoldenExample[] = [];
   const examplesDir = join(dir, "golden-examples");

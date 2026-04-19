@@ -9,11 +9,14 @@ import {
   type SourceBundle,
   type SourceItem,
 } from "../types/source-bundle.js";
+import { fetchFeedlyStream } from "../utils/feedly.js";
 
 const RadarInputSchema = z.object({
   timeWindowHours: z.number().positive(),
   maxItems: z.number().int().positive(),
   focusTopics: z.array(z.string()).optional(),
+  /** Override the per-feed RSS parser timeout in ms (default: from config). */
+  rssTimeoutMs: z.number().positive().int().optional(),
 });
 type RadarInput = z.infer<typeof RadarInputSchema>;
 
@@ -596,16 +599,37 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
     payload: RadarInput,
     context: AgentInput<RadarInput>,
   ): Promise<SourceBundle> {
-    const parser = new Parser({ timeout: 12000 });
+    const timeoutMs =
+      payload.rssTimeoutMs ?? this.deps.apiClients.rssParserTimeoutMs;
+    const parser = new Parser({ timeout: timeoutMs });
     const scannedAt = new Date().toISOString();
 
+    // Hard ceiling prevents a single slow feed from stalling the whole pipeline
+    const AGGREGATE_TIMEOUT_MS = 10 * 60 * 1000;
+
     // Fetch all feeds in parallel — with 30 feeds sequential would be ~6 min worst-case
-    const results = await Promise.allSettled(
-      RSS_FEEDS.map(async (feed) => ({
-        feed,
-        parsed: await parser.parseURL(feed.url),
-      })),
-    );
+    const results = await Promise.race([
+      Promise.allSettled(
+        RSS_FEEDS.map(async (feed) => ({
+          feed,
+          parsed: await parser.parseURL(feed.url),
+        })),
+      ),
+      new Promise<never>((_, reject) =>
+        setTimeout(
+          () => reject(new Error(`Radar: RSS aggregate timeout after ${AGGREGATE_TIMEOUT_MS / 1000}s`)),
+          AGGREGATE_TIMEOUT_MS,
+        ),
+      ),
+    ]);
+
+    const rejected = results.filter((r) => r.status === "rejected").length;
+    if (rejected > 0) {
+      this.logger.warn(
+        `Radar: ${rejected}/${results.length} feeds failed to load`,
+        { runId: context.runId },
+      );
+    }
 
     const allItems: SourceItem[] = [];
     let feedsScanned = 0;
@@ -666,6 +690,61 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           tags: itemTags,
           rawContent,
         });
+      }
+    }
+
+    // ── Feedly supplemental source (additive, never required) ─────────────────
+    const { feedlyApiKey } = this.deps.apiClients;
+    if (feedlyApiKey) {
+      try {
+        const newerThan = Date.now() - payload.timeWindowHours * 60 * 60 * 1000;
+        const feedlyItems = await fetchFeedlyStream(feedlyApiKey, 50, newerThan);
+        let feedlyAdded = 0;
+
+        for (const fi of feedlyItems) {
+          const url = fi.canonical?.[0]?.href ?? fi.originId ?? "";
+          const title = fi.title?.trim() ?? "";
+          if (!url || !title) continue;
+
+          const pubDate = fi.published ? new Date(fi.published) : new Date();
+          const recencyHours = (Date.now() - pubDate.getTime()) / (1000 * 60 * 60);
+          if (recencyHours > payload.timeWindowHours) continue;
+
+          const rawContent = (fi.content?.content ?? fi.summary?.content ?? "").substring(0, 3000);
+          const summary = fi.summary?.content
+            ? fi.summary.content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 600)
+            : title;
+          const outlet = fi.origin?.title ?? "Feedly";
+          const tags = (fi.tags ?? []).map((t) => t.label ?? "").filter(Boolean);
+          const verbatimFacts = extractFacts(rawContent, title, outlet);
+          const relevanceScore = scoreRelevance(title, summary, tags, { region: "global", tier: 2 } as FeedConfig);
+
+          allItems.push({
+            id: randomUUID(),
+            sourceType: "rss",
+            title,
+            url,
+            publishedAt: pubDate.toISOString(),
+            outlet,
+            summary,
+            verbatimFacts,
+            relevanceScore,
+            recencyHours,
+            tags,
+            rawContent,
+          });
+          feedlyAdded++;
+          totalScanned++;
+        }
+
+        this.logger.info(`Radar: added ${feedlyAdded} items from Feedly`, {
+          runId: context.runId,
+        });
+      } catch (err) {
+        this.logger.warn(
+          `Radar: Feedly fetch failed (continuing with RSS only) — ${err instanceof Error ? err.message : String(err)}`,
+          { runId: context.runId },
+        );
       }
     }
 

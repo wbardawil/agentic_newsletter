@@ -2,8 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { randomUUID } from "node:crypto";
 import { ValidatorAgent } from "../../src/agents/validator.js";
 import type { AgentInput } from "../../src/types/agent-io.js";
-import { createLogger } from "../../src/utils/logger.js";
-import { createCostTracker } from "../../src/utils/cost-tracker.js";
+import { makeDeps } from "../helpers/make-deps.js";
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
 
@@ -81,11 +80,7 @@ function makeAngle() {
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
 describe("ValidatorAgent", () => {
-  const deps = {
-    logger: createLogger("error"),
-    costTracker: createCostTracker(),
-    apiClients: { anthropic: {} as never },
-  };
+  const deps = makeDeps();
 
   it("has the correct agent name", () => {
     const agent = new ValidatorAgent(deps);
