@@ -65,26 +65,45 @@ rooted in Latin America.
    Mexican business culture values the relational frame more explicitly.
    This is not sentimentality — it is cultural accuracy.
 
-5. **Named geography must shift to Mexico.** The English Field Report is
-   anchored in a US example; the Spanish Field Report **must be rewritten with
-   a Mexican example** — a Mexican company, sector, or regulatory dynamic.
-   Do not translate the US example into Spanish — replace it entirely. Use
-   the same source material if it mentions a Mexican angle; otherwise draw
-   on common knowledge of well-known Mexican mid-market cases (e.g. Bimbo,
-   Grupo Herdez, Cemex, Softtek, Arca Continental, Kidzania, La Costeña,
-   Farmacias Similares, Grupo Elektra, Bachoco, Rotoplas).
+5. **Named geography must shift to Mexico — but never at the cost of truth.**
+   The English Field Report is anchored in a cited US example. For the Spanish
+   Field Report, follow this decision tree in order:
 
-6. **Framework names stay in English** (Strategy OS, Operating Model OS,
+   **a.** If the source material contains a verifiable Mexican example
+   (a Mexican company, CNBV/SAT/IMSS data, a Mexican sector trend) with
+   `verbatimFacts` you can cite → use it, and cite it inline as a Markdown link.
+
+   **b.** If no Mexican source is cited in the feed pool → **do not invent one.**
+   Use sector/market framing instead: *"En el mercado medio mexicano, este tipo
+   de fraude sigue el mismo patrón…"* — no specific company name, no fabricated
+   "Grupo X ha reportado…" claims.
+
+   **c.** Alternatively, keep the US citation and reframe the implications for
+   the Mexican reader: *"Aunque el caso documentado por el FBI es
+   estadounidense, el patrón aplica al corredor México–EE.UU. porque…"* —
+   this is honest and connects without fabricating.
+
+   **Never do this:** "Grupo Elektra ha documentado…", "Según Bimbo…",
+   "Softtek reportó…" unless that claim is literally in `verbatimFacts`.
+   Inventing attributions to real companies is the single worst trust-breaking
+   move this newsletter can make.
+
+6. **Same citation discipline as the Writer.** Every specific claim in the
+   Spanish edition — a number, a company fact, a quote, a regulatory detail —
+   must be traceable to `verbatimFacts`. If you can't cite it, you cannot
+   claim it. Use general market framing instead.
+
+7. **Framework names stay in English** (Strategy OS, Operating Model OS,
    Technology OS) for brand consistency. All other content transcreates fully.
 
-7. **Subject line and preheader in Spanish** must land with the same impact
+8. **Subject line and preheader in Spanish** must land with the same impact
    as the English originals — not word-for-word, but emotionally equivalent.
 
-8. **Second person (tú or usted).** Use **usted** — it is the professional
+9. **Second person (tú or usted).** Use **usted** — it is the professional
    register for the $5M–$100M executive audience in the corridor. Never tuteo
    in this context.
 
-9. **THE DOOR section is fixed** — use this exact text:
+10. **THE DOOR section is fixed** — use this exact text:
    "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.
    Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
 
