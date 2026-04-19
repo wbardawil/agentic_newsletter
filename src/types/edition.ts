@@ -43,23 +43,35 @@ export const LocalizedContentSchema = z.object({
 });
 export type LocalizedContent = z.infer<typeof LocalizedContentSchema>;
 
+/** A single issue found during validation. */
+export const ValidationIssueSchema = z.object({
+  /** Short identifier linking the issue to a Voice Bible rule (e.g. "rule-11-reframe"). */
+  rule: z.string(),
+  severity: z.enum(["error", "warning", "info"]),
+  section: z.string(),
+  message: z.string(),
+  /** The exact excerpt from the draft that triggered this issue, if applicable. */
+  excerpt: z.string().optional(),
+});
+export type ValidationIssue = z.infer<typeof ValidationIssueSchema>;
+
 /** Quality validation result from the Validator agent. */
 export const ValidationResultSchema = z.object({
   isValid: z.boolean(),
-  issues: z.array(
-    z.object({
-      severity: z.enum(["error", "warning", "info"]),
-      section: z.string(),
-      message: z.string(),
-      suggestion: z.string().optional(),
-    }),
-  ),
-  scores: z.object({
-    voiceConsistency: z.number().min(0).max(100),
-    factualAccuracy: z.number().min(0).max(100),
-    readability: z.number().min(0).max(100),
-    bilingualParity: z.number().min(0).max(100),
+  /** Composite quality score 0–100. Errors subtract 15; warnings subtract 5; infos subtract 1. */
+  score: z.number().min(0).max(100),
+  issues: z.array(ValidationIssueSchema),
+  wordCounts: z.object({
+    apertura: z.number().int().nonnegative(),
+    insight: z.number().int().nonnegative(),
+    fieldReport: z.number().int().nonnegative(),
+    compass: z.number().int().nonnegative(),
+    total: z.number().int().nonnegative(),
   }),
+  /** The single most shareable sentence identified in the Insight section, or null if none qualifies. */
+  shareableSentence: z.string().nullable(),
+  /** High-level notes for the human reviewer. */
+  recommendations: z.array(z.string()),
 });
 export type ValidationResult = z.infer<typeof ValidationResultSchema>;
 

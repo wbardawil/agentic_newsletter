@@ -5,7 +5,7 @@
  *   pnpm draft
  *   pnpm draft --edition 2026-16
  *
- * Runs: Radar → Strategist → Writer (English)
+ * Runs: Radar → Strategist → Writer (English) → Validator
  * Saves draft to: drafts/YYYY-WW.md  +  drafts/YYYY-WW-draft.json
  */
 
@@ -23,7 +23,8 @@ import type { AgentDeps } from "./agents/base-agent.js";
 import { RadarAgent } from "./agents/radar.js";
 import { StrategistAgent } from "./agents/strategist.js";
 import { WriterAgent } from "./agents/writer.js";
-import type { LocalizedContent } from "./types/edition.js";
+import { ValidatorAgent } from "./agents/validator.js";
+import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 
@@ -188,7 +189,7 @@ async function main(): Promise<void> {
   console.log(`   ✓ Theme: ${angle.quarterlyTheme}\n`);
 
   // ── Writer ─────────────────────────────────────────────────────────────────
-  console.log("✍️  Step 3/3 — Writer: drafting newsletter...");
+  console.log("✍️  Step 3/4 — Writer: drafting newsletter...");
   const writerAgent = new WriterAgent(deps);
   const writerOutput = await writerAgent.run({
     runId,
@@ -209,6 +210,33 @@ async function main(): Promise<void> {
   const content = writerOutput.data as LocalizedContent;
   console.log(`   ✓ Draft complete (${content.sections.length} sections)\n`);
 
+  // ── Validator ──────────────────────────────────────────────────────────────
+  console.log("🔎 Step 4/4 — Validator: checking draft against Voice Bible...");
+  const validatorAgent = new ValidatorAgent(deps);
+  const validatorOutput = await validatorAgent.run({
+    runId,
+    editionId,
+    agentName: "validator",
+    payload: { content, angle },
+  });
+
+  const validation = validatorOutput.data as ValidationResult | undefined;
+
+  if (!validatorOutput.success || !validation) {
+    console.warn(`   ⚠️  Validator failed: ${validatorOutput.error}. Continuing without QA score.\n`);
+  } else {
+    const icon = validation.isValid ? "✅" : "⚠️ ";
+    console.log(`   ${icon} Score: ${validation.score}/100 — ${validation.isValid ? "PASS" : "FAIL"}`);
+    const errors = validation.issues.filter((i) => i.severity === "error");
+    const warnings = validation.issues.filter((i) => i.severity === "warning");
+    if (errors.length > 0) console.log(`   Errors (${errors.length}):`);
+    for (const e of errors) console.log(`     • [${e.section}] ${e.message}`);
+    if (warnings.length > 0) console.log(`   Warnings (${warnings.length}):`);
+    for (const w of warnings.slice(0, 3)) console.log(`     • [${w.section}] ${w.message}`);
+    for (const rec of validation.recommendations) console.log(`   → ${rec}`);
+    console.log();
+  }
+
   // ── Save draft ─────────────────────────────────────────────────────────────
   const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
   const draftsDir = join(rootDir, "drafts");
@@ -218,6 +246,7 @@ async function main(): Promise<void> {
   const jsonPath = join(draftsDir, `${editionId}-draft.json`);
 
   const mdContent = renderMarkdown(editionId, angle, content);
+  const validatorCostUsd = validatorOutput.success ? validatorOutput.cost.costUsd : 0;
   const jsonContent = JSON.stringify(
     {
       runId,
@@ -225,14 +254,17 @@ async function main(): Promise<void> {
       generatedAt: new Date().toISOString(),
       angle,
       content,
+      validation: validatorOutput.success ? validation : null,
       costs: {
         radar: radarOutput.cost,
         strategist: strategistOutput.cost,
         writer: writerOutput.cost,
+        validator: validatorOutput.cost,
         totalUsd:
           radarOutput.cost.costUsd +
           strategistOutput.cost.costUsd +
-          writerOutput.cost.costUsd,
+          writerOutput.cost.costUsd +
+          validatorCostUsd,
       },
     },
     null,
@@ -245,7 +277,8 @@ async function main(): Promise<void> {
   const totalCost =
     radarOutput.cost.costUsd +
     strategistOutput.cost.costUsd +
-    writerOutput.cost.costUsd;
+    writerOutput.cost.costUsd +
+    validatorCostUsd;
 
   console.log(`💾 Draft saved:`);
   console.log(`   ${mdPath}`);
@@ -254,6 +287,7 @@ async function main(): Promise<void> {
   console.log(`   Radar:      $${radarOutput.cost.costUsd.toFixed(4)}`);
   console.log(`   Strategist: $${strategistOutput.cost.costUsd.toFixed(4)}`);
   console.log(`   Writer:     $${writerOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Validator:  $${validatorCostUsd.toFixed(4)}`);
   console.log(`   Total:      $${totalCost.toFixed(4)}`);
   console.log(`\n✅ Done — open ${editionId}.md to review and edit.\n`);
 }

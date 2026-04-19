@@ -434,38 +434,74 @@ describe("LocalizedContent", () => {
 // ---------------------------------------------------------------------------
 
 describe("ValidationResult", () => {
-  it("validates a correct result with issues", () => {
+  const makeWordCounts = () => ({
+    apertura: 95,
+    insight: 440,
+    fieldReport: 148,
+    compass: 72,
+    total: 755,
+  });
+
+  it("validates a passing result with no issues", () => {
     const result = {
-      isValid: false,
-      issues: [
-        {
-          severity: "warning",
-          section: "lead",
-          message: "Tone too casual",
-          suggestion: "Use more formal language",
-        },
-      ],
-      scores: {
-        voiceConsistency: 85,
-        factualAccuracy: 92,
-        readability: 78,
-        bilingualParity: 88,
-      },
+      isValid: true,
+      score: 100,
+      issues: [],
+      wordCounts: makeWordCounts(),
+      shareableSentence: "The business you built is actually a job you created for yourself.",
+      recommendations: ["Draft passes automated checks."],
     };
     expect(ValidationResultSchema.parse(result)).toBeDefined();
   });
 
-  it("rejects scores > 100", () => {
+  it("validates a failing result with error and warning issues", () => {
+    const result = {
+      isValid: false,
+      score: 70,
+      issues: [
+        {
+          rule: "rule-11-reframe",
+          severity: "error",
+          section: "insight",
+          message: "No explicit reframe found.",
+        },
+        {
+          rule: "word-count-apertura",
+          severity: "warning",
+          section: "apertura",
+          message: "Apertura word count is 145 — target range is 70–130.",
+          excerpt: undefined,
+        },
+      ],
+      wordCounts: makeWordCounts(),
+      shareableSentence: null,
+      recommendations: ["1 error must be resolved before this draft is ready."],
+    };
+    expect(ValidationResultSchema.parse(result)).toBeDefined();
+  });
+
+  it("rejects score > 100", () => {
     expect(() =>
       ValidationResultSchema.parse({
         isValid: true,
+        score: 101,
         issues: [],
-        scores: {
-          voiceConsistency: 101,
-          factualAccuracy: 92,
-          readability: 78,
-          bilingualParity: 88,
-        },
+        wordCounts: makeWordCounts(),
+        shareableSentence: null,
+        recommendations: [],
+      }),
+    ).toThrow();
+  });
+
+  it("rejects negative score", () => {
+    expect(() =>
+      ValidationResultSchema.parse({
+        isValid: false,
+        score: -1,
+        issues: [],
+        wordCounts: makeWordCounts(),
+        shareableSentence: null,
+        recommendations: [],
       }),
     ).toThrow();
   });
