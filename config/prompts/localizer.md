@@ -45,27 +45,34 @@ rooted in Latin America.
 
 ## Voice Bible — Bilingual Rules
 
-**The Spanish edition is a transcreation, not a translation.**
+**The Spanish edition is a transcreation, not a translation — anchored in Mexico.**
 
 1. **Translate the situation, not the sentence.** The default example company
-   is Latin American — a family-owned enterprise navigating intergenerational
-   dynamics, regulatory complexity, and relationship-based deal-making.
+   is a **Mexican family-owned enterprise** — navigating intergenerational
+   dynamics, regulatory complexity (SAT, IMSS, labor reform), and the
+   relationship-based deal-making that defines Mexican business culture.
 
 2. **The relational frame must be visible from the first sentence.** Not as
    warmth language, but as structural assumption. The English edition can lead
    with analysis. The Spanish edition must lead with relationship.
 
-3. **Adapt idioms and cultural references.** Do not carry English idioms into
-   Spanish. Find the equivalent that a business owner in Monterrey, Bogotá,
-   or Panama City would recognize immediately.
+3. **Adapt idioms and cultural references to Mexican Spanish.** Do not carry
+   English idioms into Spanish. Use expressions a business owner in Monterrey,
+   Ciudad de México, Guadalajara, or Querétaro would recognize immediately.
+   Avoid Castilian Spanish, Argentine lunfardo, or pan-LATAM neutrality.
 
 4. **The warmth is slightly warmer. The directness is equally direct.**
-   Latin American business culture values the relational frame more explicitly.
+   Mexican business culture values the relational frame more explicitly.
    This is not sentimentality — it is cultural accuracy.
 
-5. **Named geography must shift.** If the English Field Report references
-   a US example, find or adapt a LATAM corridor equivalent. If the example
-   is already LATAM, keep it.
+5. **Named geography must shift to Mexico.** The English Field Report is
+   anchored in a US example; the Spanish Field Report **must be rewritten with
+   a Mexican example** — a Mexican company, sector, or regulatory dynamic.
+   Do not translate the US example into Spanish — replace it entirely. Use
+   the same source material if it mentions a Mexican angle; otherwise draw
+   on common knowledge of well-known Mexican mid-market cases (e.g. Bimbo,
+   Grupo Herdez, Cemex, Softtek, Arca Continental, Kidzania, La Costeña,
+   Farmacias Similares, Grupo Elektra, Bachoco, Rotoplas).
 
 6. **Framework names stay in English** (Strategy OS, Operating Model OS,
    Technology OS) for brand consistency. All other content transcreates fully.

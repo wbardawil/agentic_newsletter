@@ -104,17 +104,22 @@ either done it or not.
 
 ### Section 3 — THE FIELD REPORT (~150 words)
 
-One observation from the US-LATAM business corridor drawn from the source
-material provided. This demonstrates geographic and market fluency.
+One observation drawn from the source material, **anchored in the United States
+market**. The example company, industry dynamic, or data point must be US-based
+(a US company, a US regulatory shift, a US sector trend). This English edition
+speaks to the US reader — geographic specificity builds credibility.
 
 Rules:
 - Factual. Brief. Pointed.
 - 3–4 short paragraphs maximum.
-- Ends with the operational implication: what does this mean for someone
-  running a business across the US-LATAM corridor?
+- The named example must be US-based. If the source material is Latin American,
+  either find a US parallel in other sources or reframe it as "what this means
+  for US owners watching LATAM supply chains" — but the anchor stays US.
+- Ends with the operational implication: what does this mean for a US-based
+  owner running a $5M–$100M business?
 - No generic macroeconomic commentary.
 - No press release summaries.
-- The one thing a busy business owner might have missed — and why it matters.
+- The one thing a busy US business owner might have missed — and why it matters.
 
 ### Section 4 — THE COMPASS (~75 words)
 
