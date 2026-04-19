@@ -24,6 +24,11 @@ interface FeedConfig {
   region: "global" | "us" | "latam";
   /** Editorial tier: 1 = strategy/insight, 2 = business news, 3 = niche/trade. */
   tier: 1 | 2 | 3;
+  /**
+   * When true, items from this feed are tagged as already covered by competitors.
+   * The Strategist prompt receives this signal to avoid saturated angles.
+   */
+  competitive?: boolean;
 }
 
 const RSS_FEEDS: FeedConfig[] = [
@@ -59,7 +64,7 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
 
-  // ── US General Business News (tier 2) ─────────────────────────────────────
+  // ── US Business News (tier 2) ─────────────────────────────────────────────
   {
     url: "https://feeds.bloomberg.com/markets/news.rss",
     outlet: "Bloomberg",
@@ -75,12 +80,6 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml",
     outlet: "Wall Street Journal",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://www.ft.com/rss/home/us",
-    outlet: "Financial Times",
     region: "us",
     tier: 2,
   },
@@ -111,6 +110,42 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.fastcompany.com/rss.xml",
     outlet: "Fast Company",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+    outlet: "CNBC Business",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.forbes.com/business/feed/",
+    outlet: "Forbes",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://chiefexecutive.net/feed/",
+    outlet: "Chief Executive Magazine",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.cfo.com/feed/",
+    outlet: "CFO Magazine",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://api.axios.com/feed/",
+    outlet: "Axios Business",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.bizjournals.com/feeds/bizjournals/stories.rss",
+    outlet: "Biz Journals",
     region: "us",
     tier: 2,
   },
@@ -205,6 +240,112 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Manufacturing Dive",
     region: "us",
     tier: 3,
+  },
+
+  // ── Europe & UK — Business Transformation Reference (tier 1/2) ───────────
+  // UK/Europe sets the global standard for org design, Mittelstand mid-market,
+  // and operating model research. Critical reference for the framework pillars.
+  {
+    url: "https://www.ft.com/rss/home",
+    outlet: "Financial Times",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://feeds.bbci.co.uk/news/business/rss.xml",
+    outlet: "BBC Business",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://knowledge.insead.edu/rss.xml",
+    outlet: "INSEAD Knowledge",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://blogs.lse.ac.uk/businessreview/feed/",
+    outlet: "LSE Business Review",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.managementtoday.co.uk/rss",
+    outlet: "Management Today (UK)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.handelsblatt.com/rss/english.rss",
+    outlet: "Handelsblatt Global",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://sifted.eu/feed/",
+    outlet: "Sifted (Europe)",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Asia-Pacific — Transformation Reference (tier 2) ─────────────────────
+  // Singapore is the transformation hub for SE Asia; Nikkei covers Japan/Asia
+  // operating model innovation; ADB tracks emerging-market business trends.
+  {
+    url: "https://www.businesstimes.com.sg/rss/all",
+    outlet: "Singapore Business Times",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://asia.nikkei.com/rss/feed/nar",
+    outlet: "Nikkei Asia",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.scmp.com/rss/91/feed",
+    outlet: "South China Morning Post — Business",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.adb.org/feeds/news",
+    outlet: "Asian Development Bank",
+    region: "global",
+    tier: 1,
+  },
+
+  // ── Reference Newsletters — Competitive Awareness ────────────────────────
+  // Items from these feeds are tagged competitive:true in the SourceBundle.
+  // The Strategist uses this to avoid angles already saturated this week.
+  {
+    url: "https://www.notboring.co/feed",
+    outlet: "Not Boring (Packy McCormick)",
+    region: "global",
+    tier: 3,
+    competitive: true,
+  },
+  {
+    url: "https://www.morningbrew.com/daily/rss",
+    outlet: "Morning Brew",
+    region: "us",
+    tier: 3,
+    competitive: true,
+  },
+  {
+    url: "https://contrarycapital.substack.com/feed",
+    outlet: "Contrarian Thinking (Codie Sanchez)",
+    region: "us",
+    tier: 3,
+    competitive: true,
+  },
+  {
+    url: "https://thegeneralist.substack.com/feed",
+    outlet: "The Generalist",
+    region: "global",
+    tier: 3,
+    competitive: true,
   },
 
   // ── Technology for Business (tier 3) ──────────────────────────────────────
@@ -587,6 +728,11 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
         const relevanceScore = scoreRelevance(title, summary, tags, feed);
         const verbatimFacts = extractFacts(rawContent, title, feed.outlet);
 
+        // Tag competitive items so the Strategist can avoid saturated angles
+        const itemTags = feed.competitive
+          ? [...tags, "competitive-signal"]
+          : tags;
+
         allItems.push({
           id: randomUUID(),
           sourceType: "rss",
@@ -599,7 +745,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           verbatimFacts,
           relevanceScore,
           recencyHours,
-          tags,
+          tags: itemTags,
           rawContent,
         });
       }

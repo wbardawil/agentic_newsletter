@@ -70,11 +70,20 @@ week's issue. The angle must:
 4. Draw on at least 2–3 of the provided sources as raw material
 5. Not be a press release summary, trend roundup, or generic commentary
 
+### Competitive signals
+
+Some source items in the bundle are tagged `competitive-signal` in their tags array.
+These come from reference newsletters (Morning Brew, Not Boring, Codie Sanchez, The
+Generalist) that the target audience already reads. If they covered an angle this week,
+note it but **do not repeat it**. The value of this newsletter is what those publications
+missed — particularly the corridor dimension, the mid-market owner framing, and the
+Business Transformation OS diagnostic lens.
+
 ### How to select the angle
 
 Ask: What is the one insight that a $5M–$100M business owner operating in
 the US-LATAM corridor would read and think "I have never seen this named,
-but I have been living it"?
+but I have been living it"? What did the reference newsletters miss this week?
 
 ### Assigning the OS pillar
 
