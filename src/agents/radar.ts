@@ -551,6 +551,20 @@ function scoreRelevance(
   return normalized;
 }
 
+/** RSS fields can be strings or objects like { "#": "text", "@": {...} } or { _: "text" }. */
+function toStr(v: unknown): string {
+  if (v == null) return "";
+  if (typeof v === "string") return v;
+  if (typeof v === "object") {
+    const obj = v as Record<string, unknown>;
+    for (const k of ["#", "_", "$t", "name", "text"]) {
+      if (typeof obj[k] === "string") return obj[k] as string;
+    }
+    return "";
+  }
+  return String(v);
+}
+
 function extractFacts(rawContent: string, fallbackTitle: string, outlet: string): string[] {
   const cleaned = rawContent
     .replace(/<[^>]+>/g, " ")
@@ -654,16 +668,15 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
 
         if (recencyHours > payload.timeWindowHours) continue;
 
-        const title = item.title?.trim() ?? "Untitled";
-        const summary =
-          (item.contentSnippet ?? item.summary ?? "").substring(0, 600);
-        const rawContent = (
-          item["content:encoded"] ??
-          item.content ??
-          summary
+        const title = toStr(item.title).trim() || "Untitled";
+        const summary = toStr(item.contentSnippet ?? item.summary).substring(0, 600);
+        const rawContent = toStr(
+          item["content:encoded"] ?? item.content ?? summary,
         ).substring(0, 3000);
-        const tags: string[] = (item.categories as string[] | undefined) ?? [];
-        const url = item.link?.trim() ?? "";
+        const tags: string[] = Array.isArray(item.categories)
+          ? (item.categories as unknown[]).map(toStr).filter(Boolean)
+          : [];
+        const url = toStr(item.link).trim();
 
         if (!url || !title || title === "Untitled") continue;
 
@@ -681,7 +694,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           title,
           url,
           publishedAt: pubDate.toISOString(),
-          author: (item.creator ?? (item["author"] as string | undefined))?.trim(),
+          author: toStr(item.creator ?? item["author"]).trim() || undefined,
           outlet: feed.outlet,
           summary: summary || title,
           verbatimFacts,
