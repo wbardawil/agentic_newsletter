@@ -24,8 +24,8 @@ describe("RadarAgent", () => {
       runId: randomUUID(),
       editionId: "2026-07",
       agentName: "radar",
-      // Short per-feed timeout so all feeds fail fast; withRetry still fires 3× but delays = 3s
-      payload: { timeWindowHours: 24, maxItems: 20, rssTimeoutMs: 200 },
+      // 1ms per-feed timeout guarantees every HTTP request fails — deterministic on any network.
+      payload: { timeWindowHours: 24, maxItems: 20, rssTimeoutMs: 1 },
     };
 
     // In a test environment without network access the agent will fail gracefully.
