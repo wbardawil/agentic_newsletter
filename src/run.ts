@@ -33,6 +33,7 @@ import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle } from "./utils/angle-history.js";
+import { scanEdition } from "./utils/citation-guard.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -430,6 +431,33 @@ async function main(): Promise<void> {
         `   ⚠️  Low source diversity: only ${qualityGate.sourceDiversity.outletCount} outlets cited\n`,
       );
     }
+  }
+
+  // ── Citation Guard (regex, deterministic) ────────────────────────────────
+  // Second line of defense after Quality Gate. Catches "[Entity] + attribution
+  // verb" patterns without an adjacent URL. Cheap, no LLM.
+  const enGuardIssues = scanEdition(
+    content.sections.map((s) => ({ type: s.type, body: s.body })),
+    "en",
+  );
+  const esGuardIssues = esContent
+    ? scanEdition(
+        esContent.sections.map((s) => ({ type: s.type, body: s.body })),
+        "es",
+      )
+    : [];
+  const guardIssues = [...enGuardIssues, ...esGuardIssues];
+  if (guardIssues.length > 0) {
+    console.error(`\n🚨 Citation Guard — ${guardIssues.length} attribution(s) without a source link:`);
+    for (const issue of guardIssues) {
+      console.error(`   • [${issue.section}] "${issue.entity} ${issue.verb}"`);
+      console.error(`     … ${issue.excerpt} …`);
+    }
+    console.error(
+      `\n   These look like fabricated attributions. Fix them in the draft or\n` +
+        `   re-run with tighter citation discipline before shipping.\n`,
+    );
+    process.exit(2);
   }
 
   // Record this angle in history for future originality checks
