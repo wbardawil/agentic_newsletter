@@ -167,7 +167,7 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     // The system prompt is sent as a single block; caching saves cost on repeated runs.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 6000,
+      max_tokens: 16000,
       thinking: { type: "adaptive" },
       system: [
         {
