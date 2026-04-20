@@ -33,7 +33,7 @@ interface WordCountTarget {
 }
 
 const WORD_COUNT_TARGETS: Record<string, WordCountTarget> = {
-  signal: { errorMin: 40, errorMax: 200, warnMin: 75, warnMax: 155, label: "Signal" },
+  signal: { errorMin: 50, errorMax: 240, warnMin: 95, warnMax: 185, label: "Signal" },
   apertura: { errorMin: 50, errorMax: 200, warnMin: 70, warnMax: 130, label: "Apertura" },
   insight: { errorMin: 300, errorMax: 650, warnMin: 380, warnMax: 520, label: "Insight" },
   fieldReport: { errorMin: 75, errorMax: 300, warnMin: 110, warnMax: 190, label: "Field Report" },

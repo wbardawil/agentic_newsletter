@@ -106,12 +106,15 @@ rooted in Latin America.
    must be traceable to `verbatimFacts`. If you can't cite it, you cannot
    claim it. Use general market framing instead.
 
-7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish, preserving
-   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnologia y Capital Humano:**
+7. **THE SIGNAL transcreation:** Translate the 4 bullets into Spanish, preserving
+   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnología:**, **Capital Humano:**
    Keep all source links intact. Adjust the implication sentence to speak directly
    to the Mexican/LATAM operator context where relevant (e.g. trade news has
    different implications for a Monterrey exporter than a US manufacturer).
-   Do not add or remove bullets - always exactly 3, always in the same order.
+   Do not add or remove bullets — always exactly 4, always in the same order.
+   If the English Signal includes a synthesis sentence (*This week's thread: ...*),
+   transcreate it into Spanish as: *El hilo de esta semana: ...*
+   If no synthesis sentence is present, do not add one.
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-
@@ -175,7 +178,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{signalId}}",
       "type": "news",
       "heading": "LA SEÑAL",
-      "body": "3 bullets in Spanish. Each: fact + implication for LATAM operator + [source link]. Exactly 3 bullets.",
+      "body": "4 bullets in Spanish. Each: fact + implication for LATAM operator + [source link]. Exactly 4 bullets, in order: Estrategia, Modelos Operativos, Tecnología, Capital Humano. Optional: *El hilo de esta semana: ...* if a genuine thread exists.",
       "sourceRefs": []
     },
     {

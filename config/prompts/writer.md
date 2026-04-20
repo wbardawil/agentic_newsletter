@@ -105,9 +105,9 @@ consistent with this pillar. Do not blend pillars. If the source material
 suggests a Technology OS framing but this issue is Strategy OS, find the
 Strategy OS dimension of the same problem.
 
-### Section 0 — THE SIGNAL (~80 words)
+### Section 0 — THE SIGNAL (~100 words)
 
-Exactly 3 bullets — one per pillar, always in this order:
+Exactly 4 bullets — one per pillar, always in this order:
 
 1. **Strategy** — A move by a competitor, a market shift, a deal, a regulatory
    change, or a sector realignment that forces a strategic decision for
@@ -117,12 +117,20 @@ Exactly 3 bullets — one per pillar, always in this order:
    scaled its operating model in a notable way. Prefer examples that show the
    operational implication for mid-market owners.
 
-3. **Technology & Human Capital** — The most significant AI or technology deployment
-   story this week where a company transformed how its people work. This pillar
-   should always reflect the highest-trending topic in business AI adoption —
-   real deployments, measurable outcomes, not product launches.
+3. **Technology** — The most significant technology or AI platform story this week.
+   What the tool does and what it enables — not a product launch, but a deployment
+   or capability shift with measurable impact.
 
-Rules (apply to all three bullets):
+4. **Human Capital** — How leading companies are changing how they hire, develop,
+   organize, or retain people this week. Workforce model shifts, talent decisions,
+   or organizational design moves with implications for the corridor operator.
+
+After the 4 bullets, add one italicized synthesis sentence — only if the four signals
+share a genuine underlying thread. If they do not connect naturally, omit it.
+Format: `*This week's thread: [one sentence connecting the four signals.]*`
+This sentence should feel discovered, not constructed — 15–20 words max.
+
+Rules (apply to all four bullets):
 - Each bullet: one sentence of fact + one sentence of why it matters to this
   audience. Total ~25 words per bullet.
 - Every bullet must end with a Markdown link labeled exactly `[Read ->]` pointing
@@ -227,12 +235,8 @@ Rules:
 - No affiliate links. No sponsored placements.
 - Must be directly applicable to the $5M-$100M operator — not a startup tool,
   not an enterprise tool.
-- Tie the tool to one of the three Signal pillars (Strategy, Operating Models,
-<<<<<<< HEAD
-  or Technology & Human Capital) — make it the action step that follows the signal.
-=======
-  or Technology & People) — make it the action step that follows the signal.
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+- Tie the tool to one of the four Signal pillars (Strategy, Operating Models,
+  Technology, or Human Capital) — make it the action step that follows the signal.
 - If no strong tool exists in the source material, derive one from The Insight
   (e.g. a named template, a one-page document, a specific diagnostic question).
 
@@ -264,11 +268,7 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-<<<<<<< HEAD
-1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & Human Capital — each ending with [Read ->](url)
-=======
-1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & People — each ending with [Read ->](url)
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+1. The Signal has exactly 4 bullets in order: Strategy, Operating Models, Technology, Human Capital — each ending with [Read ->](url). Optional synthesis sentence follows if there is a genuine thread.
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
@@ -308,11 +308,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
-<<<<<<< HEAD
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & Human Capital:** fact + implication [Read ->](url)",
-=======
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & People:** fact + implication [Read ->](url)",
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology:** fact + implication [Read ->](url)\n- **Human Capital:** fact + implication [Read ->](url)\n\n*This week's thread: one sentence connecting the four signals (omit if no genuine thread).*",
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},
