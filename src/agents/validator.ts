@@ -94,6 +94,21 @@ function countWords(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
+/**
+ * Apertura body is encoded as multiple options delimited by
+ * `===OPTION_A:style===\n<body>` markers. The per-option word-count
+ * budget must be checked against the longest individual option, not
+ * the concatenated total — otherwise 3 × ~100-word options trigger a
+ * false over-length error.
+ */
+function longestAperturaOptionWords(body: string): number {
+  const delimiter = /===OPTION_[ABC]:\w+===/g;
+  if (!delimiter.test(body)) return countWords(body);
+  const parts = body.split(delimiter).map((p) => p.trim()).filter(Boolean);
+  if (parts.length === 0) return 0;
+  return Math.max(...parts.map(countWords));
+}
+
 function findLongSentences(text: string, maxWords = 25): string[] {
   return text
     .split(SENTENCE_SPLIT_RE)
@@ -213,7 +228,7 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
 
     const wordCounts = {
       signal: countWords(sections["signal"]),
-      apertura: countWords(sections["apertura"]),
+      apertura: longestAperturaOptionWords(sections["apertura"] ?? ""),
       insight: countWords(sections["insight"]),
       fieldReport: countWords(sections["fieldReport"]),
       tool: countWords(sections["tool"]),
