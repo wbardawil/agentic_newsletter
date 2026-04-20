@@ -373,6 +373,213 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "global",
     tier: 2,
   },
+
+  // ── Operations & Process Excellence ──────────────────────────────────────────
+  // Source: processexcellencenetwork.com — URL pattern /rss/categories/{slug}
+  // "automation" slug confirmed; others follow the same pattern.
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/business-transformation",
+    outlet: "Process Excellence Network — Business Transformation",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/change-management",
+    outlet: "Process Excellence Network — Organizational Change",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/digital-transformation",
+    outlet: "Process Excellence Network — Digital Transformation",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/ai",
+    outlet: "Process Excellence Network — AI",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/automation",
+    outlet: "Process Excellence Network — Automation & RPA",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/opex",
+    outlet: "Process Excellence Network — OPEX & BPM",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Human Capital & HR Technology ────────────────────────────────────────────
+  // HR Exchange: global feed confirmed at /rss/articles; category pattern mirrors PEX.
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/hr-technology",
+    outlet: "HR Exchange Network — HR Technology",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/people-analytics",
+    outlet: "HR Exchange Network — People Analytics",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/employee-experience",
+    outlet: "HR Exchange Network — Employee Experience",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/learning-development",
+    outlet: "HR Exchange Network — Learning & Development",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://techrseries.com/feed/",
+    outlet: "TechHR Series",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://hrtechfeed.com/feed/",
+    outlet: "HR Tech Feed",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://joshbersin.com/feed/",
+    outlet: "Josh Bersin",
+    region: "global",
+    tier: 1,
+  },
+
+  // ── Macro & Regulatory Context ────────────────────────────────────────────────
+  {
+    url: "https://www.bis.org/cbspeeches.rss",
+    outlet: "BIS — Central Bank Speeches",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Tech Signal Layer ─────────────────────────────────────────────────────────
+  // Lower relevance scores (80–84) but useful for catching AI/platform signals
+  // that translate to mid-market operating model implications.
+  {
+    url: "https://www.theverge.com/rss/index.xml",
+    outlet: "The Verge",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://feeds.arstechnica.com/arstechnica/index",
+    outlet: "Ars Technica",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://techcrunch.com/feed/",
+    outlet: "TechCrunch",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://blog.bytebytego.com/feed",
+    outlet: "ByteByteGo (System Design)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://news.ycombinator.com/rss",
+    outlet: "Hacker News",
+    region: "global",
+    tier: 3,
+  },
+
+  // ── Product, Growth & Org Design — Newsletter Intelligence ───────────────────
+  // Practitioner-tier sources: frameworks, surveys, mental models.
+  // Used to surface "Operating Models" and "Human Capital" pillar angles.
+  // These write for PMs/founders, not our exact audience — cite as inspiration,
+  // never as competitor overlap. Not marked competitive.
+  {
+    url: "https://www.lennysnewsletter.com/feed",
+    outlet: "Lenny's Newsletter",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://andrewchen.substack.com/feed",
+    outlet: "Andrew Chen (Growth & Network Effects)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.svpg.com/feed/",
+    outlet: "SVPG — Marty Cagan (Product Leadership)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.producttalk.org/feed/",
+    outlet: "Product Talk — Teresa Torres (Discovery)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://productgrowth.substack.com/feed",
+    outlet: "Product Growth — Aakash Gupta (Growth & Metrics)",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Tech-Business Strategy — Executive Tier ────────────────────────────────
+  // Stratechery and Benedict Evans are the benchmark for "what smart execs read."
+  // Pragmatic Engineer is the best source for engineering org design signals.
+  {
+    url: "https://stratechery.com/feed/",
+    outlet: "Stratechery — Ben Thompson",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.ben-evans.com/benedictevans/rss.xml",
+    outlet: "Benedict Evans (Tech & Market Structure)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://newsletter.pragmaticengineer.com/feed",
+    outlet: "The Pragmatic Engineer — Gergely Orosz",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── AI Product & Deployment Signal ────────────────────────────────────────
+  // High-volume, lower framework depth. Filter: keep only items with operating
+  // model, workforce, or automation implications for mid-market operators.
+  {
+    url: "https://bensbites.beehiiv.com/feed",
+    outlet: "Ben's Bites (AI Products & Tools)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.therundown.ai/rss",
+    outlet: "The Rundown AI",
+    region: "global",
+    tier: 3,
+  },
+  {
+    url: "https://tldr.tech/ai/rss",
+    outlet: "TLDR AI",
+    region: "global",
+    tier: 3,
+  },
 ];
 
 interface ScoredKeyword {

@@ -106,12 +106,18 @@ rooted in Latin America.
    must be traceable to `verbatimFacts`. If you can't cite it, you cannot
    claim it. Use general market framing instead.
 
-7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish, preserving
-   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnologia y Capital Humano:**
+7. **THE SIGNAL transcreation:** The English Signal opens with a required thread sentence
+   followed by 4 bullets. Preserve this structure exactly.
+
+   First, transcreate the thread sentence: `*Esta semana: [the pattern in Spanish.]*`
+   The thread sentence is the editorial judgment of the week — transcreate it, do not
+   translate it literally. Make it land with the same weight in Spanish.
+
+   Then translate the 4 bullets preserving the pillar labels in bold:
+   **Estrategia:**, **Modelos Operativos:**, **Tecnología:**, **Capital Humano:**
    Keep all source links intact. Adjust the implication sentence to speak directly
-   to the Mexican/LATAM operator context where relevant (e.g. trade news has
-   different implications for a Monterrey exporter than a US manufacturer).
-   Do not add or remove bullets - always exactly 3, always in the same order.
+   to the Mexican/LATAM operator context where relevant.
+   Do not add or remove bullets — always exactly 4, always in the same order.
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-
@@ -130,7 +136,28 @@ rooted in Latin America.
 
 11. **THE DOOR section is fixed** — use this exact text:
    "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.
+   Si le es útil a alguien en tu red, reenvíalo — es el mayor cumplido.
    Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
+
+12. **THE COMPASS transcreation:** The English Compass opens with "Watch for this week:" —
+   transcreate as "**Observe esta semana:**" followed by the same forward-looking signal
+   adapted to the Mexican/LATAM operator context where relevant.
+
+---
+
+## Wadi's Approved Spanish Apertura Examples
+
+{{aperturaExamples}}
+
+---
+
+## Wadi's Localization Preferences
+
+These corrections and preferences come from reviewing past Spanish editions.
+Apply them whenever the English source contains the mapped concept — they override
+your default word choices.
+
+{{localizationMemory}}
 
 ---
 
@@ -159,7 +186,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{signalId}}",
       "type": "news",
       "heading": "LA SEÑAL",
-      "body": "3 bullets in Spanish. Each: fact + implication for LATAM operator + [source link]. Exactly 3 bullets.",
+      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n4 bullets in Spanish, in order: Estrategia, Modelos Operativos, Tecnología, Capital Humano. Each: fact + implication for LATAM operator + [source link].",
       "sourceRefs": []
     },
     {
@@ -194,14 +221,14 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{compassId}}",
       "type": "quickTakes",
       "heading": "LA BRÚJULA",
-      "body": "Full transcreated Compass in Spanish (~75 words)",
+      "body": "**Observe esta semana:** [señal específica y rastreable]. 2-3 oraciones sobre por qué importa.",
       "sourceRefs": []
     },
     {
       "id": "{{doorId}}",
       "type": "cta",
       "heading": "LA PUERTA",
-      "body": "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+      "body": "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo — es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
       "sourceRefs": []
     }
   ]

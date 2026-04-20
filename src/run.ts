@@ -33,7 +33,7 @@ import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
-import { loadAngleHistory, recordAngle } from "./utils/angle-history.js";
+import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -97,6 +97,18 @@ function renderMarkdown(
     ? `> ⚠️ REVISIÓN: Reemplaza esta apertura con tu observación real de campo de esta semana.`
     : `> ⚠️ WADI REVIEW: Replace this placeholder with your real field observation from this week.`;
 
+  const subjectBlock = (() => {
+    if (!content.subjectOptions || content.subjectOptions.length === 0) return [];
+    const opts = content.subjectOptions;
+    return [
+      `> **Subject line — pick one** (or edit freely before sending):`,
+      `> - **A (direct):** ${opts[0] ?? ""}`,
+      `> - **B (curiosity):** ${opts[1] ?? ""}`,
+      `> - **C (urgent):** ${opts[2] ?? ""}`,
+      ``,
+    ];
+  })();
+
   return [
     `# The Transformation Letter - Edition ${editionId} [${label}]`,
     ``,
@@ -106,10 +118,11 @@ function renderMarkdown(
     `**Subject:** ${content.subject}  `,
     `**Preheader:** ${content.preheader}`,
     ``,
+    ...subjectBlock,
     `---`,
     ``,
     ...(isEs
-      ? []
+      ? [`> **Resumen del Insight:** ${angle.thesis}`, ``, `---`, ``]
       : [`> **Insight summary:** ${angle.thesis}`, ``, `---`, ``]),
     `## ${signalHeading}`,
     ``,
@@ -212,7 +225,10 @@ function renderHtml(
   language: "en" | "es",
 ): string {
   const md = renderMarkdown(editionId, angle, content, language);
-  const body = mdToHtml(md);
+  // Strip review-only annotations before HTML conversion — these are for
+  // markdown review only and must not appear in the Beehiiv-ready HTML.
+  const cleanMd = md.replace(/^>[ \t]*⚠️[^\n]*/gm, "").replace(/\n{3,}/g, "\n\n");
+  const body = mdToHtml(cleanMd);
   return `<!DOCTYPE html>
 <html lang="${language}">
 <head>
@@ -220,16 +236,29 @@ function renderHtml(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${content.subject}</title>
 <style>
-  body { font-family: Georgia, serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.7; }
-  h1 { font-size: 1.6rem; margin-bottom: 4px; }
-  h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2.5rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  /* Mobile-first base — readable on 375px viewport */
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, serif; width: 100%; max-width: 680px; margin: 0 auto; padding: 16px; color: #1a1a1a; line-height: 1.7; font-size: 17px; }
+  h1 { font-size: 1.35rem; margin-bottom: 4px; line-height: 1.3; }
+  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
   h3 { font-size: 1rem; }
-  p { margin: 1rem 0; }
-  blockquote { border-left: 3px solid #888; margin: 1.5rem 0; padding-left: 1rem; color: #555; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
-  ul { padding-left: 1.5rem; }
-  li { margin: .4rem 0; }
+  p { margin: .9rem 0; }
+  blockquote { border-left: 3px solid #888; margin: 1.2rem 0; padding: .5rem 1rem; color: #555; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .5rem 0; }
   strong { font-weight: 700; }
+  a { color: #1a1a1a; }
+  img { max-width: 100%; height: auto; }
+  /* Wider viewports — restore comfortable reading margins */
+  @media (min-width: 480px) {
+    body { padding: 24px 28px; font-size: 17px; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 2.5rem; }
+  }
+  @media (min-width: 680px) {
+    body { padding: 40px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -333,12 +362,13 @@ async function main(): Promise<void> {
 
   // ── Strategist ─────────────────────────────────────────────────────────────
   console.log("🧠 Step 2/3 — Strategist: selecting angle...");
+  const recentFieldReports = loadRecentFieldReportSummaries(draftsDir);
   const strategistAgent = new StrategistAgent(deps);
   const strategistOutput = await strategistAgent.run({
     runId,
     editionId,
     agentName: "strategist",
-    payload: bundle,
+    payload: { ...bundle, recentFieldReports },
   });
 
   if (!strategistOutput.success) {
@@ -408,7 +438,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "localizer",
-    payload: { content, angle, targetLanguage: "es" },
+    payload: { content, angle, targetLanguage: "es", draftsDir },
   });
 
   const esContent = localizerOutput.success
@@ -442,6 +472,7 @@ async function main(): Promise<void> {
   });
 
   let qualityGate: QualityGateResult | undefined;
+  let hadBlockingIssue = false;
   if (!qualityGateOutput.success) {
     console.warn(
       `   ⚠️  Quality Gate failed: ${qualityGateOutput.error}. Continuing without fact verification.\n`,
@@ -460,8 +491,8 @@ async function main(): Promise<void> {
       for (const c of qualityGate.factCheck.unverifiedClaims) {
         console.error(`     • [${c.language}/${c.section ?? "?"}] "${c.claim}"`);
       }
-      console.error(`\n   Draft cannot ship with fabricated claims. Aborting.\n`);
-      process.exit(2);
+      console.error(`\n   Draft cannot ship with fabricated claims.\n`);
+      hadBlockingIssue = true;
     }
     if (qualityGate.angleOriginality.recommendation === "consider rerun") {
       console.warn(
@@ -503,11 +534,13 @@ async function main(): Promise<void> {
       `\n   These look like fabricated attributions. Fix them in the draft or\n` +
         `   re-run with tighter citation discipline before shipping.\n`,
     );
-    process.exit(2);
+    hadBlockingIssue = true;
   }
 
-  // Record this angle in history for future originality checks
-  recordAngle(draftsDir, editionId, angle);
+  // Record this angle (+ Field Report summary) in history for future de-duplication
+  const spotlightBody = content.sections.find((s) => s.type === "spotlight")?.body ?? "";
+  const fieldReportSummary = spotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
+  recordAngle(draftsDir, editionId, angle, fieldReportSummary || undefined);
 
   const enMdPath = join(draftsDir, `${editionId}-en.md`);
   const esMdPath = join(draftsDir, `${editionId}-es.md`);
@@ -581,6 +614,17 @@ async function main(): Promise<void> {
 
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
+
+  // Show subject line options in the console for quick review
+  if (content.subjectOptions && content.subjectOptions.length > 0) {
+    const [a, b, c] = content.subjectOptions;
+    console.log(`\n📧 Subject line options:`);
+    console.log(`   A (direct):   ${a ?? ""}`);
+    console.log(`   B (curiosity): ${b ?? ""}`);
+    console.log(`   C (urgent):   ${c ?? ""}`);
+    console.log(`   → Using: "${content.subject}"`);
+  }
+
   console.log(`\n✏️  Apertura: open the EN draft, pick your option, then run:`);
   console.log(`   pnpm choose ${editionId} A    ← record Option A`);
   console.log(`   pnpm choose ${editionId} B    ← record Option B`);
@@ -616,6 +660,13 @@ async function main(): Promise<void> {
         },
       }) + "\n",
     );
+  }
+
+  if (hadBlockingIssue) {
+    console.error(
+      `\n⛔ Blocking issues detected (see above). Drafts saved for review — fix issues before shipping.\n`,
+    );
+    process.exit(2);
   }
 
   // ── Airtable run ledger ────────────────────────────────────────────────────

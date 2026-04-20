@@ -10,6 +10,8 @@ export interface AperturaExample {
   style: string;
   body: string;
   chosenAt: string;
+  /** "en" (default) or "es" */
+  language?: "en" | "es";
 }
 
 export interface AperturaOption {
@@ -33,6 +35,16 @@ export function loadAperturaHistory(draftsDir: string): AperturaExample[] {
   } catch {
     return [];
   }
+}
+
+/** Filter history by language. Entries without a language field default to "en". */
+export function loadAperturaHistoryByLanguage(
+  draftsDir: string,
+  language: "en" | "es",
+): AperturaExample[] {
+  return loadAperturaHistory(draftsDir).filter(
+    (e) => (e.language ?? "en") === language,
+  );
 }
 
 export function recordAperturaChoice(

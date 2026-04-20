@@ -9,6 +9,8 @@ interface HistoryEntry {
   editionId: string;
   recordedAt: string;
   angle: StrategicAngle;
+  /** First ~200 chars of the English Field Report body, for entity de-duplication. */
+  fieldReportSummary?: string;
 }
 
 interface HistoryFile {
@@ -26,11 +28,26 @@ export function loadAngleHistory(draftsDir: string): StrategicAngle[] {
   }
 }
 
+/** Return the last N Field Report summaries for entity de-duplication. */
+export function loadRecentFieldReportSummaries(draftsDir: string): string[] {
+  const path = join(draftsDir, HISTORY_FILE);
+  if (!existsSync(path)) return [];
+  try {
+    const raw = JSON.parse(readFileSync(path, "utf-8")) as HistoryFile;
+    return raw.entries
+      .filter((e) => e.fieldReportSummary)
+      .map((e) => `[${e.editionId}] ${e.fieldReportSummary!}`);
+  } catch {
+    return [];
+  }
+}
+
 /** Append the angle for this edition; drop entries older than MAX_HISTORY. */
 export function recordAngle(
   draftsDir: string,
   editionId: string,
   angle: StrategicAngle,
+  fieldReportSummary?: string,
 ): void {
   mkdirSync(draftsDir, { recursive: true });
   const path = join(draftsDir, HISTORY_FILE);
@@ -44,11 +61,13 @@ export function recordAngle(
   }
   // Remove any prior entry for the same edition (idempotent re-runs)
   file.entries = file.entries.filter((e) => e.editionId !== editionId);
-  file.entries.push({
+  const entry: HistoryEntry = {
     editionId,
     recordedAt: new Date().toISOString(),
     angle,
-  });
+  };
+  if (fieldReportSummary) entry.fieldReportSummary = fieldReportSummary;
+  file.entries.push(entry);
   // Keep only the most recent MAX_HISTORY
   file.entries = file.entries.slice(-MAX_HISTORY);
   writeFileSync(path, JSON.stringify(file, null, 2), "utf-8");

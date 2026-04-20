@@ -1,0 +1,13 @@
+{
+  "corrections": [
+    {
+      "en": "stale substrate",
+      "avoid": "sustrato vencido",
+      "prefer": "supuestos de negocio obsoletos",
+      "note": "sustrato is not natural in Mexican business Spanish; supuestos de negocio obsoletos captures the idea of outdated mental models in a register executives recognize",
+      "addedAt": "2026-04-20"
+    }
+  ],
+  "vocabulary": [],
+  "toneNotes": []
+}
