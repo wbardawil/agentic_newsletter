@@ -125,18 +125,33 @@ Rules:
 - Do not editorialize beyond the one-sentence implication. The Insight is for
   frameworks. The Signal is for facts.
 
-### Section 1 — THE APERTURA (~100 words)
+### Section 1 — THE APERTURA (~100 words each option)
 
-Write a placeholder Apertura that follows the correct structure:
-- Starts mid-thought, as if joining a conversation in progress
-- Identifies a pattern visible across multiple business owners
-- Present tense, first person
-- No conclusions yet — this is an observation, not an insight
+{{aperturaExamples}}
 
-Mark this section with: `[WADI REVIEW: Replace with your real field observation from this week]`
+Generate **{{aperturaOptionCount}}** Apertura option(s). Each option is ~100 words.
+Each must open mid-thought, present tense, first person. No conclusions — observation only.
 
-The Apertura must come from Wadi's actual current work. The system cannot
-produce this authentically. Provide a structural template only.
+The three available styles (generate only as many as {{aperturaOptionCount}} requires,
+always starting from A):
+
+**Style A — Observation:** Opens with a specific client scene from this week.
+A person, a moment, a detail. "A founder showed me his operations manual last
+month." Concrete. Present. You are there.
+
+**Style B — Provocation:** Opens with the counterintuitive claim first, scene second.
+"The most documented company I know has the worst operations." Stakes the
+territory before explaining it.
+
+**Style C — Pattern:** Opens with a recurring signal across multiple conversations.
+"Three calls this month. Different industries. Same sentence at minute twelve."
+Pattern → implication → question.
+
+Rules for all options:
+- First person, present tense
+- No conclusions yet — this is scene-setting, not insight
+- Under 120 words per option
+- No banned phrases (see Voice Bible)
 
 ### Section 2 — THE INSIGHT (~450 words)
 
@@ -231,8 +246,9 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-1. The Signal has exactly 3 bullets, each with a source link
-2. The Insight follows Problem → Diagnosis → Framework → Application in that order
+1. The Signal has exactly 3 bullets, each ending with [Read →](url)
+2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
+3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
 4. The OS pillar is consistent throughout The Insight
 5. The Insight contains at least one sentence that would produce the aha moment
@@ -257,8 +273,12 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
-    "signal": "3 bullets — each: fact sentence + implication sentence + [source link]",
-    "apertura": "...",
+    "signal": "3 bullets — each: fact sentence + implication sentence + [Read →](url)",
+    "aperturaOptions": [
+      {"label": "A", "style": "observation", "body": "..."},
+      {"label": "B", "style": "provocation", "body": "..."},
+      {"label": "C", "style": "pattern", "body": "..."}
+    ],
     "insight": "...",
     "fieldReport": "...",
     "tool": "**[Tool Name]** — what it is. Why it matters. [link or description]",

@@ -37,6 +37,35 @@ import { scanEdition } from "./utils/citation-guard.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
+/**
+ * Decode the encoded apertura options block and render as labeled sections.
+ * If the body has no option delimiters (e.g. ES transcreation), return as-is.
+ */
+function renderAperturaOptions(body: string, editionId: string): string[] {
+  const delimiterRe = /===OPTION_([ABC]):(\w+)===/g;
+  if (!delimiterRe.test(body)) {
+    // Single option or already edited — show as-is
+    return [body];
+  }
+  delimiterRe.lastIndex = 0;
+  const parts = body.split(/===OPTION_[ABC]:\w+===/);
+  const headers = [...body.matchAll(/===OPTION_([ABC]):(\w+)===/g)];
+  const lines: string[] = [
+    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` — or edit freely and run \`pnpm choose ${editionId}\``,
+    ``,
+  ];
+  for (let i = 0; i < headers.length; i++) {
+    const label = headers[i]![1]!;
+    const style = headers[i]![2]!;
+    const text = (parts[i + 1] ?? "").trim();
+    lines.push(`### Option ${label} — ${style}`);
+    lines.push(``);
+    lines.push(text);
+    lines.push(``);
+  }
+  return lines;
+}
+
 function renderMarkdown(
   editionId: string,
   angle: StrategicAngle,
@@ -90,9 +119,9 @@ function renderMarkdown(
     ``,
     `## ${aperturaHeading}`,
     ``,
-    reviewNote,
-    ``,
-    apertura?.body ?? "",
+    ...(language === "en"
+      ? renderAperturaOptions(apertura?.body ?? "", editionId)
+      : [`> ⚠️ REVISIÓN: Transcreate the chosen English apertura here.`, ``, apertura?.body ?? ""]),
     ``,
     `---`,
     ``,
@@ -269,6 +298,7 @@ async function main(): Promise<void> {
 
   // Pre-flight: verify required files exist before starting expensive API calls
   const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+  const draftsDir = join(rootDir, "drafts");
   const voiceBiblePath = join(rootDir, "src", "voice-bible", "voice-bible.md");
   if (!existsSync(voiceBiblePath)) {
     console.error(`❌ Voice Bible not found at ${voiceBiblePath}`);
@@ -332,6 +362,7 @@ async function main(): Promise<void> {
       angle,
       sources: bundle.items,
       language: "en",
+      draftsDir,
     },
   });
 
@@ -391,7 +422,6 @@ async function main(): Promise<void> {
   }
 
   // ── Save draft ─────────────────────────────────────────────────────────────
-  const draftsDir = join(rootDir, "drafts");
   mkdirSync(draftsDir, { recursive: true });
 
   // ── Quality Gate ──────────────────────────────────────────────────────────
@@ -551,6 +581,11 @@ async function main(): Promise<void> {
 
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
+  console.log(`\n✏️  Apertura: open the EN draft, pick your option, then run:`);
+  console.log(`   pnpm choose ${editionId} A    ← record Option A`);
+  console.log(`   pnpm choose ${editionId} B    ← record Option B`);
+  console.log(`   pnpm choose ${editionId} C    ← record Option C`);
+  console.log(`   pnpm choose ${editionId}      ← record whatever you edited\n`);
   console.log(`   ${join(draftsDir, `${editionId}-en.html`)} ← open in browser to copy into Beehiiv`);
   if (esContent) {
     console.log(`   ${esMdPath}`);

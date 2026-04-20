@@ -18,15 +18,29 @@ import {
   formatVoiceBibleForPrompt,
 } from "../utils/voice-bible-loader.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import {
+  loadAperturaHistory,
+  formatAperturaExamplesForPrompt,
+  optionCount,
+  type AperturaOption,
+} from "../utils/apertura-history.js";
 
 const WriterInputSchema = z.object({
   angle: StrategicAngleSchema,
   sources: z.array(SourceItemSchema),
   language: Language,
+  /** Absolute path to the drafts directory — used to load apertura history. */
+  draftsDir: z.string(),
 });
 type WriterInput = z.infer<typeof WriterInputSchema>;
 
 const MODEL = "claude-opus-4-7";
+
+const AperturaOptionSchema = z.object({
+  label: z.enum(["A", "B", "C"]),
+  style: z.string().min(1),
+  body: z.string().min(1),
+});
 
 /** Raw output shape that Claude produces — transformed to LocalizedContent. */
 const WriterOutputSchema = z.object({
@@ -37,9 +51,11 @@ const WriterOutputSchema = z.object({
   subject: z.string().min(1),
   preheader: z.string().min(1),
   sections: z.object({
-    apertura: z.string().min(1),
+    signal: z.string().min(1),
+    aperturaOptions: z.array(AperturaOptionSchema).min(1).max(3),
     insight: z.string().min(1),
     fieldReport: z.string().min(1),
+    tool: z.string().min(1),
     compass: z.string().min(1),
     door: z.string().min(1),
   }),
@@ -86,6 +102,13 @@ function buildSystemPrompt(
     items +
     "\n</source_items>";
 
+  const history = loadAperturaHistory(payload.draftsDir);
+  const count = optionCount(history);
+  const examplesBlock =
+    history.length > 0
+      ? `## Wadi's Approved Apertura Examples — Match This Style\n\n${formatAperturaExamplesForPrompt(history)}`
+      : "## Apertura Style\n\nNo approved examples yet — generate options across the three styles defined in Section 1.";
+
   const template = loadPromptTemplate();
   const now = new Date();
 
@@ -96,9 +119,22 @@ function buildSystemPrompt(
     .replace("{{osPillar}}", payload.angle.osPillar)
     .replace("{{quarterlyTheme}}", payload.angle.quarterlyTheme)
     .replace("{{voiceBible}}", formattedVoiceBible)
+    .replace("{{aperturaOptionCount}}", String(count))
+    .replace("{{aperturaExamples}}", examplesBlock)
     .replace("{{input}}", sourceMaterial);
 }
 
+
+/**
+ * Encode all apertura options into the "lead" section body using a simple
+ * delimiter so run.ts can render them separately for review.
+ * Format: ===OPTION_A:observation===\n<body>\n===OPTION_B:provocation===\n<body>...
+ */
+function encodeAperturaOptions(options: AperturaOption[]): string {
+  return options
+    .map((o) => `===OPTION_${o.label}:${o.style}===\n${o.body}`)
+    .join("\n");
+}
 
 function transformToLocalizedContent(
   output: WriterOutput,
@@ -111,9 +147,16 @@ function transformToLocalizedContent(
     sections: [
       {
         id: randomUUID(),
+        type: "news",
+        heading: "The Signal",
+        body: output.sections.signal,
+        sourceRefs: [],
+      },
+      {
+        id: randomUUID(),
         type: "lead",
         heading: "The Apertura",
-        body: output.sections.apertura,
+        body: encodeAperturaOptions(output.sections.aperturaOptions),
         sourceRefs: [],
       },
       {
@@ -128,6 +171,13 @@ function transformToLocalizedContent(
         type: "spotlight",
         heading: "The Field Report",
         body: output.sections.fieldReport,
+        sourceRefs: [],
+      },
+      {
+        id: randomUUID(),
+        type: "tool",
+        heading: "The Tool",
+        body: output.sections.tool,
         sourceRefs: [],
       },
       {

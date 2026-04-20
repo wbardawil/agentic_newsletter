@@ -62,6 +62,7 @@ describe("WriterAgent", () => {
         angle: makeAngle(),
         sources: makeSources(),
         language: "en",
+        draftsDir: "/tmp/drafts",
       }),
     ).not.toThrow();
   });
@@ -73,6 +74,7 @@ describe("WriterAgent", () => {
         angle: makeAngle(),
         sources: makeSources(),
         language: "fr",
+        draftsDir: "/tmp/drafts",
       }),
     ).toThrow();
   });
@@ -81,7 +83,7 @@ describe("WriterAgent", () => {
     const agent = new WriterAgent(deps);
     const badSource = { ...makeSources()[0], verbatimFacts: ["only one fact"] };
     expect(() =>
-      agent.inputSchema.parse({ angle: makeAngle(), sources: [badSource], language: "en" }),
+      agent.inputSchema.parse({ angle: makeAngle(), sources: [badSource], language: "en", draftsDir: "/tmp/drafts" }),
     ).toThrow();
   });
 
@@ -91,7 +93,7 @@ describe("WriterAgent", () => {
       runId: randomUUID(),
       editionId: "2026-07",
       agentName: "writer",
-      payload: { angle: makeAngle(), sources: makeSources(), language: "en" },
+      payload: { angle: makeAngle(), sources: makeSources(), language: "en", draftsDir: "/tmp/drafts" },
     };
     const output = await agent.run(input);
     expect(output.status).toBe("error");
