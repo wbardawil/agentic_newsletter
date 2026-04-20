@@ -107,10 +107,9 @@ function renderMarkdown(
     ``,
     `---`,
     ``,
-    `> **Insight summary:** ${angle.thesis}`,
-    ``,
-    `---`,
-    ``,
+    ...(isEs
+      ? []
+      : [`> **Insight summary:** ${angle.thesis}`, ``, `---`, ``]),
     `## ${signalHeading}`,
     ``,
     signal?.body ?? "",
@@ -121,7 +120,7 @@ function renderMarkdown(
     ``,
     ...(language === "en"
       ? renderAperturaOptions(apertura?.body ?? "", editionId)
-      : [`> ⚠️ REVISIÓN: Transcreate the chosen English apertura here.`, ``, apertura?.body ?? ""]),
+      : [`> ⚠️ REVISIÓN: Verifica que esta transcreación conserve la intención de la apertura elegida en inglés.`, ``, apertura?.body ?? ""]),
     ``,
     `---`,
     ``,
