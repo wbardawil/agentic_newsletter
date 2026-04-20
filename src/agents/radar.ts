@@ -373,6 +373,133 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "global",
     tier: 2,
   },
+
+  // ── Operations & Process Excellence ──────────────────────────────────────────
+  // Source: processexcellencenetwork.com — URL pattern /rss/categories/{slug}
+  // "automation" slug confirmed; others follow the same pattern.
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/business-transformation",
+    outlet: "Process Excellence Network — Business Transformation",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/change-management",
+    outlet: "Process Excellence Network — Organizational Change",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/digital-transformation",
+    outlet: "Process Excellence Network — Digital Transformation",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/ai",
+    outlet: "Process Excellence Network — AI",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/automation",
+    outlet: "Process Excellence Network — Automation & RPA",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.processexcellencenetwork.com/rss/categories/opex",
+    outlet: "Process Excellence Network — OPEX & BPM",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Human Capital & HR Technology ────────────────────────────────────────────
+  // HR Exchange: global feed confirmed at /rss/articles; category pattern mirrors PEX.
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/hr-technology",
+    outlet: "HR Exchange Network — HR Technology",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/people-analytics",
+    outlet: "HR Exchange Network — People Analytics",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/employee-experience",
+    outlet: "HR Exchange Network — Employee Experience",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.hrexchangenetwork.com/rss/categories/learning-development",
+    outlet: "HR Exchange Network — Learning & Development",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://techrseries.com/feed/",
+    outlet: "TechHR Series",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://hrtechfeed.com/feed/",
+    outlet: "HR Tech Feed",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://joshbersin.com/feed/",
+    outlet: "Josh Bersin",
+    region: "global",
+    tier: 1,
+  },
+
+  // ── Macro & Regulatory Context ────────────────────────────────────────────────
+  {
+    url: "https://www.bis.org/cbspeeches.rss",
+    outlet: "BIS — Central Bank Speeches",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Tech Signal Layer ─────────────────────────────────────────────────────────
+  // Lower relevance scores (80–84) but useful for catching AI/platform signals
+  // that translate to mid-market operating model implications.
+  {
+    url: "https://www.theverge.com/rss/index.xml",
+    outlet: "The Verge",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://feeds.arstechnica.com/arstechnica/index",
+    outlet: "Ars Technica",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://techcrunch.com/feed/",
+    outlet: "TechCrunch",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://blog.bytebytego.com/feed",
+    outlet: "ByteByteGo (System Design)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://news.ycombinator.com/rss",
+    outlet: "Hacker News",
+    region: "global",
+    tier: 3,
+  },
 ];
 
 interface ScoredKeyword {
