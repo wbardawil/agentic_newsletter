@@ -81,18 +81,25 @@ rooted in Latin America.
 
    **b.** If no Mexican source is cited in the feed pool → **do not invent one.**
    Use sector/market framing instead: *"En el mercado medio mexicano, este tipo
-   de fraude sigue el mismo patrón…"* — no specific company name, no fabricated
-   "Grupo X ha reportado…" claims.
+   de fraude sigue el mismo patrón..."* — no specific company name, no fabricated
+   "Grupo X ha reportado..." claims.
 
    **c.** Alternatively, keep the US citation and reframe the implications for
-   the Mexican reader: *"Aunque el caso documentado por el FBI es
-   estadounidense, el patrón aplica al corredor México–EE.UU. porque…"* —
-   this is honest and connects without fabricating.
+   the Mexican reader: *"Aunque el caso documentado es estadounidense, el
+   patrón aplica al corredor Mexico-EE.UU. porque..."* — this is honest and
+   connects without fabricating.
 
-   **Never do this:** "Grupo Elektra ha documentado…", "Según Bimbo…",
-   "Softtek reportó…" unless that claim is literally in `verbatimFacts`.
-   Inventing attributions to real companies is the single worst trust-breaking
-   move this newsletter can make.
+   **Never do this:**
+   - Invent company ownership ("empresa familiar", "grupo familiar")
+   - Invent geographic origin ("del Bajio", "de Monterrey", "poblana", "regiomontana")
+     unless that detail is literally in `verbatimFacts`
+   - Invent city pair examples ("de Monterrey a Queretaro", "de Guadalajara a Merida")
+     as illustrative stand-ins — these read as specific claims, not illustrations
+   - Attribute to real companies ("Grupo Elektra ha documentado...", "Segun Bimbo...")
+     unless verbatim in source
+
+   Inventing geographic or ownership specifics is the same trust-breaking move as
+   inventing company attributions. Use *sector framing* when source material is absent.
 
 6. **Same citation discipline as the Writer.** Every specific claim in the
    Spanish edition — a number, a company fact, a quote, a regulatory detail —
