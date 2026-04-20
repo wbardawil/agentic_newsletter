@@ -27,8 +27,10 @@ export function extractTextFromMessage(
     .filter((b): b is { type: "text"; text: string } => b.type === "text")
     .map((b) => b.text);
   if (texts.length === 0) {
+    const blockTypes = content.map((b) => b.type).join(", ") || "(empty)";
     throw new Error(
-      "LLM response contains no text block — model returned only non-text content (e.g. tool_use)",
+      `LLM response contains no text block — got only: [${blockTypes}]. ` +
+        `Likely cause: max_tokens exhausted by thinking blocks. Raise max_tokens or reduce thinking effort.`,
     );
   }
   return texts.join("");

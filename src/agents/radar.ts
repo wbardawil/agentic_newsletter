@@ -182,9 +182,10 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "us",
     tier: 2,
   },
+  // Reuters killed public RSS (2024). Replaced with AP News business wire.
   {
-    url: "https://feeds.reuters.com/reuters/businessNews",
-    outlet: "Reuters",
+    url: "https://apnews.com/hub/ap-top-business-news.rss",
+    outlet: "AP Business",
     region: "us",
     tier: 2,
   },
@@ -551,6 +552,20 @@ function scoreRelevance(
   return normalized;
 }
 
+/** RSS fields can be strings or objects like { "#": "text", "@": {...} } or { _: "text" }. */
+function toStr(v: unknown): string {
+  if (v == null) return "";
+  if (typeof v === "string") return v;
+  if (typeof v === "object") {
+    const obj = v as Record<string, unknown>;
+    for (const k of ["#", "_", "$t", "name", "text"]) {
+      if (typeof obj[k] === "string") return obj[k] as string;
+    }
+    return "";
+  }
+  return String(v);
+}
+
 function extractFacts(rawContent: string, fallbackTitle: string, outlet: string): string[] {
   const cleaned = rawContent
     .replace(/<[^>]+>/g, " ")
@@ -601,7 +616,18 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
   ): Promise<SourceBundle> {
     const timeoutMs =
       payload.rssTimeoutMs ?? this.deps.apiClients.rssParserTimeoutMs;
-    const parser = new Parser({ timeout: timeoutMs });
+    // Browser-like User-Agent defeats most RSS anti-bot 403 responses.
+    // Accept-Language + Accept headers further mimic a real reader.
+    const parser = new Parser({
+      timeout: timeoutMs,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+        Accept:
+          "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+        "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
+      },
+    });
     const scannedAt = new Date().toISOString();
 
     // Hard ceiling prevents a single slow feed from stalling the whole pipeline
@@ -654,16 +680,15 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
 
         if (recencyHours > payload.timeWindowHours) continue;
 
-        const title = item.title?.trim() ?? "Untitled";
-        const summary =
-          (item.contentSnippet ?? item.summary ?? "").substring(0, 600);
-        const rawContent = (
-          item["content:encoded"] ??
-          item.content ??
-          summary
+        const title = toStr(item.title).trim() || "Untitled";
+        const summary = toStr(item.contentSnippet ?? item.summary).substring(0, 600);
+        const rawContent = toStr(
+          item["content:encoded"] ?? item.content ?? summary,
         ).substring(0, 3000);
-        const tags: string[] = (item.categories as string[] | undefined) ?? [];
-        const url = item.link?.trim() ?? "";
+        const tags: string[] = Array.isArray(item.categories)
+          ? (item.categories as unknown[]).map(toStr).filter(Boolean)
+          : [];
+        const url = toStr(item.link).trim();
 
         if (!url || !title || title === "Untitled") continue;
 
@@ -681,7 +706,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           title,
           url,
           publishedAt: pubDate.toISOString(),
-          author: (item.creator ?? (item["author"] as string | undefined))?.trim(),
+          author: toStr(item.creator ?? item["author"]).trim() || undefined,
           outlet: feed.outlet,
           summary: summary || title,
           verbatimFacts,

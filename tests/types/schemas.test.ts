@@ -435,11 +435,13 @@ describe("LocalizedContent", () => {
 
 describe("ValidationResult", () => {
   const makeWordCounts = () => ({
+    signal: 75,
     apertura: 95,
     insight: 440,
     fieldReport: 148,
+    tool: 50,
     compass: 72,
-    total: 755,
+    total: 880,
   });
 
   it("validates a passing result with no issues", () => {
