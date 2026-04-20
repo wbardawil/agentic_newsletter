@@ -79,11 +79,19 @@ Score 0-100 on these dimensions:
 
 Score ≥75 = pass. Score <75 = warn.
 
+The `deviations` array must contain ONLY genuine problems — things that actually
+violate the voice rules above. Do NOT list positive observations, strengths, or
+compliments in `deviations`. If the draft scores well, `deviations` should be
+empty or contain only real issues (e.g. "Insight uses bullet points", "Sentence
+at paragraph 3 exceeds 25 words", "Missing aha moment"). Never put observations
+like "strong advisor voice", "clean declarative sentences", or "good aha moment"
+in `deviations` — those belong nowhere in this output.
+
 Output:
 ```json
 {
   "voiceScore": 0,
-  "deviations": ["specific issue 1", "specific issue 2"]
+  "deviations": ["only real problems here — empty array if none"]
 }
 ```
 
