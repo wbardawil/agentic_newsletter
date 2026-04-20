@@ -105,9 +105,23 @@ consistent with this pillar. Do not blend pillars. If the source material
 suggests a Technology OS framing but this issue is Strategy OS, find the
 Strategy OS dimension of the same problem.
 
-### Section 0 — THE SIGNAL (~100 words)
+### Section 0 — THE SIGNAL (~110 words)
 
-Exactly 4 bullets — one per pillar, always in this order:
+**Write the thread sentence first. The bullets are evidence of it.**
+
+**Step 1 — Find the thread.** Before writing anything, ask: what single pattern,
+tension, or move connects all four pillars this week? Name it in one sentence.
+If you cannot find a genuine thread, choose different source items until you can.
+The thread is not optional — it is the editorial judgment that makes this Signal
+worth reading.
+
+**Step 2 — Write the thread sentence:**
+One italicized sentence, 15–20 words, placed at the very top of the Signal section.
+Format: `*This week: [the pattern that connects all four signals.]*`
+It must feel discovered, not manufactured. A reader who only reads this one sentence
+should understand what the week was about.
+
+**Step 3 — Write 4 bullets as evidence**, always in this order:
 
 1. **Strategy** — A move by a competitor, a market shift, a deal, a regulatory
    change, or a sector realignment that forces a strategic decision for
@@ -118,27 +132,18 @@ Exactly 4 bullets — one per pillar, always in this order:
    operational implication for mid-market owners.
 
 3. **Technology** — The most significant technology or AI platform story this week.
-   What the tool does and what it enables — not a product launch, but a deployment
-   or capability shift with measurable impact.
+   A deployment or capability shift with measurable impact — not a product launch.
 
 4. **Human Capital** — How leading companies are changing how they hire, develop,
    organize, or retain people this week. Workforce model shifts, talent decisions,
    or organizational design moves with implications for the corridor operator.
 
-After the 4 bullets, add one italicized synthesis sentence — only if the four signals
-share a genuine underlying thread. If they do not connect naturally, omit it.
-Format: `*This week's thread: [one sentence connecting the four signals.]*`
-This sentence should feel discovered, not constructed — 15–20 words max.
-
 Rules (apply to all four bullets):
-- Each bullet: one sentence of fact + one sentence of why it matters to this
-  audience. Total ~25 words per bullet.
-- Every bullet must end with a Markdown link labeled exactly `[Read ->]` pointing
-  to the source article URL. Pull only from sources in `verbatimFacts` — do not
-  invent URLs. Format: `[Read ->](https://...)`
+- Each bullet: one sentence of fact + one sentence of why it matters. ~25 words.
+- Every bullet must end with `[Read ->](url)` — source URLs only, no invented links.
 - No politics. No consumer news.
-- Do not editorialize beyond the one-sentence implication. The Insight is for
-  frameworks. The Signal is for facts.
+- The bullets prove the thread. If a bullet doesn't connect to the thread sentence,
+  replace it with one that does.
 
 ### Section 1 — THE APERTURA (~100 words each option)
 
@@ -268,7 +273,7 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-1. The Signal has exactly 4 bullets in order: Strategy, Operating Models, Technology, Human Capital — each ending with [Read ->](url). Optional synthesis sentence follows if there is a genuine thread.
+1. The Signal opens with `*This week: [thread sentence.]*` followed by exactly 4 bullets: Strategy, Operating Models, Technology, Human Capital — each ending with [Read ->](url). The thread sentence is required and comes first.
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
@@ -308,7 +313,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology:** fact + implication [Read ->](url)\n- **Human Capital:** fact + implication [Read ->](url)\n\n*This week's thread: one sentence connecting the four signals (omit if no genuine thread).*",
+    "signal": "*This week: [the pattern that connects all four signals — required, 15-20 words.]*\n\n- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology:** fact + implication [Read ->](url)\n- **Human Capital:** fact + implication [Read ->](url)",
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},
