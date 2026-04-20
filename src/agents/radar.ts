@@ -500,6 +500,86 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "global",
     tier: 3,
   },
+
+  // ── Product, Growth & Org Design — Newsletter Intelligence ───────────────────
+  // Practitioner-tier sources: frameworks, surveys, mental models.
+  // Used to surface "Operating Models" and "Human Capital" pillar angles.
+  // These write for PMs/founders, not our exact audience — cite as inspiration,
+  // never as competitor overlap. Not marked competitive.
+  {
+    url: "https://www.lennysnewsletter.com/feed",
+    outlet: "Lenny's Newsletter",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://andrewchen.substack.com/feed",
+    outlet: "Andrew Chen (Growth & Network Effects)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.svpg.com/feed/",
+    outlet: "SVPG — Marty Cagan (Product Leadership)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.producttalk.org/feed/",
+    outlet: "Product Talk — Teresa Torres (Discovery)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://productgrowth.substack.com/feed",
+    outlet: "Product Growth — Aakash Gupta (Growth & Metrics)",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── Tech-Business Strategy — Executive Tier ────────────────────────────────
+  // Stratechery and Benedict Evans are the benchmark for "what smart execs read."
+  // Pragmatic Engineer is the best source for engineering org design signals.
+  {
+    url: "https://stratechery.com/feed/",
+    outlet: "Stratechery — Ben Thompson",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://www.ben-evans.com/benedictevans/rss.xml",
+    outlet: "Benedict Evans (Tech & Market Structure)",
+    region: "global",
+    tier: 1,
+  },
+  {
+    url: "https://newsletter.pragmaticengineer.com/feed",
+    outlet: "The Pragmatic Engineer — Gergely Orosz",
+    region: "global",
+    tier: 2,
+  },
+
+  // ── AI Product & Deployment Signal ────────────────────────────────────────
+  // High-volume, lower framework depth. Filter: keep only items with operating
+  // model, workforce, or automation implications for mid-market operators.
+  {
+    url: "https://bensbites.beehiiv.com/feed",
+    outlet: "Ben's Bites (AI Products & Tools)",
+    region: "global",
+    tier: 2,
+  },
+  {
+    url: "https://www.therundown.ai/rss",
+    outlet: "The Rundown AI",
+    region: "global",
+    tier: 3,
+  },
+  {
+    url: "https://tldr.tech/ai/rss",
+    outlet: "TLDR AI",
+    region: "global",
+    tier: 3,
+  },
 ];
 
 interface ScoredKeyword {
