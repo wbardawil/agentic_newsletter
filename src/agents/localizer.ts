@@ -13,6 +13,7 @@ import {
   type LocalizedContent,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
 
 const LocalizerInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -104,6 +105,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
     );
 
     const rawText = extractTextFromMessage(message.content);
-    return LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+    const parsed = LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+    return sanitizeLocalizedContent(parsed);
   }
 }
