@@ -70,6 +70,8 @@ week's issue. The angle must:
 4. Draw on at least 2–3 of the provided sources as raw material
 5. Not be a press release summary, trend roundup, or generic commentary
 
+{{recentFieldReports}}
+
 ### Competitive signals
 
 Some source items in the bundle are tagged `competitive-signal` in their tags array.

@@ -105,9 +105,23 @@ consistent with this pillar. Do not blend pillars. If the source material
 suggests a Technology OS framing but this issue is Strategy OS, find the
 Strategy OS dimension of the same problem.
 
-### Section 0 — THE SIGNAL (~80 words)
+### Section 0 — THE SIGNAL (~110 words)
 
-Exactly 3 bullets — one per pillar, always in this order:
+**Write the thread sentence first. The bullets are evidence of it.**
+
+**Step 1 — Find the thread.** Before writing anything, ask: what single pattern,
+tension, or move connects all four pillars this week? Name it in one sentence.
+If you cannot find a genuine thread, choose different source items until you can.
+The thread is not optional — it is the editorial judgment that makes this Signal
+worth reading.
+
+**Step 2 — Write the thread sentence:**
+One italicized sentence, 15–20 words, placed at the very top of the Signal section.
+Format: `*This week: [the pattern that connects all four signals.]*`
+It must feel discovered, not manufactured. A reader who only reads this one sentence
+should understand what the week was about.
+
+**Step 3 — Write 4 bullets as evidence**, always in this order:
 
 1. **Strategy** — A move by a competitor, a market shift, a deal, a regulatory
    change, or a sector realignment that forces a strategic decision for
@@ -117,20 +131,19 @@ Exactly 3 bullets — one per pillar, always in this order:
    scaled its operating model in a notable way. Prefer examples that show the
    operational implication for mid-market owners.
 
-3. **Technology & Human Capital** — The most significant AI or technology deployment
-   story this week where a company transformed how its people work. This pillar
-   should always reflect the highest-trending topic in business AI adoption —
-   real deployments, measurable outcomes, not product launches.
+3. **Technology** — The most significant technology or AI platform story this week.
+   A deployment or capability shift with measurable impact — not a product launch.
 
-Rules (apply to all three bullets):
-- Each bullet: one sentence of fact + one sentence of why it matters to this
-  audience. Total ~25 words per bullet.
-- Every bullet must end with a Markdown link labeled exactly `[Read ->]` pointing
-  to the source article URL. Pull only from sources in `verbatimFacts` — do not
-  invent URLs. Format: `[Read ->](https://...)`
+4. **Human Capital** — How leading companies are changing how they hire, develop,
+   organize, or retain people this week. Workforce model shifts, talent decisions,
+   or organizational design moves with implications for the corridor operator.
+
+Rules (apply to all four bullets):
+- Each bullet: one sentence of fact + one sentence of why it matters. ~25 words.
+- Every bullet must end with `[Read ->](url)` — source URLs only, no invented links.
 - No politics. No consumer news.
-- Do not editorialize beyond the one-sentence implication. The Insight is for
-  frameworks. The Signal is for facts.
+- The bullets prove the thread. If a bullet doesn't connect to the thread sentence,
+  replace it with one that does.
 
 ### Section 1 — THE APERTURA (~100 words each option)
 
@@ -227,36 +240,63 @@ Rules:
 - No affiliate links. No sponsored placements.
 - Must be directly applicable to the $5M-$100M operator — not a startup tool,
   not an enterprise tool.
-- Tie the tool to one of the three Signal pillars (Strategy, Operating Models,
-<<<<<<< HEAD
-  or Technology & Human Capital) — make it the action step that follows the signal.
-=======
-  or Technology & People) — make it the action step that follows the signal.
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+- Tie the tool to one of the four Signal pillars (Strategy, Operating Models,
+  Technology, or Human Capital) — make it the action step that follows the signal.
 - If no strong tool exists in the source material, derive one from The Insight
   (e.g. a named template, a one-page document, a specific diagnostic question).
 
 ### Section 4 — THE COMPASS (~75 words)
 
-A question the writer is genuinely sitting with. This must feel earned by
-the Insight — a natural next question that emerges from the framework
-developed in Section 2.
+A forward-looking signal the reader should track in the week ahead.
+Not a summary of the Insight — a concrete watch item that gives the reader
+a reason to notice something they would otherwise have missed.
+
+Format: **Watch for this week:** [one observable signal or tension to track].
+Then 2–3 sentences on why it matters and what it would signal if it moves.
 
 Rules:
-- Not rhetorical. Not answered. Not constructed for effect.
-- May relate to business, leadership, character, or the intersection.
-- Signals intellectual humility — the writer is a thinking partner, not a guru.
-- If it feels manufactured, replace it with the harder question underneath it.
+- Specific enough to act as a filter ("Watch for which vendors start requiring...")
+- Not rhetorical. Not a restatement of this week's thesis.
+- Must feel like a gift — the reader gains an edge by tracking it.
+- If it feels generic, it is — name the specific indicator, sector, or behavior.
 
-### Section 5 — THE DOOR (~50 words)
+### Section 5 — THE DOOR (~60 words)
 
 Output this text exactly, unchanged:
 
 ---
 If something in this issue landed, reply — I read every response.
 
+If this is useful to someone in your network, forward it — it takes ten seconds and it's the highest compliment.
+
 When you're ready to work together directly, here is how we start: [link]
 ---
+
+---
+
+### Section −1 — SUBJECT LINE OPTIONS (generate before all else)
+
+Generate **three subject line options** for Wadi to pick from. He sends once per week
+and the subject line is the single highest-leverage variable for open rate.
+
+**Style A — Direct:** States the benefit or the insight directly. No wordplay.
+The reader knows exactly what they'll get. Under 50 characters.
+Example: "Why your ops manual isn't working"
+
+**Style B — Curiosity gap:** Creates a gap the reader wants to close.
+Poses a tension or names a surprising cause. 50–65 characters.
+Example: "The thing your best hire already knows (and won't say)"
+
+**Style C — Urgent signal:** Names a shift, ruling, or pattern from this week's Signal
+that corridor operators need to understand now. 50–65 characters.
+Example: "What the FTC's new rule means for your vendor contracts"
+
+Rules for all three:
+- No clickbait, no superlatives ("shocking", "incredible", "must-read")
+- No question marks if the answer is obvious
+- No banned phrases
+- Speak to the $5M–$100M operator — not consumers, not startup founders
+- `subject` field = whichever option is strongest (Wadi overrides if he prefers another)
 
 ---
 
@@ -264,11 +304,7 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-<<<<<<< HEAD
-1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & Human Capital — each ending with [Read ->](url)
-=======
-1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & People — each ending with [Read ->](url)
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+1. The Signal opens with `*This week: [thread sentence.]*` followed by exactly 4 bullets: Strategy, Operating Models, Technology, Human Capital — each ending with [Read ->](url). The thread sentence is required and comes first.
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
@@ -276,9 +312,10 @@ Before producing output, verify:
 5. The Insight contains at least one sentence that would produce the aha moment
 6. The Field Report has a clear operational implication for corridor operators
 7. The Tool recommendation is specific and linked or clearly described
-8. The Compass question is specific enough to feel genuine
+8. The Compass opens with "Watch for this week:" and names a specific, trackable signal
 9. Total word count is between 1,000–1,200 words (excluding metadata)
 10. The Door text is reproduced exactly
+11. subjectOptions contains exactly 3 options (A=direct, B=curiosity, C=urgent), each under 65 characters
 
 ---
 
@@ -305,14 +342,15 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "runId": "{{runId}}",
   "editionId": "{{editionId}}",
   "osPillar": "{{osPillar}}",
-  "subject": "Email subject line (under 60 characters, no clickbait)",
+  "subject": "Strongest of the three subject line options (Wadi will override if he prefers another)",
   "preheader": "Email preheader text (under 120 characters)",
+  "subjectOptions": [
+    "Style A — Direct: under 50 chars",
+    "Style B — Curiosity: 50-65 chars",
+    "Style C — Urgent signal: 50-65 chars"
+  ],
   "sections": {
-<<<<<<< HEAD
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & Human Capital:** fact + implication [Read ->](url)",
-=======
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & People:** fact + implication [Read ->](url)",
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
+    "signal": "*This week: [the pattern that connects all four signals — required, 15-20 words.]*\n\n- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology:** fact + implication [Read ->](url)\n- **Human Capital:** fact + implication [Read ->](url)",
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},
@@ -321,7 +359,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
     "insight": "...",
     "fieldReport": "...",
     "tool": "**[Tool Name]** — what it is. Why it matters. [link or description]",
-    "compass": "...",
+    "compass": "**Watch for this week:** [specific, trackable signal]. 2-3 sentences on why it matters.",
     "door": "..."
   },
   "wordCount": 0,

@@ -14,11 +14,21 @@ import {
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
+import {
+  loadLocalizationMemory,
+  formatLocalizationMemoryForPrompt,
+} from "../utils/localization-memory.js";
+import {
+  loadAperturaHistoryByLanguage,
+  formatAperturaExamplesForPrompt,
+} from "../utils/apertura-history.js";
 
 const LocalizerInputSchema = z.object({
   content: LocalizedContentSchema,
   angle: StrategicAngleSchema,
   targetLanguage: Language,
+  /** Absolute path to the drafts directory — used to load ES apertura history. */
+  draftsDir: z.string().optional(),
 });
 type LocalizerInput = z.infer<typeof LocalizerInputSchema>;
 
@@ -50,10 +60,19 @@ function buildPrompt(
   context: AgentInput<LocalizerInput>,
   payload: LocalizerInput,
 ): string {
-  const { content, angle } = payload;
+  const { content, angle, draftsDir } = payload;
   const template = loadPromptTemplate();
+  const localizationMemory = formatLocalizationMemoryForPrompt(loadLocalizationMemory());
+
+  const esHistory = draftsDir ? loadAperturaHistoryByLanguage(draftsDir, "es") : [];
+  const aperturaExamples =
+    esHistory.length > 0
+      ? `Wadi has approved these Spanish Apertura examples — match this style:\n\n${formatAperturaExamplesForPrompt(esHistory)}`
+      : `No approved Spanish Apertura examples yet. Use the voice rules above as your guide.`;
 
   return template
+    .replace("{{aperturaExamples}}", aperturaExamples)
+    .replace("{{localizationMemory}}", localizationMemory)
     .replace("{{runId}}", context.runId)
     .replace("{{editionId}}", context.editionId)
     .replace("{{osPillar}}", angle.osPillar)
@@ -94,7 +113,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 8000,
+      max_tokens: 16000,
       thinking: { type: "adaptive" },
       messages: [{ role: "user", content: prompt }],
     });
@@ -108,6 +127,15 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const rawText = extractTextFromMessage(message.content);
     const parsed = LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+
+    const missingSections = ["news", "lead", "analysis", "spotlight", "tool", "quickTakes", "cta"]
+      .filter((type) => !parsed.sections.some((s) => s.type === type));
+    if (missingSections.length > 0) {
+      this.logger.warn(
+        `Localizer output missing sections: ${missingSections.join(", ")} — max_tokens may be too low`,
+      );
+    }
+
     return sanitizeLocalizedContent(parsed);
   }
 }
