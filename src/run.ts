@@ -236,16 +236,29 @@ function renderHtml(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${content.subject}</title>
 <style>
-  body { font-family: Georgia, serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.7; }
-  h1 { font-size: 1.6rem; margin-bottom: 4px; }
-  h2 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2.5rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  /* Mobile-first base — readable on 375px viewport */
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, serif; width: 100%; max-width: 680px; margin: 0 auto; padding: 16px; color: #1a1a1a; line-height: 1.7; font-size: 17px; }
+  h1 { font-size: 1.35rem; margin-bottom: 4px; line-height: 1.3; }
+  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
   h3 { font-size: 1rem; }
-  p { margin: 1rem 0; }
-  blockquote { border-left: 3px solid #888; margin: 1.5rem 0; padding-left: 1rem; color: #555; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
-  ul { padding-left: 1.5rem; }
-  li { margin: .4rem 0; }
+  p { margin: .9rem 0; }
+  blockquote { border-left: 3px solid #888; margin: 1.2rem 0; padding: .5rem 1rem; color: #555; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .5rem 0; }
   strong { font-weight: 700; }
+  a { color: #1a1a1a; }
+  img { max-width: 100%; height: auto; }
+  /* Wider viewports — restore comfortable reading margins */
+  @media (min-width: 480px) {
+    body { padding: 24px 28px; font-size: 17px; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.15rem; margin-top: 2.5rem; }
+  }
+  @media (min-width: 680px) {
+    body { padding: 40px 20px; }
+  }
 </style>
 </head>
 <body>

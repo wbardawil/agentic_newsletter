@@ -136,7 +136,12 @@ rooted in Latin America.
 
 11. **THE DOOR section is fixed** — use this exact text:
    "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.
+   Si le es útil a alguien en tu red, reenvíalo — es el mayor cumplido.
    Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
+
+12. **THE COMPASS transcreation:** The English Compass opens with "Watch for this week:" —
+   transcreate as "**Observe esta semana:**" followed by the same forward-looking signal
+   adapted to the Mexican/LATAM operator context where relevant.
 
 ---
 
@@ -216,14 +221,14 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{compassId}}",
       "type": "quickTakes",
       "heading": "LA BRÚJULA",
-      "body": "Full transcreated Compass in Spanish (~75 words)",
+      "body": "**Observe esta semana:** [señal específica y rastreable]. 2-3 oraciones sobre por qué importa.",
       "sourceRefs": []
     },
     {
       "id": "{{doorId}}",
       "type": "cta",
       "heading": "LA PUERTA",
-      "body": "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+      "body": "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo — es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
       "sourceRefs": []
     }
   ]

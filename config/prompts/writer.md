@@ -247,22 +247,27 @@ Rules:
 
 ### Section 4 — THE COMPASS (~75 words)
 
-A question the writer is genuinely sitting with. This must feel earned by
-the Insight — a natural next question that emerges from the framework
-developed in Section 2.
+A forward-looking signal the reader should track in the week ahead.
+Not a summary of the Insight — a concrete watch item that gives the reader
+a reason to notice something they would otherwise have missed.
+
+Format: **Watch for this week:** [one observable signal or tension to track].
+Then 2–3 sentences on why it matters and what it would signal if it moves.
 
 Rules:
-- Not rhetorical. Not answered. Not constructed for effect.
-- May relate to business, leadership, character, or the intersection.
-- Signals intellectual humility — the writer is a thinking partner, not a guru.
-- If it feels manufactured, replace it with the harder question underneath it.
+- Specific enough to act as a filter ("Watch for which vendors start requiring...")
+- Not rhetorical. Not a restatement of this week's thesis.
+- Must feel like a gift — the reader gains an edge by tracking it.
+- If it feels generic, it is — name the specific indicator, sector, or behavior.
 
-### Section 5 — THE DOOR (~50 words)
+### Section 5 — THE DOOR (~60 words)
 
 Output this text exactly, unchanged:
 
 ---
 If something in this issue landed, reply — I read every response.
+
+If this is useful to someone in your network, forward it — it takes ten seconds and it's the highest compliment.
 
 When you're ready to work together directly, here is how we start: [link]
 ---
@@ -307,7 +312,7 @@ Before producing output, verify:
 5. The Insight contains at least one sentence that would produce the aha moment
 6. The Field Report has a clear operational implication for corridor operators
 7. The Tool recommendation is specific and linked or clearly described
-8. The Compass question is specific enough to feel genuine
+8. The Compass opens with "Watch for this week:" and names a specific, trackable signal
 9. Total word count is between 1,000–1,200 words (excluding metadata)
 10. The Door text is reproduced exactly
 11. subjectOptions contains exactly 3 options (A=direct, B=curiosity, C=urgent), each under 65 characters
@@ -354,7 +359,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
     "insight": "...",
     "fieldReport": "...",
     "tool": "**[Tool Name]** — what it is. Why it matters. [link or description]",
-    "compass": "...",
+    "compass": "**Watch for this week:** [specific, trackable signal]. 2-3 sentences on why it matters.",
     "door": "..."
   },
   "wordCount": 0,

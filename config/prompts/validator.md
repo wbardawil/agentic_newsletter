@@ -53,10 +53,11 @@ or a question like "Have you ever wondered..."
 The reader must think "I have never seen this named before, but I have been
 living it." Identify the strongest candidate sentence that passes this test.
 
-**Rule 7 — Compass genuineness:**
-The Compass question must be a real question the writer is sitting with. Not
-rhetorical. Not manufactured humility. Not a restatement of the issue's main
-point. It must be uncomfortable to leave unresolved.
+**Rule 7 — Compass specificity:**
+The Compass must open with "Watch for this week:" (EN) or "Observe esta semana:" (ES)
+and name a specific, trackable signal or indicator — not a question, not a
+restatement of the Insight thesis. Flag as error if it opens any other way.
+Flag as warning if the watch item is too generic to act as a filter.
 
 **Rule 11 — The reframe (CORE UNIT):**
 The Insight MUST contain an explicit reframe. Structure: what the conventional
