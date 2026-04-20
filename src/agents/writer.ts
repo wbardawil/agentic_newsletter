@@ -20,7 +20,7 @@ import {
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
 import {
-  loadAperturaHistory,
+  loadAperturaHistoryByLanguage,
   formatAperturaExamplesForPrompt,
   optionCount,
   type AperturaOption,
@@ -103,7 +103,7 @@ function buildSystemPrompt(
     items +
     "\n</source_items>";
 
-  const history = loadAperturaHistory(payload.draftsDir);
+  const history = loadAperturaHistoryByLanguage(payload.draftsDir, "en");
   const count = optionCount(history);
   const examplesBlock =
     history.length > 0

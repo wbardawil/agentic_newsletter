@@ -33,7 +33,7 @@ import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
-import { loadAngleHistory, recordAngle } from "./utils/angle-history.js";
+import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -336,12 +336,13 @@ async function main(): Promise<void> {
 
   // ── Strategist ─────────────────────────────────────────────────────────────
   console.log("🧠 Step 2/3 — Strategist: selecting angle...");
+  const recentFieldReports = loadRecentFieldReportSummaries(draftsDir);
   const strategistAgent = new StrategistAgent(deps);
   const strategistOutput = await strategistAgent.run({
     runId,
     editionId,
     agentName: "strategist",
-    payload: bundle,
+    payload: { ...bundle, recentFieldReports },
   });
 
   if (!strategistOutput.success) {
@@ -411,7 +412,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "localizer",
-    payload: { content, angle, targetLanguage: "es" },
+    payload: { content, angle, targetLanguage: "es", draftsDir },
   });
 
   const esContent = localizerOutput.success
@@ -509,8 +510,10 @@ async function main(): Promise<void> {
     process.exit(2);
   }
 
-  // Record this angle in history for future originality checks
-  recordAngle(draftsDir, editionId, angle);
+  // Record this angle (+ Field Report summary) in history for future de-duplication
+  const spotlightBody = content.sections.find((s) => s.type === "spotlight")?.body ?? "";
+  const fieldReportSummary = spotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
+  recordAngle(draftsDir, editionId, angle, fieldReportSummary || undefined);
 
   const enMdPath = join(draftsDir, `${editionId}-en.md`);
   const esMdPath = join(draftsDir, `${editionId}-es.md`);

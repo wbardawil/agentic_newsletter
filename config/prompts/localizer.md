@@ -134,6 +134,22 @@ rooted in Latin America.
 
 ---
 
+## Wadi's Approved Spanish Apertura Examples
+
+{{aperturaExamples}}
+
+---
+
+## Wadi's Localization Preferences
+
+These corrections and preferences come from reviewing past Spanish editions.
+Apply them whenever the English source contains the mapped concept — they override
+your default word choices.
+
+{{localizationMemory}}
+
+---
+
 ## Tone Reference
 
 The English voice is: trusted advisor, practitioner not pundit, writes from

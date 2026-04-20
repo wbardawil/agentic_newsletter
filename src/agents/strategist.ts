@@ -13,8 +13,11 @@ import {
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 
-const StrategistInputSchema = SourceBundleSchema;
-type StrategistInput = SourceBundle;
+const StrategistInputSchema = SourceBundleSchema.extend({
+  /** Snippets from recent Field Reports — used to avoid repeating the same companies. */
+  recentFieldReports: z.array(z.string()).optional(),
+});
+type StrategistInput = z.infer<typeof StrategistInputSchema>;
 
 const MODEL = "claude-sonnet-4-5";
 
@@ -70,7 +73,7 @@ function loadPromptTemplate(): string {
 }
 
 function buildPrompt(
-  bundle: SourceBundle,
+  bundle: StrategistInput,
   context: AgentInput<StrategistInput>,
   quarterInfo: QuarterInfo,
 ): string {
@@ -92,6 +95,12 @@ function buildPrompt(
     items +
     "\n</source_items>";
 
+  const fieldReportBlock =
+    bundle.recentFieldReports && bundle.recentFieldReports.length > 0
+      ? `### Recent Field Report companies — avoid repeating\n\n` +
+        bundle.recentFieldReports.map((s) => `- ${s}`).join("\n")
+      : "";
+
   return template
     .replace("{{runId}}", context.runId)
     .replace("{{editionId}}", context.editionId)
@@ -99,6 +108,7 @@ function buildPrompt(
     .replace("{{currentQuarter}}", `Q${quarterInfo.quarter}`)
     .replace(/\{\{quarterlyTheme\}\}/g, quarterInfo.theme)
     .replace("{{quarterlyThemeDescription}}", quarterInfo.description)
+    .replace("{{recentFieldReports}}", fieldReportBlock)
     .replace("{{input}}", sourceSummary);
 }
 
