@@ -274,6 +274,19 @@ Before producing output, verify:
 
 ---
 
+## FINAL CHECK BEFORE WRITING JSON
+
+**The `insight` field MUST be prose only. Zero bullet points. Zero numbered lists.
+Zero hyphens used as list markers. If your draft of The Insight contains any
+bullet points or list markers, rewrite it as paragraphs before outputting JSON.
+This is a hard rule — bullet points in the insight field will fail validation.**
+
+**Banned phrases — do not use in any field:** "disruption", "disruptive", "disrupted",
+"paradigm", "leverage" (as a verb), "synergy", "unlock", "game-changer", "game changer".
+If any of these appear in your draft, replace them now before writing the JSON.
+
+---
+
 ## Output Format
 
 Respond with valid JSON only — no preamble, no markdown wrapper:
