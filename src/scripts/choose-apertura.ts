@@ -50,8 +50,11 @@ function parseDraftAperturaOptions(
 
   const block = aperturaMatch[1] ?? "";
   const options: Array<{ label: string; style: string; body: string }> = [];
-  const parts = block.split(/===OPTION_[ABC]:\w+===/);
-  const headers = [...block.matchAll(/===OPTION_([ABC]):(\w+)===/g)];
+
+  // The rendered markdown uses "### Option A - style" headings (from renderAperturaOptions).
+  // Split on those headings to extract each option's body.
+  const parts = block.split(/###\s+Option\s+[ABC]\s+-\s+\w+/);
+  const headers = [...block.matchAll(/###\s+Option\s+([ABC])\s+-\s+(\w+)/g)];
 
   for (let i = 0; i < headers.length; i++) {
     const label = headers[i]![1]!;
