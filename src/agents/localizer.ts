@@ -63,9 +63,11 @@ function buildPrompt(
     .replace("{{insight}}", getSectionBody(content, "analysis"))
     .replace("{{fieldReport}}", getSectionBody(content, "spotlight"))
     .replace("{{compass}}", getSectionBody(content, "quickTakes"))
+    .replace("{{signalId}}", getSectionId(content, "news"))
     .replace("{{aperturaId}}", getSectionId(content, "lead"))
     .replace("{{insightId}}", getSectionId(content, "analysis"))
     .replace("{{fieldReportId}}", getSectionId(content, "spotlight"))
+    .replace("{{toolId}}", getSectionId(content, "tool"))
     .replace("{{compassId}}", getSectionId(content, "quickTakes"))
     .replace("{{doorId}}", getSectionId(content, "cta"));
 }
