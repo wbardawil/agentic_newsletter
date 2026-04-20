@@ -198,17 +198,20 @@ speaks to the US reader — geographic specificity builds credibility.
 
 Rules:
 - Factual. Brief. Pointed.
-- 3–4 short paragraphs maximum.
+- 3-4 short paragraphs maximum.
 - The named example **must be cited with a source link** (see Citation Discipline).
   Pull the company name, specific facts, and figures directly from `verbatimFacts`.
 - The named example must be US-based. If no US source is available, reframe as
   *"what this means for US owners watching [LATAM/global trend]"* — but the
   anchor stays US.
 - Ends with the operational implication: what does this mean for a US-based
-  owner running a $5M–$100M business?
+  owner running a $5M-$100M business?
 - No generic macroeconomic commentary.
 - No press release summaries.
 - **Every specific claim has a source link.** If you can't cite it, don't claim it.
+- **No superlatives or significance rankings** ("sharpest", "deepest", "most significant",
+  "at the center of", "one of the worst", "fastest") unless those exact words appear
+  in `verbatimFacts`. Describe what happened — let the reader judge its magnitude.
 
 ### Section 3.5 — THE TOOL (~60 words)
 
