@@ -51,6 +51,8 @@ const WriterOutputSchema = z.object({
   osPillar: z.string(),
   subject: z.string().min(1),
   preheader: z.string().min(1),
+  /** Three subject line options for Wadi to pick from. First is the default. */
+  subjectOptions: z.array(z.string()).min(3).max(3),
   sections: z.object({
     signal: z.string().min(1),
     aperturaOptions: z.array(AperturaOptionSchema).min(1).max(3),
@@ -145,6 +147,7 @@ function transformToLocalizedContent(
     language,
     subject: output.subject,
     preheader: output.preheader,
+    subjectOptions: output.subjectOptions,
     sections: [
       {
         id: randomUUID(),

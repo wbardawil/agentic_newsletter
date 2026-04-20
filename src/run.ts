@@ -97,6 +97,18 @@ function renderMarkdown(
     ? `> ⚠️ REVISIÓN: Reemplaza esta apertura con tu observación real de campo de esta semana.`
     : `> ⚠️ WADI REVIEW: Replace this placeholder with your real field observation from this week.`;
 
+  const subjectBlock = (() => {
+    if (!content.subjectOptions || content.subjectOptions.length === 0) return [];
+    const opts = content.subjectOptions;
+    return [
+      `> **Subject line — pick one** (or edit freely before sending):`,
+      `> - **A (direct):** ${opts[0] ?? ""}`,
+      `> - **B (curiosity):** ${opts[1] ?? ""}`,
+      `> - **C (urgent):** ${opts[2] ?? ""}`,
+      ``,
+    ];
+  })();
+
   return [
     `# The Transformation Letter - Edition ${editionId} [${label}]`,
     ``,
@@ -106,6 +118,7 @@ function renderMarkdown(
     `**Subject:** ${content.subject}  `,
     `**Preheader:** ${content.preheader}`,
     ``,
+    ...subjectBlock,
     `---`,
     ``,
     ...(isEs
@@ -587,6 +600,17 @@ async function main(): Promise<void> {
 
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
+
+  // Show subject line options in the console for quick review
+  if (content.subjectOptions && content.subjectOptions.length > 0) {
+    const [a, b, c] = content.subjectOptions;
+    console.log(`\n📧 Subject line options:`);
+    console.log(`   A (direct):   ${a ?? ""}`);
+    console.log(`   B (curiosity): ${b ?? ""}`);
+    console.log(`   C (urgent):   ${c ?? ""}`);
+    console.log(`   → Using: "${content.subject}"`);
+  }
+
   console.log(`\n✏️  Apertura: open the EN draft, pick your option, then run:`);
   console.log(`   pnpm choose ${editionId} A    ← record Option A`);
   console.log(`   pnpm choose ${editionId} B    ← record Option B`);

@@ -269,6 +269,32 @@ When you're ready to work together directly, here is how we start: [link]
 
 ---
 
+### Section −1 — SUBJECT LINE OPTIONS (generate before all else)
+
+Generate **three subject line options** for Wadi to pick from. He sends once per week
+and the subject line is the single highest-leverage variable for open rate.
+
+**Style A — Direct:** States the benefit or the insight directly. No wordplay.
+The reader knows exactly what they'll get. Under 50 characters.
+Example: "Why your ops manual isn't working"
+
+**Style B — Curiosity gap:** Creates a gap the reader wants to close.
+Poses a tension or names a surprising cause. 50–65 characters.
+Example: "The thing your best hire already knows (and won't say)"
+
+**Style C — Urgent signal:** Names a shift, ruling, or pattern from this week's Signal
+that corridor operators need to understand now. 50–65 characters.
+Example: "What the FTC's new rule means for your vendor contracts"
+
+Rules for all three:
+- No clickbait, no superlatives ("shocking", "incredible", "must-read")
+- No question marks if the answer is obvious
+- No banned phrases
+- Speak to the $5M–$100M operator — not consumers, not startup founders
+- `subject` field = whichever option is strongest (Wadi overrides if he prefers another)
+
+---
+
 ## Quality Gates
 
 Before producing output, verify:
@@ -284,6 +310,7 @@ Before producing output, verify:
 8. The Compass question is specific enough to feel genuine
 9. Total word count is between 1,000–1,200 words (excluding metadata)
 10. The Door text is reproduced exactly
+11. subjectOptions contains exactly 3 options (A=direct, B=curiosity, C=urgent), each under 65 characters
 
 ---
 
@@ -310,8 +337,13 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "runId": "{{runId}}",
   "editionId": "{{editionId}}",
   "osPillar": "{{osPillar}}",
-  "subject": "Email subject line (under 60 characters, no clickbait)",
+  "subject": "Strongest of the three subject line options (Wadi will override if he prefers another)",
   "preheader": "Email preheader text (under 120 characters)",
+  "subjectOptions": [
+    "Style A — Direct: under 50 chars",
+    "Style B — Curiosity: 50-65 chars",
+    "Style C — Urgent signal: 50-65 chars"
+  ],
   "sections": {
     "signal": "*This week: [the pattern that connects all four signals — required, 15-20 words.]*\n\n- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology:** fact + implication [Read ->](url)\n- **Human Capital:** fact + implication [Read ->](url)",
     "aperturaOptions": [
