@@ -228,11 +228,7 @@ Rules:
 - Must be directly applicable to the $5M-$100M operator — not a startup tool,
   not an enterprise tool.
 - Tie the tool to one of the three Signal pillars (Strategy, Operating Models,
-<<<<<<< HEAD
   or Technology & Human Capital) — make it the action step that follows the signal.
-=======
-  or Technology & People) — make it the action step that follows the signal.
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
 - If no strong tool exists in the source material, derive one from The Insight
   (e.g. a named template, a one-page document, a specific diagnostic question).
 
@@ -264,11 +260,7 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-<<<<<<< HEAD
 1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & Human Capital — each ending with [Read ->](url)
-=======
-1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & People — each ending with [Read ->](url)
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
@@ -308,11 +300,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
-<<<<<<< HEAD
     "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & Human Capital:** fact + implication [Read ->](url)",
-=======
-    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & People:** fact + implication [Read ->](url)",
->>>>>>> 32f0f21 (feat(signal): structure Signal and Tool around three fixed pillars)
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},
