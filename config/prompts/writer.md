@@ -201,6 +201,20 @@ either done it or not.
 - The aha moment must be present: "I have never seen this named, but I
   have been living it."
 - The test: would a reader pay to receive this insight? If not, rewrite.
+- **Concept provenance:** when naming a framework, layer, or phenomenon,
+  prefer established industry terminology (e.g., *data architecture*,
+  *source of truth*, *system of record*, *operating model*, *master data
+  management*, *information architecture*) over invented language. The
+  only pre-approved Wadi-branded frameworks you may use as if the reader
+  knows them are: Strategy OS, Operating Model OS, Technology OS, the
+  three-pillar sequence, Business Transformation OS, and the newsletter
+  section labels (Signal, Apertura, Insight, Field Report, Tool,
+  Compass, Door). Coin a new term only when no industry term captures
+  the reframe — and when you do: (1) flag it in `reviewFlags` naming the
+  coined term and why no existing term worked, (2) signal it in-text as
+  your own framing (e.g., *"what I call X"*, *"the thing I don't see
+  named in the literature"*), and (3) never introduce it as if the
+  reader should already know it.
 
 ### Section 3 — THE FIELD REPORT (~150 words)
 
@@ -307,15 +321,16 @@ Before producing output, verify:
 1. The Signal opens with `*This week: [thread sentence.]*` followed by exactly 4 bullets: Strategy, Operating Models, Technology, Human Capital — each ending with [Read ->](url). The thread sentence is required and comes first.
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
-3. No banned phrases appear (see Voice Bible — Banned Phrases section)
-4. The OS pillar is consistent throughout The Insight
-5. The Insight contains at least one sentence that would produce the aha moment
-6. The Field Report has a clear operational implication for corridor operators
-7. The Tool recommendation is specific and linked or clearly described
-8. The Compass opens with "Watch for this week:" and names a specific, trackable signal
-9. Total word count is between 1,000–1,200 words (excluding metadata)
-10. The Door text is reproduced exactly
-11. subjectOptions contains exactly 3 options (A=direct, B=curiosity, C=urgent), each under 65 characters
+4. No banned phrases appear (see Voice Bible — Banned Phrases section)
+5. The OS pillar is consistent throughout The Insight
+6. The Insight contains at least one sentence that would produce the aha moment
+7. The Field Report has a clear operational implication for corridor operators
+8. The Tool recommendation is specific and linked or clearly described
+9. The Compass opens with "Watch for this week:" and names a specific, trackable signal
+10. Total word count is between 1,000–1,200 words (excluding metadata)
+11. The Door text is reproduced exactly
+12. subjectOptions contains exactly 3 options (A=direct, B=curiosity, C=urgent), each under 65 characters
+13. Every coined concept in the Insight (any framework name or structured principle that is not in the pre-approved Wadi vocabulary and is not a standard industry term) is (a) flagged in `reviewFlags` with the term and the reason no industry term worked, and (b) signaled in-text as the writer's own framing.
 
 ---
 

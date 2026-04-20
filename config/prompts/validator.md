@@ -76,6 +76,29 @@ to a peer. This sentence names something the reader experiences but has never
 articulated. It must be a precise diagnosis, not a great turn of phrase.
 If no sentence qualifies, report null.
 
+**Rule 15 — Concept provenance (no invented frameworks):**
+Scan The Insight for named concepts — capitalized framework labels (e.g.,
+*Substrate Before Surface*, *The Capability Gap*), structured principles
+(*X Before Y* formulations), or framework-sounding phrases presented as if
+the reader should recognize them. For each such concept, it must be either:
+
+1. A pre-approved Wadi-branded framework (the only allowed set: *Strategy
+   OS, Operating Model OS, Technology OS*, the three-pillar sequence,
+   *Business Transformation OS*, and the newsletter section labels), OR
+2. An established industry term (e.g., *data architecture*, *source of
+   truth*, *system of record*, *operating model*, *master data management*,
+   *information architecture*), OR
+3. Explicitly signaled in-text as the writer's own framing (*"what I call
+   X"*, *"the thing I don't see named in the literature"*) AND flagged in
+   the draft's `reviewFlags`.
+
+If a named concept fails all three tests, it is an invented framework
+presented as established — add an entry to `llmIssues` with
+`rule: "rule-15-invented-concept"`, `severity: "warning"`,
+`section: "insight"`, `message` naming the invented term and noting which
+industry term would have worked if one exists, and `excerpt` quoting the
+sentence where the invented term appears.
+
 **Field Report intelligence standard:**
 The Field Report must deliver intelligence (pattern recognition from
 corridor-specific observation) — not news that could be found in 5 minutes
