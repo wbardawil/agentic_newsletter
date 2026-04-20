@@ -259,6 +259,33 @@ export function scanSection(body: string, sectionLabel: string): CitationIssue[]
 }
 
 /**
+ * Verify that every bullet in The Signal section contains a Markdown link.
+ * Returns one CitationIssue per bullet that is missing a link.
+ */
+export function scanSignalBullets(
+  body: string,
+  sectionLabel: string,
+): CitationIssue[] {
+  if (!body.trim()) return [];
+  const issues: CitationIssue[] = [];
+  const bullets = body
+    .split("\n")
+    .filter((line) => /^\s*[-*]/.test(line));
+
+  for (const bullet of bullets) {
+    if (!/\]\(https?:\/\//.test(bullet)) {
+      issues.push({
+        excerpt: bullet.trim().slice(0, 120),
+        entity: "(signal bullet)",
+        verb: "(missing link)",
+        section: sectionLabel,
+      });
+    }
+  }
+  return issues;
+}
+
+/**
  * Scan all sections of a newsletter (EN or ES).
  * `sections` is a map of sectionType → body text.
  */
@@ -268,7 +295,12 @@ export function scanEdition(
 ): CitationIssue[] {
   const issues: CitationIssue[] = [];
   for (const { type, body } of sections) {
-    issues.push(...scanSection(body, `${language}/${type}`));
+    const label = `${language}/${type}`;
+    if (type === "news") {
+      issues.push(...scanSignalBullets(body, label));
+    } else {
+      issues.push(...scanSection(body, label));
+    }
   }
   return issues;
 }

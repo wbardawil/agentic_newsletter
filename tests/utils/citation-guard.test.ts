@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { scanSection, scanEdition } from "../../src/utils/citation-guard.js";
+import { scanSection, scanEdition, scanSignalBullets } from "../../src/utils/citation-guard.js";
 
 describe("citation-guard", () => {
   it("flags attribution without any citation (EN)", () => {
@@ -64,5 +64,45 @@ describe("citation-guard", () => {
   it("handles empty sections gracefully", () => {
     expect(scanSection("", "en/insight")).toHaveLength(0);
     expect(scanEdition([], "en")).toHaveLength(0);
+  });
+
+  describe("scanSignalBullets", () => {
+    it("flags a bullet missing a link", () => {
+      const body = "- Fed holds rates steady — operators have a refinancing window.";
+      const issues = scanSignalBullets(body, "en/news");
+      expect(issues).toHaveLength(1);
+      expect(issues[0]!.verb).toBe("(missing link)");
+    });
+
+    it("does NOT flag a bullet that has a link", () => {
+      const body = "- Fed holds rates steady — operators have a refinancing window. [Read →](https://reuters.com/article)";
+      const issues = scanSignalBullets(body, "en/news");
+      expect(issues).toHaveLength(0);
+    });
+
+    it("flags only the bullets missing links in a mixed set", () => {
+      const body = [
+        "- Bullet one with link. [Read →](https://example.com/1)",
+        "- Bullet two missing link.",
+        "- Bullet three with link. [Read →](https://example.com/3)",
+      ].join("\n");
+      const issues = scanSignalBullets(body, "en/news");
+      expect(issues).toHaveLength(1);
+      expect(issues[0]!.excerpt).toContain("Bullet two");
+    });
+
+    it("scanEdition routes news sections through scanSignalBullets", () => {
+      const sections = [
+        { type: "news", body: "- Missing link bullet.\n- Also missing." },
+        { type: "analysis", body: "Clean prose with no attributions." },
+      ];
+      const issues = scanEdition(sections, "en");
+      expect(issues).toHaveLength(2);
+      expect(issues.every((i) => i.section === "en/news")).toBe(true);
+    });
+
+    it("returns empty for an empty signal body", () => {
+      expect(scanSignalBullets("", "en/news")).toHaveLength(0);
+    });
   });
 });

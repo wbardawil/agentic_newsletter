@@ -115,8 +115,9 @@ Rules:
 - Exactly 3 bullets. No more, no fewer.
 - Each bullet: one sentence of fact + one sentence of why it matters to this
   audience. Total ~25 words per bullet.
-- Every bullet must end with a Markdown link to the source article.
-  Pull only from sources in `verbatimFacts` — do not invent URLs.
+- Every bullet must end with a Markdown link labeled exactly `[Read →]` pointing
+  to the source article URL. Pull only from sources in `verbatimFacts` — do not
+  invent URLs. Format: `[Read →](https://...)`
 - Topics must be relevant to the US-LATAM corridor ($5M–$100M businesses):
   regulatory shifts, supply chain, credit/rates, labor, trade, M&A signals.
 - No politics. No consumer news. No tech product launches unless they have
