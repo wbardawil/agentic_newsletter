@@ -107,21 +107,28 @@ Strategy OS dimension of the same problem.
 
 ### Section 0 — THE SIGNAL (~80 words)
 
-3 news bullets from this week that matter to a $5M–$100M owner. This is the
-only section that is purely informational. It anchors the issue to the current
-moment — what happened *this week* that a corridor operator needs to know.
+Exactly 3 bullets — one per pillar, always in this order:
 
-Rules:
-- Exactly 3 bullets. No more, no fewer.
+1. **Strategy** — A move by a competitor, a market shift, a deal, a regulatory
+   change, or a sector realignment that forces a strategic decision for
+   $5M-$100M corridor operators this week.
+
+2. **Operating Models** — A company that encoded, reorganized, automated, or
+   scaled its operating model in a notable way. Prefer examples that show the
+   operational implication for mid-market owners.
+
+3. **Technology & Human Capital** — The most significant AI or technology deployment
+   story this week where a company transformed how its people work. This pillar
+   should always reflect the highest-trending topic in business AI adoption —
+   real deployments, measurable outcomes, not product launches.
+
+Rules (apply to all three bullets):
 - Each bullet: one sentence of fact + one sentence of why it matters to this
   audience. Total ~25 words per bullet.
-- Every bullet must end with a Markdown link labeled exactly `[Read →]` pointing
+- Every bullet must end with a Markdown link labeled exactly `[Read ->]` pointing
   to the source article URL. Pull only from sources in `verbatimFacts` — do not
-  invent URLs. Format: `[Read →](https://...)`
-- Topics must be relevant to the US-LATAM corridor ($5M–$100M businesses):
-  regulatory shifts, supply chain, credit/rates, labor, trade, M&A signals.
-- No politics. No consumer news. No tech product launches unless they have
-  direct operational implications for mid-market operators.
+  invent URLs. Format: `[Read ->](https://...)`
+- No politics. No consumer news.
 - Do not editorialize beyond the one-sentence implication. The Insight is for
   frameworks. The Signal is for facts.
 
@@ -205,18 +212,22 @@ Rules:
 
 ### Section 3.5 — THE TOOL (~60 words)
 
-One tool, book, framework, or resource per edition. Something Wadi actually
-uses or recommends. Keeps the newsletter from being purely conceptual.
+One tool, AI product, framework, or resource per edition that helps a
+$5M-$100M operator act on the themes in this issue. Given the current moment
+in business transformation, default to AI tools that mid-market operators can
+deploy without a dedicated IT team — unless the Insight points strongly to a
+non-AI framework.
 
 Rules:
 - Format exactly: **[Name]** — What it is (one sentence). Why it matters to
   this audience (one sentence). Where to find it (Markdown link or description).
 - No affiliate links. No sponsored placements.
-- Must be directly applicable to the $5M–$100M operator — not a startup tool,
+- Must be directly applicable to the $5M-$100M operator — not a startup tool,
   not an enterprise tool.
-- If no strong tool recommendation exists in the source material, suggest one
-  from the framework developed in The Insight (e.g. a named template, a
-  one-page document, a specific diagnostic question).
+- Tie the tool to one of the three Signal pillars (Strategy, Operating Models,
+  or Technology & Human Capital) — make it the action step that follows the signal.
+- If no strong tool exists in the source material, derive one from The Insight
+  (e.g. a named template, a one-page document, a specific diagnostic question).
 
 ### Section 4 — THE COMPASS (~75 words)
 
@@ -246,7 +257,7 @@ When you're ready to work together directly, here is how we start: [link]
 
 Before producing output, verify:
 
-1. The Signal has exactly 3 bullets, each ending with [Read →](url)
+1. The Signal has exactly 3 bullets in order: Strategy, Operating Models, Technology & Human Capital — each ending with [Read ->](url)
 2. aperturaOptions contains exactly {{aperturaOptionCount}} option(s), each under 120 words
 3. The Insight follows Problem → Diagnosis → Framework → Application in that order
 3. No banned phrases appear (see Voice Bible — Banned Phrases section)
@@ -273,7 +284,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Email subject line (under 60 characters, no clickbait)",
   "preheader": "Email preheader text (under 120 characters)",
   "sections": {
-    "signal": "3 bullets — each: fact sentence + implication sentence + [Read →](url)",
+    "signal": "- **Strategy:** fact + implication [Read ->](url)\n- **Operating Models:** fact + implication [Read ->](url)\n- **Technology & Human Capital:** fact + implication [Read ->](url)",
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},

@@ -13,6 +13,7 @@ import {
   type LocalizedContent,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
 
 const LocalizerInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -59,9 +60,11 @@ function buildPrompt(
     .replace("{{quarterlyTheme}}", angle.quarterlyTheme)
     .replace("{{subjectEN}}", content.subject)
     .replace("{{preheaderEN}}", content.preheader)
+    .replace("{{signal}}", getSectionBody(content, "news"))
     .replace("{{apertura}}", getSectionBody(content, "lead"))
     .replace("{{insight}}", getSectionBody(content, "analysis"))
     .replace("{{fieldReport}}", getSectionBody(content, "spotlight"))
+    .replace("{{tool}}", getSectionBody(content, "tool"))
     .replace("{{compass}}", getSectionBody(content, "quickTakes"))
     .replace("{{signalId}}", getSectionId(content, "news"))
     .replace("{{aperturaId}}", getSectionId(content, "lead"))
@@ -104,6 +107,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
     );
 
     const rawText = extractTextFromMessage(message.content);
-    return LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+    const parsed = LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+    return sanitizeLocalizedContent(parsed);
   }
 }

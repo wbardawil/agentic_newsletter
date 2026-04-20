@@ -99,11 +99,12 @@ rooted in Latin America.
    must be traceable to `verbatimFacts`. If you can't cite it, you cannot
    claim it. Use general market framing instead.
 
-7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish. Keep
-   all source links intact. Adjust the implication sentence to speak directly
+7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish, preserving
+   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnologia y Capital Humano:**
+   Keep all source links intact. Adjust the implication sentence to speak directly
    to the Mexican/LATAM operator context where relevant (e.g. trade news has
    different implications for a Monterrey exporter than a US manufacturer).
-   Do not add or remove bullets — always exactly 3.
+   Do not add or remove bullets - always exactly 3, always in the same order.
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-

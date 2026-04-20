@@ -18,6 +18,7 @@ import {
   formatVoiceBibleForPrompt,
 } from "../utils/voice-bible-loader.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
 import {
   loadAperturaHistory,
   formatAperturaExamplesForPrompt,
@@ -256,6 +257,6 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     if (lang !== "en" && lang !== "es") {
       throw new Error(`WriterAgent: unsupported language "${lang as string}"`);
     }
-    return transformToLocalizedContent(writerOutput, lang);
+    return sanitizeLocalizedContent(transformToLocalizedContent(writerOutput, lang));
   }
 }

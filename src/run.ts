@@ -28,6 +28,7 @@ import { WriterAgent } from "./agents/writer.js";
 import { ValidatorAgent } from "./agents/validator.js";
 import { LocalizerAgent } from "./agents/localizer.js";
 import { QualityGateAgent, type QualityGateResult } from "./agents/quality-gate.js";
+import { stripAiTells } from "./utils/sanitize-output.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
@@ -51,14 +52,14 @@ function renderAperturaOptions(body: string, editionId: string): string[] {
   const parts = body.split(/===OPTION_[ABC]:\w+===/);
   const headers = [...body.matchAll(/===OPTION_([ABC]):(\w+)===/g)];
   const lines: string[] = [
-    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` — or edit freely and run \`pnpm choose ${editionId}\``,
+    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` - or edit freely and run \`pnpm choose ${editionId}\``,
     ``,
   ];
   for (let i = 0; i < headers.length; i++) {
     const label = headers[i]![1]!;
     const style = headers[i]![2]!;
     const text = (parts[i + 1] ?? "").trim();
-    lines.push(`### Option ${label} — ${style}`);
+    lines.push(`### Option ${label} - ${style}`);
     lines.push(``);
     lines.push(text);
     lines.push(``);
@@ -97,7 +98,7 @@ function renderMarkdown(
     : `> ⚠️ WADI REVIEW: Replace this placeholder with your real field observation from this week.`;
 
   return [
-    `# The Transformation Letter — Edition ${editionId} [${label}]`,
+    `# The Transformation Letter - Edition ${editionId} [${label}]`,
     ``,
     `**Drafted:** ${now}  `,
     `**OS Pillar:** ${angle.osPillar}  `,
@@ -518,13 +519,13 @@ async function main(): Promise<void> {
     logger.info(`Backed up existing draft to ${jsonPath}.bak`);
   }
 
-  const enMdContent = renderMarkdown(editionId, angle, content, "en");
+  const enMdContent = stripAiTells(renderMarkdown(editionId, angle, content, "en"));
   writeFileSync(enMdPath, enMdContent, "utf-8");
   writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
-    esMdContent = renderMarkdown(editionId, angle, esContent, "es");
+    esMdContent = stripAiTells(renderMarkdown(editionId, angle, esContent, "es"));
     writeFileSync(esMdPath, esMdContent, "utf-8");
     writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
   }
