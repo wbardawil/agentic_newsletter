@@ -28,6 +28,7 @@ import { WriterAgent } from "./agents/writer.js";
 import { ValidatorAgent } from "./agents/validator.js";
 import { LocalizerAgent } from "./agents/localizer.js";
 import { QualityGateAgent, type QualityGateResult } from "./agents/quality-gate.js";
+import { stripAiTells } from "./utils/sanitize-output.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
@@ -518,13 +519,13 @@ async function main(): Promise<void> {
     logger.info(`Backed up existing draft to ${jsonPath}.bak`);
   }
 
-  const enMdContent = renderMarkdown(editionId, angle, content, "en");
+  const enMdContent = stripAiTells(renderMarkdown(editionId, angle, content, "en"));
   writeFileSync(enMdPath, enMdContent, "utf-8");
   writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
-    esMdContent = renderMarkdown(editionId, angle, esContent, "es");
+    esMdContent = stripAiTells(renderMarkdown(editionId, angle, esContent, "es"));
     writeFileSync(esMdPath, esMdContent, "utf-8");
     writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
   }
