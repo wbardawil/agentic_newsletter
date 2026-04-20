@@ -51,14 +51,14 @@ function renderAperturaOptions(body: string, editionId: string): string[] {
   const parts = body.split(/===OPTION_[ABC]:\w+===/);
   const headers = [...body.matchAll(/===OPTION_([ABC]):(\w+)===/g)];
   const lines: string[] = [
-    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` — or edit freely and run \`pnpm choose ${editionId}\``,
+    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` - or edit freely and run \`pnpm choose ${editionId}\``,
     ``,
   ];
   for (let i = 0; i < headers.length; i++) {
     const label = headers[i]![1]!;
     const style = headers[i]![2]!;
     const text = (parts[i + 1] ?? "").trim();
-    lines.push(`### Option ${label} — ${style}`);
+    lines.push(`### Option ${label} - ${style}`);
     lines.push(``);
     lines.push(text);
     lines.push(``);
@@ -97,7 +97,7 @@ function renderMarkdown(
     : `> ⚠️ WADI REVIEW: Replace this placeholder with your real field observation from this week.`;
 
   return [
-    `# The Transformation Letter — Edition ${editionId} [${label}]`,
+    `# The Transformation Letter - Edition ${editionId} [${label}]`,
     ``,
     `**Drafted:** ${now}  `,
     `**OS Pillar:** ${angle.osPillar}  `,
