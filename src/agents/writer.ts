@@ -199,6 +199,10 @@ function transformToLocalizedContent(
   };
 }
 
+function hasBulletPoints(text: string): boolean {
+  return /^[ \t]*[-*•]\s+\S/m.test(text) || /^[ \t]*\d+\.\s+\S/m.test(text);
+}
+
 export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
   readonly name: AgentName = "writer";
   readonly inputSchema = WriterInputSchema;
@@ -206,6 +210,33 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
 
   constructor(deps: AgentDeps) {
     super(deps);
+  }
+
+  /** If the Insight body contains bullet points, make a targeted Sonnet call to rewrite as prose. */
+  private async repairInsightBullets(insight: string): Promise<string> {
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    this.logger.info("Insight contains bullet points — running prose repair pass");
+    const response = await this.deps.apiClients.anthropic.messages.create({
+      model: REPAIR_MODEL,
+      max_tokens: 1500,
+      messages: [
+        {
+          role: "user",
+          content:
+            `The following newsletter Insight section was written using bullet points. ` +
+            `Rewrite it as flowing prose paragraphs only — no bullets, no numbered lists, no headers. ` +
+            `Preserve every idea and all information. Keep sentences short and declarative. ` +
+            `Output only the rewritten prose, nothing else:\n\n${insight}`,
+        },
+      ],
+    });
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+    const block = response.content[0];
+    return block?.type === "text" ? block.text.trim() : insight;
   }
 
   protected async execute(
@@ -257,6 +288,11 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     if (lang !== "en" && lang !== "es") {
       throw new Error(`WriterAgent: unsupported language "${lang as string}"`);
     }
+
+    if (hasBulletPoints(writerOutput.sections.insight)) {
+      writerOutput.sections.insight = await this.repairInsightBullets(writerOutput.sections.insight);
+    }
+
     return sanitizeLocalizedContent(transformToLocalizedContent(writerOutput, lang));
   }
 }

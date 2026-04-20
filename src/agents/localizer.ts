@@ -113,7 +113,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 8000,
+      max_tokens: 16000,
       thinking: { type: "adaptive" },
       messages: [{ role: "user", content: prompt }],
     });
@@ -127,6 +127,15 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const rawText = extractTextFromMessage(message.content);
     const parsed = LocalizedContentSchema.parse(parseLlmJson(rawText, "LocalizerAgent"));
+
+    const missingSections = ["news", "lead", "analysis", "spotlight", "tool", "quickTakes", "cta"]
+      .filter((type) => !parsed.sections.some((s) => s.type === type));
+    if (missingSections.length > 0) {
+      this.logger.warn(
+        `Localizer output missing sections: ${missingSections.join(", ")} — max_tokens may be too low`,
+      );
+    }
+
     return sanitizeLocalizedContent(parsed);
   }
 }
