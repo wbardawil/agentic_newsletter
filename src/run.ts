@@ -442,6 +442,7 @@ async function main(): Promise<void> {
   });
 
   let qualityGate: QualityGateResult | undefined;
+  let hadBlockingIssue = false;
   if (!qualityGateOutput.success) {
     console.warn(
       `   ⚠️  Quality Gate failed: ${qualityGateOutput.error}. Continuing without fact verification.\n`,
@@ -460,8 +461,8 @@ async function main(): Promise<void> {
       for (const c of qualityGate.factCheck.unverifiedClaims) {
         console.error(`     • [${c.language}/${c.section ?? "?"}] "${c.claim}"`);
       }
-      console.error(`\n   Draft cannot ship with fabricated claims. Aborting.\n`);
-      process.exit(2);
+      console.error(`\n   Draft cannot ship with fabricated claims.\n`);
+      hadBlockingIssue = true;
     }
     if (qualityGate.angleOriginality.recommendation === "consider rerun") {
       console.warn(
@@ -503,7 +504,7 @@ async function main(): Promise<void> {
       `\n   These look like fabricated attributions. Fix them in the draft or\n` +
         `   re-run with tighter citation discipline before shipping.\n`,
     );
-    process.exit(2);
+    hadBlockingIssue = true;
   }
 
   // Record this angle in history for future originality checks
@@ -616,6 +617,13 @@ async function main(): Promise<void> {
         },
       }) + "\n",
     );
+  }
+
+  if (hadBlockingIssue) {
+    console.error(
+      `\n⛔ Blocking issues detected (see above). Drafts saved for review — fix issues before shipping.\n`,
+    );
+    process.exit(2);
   }
 
   // ── Airtable run ledger ────────────────────────────────────────────────────
