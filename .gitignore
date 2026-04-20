@@ -1,5 +1,29 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-drafts/
+
+# Environment
 .env
-*.log
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# pnpm
+.pnpm-debug.log
+
+# Temporary
+*.tsbuildinfo
