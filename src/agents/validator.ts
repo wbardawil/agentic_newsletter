@@ -165,13 +165,13 @@ const LlmResponseSchema = z.object({
   misdiagnosisExcerpt: z.string().nullable().optional(),
   shareableSentence: z.string().nullable(),
   fieldReportIsIntelligence: z.boolean(),
-  fieldReportNote: z.string().optional(),
+  fieldReportNote: z.string().nullable().optional(),
   osPillarConsistent: z.boolean(),
-  osPillarNote: z.string().optional(),
+  osPillarNote: z.string().nullable().optional(),
   compassIsGenuine: z.boolean(),
-  compassNote: z.string().optional(),
+  compassNote: z.string().nullable().optional(),
   aperturaStartsMidThought: z.boolean(),
-  aperturaNote: z.string().optional(),
+  aperturaNote: z.string().nullable().optional(),
   llmIssues: z.array(LlmIssueSchema).default([]),
 });
 
