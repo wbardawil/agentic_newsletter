@@ -109,7 +109,7 @@ function renderMarkdown(
     `---`,
     ``,
     ...(isEs
-      ? []
+      ? [`> **Resumen del Insight:** ${angle.thesis}`, ``, `---`, ``]
       : [`> **Insight summary:** ${angle.thesis}`, ``, `---`, ``]),
     `## ${signalHeading}`,
     ``,
@@ -212,7 +212,10 @@ function renderHtml(
   language: "en" | "es",
 ): string {
   const md = renderMarkdown(editionId, angle, content, language);
-  const body = mdToHtml(md);
+  // Strip review-only annotations before HTML conversion — these are for
+  // markdown review only and must not appear in the Beehiiv-ready HTML.
+  const cleanMd = md.replace(/^>[ \t]*⚠️[^\n]*/gm, "").replace(/\n{3,}/g, "\n\n");
+  const body = mdToHtml(cleanMd);
   return `<!DOCTYPE html>
 <html lang="${language}">
 <head>
