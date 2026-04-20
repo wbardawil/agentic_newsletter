@@ -21,7 +21,7 @@ const LocalizerInputSchema = z.object({
 });
 type LocalizerInput = z.infer<typeof LocalizerInputSchema>;
 
-const MODEL = "claude-sonnet-4-5";
+const MODEL = "claude-opus-4-7";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -91,7 +91,8 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 6000,
+      max_tokens: 8000,
+      thinking: { type: "adaptive" },
       messages: [{ role: "user", content: prompt }],
     });
 
