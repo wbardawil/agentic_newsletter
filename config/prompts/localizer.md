@@ -100,7 +100,7 @@ rooted in Latin America.
    claim it. Use general market framing instead.
 
 7. **THE SIGNAL transcreation:** Translate the 3 bullets into Spanish, preserving
-   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnologia y Personas:**
+   the pillar labels in bold: **Estrategia:**, **Modelos Operativos:**, **Tecnologia y Capital Humano:**
    Keep all source links intact. Adjust the implication sentence to speak directly
    to the Mexican/LATAM operator context where relevant (e.g. trade news has
    different implications for a Monterrey exporter than a US manufacturer).
