@@ -175,41 +175,153 @@ executive reader appreciates the human situation before the framework).
 
 ---
 
-## Mexican business-press register — mandatory
+## Native Spanish register — the benchmark
 
-The benchmark is **Expansión, El Financiero, Bloomberg Línea** (business
-news), not Medium essays or LinkedIn posts. The reader is a Mexican
-business owner reading on her phone between meetings. Your job is to
-make her stop scrolling, understand, and feel the writer knows her
-week. If a sentence asks her to read it twice, it has failed.
+The reader is a Mexican business owner. The style references are, in
+order of priority:
 
-**Sentence-level rules (Spanish is naturally longer than English —
-these targets differ from the Writer's English targets):**
+- **Expansión, El Financiero, Bloomberg Línea, Whitepaper.mx** — Mexican
+  corridor business writing. The house voice of this newsletter.
+- **Forbes LATAM / Forbes México** — pan-LATAM business narrative
+  with named characters and scene-setting.
+- **El País (economía / opinión)** — Spanish-from-Spain literary cadence.
+  Use for sentence rhythm and connector inventory, not for vocabulary
+  (*el portátil* is Madrid; *la laptop* is México).
+
+The target is not "correct translation." The target is **prose a native
+Spanish reader cannot distinguish from copy written in Spanish from the
+start**. If a Mexican reader thinks *"suena traducido,"* the draft has
+failed regardless of grammar.
+
+### Sentence-length targets (Spanish is naturally longer than English)
 - Target sentence length: 18–24 words. Absolute maximum: 28 words.
-- One idea per sentence. If an *"y"* or a semicolon joins two ideas,
-  break it into two sentences.
-- Active voice. Replace *"se está moldeando"* with *"está cambiando"* or
-  *"la están moldeando"*. Replace *"fue hecho visible"* with
-  *"quedó a la vista"*.
-- Concrete nouns over abstract nouns. *"El pipeline no se movía"* →
-  *"las ventas no avanzaban"*. *"Los outputs"* → *"lo que la IA escribe"*
-  or *"los textos producidos"*.
-- Minimal adjectives and adverbs. Cut *"simplemente"*, *"claramente"*,
-  *"básicamente"*, *"esencialmente"*, *"realmente"*.
-- Verbs do the work. Prefer *"decidir"*, *"escribir"*, *"romper"*,
-  *"ganar"*, *"perder"* over nominalizations like *"la toma de
-  decisiones"*, *"la elaboración de"*, *"el rompimiento de"*.
-- **No em-dashes or en-dashes.** The downstream sanitizer strips them
-  into hyphens. Use commas, parentheses, colons, or two sentences.
-  *"La banca, tradicional y digital, compite por las pymes"* — not
-  *"La banca — tradicional y digital — compite"*.
+- Paragraph: 2–3 sentences, rarely 4.
+- Open each paragraph with its most concrete sentence; close with a
+  short punch of 6–10 words. *"El miedo frena la bancarización."*
+  *"La competencia ya no es solo por el crédito."*
 
-**Paragraph-level rules:**
-- 2–3 sentences per paragraph (Mexican press rarely exceeds 3, never 4).
-- Open each paragraph with the most concrete sentence, not the framing one.
-- Close each paragraph with a short punch of 6–10 words. The close is
-  the line the reader would underline. *"El miedo frena la
-  bancarización."* *"La competencia ya no es solo por el crédito."*
+### Native sentence-rhythm moves (use these regularly)
+
+1. **Aposición explicativa** — a nominal phrase in commas that
+   re-names the subject, *without* a relative `que`.
+   - Native: *"Paolo Rocca, dueño de Techint, superó a Marcos Galperin…"*
+   - Translated: *"Paolo Rocca, que es el dueño de Techint, superó…"*
+   - Drop the verb. Spanish trusts the reader.
+
+2. **Dos puntos de remate** — colon mid-sentence delivering the
+   payoff, not introducing a list.
+   - Native (Xataka ES): *"Ese aumento no se traduce en mejores
+     resultados: los márgenes se comprimen."*
+   - Native (Whitepaper): *"La historia empezó como empiezan casi
+     todas: con una llamada."*
+   - One colon per section, placed where the sentence would otherwise
+     end weakly.
+
+3. **Oración nominal corta al final del párrafo** — verbless
+   sentence for emphasis.
+   - *"Una paradoja."* *"Un problema estructural."* *"Un síntoma."*
+   - Close paragraph, land it. Does not need a verb.
+
+4. **Punto y aparte entre ideas.** One paragraph = one argument.
+   Translated Spanish strings three ideas with commas + *y*. Native
+   cuts: three short paragraphs beat one long one.
+
+5. **Paralelismo con asimetría** — parallel clauses, second one
+   elided for rhythm.
+   - *"La economía resiste; el empresario, no."*
+   - *"México no está cayendo, pero tampoco avanza."* *(El Heraldo)*
+
+6. **Anáfora suave** — repeat the opening word across two clauses.
+   - *"No es una recuperación. No es tampoco una caída."*
+
+7. **Ritmo ternario** — three parallel elements, no final *y*.
+   - *"Más presión, más costes, menos margen."*
+   - *"Invierten, contratan, exportan — y, sin embargo, no crecen."*
+
+### Connectors — rotate; never `y` or `pero` twice in a paragraph
+
+Translated Spanish over-uses *y* and *pero*. Native Spanish has a
+much richer inventory. Pick from this list, vary within each section.
+
+- **Adversativos:** *sin embargo, no obstante, en cambio, ahora bien,
+  con todo, si acaso, por el contrario, y, sin embargo,*
+  (comma-flanked mid-sentence).
+- **Consecutivos:** *de ahí que* (+ subjunctive), *de suerte que, por
+  lo que, motivo por el cual, así las cosas.*
+- **Aditivos:** *además, a ello se suma, a lo que hay que añadir,
+  pero también, no solo… sino (que)…*
+- **Matizadores:** *a saber, conviene recordar, cabe señalar, en
+  rigor, en realidad, dicho de otro modo.*
+
+The `y, sin embargo,` mid-sentence pivot is especially native:
+*"Invierten, contratan, exportan — y, sin embargo, no crecen."*
+
+### De-constructions — never stack three `de` in a row
+
+Translated Spanish: *"la estrategia de expansión de la empresa de la
+familia del fundador."* Four `de`, reads machine-translated.
+
+Fixes:
+- **Adjective instead of `de`:** *"la estrategia expansiva familiar."*
+- **Relative `que`:** *"la estrategia expansiva de la empresa que fundó
+  la familia."*
+- **Pre-posed adjective (sparingly):** *"la nueva apuesta expansiva
+  del grupo familiar."*
+
+Evidence (Whitepaper / Infobae): *"la segunda generación de la familia
+se metió al negocio"* — one `de`, not three. *"los nombres que mueven
+la economía del país"* — relative `que` breaks the chain.
+
+### Concrete imagery — every paragraph passes this test
+
+Each paragraph must contain **at least one of: a proper noun, a
+specific number, or a sensory detail.** Abstractions alone (*"el
+mercado"*, *"la empresa"*, *"el entorno"*) are not enough.
+
+- Native (Whitepaper, *los-señores-de-la-basura*): title itself is
+  concrete. Not *"los líderes del sector de residuos."*
+- Native (Whitepaper, *la-empresa-privada-más-grande*): *"creció de 20
+  empleados y un puñado de clientes en la Ciudad de México a más de
+  500 empleados."* Real counts, real place, *un puñado* is sensory.
+- Native (Expansión 2026): *"se abrieron 1,700 nuevas unidades
+  compactas."* Number + adjective + concrete noun.
+
+### Opening-line shapes (rotate across sections)
+
+- **Image before thesis.** Whitepaper: *"La historia empezó como
+  empiezan casi todas: con una llamada."*
+- **Paradox up front, thesis in sentence two.** El Heraldo: *"México
+  no está cayendo, pero tampoco avanza."*
+- **Dated fact as cold open, interpretation afterward.** Expansión:
+  *"El FMI mejora previsión de México: crecerá a 1.6% en 2026…"*
+- **Never open with:** *"En el mundo de hoy,"* / *"En un entorno cada
+  vez más competitivo,"* / *"Las empresas deben…"* — these are English
+  op-ed calques and instantly mark the draft as translated.
+
+### Active voice and article-over-possessive
+
+- Prefer `se` or active. *"La empresa publicó el informe"* or *"Se
+  publicó el informe"* — never *"El informe fue publicado por la
+  empresa"*.
+- Body parts, clothing, personal objects: definite article, not
+  possessive.
+  - Translated: *"levantó su mano y abrió su laptop."*
+  - Native: *"levantó la mano y abrió la laptop."*
+- Drop `su / sus` when possession is obvious. *"El negocio necesita
+  liquidez,"* not *"Su negocio necesita su liquidez."*
+
+### Other core rules retained
+
+- Active voice everywhere. Replace *"se está moldeando"* with *"está
+  cambiando"*. Replace *"fue hecho visible"* with *"quedó a la vista"*.
+- Concrete nouns over abstract nouns. *"Los outputs"* → *"lo que la IA
+  escribe"*. *"El pipeline"* → *"las ventas"*.
+- Minimal adverbs. Cut *"simplemente, claramente, básicamente,
+  esencialmente, realmente."*
+- Verbs over nominalizations. *"decidir"* beats *"la toma de
+  decisiones"*.
+- **No em-dashes or en-dashes.** The sanitizer strips them. Use
+  commas, parentheses, or two sentences.
 
 ---
 
@@ -241,6 +353,26 @@ from English". Replace them on the first pass, not in editing.
 | "apply for" | "aplicar para" | "postularse a" / "solicitar" |
 | "key players" | "actores clave" / "jugadores clave" | "las empresas que importan" / "los principales bancos/fintechs" |
 | "in the business space" | "en el espacio de negocios" | "en el sector" / "en la industria" |
+| "institutional floor" / "the floor underneath" | "piso institucional" / "el piso debajo" | "cimientos institucionales" / "la base institucional" / "el andamiaje institucional" (piso in Mexican Spanish is literal flooring, not a foundation metaphor) |
+| "to survive X" (past tense) | "sobrevivir los ciclos" | "sobrevivir **a** los ciclos" (sobrevivir is intransitive, takes `a`) |
+| "win the window" / "earn the window" | "ganarse la ventana" | "aprovechar la ventana" / "llevarse la ventana" |
+| "First… Second… Third…" enumeration | "Primero… Segundo… Tercero…" (calcado, seco) | párrafo desarrollado con conectores / *"a)… b)… c)…"* si realmente se necesita numerar |
+| "mapping X" (-ing as activity) | "mapeando X" (gerundio como -ing) | "identificando X" / "trazando un mapa de X" / "analizando X" |
+| "one single question" | "una sola pregunta" | "una pregunta" (el *sola* es énfasis inglés redundante) |
+| "add tools" | "sumó herramientas" | "se equipó con nuevas herramientas" / "fue acumulando herramientas" |
+| "right away" / "immediately" in dialogue | "de inmediato" (tic) | "en seguida" / "al instante" / omitirlo |
+| "make a decision" | "hacer una decisión" | "tomar una decisión" |
+| "take an action" | "tomar una acción" | "actuar" / "mover ficha" |
+| "apply for" (job, program) | "aplicar para" | "postularse a" / "solicitar" |
+| "support X" (handle, bear) | "soportar X" | "aguantar X" / "sostener X" / "respaldar X" |
+| "assume X" (presume) | "asumir X" | "suponer X" / "dar por sentado X" |
+| "consistent" | "consistente" (false friend) | "coherente" / "uniforme" |
+| "eventually" | "eventualmente" (false friend: means *occasionally* in Spanish) | "con el tiempo" / "al final" / "tarde o temprano" |
+| "report" (noun) | "reporte" | "informe" (MX tolerates *reporte*, but *informe* reads more native) |
+| "going forward" | "yendo hacia adelante" | "de cara al futuro" / "en adelante" |
+| "in terms of" | "en términos de" | "en cuanto a" / "en materia de" |
+| "that said" / "having said that" | "dicho esto" | "con todo" / "ahora bien" |
+| "in summary" / "in short" | "en resumen" (muy flat) | "en definitiva" / "en suma" |
 
 **Untranslated anglicisms — keep vs. translate.** The Mexican
 business-press convention: keep the word if it names a specific
@@ -357,7 +489,25 @@ ventaja de"*, *"en orden de"*, *"aplicar para"*, *"actores clave"*,
 *"jugadores clave"*, *"en el espacio de negocios"*, *"el instinto es"*,
 *"artefacto de estrategia"*, *"la varianza"* (cuando se refiere a
 diferencias entre personas, no estadística), *"a velocidad"*, *"el
-lado operador"*, *"product-first"*.
+lado operador"*, *"product-first"*, *"piso institucional"*,
+*"ganarse la ventana"*, *"yendo hacia adelante"*, *"en términos de"*,
+*"dicho esto"*, *"en resumen"*, *"hacer una decisión"*, *"tomar una
+acción"*, *"mapeando"* (como gerundio), *"sumó herramientas"*.
+
+**Paso 6.1 — Falsos amigos (false friends).** Busca: *"consistente"*
+(reemplaza con *coherente*), *"eventualmente"* (con *con el tiempo*
+o *tarde o temprano*), *"asumir"* en sentido de *presumir* (con
+*suponer* o *dar por sentado*), *"soportar"* en sentido de
+*aguantar/respaldar* (con el verbo correcto según contexto),
+*"reporte"* (acepta *informe* si el registro lo permite), *"aplicar
+para"* (con *postularse a* o *solicitar*).
+
+**Paso 6.2 — Metáforas traducidas.** Scan específico: *"piso"* +
+sustantivo abstracto (*institucional, corporativo, estructural*) casi
+siempre es calco de *"floor"*. Reemplaza con *cimientos*, *base*,
+*andamiaje*, *infraestructura*. Más general: si la metáfora solo
+funciona en inglés, cámbiala. Si no sabes si funciona en español,
+léela en voz alta — si suena rara, lo es.
 
 **Paso 7 — Anglicismos traducidos.** Busca y reemplaza según la tabla
 keep-vs-translate: *output(s), prompt, rollout, pipeline, repricing,
@@ -387,7 +537,43 @@ termina con `[Leer ->](url)` apuntando al URL original.
 **Paso 12 — La Puerta es exacta.** El campo `cta.body` es el texto
 fijo de la Puerta sin cambios.
 
-Solo cuando los 12 pasos pasan: escribe el JSON.
+**Paso 13 — Conectores variados.** En cada sección debe haber al
+menos un conector del inventario nativo: *sin embargo, no obstante,
+en cambio, ahora bien, con todo, de ahí que, a ello se suma, no
+solo… sino que, por el contrario*. Si toda la sección conecta con
+*y / pero*, reescribe. La regla dura: nunca repetir *y* o *pero* dos
+veces en el mismo párrafo como conector principal.
+
+**Paso 14 — Sin stack de `de de de`.** Busca tres o más *de*
+consecutivas (*"la estrategia de la empresa de la familia del
+fundador"*). Reestructura con adjetivo, relativo *que*, o adjetivo
+antepuesto: *"la estrategia expansiva del grupo familiar"*.
+
+**Paso 15 — Sin gerundio como inglés `-ing`.** Busca verbos
+terminados en *-ando / -iendo* usados como sujeto, adjetivo o en
+construcciones tipo *"by doing X"*. Ejemplos: *"mapeando el
+territorio"* (como actividad), *"teniendo en cuenta que"* (como
+marco). Reescribe con subordinada o verbo conjugado.
+
+**Paso 16 — Artículo antes que posesivo.** Para partes del cuerpo,
+ropa y objetos personales, usa el artículo definido, no *su/sus*:
+*"levantó la mano y abrió la laptop"*, no *"levantó su mano y abrió
+su laptop"*. Donde el contexto ya implica pertenencia, quita
+*su/sus*: *"El negocio necesita liquidez"*, no *"Su negocio necesita
+su liquidez"*.
+
+**Paso 17 — Cada párrafo pasa el test de concreción.** Lee cada
+párrafo. ¿Contiene al menos **un nombre propio, un número específico
+o un detalle sensorial**? Si solo tiene abstracciones (*"el
+mercado"*, *"la empresa"*, *"el entorno"*), agrega concreción o
+elimina el párrafo.
+
+**Paso 18 — Aperturas de sección con forma nativa.** Cada sección
+abre con imagen + dos puntos, paradoja, dato con fecha, o cita
+nombrada — nunca con *"En el mundo de hoy,"*, *"En un entorno cada
+vez más competitivo,"*, *"Las empresas deben…"*.
+
+Solo cuando los 18 pasos pasan: escribe el JSON.
 
 ---
 
