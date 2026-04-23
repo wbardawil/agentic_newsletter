@@ -101,8 +101,9 @@ const PATTERN_ACCORDING_TO = new RegExp(
 // Markdown link pattern — used to check whether a citation URL is adjacent.
 const MARKDOWN_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
 
-// Words that are NOT entities — pronouns, sentence connectives, etc.
-// If the matched "entity" starts with one of these, strip it or skip entirely.
+// Words that are NOT entities — pronouns, sentence connectives, articles.
+// Matched at sentence-start position where the capitalization comes from the
+// sentence break, not from the word being a proper noun.
 const STOP_WORDS_LEADING = new Set([
   // English pronouns / connectives
   "You",
@@ -130,6 +131,9 @@ const STOP_WORDS_LEADING = new Set([
   "Most",
   "Some",
   "Many",
+  // English articles (appear capitalized at sentence start)
+  "An",
+  "The",
   // Spanish pronouns / connectives
   "Tu",
   "Tú",
@@ -164,6 +168,12 @@ const STOP_WORDS_LEADING = new Set([
   "Mas",
   "Algunos",
   "Muchos",
+  // Spanish indefinite articles (appear capitalized at sentence start and
+  // collide with noun "documento" against the "documento" verb fallback)
+  "Un",
+  "Una",
+  "Unos",
+  "Unas",
 ]);
 
 // Substrings that, if present in the captured entity, mark it as non-claim-bearing.
