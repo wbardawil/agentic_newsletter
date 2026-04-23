@@ -276,9 +276,10 @@ export function scanSignalBullets(
 ): CitationIssue[] {
   if (!body.trim()) return [];
   const issues: CitationIssue[] = [];
+  // Trailing `\s` is required: without it, italicized `*...*` lines match as bullets.
   const bullets = body
     .split("\n")
-    .filter((line) => /^\s*[-*]/.test(line));
+    .filter((line) => /^\s*[-*]\s/.test(line));
 
   for (const bullet of bullets) {
     if (!/\]\(https?:\/\//.test(bullet)) {

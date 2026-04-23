@@ -77,6 +77,7 @@ function buildPrompt(
     .replace("{{editionId}}", context.editionId)
     .replace("{{osPillar}}", angle.osPillar)
     .replace("{{quarterlyTheme}}", angle.quarterlyTheme)
+    .replace("{{thesisEN}}", angle.thesis)
     .replace("{{subjectEN}}", content.subject)
     .replace("{{preheaderEN}}", content.preheader)
     .replace("{{signal}}", getSectionBody(content, "news"))

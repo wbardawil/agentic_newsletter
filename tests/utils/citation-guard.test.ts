@@ -104,5 +104,16 @@ describe("citation-guard", () => {
     it("returns empty for an empty signal body", () => {
       expect(scanSignalBullets("", "en/news")).toHaveLength(0);
     });
+
+    it("does NOT flag an italicized preamble line starting with *", () => {
+      const body = [
+        "*This week: AI amplifies whatever structure already exists - the best pull ahead, the rest fall behind.*",
+        "",
+        "- **Strategy:** fact + implication. [Read →](https://example.com/1)",
+        "- **Operating Models:** fact + implication. [Read →](https://example.com/2)",
+      ].join("\n");
+      const issues = scanSignalBullets(body, "en/news");
+      expect(issues).toHaveLength(0);
+    });
   });
 });
