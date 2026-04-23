@@ -13,6 +13,7 @@ import {
   type ValidationIssue,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { findBannedPhrases } from "../utils/banned-phrases.js";
 
 const ValidatorInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -43,50 +44,10 @@ const WORD_COUNT_TARGETS: Record<string, WordCountTarget> = {
 
 const TOTAL_WORD_TARGET = { warnMin: 950, warnMax: 1300 };
 
-// ── Banned phrases (deterministic, case-insensitive) ─────────────────────────
-
-const BANNED_PHRASES: string[] = [
-  "digital transformation",
-  "leverage ai",
-  "ai-powered",
-  "disruptive",
-  "disruption",
-  "synergy",
-  "synergies",
-  "best practices",
-  "low-hanging fruit",
-  "move the needle",
-  "scalable solution",
-  "going forward",
-  "value-add",
-  "holistic approach",
-  "thought leader",
-  "thought leadership",
-  "game-changer",
-  "game changer",
-  "circle back",
-  "boil the ocean",
-  "take it to the next level",
-  "world-class",
-];
-
 // ── Compiled regex constants (not recreated per call) ─────────────────────────
 
 const BULLET_RE = /^\s*[-*•]/m;
 const SENTENCE_SPLIT_RE = /(?<=[.!?])\s+/;
-// Word-boundary patterns built once from BANNED_PHRASES list (populated below)
-let _bannedPhrasePatterns: RegExp[] | null = null;
-function getBannedPhrasePatterns(): RegExp[] {
-  if (_bannedPhrasePatterns) return _bannedPhrasePatterns;
-  _bannedPhrasePatterns = BANNED_PHRASES.map(
-    (phrase) =>
-      new RegExp(
-        `\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-        "i",
-      ),
-  );
-  return _bannedPhrasePatterns;
-}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -114,11 +75,6 @@ function findLongSentences(text: string, maxWords = 25): string[] {
     .split(SENTENCE_SPLIT_RE)
     .filter((s) => countWords(s) > maxWords)
     .slice(0, 3);
-}
-
-function findBannedPhrases(text: string): string[] {
-  const patterns = getBannedPhrasePatterns();
-  return BANNED_PHRASES.filter((_, i) => patterns[i]?.test(text));
 }
 
 function hasBulletPoints(text: string): boolean {

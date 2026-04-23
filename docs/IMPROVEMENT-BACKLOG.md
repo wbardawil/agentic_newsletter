@@ -172,6 +172,17 @@ enforcement.
   overrides the LLM's `sourceDiversity` with the deterministic count;
   (3) Validator's `wordCounts` and `score` come from code, not the
   LLM. Future agent-level changes now have a safety net.
+- **1.8 Deterministic banned-phrase stripper in Writer** —
+  `src/utils/banned-phrases.ts` is now the single source of truth for
+  the voice-bible ban list (Validator refactored to import from it).
+  `WriterAgent.repairBannedPhrases` runs a Sonnet 4.6 rewrite pass on
+  every prose section (Signal, Apertura options, Insight, Field
+  Report, Tool, Compass, Subject, Preheader) whenever a banned phrase
+  is detected. The scan is O(n) regex; the LLM call only fires on
+  match. Shipped after edition 2026-24 reached the Validator with
+  "disruption" in the Insight despite the Writer prompt's 12-step
+  self-check banning it. Mirrors the same pattern as 1.1
+  (bullet-stripper) and 1.3 (signal length).
 
 ---
 
