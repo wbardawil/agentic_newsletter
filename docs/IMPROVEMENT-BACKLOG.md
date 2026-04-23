@@ -23,22 +23,6 @@ first run pays full input cost, subsequent runs pay 10% of cached
 tokens. Estimated cut: 40–60% of input-token cost on those three
 agents, $0.15–0.25 saved per edition.
 
-### 1.4 SourceBundle snapshot for replay (HIGH / M / I)
-At the end of Radar, write the full SourceBundle to
-`drafts/{editionId}-sources.json`. If the orchestrator detects the
-snapshot on a subsequent run, use it instead of rescanning RSS. Gives
-deterministic replay when a downstream agent fails — today, rerunning
-after a Writer failure pulls a different corridor news window and
-invalidates the Strategist's angle.
-
-### 1.5 End-to-end smoke test (HIGH / M / I)
-One integration test that mocks `anthropic.messages.stream` and runs
-the pipeline end-to-end for a fixed SourceBundle fixture. Asserts:
-draft JSON is valid, ES has `thesis` populated, Citation Guard flags
-nothing, Validator score ≥ 70. Would have caught the English-leakage
-`thesis` bug before production. Currently there are 148 unit tests
-and zero integration tests.
-
 ---
 
 ## Tier 2 — ship in the next month (compounding returns)
@@ -173,6 +157,21 @@ enforcement.
   not triggered: $0. The Validator still reports the final count as
   a warning if the repair itself overshoots; that is a second line
   of defense, not the primary check.
+- **1.4 SourceBundle snapshot for replay** — `src/utils/source-bundle-snapshot.ts`
+  writes `drafts/{editionId}-sources.json` after Radar returns.
+  `src/run.ts` checks for the snapshot before running Radar and loads
+  it instead of rescanning RSS when present. Makes pipeline reruns
+  deterministic: a Writer failure no longer invalidates the
+  Strategist's angle with a fresh news window.
+- **1.5 End-to-end smoke tests** — `tests/helpers/fake-anthropic.ts`
+  provides a queueable fake of the Anthropic SDK;
+  `tests/integration/pipeline-smoke.test.ts` wires real agents to it
+  and asserts the three coordination invariants that past bugs have
+  violated: (1) LocalizerAgent populates `thesis` in ES output so the
+  "Resumen del Insight" render does not leak English; (2) QualityGate
+  overrides the LLM's `sourceDiversity` with the deterministic count;
+  (3) Validator's `wordCounts` and `score` come from code, not the
+  LLM. Future agent-level changes now have a safety net.
 
 ---
 

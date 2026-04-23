@@ -30,6 +30,7 @@ import { LocalizerAgent } from "./agents/localizer.js";
 import { QualityGateAgent, type QualityGateResult } from "./agents/quality-gate.js";
 import { stripAiTells } from "./utils/sanitize-output.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
+import { loadSnapshot, saveSnapshot } from "./utils/source-bundle-snapshot.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
@@ -341,24 +342,42 @@ async function main(): Promise<void> {
   console.log(`   Time:    ${new Date().toISOString()}\n`);
 
   // ── Radar ──────────────────────────────────────────────────────────────────
-  console.log("🔍 Step 1/3 — Radar: scanning RSS feeds...");
-  const radarAgent = new RadarAgent(deps);
-  const radarOutput = await radarAgent.run({
-    runId,
-    editionId,
-    agentName: "radar",
-    payload: { timeWindowHours: 168, maxItems: 20, rssTimeoutMs: config.rssParserTimeoutMs },
-  });
+  // If a SourceBundle snapshot for this edition exists, replay from disk
+  // instead of rescanning RSS. This makes reruns deterministic when a
+  // downstream agent (Strategist, Writer, Localizer) fails mid-pipeline.
+  const snapshot = loadSnapshot(draftsDir, editionId);
+  let bundle: SourceBundle;
+  // Radar cost is zero when the bundle is replayed from disk (no LLM call,
+  // no RSS fetch happens). Same schema shape as a fresh Radar run.
+  let radarCost = { model: "none", inputTokens: 0, outputTokens: 0, costUsd: 0 };
+  if (snapshot) {
+    console.log("🔍 Step 1/3 — Radar: loading SourceBundle snapshot (skipping RSS scan)...");
+    bundle = snapshot;
+    console.log(
+      `   ✓ Replayed ${bundle.totalSelected} items from ${bundle.metadata.feedsScanned} feeds (snapshot)\n`,
+    );
+  } else {
+    console.log("🔍 Step 1/3 — Radar: scanning RSS feeds...");
+    const radarAgent = new RadarAgent(deps);
+    const radarOutput = await radarAgent.run({
+      runId,
+      editionId,
+      agentName: "radar",
+      payload: { timeWindowHours: 168, maxItems: 20, rssTimeoutMs: config.rssParserTimeoutMs },
+    });
 
-  if (!radarOutput.success) {
-    console.error(`❌ Radar failed: ${radarOutput.error}`);
-    process.exit(1);
+    if (!radarOutput.success) {
+      console.error(`❌ Radar failed: ${radarOutput.error}`);
+      process.exit(1);
+    }
+
+    bundle = radarOutput.data as SourceBundle;
+    radarCost = radarCost;
+    saveSnapshot(draftsDir, editionId, bundle);
+    console.log(
+      `   ✓ Selected ${bundle.totalSelected} items from ${bundle.metadata.feedsScanned} feeds (snapshot saved)\n`,
+    );
   }
-
-  const bundle = radarOutput.data as SourceBundle;
-  console.log(
-    `   ✓ Selected ${bundle.totalSelected} items from ${bundle.metadata.feedsScanned} feeds\n`,
-  );
 
   // ── Strategist ─────────────────────────────────────────────────────────────
   console.log("🧠 Step 2/3 — Strategist: selecting angle...");
@@ -584,14 +603,14 @@ async function main(): Promise<void> {
       validation: validatorOutput.success ? validation : null,
       qualityGate: qualityGate ?? null,
       costs: {
-        radar: radarOutput.cost,
+        radar: radarCost,
         strategist: strategistOutput.cost,
         writer: writerOutput.cost,
         validator: validatorOutput.cost,
         localizer: localizerOutput.cost,
         qualityGate: qualityGateOutput.cost,
         totalUsd:
-          radarOutput.cost.costUsd +
+          radarCost.costUsd +
           strategistOutput.cost.costUsd +
           writerOutput.cost.costUsd +
           validatorCostUsd +
@@ -605,7 +624,7 @@ async function main(): Promise<void> {
   writeFileSync(jsonPath, jsonContent, "utf-8");
 
   const totalCost =
-    radarOutput.cost.costUsd +
+    radarCost.costUsd +
     strategistOutput.cost.costUsd +
     writerOutput.cost.costUsd +
     validatorCostUsd +
@@ -637,7 +656,7 @@ async function main(): Promise<void> {
   }
   console.log(`   ${jsonPath}`);
   console.log(`\n💰 Cost breakdown:`);
-  console.log(`   Radar:      $${radarOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Radar:      $${radarCost.costUsd.toFixed(4)}`);
   console.log(`   Strategist: $${strategistOutput.cost.costUsd.toFixed(4)}`);
   console.log(`   Writer:     $${writerOutput.cost.costUsd.toFixed(4)}`);
   console.log(`   Validator:  $${validatorCostUsd.toFixed(4)}`);
@@ -652,7 +671,7 @@ async function main(): Promise<void> {
         editionId,
         totalCostUsd: totalCost,
         breakdown: {
-          radar: radarOutput.cost.costUsd,
+          radar: radarCost.costUsd,
           strategist: strategistOutput.cost.costUsd,
           writer: writerOutput.cost.costUsd,
           validator: validatorCostUsd,
@@ -680,7 +699,7 @@ async function main(): Promise<void> {
         triggeredAt: new Date().toISOString(),
         completedAt: new Date().toISOString(),
         totalCostUsd: totalCost,
-        radarCostUsd: radarOutput.cost.costUsd,
+        radarCostUsd: radarCost.costUsd,
         strategistCostUsd: strategistOutput.cost.costUsd,
         writerCostUsd: writerOutput.cost.costUsd,
         validatorCostUsd,
