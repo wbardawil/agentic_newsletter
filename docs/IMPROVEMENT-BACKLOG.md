@@ -23,13 +23,6 @@ first run pays full input cost, subsequent runs pay 10% of cached
 tokens. Estimated cut: 40–60% of input-token cost on those three
 agents, $0.15–0.25 saved per edition.
 
-### 1.3 Signal word count hard-retry (MED / S / P)
-The Signal consistently comes in at 195–210 words against the 185
-cap. The self-check notices and the model ignores. Convert the
-word-count check into a deterministic retry: if `signal.split(/\s+/)`
-exceeds 185, make one Haiku pass with a targeted trim prompt.
-Same mechanism as 1.1, different trigger.
-
 ### 1.4 SourceBundle snapshot for replay (HIGH / M / I)
 At the end of Radar, write the full SourceBundle to
 `drafts/{editionId}-sources.json`. If the orchestrator detects the
@@ -166,6 +159,20 @@ enforcement.
   parses markdown links from the English draft and maps them to
   outlets via the SourceBundle. `QualityGateAgent.execute` overrides
   the LLM's count with the computed value.
+- **1.2 Prompt caching on Localizer, Validator, QualityGate** — all
+  three now put their full prompt in a system block marked with
+  `cache_control: { type: "ephemeral" }`. Matches the Writer pattern.
+  Within-run retries and same-session reruns hit the cache at ~10%
+  of input cost.
+- **1.3 Signal word count hard-retry** — `WriterAgent.repairSignalLength`
+  mirrors `repairInsightBullets`: after the main Writer call, if the
+  Signal body exceeds 185 words, a Sonnet 4.6 trim pass runs. The
+  repair preserves the italicized thread sentence, the four pillar
+  bullets in order, and every `[Read ->](url)` link; it only shortens
+  the implication sentences. Cost when triggered: ~$0.02. Cost when
+  not triggered: $0. The Validator still reports the final count as
+  a warning if the repair itself overshoots; that is a second line
+  of defense, not the primary check.
 
 ---
 
