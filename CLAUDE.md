@@ -7,9 +7,10 @@ strategic newsletter targeting $5M–$100M company executives across the US-LATA
 
 ## Architecture
 
-- 9 agents: Supervisor, Radar, Strategist, Writer, Localizer, Validator, Distributor, Amplifier, Analyst
+- 10 agents: Supervisor, Radar, Strategist, Writer, Localizer, Validator,
+  QualityGate, Distributor, Amplifier, Analyst
 - Orchestration layer manages run lifecycle with run_id and edition_id tracking
-- Structured JSON I/O between all agents
+- Structured JSON I/O between all agents, validated with Zod
 - Human approval gate before publish
 
 ## Tech Stack
@@ -19,7 +20,11 @@ strategic newsletter targeting $5M–$100M company executives across the US-LATA
 - Data: Airtable (pipeline, run ledger) + Google Sheets (metrics, scores)
 - Email: Beehiiv API
 - RSS: Feedly API
-- AI: Anthropic Claude API (claude-sonnet-4-5 for most agents, claude-opus-4-6 for Writer)
+- AI: Anthropic Claude API
+  - Writer, Localizer: `claude-opus-4-7` (highest quality, main editorial work)
+  - Writer repair fallback: `claude-sonnet-4-6`
+  - Strategist, Validator, QualityGate, Amplifier: `claude-sonnet-4-5`
+  - Radar, Analyst, Distributor: no LLM (data/HTTP only)
 - Social: LinkedIn API, X/Twitter API
 
 ## Code Conventions
