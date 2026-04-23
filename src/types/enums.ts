@@ -1,5 +1,18 @@
 import { z } from "zod";
 
+/** Edition identifier in ISO week format YYYY-WW (e.g. "2026-07"). */
+export const EditionIdSchema = z
+  .string()
+  .regex(
+    /^\d{4}-(0[1-9]|[1-4]\d|5[0-3])$/,
+    "editionId must be in YYYY-WW format (e.g. '2026-07')",
+  );
+export type EditionId = z.infer<typeof EditionIdSchema>;
+
+/** Per-step execution status stored in the run ledger. */
+export const StepStatus = z.enum(["pending", "running", "success", "error", "skipped"]);
+export type StepStatus = z.infer<typeof StepStatus>;
+
 /** The 9 agents in the newsletter pipeline. */
 export const AgentName = z.enum([
   "supervisor",
@@ -47,11 +60,6 @@ export type Language = z.infer<typeof Language>;
 /** Source types the Radar agent can ingest. */
 export const SourceType = z.enum(["rss", "api", "manual", "social"]);
 export type SourceType = z.infer<typeof SourceType>;
-
-/** YYYY-WW edition identifier, e.g. "2026-07". */
-export const EditionIdSchema = z
-  .string()
-  .regex(/^\d{4}-\d{2}$/, "Edition ID must be in YYYY-WW format (e.g. 2026-07)");
 
 /** Token usage breakdown for a single agent invocation. */
 export const TokenUsageSchema = z.object({
