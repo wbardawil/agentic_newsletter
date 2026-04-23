@@ -15,15 +15,6 @@ Legend:
 
 ## Tier 1 — ship in the next 2 weeks (immediate payback)
 
-### 1.1 Deterministic bullet-stripper in `WriterAgent.execute()` (HIGH / S / A)
-The 12-step self-check in the Writer prompt still lets bullets into
-THE INSIGHT maybe 1 in 3 runs. Each failure wastes a full Opus retry
-(~$0.25) and 2 minutes of pipeline time. Fix: after the Writer
-returns, scan the `insight` body for `^- ` / `^\* ` lines; if any,
-make a single targeted Haiku 4.5 call to rewrite that paragraph as
-prose. ~30 lines of code in `src/agents/writer.ts`. Cost when
-triggered: ~$0.02. Cost when not triggered: $0.
-
 ### 1.2 Prompt caching on Localizer, Validator, QualityGate (HIGH / S / I)
 Today only the Writer uses `cache_control` on the Voice Bible block.
 The other three LLM agents load the same static templates every run
@@ -159,7 +150,22 @@ enforcement.
   field** — PR #15 (`5e1c478`).
 - **Core Zod schemas including `qaScore`** — PR #14 (`a675a9a`).
 - **Docs alignment and evaluation framework** — commits `defe499`,
-  `c5bf2be`, `1dab8e4`, plus this commit.
+  `c5bf2be`, `1dab8e4`.
+- **1.1 Deterministic bullet-stripper in Writer** — already in
+  production. `WriterAgent.repairInsightBullets` (src/agents/writer.ts)
+  runs a targeted Sonnet 4.6 rewrite pass whenever `hasBulletPoints`
+  matches in the Insight body. Cost ~$0.02 when triggered, $0
+  otherwise.
+- **1.6 Validator counts in deterministic code** — already in
+  production. `src/agents/validator.ts` computes word counts,
+  banned-phrase detection, bullet detection, and long-sentence
+  detection in code; the LLM pass is reserved for qualitative
+  judgments (reframe, misdiagnosis, shareable sentence, OS pillar
+  consistency, Compass genuineness, Apertura mid-thought).
+- **1.7 Source-diversity in deterministic code** — `src/utils/source-diversity.ts`
+  parses markdown links from the English draft and maps them to
+  outlets via the SourceBundle. `QualityGateAgent.execute` overrides
+  the LLM's count with the computed value.
 
 ---
 

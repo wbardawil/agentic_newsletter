@@ -13,6 +13,7 @@ import {
 } from "../types/edition.js";
 import { SourceBundleSchema, type SourceBundle } from "../types/source-bundle.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { computeDistinctOutlets } from "../utils/source-diversity.js";
 
 // ── Input ──────────────────────────────────────────────────────────────────────
 
@@ -183,6 +184,14 @@ export class QualityGateAgent extends BaseAgent<
 
     const text = extractTextFromMessage(message.content);
     const parsed = parseLlmJson(text, "quality-gate") as unknown;
-    return QualityGateResultSchema.parse(parsed);
+    const result = QualityGateResultSchema.parse(parsed);
+
+    // Source diversity is a pure URL-parse, not a judgment call. Override the
+    // LLM's count with the deterministic computation so we do not silently
+    // ship an LLM miscount.
+    return {
+      ...result,
+      sourceDiversity: computeDistinctOutlets(payload.enContent, payload.sourceBundle),
+    };
   }
 }
