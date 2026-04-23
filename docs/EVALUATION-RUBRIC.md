@@ -58,64 +58,89 @@ is what we mean:
 
 ## The six dimensions (100 pts total)
 
+Each sub-criterion is marked **[D]** if it can be computed
+deterministically in code (to be done by
+`src/utils/evaluation-metrics.ts` — see backlog item 2.4) or **[Q]**
+if it requires LLM judgment. The in-pipeline Evaluator agent will
+compute the D-marked metrics in code first and pass the results to
+the LLM along with the draft text, so the LLM only answers the Q
+questions. This cuts evaluation cost by ~75% versus asking the LLM to
+do both counting and judgment.
+
 ### 1. ENGAGEMENT — 25 pts
 Does the reader keep reading?
 
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| Hook ≤ 25 words that produces *"keep reading"* | 8 | First sentence of the Apertura or Insight. Does it state a claim or set one up? |
-| Sustained tension — each section opens something new | 6 | Read the first sentence of every section. Does each one introduce a fresh tension, not a summary? |
-| Time-to-aha ≤ 30 seconds of scroll | 5 | Could the reader hit the Insight's framework in the first 30 seconds of reading? |
-| Close that invites the next issue | 3 | The Compass. Does it create expectation, or does it restate the thesis? |
-| Zero filler — every word earns its place | 3 | Cut every sentence. Is the piece weaker? If not, that sentence was filler. |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| Hook ≤ 25 words that produces *"keep reading"* | 8 | **Q** | First sentence of the Apertura or Insight. Does it state a claim or set one up? |
+| Sustained tension — each section opens something new | 6 | **Q** | Read the first sentence of every section. Does each one introduce a fresh tension, not a summary? |
+| Time-to-aha ≤ 30 seconds of scroll | 5 | **Q** | Could the reader hit the Insight's framework in the first 30 seconds of reading? |
+| Close that invites the next issue | 3 | **Q** | The Compass. Does it create expectation, or does it restate the thesis? |
+| Zero filler — every word earns its place | 3 | **Q** | Cut every sentence. Is the piece weaker? If not, that sentence was filler. |
 
 ### 2. CLARITY — 20 pts (the 5 Cs)
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| Readability: FK grade 7.5–9.5 (EN) or equivalent (ES) | 5 | Count syllables in 5 random sentences. Avg 1–2 syllables/word. |
-| One thesis per edition, not three | 5 | State the Insight in one sentence. If you can't, there are two theses. |
-| Coherence: Insight in Problem → Diagnosis → Framework → Application order | 4 | Check paragraph order against format doc. |
-| Concision: word counts within target | 3 | Signal 95–185, Apertura ≤120, Insight ~450, total 1,000–1,200 |
-| Correctness: grammar, citation discipline | 3 | Every number/quote has a link. No banned phrases. |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| Readability: FK grade 7.5–9.5 (EN) or equivalent (ES) | 5 | **D** | `syllable` package + Flesch-Kincaid formula over the draft body |
+| One thesis per edition, not three | 5 | **Q** | State the Insight in one sentence. If you can't, there are two theses. |
+| Coherence: Insight in Problem → Diagnosis → Framework → Application order | 4 | **Q** | Check paragraph order against format doc. |
+| Concision: word counts within target | 3 | **D** | Per-section `split(/\s+/).length` against targets: Signal 95–185, Apertura ≤120, Insight ~450, total 1,000–1,200 |
+| Correctness: grammar, citation discipline | 3 | **D + Q** | D: every specific number has a markdown link within 250 chars (Citation Guard already does this). Q: grammar and register judgment. |
 
 ### 3. CRAFT — 20 pts
 Sentence-level work.
 
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| Avg sentence length: 12–18 EN / 18–24 ES | 4 | Count words in every 5th sentence. |
-| Passive voice < 5% of sentences | 3 | Grep for *was/were/is/are + past participle*. |
-| `-ly` / `-mente` adverbs ≤ 3 across the edition | 3 | Grep for *simply, clearly, basically, actually, really*. |
-| Voice consistency | 5 | Does the draft sound like one writer, or a committee? |
-| Show > tell — concrete scene, not abstraction | 5 | Does the Apertura contain a named person, named company, specific moment? |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| Avg sentence length: 12–18 EN / 18–24 ES | 4 | **D** | Split on `[.!?]`, count words per sentence, average |
+| Passive voice < 5% of sentences | 3 | **D** | Regex over *was/were/is/are + past participle* (EN) or *ser + participio* + *se + verbo* patterns (ES) |
+| `-ly` / `-mente` adverbs ≤ 3 across the edition | 3 | **D** | Regex count `\w+ly\b` (EN) / `\w+mente\b` (ES), subtract whitelist (*only, family, usually*) |
+| Voice consistency | 5 | **Q** | Does the draft sound like one writer, or a committee? |
+| Show > tell — concrete scene, not abstraction | 5 | **D + Q** | D: each paragraph has ≥1 proper noun, number, or named place. Q: scene quality judgment. |
 
 ### 4. ORIGINALITY — 15 pts
 What does this edition say that no one else said this week?
 
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| Reframe that inverts conventional wisdom | 8 | Shape: *"What you call X is actually Y."* Not a headline, a thesis. |
-| Named framework with humility (not invented jargon) | 4 | The framework has a name and uses established industry terms where they exist. Coined terms are flagged as Wadi's framing. |
-| Unexpected cross-domain connection | 3 | Does the Insight borrow a concept from a different domain to illuminate this one? |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| Reframe that inverts conventional wisdom | 8 | **Q** | Shape: *"What you call X is actually Y."* Not a headline, a thesis. |
+| Named framework with humility (not invented jargon) | 4 | **Q** | The framework has a name and uses established industry terms where they exist. Coined terms are flagged as Wadi's framing. |
+| Unexpected cross-domain connection | 3 | **Q** | Does the Insight borrow a concept from a different domain to illuminate this one? |
 
 ### 5. TRUST — 10 pts
 Does the reader believe what they're reading?
 
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| Every number/quote has a source link | 4 | The Citation Guard catches misses; the score deducts if the Guard flagged anything. |
-| Zero fabrication — verbatim match against the SourceBundle | 3 | Named companies, cited statistics, quoted people must appear in `verbatimFacts` from the Radar output. |
-| Source diversity ≥ 3 outlets | 2 | QualityGate flags <3; full credit for ≥ 3. |
-| Skin-in-the-game visible | 1 | The writer has been in the room with this operator problem. The Apertura proves it. |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| Every number/quote has a source link | 4 | **D** | Citation Guard output: 0 unlinked attributions, and every numeric token has a markdown link within 250 chars |
+| Zero fabrication — verbatim match against the SourceBundle | 3 | **D + Q** | D: named companies and cited statistics present as substrings in `verbatimFacts`. Q: semantic-match judgment where the claim paraphrases a source. |
+| Source diversity ≥ 3 outlets | 2 | **D** | `new Set(sourceBundle.map(s => s.outlet)).size ≥ 3` |
+| Skin-in-the-game visible | 1 | **Q** | The writer has been in the room with this operator problem. The Apertura proves it. |
 
 ### 6. MEMORABILITY — 10 pts
 Does the reader remember this next week?
 
-| Sub-criterion | Pts | Test |
-|---|---|---|
-| One shareable sentence ≤ 20 words, declarative, no hedging | 5 | The Validator surfaces a `shareableSentence` candidate; apply the length + hedging filter. |
-| One sticky concept (name + one-line definition) | 3 | Could the reader paraphrase the framework to a peer in 15 seconds? |
-| Memorable subject line, not generic | 2 | Applies the *"Your AI is a witness, not a tool"* test: claim, not description. |
+| Sub-criterion | Pts | Kind | Test |
+|---|---|---|---|
+| One shareable sentence ≤ 20 words, declarative, no hedging | 5 | **D + Q** | D: candidate sentences ≤20 words. Q: the Validator's `shareableSentence` field gets the declarative / no-hedging judgment. |
+| One sticky concept (name + one-line definition) | 3 | **Q** | Could the reader paraphrase the framework to a peer in 15 seconds? |
+| Memorable subject line, not generic | 2 | **Q** | Applies the *"Your AI is a witness, not a tool"* test: claim, not description. |
+
+---
+
+## Deterministic vs. qualitative split — summary
+
+Of the 100 points:
+- **≈ 44 pts** are fully or partly **D** (computed in code by
+  `src/utils/evaluation-metrics.ts`): most of Clarity, most of Craft,
+  most of Trust.
+- **≈ 56 pts** are **Q** (require LLM judgment): most of Engagement,
+  Originality, and Memorability — the parts that ask *"is this
+  good"* rather than *"how many of these are there"*.
+
+For the ES-specific auto-deductions below (calques, anglicisms,
+gerunds, formatting), all are **D** — grep + set-diff operations that
+do not need an LLM.
 
 ---
 
