@@ -317,10 +317,27 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     // ── LLM checks ──────────────────────────────────────────────────────────
     const prompt = buildPrompt(context, payload, sections);
 
+    // The Validator prompt is a mix of static rules (the rubric, the banned-
+    // phrase rationale, the shareable-sentence test) and the draft sections
+    // under review. Caching the full prompt as one system block benefits
+    // retries within the 5-minute window; the cache prefix-matches as long
+    // as the rules text stays fixed.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
       max_tokens: 1500,
-      messages: [{ role: "user", content: prompt }],
+      system: [
+        {
+          type: "text",
+          text: prompt,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
+      messages: [
+        {
+          role: "user",
+          content: "Validate the draft above. Output valid JSON only, matching the schema defined in the instructions.",
+        },
+      ],
     });
 
     const message = await stream.finalMessage();

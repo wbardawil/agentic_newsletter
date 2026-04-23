@@ -112,11 +112,30 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
   ): Promise<LocalizedContent> {
     const prompt = buildPrompt(context, payload);
 
+    // Move the full prompt into the system block with ephemeral cache_control.
+    // The rules, anti-calque tables, 18-step self-check, and Voice Bible are
+    // static across runs; moving them to a cached system block means retries
+    // within the 5-minute window and same-session reruns pay ~10% of input
+    // cost for the cached prefix. The per-run content (thesisEN, sections,
+    // IDs) is still inside the prompt, so full cross-week hits are rare — but
+    // within-run retries benefit immediately.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
       max_tokens: 16000,
       thinking: { type: "adaptive" },
-      messages: [{ role: "user", content: prompt }],
+      system: [
+        {
+          type: "text",
+          text: prompt,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
+      messages: [
+        {
+          role: "user",
+          content: `Transcreate the English edition above into Spanish following every rule. Output valid JSON only — no preamble, no markdown wrapper.`,
+        },
+      ],
     });
 
     const message = await stream.finalMessage();
