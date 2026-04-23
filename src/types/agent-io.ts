@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { AgentName, TokenUsageSchema } from "./enums.js";
+import { AgentName, TokenUsageSchema, EditionIdSchema } from "./enums.js";
 
 /** Per-call cost details stored alongside token usage. */
 export const CostEntrySchema = z.object({
@@ -19,7 +19,7 @@ export type CostEntry = z.infer<typeof CostEntrySchema>;
 export const AgentOutputSchema = z.object({
   agentName: AgentName,
   runId: z.string().uuid(),
-  editionId: z.string(),
+  editionId: EditionIdSchema,
   timestamp: z.string().datetime(),
   durationMs: z.number().int().nonnegative(),
   /** Boolean outcome — kept for backward compatibility. */
@@ -49,7 +49,7 @@ export type AgentOutput<T = unknown> = Omit<
  */
 export const AgentInputSchema = z.object({
   runId: z.string().uuid(),
-  editionId: z.string(),
+  editionId: EditionIdSchema,
   agentName: AgentName,
   payload: z.unknown(),
 });

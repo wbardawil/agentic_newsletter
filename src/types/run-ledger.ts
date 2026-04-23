@@ -15,6 +15,7 @@ export type StepTimestamps = z.infer<typeof StepTimestampsSchema>;
  */
 export const AgentRunEntrySchema = z.object({
   agentName: AgentName,
+  stepId: z.string().uuid().optional(),
   startedAt: z.string().datetime(),
   completedAt: z.string().datetime().optional(),
   durationMs: z.number().int().nonnegative().optional(),
@@ -30,8 +31,12 @@ export const AgentRunEntrySchema = z.object({
   modelUsed: z.string().optional(),
   /** Token counts for this step's primary LLM call. */
   tokenUsage: TokenUsageSchema.optional(),
+  /** Top-level cost in USD for easy access without drilling into `cost`. */
+  costUsd: z.number().nonnegative().optional(),
   /** SHA-256 hex digest of the agent's serialised output payload. */
   outputHash: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+  /** UUID used to deduplicate publish API calls. */
+  publishIdempotencyKey: z.string().uuid().optional(),
 });
 export type AgentRunEntry = z.infer<typeof AgentRunEntrySchema>;
 
