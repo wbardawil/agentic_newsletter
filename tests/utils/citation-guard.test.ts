@@ -66,6 +66,45 @@ describe("citation-guard", () => {
     expect(scanEdition([], "en")).toHaveLength(0);
   });
 
+  describe("sentence-start articles are not entities", () => {
+    it("does NOT flag 'Un documento' in Spanish prose (Un + documento collision)", () => {
+      // "documento" appears in ATTRIBUTION_VERBS as the unaccented fallback
+      // for "documentó". When a sentence starts with "Un documento...", the
+      // capitalized "Un" must be treated as an article, not an entity.
+      const body =
+        "Sus próximas reglas de gobierno. Un documento compartido más un resumen con IA le gana velocidad a un equipo sin él.";
+      expect(scanSection(body, "es/tool")).toHaveLength(0);
+    });
+
+    it("does NOT flag 'Una empresa' at sentence start", () => {
+      const body = "El problema es estructural. Una empresa documentó este patrón y lo compartió.";
+      expect(scanSection(body, "es/insight")).toHaveLength(0);
+    });
+
+    it("does NOT flag 'The reader said' at sentence start (English article)", () => {
+      const body = "The reader said the tool was working as designed.";
+      expect(scanSection(body, "en/insight")).toHaveLength(0);
+    });
+
+    it("does NOT flag 'An executive announced' at sentence start", () => {
+      const body = "An executive announced the restructuring on Monday.";
+      expect(scanSection(body, "en/fieldReport")).toHaveLength(0);
+    });
+
+    it("STILL flags a real attribution after a sentence-starting article", () => {
+      // The article at sentence start must not swallow a legitimate attribution
+      // that follows elsewhere in the section. Uses "ha documentado" (which
+      // ends in 'o', a \w char) rather than "documentó" because \b + accented
+      // chars has a pre-existing quirk in the regex engine (tracked in
+      // docs/IMPROVEMENT-BACKLOG.md — scope of this fix is articles only).
+      const body =
+        "Un documento compartido ayuda. Grupo Elektra ha documentado el patrón en su reporte.";
+      const issues = scanSection(body, "es/fieldReport");
+      expect(issues).toHaveLength(1);
+      expect(issues[0]!.entity).toBe("Grupo Elektra");
+    });
+  });
+
   describe("scanSignalBullets", () => {
     it("flags a bullet missing a link", () => {
       const body = "- Fed holds rates steady — operators have a refinancing window.";
