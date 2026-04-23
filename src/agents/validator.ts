@@ -46,7 +46,12 @@ const TOTAL_WORD_TARGET = { warnMin: 950, warnMax: 1300 };
 
 // ── Compiled regex constants (not recreated per call) ─────────────────────────
 
-const BULLET_RE = /^\s*[-*•]/m;
+// Match a real markdown bullet: marker + whitespace + content.
+// Without the `\s+\S` tail this matches italicized `*text*` lines and
+// stray `-` dashes — false positives that fire "Bullet points not
+// permitted" on legitimate Insight prose. The Writer's hasBulletPoints
+// uses the same shape so both agents agree on what counts as a bullet.
+const BULLET_RE = /^[ \t]*[-*•]\s+\S/m;
 const SENTENCE_SPLIT_RE = /(?<=[.!?])\s+/;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

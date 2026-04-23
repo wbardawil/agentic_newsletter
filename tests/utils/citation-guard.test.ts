@@ -115,5 +115,54 @@ describe("citation-guard", () => {
       const issues = scanSignalBullets(body, "en/news");
       expect(issues).toHaveLength(0);
     });
+
+    describe("multi-line Pattern A bullets", () => {
+      // After the 2026-04-23 Signal upgrade, each bullet spans three lines:
+      // bullet marker + fact, bold punch line on a new line, then the
+      // [Read ->](url) on its own line. The bullet block must be treated
+      // as one unit when checking for the link.
+      it("does NOT flag a three-layer bullet where the link is on its own line", () => {
+        const body = [
+          "*This week: four patterns.*",
+          "",
+          "- **Strategy:** Mexican footwear imports from China fell 62% in early 2026.",
+          "  **Strategy is the discipline of deciding which trade-regime assumptions are contracts.**",
+          "  [Read →](https://example.com/strategy)",
+        ].join("\n");
+        const issues = scanSignalBullets(body, "en/news");
+        expect(issues).toHaveLength(0);
+      });
+
+      it("flags a three-layer bullet that is missing its link on every line", () => {
+        const body = [
+          "- **Strategy:** Mexican footwear imports fell 62%.",
+          "  **Strategy is discipline.**",
+          "  [Read →](https://example.com/ok)",
+          "- **Operating Models:** Something happened.",
+          "  **The operating model is what survives.**",
+          // no link on any of the three lines of this block
+        ].join("\n");
+        const issues = scanSignalBullets(body, "en/news");
+        expect(issues).toHaveLength(1);
+        expect(issues[0]!.excerpt).toContain("Operating Models");
+      });
+
+      it("flags only the blocks missing a link in a mixed Pattern A set", () => {
+        const body = [
+          "- **Strategy:** Fact one.",
+          "  **Claim one.**",
+          "  [Read →](https://example.com/1)",
+          "- **Operating Models:** Fact two.",
+          "  **Claim two.**",
+          // no link
+          "- **Technology:** Fact three.",
+          "  **Claim three.**",
+          "  [Read →](https://example.com/3)",
+        ].join("\n");
+        const issues = scanSignalBullets(body, "en/news");
+        expect(issues).toHaveLength(1);
+        expect(issues[0]!.excerpt).toContain("Operating Models");
+      });
+    });
   });
 });
