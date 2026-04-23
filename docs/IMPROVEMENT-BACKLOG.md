@@ -74,6 +74,40 @@ Current retry is blind exponential backoff for any error. Split into:
 - 400 / schema validation / banned-phrase failure → no retry, escalate
 Saves tokens and time on unrecoverable errors.
 
+### 2.7 Regional anchoring — hybrid US / MX architecture (HIGH / M / A+E)
+Today the pipeline produces one story and transcreates. A US operator
+in Dallas and a Mexican operator in Monterrey receive the same angle
+in different languages. The Insight framework is genuinely universal;
+the *anchoring* news, the *cited* company, and the *forward-looking*
+regulatory signal are not.
+
+**The split:**
+
+| Shared across regions | Regional per edition |
+|---|---|
+| The Insight (framework, reframe, application) | THE SIGNAL — feed pool tagged by region, 4 bullets authored per market |
+| The strategic thesis and OS pillar of the week | THE FIELD REPORT — US-anchored named company for EN, MX-anchored for ES |
+| THE TOOL (framework artifacts are universal) | THE COMPASS — regulatory / macro signal specific to each market |
+| THE APERTURA scene (Wadi's client — can be either market) | Subject line and preheader — tuned to each audience |
+
+**Implementation changes:**
+
+- `src/types/source-bundle.ts` — add `SourceItemSchema.region: "us" | "mx" | "corridor"`
+- `src/types/edition.ts` — `StrategicAngleSchema` gains `regionalAnchors: { us: SourceRef, mx: SourceRef }` and keeps a shared `insightFramework`
+- `src/agents/radar.ts` — tag each item with a region (heuristic: feed source list → region map)
+- `src/agents/strategist.ts` — prompt update: pick one universal angle + one anchor per region from the tagged pool
+- `src/agents/writer.ts` — use `anchorUS` for Signal / Field Report / Compass sections
+- `src/agents/localizer.ts` — dual mode: transcreate Insight / Tool / Apertura from EN; **author** Signal / Field Report / Compass fresh from `anchorMX` (not transcreate from EN). `config/prompts/localizer.md` needs a mode switch for the authored sections.
+
+**Cost impact:** +$0.15-0.20 per edition (Localizer does one full transcreation pass + one authoring pass for the regional sections). Total edition cost estimate after Tier 1 optimizations: ~$0.50-0.60.
+
+**Editorial impact:** each edition reads native to its reader. The ES reader no longer gets a transcreation of a US-anchored story.
+
+**Trade-offs considered:**
+- Full pipeline fork (two Radars, two Strategists, two Writers) would double cost and risk losing editorial coherence across languages. Rejected.
+- Current status quo (one story, two transcreations) is cheap but caps the ES at "translated-feel" forever. Rejected after 2026-23 test.
+- Hybrid (this option) keeps editorial coherence (both editions share the week's framework) while giving each market a native anchor. Accepted.
+
 ---
 
 ## Tier 3 — opportunistic (high value, not urgent)
