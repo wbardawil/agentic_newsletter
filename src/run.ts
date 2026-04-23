@@ -122,7 +122,7 @@ function renderMarkdown(
     `---`,
     ``,
     ...(isEs
-      ? [`> **Resumen del Insight:** ${angle.thesis}`, ``, `---`, ``]
+      ? [`> **Resumen del Insight:** ${content.thesis ?? angle.thesis}`, ``, `---`, ``]
       : [`> **Insight summary:** ${angle.thesis}`, ``, `---`, ``]),
     `## ${signalHeading}`,
     ``,
