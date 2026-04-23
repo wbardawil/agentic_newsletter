@@ -19,6 +19,7 @@ import {
 } from "../utils/voice-bible-loader.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
+import { findBannedPhrases } from "../utils/banned-phrases.js";
 import {
   loadAperturaHistoryByLanguage,
   formatAperturaExamplesForPrompt,
@@ -206,6 +207,20 @@ function hasBulletPoints(text: string): boolean {
   return /^[ \t]*[-*•]\s+\S/m.test(text) || /^[ \t]*\d+\.\s+\S/m.test(text);
 }
 
+function countWords(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * The Signal section has a hard target of 95–185 words. The Writer's self-check
+ * notices overruns but does not consistently trim. Return true when the Writer's
+ * output is over the ceiling — execute() then makes a targeted trim pass.
+ */
+const SIGNAL_WORD_CEILING = 185;
+function isSignalOverCeiling(signal: string): boolean {
+  return countWords(signal) > SIGNAL_WORD_CEILING;
+}
+
 export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
   readonly name: AgentName = "writer";
   readonly inputSchema = WriterInputSchema;
@@ -240,6 +255,104 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     );
     const block = response.content[0];
     return block?.type === "text" ? block.text.trim() : insight;
+  }
+
+  /**
+   * If a section contains any phrase from the banned list, make a targeted
+   * Sonnet call to rewrite the section with plainer language. The repair
+   * preserves citations, markdown structure, numbers, and names; only the
+   * offending phrases change.
+   *
+   * Returns the original body when no banned phrases are found (no LLM call).
+   */
+  private async repairBannedPhrases(
+    sectionName: string,
+    body: string,
+  ): Promise<string> {
+    const found = findBannedPhrases(body);
+    if (found.length === 0) return body;
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    this.logger.info(
+      `${sectionName} contains banned phrase(s) [${found.join(", ")}] — running plain-language repair pass`,
+    );
+    const response = await this.deps.apiClients.anthropic.messages.create({
+      model: REPAIR_MODEL,
+      max_tokens: 1500,
+      messages: [
+        {
+          role: "user",
+          content:
+            `The following newsletter section contains banned voice-bible phrase(s): ${found
+              .map((p) => `"${p}"`)
+              .join(", ")}. ` +
+            `Rewrite the section replacing every banned phrase with plainer, concrete language. ` +
+            `Rules:\n` +
+            `- Keep every cited number, quote, company name, and person exactly as written.\n` +
+            `- Keep every markdown link "[label](url)" unchanged.\n` +
+            `- Keep all headings, bullet markers, and paragraph structure.\n` +
+            `- Do not add new claims or examples — only rewrite the banned phrases.\n` +
+            `- Prefer a direct verb or concrete noun over vague jargon.\n` +
+            `Output only the rewritten section, nothing else:\n\n${body}`,
+        },
+      ],
+    });
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+    const block = response.content[0];
+    const rewritten = block?.type === "text" ? block.text.trim() : body;
+    const stillFound = findBannedPhrases(rewritten);
+    if (stillFound.length > 0) {
+      this.logger.warn(
+        `${sectionName} repair did not clear all banned phrases: [${stillFound.join(", ")}] still present`,
+      );
+    } else {
+      this.logger.info(`${sectionName} repair cleared all banned phrases`);
+    }
+    return rewritten;
+  }
+
+  /**
+   * If the Signal section runs over 185 words, make a targeted Sonnet call to trim.
+   * Preserves the italicized thread sentence and every `[Read ->](url)` link.
+   */
+  private async repairSignalLength(signal: string): Promise<string> {
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    const before = countWords(signal);
+    this.logger.info(
+      `Signal word count is ${before} (ceiling ${SIGNAL_WORD_CEILING}) — running length repair pass`,
+    );
+    const response = await this.deps.apiClients.anthropic.messages.create({
+      model: REPAIR_MODEL,
+      max_tokens: 1500,
+      messages: [
+        {
+          role: "user",
+          content:
+            `The newsletter Signal section below is ${before} words. The target is 95–185 words. ` +
+            `Trim the implication sentence on each pillar bullet until the total is between 150 and 180 words. ` +
+            `Rules:\n` +
+            `- Keep the italicized thread sentence at the top exactly as written.\n` +
+            `- Keep exactly 4 pillar bullets in this order: Strategy, Operating Models, Technology, Human Capital.\n` +
+            `- Keep every \`[Read ->](url)\` link at the end of its bullet unchanged.\n` +
+            `- Keep every cited number, company name, and quoted source unchanged.\n` +
+            `- Do not remove any bullet. Only shorten.\n` +
+            `Output only the rewritten Signal section, nothing else:\n\n${signal}`,
+        },
+      ],
+    });
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+    const block = response.content[0];
+    const trimmed = block?.type === "text" ? block.text.trim() : signal;
+    const after = countWords(trimmed);
+    this.logger.info(`Signal length repair: ${before} → ${after} words`);
+    return trimmed;
   }
 
   protected async execute(
@@ -295,6 +408,52 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     if (hasBulletPoints(writerOutput.sections.insight)) {
       writerOutput.sections.insight = await this.repairInsightBullets(writerOutput.sections.insight);
     }
+
+    if (isSignalOverCeiling(writerOutput.sections.signal)) {
+      writerOutput.sections.signal = await this.repairSignalLength(writerOutput.sections.signal);
+    }
+
+    // Banned-phrase scan runs over every prose section. Insight has seen the
+    // most violations, but a single offender in Signal, Field Report, Tool, or
+    // Compass still fails the Validator, so we sweep the whole body.
+    writerOutput.sections.signal = await this.repairBannedPhrases(
+      "Signal",
+      writerOutput.sections.signal,
+    );
+    writerOutput.sections.insight = await this.repairBannedPhrases(
+      "Insight",
+      writerOutput.sections.insight,
+    );
+    writerOutput.sections.fieldReport = await this.repairBannedPhrases(
+      "Field Report",
+      writerOutput.sections.fieldReport,
+    );
+    writerOutput.sections.tool = await this.repairBannedPhrases(
+      "Tool",
+      writerOutput.sections.tool,
+    );
+    writerOutput.sections.compass = await this.repairBannedPhrases(
+      "Compass",
+      writerOutput.sections.compass,
+    );
+    // Apertura options — run the sweep on the encoded body (delimiters are
+    // plain text; the repair preserves them).
+    for (let i = 0; i < writerOutput.sections.aperturaOptions.length; i++) {
+      const opt = writerOutput.sections.aperturaOptions[i]!;
+      opt.body = await this.repairBannedPhrases(
+        `Apertura Option ${opt.label}`,
+        opt.body,
+      );
+    }
+    // Subject and preheader are short — scan but only repair if needed.
+    writerOutput.subject = await this.repairBannedPhrases(
+      "Subject line",
+      writerOutput.subject,
+    );
+    writerOutput.preheader = await this.repairBannedPhrases(
+      "Preheader",
+      writerOutput.preheader,
+    );
 
     return sanitizeLocalizedContent(transformToLocalizedContent(writerOutput, lang));
   }

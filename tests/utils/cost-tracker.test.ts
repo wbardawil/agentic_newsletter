@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { createCostTracker } from "../../src/utils/cost-tracker.js";
 
 describe("createCostTracker", () => {
@@ -21,11 +21,50 @@ describe("createCostTracker", () => {
     expect(cost.costUsd).toBeCloseTo(4.5, 2);
   });
 
-  it("throws on unknown models to prevent silent cost miscalculation", () => {
+  it("warns on unknown models and records zero cost (does not throw)", () => {
     const tracker = createCostTracker();
-    expect(() => tracker.recordUsage("unknown-model", 1000, 500)).toThrow(
-      /Unknown model "unknown-model"/,
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => undefined);
+
+    // Throwing here used to propagate up through repair-pass callers into the
+    // BaseAgent retry loop, which re-ran the full (expensive) Opus call.
+    // Defense in depth: warn once, return 0, keep the pipeline moving.
+    expect(() => tracker.recordUsage("unknown-model", 1000, 500)).not.toThrow();
+    expect(warnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('Unknown model "unknown-model"'),
     );
+
+    const cost = tracker.getCurrentCost();
+    expect(cost.inputTokens).toBe(1000);
+    expect(cost.outputTokens).toBe(500);
+    expect(cost.costUsd).toBe(0);
+
+    warnSpy.mockRestore();
+  });
+
+  it("warns only once per unknown model (no log spam)", () => {
+    const tracker = createCostTracker();
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => undefined);
+
+    tracker.recordUsage("some-new-model", 100, 50);
+    tracker.recordUsage("some-new-model", 200, 100);
+    tracker.recordUsage("some-new-model", 300, 150);
+
+    expect(warnSpy).toHaveBeenCalledTimes(1);
+    warnSpy.mockRestore();
+  });
+
+  it("handles claude-sonnet-4-6 pricing (same as 4-5)", () => {
+    const tracker = createCostTracker();
+    tracker.recordUsage("claude-sonnet-4-6", 1_000_000, 100_000);
+    expect(tracker.getCurrentCost().costUsd).toBeCloseTo(4.5, 2);
+  });
+
+  it("handles claude-haiku-4-5 pricing", () => {
+    const tracker = createCostTracker();
+    // claude-haiku-4-5: $0.80/1M input, $4.00/1M output
+    tracker.recordUsage("claude-haiku-4-5", 1_000_000, 100_000);
+    // $0.80 input + $0.40 output = $1.20
+    expect(tracker.getCurrentCost().costUsd).toBeCloseTo(1.2, 2);
   });
 
   it("accumulates across multiple calls", () => {

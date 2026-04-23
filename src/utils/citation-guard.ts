@@ -279,6 +279,21 @@ export function scanSection(body: string, sectionLabel: string): CitationIssue[]
 /**
  * Verify that every bullet in The Signal section contains a Markdown link.
  * Returns one CitationIssue per bullet that is missing a link.
+ *
+ * Signal bullets have two valid shapes:
+ *
+ *   Legacy single-line:
+ *     - **Pillar:** fact. Implication. [Read ->](url)
+ *
+ *   Pattern A three-layer (2026-04-23+):
+ *     - **Pillar:** fact sentences.
+ *       **Bold punch line on its own line.**
+ *       [Read ->](url)
+ *
+ * To support both, we parse bullets as BLOCKS: each block starts with a
+ * line matching `/^\s*[-*]\s/` and includes every subsequent non-bullet
+ * line until the next bullet or end of body. Then we check the whole
+ * block for a markdown link.
  */
 export function scanSignalBullets(
   body: string,
@@ -286,15 +301,26 @@ export function scanSignalBullets(
 ): CitationIssue[] {
   if (!body.trim()) return [];
   const issues: CitationIssue[] = [];
-  // Trailing `\s` is required: without it, italicized `*...*` lines match as bullets.
-  const bullets = body
-    .split("\n")
-    .filter((line) => /^\s*[-*]\s/.test(line));
 
-  for (const bullet of bullets) {
-    if (!/\]\(https?:\/\//.test(bullet)) {
+  const isBulletStart = (line: string): boolean => /^\s*[-*]\s/.test(line);
+
+  const lines = body.split("\n");
+  const blocks: string[] = [];
+  let current: string[] = [];
+  for (const line of lines) {
+    if (isBulletStart(line)) {
+      if (current.length > 0) blocks.push(current.join("\n"));
+      current = [line];
+    } else if (current.length > 0) {
+      current.push(line);
+    }
+  }
+  if (current.length > 0) blocks.push(current.join("\n"));
+
+  for (const block of blocks) {
+    if (!/\]\(https?:\/\//.test(block)) {
       issues.push({
-        excerpt: bullet.trim().slice(0, 120),
+        excerpt: block.trim().replace(/\s+/g, " ").slice(0, 120),
         entity: "(signal bullet)",
         verb: "(missing link)",
         section: sectionLabel,

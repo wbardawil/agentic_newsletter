@@ -2,7 +2,9 @@ import type { CostEntry } from "../types/agent-io.js";
 
 /** USD per 1M tokens — update as Anthropic pricing changes. */
 const MODEL_PRICING: Record<string, { input: number; output: number }> = {
+  "claude-haiku-4-5": { input: 0.8, output: 4.0 },
   "claude-sonnet-4-5": { input: 3.0, output: 15.0 },
+  "claude-sonnet-4-6": { input: 3.0, output: 15.0 },
   "claude-opus-4-6": { input: 5.0, output: 25.0 },
   "claude-opus-4-7": { input: 5.0, output: 25.0 },
 };
@@ -21,6 +23,8 @@ export function createCostTracker(): CostTracker {
   let currentCostUsd = 0;
   let totalCostUsd = 0;
 
+  const warnedModels = new Set<string>();
+
   function calculateCost(
     model: string,
     inputTokens: number,
@@ -28,9 +32,19 @@ export function createCostTracker(): CostTracker {
   ): number {
     const pricing = MODEL_PRICING[model];
     if (!pricing) {
-      throw new Error(
-        `Unknown model "${model}" — add it to MODEL_PRICING in cost-tracker.ts`,
-      );
+      // WARN instead of throw. An unknown model used to propagate up through
+      // recordUsage → repair pass → agent.execute → BaseAgent retry loop,
+      // costing a full Opus re-run for every attempt. Log once per unseen
+      // model; return 0 cost. Auditor can still catch missing pricing from
+      // the warning line in the run log.
+      if (!warnedModels.has(model)) {
+        warnedModels.add(model);
+        console.warn(
+          `[cost-tracker] Unknown model "${model}" — cost recorded as $0. ` +
+            `Add it to MODEL_PRICING in src/utils/cost-tracker.ts to restore accurate accounting.`,
+        );
+      }
+      return 0;
     }
     return (
       (inputTokens / 1_000_000) * pricing.input +

@@ -15,15 +15,6 @@ Legend:
 
 ## Tier 1 — ship in the next 2 weeks (immediate payback)
 
-### 1.1 Deterministic bullet-stripper in `WriterAgent.execute()` (HIGH / S / A)
-The 12-step self-check in the Writer prompt still lets bullets into
-THE INSIGHT maybe 1 in 3 runs. Each failure wastes a full Opus retry
-(~$0.25) and 2 minutes of pipeline time. Fix: after the Writer
-returns, scan the `insight` body for `^- ` / `^\* ` lines; if any,
-make a single targeted Haiku 4.5 call to rewrite that paragraph as
-prose. ~30 lines of code in `src/agents/writer.ts`. Cost when
-triggered: ~$0.02. Cost when not triggered: $0.
-
 ### 1.2 Prompt caching on Localizer, Validator, QualityGate (HIGH / S / I)
 Today only the Writer uses `cache_control` on the Voice Bible block.
 The other three LLM agents load the same static templates every run
@@ -31,29 +22,6 @@ without caching. Add an ephemeral cache block to each prompt — the
 first run pays full input cost, subsequent runs pay 10% of cached
 tokens. Estimated cut: 40–60% of input-token cost on those three
 agents, $0.15–0.25 saved per edition.
-
-### 1.3 Signal word count hard-retry (MED / S / P)
-The Signal consistently comes in at 195–210 words against the 185
-cap. The self-check notices and the model ignores. Convert the
-word-count check into a deterministic retry: if `signal.split(/\s+/)`
-exceeds 185, make one Haiku pass with a targeted trim prompt.
-Same mechanism as 1.1, different trigger.
-
-### 1.4 SourceBundle snapshot for replay (HIGH / M / I)
-At the end of Radar, write the full SourceBundle to
-`drafts/{editionId}-sources.json`. If the orchestrator detects the
-snapshot on a subsequent run, use it instead of rescanning RSS. Gives
-deterministic replay when a downstream agent fails — today, rerunning
-after a Writer failure pulls a different corridor news window and
-invalidates the Strategist's angle.
-
-### 1.5 End-to-end smoke test (HIGH / M / I)
-One integration test that mocks `anthropic.messages.stream` and runs
-the pipeline end-to-end for a fixed SourceBundle fixture. Asserts:
-draft JSON is valid, ES has `thesis` populated, Citation Guard flags
-nothing, Validator score ≥ 70. Would have caught the English-leakage
-`thesis` bug before production. Currently there are 148 unit tests
-and zero integration tests.
 
 ---
 
@@ -159,7 +127,62 @@ enforcement.
   field** — PR #15 (`5e1c478`).
 - **Core Zod schemas including `qaScore`** — PR #14 (`a675a9a`).
 - **Docs alignment and evaluation framework** — commits `defe499`,
-  `c5bf2be`, `1dab8e4`, plus this commit.
+  `c5bf2be`, `1dab8e4`.
+- **1.1 Deterministic bullet-stripper in Writer** — already in
+  production. `WriterAgent.repairInsightBullets` (src/agents/writer.ts)
+  runs a targeted Sonnet 4.6 rewrite pass whenever `hasBulletPoints`
+  matches in the Insight body. Cost ~$0.02 when triggered, $0
+  otherwise.
+- **1.6 Validator counts in deterministic code** — already in
+  production. `src/agents/validator.ts` computes word counts,
+  banned-phrase detection, bullet detection, and long-sentence
+  detection in code; the LLM pass is reserved for qualitative
+  judgments (reframe, misdiagnosis, shareable sentence, OS pillar
+  consistency, Compass genuineness, Apertura mid-thought).
+- **1.7 Source-diversity in deterministic code** — `src/utils/source-diversity.ts`
+  parses markdown links from the English draft and maps them to
+  outlets via the SourceBundle. `QualityGateAgent.execute` overrides
+  the LLM's count with the computed value.
+- **1.2 Prompt caching on Localizer, Validator, QualityGate** — all
+  three now put their full prompt in a system block marked with
+  `cache_control: { type: "ephemeral" }`. Matches the Writer pattern.
+  Within-run retries and same-session reruns hit the cache at ~10%
+  of input cost.
+- **1.3 Signal word count hard-retry** — `WriterAgent.repairSignalLength`
+  mirrors `repairInsightBullets`: after the main Writer call, if the
+  Signal body exceeds 185 words, a Sonnet 4.6 trim pass runs. The
+  repair preserves the italicized thread sentence, the four pillar
+  bullets in order, and every `[Read ->](url)` link; it only shortens
+  the implication sentences. Cost when triggered: ~$0.02. Cost when
+  not triggered: $0. The Validator still reports the final count as
+  a warning if the repair itself overshoots; that is a second line
+  of defense, not the primary check.
+- **1.4 SourceBundle snapshot for replay** — `src/utils/source-bundle-snapshot.ts`
+  writes `drafts/{editionId}-sources.json` after Radar returns.
+  `src/run.ts` checks for the snapshot before running Radar and loads
+  it instead of rescanning RSS when present. Makes pipeline reruns
+  deterministic: a Writer failure no longer invalidates the
+  Strategist's angle with a fresh news window.
+- **1.5 End-to-end smoke tests** — `tests/helpers/fake-anthropic.ts`
+  provides a queueable fake of the Anthropic SDK;
+  `tests/integration/pipeline-smoke.test.ts` wires real agents to it
+  and asserts the three coordination invariants that past bugs have
+  violated: (1) LocalizerAgent populates `thesis` in ES output so the
+  "Resumen del Insight" render does not leak English; (2) QualityGate
+  overrides the LLM's `sourceDiversity` with the deterministic count;
+  (3) Validator's `wordCounts` and `score` come from code, not the
+  LLM. Future agent-level changes now have a safety net.
+- **1.8 Deterministic banned-phrase stripper in Writer** —
+  `src/utils/banned-phrases.ts` is now the single source of truth for
+  the voice-bible ban list (Validator refactored to import from it).
+  `WriterAgent.repairBannedPhrases` runs a Sonnet 4.6 rewrite pass on
+  every prose section (Signal, Apertura options, Insight, Field
+  Report, Tool, Compass, Subject, Preheader) whenever a banned phrase
+  is detected. The scan is O(n) regex; the LLM call only fires on
+  match. Shipped after edition 2026-24 reached the Validator with
+  "disruption" in the Insight despite the Writer prompt's 12-step
+  self-check banning it. Mirrors the same pattern as 1.1
+  (bullet-stripper) and 1.3 (signal length).
 
 ---
 

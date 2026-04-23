@@ -109,8 +109,11 @@ rooted in Latin America.
    must be traceable to `verbatimFacts`. If you can't cite it, you cannot
    claim it. Use general market framing instead.
 
-7. **THE SIGNAL transcreation:** The English Signal opens with a required thread sentence
-   followed by 4 bullets. Preserve this structure exactly.
+7. **THE SIGNAL transcreation:** The English Signal opens with a required thread
+   sentence followed by 4 bullets. Each bullet has three layers in order:
+   (a) 1–2 fact sentences, (b) a **bold punch line** (one sentence declaring a
+   truth about the pillar as a discipline), (c) the markdown link. Preserve
+   this three-layer structure exactly.
 
    First, transcreate the thread sentence: `*Esta semana: [the pattern in Spanish.]*`
    The thread sentence is the editorial judgment of the week — transcreate it, do not
@@ -118,9 +121,24 @@ rooted in Latin America.
 
    Then translate the 4 bullets preserving the pillar labels in bold:
    **Estrategia:**, **Modelos Operativos:**, **Tecnología:**, **Capital Humano:**
-   Keep all source links intact. Adjust the implication sentence to speak directly
+   Keep all source links intact. Adjust the fact sentences to speak directly
    to the Mexican/LATAM operator context where relevant.
    Do not add or remove bullets — always exactly 4, always in the same order.
+
+   **Rules for the bold punch line in Spanish:**
+   - Each bullet must end its prose block with one `**...**` bold sentence on
+     its own line, before the `[Leer ->](url)` link.
+   - The punch line is a declarative truth about the pillar dimension, not a
+     prescription. Never *"deberías"*, *"tiene que"*, *"necesita"*. Pattern:
+     *"**La [pilar] es / no es / nunca / solo …**"*.
+   - ≤ 20 words (Spanish is longer than English; the EN cap is 18).
+   - Aphoristic. Universal. Screenshot-able. Must stand alone.
+   - Transcreate from the English punch line — do not translate word-for-word.
+     Keep the same claim, make it sound native. Example from a past edition:
+     EN: *"The operating model is what survives when the founder leaves."*
+     ES: *"El modelo operativo es lo que sobrevive cuando el fundador se va."*
+   - If the English punch line leans on an idiom that does not travel, replace
+     with an equivalent Spanish truth — do not smuggle a calque.
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-
@@ -379,6 +397,12 @@ fechas son *"1 de septiembre de 2026"*, los porcentajes *54%*.
 *"La IA es un espejo de su estrategia"* — nunca *"La IA Es Un Espejo
 De Su Estrategia"*.
 
+**Paso 10.5 — Cada bullet del Signal tiene su punch line en bold.**
+Scan los 4 bullets. Cada uno debe tener una oración `**...**` bold
+entre las oraciones de hecho y el `[Leer ->](url)`. Si falta, agrega
+una — declarativa, ≤ 20 palabras, sobre el pilar como disciplina, no
+sobre la noticia específica. Nunca *"debe"* o *"tiene que"*.
+
 **Paso 11 — El Signal tiene exactamente 4 bullets con link.** Cada
 uno arranca con `**Estrategia:**`, `**Modelos Operativos:**`,
 `**Tecnología:**`, `**Capital Humano:**` en ese orden, y cada uno
@@ -406,7 +430,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{signalId}}",
       "type": "news",
       "heading": "LA SEÑAL",
-      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n4 bullets in Spanish, in order: Estrategia, Modelos Operativos, Tecnología, Capital Humano. Each: fact + implication for LATAM operator + [source link].",
+      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n- **Estrategia:** [1-2 fact sentences]\n  **[Punch line in bold — one declarative truth about the pillar, ≤20 words.]**\n  [Leer ->](url)\n- **Modelos Operativos:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Tecnología:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Capital Humano:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)",
       "sourceRefs": []
     },
     {

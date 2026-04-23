@@ -13,6 +13,7 @@ import {
   type ValidationIssue,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { findBannedPhrases } from "../utils/banned-phrases.js";
 
 const ValidatorInputSchema = z.object({
   content: LocalizedContentSchema,
@@ -43,50 +44,15 @@ const WORD_COUNT_TARGETS: Record<string, WordCountTarget> = {
 
 const TOTAL_WORD_TARGET = { warnMin: 950, warnMax: 1300 };
 
-// ── Banned phrases (deterministic, case-insensitive) ─────────────────────────
-
-const BANNED_PHRASES: string[] = [
-  "digital transformation",
-  "leverage ai",
-  "ai-powered",
-  "disruptive",
-  "disruption",
-  "synergy",
-  "synergies",
-  "best practices",
-  "low-hanging fruit",
-  "move the needle",
-  "scalable solution",
-  "going forward",
-  "value-add",
-  "holistic approach",
-  "thought leader",
-  "thought leadership",
-  "game-changer",
-  "game changer",
-  "circle back",
-  "boil the ocean",
-  "take it to the next level",
-  "world-class",
-];
-
 // ── Compiled regex constants (not recreated per call) ─────────────────────────
 
-const BULLET_RE = /^\s*[-*•]/m;
+// Match a real markdown bullet: marker + whitespace + content.
+// Without the `\s+\S` tail this matches italicized `*text*` lines and
+// stray `-` dashes — false positives that fire "Bullet points not
+// permitted" on legitimate Insight prose. The Writer's hasBulletPoints
+// uses the same shape so both agents agree on what counts as a bullet.
+const BULLET_RE = /^[ \t]*[-*•]\s+\S/m;
 const SENTENCE_SPLIT_RE = /(?<=[.!?])\s+/;
-// Word-boundary patterns built once from BANNED_PHRASES list (populated below)
-let _bannedPhrasePatterns: RegExp[] | null = null;
-function getBannedPhrasePatterns(): RegExp[] {
-  if (_bannedPhrasePatterns) return _bannedPhrasePatterns;
-  _bannedPhrasePatterns = BANNED_PHRASES.map(
-    (phrase) =>
-      new RegExp(
-        `\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
-        "i",
-      ),
-  );
-  return _bannedPhrasePatterns;
-}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -114,11 +80,6 @@ function findLongSentences(text: string, maxWords = 25): string[] {
     .split(SENTENCE_SPLIT_RE)
     .filter((s) => countWords(s) > maxWords)
     .slice(0, 3);
-}
-
-function findBannedPhrases(text: string): string[] {
-  const patterns = getBannedPhrasePatterns();
-  return BANNED_PHRASES.filter((_, i) => patterns[i]?.test(text));
 }
 
 function hasBulletPoints(text: string): boolean {
@@ -317,10 +278,27 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     // ── LLM checks ──────────────────────────────────────────────────────────
     const prompt = buildPrompt(context, payload, sections);
 
+    // The Validator prompt is a mix of static rules (the rubric, the banned-
+    // phrase rationale, the shareable-sentence test) and the draft sections
+    // under review. Caching the full prompt as one system block benefits
+    // retries within the 5-minute window; the cache prefix-matches as long
+    // as the rules text stays fixed.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
       max_tokens: 1500,
-      messages: [{ role: "user", content: prompt }],
+      system: [
+        {
+          type: "text",
+          text: prompt,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
+      messages: [
+        {
+          role: "user",
+          content: "Validate the draft above. Output valid JSON only, matching the schema defined in the instructions.",
+        },
+      ],
     });
 
     const message = await stream.finalMessage();

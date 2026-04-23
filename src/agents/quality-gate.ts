@@ -13,6 +13,7 @@ import {
 } from "../types/edition.js";
 import { SourceBundleSchema, type SourceBundle } from "../types/source-bundle.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { computeDistinctOutlets } from "../utils/source-diversity.js";
 
 // ── Input ──────────────────────────────────────────────────────────────────────
 
@@ -162,16 +163,29 @@ export class QualityGateAgent extends BaseAgent<
       "Respond with valid JSON only, matching the schema defined above.",
     ].join("\n");
 
+    // Move the full prompt (rubric + golden examples + source bundle +
+    // drafts) into a cached system block. The QualityGate retried once
+    // during 2026-23 after an Anthropic 500 — with the cache in place, the
+    // retry hits ~10% of input cost instead of the full prompt again.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
       max_tokens: 6000,
       system: [
         {
           type: "text",
-          text: "You are the Quality Gate agent. Output valid JSON only, no preamble.",
+          text:
+            "You are the Quality Gate agent. Output valid JSON only, no preamble.\n\n" +
+            userPrompt,
+          cache_control: { type: "ephemeral" },
         },
       ],
-      messages: [{ role: "user", content: userPrompt }],
+      messages: [
+        {
+          role: "user",
+          content:
+            "Run the quality gate against the draft above and respond with JSON matching the schema.",
+        },
+      ],
     });
 
     const message = await stream.finalMessage();
@@ -183,6 +197,14 @@ export class QualityGateAgent extends BaseAgent<
 
     const text = extractTextFromMessage(message.content);
     const parsed = parseLlmJson(text, "quality-gate") as unknown;
-    return QualityGateResultSchema.parse(parsed);
+    const result = QualityGateResultSchema.parse(parsed);
+
+    // Source diversity is a pure URL-parse, not a judgment call. Override the
+    // LLM's count with the deterministic computation so we do not silently
+    // ship an LLM miscount.
+    return {
+      ...result,
+      sourceDiversity: computeDistinctOutlets(payload.enContent, payload.sourceBundle),
+    };
   }
 }

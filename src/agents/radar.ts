@@ -580,6 +580,65 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "global",
     tier: 3,
   },
+
+  // ── Human Capital — Tier 2/3 ──────────────────────────────────────────────
+  // Added 2026-04-23 to fill the consistently under-served HC pillar in Signal.
+  // 5 candidates from the original audit (MIT Sloan, strategy+business, WEF,
+  // Chief Executive, Josh Bersin) were already present above.
+  {
+    url: "https://www.bls.gov/feed/empsit.rss",
+    outlet: "BLS Employment Situation",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.bls.gov/feed/eci.rss",
+    outlet: "BLS Employment Cost Index",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.bls.gov/feed/jolts.rss",
+    outlet: "BLS Job Openings (JOLTS)",
+    region: "us",
+    tier: 3,
+  },
+  {
+    url: "https://www.bls.gov/feed/prod2.rss",
+    outlet: "BLS Productivity",
+    region: "us",
+    tier: 3,
+  },
+  {
+    url: "https://hrexecutive.com/feed/",
+    outlet: "HR Executive",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://mexicobusiness.news/rss/talent",
+    outlet: "Mexico Business News – Talent",
+    region: "latam",
+    tier: 2,
+  },
+  {
+    url: "https://expansion.mx/rss/carrera",
+    outlet: "Expansión – Carrera",
+    region: "latam",
+    tier: 2,
+  },
+  {
+    url: "https://www.eleconomista.com.mx/rss/seccion/capital-humano",
+    outlet: "El Economista MX – Capital Humano",
+    region: "latam",
+    tier: 2,
+  },
+  {
+    url: "https://factorial.mx/blog/feed/",
+    outlet: "Factorial México",
+    region: "latam",
+    tier: 3,
+  },
 ];
 
 interface ScoredKeyword {
