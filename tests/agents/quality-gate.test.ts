@@ -93,6 +93,7 @@ function makeBundle() {
         relevanceScore: 0.9,
         recencyHours: 24,
         tags: [],
+        region: "corridor",
       },
     ],
     metadata: {

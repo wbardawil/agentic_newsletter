@@ -127,6 +127,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 2,
         tags: ["corridor"],
+        region: "corridor",
       },
       {
         id: randomUUID(),
@@ -140,6 +141,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 2,
         tags: ["corridor"],
+        region: "corridor",
       },
       {
         id: randomUUID(),
@@ -153,6 +155,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 2,
         tags: ["corridor"],
+        region: "corridor",
       },
       {
         id: randomUUID(),
@@ -166,6 +169,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 2,
         tags: ["corridor"],
+        region: "corridor",
       },
     ],
     metadata: {
@@ -188,6 +192,107 @@ function depsWithFakeAnthropic(fake: ReturnType<typeof createFakeAnthropic>) {
 }
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
+
+/**
+ * Regional anchoring (item 2.7): the Localizer receives the full
+ * SourceBundle, filters to MX + corridor items, and uses them to
+ * author Signal / Field Report / Compass instead of transcreating the
+ * EN versions wholesale. This test verifies the prompt actually
+ * contains the MX-filtered items in the `{{mxSourceBundle}}` block.
+ */
+describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prompt", () => {
+  it("includes MX and corridor items but excludes US-only items in the prompt", async () => {
+    const fake = createFakeAnthropic();
+    fake.enqueue({
+      text: JSON.stringify({
+        language: "es",
+        subject: "Su IA no es herramienta",
+        preheader: "preheader",
+        thesis: "tesis",
+        sections: makeEnContent().sections.map((s) => ({
+          ...s,
+          heading: s.heading,
+          body: "stub",
+        })),
+      }),
+    });
+
+    const deps = depsWithFakeAnthropic(fake);
+    const agent = new LocalizerAgent(deps);
+    // Bundle with mixed regions — MX + corridor + US-only
+    const mixedBundle: SourceBundle = {
+      ...makeBundle(),
+      items: [
+        { ...makeBundle().items[0]!, region: "mx", outlet: "Expansión MX" },
+        { ...makeBundle().items[1]!, region: "corridor", outlet: "Bloomberg" },
+        { ...makeBundle().items[2]!, region: "us", outlet: "WSJ" },
+      ],
+    };
+    const input: AgentInput<unknown> = {
+      runId: randomUUID(),
+      editionId: "2026-20",
+      agentName: "localizer",
+      payload: {
+        content: makeEnContent(),
+        angle: makeAngle(),
+        targetLanguage: "es",
+        draftsDir: "/tmp/nonexistent-drafts-for-test",
+        sourceBundle: mixedBundle,
+      },
+    };
+    await agent.run(input);
+
+    // Inspect what got sent to the LLM. The prompt should contain MX +
+    // corridor outlets but not the US-only one.
+    const promptArgs = fake.promptsReceived[0] as { system?: Array<{ text: string }> };
+    const promptText = promptArgs.system?.[0]?.text ?? "";
+    expect(promptText).toContain("Expansión MX");
+    expect(promptText).toContain("Bloomberg");
+    expect(promptText).not.toContain("WSJ");
+    expect(promptText).toContain('region="mx"');
+    expect(promptText).toContain('region="corridor"');
+  });
+
+  it("falls back to a clear message when the MX bundle is empty", async () => {
+    const fake = createFakeAnthropic();
+    fake.enqueue({
+      text: JSON.stringify({
+        language: "es",
+        subject: "subject",
+        preheader: "preheader",
+        thesis: "tesis",
+        sections: makeEnContent().sections.map((s) => ({
+          ...s,
+          body: "stub",
+        })),
+      }),
+    });
+
+    const deps = depsWithFakeAnthropic(fake);
+    const agent = new LocalizerAgent(deps);
+    const usOnlyBundle: SourceBundle = {
+      ...makeBundle(),
+      items: makeBundle().items.map((it) => ({ ...it, region: "us" as const })),
+    };
+    const input: AgentInput<unknown> = {
+      runId: randomUUID(),
+      editionId: "2026-20",
+      agentName: "localizer",
+      payload: {
+        content: makeEnContent(),
+        angle: makeAngle(),
+        targetLanguage: "es",
+        draftsDir: "/tmp/nonexistent-drafts-for-test",
+        sourceBundle: usOnlyBundle,
+      },
+    };
+    await agent.run(input);
+
+    const promptArgs = fake.promptsReceived[0] as { system?: Array<{ text: string }> };
+    const promptText = promptArgs.system?.[0]?.text ?? "";
+    expect(promptText).toContain("No MX or corridor sources available");
+  });
+});
 
 describe("pipeline smoke — LocalizerAgent populates `thesis`", () => {
   it("returns ES LocalizedContent with a non-empty thesis field", async () => {
@@ -268,6 +373,7 @@ describe("pipeline smoke — LocalizerAgent populates `thesis`", () => {
         angle: makeAngle(),
         targetLanguage: "es",
         draftsDir: "/tmp/nonexistent-drafts-for-test",
+        sourceBundle: makeBundle(),
       },
     };
 

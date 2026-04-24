@@ -29,6 +29,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.85,
         recencyHours: 12,
         tags: ["family business", "succession", "latam"],
+        region: "corridor",
         rawContent: "Full article content here.",
       },
       {
@@ -47,6 +48,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 6,
         tags: ["operating model", "leadership", "mid-market"],
+        region: "corridor",
         rawContent: "More article content.",
       },
     ],

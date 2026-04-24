@@ -36,6 +36,7 @@ function makeSources() {
       relevanceScore: 0.9,
       recencyHours: 10,
       tags: ["operating model"],
+      region: "corridor",
       rawContent: "Article content.",
     },
   ];
