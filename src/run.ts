@@ -36,6 +36,7 @@ import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
+import { filterUsItems } from "./utils/bundle-filter.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -409,7 +410,12 @@ async function main(): Promise<void> {
     agentName: "writer",
     payload: {
       angle,
-      sources: bundle.items,
+      // Filter to US + corridor items so the EN edition anchors in news
+      // relevant to the US operator. MX-only items stay behind for the
+      // Localizer to author the ES Signal/FieldReport/Compass from.
+      // Corridor items (HBR, MIT Sloan, WEF, consulting research, etc.)
+      // feed both editions.
+      sources: filterUsItems(bundle),
       language: "en",
       draftsDir,
     },

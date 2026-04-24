@@ -19,6 +19,7 @@ import {
 } from "../types/source-bundle.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 import { sanitizeLocalizedContent } from "../utils/sanitize-output.js";
+import { filterMxItems } from "../utils/bundle-filter.js";
 import {
   loadLocalizationMemory,
   formatLocalizationMemoryForPrompt,
@@ -69,18 +70,6 @@ function getSectionId(content: LocalizedContent, type: string): string {
 }
 
 /**
- * Filter SourceBundle to items the ES edition can author from. MX items are
- * primary; corridor items work for either edition. US-only items are excluded
- * — the Localizer must not anchor the ES Field Report or Signal in a US-only
- * source when the goal is regional differentiation.
- */
-function filterMxBundle(bundle: SourceBundle): SourceItem[] {
-  return bundle.items.filter(
-    (item) => item.region === "mx" || item.region === "corridor",
-  );
-}
-
-/**
  * Format the MX-relevant items as a prompt block. The Localizer uses these
  * verbatim facts to author Signal bullets, Field Report, and Compass — the
  * same way the Writer uses the full bundle for the EN edition. Citation
@@ -120,7 +109,7 @@ function buildPrompt(
       ? `Wadi has approved these Spanish Apertura examples — match this style:\n\n${formatAperturaExamplesForPrompt(esHistory)}`
       : `No approved Spanish Apertura examples yet. Use the voice rules above as your guide.`;
 
-  const mxItems = filterMxBundle(sourceBundle);
+  const mxItems = filterMxItems(sourceBundle);
   const mxBundleBlock =
     "<mx_source_items>\n" +
     "IMPORTANT: The following items are MX or corridor sources. Use them as the " +

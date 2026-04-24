@@ -38,6 +38,15 @@ The Strategist agent has selected the following sources and strategic angle for
 this issue. Use these to inform The Insight and The Field Report. Do not summarize
 them — use them as raw material to develop the framework.
 
+**This pool has been pre-filtered to US + corridor items.** The EN edition is
+written for a US-based mid-market operator. Items from Mexico-only sources
+(Expansión MX, El Financiero MX, El Economista MX, Mexico Business News,
+Factorial MX, etc.) have been removed before the pool reached you — they stay
+behind for the Localizer to author the ES edition. Corridor items (HBR, MIT
+Sloan, WEF, McKinsey, consulting research, BLS, etc.) remain available and
+speak to both audiences. Anchor the Field Report in a US or corridor example,
+not a Mexican one.
+
 Each source includes:
 - `id` — unique identifier
 - `url` — the article's public URL
