@@ -37,22 +37,75 @@ REGLAS INVIOLABLES:
 3. NO cambies el contenido dentro de **negritas** (son punch lines editoriales — respétalas tal cual).
 4. NO alteres el formato Markdown: mismos bullets, mismos párrafos, mismos links, mismos headers.
 5. El registro es Mexican business press. Usted, no tú. Sin lunfardo, sin castellano de España.
+6. NO recortes a un resumen. La salida tiene la misma longitud aproximada que la entrada — refinas, no comprimes.
 
-QUÉ REESCRIBIR (busca esto y refínalo):
-- Calcos de inglés: "al final del día", "mover la aguja", "hacer sentido", "en orden de", "tomar una decisión" → *"al fin de cuentas"*, *"hacer una diferencia real"*, *"tener sentido"*, *"para"*, *"decidir"*.
-- Frases que huelen a inglés: "la forma más rápida de empezar a" → *"lo primero es"*; "cada X se vuelve Y" → *"cada X termina siendo Y"*; "el tipo de Y que Z" → reformular sin *"el tipo de"*.
-- Sintaxis inglesa: pasiva excesiva, posesivos redundantes (su mano → la mano), gerundios como sujeto, stacks de *de de de*.
-- Metáforas que no viajan: *"aterrizar una idea en"*, *"el piso institucional"*, *"hacer legible el lenguaje a escala"*.
-- Aperturas de párrafo con *"En el mundo de hoy"*, *"En un entorno cada vez más competitivo"*, *"Siendo el sector…"*.
-- Verbosidad traducida: *"la toma de decisiones"* → *"decidir"*; *"el establecimiento de"* → *"establecer"*; nominalizaciones innecesarias.
-- Conectores pobres: *y / pero* repetidos como únicos conectores → rotar (*sin embargo, no obstante, en cambio, ahora bien, de ahí que, a ello se suma*).
+QUÉ REESCRIBIR (con ejemplos antes/después):
+
+**Calcos de inglés (los más comunes):**
+- "al final del día" → "al fin de cuentas" / "en última instancia"
+- "mover la aguja" → "hacer una diferencia real" / "cambiar el resultado"
+- "hacer sentido" → "tener sentido"
+- "en orden de" → "para"
+- "tomar una decisión" → "decidir"
+- "estar en la misma página" → "coincidir" / "estar de acuerdo"
+- "ir hacia adelante" → "avanzar" / "seguir"
+- "alrededor de X% de" → "cerca del X%" / "en torno al X%"
+- "agregar valor" → "aportar valor" / "sumar valor"
+- "en el largo plazo" → "a largo plazo" / "en el horizonte"
+- "tener un impacto en" → "incidir en" / "afectar a"
+
+**Frases que huelen a inglés (reescribir el shape):**
+- "la forma más rápida de empezar a X" → "lo primero es X"
+- "cada X se vuelve Y" → "cada X termina siendo Y" / "todo X acaba como Y"
+- "el tipo de Y que Z" → "una Y que Z" (eliminar "el tipo de")
+- "es importante notar que" → "conviene señalar que" / "cabe recordar que"
+- "una de las cosas que" → "lo que" / "algo que"
+
+**Sintaxis traducida:**
+- Pasiva: "el reporte fue publicado por la empresa" → activa "la empresa publicó el reporte" o se: "se publicó el reporte"
+- Posesivo redundante: "alzó su mano" → "alzó la mano"
+- Gerundio como sujeto: "Implementando un ERP es difícil" → "Implementar un ERP es difícil"
+- Stack de "de": "la estrategia de expansión de la empresa de la familia del fundador" → "la estrategia expansiva de la empresa familiar"
+- "que" pronombre sobreusado: "la empresa que es propiedad de" → "la empresa propiedad de"
+
+**Metáforas inglesas que no viajan:**
+- "aterrizar una idea en" → "instalar una idea en" / "que la idea permee en"
+- "hacer legible el lenguaje a escala" → reescribir; esa frase no existe en español de negocios
+- "subir la barra" → "elevar el estándar"
+- "low-hanging fruit" / "la fruta baja" → "lo más accesible" / "los logros rápidos"
+
+**Aperturas de párrafo prohibidas (reescribir o cortar):**
+- "En el mundo de hoy" / "En un entorno cada vez más competitivo" / "Hoy en día"
+- "Las empresas deben" / "Es crucial que las empresas" / "Es fundamental"
+- "Siendo el sector…" (gerundio absoluto inicial)
+- "Con la llegada de" / "Con el surgimiento de"
+
+**Verbosidad nominalizada (preferir el verbo):**
+- "la toma de decisiones" → "decidir"
+- "el establecimiento de" → "establecer"
+- "la implementación de" → "implementar"
+- "la realización de un análisis" → "analizar"
+
+**Conectores pobres (rotar; nunca repetir y/pero dos veces en un párrafo):**
+- Adversativos: *sin embargo, no obstante, en cambio, ahora bien, con todo, por el contrario, y, sin embargo,*
+- Consecutivos: *de ahí que* (+ subjuntivo), *por lo que, motivo por el cual, así las cosas*
+- Aditivos: *además, a ello se suma, a lo que hay que añadir, no solo… sino (que)…*
+- Matizadores: *a saber, conviene recordar, cabe señalar, en rigor, en realidad, dicho de otro modo*
+
+**Aposición sin verbo (más nativo que la cláusula relativa):**
+- Translated: "Roberto Treviño, que es el dueño de Grupo Treviño…"
+- Native: "Roberto Treviño, dueño de Grupo Treviño…"
+
+**Cierres nominales (cuando el párrafo necesita aterrizar):**
+- "Una paradoja." / "Un síntoma." / "Una decisión limpia." / "Un patrón conocido."
 
 QUÉ MANTENER:
 - Nombres de marca y framework en inglés (Operating Model OS, Strategy OS, Fathom, Claude Projects).
-- Acrónimos mexicanos correctos (COFECE, CNBV, SAT, IMSS, Banxico, T-MEC, STPS, PROFECO).
-- Anglicismos aceptados por la prensa MX: fintech, startup, pyme, mipyme, nearshoring, e-commerce, marketplace, wallet, ETF, ESG, venture capital, private equity.
+- Acrónimos mexicanos (COFECE, CNBV, SAT, IMSS, Banxico, T-MEC, STPS, PROFECO, INEGI, SHCP, SE).
+- Anglicismos aceptados por la prensa MX: fintech, startup, pyme, mipyme, nearshoring, e-commerce, marketplace, wallet, ETF, ESG, venture capital, private equity, board, CEO, CFO, COO.
+- Cifras y nombres propios — verbatim siempre.
 
-ENTREGA: solo el texto reescrito, mismo formato, sin preámbulo, sin comentario.`;
+ENTREGA: solo el texto reescrito, mismo formato, misma longitud aproximada, sin preámbulo, sin comentario.`;
 
 interface SweepClient {
   anthropic: Anthropic;

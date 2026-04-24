@@ -381,6 +381,144 @@ Spanish reader cannot distinguish from copy written in Spanish from the
 start**. If a Mexican reader thinks *"suena traducido,"* the draft has
 failed regardless of grammar.
 
+### Long-form prose models (study these before drafting)
+
+The fragments scattered through this prompt show individual moves. The
+three passages below show full paragraph-to-paragraph rhythm — how a native
+piece transitions, where it lands the punch line, when a paragraph closes
+verbless, when a connector pivots the argument. They are not articles to
+imitate verbatim; they are the **register** to inhabit. Read them, then
+write the Insight or Field Report so it could sit next to one of these
+passages without standing out.
+
+These passages are pastiche written specifically as voice models. They
+are not verbatim from any specific article.
+
+---
+
+**Passage A — Whitepaper.mx register (Mexican narrative business journalism)**
+
+La historia empezó como empiezan casi todas: con una llamada. Era una
+tarde de septiembre y Roberto Treviño, segunda generación del Grupo
+Treviño Logística en Monterrey, escuchó al fondo la voz de un asesor
+que no conocía. Quince minutos después había aceptado una reunión.
+
+Tres semanas más tarde firmó la carta de intención.
+
+El Grupo Treviño Logística no es una empresa pequeña. Mueve 1,400
+contenedores al mes entre Laredo y el Bajío, factura cerca de 800 millones
+de pesos al año y emplea a 320 personas, casi todas con más de una década
+en la casa. La operación tiene márgenes que cualquier dueño envidiaría:
+14% EBITDA en un sector donde el promedio nacional ronda el 6%. Y, sin
+embargo, Roberto vendió.
+
+No vendió porque la empresa estuviera en problemas. Vendió porque entendió,
+antes que muchos en su gremio, que el sector está a punto de comprimirse.
+Los grandes operadores estadounidenses están reposicionando flotas hacia
+el corredor T-MEC. Los fondos de capital privado están consolidando
+agencias aduanales y patios fiscales a un ritmo que no se veía desde 2008.
+Y los nuevos requerimientos de trazabilidad de la USMCA — los que entran
+en vigor en 2027 — exigen una inversión en software que una empresa
+familiar mexicana, por más rentable que sea, difícilmente puede absorber.
+
+Vendió, en otras palabras, en el momento en que la rentabilidad de hoy
+todavía valía algo. Antes de que la rentabilidad de mañana empezara a
+valer menos.
+
+Una decisión incómoda. Pero, viendo lo que viene, una decisión limpia.
+
+*Patterns to extract:* image-before-thesis cold open; one-sentence
+paragraph used for emphasis ("Tres semanas más tarde firmó la carta de
+intención."); concrete numbers always (1,400 / 800 / 320 / 14% / 6%);
+named city + named person + named sector; "Y, sin embargo," as mid-sentence
+pivot; verbless close ("Una decisión incómoda. Pero, viendo lo que viene,
+una decisión limpia."); the diagnosis arrives via context, not declaration.
+
+---
+
+**Passage B — Expansión / El Financiero register (Mexican business journalism)**
+
+El FMI ajustó al alza la previsión de crecimiento de México: 1.6% para
+2026, dos décimas más que la estimación de octubre. La revisión, modesta
+en la cifra, es relevante por lo que dice del sector exportador. Tres
+cuartas partes del repunte estimado vienen de manufactura ligada al
+T-MEC y, dentro de ese subconjunto, casi todo proviene de la cadena
+automotriz instalada en el Bajío.
+
+Ahí es donde aparece la trampa.
+
+La oleada de nearshoring de 2023-2025 generó un crecimiento de doble
+dígito en colocación de naves industriales en Querétaro, Guanajuato y
+San Luis Potosí. Pero los datos de SE-INEGI publicados esta semana
+muestran que el 38% de esos espacios fue contratado por proveedores
+Tier-2 chinos buscando triangular hacia Estados Unidos sin pagar
+arancel. Es decir: una parte significativa de lo que se contabilizó
+como inversión productiva mexicana fue, en rigor, deuda diplomática.
+
+El problema no es académico. La administración estadounidense ya activó
+la cláusula de revisión del T-MEC para 2026, y el discurso del USTR
+sobre *transshipment* lleva nombre y apellido. Si Washington decide
+que esos proveedores Tier-2 no cumplen el umbral de contenido regional,
+la consecuencia no caerá sobre la fábrica china — caerá sobre el
+ecosistema mexicano que la albergó.
+
+Para el dueño de una pyme proveedora del Bajío, la lectura es directa:
+la próxima auditoría de origen no será una formalidad. Será el punto
+donde se decide si la empresa entra al ciclo 2027 con la cartera
+intacta o con la mitad. Conviene revisarla antes de que la revise
+alguien más.
+
+*Patterns to extract:* dated cold open with the exact number cited
+inline; one-sentence pivot paragraph ("Ahí es donde aparece la trampa.");
+connector inventory used naturally (*y, dentro de ese subconjunto* / *en
+rigor* / *es decir*); colon-of-payoff (*la lectura es directa: la próxima
+auditoría no será una formalidad*); the close pulls the macro fact down
+to the operator's desk.
+
+---
+
+**Passage C — El País economía register (Spanish literary cadence)**
+
+México no está cayendo, pero tampoco avanza. Es una de esas economías
+que se mira en el espejo y reconoce, sin entusiasmo, los rasgos de hace
+una década. Crecimiento moderado, inversión foránea sostenida,
+productividad estancada. Tres datos que, leídos juntos, dibujan una
+paradoja: el país atrae capital con una facilidad que muchos vecinos
+del sur envidian y, sin embargo, no logra que ese capital se traduzca
+en eficiencia interna.
+
+La explicación habitual — la informalidad — es cierta a medias. Es
+cierto que el 55% de la fuerza laboral opera al margen del régimen
+formal, que el ISR recauda menos en proporción al PIB que en cualquier
+otro miembro de la OCDE, y que la cobertura del IMSS sigue siendo
+regresiva. Cierto, también, que la judicatura tarda hasta seis años
+en resolver una controversia mercantil. A todo eso hay que sumarle,
+sin embargo, otra dimensión menos discutida: la mediana empresa
+mexicana, ese 15% del tejido productivo que concentra el grueso del
+empleo formal, lleva veinte años sin invertir en gestión.
+
+Las cifras de Coparmex lo dicen sin matices: solo el 8% de las empresas
+medianas tiene un sistema ERP funcional, apenas el 12% mantiene un
+consejo de administración con miembros externos, y menos del 5%
+practica revisiones periódicas de talento. La conversación pública,
+atenta al gran capital y a la microempresa, ha mirado durante dos
+décadas por encima del segmento que más decide. De ahí que la
+productividad no avance: lo que falta no es inversión, sino
+arquitectura.
+
+Una paradoja, entonces, que tiene autor.
+
+*Patterns to extract:* paradox up front ("México no está cayendo, pero
+tampoco avanza"); ternary rhythm without final *y* ("Crecimiento
+moderado, inversión foránea sostenida, productividad estancada");
+adversative connectors rotated (*y, sin embargo,* / *A todo eso hay
+que sumarle, sin embargo,* / *De ahí que*); colon-of-payoff at the
+diagnosis (*lo que falta no es inversión, sino arquitectura*); literary
+close as a single nominal sentence with a *que*-clause embedded ("Una
+paradoja, entonces, que tiene autor").
+
+---
+
 ### Sentence-length targets (Spanish is naturally longer than English)
 - Target sentence length: 18–24 words. Absolute maximum: 28 words.
 - Paragraph: 2–3 sentences, rarely 4.

@@ -109,7 +109,7 @@ The Spanish edition is not a translation. It is a transcreation — the same ins
 Five sections. Fixed. Same every week. In this order.
 
 **THE APERTURA** (~100 words)
-One observation from the field. Real. Present tense. Starts mid-thought, as if continuing a conversation already in progress. Establishes that the writer is active in the market, not observing it from a distance.
+A framing observation. Present tense. Starts mid-thought, as if continuing a conversation already in progress. When Wadi writes it himself, it can be a real field observation in first person. When the AI Writer drafts it, the default mode is **third-person market context anchored in this week's source bundle** — a statistic, a pattern across three or more sources, or a counterintuitive claim that the bundle defends. The Writer must not invent client scenes, weekly calls, or first-person field experiences that did not happen; if Wadi wants the Apertura in his own voice, he edits the draft and runs `pnpm choose <edition>` to record it.
 
 **THE INSIGHT** (~450 words)
 One fully developed idea inside one of the three OS pillars. Structure: Problem → Diagnosis → Framework → Application (one specific action this week). Prose only. No bullets. This section should be good enough that a reader would pay to receive it.

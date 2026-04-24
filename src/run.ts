@@ -45,32 +45,22 @@ import { runVoiceSweep } from "./utils/es-voice-sweep.js";
 // ── helpers ──────────────────────────────────────────────────────────────────
 
 /**
- * Decode the encoded apertura options block and render as labeled sections.
- * If the body has no option delimiters (e.g. ES transcreation), return as-is.
+ * Decode the encoded apertura options block and return a single clean body.
+ * Picks Option B (Wadi's preferred provocation style); falls back to the
+ * first available option, or returns the body unchanged if no delimiters
+ * are present (e.g. ES transcreation, already-edited drafts).
  */
-function renderAperturaOptions(body: string, editionId: string): string[] {
+function renderAperturaOptions(body: string): string[] {
   const delimiterRe = /===OPTION_([ABC]):(\w+)===/g;
   if (!delimiterRe.test(body)) {
-    // Single option or already edited — show as-is
     return [body];
   }
   delimiterRe.lastIndex = 0;
   const parts = body.split(/===OPTION_[ABC]:\w+===/);
   const headers = [...body.matchAll(/===OPTION_([ABC]):(\w+)===/g)];
-  const lines: string[] = [
-    `> **Pick one, edit it, then run:** \`pnpm choose ${editionId} A\` / \`B\` / \`C\` - or edit freely and run \`pnpm choose ${editionId}\``,
-    ``,
-  ];
-  for (let i = 0; i < headers.length; i++) {
-    const label = headers[i]![1]!;
-    const style = headers[i]![2]!;
-    const text = (parts[i + 1] ?? "").trim();
-    lines.push(`### Option ${label} - ${style}`);
-    lines.push(``);
-    lines.push(text);
-    lines.push(``);
-  }
-  return lines;
+  const indexB = headers.findIndex((h) => h[1] === "B");
+  const chosenIdx = indexB >= 0 ? indexB : 0;
+  return [(parts[chosenIdx + 1] ?? "").trim()];
 }
 
 function renderMarkdown(
@@ -99,21 +89,6 @@ function renderMarkdown(
   const toolHeading = isEs ? "LA HERRAMIENTA" : "THE TOOL";
   const compassHeading = isEs ? "LA BRÚJULA" : "THE COMPASS";
   const doorHeading = isEs ? "LA PUERTA" : "THE DOOR";
-  const reviewNote = isEs
-    ? `> ⚠️ REVISIÓN: Reemplaza esta apertura con tu observación real de campo de esta semana.`
-    : `> ⚠️ WADI REVIEW: Replace this placeholder with your real field observation from this week.`;
-
-  const subjectBlock = (() => {
-    if (!content.subjectOptions || content.subjectOptions.length === 0) return [];
-    const opts = content.subjectOptions;
-    return [
-      `> **Subject line — pick one** (or edit freely before sending):`,
-      `> - **A (direct):** ${opts[0] ?? ""}`,
-      `> - **B (curiosity):** ${opts[1] ?? ""}`,
-      `> - **C (urgent):** ${opts[2] ?? ""}`,
-      ``,
-    ];
-  })();
 
   return [
     `# The Transformation Letter - Edition ${editionId} [${label}]`,
@@ -124,7 +99,6 @@ function renderMarkdown(
     `**Subject:** ${content.subject}  `,
     `**Preheader:** ${content.preheader}`,
     ``,
-    ...subjectBlock,
     `---`,
     ``,
     ...(isEs
@@ -139,8 +113,8 @@ function renderMarkdown(
     `## ${aperturaHeading}`,
     ``,
     ...(language === "en"
-      ? renderAperturaOptions(apertura?.body ?? "", editionId)
-      : [`> ⚠️ REVISIÓN: Verifica que esta apertura sea una observación real de Wadi de esta semana mexicana. La edición ES se escribe desde cero — no es traducción del EN.`, ``, apertura?.body ?? ""]),
+      ? renderAperturaOptions(apertura?.body ?? "")
+      : [apertura?.body ?? ""]),
     ``,
     `---`,
     ``,
@@ -764,21 +738,10 @@ async function main(): Promise<void> {
   console.log(`💾 Drafts saved:`);
   console.log(`   ${enMdPath}`);
 
-  // Show subject line options in the console for quick review
-  if (content.subjectOptions && content.subjectOptions.length > 0) {
-    const [a, b, c] = content.subjectOptions;
-    console.log(`\n📧 Subject line options:`);
-    console.log(`   A (direct):   ${a ?? ""}`);
-    console.log(`   B (curiosity): ${b ?? ""}`);
-    console.log(`   C (urgent):   ${c ?? ""}`);
-    console.log(`   → Using: "${content.subject}"`);
-  }
+  console.log(`\n📧 Subject: "${content.subject}"`);
 
-  console.log(`\n✏️  Apertura: open the EN draft, pick your option, then run:`);
-  console.log(`   pnpm choose ${editionId} A    ← record Option A`);
-  console.log(`   pnpm choose ${editionId} B    ← record Option B`);
-  console.log(`   pnpm choose ${editionId} C    ← record Option C`);
-  console.log(`   pnpm choose ${editionId}      ← record whatever you edited\n`);
+  console.log(`\n✏️  Apertura: open the EN draft, edit if needed, then run:`);
+  console.log(`   pnpm choose ${editionId}      ← record whatever you have in the draft\n`);
   console.log(`   ${join(draftsDir, `${editionId}-en.html`)} ← open in browser to copy into Beehiiv`);
   if (esContent) {
     console.log(`   ${esMdPath}`);
