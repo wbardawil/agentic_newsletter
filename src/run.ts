@@ -37,7 +37,7 @@ import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
-import { filterUsBundle } from "./utils/bundle-filter.js";
+import { filterUsBundle, filterMxBundle } from "./utils/bundle-filter.js";
 import { findEsFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -386,28 +386,59 @@ async function main(): Promise<void> {
     );
   }
 
-  // ── Strategist ─────────────────────────────────────────────────────────────
-  console.log("🧠 Step 2/3 — Strategist: selecting angle...");
+  // ── Strategist (runs twice — once per edition) ─────────────────────────────
+  // Dual-pipeline architecture: each edition has its own angle, its own
+  // thesis, its own OS pillar. The Strategist sees only the items its
+  // edition can cite (US+corridor for EN, MX+corridor for ES) so the two
+  // editions are editorially independent from pillar down — not just
+  // "same idea, different examples".
+  console.log("🧠 Step 2/4 — Strategist (US): selecting EN angle...");
   const recentFieldReports = loadRecentFieldReportSummaries(draftsDir);
   const strategistAgent = new StrategistAgent(deps);
-  const strategistOutput = await strategistAgent.run({
+  const strategistUsOutput = await strategistAgent.run({
     runId,
     editionId,
     agentName: "strategist",
-    payload: { ...bundle, recentFieldReports },
+    payload: {
+      ...bundle,
+      items: filterUsBundle(bundle.items),
+      recentFieldReports,
+    },
   });
 
-  if (!strategistOutput.success) {
-    console.error(`❌ Strategist failed: ${strategistOutput.error}`);
+  if (!strategistUsOutput.success) {
+    console.error(`❌ Strategist (US) failed: ${strategistUsOutput.error}`);
     process.exit(1);
   }
 
-  const angle = strategistOutput.data as StrategicAngle;
-  console.log(`   ✓ Angle: "${angle.headline}"`);
-  console.log(`   ✓ Pillar: ${angle.osPillar}`);
-  console.log(`   ✓ Theme: ${angle.quarterlyTheme}\n`);
+  const angleUs = strategistUsOutput.data as StrategicAngle;
+  console.log(`   ✓ EN Angle: "${angleUs.headline}"`);
+  console.log(`   ✓ EN Pillar: ${angleUs.osPillar}`);
+  console.log(`   ✓ EN Theme: ${angleUs.quarterlyTheme}\n`);
 
-  // ── Writer ─────────────────────────────────────────────────────────────────
+  console.log("🧠 Step 3/4 — Strategist (MX): selecting ES angle...");
+  const strategistMxOutput = await strategistAgent.run({
+    runId,
+    editionId,
+    agentName: "strategist",
+    payload: {
+      ...bundle,
+      items: filterMxBundle(bundle.items),
+      recentFieldReports,
+    },
+  });
+
+  if (!strategistMxOutput.success) {
+    console.error(`❌ Strategist (MX) failed: ${strategistMxOutput.error}`);
+    process.exit(1);
+  }
+
+  const angleMx = strategistMxOutput.data as StrategicAngle;
+  console.log(`   ✓ ES Angle: "${angleMx.headline}"`);
+  console.log(`   ✓ ES Pillar: ${angleMx.osPillar}`);
+  console.log(`   ✓ ES Theme: ${angleMx.quarterlyTheme}\n`);
+
+  // ── Writer (EN) ────────────────────────────────────────────────────────────
   console.log("✍️  Step 3/4 — Writer: drafting newsletter...");
   const writerAgent = new WriterAgent(deps);
   const writerOutput = await writerAgent.run({
@@ -415,7 +446,7 @@ async function main(): Promise<void> {
     editionId,
     agentName: "writer",
     payload: {
-      angle,
+      angle: angleUs,
       // Writer gets only US + corridor items. Soft preference in the prompt
       // alone did not hold — when the Strategist picked an MX-flavored angle
       // the Writer reliably reached for Expansión/El Financiero items even
@@ -449,7 +480,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "validator",
-    payload: { content, angle },
+    payload: { content, angle: angleUs },
   });
 
   const validation = validatorOutput.data as ValidationResult | undefined;
@@ -469,14 +500,19 @@ async function main(): Promise<void> {
     console.log();
   }
 
-  // ── Localizer ──────────────────────────────────────────────────────────────
-  console.log("🌎 Step 5/5 — Localizer: transcreating to Spanish...");
+  // ── ES Writer (authors the ES edition from scratch — no EN input) ──────────
+  // The agent is still called "Localizer" in the class name for backward
+  // compatibility, but it is now the ES Writer. It receives angleMx (its own
+  // Strategist-picked angle) and the MX bundle, and it authors every section
+  // fresh in Spanish. No transcreation from the EN edition happens anywhere
+  // in the pipeline.
+  console.log("🌎 Step 5/5 — ES Writer: authoring the Spanish edition...");
   const localizerAgent = new LocalizerAgent(deps);
   const localizerOutput = await localizerAgent.run({
     runId,
     editionId,
     agentName: "localizer",
-    payload: { content, angle, targetLanguage: "es", draftsDir, sourceBundle: bundle },
+    payload: { angle: angleMx, targetLanguage: "es", draftsDir, sourceBundle: bundle },
   });
 
   const esContent = localizerOutput.success
@@ -507,7 +543,12 @@ async function main(): Promise<void> {
     payload: {
       enContent: content,
       esContent: esContent ?? null,
-      angle,
+      // QualityGate sees the US angle — it is the one bound to the EN
+      // edition's framework/thesis. If the ES diverges (different pillar,
+      // different thesis), that is by design in the dual-pipeline model;
+      // the ES-specific angle still lives on esContent.subject etc. and
+      // is recorded in the JSON output below.
+      angle: angleUs,
       sourceBundle: bundle,
       priorAngles,
     },
@@ -601,10 +642,15 @@ async function main(): Promise<void> {
     }
   }
 
-  // Record this angle (+ Field Report summary) in history for future de-duplication
+  // Record BOTH angles (+ Field Report summaries) in history for future de-duplication
   const spotlightBody = content.sections.find((s) => s.type === "spotlight")?.body ?? "";
   const fieldReportSummary = spotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
-  recordAngle(draftsDir, editionId, angle, fieldReportSummary || undefined);
+  recordAngle(draftsDir, editionId, angleUs, fieldReportSummary || undefined);
+  if (esContent) {
+    const esSpotlightBody = esContent.sections.find((s) => s.type === "spotlight")?.body ?? "";
+    const esFieldReportSummary = esSpotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
+    recordAngle(draftsDir, editionId, angleMx, esFieldReportSummary || undefined);
+  }
 
   const enMdPath = join(draftsDir, `${editionId}-en.md`);
   const esMdPath = join(draftsDir, `${editionId}-es.md`);
@@ -616,15 +662,15 @@ async function main(): Promise<void> {
     logger.info(`Backed up existing draft to ${jsonPath}.bak`);
   }
 
-  const enMdContent = stripAiTells(renderMarkdown(editionId, angle, content, "en"));
+  const enMdContent = stripAiTells(renderMarkdown(editionId, angleUs, content, "en"));
   writeFileSync(enMdPath, enMdContent, "utf-8");
-  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
+  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angleUs, content, "en"), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
-    esMdContent = stripAiTells(renderMarkdown(editionId, angle, esContent, "es"));
+    esMdContent = stripAiTells(renderMarkdown(editionId, angleMx, esContent, "es"));
     writeFileSync(esMdPath, esMdContent, "utf-8");
-    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
+    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angleMx, esContent, "es"), "utf-8");
   }
 
   // Content hash lets publish.ts verify the draft was not corrupted or swapped
@@ -636,27 +682,32 @@ async function main(): Promise<void> {
   const localizerCostUsd = localizerOutput.success ? localizerOutput.cost.costUsd : 0;
   const qualityGateCostUsd = qualityGateOutput.success ? qualityGateOutput.cost.costUsd : 0;
 
+  const strategistCostUsd =
+    strategistUsOutput.cost.costUsd + strategistMxOutput.cost.costUsd;
+
   const jsonContent = JSON.stringify(
     {
       runId,
       editionId,
       generatedAt: new Date().toISOString(),
       contentHash,
-      angle,
+      angleUs,
+      angleMx,
       enContent: content,
       esContent: esContent ?? null,
       validation: validatorOutput.success ? validation : null,
       qualityGate: qualityGate ?? null,
       costs: {
         radar: radarCost,
-        strategist: strategistOutput.cost,
+        strategistUs: strategistUsOutput.cost,
+        strategistMx: strategistMxOutput.cost,
         writer: writerOutput.cost,
         validator: validatorOutput.cost,
         localizer: localizerOutput.cost,
         qualityGate: qualityGateOutput.cost,
         totalUsd:
           radarCost.costUsd +
-          strategistOutput.cost.costUsd +
+          strategistCostUsd +
           writerOutput.cost.costUsd +
           validatorCostUsd +
           localizerCostUsd +
@@ -670,7 +721,7 @@ async function main(): Promise<void> {
 
   const totalCost =
     radarCost.costUsd +
-    strategistOutput.cost.costUsd +
+    strategistCostUsd +
     writerOutput.cost.costUsd +
     validatorCostUsd +
     localizerCostUsd +
@@ -701,13 +752,14 @@ async function main(): Promise<void> {
   }
   console.log(`   ${jsonPath}`);
   console.log(`\n💰 Cost breakdown:`);
-  console.log(`   Radar:      $${radarCost.costUsd.toFixed(4)}`);
-  console.log(`   Strategist: $${strategistOutput.cost.costUsd.toFixed(4)}`);
-  console.log(`   Writer:     $${writerOutput.cost.costUsd.toFixed(4)}`);
-  console.log(`   Validator:  $${validatorCostUsd.toFixed(4)}`);
-  console.log(`   Localizer:  $${localizerCostUsd.toFixed(4)}`);
-  console.log(`   QualityGate:$${qualityGateCostUsd.toFixed(4)}`);
-  console.log(`   Total:      $${totalCost.toFixed(4)}`);
+  console.log(`   Radar:         $${radarCost.costUsd.toFixed(4)}`);
+  console.log(`   Strategist US: $${strategistUsOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Strategist MX: $${strategistMxOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Writer (EN):   $${writerOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Validator:     $${validatorCostUsd.toFixed(4)}`);
+  console.log(`   ES Writer:     $${localizerCostUsd.toFixed(4)}`);
+  console.log(`   QualityGate:   $${qualityGateCostUsd.toFixed(4)}`);
+  console.log(`   Total:         $${totalCost.toFixed(4)}`);
 
   if (costJsonFlag) {
     process.stdout.write(
@@ -717,7 +769,8 @@ async function main(): Promise<void> {
         totalCostUsd: totalCost,
         breakdown: {
           radar: radarCost.costUsd,
-          strategist: strategistOutput.cost.costUsd,
+          strategistUs: strategistUsOutput.cost.costUsd,
+          strategistMx: strategistMxOutput.cost.costUsd,
           writer: writerOutput.cost.costUsd,
           validator: validatorCostUsd,
           localizer: localizerCostUsd,
@@ -745,7 +798,7 @@ async function main(): Promise<void> {
         completedAt: new Date().toISOString(),
         totalCostUsd: totalCost,
         radarCostUsd: radarCost.costUsd,
-        strategistCostUsd: strategistOutput.cost.costUsd,
+        strategistCostUsd,
         writerCostUsd: writerOutput.cost.costUsd,
         validatorCostUsd,
         localizerCostUsd,
