@@ -194,14 +194,14 @@ function depsWithFakeAnthropic(fake: ReturnType<typeof createFakeAnthropic>) {
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
 /**
- * Regional anchoring (item 2.7): the Localizer receives the full
- * SourceBundle, filters to MX + corridor items, and uses them to
- * author Signal / Field Report / Compass instead of transcreating the
- * EN versions wholesale. This test verifies the prompt actually
- * contains the MX-filtered items in the `{{mxSourceBundle}}` block.
+ * The ES Writer (Localizer class) receives BOTH pools of items and the
+ * completed EN edition. The US+corridor pool grounds the citations (same
+ * tier-1 sources as EN); the MX pool is the optional regional-touch pool
+ * for a Field Report substitution or an "Enfoque México" paragraph. This
+ * test verifies the prompt actually exposes both pools distinctly.
  */
-describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prompt", () => {
-  it("includes MX and corridor items but excludes US-only items in the prompt", async () => {
+describe("pipeline smoke — ES Writer receives both EN+US/corridor bundle and MX bundle", () => {
+  it("exposes US+corridor items in the en_edition_bundle block and MX items in mx_source_items", async () => {
     const fake = createFakeAnthropic();
     fake.enqueue({
       text: JSON.stringify({
@@ -219,7 +219,6 @@ describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prom
 
     const deps = depsWithFakeAnthropic(fake);
     const agent = new LocalizerAgent(deps);
-    // Bundle with mixed regions — MX + corridor + US-only
     const mixedBundle: SourceBundle = {
       ...makeBundle(),
       items: [
@@ -242,18 +241,22 @@ describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prom
     };
     await agent.run(input);
 
-    // Inspect what got sent to the LLM. The prompt should contain MX +
-    // corridor outlets but not the US-only one.
     const promptArgs = fake.promptsReceived[0] as { system?: Array<{ text: string }> };
     const promptText = promptArgs.system?.[0]?.text ?? "";
-    expect(promptText).toContain("Expansión MX");
+    // Both pools appear in the prompt, in different blocks.
+    expect(promptText).toContain("<en_edition_bundle>");
+    expect(promptText).toContain("<mx_source_items>");
+    // US+corridor outlets live in the en_edition_bundle block.
     expect(promptText).toContain("Bloomberg");
-    expect(promptText).not.toContain("WSJ");
+    expect(promptText).toContain("WSJ");
+    // MX outlets live in the mx_source_items block.
+    expect(promptText).toContain("Expansión MX");
     expect(promptText).toContain('region="mx"');
+    expect(promptText).toContain('region="us"');
     expect(promptText).toContain('region="corridor"');
   });
 
-  it("falls back to a clear message when the MX bundle is empty", async () => {
+  it("marks each bundle as empty with a clear message when no items of that region exist", async () => {
     const fake = createFakeAnthropic();
     fake.enqueue({
       text: JSON.stringify({
@@ -270,6 +273,7 @@ describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prom
 
     const deps = depsWithFakeAnthropic(fake);
     const agent = new LocalizerAgent(deps);
+    // US-only bundle → en_edition_bundle has the items, mx_source_items is empty.
     const usOnlyBundle: SourceBundle = {
       ...makeBundle(),
       items: makeBundle().items.map((it) => ({ ...it, region: "us" as const })),
@@ -290,7 +294,7 @@ describe("pipeline smoke — Localizer receives MX-filtered SourceBundle in prom
 
     const promptArgs = fake.promptsReceived[0] as { system?: Array<{ text: string }> };
     const promptText = promptArgs.system?.[0]?.text ?? "";
-    expect(promptText).toContain("No MX or corridor sources available");
+    expect(promptText).toContain("MX items: no items available this week.");
   });
 });
 
