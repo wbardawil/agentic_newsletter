@@ -178,22 +178,35 @@ Source Bundle. If you cannot cite it, do not claim it.
    claim it. Use general market framing instead.
 
 7. **THE SIGNAL — author from the MX Source Bundle, do not transcreate.**
-   The Signal is one of the regional sections. The italicized thread sentence
-   at the top transcreates from the EN version (same editorial judgment of
-   the week). The 4 bullets are **rewritten from scratch using items from
-   the MX Source Bundle above** — different facts, different links, same
+   The Signal is one of the regional sections. Two parts:
+
+   **Thread sentence:** transcreate from the EN version. It is the editorial
+   judgment of the week, valid for both regions. Format:
+   `*Esta semana: [the pattern in Spanish.]*` — make it land with the same
+   weight in Spanish, do not translate literally.
+
+   **The 4 bullets:** rewrite from scratch using items from the MX Source
+   Bundle above. Different facts, different links from the EN bullets. Same
    pillar labels in bold (`**Estrategia:**`, `**Modelos Operativos:**`,
    `**Tecnología:**`, `**Capital Humano:**`) and same inline three-piece
-   shape (fact + bold punch line + `[Leer ->](url)` on a single markdown line).
+   shape: each bullet is **one markdown line** with the fact sentence + a
+   `**bold punch line**` + `[Leer ->](url)`. The bold sits inside the same
+   line as the fact and the link — never on its own line, never as a
+   separate paragraph. This keeps the rendered HTML inside one `<li>` so
+   the reader sees the bold flow directly from the fact.
 
    Pick the most operator-relevant MX/corridor item per pillar from the
-   bundle. If a pillar has no MX item this week, fall back to the EN
-   bullet's fact + link (do NOT invent an MX source) and adapt the framing
-   for the Mexican reader.
+   bundle. If a pillar has no MX/corridor item this week, fall back to the
+   EN bullet's fact + link (do NOT invent an MX source) and adapt the
+   framing for the Mexican reader.
+
+   Always exactly 4 bullets, always in the same order: Estrategia, Modelos
+   Operativos, Tecnología, Capital Humano.
 
    **Rules for the bold punch line in Spanish:**
-   - Each bullet must end its prose block with one `**...**` bold sentence on
-     its own line, before the `[Leer ->](url)` link.
+   - Each bullet has the bold `**...**` sentence sitting **inline between the
+     fact sentence and the `[Leer ->](url)` link**, all on the same markdown
+     line. Never break the bullet into multiple lines.
    - The punch line is a declarative truth about the pillar dimension, not a
      prescription. Never *"deberías"*, *"tiene que"*, *"necesita"*. Pattern:
      *"**La [pilar] es / no es / nunca / solo …**"*.
@@ -205,6 +218,11 @@ Source Bundle. If you cannot cite it, do not claim it.
      ES: *"El modelo operativo es lo que sobrevive cuando el fundador se va."*
    - If the English punch line leans on an idiom that does not travel, replace
      with an equivalent Spanish truth — do not smuggle a calque.
+
+   **Inline bullet template:**
+   ```
+   - **[Pilar]:** [oración de hecho] **[línea de remate en negrita]** [Leer ->](url)
+   ```
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-
@@ -617,11 +635,16 @@ fechas son *"1 de septiembre de 2026"*, los porcentajes *54%*.
 *"La IA es un espejo de su estrategia"* — nunca *"La IA Es Un Espejo
 De Su Estrategia"*.
 
-**Paso 10.5 — Cada bullet del Signal tiene su punch line en bold.**
-Scan los 4 bullets. Cada uno debe tener una oración `**...**` bold
-entre las oraciones de hecho y el `[Leer ->](url)`. Si falta, agrega
-una — declarativa, ≤ 20 palabras, sobre el pilar como disciplina, no
-sobre la noticia específica. Nunca *"debe"* o *"tiene que"*.
+**Paso 10.5 — Cada bullet del Signal es UNA SOLA línea con punch line
+inline.** Scan los 4 bullets. Cada uno debe ser una sola línea de
+markdown con la forma:
+`- **[Pilar]:** [hecho] **[bold]** [Leer ->](url)`. Si encuentras un
+bullet partido en varias líneas (la `**...**` bold en línea separada,
+o el `[Leer ->]` en línea separada), reúne todo en una sola línea.
+La negrita debe sentarse **inline** entre el hecho y el link, no como
+elemento aparte. Si falta la negrita, agrega una — declarativa, ≤ 20
+palabras, sobre el pilar como disciplina, no sobre la noticia. Nunca
+*"debe"* o *"tiene que"*.
 
 **Paso 11 — El Signal tiene exactamente 4 bullets con link.** Cada
 uno arranca con `**Estrategia:**`, `**Modelos Operativos:**`,
@@ -686,7 +709,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{signalId}}",
       "type": "news",
       "heading": "LA SEÑAL",
-      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n- **Estrategia:** [1-2 fact sentences]\n  **[Punch line in bold — one declarative truth about the pillar, ≤20 words.]**\n  [Leer ->](url)\n- **Modelos Operativos:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Tecnología:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Capital Humano:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)",
+      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n- **Estrategia:** [fact sentence] **[Punch line in bold — one declarative truth about the pillar, ≤20 words.]** [Leer ->](url)\n- **Modelos Operativos:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)\n- **Tecnología:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)\n- **Capital Humano:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)",
       "sourceRefs": []
     },
     {
