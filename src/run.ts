@@ -735,6 +735,37 @@ async function main(): Promise<void> {
   );
   writeFileSync(jsonPath, jsonContent, "utf-8");
 
+  // ── History archive — one copy of every artifact, per run ─────────────────
+  // The canonical files above get overwritten on every `pnpm draft`. When
+  // Wadi likes a particular run's content (as happened on 2026-26 with the
+  // EN "tech regret" Insight), the next run erases it. The history dir keeps
+  // an unaltered copy of every artifact from every run, named with a
+  // compact ISO timestamp + first 8 chars of the runId for uniqueness.
+  // Nothing downstream reads from this dir — pnpm choose / pnpm publish
+  // still operate on the canonical files.
+  const historyDir = join(draftsDir, "history");
+  mkdirSync(historyDir, { recursive: true });
+  const compactIso = new Date()
+    .toISOString()
+    .replace(/[-:]/g, "")
+    .replace(/\.\d+Z$/, "Z")
+    .substring(0, 15); // e.g. "20260424T140156"
+  const runShort = runId.substring(0, 8);
+  const historyPrefix = `${editionId}-${compactIso}-${runShort}`;
+  const historyPaths: string[] = [];
+  const archive = (srcPath: string, suffix: string): void => {
+    const dest = join(historyDir, `${historyPrefix}-${suffix}`);
+    copyFileSync(srcPath, dest);
+    historyPaths.push(dest);
+  };
+  archive(enMdPath, "en.md");
+  archive(join(draftsDir, `${editionId}-en.html`), "en.html");
+  if (esContent) {
+    archive(esMdPath, "es.md");
+    archive(join(draftsDir, `${editionId}-es.html`), "es.html");
+  }
+  archive(jsonPath, "draft.json");
+
   const totalCost =
     radarCost.costUsd +
     strategistCostUsd +
@@ -767,6 +798,9 @@ async function main(): Promise<void> {
     console.log(`   ${join(draftsDir, `${editionId}-es.html`)} ← open in browser to copy into Beehiiv`);
   }
   console.log(`   ${jsonPath}`);
+  console.log(`\n📦 History archive (preserved, never overwritten):`);
+  console.log(`   ${historyDir}/${historyPrefix}-*.{md,html,json}`);
+  console.log(`   (${historyPaths.length} file${historyPaths.length === 1 ? "" : "s"} archived for this run)`);
   console.log(`\n💰 Cost breakdown:`);
   console.log(`   Radar:         $${radarCost.costUsd.toFixed(4)}`);
   console.log(`   Strategist US: $${strategistUsOutput.cost.costUsd.toFixed(4)}`);
