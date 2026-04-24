@@ -688,29 +688,45 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "us",
     tier: 2,
   },
+
+  // ── Mid-market US owner-operator — the ICP's peer coverage (2026-04-24) ─
+  // Replaced the macro/institutional Fed-Treasury-SEC block with feeds
+  // that speak to a $5M–$150M owner-operator. A Fed speech on FOMC
+  // trajectory does not help a founder decide whether to hire a COO;
+  // ACG's Middle Market Growth, Vistage research, and Endeavor's
+  // ecosystem work do. The dropped feeds (Federal Reserve speeches and
+  // press releases, US Treasury press, SEC press) never generated a
+  // single Signal bullet the Writer chose — they scored low and lived
+  // at the wrong altitude for the ICP.
   {
-    url: "https://www.federalreserve.gov/feeds/speeches.xml",
-    outlet: "Federal Reserve — Speeches",
+    url: "https://middlemarketgrowth.org/feed/",
+    outlet: "Middle Market Growth (ACG)",
     region: "us",
     tier: 1,
   },
   {
-    url: "https://www.federalreserve.gov/feeds/press_all.xml",
-    outlet: "Federal Reserve — Press Releases",
+    url: "https://www.vistage.com/research-center/feed/",
+    outlet: "Vistage Research Center",
     region: "us",
     tier: 1,
   },
   {
-    url: "https://home.treasury.gov/news/press-releases/feed",
-    outlet: "US Treasury — Press Releases",
+    url: "https://review.firstround.com/feed",
+    outlet: "First Round Review",
     region: "us",
     tier: 1,
   },
   {
-    url: "https://www.sec.gov/news/pressreleases.rss",
-    outlet: "SEC — Press Releases",
+    url: "https://www.familybusinessmagazine.com/rss.xml",
+    outlet: "Family Business Magazine",
     region: "us",
-    tier: 1,
+    tier: 2,
+  },
+  {
+    url: "https://endeavor.org/feed/",
+    outlet: "Endeavor Insight",
+    region: "us",
+    tier: 2,
   },
 
   // ── MX expansion (2026-04-24) — raise MX feed count from 8 to 16 so the
@@ -765,6 +781,44 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.as-coa.org/taxonomy/term/31/feed",
     outlet: "AS/COA — Mexico Initiative",
+    region: "mx",
+    tier: 1,
+  },
+
+  // ── Mid-market MX owner-operator — tier-1 research + ecosystem ────────
+  // Added 2026-04-24 to raise the quality of the MX tier-1 pool. Before
+  // this, the only MX tier-1 feed was AS/COA Mexico Initiative, which
+  // skews to policy/diplomacy more than operating reality. These add
+  // Mexican peers for what the US pool has (Middle Market Growth, Vistage,
+  // Endeavor, First Round) — research and peer-ecosystem coverage that
+  // speaks directly to a $5M–$150M dueño mexicano.
+  {
+    url: "https://imco.org.mx/feed/",
+    outlet: "IMCO — Instituto Mexicano para la Competitividad",
+    region: "mx",
+    tier: 1,
+  },
+  {
+    url: "https://endeavor.org.mx/feed/",
+    outlet: "Endeavor México",
+    region: "mx",
+    tier: 1,
+  },
+  {
+    url: "https://coparmex.org.mx/feed/",
+    outlet: "Coparmex — Confederación Patronal",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://www2.deloitte.com/mx/es/rss.html",
+    outlet: "Deloitte México Insights",
+    region: "mx",
+    tier: 1,
+  },
+  {
+    url: "https://www.pwc.com/mx/es/rss/rss.html",
+    outlet: "PwC México",
     region: "mx",
     tier: 1,
   },
