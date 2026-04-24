@@ -37,8 +37,10 @@ import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
-import { filterUsBundle, filterMxBundle } from "./utils/bundle-filter.js";
+import { filterUsBundle } from "./utils/bundle-filter.js";
 import { findFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
+import { replaceContentMxEntities } from "./utils/mx-entity-replacer.js";
+import { runVoiceSweep } from "./utils/es-voice-sweep.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -386,75 +388,47 @@ async function main(): Promise<void> {
     );
   }
 
-  // ── Strategist (runs twice — once per edition) ─────────────────────────────
-  // Dual-pipeline architecture: each edition has its own angle, its own
-  // thesis, its own OS pillar. The Strategist sees only the items its
-  // edition can cite (US+corridor for EN, MX+corridor for ES) so the two
-  // editions are editorially independent from pillar down — not just
-  // "same idea, different examples".
-  console.log("🧠 Step 2/4 — Strategist (US): selecting EN angle...");
+  // ── Strategist ─────────────────────────────────────────────────────────────
+  // One Strategist picks the week's angle. Both editions share it — the EN
+  // is the canonical editorial judgment, and the ES renders the same angle
+  // in native Mexican voice (Option A from the 2026-04-24 design review).
+  // We tried the dual-Strategist architecture briefly; Wadi preferred the
+  // same strategic spine with a Mexican voice over two independent topics.
+  console.log("🧠 Step 2/4 — Strategist: selecting angle...");
   const recentFieldReports = loadRecentFieldReportSummaries(draftsDir);
   const strategistAgent = new StrategistAgent(deps);
-  const strategistUsOutput = await strategistAgent.run({
+  const strategistOutput = await strategistAgent.run({
     runId,
     editionId,
     agentName: "strategist",
-    payload: {
-      ...bundle,
-      items: filterUsBundle(bundle.items),
-      recentFieldReports,
-    },
+    payload: { ...bundle, recentFieldReports },
   });
 
-  if (!strategistUsOutput.success) {
-    console.error(`❌ Strategist (US) failed: ${strategistUsOutput.error}`);
+  if (!strategistOutput.success) {
+    console.error(`❌ Strategist failed: ${strategistOutput.error}`);
     process.exit(1);
   }
 
-  const angleUs = strategistUsOutput.data as StrategicAngle;
-  console.log(`   ✓ EN Angle: "${angleUs.headline}"`);
-  console.log(`   ✓ EN Pillar: ${angleUs.osPillar}`);
-  console.log(`   ✓ EN Theme: ${angleUs.quarterlyTheme}\n`);
-
-  console.log("🧠 Step 3/4 — Strategist (MX): selecting ES angle...");
-  const strategistMxOutput = await strategistAgent.run({
-    runId,
-    editionId,
-    agentName: "strategist",
-    payload: {
-      ...bundle,
-      items: filterMxBundle(bundle.items),
-      recentFieldReports,
-    },
-  });
-
-  if (!strategistMxOutput.success) {
-    console.error(`❌ Strategist (MX) failed: ${strategistMxOutput.error}`);
-    process.exit(1);
-  }
-
-  const angleMx = strategistMxOutput.data as StrategicAngle;
-  console.log(`   ✓ ES Angle: "${angleMx.headline}"`);
-  console.log(`   ✓ ES Pillar: ${angleMx.osPillar}`);
-  console.log(`   ✓ ES Theme: ${angleMx.quarterlyTheme}\n`);
+  const angle = strategistOutput.data as StrategicAngle;
+  console.log(`   ✓ Angle: "${angle.headline}"`);
+  console.log(`   ✓ Pillar: ${angle.osPillar}`);
+  console.log(`   ✓ Theme: ${angle.quarterlyTheme}\n`);
 
   // ── Writer (EN) ────────────────────────────────────────────────────────────
-  console.log("✍️  Step 3/4 — Writer: drafting newsletter...");
+  console.log("✍️  Step 3/5 — Writer: drafting newsletter...");
   const writerAgent = new WriterAgent(deps);
   const writerOutput = await writerAgent.run({
     runId,
     editionId,
     agentName: "writer",
     payload: {
-      angle: angleUs,
-      // Writer gets only US + corridor items. Soft preference in the prompt
-      // alone did not hold — when the Strategist picked an MX-flavored angle
-      // the Writer reliably reached for Expansión/El Financiero items even
-      // though corridor alternatives existed. The hard filter disjoints the
-      // Writer's pool from the Localizer's (MX + corridor), which was the
-      // whole point of the regional edition split. The Writer prompt handles
-      // the empty-pillar case with sector framing ("In the US mid-market
-      // this week…") rather than the old `#source-pending` placeholder.
+      angle,
+      // Writer gets only US + corridor items so the EN anchors in US
+      // institutional sources (Fortune, HBR, Bloomberg, Chief Executive,
+      // etc.) even when the bundle is MX-heavy. The ES Writer below
+      // receives the full bundle + EN content so it can both cite the
+      // same US/corridor sources and substitute a regional example from
+      // the MX items when the story calls for it.
       sources: filterUsBundle(bundle.items),
       language: "en",
       draftsDir,
@@ -480,7 +454,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "validator",
-    payload: { content, angle: angleUs },
+    payload: { content, angle },
   });
 
   const validation = validatorOutput.data as ValidationResult | undefined;
@@ -500,32 +474,58 @@ async function main(): Promise<void> {
     console.log();
   }
 
-  // ── ES Writer (authors the ES edition from scratch — no EN input) ──────────
-  // The agent is still called "Localizer" in the class name for backward
-  // compatibility, but it is now the ES Writer. It receives angleMx (its own
-  // Strategist-picked angle) and the MX bundle, and it authors every section
-  // fresh in Spanish. No transcreation from the EN edition happens anywhere
-  // in the pipeline.
-  console.log("🌎 Step 5/5 — ES Writer: authoring the Spanish edition...");
+  // ── ES Writer (renders the shared angle in native Mexican voice) ──────────
+  // Receives the EN content + the shared angle + the full bundle. Its job
+  // is to produce an ES edition that shares the EN's strategic spine and
+  // tier-1 source citations, but reads as native Mexican business press
+  // (El País / Whitepaper / Expansión / Forbes LATAM register). It has
+  // explicit license to substitute ONE example with a Mexican equivalent
+  // from the bundle, or add an "Enfoque México" paragraph to the Field
+  // Report when the MX items strengthen the point. The class is still
+  // called Localizer for back-compat; conceptually it is now an ES Writer
+  // with the same hardening the EN Writer has (repair passes, deterministic
+  // entity replacer, voice-sweep post-processor).
+  console.log("🌎 Step 5/5 — ES Writer: rendering in native Mexican voice...");
   const localizerAgent = new LocalizerAgent(deps);
   const localizerOutput = await localizerAgent.run({
     runId,
     editionId,
     agentName: "localizer",
-    payload: { angle: angleMx, targetLanguage: "es", draftsDir, sourceBundle: bundle },
+    payload: { content, angle, targetLanguage: "es", draftsDir, sourceBundle: bundle },
   });
 
-  const esContent = localizerOutput.success
-    ? rewriteContentOutletLinks(
-        localizerOutput.data as LocalizedContent,
-        bundle,
-        "es",
-      )
-    : null;
-
-  if (!localizerOutput.success || !esContent) {
+  let esContent: LocalizedContent | null = null;
+  if (!localizerOutput.success) {
     console.warn(`   ⚠️  Localizer failed: ${localizerOutput.error}. Spanish draft skipped.\n`);
   } else {
+    let stage = localizerOutput.data as LocalizedContent;
+
+    // Deterministic MX entity replacer. Catches the specific calques we've
+    // seen ship multiple times — "Comisión Nacional Antimonopolio" for
+    // COFECE, "SEC mexicana" for CNBV, "IRS mexicano" for SAT — that the
+    // prompt's self-check step 6.3 missed. Cheap, no LLM call.
+    const entityFix = replaceContentMxEntities(stage);
+    if (entityFix.report.length > 0) {
+      console.log(`   🔧 MX entity fixes applied:`);
+      for (const r of entityFix.report) {
+        console.log(`      • ${r.note} (${r.occurrences} occurrence${r.occurrences === 1 ? "" : "s"})`);
+      }
+    }
+    stage = entityFix.content;
+
+    // Voice sweep. Sonnet reads each major prose section (Apertura,
+    // Insight, Field Report, Tool, Compass) and rewrites translation-
+    // tells in native Mexican register. Preserves every fact, URL, and
+    // bold punch line. Runs AFTER the Localizer's own repair passes —
+    // those fix structure; this fixes voice.
+    console.log(`   🪶 Voice sweep: refining ES prose to native Mexican register...`);
+    stage = await runVoiceSweep(stage, apiClients, costTracker, logger);
+
+    // Outlet-link rewriter: expand [Leer ->] into [Leer en <outlet> ->]
+    // so every citation shows its destination. Runs LAST so it operates
+    // on the final prose.
+    esContent = rewriteContentOutletLinks(stage, bundle, "es");
+
     console.log(`   ✓ Spanish edition ready (${esContent.sections.length} sections)\n`);
   }
 
@@ -543,12 +543,7 @@ async function main(): Promise<void> {
     payload: {
       enContent: content,
       esContent: esContent ?? null,
-      // QualityGate sees the US angle — it is the one bound to the EN
-      // edition's framework/thesis. If the ES diverges (different pillar,
-      // different thesis), that is by design in the dual-pipeline model;
-      // the ES-specific angle still lives on esContent.subject etc. and
-      // is recorded in the JSON output below.
-      angle: angleUs,
+      angle,
       sourceBundle: bundle,
       priorAngles,
     },
@@ -658,15 +653,10 @@ async function main(): Promise<void> {
     }
   }
 
-  // Record BOTH angles (+ Field Report summaries) in history for future de-duplication
+  // Record the angle (+ Field Report summary) in history for future de-duplication
   const spotlightBody = content.sections.find((s) => s.type === "spotlight")?.body ?? "";
   const fieldReportSummary = spotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
-  recordAngle(draftsDir, editionId, angleUs, fieldReportSummary || undefined);
-  if (esContent) {
-    const esSpotlightBody = esContent.sections.find((s) => s.type === "spotlight")?.body ?? "";
-    const esFieldReportSummary = esSpotlightBody.slice(0, 300).replace(/\s+/g, " ").trim();
-    recordAngle(draftsDir, editionId, angleMx, esFieldReportSummary || undefined);
-  }
+  recordAngle(draftsDir, editionId, angle, fieldReportSummary || undefined);
 
   const enMdPath = join(draftsDir, `${editionId}-en.md`);
   const esMdPath = join(draftsDir, `${editionId}-es.md`);
@@ -678,15 +668,15 @@ async function main(): Promise<void> {
     logger.info(`Backed up existing draft to ${jsonPath}.bak`);
   }
 
-  const enMdContent = stripAiTells(renderMarkdown(editionId, angleUs, content, "en"));
+  const enMdContent = stripAiTells(renderMarkdown(editionId, angle, content, "en"));
   writeFileSync(enMdPath, enMdContent, "utf-8");
-  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angleUs, content, "en"), "utf-8");
+  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
-    esMdContent = stripAiTells(renderMarkdown(editionId, angleMx, esContent, "es"));
+    esMdContent = stripAiTells(renderMarkdown(editionId, angle, esContent, "es"));
     writeFileSync(esMdPath, esMdContent, "utf-8");
-    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angleMx, esContent, "es"), "utf-8");
+    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
   }
 
   // Content hash lets publish.ts verify the draft was not corrupted or swapped
@@ -698,8 +688,7 @@ async function main(): Promise<void> {
   const localizerCostUsd = localizerOutput.success ? localizerOutput.cost.costUsd : 0;
   const qualityGateCostUsd = qualityGateOutput.success ? qualityGateOutput.cost.costUsd : 0;
 
-  const strategistCostUsd =
-    strategistUsOutput.cost.costUsd + strategistMxOutput.cost.costUsd;
+  const strategistCostUsd = strategistOutput.cost.costUsd;
 
   const jsonContent = JSON.stringify(
     {
@@ -707,16 +696,14 @@ async function main(): Promise<void> {
       editionId,
       generatedAt: new Date().toISOString(),
       contentHash,
-      angleUs,
-      angleMx,
+      angle,
       enContent: content,
       esContent: esContent ?? null,
       validation: validatorOutput.success ? validation : null,
       qualityGate: qualityGate ?? null,
       costs: {
         radar: radarCost,
-        strategistUs: strategistUsOutput.cost,
-        strategistMx: strategistMxOutput.cost,
+        strategist: strategistOutput.cost,
         writer: writerOutput.cost,
         validator: validatorOutput.cost,
         localizer: localizerOutput.cost,
@@ -803,13 +790,12 @@ async function main(): Promise<void> {
   console.log(`   (${historyPaths.length} file${historyPaths.length === 1 ? "" : "s"} archived for this run)`);
   console.log(`\n💰 Cost breakdown:`);
   console.log(`   Radar:         $${radarCost.costUsd.toFixed(4)}`);
-  console.log(`   Strategist US: $${strategistUsOutput.cost.costUsd.toFixed(4)}`);
-  console.log(`   Strategist MX: $${strategistMxOutput.cost.costUsd.toFixed(4)}`);
-  console.log(`   Writer (EN):   $${writerOutput.cost.costUsd.toFixed(4)}`);
-  console.log(`   Validator:     $${validatorCostUsd.toFixed(4)}`);
-  console.log(`   ES Writer:     $${localizerCostUsd.toFixed(4)}`);
-  console.log(`   QualityGate:   $${qualityGateCostUsd.toFixed(4)}`);
-  console.log(`   Total:         $${totalCost.toFixed(4)}`);
+  console.log(`   Strategist:  $${strategistCostUsd.toFixed(4)}`);
+  console.log(`   Writer (EN): $${writerOutput.cost.costUsd.toFixed(4)}`);
+  console.log(`   Validator:   $${validatorCostUsd.toFixed(4)}`);
+  console.log(`   ES Writer:   $${localizerCostUsd.toFixed(4)}`);
+  console.log(`   QualityGate: $${qualityGateCostUsd.toFixed(4)}`);
+  console.log(`   Total:       $${totalCost.toFixed(4)}`);
 
   if (costJsonFlag) {
     process.stdout.write(
@@ -819,8 +805,7 @@ async function main(): Promise<void> {
         totalCostUsd: totalCost,
         breakdown: {
           radar: radarCost.costUsd,
-          strategistUs: strategistUsOutput.cost.costUsd,
-          strategistMx: strategistMxOutput.cost.costUsd,
+          strategist: strategistCostUsd,
           writer: writerOutput.cost.costUsd,
           validator: validatorCostUsd,
           localizer: localizerCostUsd,
