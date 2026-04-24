@@ -21,7 +21,10 @@ rooted in Latin America.
 
 ---
 
-## The English Edition
+## The English Edition — sections you TRANSCREATE
+
+These are the only pieces of the EN edition you receive. They share one
+editorial idea across EN and ES — transcreate them, never translate literally.
 
 ### Strategic thesis
 {{thesisEN}}
@@ -32,23 +35,33 @@ rooted in Latin America.
 ### Preheader
 {{preheaderEN}}
 
-### THE SIGNAL
-{{signal}}
-
 ### THE APERTURA
 {{apertura}}
 
 ### THE INSIGHT
 {{insight}}
 
-### THE FIELD REPORT
-{{fieldReport}}
-
 ### THE TOOL
 {{tool}}
 
-### THE COMPASS
-{{compass}}
+---
+
+## Sections the EN edition writes but you do NOT receive
+
+The EN Signal, EN Field Report, and EN Compass exist — the EN edition ships
+with them — but they are **deliberately withheld from this prompt**. You
+will author the ES Signal, ES Field Report, and ES Compass from scratch
+using the MX Source Bundle below. This is not a translation task for these
+three sections; it is an authoring task for a Mexican reader.
+
+The withholding is on purpose: with the EN versions in front of you, the
+model reuses their URLs and framing, and the ES edition ends up citing the
+same articles as the EN. That defeats the point of a regional edition.
+
+If a pillar in the MX Source Bundle is genuinely empty (no item maps to,
+say, Tecnología this week), use sector framing — *"En el mercado medio
+mexicano, la presión sobre márgenes tecnológicos sigue el mismo patrón…"*
+— rather than invent a story or reach for an EN URL you were not shown.
 
 ---
 
@@ -57,7 +70,8 @@ rooted in Latin America.
 The following items come from MX or corridor feeds (not US-only). Use them
 as the only authoritative content when authoring the **ES Signal bullets,
 ES Field Report, and ES Compass**. The Insight, Tool, Apertura, subject,
-preheader, and thesis still transcreate from the EN edition above.
+preheader, and thesis still transcreate from the EN pieces above — those
+are the only EN sections you receive.
 
 {{mxSourceBundle}}
 
@@ -84,34 +98,40 @@ translation.
 
 ### AUTHOR fresh from the MX Source Bundle (regional)
 These sections are produced **from scratch** using the MX/corridor
-verbatim facts above. Do not transcreate the EN versions of these.
+verbatim facts above. You do not receive the EN versions — reaching for
+them is not an option.
 
-- **THE SIGNAL** (`news` section) — write 4 NEW bullets, one per pillar
+- **THE SIGNAL** (`news` section) — write 4 bullets, one per pillar
   (Estrategia / Modelos Operativos / Tecnología / Capital Humano), each
   citing items from the MX Source Bundle. The italicized thread sentence
-  at the top transcreates from EN (it is the editorial judgment of the
-  week, valid for both regions). The 4 bullets are different facts and
-  links from the EN Signal bullets.
+  at the top is authored from the Strategic thesis and the patterns in
+  the MX bundle — not translated from any EN Signal you imagine exists.
 - **THE FIELD REPORT** (`spotlight` section) — pick a named MX (or
-  corridor) example with verifiable verbatim facts and write the section
-  fresh. If no MX example fits the week's angle, fall back to keeping
-  the US example with explicit "what this means for Mexican operators"
-  framing (Rule 5c below).
+  corridor) example with verifiable verbatim facts from the MX bundle
+  and write the section fresh. If no MX/corridor item fits the week's
+  angle, fall back to **sector framing** (*"En el segmento medio
+  mexicano, el patrón…"*) — not to a company or URL from outside the
+  MX bundle.
 - **THE COMPASS** (`quickTakes` section) — author a forward-looking
-  signal that a Mexican operator should track. Use MX regulatory or
-  market signals where they exist; otherwise reframe the EN signal so
-  it lands for the Mexican reader.
+  signal a Mexican operator should track. Prefer MX regulatory or
+  market signals from the MX bundle (SAT, IMSS, Banxico, CNBV, T-MEC,
+  sector-specific MX data). If the bundle is thin on forward signals,
+  use MX sector framing rather than invent an equivalent.
 
 ### When the MX Source Bundle is empty for a pillar
 Some weeks no MX source covers, say, Technology. In that case:
-- **Signal Tecnología bullet** — keep the EN bullet's facts (with the
-  original US/global link), transcreate the punch line, and frame the
-  fact for the Mexican reader.
-- **Field Report / Compass** — same fallback: reframe the EN content
-  with explicit "Aunque el caso documentado es estadounidense, el
-  patrón aplica al corredor porque…" framing.
-- Never invent a Mexican source, statistic, or company to fill the gap.
-  Sector framing or honest reframing always beats fabrication.
+- **Signal [Pilar] bullet** — write the bullet with sector framing
+  (*"En el segmento medio mexicano, la presión de [pilar] esta semana
+  se observa en…"*), pick the closest relevant MX/corridor item from
+  the bundle, or mark the link `[fuente pendiente]` if truly nothing
+  fits. Do not fabricate a URL or a company name.
+- **Field Report / Compass** — same rule. Sector framing on a named
+  Mexican sector is honest; inventing a company, a city, or a
+  statistic to hit the target voice is not.
+- Never invent a Mexican source, statistic, or company to fill the
+  gap. Never reach for an EN URL — you were not shown any, and
+  pretending otherwise breaks citation discipline. Sector framing or
+  honest absence always beats fabrication.
 
 ### Citation discipline for authored sections
 Same as the Writer: every number, named company, and quote in the
@@ -178,27 +198,31 @@ Source Bundle. If you cannot cite it, do not claim it.
    claim it. Use general market framing instead.
 
 7. **THE SIGNAL — author from the MX Source Bundle, do not transcreate.**
-   The Signal is one of the regional sections. Two parts:
+   The Signal is a regional section. You do not see the EN Signal at all.
+   Two parts:
 
-   **Thread sentence:** transcreate from the EN version. It is the editorial
-   judgment of the week, valid for both regions. Format:
-   `*Esta semana: [the pattern in Spanish.]*` — make it land with the same
-   weight in Spanish, do not translate literally.
+   **Thread sentence:** one italicized line at the top, 15-20 words, opened
+   with `*Esta semana:`. It is the editorial judgment of the week for the
+   Mexican reader — derive it from the Strategic thesis above and the
+   patterns you see in the MX Source Bundle. Do NOT reuse the English
+   thesis verbatim; state the same idea in native Mexican business voice.
 
-   **The 4 bullets:** rewrite from scratch using items from the MX Source
-   Bundle above. Different facts, different links from the EN bullets. Same
-   pillar labels in bold (`**Estrategia:**`, `**Modelos Operativos:**`,
-   `**Tecnología:**`, `**Capital Humano:**`) and same inline three-piece
-   shape: each bullet is **one markdown line** with the fact sentence + a
-   `**bold punch line**` + `[Leer ->](url)`. The bold sits inside the same
-   line as the fact and the link — never on its own line, never as a
-   separate paragraph. This keeps the rendered HTML inside one `<li>` so
-   the reader sees the bold flow directly from the fact.
+   **The 4 bullets:** write from scratch using items from the MX Source
+   Bundle above. Same pillar labels in bold (`**Estrategia:**`, `**Modelos
+   Operativos:**`, `**Tecnología:**`, `**Capital Humano:**`) and same
+   inline three-piece shape: each bullet is **one markdown line** with the
+   fact sentence + a `**bold punch line**` + `[Leer ->](url)`. The bold
+   sits inside the same line as the fact and the link — never on its own
+   line, never as a separate paragraph. This keeps the rendered HTML
+   inside one `<li>` so the reader sees the bold flow directly from the
+   fact.
 
    Pick the most operator-relevant MX/corridor item per pillar from the
-   bundle. If a pillar has no MX/corridor item this week, fall back to the
-   EN bullet's fact + link (do NOT invent an MX source) and adapt the
-   framing for the Mexican reader.
+   bundle. If a pillar has no MX/corridor item this week, write the bullet
+   using sector framing (*"En el segmento medio mexicano, el patrón de
+   [pillar] que se observa esta semana es…"*) and pick the most relevant
+   link from any remaining MX/corridor item in the bundle, or omit the
+   link with `[fuente pendiente]` rather than invent one.
 
    Always exactly 4 bullets, always in the same order: Estrategia, Modelos
    Operativos, Tecnología, Capital Humano.
@@ -245,12 +269,27 @@ Source Bundle. If you cannot cite it, do not claim it.
    Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
 
 12. **THE COMPASS — author from MX context, do not transcreate.**
-   The Compass is regional. Open with `**Observe esta semana:**` and name a
-   forward-looking signal a Mexican operator should track this week. Prefer
-   MX regulatory or market signals from the MX Source Bundle (SAT, IMSS,
-   Banxico, CNBV, T-MEC, sector-specific MX data). If the EN Compass signal
-   is genuinely universal and no MX-specific equivalent exists, reframe it
-   for the Mexican reader rather than invent an MX angle.
+   The Compass is regional and you do not see the EN version. Name a
+   forward-looking signal a Mexican operator should track this week.
+   Prefer MX regulatory or market signals from the MX Source Bundle (SAT,
+   IMSS, Banxico, CNBV, T-MEC, sector-specific MX data).
+
+   **Opener — rotate, never `**Observe esta semana:**`.** The imperative
+   + nominal phrase pattern (`Observe esta semana: la primera empresa…`)
+   is a calque of "Watch this week:" and reads translated in Mexican
+   business press. Use one of these native shapes (rotate across
+   editions):
+   - `**La señal a seguir esta semana:**`
+   - `**A vigilar esta semana:**`
+   - `**El indicador de la semana:**`
+   - `**Lo que hay que seguir:**` (for a longer lead-in sentence)
+   - Or a cold-open sentence with no label: *"El dato que conviene no
+     perder de vista esta semana es…"* — followed by the signal and why
+     it matters.
+
+   After the opener, 2-3 sentences explaining what the signal is and why
+   a mid-market MX operator should track it. Close with a handle sentence
+   of 6-10 words.
 
 ---
 
@@ -479,6 +518,11 @@ from English". Replace them on the first pass, not in editing.
 | "in terms of" | "en términos de" | "en cuanto a" / "en materia de" |
 | "that said" / "having said that" | "dicho esto" | "con todo" / "ahora bien" |
 | "in summary" / "in short" | "en resumen" (muy flat) | "en definitiva" / "en suma" |
+| "make X legible" / "make X readable" (as a metaphor) | "hacer X legible" | "normalizar X" / "volver X comprensible" / "explicitar X" |
+| "land" as in "an idea landed in group Y" | "la idea aterrizó en Y" (raro en prosa MX) | "la idea permeó en Y" / "el marco llegó a Y" / "se instaló en Y" |
+| "at scale" (used loosely after a verb) | "a escala" sin sustantivo | "en todo el sector" / "a gran escala" con sustantivo / reescribir la frase |
+| "frame X as Y-ing" (verb + infinitive) | "enmarcar X como financiar / como invertir" | "presentar X como financiamiento de…" / "plantearlo como inversión en…" (sustantivo tras *como*) |
+| "Watch this week: [nominal phrase]" (imperativo + frase nominal) | "Observe esta semana: [frase]" | "La señal a seguir esta semana:" / "A vigilar esta semana:" / "El indicador de la semana:" |
 
 **Untranslated anglicisms — keep vs. translate.** The Mexican
 business-press convention: keep the word if it names a specific
@@ -690,6 +734,33 @@ abre con imagen + dos puntos, paradoja, dato con fecha, o cita
 nombrada — nunca con *"En el mundo de hoy,"*, *"En un entorno cada
 vez más competitivo,"*, *"Las empresas deben…"*.
 
+**Paso 18.1 — La Brújula NO abre con `**Observe esta semana:**`.**
+Ese patrón (imperativo + frase nominal) es calco directo de *"Watch
+this week:"* y suena traducido. Busca y reemplaza por una de estas
+formas nativas: `**La señal a seguir esta semana:**`, `**A vigilar
+esta semana:**`, `**El indicador de la semana:**`, `**Lo que hay
+que seguir:**`, o una oración en frío sin etiqueta (*"El dato que
+conviene no perder de vista esta semana es…"*). Rota entre
+ediciones; no uses la misma etiqueta cada semana.
+
+**Paso 18.2 — Metáforas `legible / aterrizar / a escala / enmarcar como`
+en La Brújula y El Insight.** Busca específicamente:
+
+- *"hacer legible"* / *"hacer X legible"* como metáfora (no se refiere
+  a letra pequeña) → reemplaza con *"normalizar"*, *"volver
+  comprensible"*, *"explicitar"*.
+- *"aterrizó en"* / *"el vocabulario aterrizó"* / *"la idea aterrizó
+  en [grupo]"* → reemplaza con *"permeó en"*, *"llegó a"*, *"se
+  instaló en"*. *Aterrizar un plan* sí es MX; *una idea aterrizó en
+  un grupo* no lo es.
+- *"a escala"* suelta después de un verbo (*"hacer legible a escala"*,
+  *"normalizar a escala"*) → reescribe con sustantivo (*"a gran
+  escala"*, *"en todo el sector"*) o quita la frase.
+- *"enmarcar X como [verbo en infinitivo]"* (*"enmarcar un movimiento
+  como financiar"*) → reemplaza por sustantivo tras *como*
+  (*"presentar un movimiento como financiamiento"*, *"plantearlo
+  como inversión en…"*).
+
 Solo cuando los 18 pasos pasan: escribe el JSON.
 
 ---
@@ -744,7 +815,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{compassId}}",
       "type": "quickTakes",
       "heading": "LA BRÚJULA",
-      "body": "**Observe esta semana:** [señal específica y rastreable]. 2-3 oraciones sobre por qué importa.",
+      "body": "**[La señal a seguir esta semana: | A vigilar esta semana: | El indicador de la semana: | Lo que hay que seguir:]** [señal específica y rastreable]. 2-3 oraciones sobre por qué importa. Cierra con una oración-manija de 6-10 palabras. NUNCA abras con '**Observe esta semana:**' (calco de 'Watch this week').",
       "sourceRefs": []
     },
     {

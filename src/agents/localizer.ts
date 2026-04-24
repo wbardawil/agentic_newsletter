@@ -78,7 +78,7 @@ function getSectionId(content: LocalizedContent, type: string): string {
  */
 function formatMxBundleForPrompt(items: SourceItem[]): string {
   if (items.length === 0) {
-    return "(No MX or corridor sources available this week. Fall back to transcreating the EN sections — do not invent Mexican examples.)";
+    return "(No MX or corridor sources available this week. Author the Signal, Field Report, and Compass using sector framing — 'En el segmento medio mexicano, el patrón que se observa esta semana es…' — and mark any bullet that needs a link with [fuente pendiente]. Do NOT invent a Mexican source, do NOT reach for an EN URL you were not shown, and do NOT fabricate a company example.)";
   }
   return items
     .map((item) => {
@@ -119,6 +119,12 @@ function buildPrompt(
     formatMxBundleForPrompt(mxItems) +
     "\n</mx_source_items>";
 
+  // Structural split: the EN Signal, Field Report, and Compass bodies are
+  // intentionally withheld from the prompt. Giving the Localizer those
+  // bodies causes it to transcreate rather than author from the MX bundle
+  // — and the ES edition ends up citing the same articles as the EN. The
+  // IDs for those sections still flow through so the output JSON keeps a
+  // stable identity across editions.
   return template
     .replace("{{aperturaExamples}}", aperturaExamples)
     .replace("{{localizationMemory}}", localizationMemory)
@@ -130,12 +136,9 @@ function buildPrompt(
     .replace("{{thesisEN}}", angle.thesis)
     .replace("{{subjectEN}}", content.subject)
     .replace("{{preheaderEN}}", content.preheader)
-    .replace("{{signal}}", getSectionBody(content, "news"))
     .replace("{{apertura}}", getSectionBody(content, "lead"))
     .replace("{{insight}}", getSectionBody(content, "analysis"))
-    .replace("{{fieldReport}}", getSectionBody(content, "spotlight"))
     .replace("{{tool}}", getSectionBody(content, "tool"))
-    .replace("{{compass}}", getSectionBody(content, "quickTakes"))
     .replace("{{signalId}}", getSectionId(content, "news"))
     .replace("{{aperturaId}}", getSectionId(content, "lead"))
     .replace("{{insightId}}", getSectionId(content, "analysis"))
@@ -183,7 +186,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
       messages: [
         {
           role: "user",
-          content: `Transcreate the English edition above into Spanish following every rule. Output valid JSON only — no preamble, no markdown wrapper.`,
+          content: `Produce the Spanish edition. Transcreate the Apertura, Insight, Tool, subject, preheader, and thesis from the EN pieces shown above. Author the Signal, Field Report, and Compass from scratch using the MX Source Bundle — the EN versions of those three sections are deliberately withheld. Follow every rule, including the 18-step self-check. Output valid JSON only — no preamble, no markdown wrapper.`,
         },
       ],
     });
