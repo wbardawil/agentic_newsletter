@@ -227,18 +227,29 @@ should understand what the week was about.
    organize, or retain people this week. Workforce model shifts, talent decisions,
    or organizational design moves with implications for the corridor operator.
 
-**Step 4 — Structure each bullet in three layers.**
+**Step 4 — Each bullet is ONE LINE with three pieces in this order:**
 
-Each bullet must be a `- **[Pillar]:**` line with three parts in order:
+```
+- **[Pillar]:** [fact sentence] **[bold punch line]** [Read ->](url)
+```
 
-1. **The fact** — 1–2 short sentences. Names, numbers, dates, places. Pure
-   news. No interpretation.
-2. **The punch line — in bold on its own new line.** One sentence. A
-   declarative statement about what the pillar *is* as a discipline, using
-   the news as the visible evidence. Universal tone, not news-specific.
-   Aphoristic, screenshot-able. Must pass the "would a peer subscribe to
-   the newsletter just for this line" test.
-3. **The link** — ` [Read ->](url)` at the end of the line or on its own line.
+All three pieces sit on a single markdown line — no line breaks inside the
+bullet. The bold punch reads as the second sentence of the same paragraph,
+flowing from the fact. This way the rendered HTML keeps the bold inside
+the `<li>` so the reader sees one continuous bullet, not three stacked
+elements.
+
+**The three pieces:**
+
+1. **The fact** — one sentence (or at most two short ones). Names, numbers,
+   dates, places. Pure news. No interpretation.
+2. **The bold punch line** — one sentence wrapped in `**…**`, sitting
+   immediately after the fact, before the link. A declarative statement
+   about what the pillar *is* as a discipline, using the news as the
+   visible evidence. Universal tone, not news-specific. Aphoristic,
+   screenshot-able. Must pass the "would a peer subscribe to the
+   newsletter just for this line" test.
+3. **The link** — ` [Read ->](url)` at the very end.
 
 **Rules for the bold punch line (this is the new discipline):**
 
@@ -246,46 +257,30 @@ Each bullet must be a `- **[Pillar]:**` line with three parts in order:
   *"[Pillar] is / is not / does / never / always / only …"*
 - It does **not** tell the reader what to do. No "should", "must", "need to".
   Prescriptive advice belongs in The Insight and The Tool.
-- It must be able to stand on its own if the fact above disappeared. A peer
-  reading only the bold line should think *"that is true and I had not seen
-  it named that way"*.
+- It must be able to stand on its own if the fact disappeared. A peer reading
+  only the bold sentence should think *"that is true and I had not seen it
+  named that way"*.
 - ≤ 18 words. Shorter is better. If it needs a comma-clause to land, rewrite.
 - No clichés. No *"at the end of the day"*, *"move the needle"*, *"it's not
   just X — it's Y"*. Plain declarative verbs.
 - One per bullet. Exactly four per edition, one per pillar.
 
-**Examples of the bullet format:**
+**Examples of the inline bullet format:**
 
 ```
-- **Operating Models:** Apple confirmed the Cook → Ternus succession for
-  September 1, 2026. The board's transition planning predated the announcement
-  by years.
-  **The operating model is what survives when the founder leaves.**
-  [Read ->](https://expansion.mx/tecnologia/2026/04/20/tim-cook-dejara-direccion-apple-john-ternus-nuevo-ceo)
+- **Operating Models:** Apple confirmed the Cook → Ternus succession for September 1, 2026, after a multi-year board planning process. **The operating model is what survives when the founder leaves.** [Read ->](https://expansion.mx/tecnologia/2026/04/20/tim-cook-dejara-direccion-apple-john-ternus-nuevo-ceo)
 ```
 
 ```
-- **Strategy:** Mexican steel exports to the US fell 54% in the first two
-  months of 2026 under Section 232 tariffs. USMCA review talks opened this
-  week.
-  **Strategy is the discipline of deciding which trade-regime assumptions are
-  contracts and which are courtesy.**
-  [Read ->](https://expansion.mx/economia/2026/04/20/automotriz-acero-aranceles-trump-encabezan-dialogo-eu)
+- **Strategy:** Mexican steel exports to the US fell 54% in the first two months of 2026 under Section 232 tariffs, with USMCA review talks opening this week. **Strategy is the discipline of deciding which trade-regime assumptions are contracts and which are courtesy.** [Read ->](https://expansion.mx/economia/2026/04/20/automotriz-acero-aranceles-trump-encabezan-dialogo-eu)
 ```
 
 ```
-- **Technology:** Canva 2.0 shipped with Claude integrations into Slack, Gmail,
-  Drive, Notion, HubSpot, and Zoom.
-  **Technology never adds what was not there; it amplifies what already was.**
-  [Read ->](https://expansion.mx/tecnologia/2026/04/20/canva-anthropic-se-unen-ia-2-0)
+- **Technology:** Canva 2.0 shipped with Claude integrations into Slack, Gmail, Drive, Notion, HubSpot, and Zoom. **Technology never adds what was not there; it amplifies what already was.** [Read ->](https://expansion.mx/tecnologia/2026/04/20/canva-anthropic-se-unen-ia-2-0)
 ```
 
 ```
-- **Human Capital:** Former Banxico governor Agustín Carstens joined UBS's
-  Corporate Culture and Governance committees.
-  **Institutions with written governance attract the people who know how to
-  run one.**
-  [Read ->](https://expansion.mx/economia/2026/04/20/agustin-carstens-nuevo-empleo-puesto)
+- **Human Capital:** Former Banxico governor Agustín Carstens joined UBS's Corporate Culture and Governance committees. **Institutions with written governance attract the people who know how to run one.** [Read ->](https://expansion.mx/economia/2026/04/20/agustin-carstens-nuevo-empleo-puesto)
 ```
 
 **General rules (apply to all four bullets):**
@@ -293,8 +288,8 @@ Each bullet must be a `- **[Pillar]:**` line with three parts in order:
 - No politics. No consumer news.
 - The bullets prove the thread sentence. If a bullet does not connect to the
   thread, replace it with one that does.
-- Total Signal word count 95–185. With three-layer bullets the target is ~130
-  total. Long bullets kill the signal.
+- Total Signal word count 95–185. Inline three-piece bullets target ~130 total.
+  Long bullets kill the signal.
 
 ### Section 1 — THE APERTURA (~100 words each option)
 
@@ -566,7 +561,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
     "Style C — Urgent signal: 50-65 chars"
   ],
   "sections": {
-    "signal": "*This week: [the pattern that connects all four signals — required, 15-20 words.]*\n\n- **Strategy:** [1-2 fact sentences]\n  **[Bold punch line — ≤18 words, declarative truth about the pillar as a discipline.]**\n  [Read ->](url)\n- **Operating Models:** [1-2 fact sentences]\n  **[Bold punch line about operating models as a discipline.]**\n  [Read ->](url)\n- **Technology:** [1-2 fact sentences]\n  **[Bold punch line about technology as a discipline.]**\n  [Read ->](url)\n- **Human Capital:** [1-2 fact sentences]\n  **[Bold punch line about human capital as a discipline.]**\n  [Read ->](url)",
+    "signal": "*This week: [the pattern that connects all four signals — required, 15-20 words.]*\n\n- **Strategy:** [fact sentence] **[Bold punch line — ≤18 words, declarative truth about the pillar as a discipline.]** [Read ->](url)\n- **Operating Models:** [fact sentence] **[Bold punch line about operating models as a discipline.]** [Read ->](url)\n- **Technology:** [fact sentence] **[Bold punch line about technology as a discipline.]** [Read ->](url)\n- **Human Capital:** [fact sentence] **[Bold punch line about human capital as a discipline.]** [Read ->](url)",
     "aperturaOptions": [
       {"label": "A", "style": "observation", "body": "..."},
       {"label": "B", "style": "provocation", "body": "..."},
