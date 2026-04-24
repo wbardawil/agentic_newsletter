@@ -23,8 +23,16 @@ type RadarInput = z.infer<typeof RadarInputSchema>;
 interface FeedConfig {
   url: string;
   outlet: string;
-  /** Geographic focus — used to boost LATAM sources in scoring. */
-  region: "global" | "us" | "latam";
+  /**
+   * Geographic anchor of the feed. Drives which edition(s) the item is
+   * eligible for after the regional filter:
+   *   - "us": only the EN edition pulls from this feed
+   *   - "mx": only the ES edition pulls from this feed
+   *   - "corridor": both editions can cite (global research, US-LATAM
+   *     trade, pan-LATAM business press, Spanish-language business
+   *     commentary that is not MX-specific)
+   */
+  region: "us" | "mx" | "corridor";
   /** Editorial tier: 1 = strategy/insight, 2 = business news, 3 = niche/trade. */
   tier: 1 | 2 | 3;
   /**
@@ -40,61 +48,61 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://feeds.hbr.org/harvardbusiness",
     outlet: "Harvard Business Review",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://sloanreview.mit.edu/feed/",
     outlet: "MIT Sloan Management Review",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.strategy-business.com/rss",
     outlet: "Strategy+Business (PwC)",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.mckinsey.com/insights/rss",
     outlet: "McKinsey Insights",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www2.deloitte.com/us/en/insights/rss.xml",
     outlet: "Deloitte Insights",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.bcg.com/rss",
     outlet: "BCG Perspectives",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://knowledge.wharton.upenn.edu/feed/",
     outlet: "Knowledge@Wharton",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.gartner.com/en/newsroom/rss",
     outlet: "Gartner",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://knowledge.insead.edu/rss/list",
     outlet: "INSEAD Knowledge",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://blogs.lse.ac.uk/businessreview/feed/",
     outlet: "LSE Business Review",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
 
@@ -110,25 +118,25 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://publications.iadb.org/en/rss",
     outlet: "IDB — Inter-American Development Bank",
-    region: "latam",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.caf.com/en/currently/rss-channels/",
     outlet: "CAF — Development Bank of Latin America",
-    region: "latam",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://agenda.weforum.org/feed/",
     outlet: "World Economic Forum",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://blog.iese.edu/feed/",
     outlet: "IESE Business School",
-    region: "latam",
+    region: "corridor",
     tier: 1,
   },
 
@@ -138,13 +146,13 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://kornferryinstitute.libsyn.com/rss",
     outlet: "Korn Ferry Briefings on Talent & Leadership",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.atlanticcouncil.org/category/commentary/feature/feed/",
     outlet: "Atlantic Council (GeoEconomics)",
-    region: "latam",
+    region: "corridor",
     tier: 1,
   },
   {
@@ -164,13 +172,13 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.economist.com/finance-and-economics/rss.xml",
     outlet: "The Economist",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.economist.com/business/rss.xml",
     outlet: "The Economist — Business",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
 
@@ -216,7 +224,7 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.ft.com/rss/home",
     outlet: "Financial Times",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -224,31 +232,31 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/economia/portada",
     outlet: "El País Economía",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/",
     outlet: "El Financiero (México)",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://expansion.mx/rss",
     outlet: "Expansión México",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://www.forbes.com.mx/feed/",
     outlet: "Forbes México",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://www.eleconomista.com.mx/rss/economia.xml",
     outlet: "El Economista (México)",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
 
@@ -256,19 +264,19 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.portafolio.co/rss.xml",
     outlet: "Portafolio (Colombia)",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.larepublica.co/rss.xml",
     outlet: "La República (Colombia)",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.dinero.com/rss.xml",
     outlet: "Dinero (Colombia)",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
 
@@ -276,19 +284,19 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.infobae.com/feeds/rss/economia/",
     outlet: "Infobae Economía",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.bloomberglinea.com/arc/outboundfeeds/rss/",
     outlet: "Bloomberg Línea",
-    region: "latam",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://americaeconomia.com/rss.xml",
     outlet: "América Economía",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
 
@@ -296,7 +304,7 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://nearshoreamericas.com/feed/",
     outlet: "Nearshore Americas",
-    region: "latam",
+    region: "corridor",
     tier: 2,
   },
   {
@@ -317,7 +325,7 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.notboring.co/feed",
     outlet: "Not Boring (Packy McCormick)",
-    region: "global",
+    region: "corridor",
     tier: 3,
     competitive: true,
   },
@@ -331,7 +339,7 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://thegeneralist.substack.com/feed",
     outlet: "The Generalist",
-    region: "global",
+    region: "corridor",
     tier: 3,
     competitive: true,
   },
@@ -340,37 +348,37 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.technologyreview.com/topic/artificial-intelligence/feed",
     outlet: "MIT Technology Review — AI",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://hbr.org/resources/rss/topics/digital-transformation",
     outlet: "HBR — Digital Transformation",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://feeds.hbr.org/harvardbusiness/ai",
     outlet: "HBR — AI",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://venturebeat.com/category/ai/feed/",
     outlet: "VentureBeat AI",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.wired.com/feed/category/business/latest/rss",
     outlet: "Wired Business",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://a16z.com/feed/",
     outlet: "a16z (Andreessen Horowitz)",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -380,37 +388,37 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/business-transformation",
     outlet: "Process Excellence Network — Business Transformation",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/change-management",
     outlet: "Process Excellence Network — Organizational Change",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/digital-transformation",
     outlet: "Process Excellence Network — Digital Transformation",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/ai",
     outlet: "Process Excellence Network — AI",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/automation",
     outlet: "Process Excellence Network — Automation & RPA",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.processexcellencenetwork.com/rss/categories/opex",
     outlet: "Process Excellence Network — OPEX & BPM",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -419,43 +427,43 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.hrexchangenetwork.com/rss/categories/hr-technology",
     outlet: "HR Exchange Network — HR Technology",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.hrexchangenetwork.com/rss/categories/people-analytics",
     outlet: "HR Exchange Network — People Analytics",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.hrexchangenetwork.com/rss/categories/employee-experience",
     outlet: "HR Exchange Network — Employee Experience",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.hrexchangenetwork.com/rss/categories/learning-development",
     outlet: "HR Exchange Network — Learning & Development",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://techrseries.com/feed/",
     outlet: "TechHR Series",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://hrtechfeed.com/feed/",
     outlet: "HR Tech Feed",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://joshbersin.com/feed/",
     outlet: "Josh Bersin",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
 
@@ -463,7 +471,7 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.bis.org/cbspeeches.rss",
     outlet: "BIS — Central Bank Speeches",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -473,31 +481,31 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.theverge.com/rss/index.xml",
     outlet: "The Verge",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://feeds.arstechnica.com/arstechnica/index",
     outlet: "Ars Technica",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://techcrunch.com/feed/",
     outlet: "TechCrunch",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://blog.bytebytego.com/feed",
     outlet: "ByteByteGo (System Design)",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://news.ycombinator.com/rss",
     outlet: "Hacker News",
-    region: "global",
+    region: "corridor",
     tier: 3,
   },
 
@@ -509,31 +517,31 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.lennysnewsletter.com/feed",
     outlet: "Lenny's Newsletter",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://andrewchen.substack.com/feed",
     outlet: "Andrew Chen (Growth & Network Effects)",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.svpg.com/feed/",
     outlet: "SVPG — Marty Cagan (Product Leadership)",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.producttalk.org/feed/",
     outlet: "Product Talk — Teresa Torres (Discovery)",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://productgrowth.substack.com/feed",
     outlet: "Product Growth — Aakash Gupta (Growth & Metrics)",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -543,19 +551,19 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://stratechery.com/feed/",
     outlet: "Stratechery — Ben Thompson",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://www.ben-evans.com/benedictevans/rss.xml",
     outlet: "Benedict Evans (Tech & Market Structure)",
-    region: "global",
+    region: "corridor",
     tier: 1,
   },
   {
     url: "https://newsletter.pragmaticengineer.com/feed",
     outlet: "The Pragmatic Engineer — Gergely Orosz",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
 
@@ -565,19 +573,19 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://bensbites.beehiiv.com/feed",
     outlet: "Ben's Bites (AI Products & Tools)",
-    region: "global",
+    region: "corridor",
     tier: 2,
   },
   {
     url: "https://www.therundown.ai/rss",
     outlet: "The Rundown AI",
-    region: "global",
+    region: "corridor",
     tier: 3,
   },
   {
     url: "https://tldr.tech/ai/rss",
     outlet: "TLDR AI",
-    region: "global",
+    region: "corridor",
     tier: 3,
   },
 
@@ -618,26 +626,147 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://mexicobusiness.news/rss/talent",
     outlet: "Mexico Business News – Talent",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://expansion.mx/rss/carrera",
     outlet: "Expansión – Carrera",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://www.eleconomista.com.mx/rss/seccion/capital-humano",
     outlet: "El Economista MX – Capital Humano",
-    region: "latam",
+    region: "mx",
     tier: 2,
   },
   {
     url: "https://factorial.mx/blog/feed/",
     outlet: "Factorial México",
-    region: "latam",
+    region: "mx",
     tier: 3,
+  },
+
+  // ── US expansion (2026-04-24) — raise US feed count from 17 to 26 so the
+  //    EN edition can anchor in US/corridor sources without competing for
+  //    slots against the larger LATAM pool. Broad-coverage signal feeds,
+  //    plus institutional (Fed, Treasury, SEC) for policy cold-opens.
+  {
+    url: "https://feeds.reuters.com/reuters/businessNews",
+    outlet: "Reuters Business",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+    outlet: "CNBC Business",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.inc.com/rss.xml",
+    outlet: "Inc. Magazine",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.entrepreneur.com/latest.rss",
+    outlet: "Entrepreneur",
+    region: "us",
+    tier: 3,
+  },
+  {
+    url: "https://www.businessinsider.com/rss",
+    outlet: "Business Insider",
+    region: "us",
+    tier: 3,
+  },
+  {
+    url: "https://www.marketplace.org/feed/",
+    outlet: "Marketplace (NPR)",
+    region: "us",
+    tier: 2,
+  },
+  {
+    url: "https://www.federalreserve.gov/feeds/speeches.xml",
+    outlet: "Federal Reserve — Speeches",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.federalreserve.gov/feeds/press_all.xml",
+    outlet: "Federal Reserve — Press Releases",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://home.treasury.gov/news/press-releases/feed",
+    outlet: "US Treasury — Press Releases",
+    region: "us",
+    tier: 1,
+  },
+  {
+    url: "https://www.sec.gov/news/pressreleases.rss",
+    outlet: "SEC — Press Releases",
+    region: "us",
+    tier: 1,
+  },
+
+  // ── MX expansion (2026-04-24) — raise MX feed count from 8 to 16 so the
+  //    ES edition has more native Mexican coverage and the top-20 bundle
+  //    doesn't over-concentrate in Expansión + El Financiero + Forbes MX.
+  //    Adds general-news business sections + non-paywalled commentary
+  //    outlets. Paywalled outlets (Reforma) and outlets without public
+  //    RSS (Banxico press, Excélsior Dinero) are intentionally omitted —
+  //    add them once Wadi confirms a working feed URL.
+  {
+    url: "https://www.eluniversal.com.mx/seccion/cartera/feed",
+    outlet: "El Universal — Cartera",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://www.milenio.com/rss/negocios",
+    outlet: "Milenio — Negocios",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://elceo.com/feed/",
+    outlet: "El CEO",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://mexicobusiness.news/rss/business",
+    outlet: "Mexico Business News",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://www.animalpolitico.com/feed/",
+    outlet: "Animal Político",
+    region: "mx",
+    tier: 3,
+  },
+  {
+    url: "https://aristeguinoticias.com/feed/",
+    outlet: "Aristegui Noticias",
+    region: "mx",
+    tier: 3,
+  },
+  {
+    url: "https://www.whitepaper.mx/rss",
+    outlet: "Whitepaper.mx",
+    region: "mx",
+    tier: 2,
+  },
+  {
+    url: "https://www.as-coa.org/taxonomy/term/31/feed",
+    outlet: "AS/COA — Mexico Initiative",
+    region: "mx",
+    tier: 1,
   },
 ];
 
@@ -809,8 +938,9 @@ function scoreRelevance(
   // Base content score: normalize so hitting ~1/4 of weighted keywords = 1.0
   let normalized = Math.min(score / (maxScore / 4), 1.0);
 
-  // LATAM sources get a 25% base boost — they are inherently on-corridor
-  if (feed.region === "latam") normalized = Math.min(normalized + 0.25, 1.0);
+  // MX sources get a 25% base boost — underrepresented in global feeds and
+  // essential for the ES edition. Corridor feeds are plentiful already.
+  if (feed.region === "mx") normalized = Math.min(normalized + 0.25, 1.0);
 
   // Tier-1 sources (strategy/insight) get a 10% quality boost
   if (feed.tier === 1) normalized = Math.min(normalized + 0.1, 1.0);
@@ -980,16 +1110,12 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           recencyHours,
           tags: itemTags,
           rawContent,
-          // Map FeedConfig.region (global|us|latam) to SourceItem.region
-          // (corridor|us|mx). Corridor items work for either language edition;
-          // mx items get authored fresh into the ES Signal/FieldReport/Compass
-          // by the Localizer instead of transcreated from EN.
-          region:
-            feed.region === "us"
-              ? "us"
-              : feed.region === "latam"
-                ? "mx"
-                : "corridor",
+          // FeedConfig.region now matches SourceItem.region one-for-one
+          // (us | mx | corridor), so the mapping is identity. Corridor
+          // items work for either language edition; mx items are authored
+          // fresh into the ES Signal/Field Report/Compass by the Localizer,
+          // us items anchor the EN edition.
+          region: feed.region,
         });
       }
     }
@@ -1018,7 +1144,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           const outlet = fi.origin?.title ?? "Feedly";
           const tags = (fi.tags ?? []).map((t) => t.label ?? "").filter(Boolean);
           const verbatimFacts = extractFacts(rawContent, title, outlet);
-          const relevanceScore = scoreRelevance(title, summary, tags, { region: "global", tier: 2 } as FeedConfig);
+          const relevanceScore = scoreRelevance(title, summary, tags, { region: "corridor", tier: 2 } as FeedConfig);
 
           allItems.push({
             id: randomUUID(),
