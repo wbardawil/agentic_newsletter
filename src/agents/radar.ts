@@ -938,9 +938,16 @@ function scoreRelevance(
   // Base content score: normalize so hitting ~1/4 of weighted keywords = 1.0
   let normalized = Math.min(score / (maxScore / 4), 1.0);
 
-  // MX sources get a 25% base boost — underrepresented in global feeds and
-  // essential for the ES edition. Corridor feeds are plentiful already.
-  if (feed.region === "mx") normalized = Math.min(normalized + 0.25, 1.0);
+  // US and MX sources both get a 25% base boost — corridor feeds dominate
+  // the pool (65 of 108) and without the boost a typical top-20 is 14
+  // corridor items + 6 regional. Giving the two regional buckets equal
+  // weight keeps the Writer (filtered to us+corridor) and the Localizer
+  // (filtered to mx+corridor) each with 4-6 regional items to work with,
+  // rather than the Writer seeing 14 corridor + 2 us items and defaulting
+  // to HBR think-pieces.
+  if (feed.region === "us" || feed.region === "mx") {
+    normalized = Math.min(normalized + 0.25, 1.0);
+  }
 
   // Tier-1 sources (strategy/insight) get a 10% quality boost
   if (feed.tier === 1) normalized = Math.min(normalized + 0.1, 1.0);

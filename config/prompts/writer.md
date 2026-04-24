@@ -38,27 +38,39 @@ The Strategist agent has selected the following sources and strategic angle for
 this issue. Use these to inform The Insight and The Field Report. Do not summarize
 them — use them as raw material to develop the framework.
 
-**Region preference — EN edition is written for the US operator.** Each source
-item carries a `region` tag (`us`, `mx`, or `corridor`). Prefer items in this
-priority order:
+**Regional filter — EN edition pool is already disjoint from the ES edition.**
+The sources you receive have been hard-filtered to `region: "us"` or
+`region: "corridor"` before this prompt was built. Mexican-only sources
+(`region: "mx"`) are NOT in your pool this week — they go to the
+Localizer for the ES edition. Do not ask for items you cannot see, do not
+imagine a URL from Expansión or El Financiero, do not reach for an MX
+company name that is not in the pool below. Every `region` tag in the
+pool is either `us` or `corridor`.
 
-1. **`us` items** — the first place to reach. A US operator cares about US
-   macro (Fed, BLS, CPI), US regulations (NLRB, FTC, IRS), US companies
-   (especially mid-market, named), US labor dynamics.
-2. **`corridor` items** — consulting research, cross-border reporting, global
-   business thinking. HBR, MIT Sloan, McKinsey, BCG, WEF, s+b, BLS, the
-   Economist, INSEAD, LSE. These speak to both audiences.
-3. **`mx` items — last resort only.** Reach for a Mexican source only if no
-   `us` or `corridor` item fits the pillar this week. When you do, frame the
-   MX fact explicitly for the US reader: *"Mexico's [metric] fell X% — the
-   pattern every corridor operator with Mexican suppliers needs to watch."*
-   Never present an MX-only story as if it were US-centric.
+Preference within your pool:
 
-**The Field Report in particular must anchor in a US or corridor example,
-never a Mexican one.** The ES edition has its own Field Report authored from
-MX sources by the Localizer; yours is the US counterpart. If the strongest
-named company in the bundle this week is Mexican, either reframe for the US
-corridor reader or pick the second-strongest US/corridor company.
+1. **`us` items** — first choice. A US operator cares about US macro
+   (Fed, BLS, CPI), US regulations (NLRB, FTC, IRS, SEC, Treasury), US
+   companies (especially mid-market, named), US labor dynamics.
+2. **`corridor` items** — consulting research and global business
+   thinking. HBR, MIT Sloan, McKinsey, BCG, WEF, s+b, INSEAD, LSE, the
+   Economist, FT. These speak to both audiences.
+
+**Empty pillar — sector framing, never placeholders.** If your pool
+this week has no item that maps to a pillar (say, no US/corridor
+Technology story), write the bullet using sector framing drawn from
+your own industry knowledge and the other items in the pool — e.g.
+*"In the US mid-market this week, the Technology pillar is quiet; the
+signal is that execs are waiting on Q2 Fed guidance before funding new
+AI deployments."* Do NOT emit `[Source pending]`, do NOT fabricate a
+URL, do NOT reach across to the ES edition's MX pool. The
+`[Read in <outlet> ->]` link can be dropped for a sector-framing
+bullet — the bold punch line still delivers the editorial judgment.
+
+**The Field Report must anchor in a US or corridor named example.** If
+the strongest named company in your pool is corridor (HBR case study,
+WEF data, McKinsey research), use that. The Localizer authors its own
+Field Report from MX sources — yours is the US counterpart.
 
 Each source includes:
 - `id` — unique identifier

@@ -37,6 +37,7 @@ import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
+import { filterUsBundle } from "./utils/bundle-filter.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -414,14 +415,15 @@ async function main(): Promise<void> {
     agentName: "writer",
     payload: {
       angle,
-      // Writer gets the FULL bundle. Each item carries its region tag so
-      // the Writer prompt can instruct "prefer US/corridor, fall back to
-      // MX with a US-framing when no alternative exists for a pillar".
-      // A hard filter here was too aggressive on weeks where the top-20
-      // leaned MX — the Writer ended up with zero items and shipped
-      // `#source-pending` placeholders (see edition 2026-26 first run).
-      // Soft preference in the prompt handles the skew more gracefully.
-      sources: bundle.items,
+      // Writer gets only US + corridor items. Soft preference in the prompt
+      // alone did not hold — when the Strategist picked an MX-flavored angle
+      // the Writer reliably reached for Expansión/El Financiero items even
+      // though corridor alternatives existed. The hard filter disjoints the
+      // Writer's pool from the Localizer's (MX + corridor), which was the
+      // whole point of the regional edition split. The Writer prompt handles
+      // the empty-pillar case with sector framing ("In the US mid-market
+      // this week…") rather than the old `#source-pending` placeholder.
+      sources: filterUsBundle(bundle.items),
       language: "en",
       draftsDir,
     },
