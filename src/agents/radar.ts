@@ -58,26 +58,8 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
   {
-    url: "https://www.strategy-business.com/rss",
-    outlet: "Strategy+Business (PwC)",
-    region: "corridor",
-    tier: 1,
-  },
-  {
     url: "https://www.mckinsey.com/insights/rss",
     outlet: "McKinsey Insights",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://www2.deloitte.com/us/en/insights/rss.xml",
-    outlet: "Deloitte Insights",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://www.bcg.com/rss",
-    outlet: "BCG Perspectives",
     region: "corridor",
     tier: 1,
   },
@@ -88,49 +70,19 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
   {
-    url: "https://www.gartner.com/en/newsroom/rss",
-    outlet: "Gartner",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://knowledge.insead.edu/rss/list",
-    outlet: "INSEAD Knowledge",
-    region: "corridor",
-    tier: 1,
-  },
-  {
     url: "https://blogs.lse.ac.uk/businessreview/feed/",
     outlet: "LSE Business Review",
     region: "corridor",
     tier: 1,
   },
 
-  // ── Mid-Market & LATAM Institutional Research (NEW — scored 82–91) ────────
+  // ── Mid-Market & LATAM Institutional Research ────────────────────────────
   // RSM is the only major consulting firm with a dedicated mid-market
-  // publication. IDB and CAF are the primary LATAM corridor research bodies.
+  // publication.
   {
     url: "https://realeconomy.rsmus.com/feed/",
     outlet: "RSM Real Economy (Middle Market)",
     region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://publications.iadb.org/en/rss",
-    outlet: "IDB — Inter-American Development Bank",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://www.caf.com/en/currently/rss-channels/",
-    outlet: "CAF — Development Bank of Latin America",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://agenda.weforum.org/feed/",
-    outlet: "World Economic Forum",
-    region: "corridor",
     tier: 1,
   },
   {
@@ -140,7 +92,7 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
 
-  // ── Leadership, Org Design & Transformation (NEW + existing) ─────────────
+  // ── Leadership, Org Design & Transformation ──────────────────────────────
   // Korn Ferry is the primary research institution on CEO/talent/org structure.
   // Atlantic Council adds the US-LATAM geopolitical trade layer.
   {
@@ -158,12 +110,6 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://chiefexecutive.net/feed/",
     outlet: "Chief Executive Magazine",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://www.cfo.com/feed/",
-    outlet: "CFO Magazine",
     region: "us",
     tier: 1,
   },
@@ -187,13 +133,6 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://feeds.bloomberg.com/markets/news.rss",
     outlet: "Bloomberg",
-    region: "us",
-    tier: 2,
-  },
-  // Reuters killed public RSS (2024). Replaced with AP News business wire.
-  {
-    url: "https://apnews.com/hub/ap-top-business-news.rss",
-    outlet: "AP Business",
     region: "us",
     tier: 2,
   },
@@ -236,63 +175,13 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/",
-    outlet: "El Financiero (México)",
-    region: "mx",
-    tier: 2,
-  },
-  {
     url: "https://expansion.mx/rss",
     outlet: "Expansión México",
     region: "mx",
     tier: 2,
   },
-  {
-    url: "https://www.forbes.com.mx/feed/",
-    outlet: "Forbes México",
-    region: "mx",
-    tier: 2,
-  },
-  {
-    url: "https://www.eleconomista.com.mx/rss/economia.xml",
-    outlet: "El Economista (México)",
-    region: "mx",
-    tier: 2,
-  },
-
-  // ── LATAM Business — Colombia & Andes ─────────────────────────────────────
-  {
-    url: "https://www.portafolio.co/rss.xml",
-    outlet: "Portafolio (Colombia)",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://www.larepublica.co/rss.xml",
-    outlet: "La República (Colombia)",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://www.dinero.com/rss.xml",
-    outlet: "Dinero (Colombia)",
-    region: "corridor",
-    tier: 2,
-  },
 
   // ── LATAM Business — Regional & Pan-LATAM ─────────────────────────────────
-  {
-    url: "https://www.infobae.com/feeds/rss/economia/",
-    outlet: "Infobae Economía",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://www.bloomberglinea.com/arc/outboundfeeds/rss/",
-    outlet: "Bloomberg Línea",
-    region: "corridor",
-    tier: 1,
-  },
   {
     url: "https://americaeconomia.com/rss.xml",
     outlet: "América Economía",
@@ -330,13 +219,6 @@ const RSS_FEEDS: FeedConfig[] = [
     competitive: true,
   },
   {
-    url: "https://www.morningbrew.com/daily/rss",
-    outlet: "Morning Brew",
-    region: "us",
-    tier: 3,
-    competitive: true,
-  },
-  {
     url: "https://thegeneralist.substack.com/feed",
     outlet: "The Generalist",
     region: "corridor",
@@ -352,18 +234,6 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://hbr.org/resources/rss/topics/digital-transformation",
-    outlet: "HBR — Digital Transformation",
-    region: "corridor",
-    tier: 1,
-  },
-  {
-    url: "https://feeds.hbr.org/harvardbusiness/ai",
-    outlet: "HBR — AI",
-    region: "corridor",
-    tier: 1,
-  },
-  {
     url: "https://venturebeat.com/category/ai/feed/",
     outlet: "VentureBeat AI",
     region: "corridor",
@@ -372,12 +242,6 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.wired.com/feed/category/business/latest/rss",
     outlet: "Wired Business",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://a16z.com/feed/",
-    outlet: "a16z (Andreessen Horowitz)",
     region: "corridor",
     tier: 2,
   },
@@ -437,18 +301,6 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 1,
   },
   {
-    url: "https://www.hrexchangenetwork.com/rss/categories/employee-experience",
-    outlet: "HR Exchange Network — Employee Experience",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://www.hrexchangenetwork.com/rss/categories/learning-development",
-    outlet: "HR Exchange Network — Learning & Development",
-    region: "corridor",
-    tier: 2,
-  },
-  {
     url: "https://techrseries.com/feed/",
     outlet: "TechHR Series",
     region: "corridor",
@@ -465,14 +317,6 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Josh Bersin",
     region: "corridor",
     tier: 1,
-  },
-
-  // ── Macro & Regulatory Context ────────────────────────────────────────────────
-  {
-    url: "https://www.bis.org/cbspeeches.rss",
-    outlet: "BIS — Central Bank Speeches",
-    region: "corridor",
-    tier: 2,
   },
 
   // ── Tech Signal Layer ─────────────────────────────────────────────────────────
@@ -567,28 +411,6 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
 
-  // ── AI Product & Deployment Signal ────────────────────────────────────────
-  // High-volume, lower framework depth. Filter: keep only items with operating
-  // model, workforce, or automation implications for mid-market operators.
-  {
-    url: "https://bensbites.beehiiv.com/feed",
-    outlet: "Ben's Bites (AI Products & Tools)",
-    region: "corridor",
-    tier: 2,
-  },
-  {
-    url: "https://www.therundown.ai/rss",
-    outlet: "The Rundown AI",
-    region: "corridor",
-    tier: 3,
-  },
-  {
-    url: "https://tldr.tech/ai/rss",
-    outlet: "TLDR AI",
-    region: "corridor",
-    tier: 3,
-  },
-
   // ── Human Capital — Tier 2/3 ──────────────────────────────────────────────
   // Added 2026-04-23 to fill the consistently under-served HC pillar in Signal.
   // 5 candidates from the original audit (MIT Sloan, strategy+business, WEF,
@@ -624,20 +446,8 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://mexicobusiness.news/rss/talent",
-    outlet: "Mexico Business News – Talent",
-    region: "mx",
-    tier: 2,
-  },
-  {
     url: "https://expansion.mx/rss/carrera",
     outlet: "Expansión – Carrera",
-    region: "mx",
-    tier: 2,
-  },
-  {
-    url: "https://www.eleconomista.com.mx/rss/seccion/capital-humano",
-    outlet: "El Economista MX – Capital Humano",
     region: "mx",
     tier: 2,
   },
@@ -648,25 +458,10 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 3,
   },
 
-  // ── US expansion (2026-04-24) — raise US feed count from 17 to 26 so the
-  //    EN edition can anchor in US/corridor sources without competing for
-  //    slots against the larger LATAM pool. Broad-coverage signal feeds,
-  //    plus institutional (Fed, Treasury, SEC) for policy cold-opens.
-  {
-    url: "https://feeds.reuters.com/reuters/businessNews",
-    outlet: "Reuters Business",
-    region: "us",
-    tier: 2,
-  },
+  // ── US broad-coverage signal feeds ───────────────────────────────────────
   {
     url: "https://www.cnbc.com/id/10001147/device/rss/rss.html",
     outlet: "CNBC Business",
-    region: "us",
-    tier: 2,
-  },
-  {
-    url: "https://www.inc.com/rss.xml",
-    outlet: "Inc. Magazine",
     region: "us",
     tier: 2,
   },
@@ -682,22 +477,10 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "us",
     tier: 3,
   },
-  {
-    url: "https://www.marketplace.org/feed/",
-    outlet: "Marketplace (NPR)",
-    region: "us",
-    tier: 2,
-  },
 
-  // ── Mid-market US owner-operator — the ICP's peer coverage (2026-04-24) ─
-  // Replaced the macro/institutional Fed-Treasury-SEC block with feeds
-  // that speak to a $5M–$150M owner-operator. A Fed speech on FOMC
-  // trajectory does not help a founder decide whether to hire a COO;
-  // ACG's Middle Market Growth, Vistage research, and Endeavor's
-  // ecosystem work do. The dropped feeds (Federal Reserve speeches and
-  // press releases, US Treasury press, SEC press) never generated a
-  // single Signal bullet the Writer chose — they scored low and lived
-  // at the wrong altitude for the ICP.
+  // ── Mid-market US owner-operator — the ICP's peer coverage ──────────────
+  // ACG, Vistage, Family Business and Endeavor speak to a $5M–$150M
+  // owner-operator at the altitude the ICP actually operates at.
   {
     url: "https://middlemarketgrowth.org/feed/",
     outlet: "Middle Market Growth (ACG)",
@@ -707,12 +490,6 @@ const RSS_FEEDS: FeedConfig[] = [
   {
     url: "https://www.vistage.com/research-center/feed/",
     outlet: "Vistage Research Center",
-    region: "us",
-    tier: 1,
-  },
-  {
-    url: "https://review.firstround.com/feed",
-    outlet: "First Round Review",
     region: "us",
     tier: 1,
   },
@@ -729,25 +506,10 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
 
-  // ── MX expansion (2026-04-24) — raise MX feed count from 8 to 16 so the
-  //    ES edition has more native Mexican coverage and the top-20 bundle
-  //    doesn't over-concentrate in Expansión + El Financiero + Forbes MX.
-  //    Adds general-news business sections + non-paywalled commentary
-  //    outlets. Paywalled outlets (Reforma) and outlets without public
-  //    RSS (Banxico press, Excélsior Dinero) are intentionally omitted —
-  //    add them once Wadi confirms a working feed URL.
-  {
-    url: "https://www.eluniversal.com.mx/seccion/cartera/feed",
-    outlet: "El Universal — Cartera",
-    region: "mx",
-    tier: 2,
-  },
-  {
-    url: "https://www.milenio.com/rss/negocios",
-    outlet: "Milenio — Negocios",
-    region: "mx",
-    tier: 2,
-  },
+  // ── Mexico — non-paywalled commentary & ecosystem ───────────────────────
+  // Paywalled outlets (Reforma) and outlets without public RSS (Banxico
+  // press, Excélsior Dinero) are intentionally omitted — add them once
+  // a working feed URL is confirmed.
   {
     url: "https://elceo.com/feed/",
     outlet: "El CEO",
@@ -755,72 +517,10 @@ const RSS_FEEDS: FeedConfig[] = [
     tier: 2,
   },
   {
-    url: "https://mexicobusiness.news/rss/business",
-    outlet: "Mexico Business News",
-    region: "mx",
-    tier: 2,
-  },
-  {
-    url: "https://www.animalpolitico.com/feed/",
-    outlet: "Animal Político",
-    region: "mx",
-    tier: 3,
-  },
-  {
-    url: "https://aristeguinoticias.com/feed/",
-    outlet: "Aristegui Noticias",
-    region: "mx",
-    tier: 3,
-  },
-  {
-    url: "https://www.whitepaper.mx/rss",
-    outlet: "Whitepaper.mx",
-    region: "mx",
-    tier: 2,
-  },
-  {
-    url: "https://www.as-coa.org/taxonomy/term/31/feed",
-    outlet: "AS/COA — Mexico Initiative",
-    region: "mx",
-    tier: 1,
-  },
-
-  // ── Mid-market MX owner-operator — tier-1 research + ecosystem ────────
-  // Added 2026-04-24 to raise the quality of the MX tier-1 pool. Before
-  // this, the only MX tier-1 feed was AS/COA Mexico Initiative, which
-  // skews to policy/diplomacy more than operating reality. These add
-  // Mexican peers for what the US pool has (Middle Market Growth, Vistage,
-  // Endeavor, First Round) — research and peer-ecosystem coverage that
-  // speaks directly to a $5M–$150M dueño mexicano.
-  {
-    url: "https://imco.org.mx/feed/",
-    outlet: "IMCO — Instituto Mexicano para la Competitividad",
-    region: "mx",
-    tier: 1,
-  },
-  {
-    url: "https://endeavor.org.mx/feed/",
-    outlet: "Endeavor México",
-    region: "mx",
-    tier: 1,
-  },
-  {
     url: "https://coparmex.org.mx/feed/",
     outlet: "Coparmex — Confederación Patronal",
     region: "mx",
     tier: 2,
-  },
-  {
-    url: "https://www2.deloitte.com/mx/es/rss.html",
-    outlet: "Deloitte México Insights",
-    region: "mx",
-    tier: 1,
-  },
-  {
-    url: "https://www.pwc.com/mx/es/rss/rss.html",
-    outlet: "PwC México",
-    region: "mx",
-    tier: 1,
   },
 ];
 
