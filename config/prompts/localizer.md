@@ -110,10 +110,13 @@ rooted in Latin America.
    claim it. Use general market framing instead.
 
 7. **THE SIGNAL transcreation:** The English Signal opens with a required thread
-   sentence followed by 4 bullets. Each bullet has three layers in order:
-   (a) 1–2 fact sentences, (b) a **bold punch line** (one sentence declaring a
-   truth about the pillar as a discipline), (c) the markdown link. Preserve
-   this three-layer structure exactly.
+   sentence followed by 4 bullets. Each bullet is **one inline markdown line**
+   with three pieces in order: (a) the fact sentence, (b) a **bold punch line**
+   wrapped in `**…**`, (c) the markdown link `[Leer ->](url)`. The bold sits
+   inside the same line as the fact and the link — never on its own line and
+   never as a separate paragraph. This keeps the rendered HTML inside one `<li>`
+   so the reader sees the bold flow directly from the fact, not as a stacked
+   element.
 
    First, transcreate the thread sentence: `*Esta semana: [the pattern in Spanish.]*`
    The thread sentence is the editorial judgment of the week — transcreate it, do not
@@ -121,13 +124,14 @@ rooted in Latin America.
 
    Then translate the 4 bullets preserving the pillar labels in bold:
    **Estrategia:**, **Modelos Operativos:**, **Tecnología:**, **Capital Humano:**
-   Keep all source links intact. Adjust the fact sentences to speak directly
+   Keep all source links intact. Adjust the fact sentence to speak directly
    to the Mexican/LATAM operator context where relevant.
    Do not add or remove bullets — always exactly 4, always in the same order.
 
    **Rules for the bold punch line in Spanish:**
-   - Each bullet must end its prose block with one `**...**` bold sentence on
-     its own line, before the `[Leer ->](url)` link.
+   - Each bullet has the bold `**...**` sentence sitting **inline between the
+     fact sentence and the `[Leer ->](url)` link**, all on the same markdown
+     line. Never break the bullet into multiple lines.
    - The punch line is a declarative truth about the pillar dimension, not a
      prescription. Never *"deberías"*, *"tiene que"*, *"necesita"*. Pattern:
      *"**La [pilar] es / no es / nunca / solo …**"*.
@@ -139,6 +143,11 @@ rooted in Latin America.
      ES: *"El modelo operativo es lo que sobrevive cuando el fundador se va."*
    - If the English punch line leans on an idiom that does not travel, replace
      with an equivalent Spanish truth — do not smuggle a calque.
+
+   **Inline bullet template:**
+   ```
+   - **[Pilar]:** [oración de hecho] **[línea de remate en negrita]** [Leer ->](url)
+   ```
 
 8. **THE TOOL transcreation:** Translate the tool description into Spanish.
    Keep the tool name in its original language. If the tool has a Spanish-
@@ -547,11 +556,16 @@ fechas son *"1 de septiembre de 2026"*, los porcentajes *54%*.
 *"La IA es un espejo de su estrategia"* — nunca *"La IA Es Un Espejo
 De Su Estrategia"*.
 
-**Paso 10.5 — Cada bullet del Signal tiene su punch line en bold.**
-Scan los 4 bullets. Cada uno debe tener una oración `**...**` bold
-entre las oraciones de hecho y el `[Leer ->](url)`. Si falta, agrega
-una — declarativa, ≤ 20 palabras, sobre el pilar como disciplina, no
-sobre la noticia específica. Nunca *"debe"* o *"tiene que"*.
+**Paso 10.5 — Cada bullet del Signal es UNA SOLA línea con punch line
+inline.** Scan los 4 bullets. Cada uno debe ser una sola línea de
+markdown con la forma:
+`- **[Pilar]:** [hecho] **[bold]** [Leer ->](url)`. Si encuentras un
+bullet partido en varias líneas (la `**...**` bold en línea separada,
+o el `[Leer ->]` en línea separada), reúne todo en una sola línea.
+La negrita debe sentarse **inline** entre el hecho y el link, no como
+elemento aparte. Si falta la negrita, agrega una — declarativa, ≤ 20
+palabras, sobre el pilar como disciplina, no sobre la noticia. Nunca
+*"debe"* o *"tiene que"*.
 
 **Paso 11 — El Signal tiene exactamente 4 bullets con link.** Cada
 uno arranca con `**Estrategia:**`, `**Modelos Operativos:**`,
@@ -616,7 +630,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{signalId}}",
       "type": "news",
       "heading": "LA SEÑAL",
-      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n- **Estrategia:** [1-2 fact sentences]\n  **[Punch line in bold — one declarative truth about the pillar, ≤20 words.]**\n  [Leer ->](url)\n- **Modelos Operativos:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Tecnología:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)\n- **Capital Humano:** [1-2 fact sentences]\n  **[Punch line in bold.]**\n  [Leer ->](url)",
+      "body": "*Esta semana: [thread sentence in Spanish — required, 15-20 words.]*\n\n- **Estrategia:** [fact sentence] **[Punch line in bold — one declarative truth about the pillar, ≤20 words.]** [Leer ->](url)\n- **Modelos Operativos:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)\n- **Tecnología:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)\n- **Capital Humano:** [fact sentence] **[Punch line in bold.]** [Leer ->](url)",
       "sourceRefs": []
     },
     {
