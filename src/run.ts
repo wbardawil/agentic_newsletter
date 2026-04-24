@@ -36,7 +36,6 @@ import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
-import { filterUsItems } from "./utils/bundle-filter.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -186,7 +185,7 @@ function mdToHtml(md: string): string {
       .replace(/>/g, "&gt;")
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(/\*(.+?)\*/g, "<em>$1</em>")
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
 
   for (const raw of lines) {
     const line = raw.trimEnd();
@@ -410,12 +409,14 @@ async function main(): Promise<void> {
     agentName: "writer",
     payload: {
       angle,
-      // Filter to US + corridor items so the EN edition anchors in news
-      // relevant to the US operator. MX-only items stay behind for the
-      // Localizer to author the ES Signal/FieldReport/Compass from.
-      // Corridor items (HBR, MIT Sloan, WEF, consulting research, etc.)
-      // feed both editions.
-      sources: filterUsItems(bundle),
+      // Writer gets the FULL bundle. Each item carries its region tag so
+      // the Writer prompt can instruct "prefer US/corridor, fall back to
+      // MX with a US-framing when no alternative exists for a pillar".
+      // A hard filter here was too aggressive on weeks where the top-20
+      // leaned MX — the Writer ended up with zero items and shipped
+      // `#source-pending` placeholders (see edition 2026-26 first run).
+      // Soft preference in the prompt handles the skew more gracefully.
+      sources: bundle.items,
       language: "en",
       draftsDir,
     },

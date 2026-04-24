@@ -38,19 +38,33 @@ The Strategist agent has selected the following sources and strategic angle for
 this issue. Use these to inform The Insight and The Field Report. Do not summarize
 them — use them as raw material to develop the framework.
 
-**This pool has been pre-filtered to US + corridor items.** The EN edition is
-written for a US-based mid-market operator. Items from Mexico-only sources
-(Expansión MX, El Financiero MX, El Economista MX, Mexico Business News,
-Factorial MX, etc.) have been removed before the pool reached you — they stay
-behind for the Localizer to author the ES edition. Corridor items (HBR, MIT
-Sloan, WEF, McKinsey, consulting research, BLS, etc.) remain available and
-speak to both audiences. Anchor the Field Report in a US or corridor example,
-not a Mexican one.
+**Region preference — EN edition is written for the US operator.** Each source
+item carries a `region` tag (`us`, `mx`, or `corridor`). Prefer items in this
+priority order:
+
+1. **`us` items** — the first place to reach. A US operator cares about US
+   macro (Fed, BLS, CPI), US regulations (NLRB, FTC, IRS), US companies
+   (especially mid-market, named), US labor dynamics.
+2. **`corridor` items** — consulting research, cross-border reporting, global
+   business thinking. HBR, MIT Sloan, McKinsey, BCG, WEF, s+b, BLS, the
+   Economist, INSEAD, LSE. These speak to both audiences.
+3. **`mx` items — last resort only.** Reach for a Mexican source only if no
+   `us` or `corridor` item fits the pillar this week. When you do, frame the
+   MX fact explicitly for the US reader: *"Mexico's [metric] fell X% — the
+   pattern every corridor operator with Mexican suppliers needs to watch."*
+   Never present an MX-only story as if it were US-centric.
+
+**The Field Report in particular must anchor in a US or corridor example,
+never a Mexican one.** The ES edition has its own Field Report authored from
+MX sources by the Localizer; yours is the US counterpart. If the strongest
+named company in the bundle this week is Mexican, either reframe for the US
+corridor reader or pick the second-strongest US/corridor company.
 
 Each source includes:
 - `id` — unique identifier
 - `url` — the article's public URL
 - `title`, `outlet`, `publishedAt` — metadata
+- `region` — `us` | `corridor` | `mx` (see preference order above)
 - `verbatimFacts` — sentences extracted directly from the article
 
 **The `verbatimFacts` are the only authoritative content.** You must not invent,
