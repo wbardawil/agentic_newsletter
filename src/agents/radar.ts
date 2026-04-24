@@ -1078,8 +1078,15 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
       for (const item of parsed.items) {
         totalScanned++;
         const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
-        const recencyHours =
-          (Date.now() - pubDate.getTime()) / (1000 * 60 * 60);
+        // Clamp to 0: some feeds (Fed, Reuters, scheduled corporate releases)
+        // publish items with timestamps slightly in the future (timezone skew
+        // or embargo-then-publish patterns). The Zod schema on SourceItem
+        // requires recencyHours >= 0, and an item published "at" now should
+        // count as newest, not rejected.
+        const recencyHours = Math.max(
+          0,
+          (Date.now() - pubDate.getTime()) / (1000 * 60 * 60),
+        );
 
         if (recencyHours > payload.timeWindowHours) continue;
 
@@ -1141,7 +1148,10 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           if (!url || !title) continue;
 
           const pubDate = fi.published ? new Date(fi.published) : new Date();
-          const recencyHours = (Date.now() - pubDate.getTime()) / (1000 * 60 * 60);
+          const recencyHours = Math.max(
+            0,
+            (Date.now() - pubDate.getTime()) / (1000 * 60 * 60),
+          );
           if (recencyHours > payload.timeWindowHours) continue;
 
           const rawContent = (fi.content?.content ?? fi.summary?.content ?? "").substring(0, 3000);
