@@ -119,12 +119,13 @@ function buildPrompt(
     formatMxBundleForPrompt(mxItems) +
     "\n</mx_source_items>";
 
-  // Structural split: the EN Signal, Field Report, and Compass bodies are
-  // intentionally withheld from the prompt. Giving the Localizer those
-  // bodies causes it to transcreate rather than author from the MX bundle
-  // — and the ES edition ends up citing the same articles as the EN. The
-  // IDs for those sections still flow through so the output JSON keeps a
-  // stable identity across editions.
+  // Fully-regional ES: the Localizer only sees the EN subject, preheader,
+  // and Tool (the three pieces that share an emotional/brand spine across
+  // editions). The EN Apertura, Insight, Signal, Field Report, and Compass
+  // are all withheld — the ES edition authors its own versions from the
+  // MX Source Bundle. angle.thesis is passed as strategic direction only;
+  // the ES thesis field is authored fresh for a Mexican reader. IDs flow
+  // through so the output JSON keeps a stable identity across editions.
   return template
     .replace("{{aperturaExamples}}", aperturaExamples)
     .replace("{{localizationMemory}}", localizationMemory)
@@ -136,8 +137,6 @@ function buildPrompt(
     .replace("{{thesisEN}}", angle.thesis)
     .replace("{{subjectEN}}", content.subject)
     .replace("{{preheaderEN}}", content.preheader)
-    .replace("{{apertura}}", getSectionBody(content, "lead"))
-    .replace("{{insight}}", getSectionBody(content, "analysis"))
     .replace("{{tool}}", getSectionBody(content, "tool"))
     .replace("{{signalId}}", getSectionId(content, "news"))
     .replace("{{aperturaId}}", getSectionId(content, "lead"))
@@ -186,7 +185,7 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
       messages: [
         {
           role: "user",
-          content: `Produce the Spanish edition. Transcreate the Apertura, Insight, Tool, subject, preheader, and thesis from the EN pieces shown above. Author the Signal, Field Report, and Compass from scratch using the MX Source Bundle — the EN versions of those three sections are deliberately withheld. Follow every rule, including the 18-step self-check. Output valid JSON only — no preamble, no markdown wrapper.`,
+          content: `Produce the Spanish edition. Transcreate the Subject, Preheader, and Tool from the EN pieces shown above — those are the only three pieces that share an emotional/brand spine across editions. Author the Thesis, Apertura, Insight, Signal, Field Report, and Compass from scratch using the MX Source Bundle. The EN versions of those six sections are deliberately withheld — if you imagine a URL, a case study, or a company name that was not in the MX Source Bundle, you are fabricating. Follow every rule, including the 18-step self-check. Output valid JSON only — no preamble, no markdown wrapper.`,
         },
       ],
     });

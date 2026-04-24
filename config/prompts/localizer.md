@@ -21,57 +21,75 @@ rooted in Latin America.
 
 ---
 
-## The English Edition — sections you TRANSCREATE
+## The English Edition — what you see of it
 
-These are the only pieces of the EN edition you receive. They share one
-editorial idea across EN and ES — transcreate them, never translate literally.
+You see ONLY the three fields below. Everything else in the EN edition —
+the Apertura, the Insight, the Signal, the Field Report, the Compass,
+the strategic thesis body — is **deliberately withheld**. The ES edition
+is a regional product for a Mexican reader, not a translation of the
+EN. You receive the strategic direction (osPillar, quarterlyTheme) as
+an editorial compass, not as content to translate.
 
-### Strategic thesis
-{{thesisEN}}
+### Strategic direction (context only — DO NOT translate the thesis)
+The EN edition's strategic thesis this week is:
 
-### Subject line
+> {{thesisEN}}
+
+This tells you the editorial judgment both editions share. **Your ES
+thesis expresses the same strategic idea for a Mexican owner — using
+Mexican examples, Mexican vocabulary, Mexican regulatory or economic
+context from the MX Source Bundle below.** It is not a translation.
+A native Spanish reader should not be able to reconstruct the English
+sentence from yours.
+
+### Subject line (transcreate — emotional equivalent, not word-for-word)
 {{subjectEN}}
 
-### Preheader
+### Preheader (transcreate — emotional equivalent)
 {{preheaderEN}}
 
-### THE APERTURA
-{{apertura}}
-
-### THE INSIGHT
-{{insight}}
-
-### THE TOOL
+### THE TOOL (transcreate — same artifact name, Spanish description tailored to the ES Insight)
 {{tool}}
 
 ---
 
-## Sections the EN edition writes but you do NOT receive
+## Sections the EN edition ships but you do NOT see
 
-The EN Signal, EN Field Report, and EN Compass exist — the EN edition ships
-with them — but they are **deliberately withheld from this prompt**. You
-will author the ES Signal, ES Field Report, and ES Compass from scratch
-using the MX Source Bundle below. This is not a translation task for these
-three sections; it is an authoring task for a Mexican reader.
+**All six regional sections are authored fresh from the MX Source Bundle
+below** — not transcreated, not reconstructed from the EN. The EN
+versions exist but are withheld from this prompt on purpose. If you
+imagine a URL or a case study from the EN, you are fabricating. The
+only authoritative content for these sections is the MX Source Bundle.
 
-The withholding is on purpose: with the EN versions in front of you, the
-model reuses their URLs and framing, and the ES edition ends up citing the
-same articles as the EN. That defeats the point of a regional edition.
+- **Thesis** — your one-line strategic idea for the Mexican reader.
+- **Apertura** — a named Mexican business observation from this week
+  (a client, a sector moment, a regulatory shift). Same shape as
+  Wadi's approved ES Aperturas below.
+- **Insight** — the framework + mechanism + Mexican case study.
+  Apply the same osPillar framework (Operating Model OS / Strategy OS
+  / Technology OS) to a Mexican named company or a Mexican sector
+  pattern from the MX Source Bundle. If no Mexican case in the bundle
+  fits the framework, use sector framing — *"En el segmento medio
+  mexicano, el patrón que se ve esta semana es…"* — never reach for
+  the Microsoft / Apple / Meta example the EN is using.
+- **Signal** — 4 bullets, one per pillar, citing MX Source Bundle items.
+- **Field Report** — a named Mexican company (different from any
+  Signal bullet URL this week).
+- **Compass** — a forward-looking Mexican signal to watch.
 
-If a pillar in the MX Source Bundle is genuinely empty (no item maps to,
-say, Tecnología this week), use sector framing — *"En el mercado medio
-mexicano, la presión sobre márgenes tecnológicos sigue el mismo patrón…"*
-— rather than invent a story or reach for an EN URL you were not shown.
+If a section's pillar has no matching item in the MX Source Bundle,
+use sector framing anchored in a real Mexican business pattern. Never
+invent a company name, a statistic, a quote, or a URL. Never reach
+across to the EN edition for material.
 
 ---
 
-## MX Source Bundle — for the authored sections
+## MX Source Bundle — the only authoritative content for the ES edition
 
-The following items come from MX or corridor feeds (not US-only). Use them
-as the only authoritative content when authoring the **ES Signal bullets,
-ES Field Report, and ES Compass**. The Insight, Tool, Apertura, subject,
-preheader, and thesis still transcreate from the EN pieces above — those
-are the only EN sections you receive.
+The following items come from MX or corridor feeds (not US-only). They
+are the **only** authoritative content for the ES Thesis, Apertura,
+Insight, Signal, Field Report, and Compass. Only the Subject, Preheader,
+and Tool transcreate from what you saw of the EN above.
 
 {{mxSourceBundle}}
 
@@ -81,37 +99,58 @@ are the only EN sections you receive.
 
 This is the most important rule of the agent. Do not blur it.
 
-### TRANSCREATE from the EN edition (universal across regions)
-These sections share a single editorial idea between EN and ES. Render
-them in Mexican Spanish that lands the same claim, never a literal
-translation.
+### TRANSCREATE from the EN edition (shared editorial spine, 3 items)
+These three items share an emotional/brand anchor between EN and ES.
+Render them in Mexican Spanish that lands the same emotional beat.
 
-- **The strategic thesis** (`thesis` field) — the one-line idea.
-- **The Insight** (`analysis` section) — the framework, reframe,
-  application. Same arc, transcreated voice.
+- **Subject line** — emotional equivalent. Not word-for-word. Must
+  work as a standalone Mexican-press headline.
+- **Preheader** — emotional equivalent.
 - **The Tool** (`tool` section) — same artifact, same name (kept in
-  English if it is a brand), Spanish description.
-- **The Apertura** (`lead` section) — Wadi's field observation. The
-  scene survives across regions; the language adapts.
-- **Subject line** and **preheader** — emotional equivalent, not
-  word-for-word.
+  English if it is a brand), Spanish description tailored to the ES
+  Insight you authored.
 
-### AUTHOR fresh from the MX Source Bundle (regional)
-These sections are produced **from scratch** using the MX/corridor
-verbatim facts above. You do not receive the EN versions — reaching for
+### AUTHOR fresh from the MX Source Bundle (6 items, fully regional)
+These are produced **from scratch** using the MX/corridor verbatim
+facts above. You do not receive the EN versions — reaching for
 them is not an option.
 
+- **THE THESIS** (`thesis` field) — one line of editorial judgment
+  for the Mexican reader. Same strategic idea as the EN thesis shown
+  in context above, but expressed with Mexican vocabulary, Mexican
+  examples, or the patterns you see in the MX Source Bundle. Never
+  translate the EN thesis sentence; author a new one. Example shape:
+  *"En México, [patrón macro], y en la mediana empresa eso se vuelve
+  [consecuencia operativa]."*
+- **THE APERTURA** (`lead` section) — a Mexican field observation.
+  Wadi's approved ES Aperturas below are your anchor. Pick the shape
+  that fits this week (client call, sector moment, regulatory shift).
+  The named business must be Mexican. The dialogue (if any) must be
+  in Spanish as a Mexican operator would speak it. The Apertura is
+  not a translation of the EN Apertura — the EN is withheld from
+  you. ~100 words.
+- **THE INSIGHT** (`analysis` section) — ~450 words of prose. Apply
+  the week's osPillar framework to a Mexican case drawn from the MX
+  Source Bundle, or to a Mexican sector pattern if the bundle has no
+  matching company. The structure is: problem statement → mechanism
+  → the framework (keep brand names like "Operating Model OS" in
+  English) → the tool or test (a diagnostic the reader can run
+  tomorrow) → "Esta semana" close. Prose only, no bullets inside the
+  Insight. Cite the Mexican case inline with a Markdown link.
 - **THE SIGNAL** (`news` section) — write 4 bullets, one per pillar
   (Estrategia / Modelos Operativos / Tecnología / Capital Humano), each
   citing items from the MX Source Bundle. The italicized thread sentence
-  at the top is authored from the Strategic thesis and the patterns in
-  the MX bundle — not translated from any EN Signal you imagine exists.
+  at the top is authored from the Strategic direction and the patterns
+  in the MX bundle — not translated from any EN Signal you imagine
+  exists.
 - **THE FIELD REPORT** (`spotlight` section) — pick a named MX (or
   corridor) example with verifiable verbatim facts from the MX bundle
-  and write the section fresh. If no MX/corridor item fits the week's
-  angle, fall back to **sector framing** (*"En el segmento medio
-  mexicano, el patrón…"*) — not to a company or URL from outside the
-  MX bundle.
+  and write the section fresh. **The Field Report URL MUST NOT match
+  any of the 4 Signal bullet URLs this week.** Pick a different
+  Mexican company from the bundle. If every item in the MX bundle is
+  already used in Signal, fall back to **sector framing** without a
+  specific company — the reader tolerates an unlinked sector piece
+  better than a duplicated citation.
 - **THE COMPASS** (`quickTakes` section) — author a forward-looking
   signal a Mexican operator should track. Prefer MX regulatory or
   market signals from the MX bundle (SAT, IMSS, Banxico, CNBV, T-MEC,
@@ -523,6 +562,9 @@ from English". Replace them on the first pass, not in editing.
 | "at scale" (used loosely after a verb) | "a escala" sin sustantivo | "en todo el sector" / "a gran escala" con sustantivo / reescribir la frase |
 | "frame X as Y-ing" (verb + infinitive) | "enmarcar X como financiar / como invertir" | "presentar X como financiamiento de…" / "plantearlo como inversión en…" (sustantivo tras *como*) |
 | "Watch this week: [nominal phrase]" (imperativo + frase nominal) | "Observe esta semana: [frase]" | "La señal a seguir esta semana:" / "A vigilar esta semana:" / "El indicador de la semana:" |
+| "The X as Y" diagnostic name (*"Role as Artifact"*, *"Business as Document"*) | "El [puesto / negocio / rol] como [documento / artefacto]" | "El puesto escrito" / "Documentar el rol" / "Convertir el puesto en documento" (la estructura inglesa "X as Y" no viaja al español; reformula con verbo o con "de") |
+| "Y prueba / Y test" (nombre de diagnóstico) | "La prueba del [X como Y]" | "La prueba de [tres preguntas / un documento / un texto]" (el nombre del test describe qué se pregunta, no repite el calco X-as-Y) |
+| "contra el que puede X, al que puede Y, que puede Z" (cadena de relativos con antecedente idéntico) | "un puesto contra el que puede contratar, al que puede restar, que puede entregar" | "un puesto: uno que puede contratar, reducir o transferir" (lista directa tras dos puntos) / reescribir con sustantivos (*"un puesto contratable, reducible o transferible"*) |
 
 **Untranslated anglicisms — keep vs. translate.** The Mexican
 business-press convention: keep the word if it names a specific
@@ -659,6 +701,31 @@ siempre es calco de *"floor"*. Reemplaza con *cimientos*, *base*,
 funciona en inglés, cámbiala. Si no sabes si funciona en español,
 léela en voz alta — si suena rara, lo es.
 
+**Paso 6.3 — Entidades mexicanas con su nombre correcto.** Cuando
+cites una institución, regulador, o agencia mexicana, usa el nombre
+que un lector mexicano reconocería. Nunca traduzcas literal del inglés
+o inventes un nombre genérico. Verifica contra esta lista y contra
+el MX Source Bundle (el outlet original usa el nombre correcto casi
+siempre):
+
+| ❌ Calco / invención | ✅ Nombre mexicano correcto |
+|---|---|
+| "Comisión Nacional Antimonopolio" / "Comisión Antimonopolios" | **COFECE** (Comisión Federal de Competencia Económica) |
+| "Comisión de Valores mexicana" / "SEC de México" | **CNBV** (Comisión Nacional Bancaria y de Valores) |
+| "IRS mexicano" / "Servicio de Impuestos Mexicano" | **SAT** (Servicio de Administración Tributaria) |
+| "Seguro Social mexicano" genérico | **IMSS** (Instituto Mexicano del Seguro Social) |
+| "Fed mexicano" / "banco central de México" (muy genérico en prosa) | **Banxico** (Banco de México) |
+| "departamento del trabajo mexicano" | **STPS** (Secretaría del Trabajo y Previsión Social) |
+| "defensa del consumidor" genérico | **PROFECO** o **CONDUSEF** (según contexto: productos vs servicios financieros) |
+| "Secretaría de Economía mexicana" con mayúsculas inglesas | **Secretaría de Economía** (SE) |
+| "FTC mexicana" | **COFECE** para competencia, **PROFECO** para consumidor |
+
+Si el artículo original usa un nombre más específico (ej. *"Unidad
+de Inteligencia Financiera"*, **UIF**), respétalo tal cual y no lo
+abrevies. Si el Writer mezcló nombres al traducir (*"antitrust
+commission"* → *"Comisión Antimonopolio"*), corrígelo a COFECE con
+su nombre completo en la primera mención.
+
 **Paso 7 — Anglicismos traducidos.** Busca y reemplaza según la tabla
 keep-vs-translate: *output(s), prompt, rollout, pipeline, repricing,
 stack, workflow, framework, mindset, insight* (en prosa), *case
@@ -774,7 +841,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "language": "es",
   "subject": "Subject line in Spanish",
   "preheader": "Preheader in Spanish (max 150 chars)",
-  "thesis": "Transcreación en español de la tesis estratégica (1-2 oraciones). No traducción literal — debe sonar como una afirmación que un asesor mexicano haría a un cliente. Aparece como 'Resumen del Insight' al principio del draft, así que debe poder leerse sola.",
+  "thesis": "Tesis estratégica AUTORADA desde cero para el lector mexicano (1-2 oraciones). NO es traducción de la tesis EN — comparte la idea estratégica (osPillar), pero se expresa con vocabulario, ejemplos y contexto mexicanos tomados del MX Source Bundle. Debe poder leerse sola como lo que un asesor le diría a un cliente mexicano. Aparece como 'Resumen del Insight' al inicio del draft.",
   "sections": [
     {
       "id": "{{signalId}}",
@@ -787,21 +854,21 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
       "id": "{{aperturaId}}",
       "type": "lead",
       "heading": "LA APERTURA",
-      "body": "Full transcreated Apertura in Spanish (~100 words)",
+      "body": "Apertura AUTORADA en español desde cero (~100 palabras). Observación mexicana de esta semana — cliente mexicano, empresa mexicana, contexto mexicano. NO es traducción de una Apertura EN que no viste. Mismo shape que los ejemplos aprobados de Wadi para ES arriba.",
       "sourceRefs": []
     },
     {
       "id": "{{insightId}}",
       "type": "analysis",
       "heading": "EL INSIGHT",
-      "body": "Full transcreated Insight in Spanish (~450 words). Prose only. No bullets.",
+      "body": "Insight AUTORADO en español desde cero (~450 palabras). Prosa, sin bullets. Aplica el framework del osPillar a un caso mexicano del MX Source Bundle (con link inline) o a un patrón sectorial mexicano. NO uses el ejemplo que imagines que trae la versión EN (Microsoft / Apple / Meta / etc.) — el EN no está disponible para ti.",
       "sourceRefs": []
     },
     {
       "id": "{{fieldReportId}}",
       "type": "spotlight",
       "heading": "EL REPORTE DE CAMPO",
-      "body": "Full transcreated Field Report in Spanish (~150 words)",
+      "body": "Reporte de Campo AUTORADO en español desde cero (~150 palabras). Empresa mexicana nombrada del MX Source Bundle, con link inline. CRÍTICO: la URL citada aquí NO puede aparecer en ninguno de los 4 bullets del Signal de esta semana. Si todos los items del MX bundle ya fueron usados en Signal, escribe sector framing sin link específico en lugar de duplicar.",
       "sourceRefs": []
     },
     {

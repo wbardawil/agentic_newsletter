@@ -38,6 +38,7 @@ import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from ".
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
 import { filterUsBundle } from "./utils/bundle-filter.js";
+import { findEsFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -576,6 +577,28 @@ async function main(): Promise<void> {
         `   re-run with tighter citation discipline before shipping.\n`,
     );
     hadBlockingIssue = true;
+  }
+
+  // ── ES URL uniqueness: Field Report must not cite a Signal URL ────────────
+  // Catches the edition 2026-26 bug where the Localizer picked the same
+  // Expansión T-MEC note for both Signal.Estrategia and Field Report. Warns
+  // (not blocks) — the draft still ships for manual review, but the dup
+  // shows up clearly in the CLI output.
+  if (esContent) {
+    const esDuplicates = findEsFieldReportDuplicates(esContent);
+    if (esDuplicates.length > 0) {
+      console.warn(
+        `\n⚠️  ES Field Report cites ${esDuplicates.length} URL(s) already used in the Signal:`,
+      );
+      for (const dup of esDuplicates) {
+        const pillar = dup.signalPillar ? `Signal.${dup.signalPillar}` : "Signal";
+        console.warn(`   • ${dup.url}   (also in ${pillar})`);
+      }
+      console.warn(
+        `   Pick a different Mexican company from the MX bundle for the Field Report,\n` +
+          `   or fall back to sector framing without a link.\n`,
+      );
+    }
   }
 
   // Record this angle (+ Field Report summary) in history for future de-duplication
