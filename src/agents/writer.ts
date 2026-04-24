@@ -324,6 +324,11 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     this.logger.info(
       `Signal word count is ${before} (ceiling ${SIGNAL_WORD_CEILING}) — running length repair pass`,
     );
+    // Target 150–165 (not 150–180) to leave budget for the downstream
+    // outlet-link rewriter, which appends `in <outlet>` / `en <outlet>` to
+    // every `[Read ->]` / `[Leer ->]` anchor. Four bullets × ~3 words each
+    // = ~12 extra words after rewriting. Targeting 165 here lands the final
+    // post-rewriter Signal at ~177, inside the Validator's 185 ceiling.
     const response = await this.deps.apiClients.anthropic.messages.create({
       model: REPAIR_MODEL,
       max_tokens: 1500,
@@ -331,8 +336,8 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
         {
           role: "user",
           content:
-            `The newsletter Signal section below is ${before} words. The target is 95–185 words. ` +
-            `Trim the implication sentence on each pillar bullet until the total is between 150 and 180 words. ` +
+            `The newsletter Signal section below is ${before} words. The downstream target is 95–185 words, but a deterministic post-processor will add ~12 words by expanding every '[Read ->]' anchor into '[Read in <Outlet> ->]'. ` +
+            `Trim the implication sentence on each pillar bullet until the total is between 150 and 165 words. ` +
             `Rules:\n` +
             `- Keep the italicized thread sentence at the top exactly as written.\n` +
             `- Keep exactly 4 pillar bullets in this order: Strategy, Operating Models, Technology, Human Capital.\n` +

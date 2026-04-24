@@ -93,6 +93,18 @@ describe("rewriteOutletLinks", () => {
     const out = rewriteOutletLinks(body, bundle, "en");
     expect(out).toBe(body);
   });
+
+  it("rewrites [Leer] without the arrow (the ES Writer sometimes ships this shape)", () => {
+    const body = "Details on the story [Leer](https://expansion.mx/y).";
+    const out = rewriteOutletLinks(body, bundle, "es");
+    expect(out).toContain("[Leer en Expansión ->](https://expansion.mx/y)");
+  });
+
+  it("rewrites [Read] without the arrow (symmetry with ES shape)", () => {
+    const body = "Background: [Read](https://bloomberg.com/x).";
+    const out = rewriteOutletLinks(body, bundle, "en");
+    expect(out).toContain("[Read in Bloomberg ->](https://bloomberg.com/x)");
+  });
 });
 
 describe("rewriteContentOutletLinks", () => {

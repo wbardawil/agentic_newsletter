@@ -1036,13 +1036,30 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
     // Hard ceiling prevents a single slow feed from stalling the whole pipeline
     const AGGREGATE_TIMEOUT_MS = 10 * 60 * 1000;
 
-    // Fetch all feeds in parallel — with 30 feeds sequential would be ~6 min worst-case
+    // Fetch all feeds in parallel — with 30 feeds sequential would be ~6 min
+    // worst-case. Each fetch carries its feed identity even when it fails,
+    // so the failure logs below can name the outlet (not just the generic
+    // "Status code 404") — which is what actually lets us prune dead feeds.
+    // FeedResult — explicit type `any` on parsed is pragmatic here: the
+    // downstream loop reads extension fields like "content:encoded" and
+    // "author" that aren't in Parser.Item's base type but are valid RSS/
+    // Atom extensions the parser surfaces at runtime.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type ParsedOutput = any;
+    type FeedResult =
+      | { status: "ok"; feed: FeedConfig; parsed: ParsedOutput }
+      | { status: "err"; feed: FeedConfig; error: unknown };
+
     const results = await Promise.race([
-      Promise.allSettled(
-        RSS_FEEDS.map(async (feed) => ({
-          feed,
-          parsed: await parser.parseURL(feed.url),
-        })),
+      Promise.all(
+        RSS_FEEDS.map(async (feed): Promise<FeedResult> => {
+          try {
+            const parsed = await parser.parseURL(feed.url);
+            return { status: "ok", feed, parsed };
+          } catch (error) {
+            return { status: "err", feed, error };
+          }
+        }),
       ),
       new Promise<never>((_, reject) =>
         setTimeout(
@@ -1052,7 +1069,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
       ),
     ]);
 
-    const rejected = results.filter((r) => r.status === "rejected").length;
+    const rejected = results.filter((r) => r.status === "err").length;
     if (rejected > 0) {
       this.logger.warn(
         `Radar: ${rejected}/${results.length} feeds failed to load`,
@@ -1065,14 +1082,15 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
     let totalScanned = 0;
 
     for (const result of results) {
-      if (result.status === "rejected") {
+      if (result.status === "err") {
+        const msg = result.error instanceof Error ? result.error.message : String(result.error);
         this.logger.warn(
-          `Radar: feed failed — ${String(result.reason instanceof Error ? result.reason.message : result.reason)}`,
+          `Radar: feed failed — [${result.feed.outlet}] ${result.feed.url} — ${msg.replace(/\n/g, " ")}`,
         );
         continue;
       }
 
-      const { feed, parsed } = result.value;
+      const { feed, parsed } = result;
       feedsScanned++;
 
       for (const item of parsed.items) {

@@ -1,13 +1,15 @@
 import type { LocalizedContent } from "../types/edition.js";
 
 /**
- * Deterministic post-check for the ES edition: the Field Report URL must
- * not match any URL cited in the Signal bullets. When the Localizer picks
- * the same Mexican company for both (as happened on edition 2026-26 with
- * the T-MEC Expansión note appearing in both Signal.Estrategia and the
- * Field Report), the reader sees the same citation twice in one email.
+ * Deterministic post-check: the Field Report URL must not match any URL
+ * cited in the Signal bullets. Applies to both editions — the Writer has
+ * been caught duplicating the Fast Company Microsoft URL across EN
+ * Signal.HumanCapital and EN Field Report, and the Localizer has been
+ * caught duplicating the Expansión T-MEC note across ES Signal.Estrategia
+ * and ES Field Report. When the same citation appears in two sections of
+ * the same email, the reader reads the same article twice.
  *
- * Returns a list of duplicate URLs. Empty array means the ES is clean.
+ * Returns a list of duplicate URLs. Empty array means the edition is clean.
  * The caller decides what to do — warn, block, or trigger a repair pass.
  */
 
@@ -21,14 +23,14 @@ function extractUrls(body: string): Set<string> {
   return urls;
 }
 
-export interface EsDuplicateIssue {
+export interface DuplicateIssue {
   url: string;
   signalPillar: string | null;
 }
 
-export function findEsFieldReportDuplicates(
+export function findFieldReportDuplicates(
   content: LocalizedContent,
-): EsDuplicateIssue[] {
+): DuplicateIssue[] {
   const signal = content.sections.find((s) => s.type === "news");
   const fieldReport = content.sections.find((s) => s.type === "spotlight");
   if (!signal || !fieldReport) return [];
@@ -36,7 +38,7 @@ export function findEsFieldReportDuplicates(
   const signalUrls = extractUrls(signal.body);
   const fieldReportUrls = extractUrls(fieldReport.body);
 
-  const duplicates: EsDuplicateIssue[] = [];
+  const duplicates: DuplicateIssue[] = [];
   for (const url of fieldReportUrls) {
     if (signalUrls.has(url)) {
       // Try to identify which pillar bullet the URL is in — cheap heuristic:
@@ -54,3 +56,9 @@ export function findEsFieldReportDuplicates(
   }
   return duplicates;
 }
+
+// Back-compat aliases — the original ES-only exports are kept so existing
+// imports continue to work unchanged. Both names point at the same
+// language-agnostic check.
+export const findEsFieldReportDuplicates = findFieldReportDuplicates;
+export type EsDuplicateIssue = DuplicateIssue;

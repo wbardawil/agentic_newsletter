@@ -31,7 +31,14 @@ export function rewriteOutletLinks(
   language: "en" | "es",
 ): string {
   const pattern = language === "en" ? EN_PATTERN : ES_PATTERN;
-  const re = new RegExp(`\\[${pattern.verb} ->\\]\\(([^)]+)\\)`, "g");
+  // Match both `[Read ->]` / `[Leer ->]` and `[Read]` / `[Leer]` without the
+  // arrow — the ES Writer has shipped both shapes. The arrow is optional so
+  // either variant gets the outlet name appended. Preserves the input
+  // arrow-or-no-arrow choice in the output only when no outlet is found.
+  const re = new RegExp(
+    `\\[${pattern.verb}(?:\\s*->)?\\]\\(([^)]+)\\)`,
+    "g",
+  );
 
   return body.replace(re, (match, url: string) => {
     const outlet = outletForUrl(bundle, url);

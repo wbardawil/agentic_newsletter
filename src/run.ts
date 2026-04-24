@@ -38,7 +38,7 @@ import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from ".
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
 import { filterUsBundle, filterMxBundle } from "./utils/bundle-filter.js";
-import { findEsFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
+import { findFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -138,7 +138,7 @@ function renderMarkdown(
     ``,
     ...(language === "en"
       ? renderAperturaOptions(apertura?.body ?? "", editionId)
-      : [`> ⚠️ REVISIÓN: Verifica que esta transcreación conserve la intención de la apertura elegida en inglés.`, ``, apertura?.body ?? ""]),
+      : [`> ⚠️ REVISIÓN: Verifica que esta apertura sea una observación real de Wadi de esta semana mexicana. La edición ES se escribe desde cero — no es traducción del EN.`, ``, apertura?.body ?? ""]),
     ``,
     `---`,
     ``,
@@ -620,13 +620,29 @@ async function main(): Promise<void> {
     hadBlockingIssue = true;
   }
 
-  // ── ES URL uniqueness: Field Report must not cite a Signal URL ────────────
-  // Catches the edition 2026-26 bug where the Localizer picked the same
-  // Expansión T-MEC note for both Signal.Estrategia and Field Report. Warns
-  // (not blocks) — the draft still ships for manual review, but the dup
-  // shows up clearly in the CLI output.
+  // ── URL uniqueness: Field Report must not cite a Signal URL ───────────────
+  // Runs on BOTH editions. Both agents have been caught duplicating: the
+  // Writer on Fast Company's Microsoft buyout URL across EN Signal.HC and
+  // EN Field Report; the Localizer on the Expansión T-MEC note across ES
+  // Signal.Estrategia and ES Field Report. Warn, don't block — the draft
+  // still ships for manual review, but the dup shows up clearly in the CLI.
+  const enDuplicates = findFieldReportDuplicates(content);
+  if (enDuplicates.length > 0) {
+    console.warn(
+      `\n⚠️  EN Field Report cites ${enDuplicates.length} URL(s) already used in the Signal:`,
+    );
+    for (const dup of enDuplicates) {
+      const pillar = dup.signalPillar ? `Signal.${dup.signalPillar}` : "Signal";
+      console.warn(`   • ${dup.url}   (also in ${pillar})`);
+    }
+    console.warn(
+      `   Pick a different US/corridor example from the bundle for the Field Report,\n` +
+        `   or fall back to sector framing without a link.\n`,
+    );
+  }
+
   if (esContent) {
-    const esDuplicates = findEsFieldReportDuplicates(esContent);
+    const esDuplicates = findFieldReportDuplicates(esContent);
     if (esDuplicates.length > 0) {
       console.warn(
         `\n⚠️  ES Field Report cites ${esDuplicates.length} URL(s) already used in the Signal:`,
