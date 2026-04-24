@@ -29,6 +29,14 @@ export const SourceItemSchema = z.object({
   recencyHours: z.number().nonnegative(),
   tags: z.array(z.string()),
   rawContent: z.string().optional(),
+  /**
+   * Regional anchor for the item. Propagated from `FeedConfig.region` at
+   * Radar-construction time (mapping: global→corridor, us→us, latam→mx).
+   * Used by the Localizer to author Signal/FieldReport/Compass from
+   * MX-relevant items rather than transcreating the EN versions wholesale.
+   * "corridor" means the item is usable by either edition.
+   */
+  region: z.enum(["us", "mx", "corridor"]),
 });
 export type SourceItem = z.infer<typeof SourceItemSchema>;
 

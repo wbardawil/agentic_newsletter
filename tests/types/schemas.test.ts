@@ -64,6 +64,7 @@ function makeSourceItem(overrides: object = {}) {
     relevanceScore: 0.85,
     recencyHours: 6,
     tags: ["ai", "strategy"],
+    region: "corridor",
     ...overrides,
   };
 }

@@ -29,6 +29,7 @@ function makeBundle(): SourceBundle {
         relevanceScore: 0.9,
         recencyHours: 2,
         tags: ["corridor"],
+        region: "corridor",
       },
     ],
     metadata: {

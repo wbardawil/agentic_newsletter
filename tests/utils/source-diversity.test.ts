@@ -34,6 +34,7 @@ function makeBundle(
       summary: "summary",
       verbatimFacts: ["fact1", "fact2", "fact3"],
       recencyHours: 24,
+      region: "corridor" as const,
     })),
   };
 }

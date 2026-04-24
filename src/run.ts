@@ -457,7 +457,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "localizer",
-    payload: { content, angle, targetLanguage: "es", draftsDir },
+    payload: { content, angle, targetLanguage: "es", draftsDir, sourceBundle: bundle },
   });
 
   const esContent = localizerOutput.success

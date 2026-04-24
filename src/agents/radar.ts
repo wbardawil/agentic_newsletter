@@ -980,6 +980,16 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           recencyHours,
           tags: itemTags,
           rawContent,
+          // Map FeedConfig.region (global|us|latam) to SourceItem.region
+          // (corridor|us|mx). Corridor items work for either language edition;
+          // mx items get authored fresh into the ES Signal/FieldReport/Compass
+          // by the Localizer instead of transcreated from EN.
+          region:
+            feed.region === "us"
+              ? "us"
+              : feed.region === "latam"
+                ? "mx"
+                : "corridor",
         });
       }
     }
@@ -1023,6 +1033,9 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
             recencyHours,
             tags,
             rawContent,
+            // Feedly items lack a known FeedConfig — default to corridor so
+            // either edition can use them without bias.
+            region: "corridor",
           });
           feedlyAdded++;
           totalScanned++;
