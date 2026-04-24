@@ -36,6 +36,7 @@ import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
 import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
+import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -250,6 +251,10 @@ function renderHtml(
   li { margin: .5rem 0; }
   strong { font-weight: 700; }
   a { color: #1a1a1a; }
+  /* External-link affordance — the reader on mobile has no hover, so the
+     icon tells them the link opens something. Applies only to target=_blank
+     anchors so in-page anchors don't get the arrow. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: #666; }
   img { max-width: 100%; height: auto; }
   /* Wider viewports — restore comfortable reading margins */
   @media (min-width: 480px) {
@@ -427,7 +432,11 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const content = writerOutput.data as LocalizedContent;
+  const content = rewriteContentOutletLinks(
+    writerOutput.data as LocalizedContent,
+    bundle,
+    "en",
+  );
   console.log(`   ✓ Draft complete (${content.sections.length} sections)\n`);
 
   // ── Validator ──────────────────────────────────────────────────────────────
@@ -468,7 +477,11 @@ async function main(): Promise<void> {
   });
 
   const esContent = localizerOutput.success
-    ? (localizerOutput.data as LocalizedContent)
+    ? rewriteContentOutletLinks(
+        localizerOutput.data as LocalizedContent,
+        bundle,
+        "es",
+      )
     : null;
 
   if (!localizerOutput.success || !esContent) {
