@@ -7,13 +7,18 @@ import { ZodError } from "zod";
 export function isRetryable(err: Error): boolean {
   if (err instanceof ZodError) return false;
   const msg = err.message;
-  // Non-retryable: explicit programming/config errors
-  if (/must be set to|Invalid --edition|malformed JSON|no text block|not implemented/i.test(msg)) {
+  // Non-retryable: explicit programming/config errors. Malformed JSON from
+  // an LLM is NOT in this list — LLM generation is non-deterministic, and
+  // a single malformed response (cut off mid-field, unescaped quote, etc.)
+  // often succeeds on the next attempt. The 3-attempt cap with exponential
+  // backoff caps the cost of a persistent bad prompt.
+  if (/must be set to|Invalid --edition|no text block|not implemented/i.test(msg)) {
     return false;
   }
   // Non-retryable: Beehiiv/external 4xx client errors (except 429)
   if (/Beehiiv API error 4[0-9][0-9]/.test(msg) && !/429/.test(msg)) return false;
-  // Everything else (network, 429, 5xx, LLM timeouts) is worth retrying
+  // Everything else (network, 429, 5xx, LLM timeouts, malformed JSON) is
+  // worth retrying.
   return true;
 }
 
