@@ -330,29 +330,67 @@ elements.
 
 {{aperturaExamples}}
 
-Generate **{{aperturaOptionCount}}** Apertura option(s). Each option is ~100 words.
-Each must open mid-thought, present tense, first person. No conclusions — observation only.
+**HARD RULE — DO NOT INVENT FIRST-PERSON SCENES.**
+
+You have no way to know whether any client meeting, founder conversation,
+operations manual, or weekly call actually happened. Inventing one and
+writing it in Wadi's voice produces a lie the reader can detect and that
+Wadi cannot defend. The Apertura you draft is a first draft for Wadi's
+review — if he wants to insert a real personal observation he will edit it
+in himself. Until then, the default Apertura mode is **third person, market
+context grounded in this week's source bundle**.
+
+Banned in the Apertura unless the input contains an explicit Wadi field
+observation (it does not, in the default flow):
+- "I", "me", "my", "we", "our" — referring to Wadi or his client work
+- "A founder told me", "a CEO showed me", "in a call this week"
+- "Three calls this month", "every conversation this week", "I keep hearing"
+- Any verb conjugated to first person where the speaker is Wadi
+- Any specific client, scene, or meeting that is not in `<source_items>`
+
+Allowed:
+- Third-person observation from the source bundle: "Vistage's CEO Confidence
+  Index dropped four points this quarter."
+- Pattern stated about the market or the data: "Three of this week's
+  bundle items name the same dysfunction in different sectors."
+- Counterintuitive claim backed by a citable source: "The most documented
+  company in this week's coverage has the worst operations."
+
+Generate **{{aperturaOptionCount}}** Apertura option(s). Each option is ~100 words,
+opens mid-thought, present tense, third person. No conclusions — framing only.
 
 The three available styles (generate only as many as {{aperturaOptionCount}} requires,
 always starting from A):
 
-**Style A — Observation:** Opens with a specific client scene from this week.
-A person, a moment, a detail. "A founder showed me his operations manual last
-month." Concrete. Present. You are there.
+**Style A — Statistic-anchored:** Open with a specific number or finding from
+this week's source bundle, naming the outlet inline. "Vistage's CEO Confidence
+Index dropped four points last quarter — the steepest single-quarter drop
+since 2020." Then the implication for the mid-market operator. The number
+must be traceable to one of the source items provided; cite the outlet
+name in-text.
 
-**Style B — Provocation:** Opens with the counterintuitive claim first, scene second.
-"The most documented company I know has the worst operations." Stakes the
-territory before explaining it.
+**Style B — Provocation:** Open with the counterintuitive claim first,
+evidence from the bundle second. "The most documented company in this week's
+coverage has the worst operations." Then point to the specific source item
+that supports the claim. The provocation must be defensible against the
+source items, not a personal hunch.
 
-**Style C — Pattern:** Opens with a recurring signal across multiple conversations.
-"Three calls this month. Different industries. Same sentence at minute twelve."
-Pattern → implication → question.
+**Style C — Pattern:** Open with a recurring signal that is visible across
+**at least three** items in this week's bundle. "Three pieces this week,
+three different industries, the same diagnosis." Then name the diagnosis.
+The pattern must be traceable to specific source items — if it is not visible
+across three items, do not write Style C this week.
 
 Rules for all options:
-- First person, present tense
-- No conclusions yet — this is scene-setting, not insight
-- Under 120 words per option
-- No banned phrases (see Voice Bible)
+- THIRD person. No "I", "me", "my", "we", "our" referring to Wadi.
+- Present tense, framing-only (no conclusion, no framework yet).
+- Every claim must be defensible against `<source_items>`. A statistic
+  has an outlet. A pattern names the items. A provocation cites evidence.
+- Under 120 words per option.
+- No banned phrases (see Voice Bible).
+- If the source bundle does not give you enough material to write a
+  defensible option in a given style, **skip that style** rather than
+  invent — flag the skip in `reviewFlags`.
 
 ### Section 2 — THE INSIGHT (~450 words)
 
