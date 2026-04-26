@@ -413,6 +413,32 @@ enough to use immediately, not contingent on hiring Wadi.
 to-do list. One thing. Specific enough that the reader knows they have
 either done it or not.
 
+**Self-Test (~40 words, end of Insight):** One yes/no or numeric question
+the reader applies to their own business this week, with a defensible
+threshold drawn from the framework above. The question must be answerable
+from data the reader already has — no surveys, no consultants needed. Pull
+the threshold, when possible, from a source-bundle statistic or a peer
+benchmark cited earlier in the issue.
+
+Format: *"[Question]? If [threshold A], you have [diagnosis A]. If
+[threshold B], you have [diagnosis B]."*
+
+Examples of the shape (do not reuse verbatim):
+- *"Of the last five senior hires, how many are still with you at month
+  18? If fewer than three, you have an onboarding problem, not a hiring
+  problem."*
+- *"How many decisions did your team make this week without writing to
+  you first? If fewer than ten, the bottleneck is not workload — it is
+  permission architecture."*
+- *"Open your last quarterly board pack. Count the slides about people
+  versus the slides about numbers. If the ratio is less than 1:3, your
+  board is reading you a P&L the operators already know."*
+
+The Self-Test is what converts a passive reader into someone who has
+already started measuring. Without it, the Insight is intellectually
+satisfying but operationally inert. Treat it as the most important
+sentence in the Insight, not the closing flourish.
+
 **Format rules:**
 - Prose only. No bullets. No numbered lists.
 - Sentences under 25 words.

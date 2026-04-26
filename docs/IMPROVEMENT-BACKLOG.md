@@ -74,6 +74,66 @@ Current retry is blind exponential backoff for any error. Split into:
 - 400 / schema validation / banned-phrase failure → no retry, escalate
 Saves tokens and time on unrecoverable errors.
 
+### 2.8 Cohort benchmarks woven into Signal (HIGH / S / E+P)
+The Signal today reports what is happening in the market. The reader
+has to translate it into "where am I vs. peers." Add a rule to the
+Strategist + Writer prompts: when a source-bundle item carries a
+cohort statistic for the ICP segment ($5M–$150M owner-operated, MX
+or US corridor), surface it as a peer mirror — *"X% of $20M–$50M
+Mexican family businesses have an external board member. Where are
+you?"* The Radar already pulls Coparmex, IMCO, ACG, Vistage; the
+Strategist is not yet instructed to favour items with peer-cohort
+data. Cost: prompt-only.
+
+### 2.9 Failure post-mortem rotation in Field Report (HIGH / M / E+P)
+McKinsey publishes case studies of success. Owner-operators learn
+faster from failure. Once every three editions, the Field Report
+rotates from "company worth studying" to "transformation effort
+that failed." 200 words. The Strategist gets an additional rule:
+when a source-bundle item names a cancelled ERP implementation, a
+failed reorg, a board fight, an aborted M&A — flag it as
+post-mortem-eligible. The Writer has a dedicated Field Report
+sub-style for the post-mortem ("Effort. Failure point. What the
+owner did not see coming. What it teaches the next operator."). The
+Lincoln-International-style filings cited in recent runs are exactly
+this material; we just have not given the agents permission to use
+them this way.
+
+### 2.10 Reader dilemma micro-section (replaces Door 1×/month) (MED / M / E+I)
+Once a month, a reader writes in with a stuck decision; the issue
+features that dilemma in place of (or alongside) the Door, with
+Wadi's working-it-through response in 100–150 words. Three layers
+needed: (a) an inbox / form (or a manual `pnpm dilemma add` script
+that captures the submission to `config/reader-dilemmas.json`), (b)
+a new Writer section type or a Door variant that loads the next
+queued dilemma when the run-day matches the rotation, (c) a Validator
+rule that the response is genuinely a working-through — not a sales
+pitch for Wadi's services. This is the single highest-conversion
+mechanism for the newsletter to grow into Wadi's consulting funnel
+without becoming a marketing channel.
+
+### 2.11 Compass evolution to owner inner-game (MED / S / E+P)
+The Compass is currently "an open question Wadi is sitting with."
+Tighten the prompt so the question is explicitly about the owner's
+psychology of transformation — identity shift from doer to architect,
+soltar control, miedo a la sucesión, soledad del dueño, faith /
+character intersection. This is the only beat in the newsletter that
+no large competitor (HBR, McKinsey, Strategy+Business, Lenny's,
+First Round) covers consistently for the mid-market owner-operator.
+Evolution, not new section: Compass stays at ~75 words; Validator's
+"Compass genuineness" check tightens to require an inner-game pivot,
+not just an intellectual one.
+
+### 2.12 Tool variants for people / talent decisions (MED / S / E+P)
+The Tool today over-indexes on systems and methodology. Transformation
+is 80% people. Add a Tool sub-style for "people decision" templates:
+*"Cómo entrevistar a un candidato a COO en 3 sesiones"*, *"Qué señales
+buscar en un VP que ya no escala"*, *"Cómo armar la primera junta de
+consejo independiente"*, *"Cuándo despedir al gerente leal pero
+estancado"*. Strategist gets a coverage rule: at least 1 of every 4
+Tool sections is a people decision. Writer gets a sub-style template.
+Same word target.
+
 ---
 
 ## Tier 3 — opportunistic (high value, not urgent)

@@ -111,8 +111,8 @@ Five sections. Fixed. Same every week. In this order.
 **THE APERTURA** (~100 words)
 A framing observation. Present tense. Starts mid-thought, as if continuing a conversation already in progress. When Wadi writes it himself, it can be a real field observation in first person. When the AI Writer drafts it, the default mode is **third-person market context anchored in this week's source bundle** — a statistic, a pattern across three or more sources, or a counterintuitive claim that the bundle defends. The Writer must not invent client scenes, weekly calls, or first-person field experiences that did not happen; if Wadi wants the Apertura in his own voice, he edits the draft and runs `pnpm choose <edition>` to record it.
 
-**THE INSIGHT** (~450 words)
-One fully developed idea inside one of the three OS pillars. Structure: Problem → Diagnosis → Framework → Application (one specific action this week). Prose only. No bullets. This section should be good enough that a reader would pay to receive it.
+**THE INSIGHT** (~450–500 words)
+One fully developed idea inside one of the three OS pillars. Structure: Problem → Diagnosis → Framework → Application (one specific action this week) → Self-Test (one yes/no or numeric question the reader applies to their own business, with a defensible threshold drawn from the framework). Prose only. No bullets. The Self-Test is what converts a passive reader into someone already measuring; without it the Insight is intellectually satisfying but operationally inert. This section should be good enough that a reader would pay to receive it.
 
 **THE FIELD REPORT** (~150 words)
 One observation from the US-LATAM corridor. A company worth studying, a market pattern, a signal. 3–4 short paragraphs. Demonstrates fluency in both sides of the corridor. Factual, brief, pointed.
