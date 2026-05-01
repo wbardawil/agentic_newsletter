@@ -93,6 +93,26 @@ Pick the single pillar that the Insight would live inside. Do not blend pillars.
 Consider the quarterly theme: this quarter focuses on **{{quarterlyTheme}}**,
 which suggests {{quarterlyThemeDescription}}.
 
+### Naming the People dimension (required on every issue)
+
+People is the dominant bottleneck of change. Regardless of which OS pillar
+the Insight lives in, every recommendation creates a People-side challenge.
+Name it explicitly with two short fields:
+
+- **`peopleAngle.challenge`** — one sentence naming the change-management
+  challenge the recommendation creates. Not generic ("change is hard"). Specific:
+  what behavior, mindset, capability, or trust must shift, and in whom.
+- **`peopleAngle.framework`** — the named framework anchor that sharpens the
+  diagnosis. Pick one:
+  - **ADKAR** step: Awareness, Desire, Knowledge, Ability, or Reinforcement
+  - **Kotter** stage: Step 1 (Urgency), 2 (Coalition), 3 (Vision), 4 (Communicate),
+    5 (Empower), 6 (Wins), 7 (Consolidate), 8 (Anchor)
+  - **McKinsey 7S** element: Strategy, Structure, Systems, Shared Values,
+    Skills, Style, or Staff
+
+If the recommendation has no real People dimension, the angle is wrong —
+choose a different angle. There is no issue without a People challenge.
+
 ### Selecting sources
 
 `suggestedSources` should list the UUIDs of the source items that are most
@@ -119,6 +139,10 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
     "The one concrete action (1 sentence)"
   ],
   "osPillar": "Strategy OS | Operating Model OS | Technology OS",
+  "peopleAngle": {
+    "challenge": "One sentence naming the specific People-side challenge this recommendation creates",
+    "framework": "ADKAR: <step> | Kotter Step <n>: <name> | 7S: <element>"
+  },
   "quarterlyTheme": "{{quarterlyTheme}}"
 }
 ```

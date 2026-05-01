@@ -17,6 +17,8 @@ notes directly.
 - Run ID: {{runId}}
 - Edition ID: {{editionId}}
 - Declared OS Pillar: {{osPillar}}
+- Declared People challenge: {{peopleAngleChallenge}}
+- People framework anchor: {{peopleAngleFramework}}
 
 ---
 
@@ -111,6 +113,18 @@ The Insight content must actually live inside the declared OS pillar:
 - Operating Model OS: how the business runs, executes, scales
 - Technology OS: how systems and information serve the strategy
 
+**People dimension substantive (required on every issue):**
+People is the dominant bottleneck of change. The Strategist declared a People
+challenge ("{{peopleAngleChallenge}}") anchored in {{peopleAngleFramework}}.
+The Insight must do more than name a recommendation — it must visibly engage
+the People-side challenge that recommendation creates. Set
+`peopleAngleSubstantive: true` only when the Insight (a) names what behavior,
+mindset, or capability must shift and in whom, and (b) makes the framework
+anchor's logic visible (even without naming the framework itself).
+Generic mentions of "the team" or "leadership" do not count. If the Insight
+prescribes an action with no engagement of the human work required to make it
+stick, set the field to false and explain in `peopleAngleNote`.
+
 ---
 
 ## Instructions
@@ -137,6 +151,8 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "fieldReportNote": "One sentence explaining why — only include if false",
   "osPillarConsistent": true,
   "osPillarNote": "One sentence on consistency — only include if false",
+  "peopleAngleSubstantive": true,
+  "peopleAngleNote": "One sentence on why the People dimension is missing or generic — only include if false",
   "compassIsGenuine": true,
   "compassNote": "One sentence — only include if false",
   "aperturaStartsMidThought": true,

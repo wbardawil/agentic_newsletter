@@ -28,6 +28,11 @@ function makeAngle() {
     suggestedSources: [randomUUID()],
     talkingPoints: ["Decision rights architecture reduces escalation."],
     osPillar: "Operating Model OS" as const,
+    peopleAngle: {
+      challenge:
+        "The owner must stop being available to escalations that should not reach him.",
+      framework: "ADKAR: Reinforcement",
+    },
     quarterlyTheme: "The Machine",
   };
 }

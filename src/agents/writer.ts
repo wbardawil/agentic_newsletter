@@ -121,6 +121,8 @@ function buildSystemPrompt(
     .replace("{{editionId}}", context.editionId)
     .replace("{{currentDate}}", now.toISOString().substring(0, 10))
     .replace("{{osPillar}}", payload.angle.osPillar)
+    .replace("{{peopleAngleChallenge}}", payload.angle.peopleAngle.challenge)
+    .replace("{{peopleAngleFramework}}", payload.angle.peopleAngle.framework)
     .replace("{{quarterlyTheme}}", payload.angle.quarterlyTheme)
     .replace("{{voiceBible}}", formattedVoiceBible)
     .replace("{{aperturaOptionCount}}", String(count))

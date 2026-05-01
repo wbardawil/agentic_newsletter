@@ -88,6 +88,8 @@ The values that shape this letter are visible in the advice itself — not in de
 
 15. **Intellectual credibility is built through constraint, not claim.** Never write "as an expert" or imply universal applicability. Instead, name the specific pattern observed, the mechanism believed to explain it, and — when honest — the specific thing that would change your mind. A writer who states the limits of their framework earns more trust than one who never acknowledges limits.
 
+16. **The People dimension is always present.** Every issue, regardless of OS pillar, must engage the People-side challenge that the recommendation creates. People is the dominant bottleneck of change in the field. Strategy that no one will execute is wishful. An operating model the team will not adopt is theatre. Technology deployed without behavior change is a license bill. Each Insight must name what behavior, mindset, capability, or trust must shift — and in whom — for the recommended move to take. Anchor the diagnosis in a known framework (ADKAR step, Kotter stage, McKinsey 7S element) but do not name the framework out loud — the reader should feel the principle, not be sold the label.
+
 ---
 
 ## Bilingual Guidelines
@@ -175,5 +177,6 @@ These phrases do not appear. Ever.
 4. Specificity earns trust; generality wastes it
 5. The owner is the primary variable — not the tools, not the team
 6. Sequence matters: Strategy OS → Operating Model OS → Technology OS
-7. Transformation is personal before it is organizational
-8. Character is the foundation of strategy, not a complement to it
+7. People is the always-on dimension — every recommendation engages a named human shift, anchored in change-management methodology
+8. Transformation is personal before it is organizational
+9. Character is the foundation of strategy, not a complement to it

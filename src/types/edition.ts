@@ -19,6 +19,22 @@ export const StrategicAngleSchema = z.object({
   talkingPoints: z.array(z.string()).min(1),
   /** Which OS layer this issue's Insight lives in. */
   osPillar: OsPillarSchema,
+  /**
+   * People dimension — required on every issue, regardless of OS pillar.
+   * People is the dominant bottleneck of change; every recommendation
+   * must name the People-side challenge it creates and the framework
+   * anchor used to navigate it.
+   */
+  peopleAngle: z.object({
+    /** The named change-management challenge the recommendation creates (1 sentence). */
+    challenge: z.string().min(1),
+    /**
+     * Anchor framework: an ADKAR step (Awareness/Desire/Knowledge/Ability/
+     * Reinforcement), a Kotter stage (1–8), or a 7S element
+     * (Strategy/Structure/Systems/Shared Values/Skills/Style/Staff).
+     */
+    framework: z.string().min(1),
+  }),
   /** Quarterly narrative theme (e.g. "The Machine"). */
   quarterlyTheme: z.string().min(1),
 });

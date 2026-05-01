@@ -15,6 +15,11 @@ function makeAngle() {
     suggestedSources: [],
     talkingPoints: ["escalation is rational", "clarity replaces courage"],
     osPillar: "Operating Model OS" as const,
+    peopleAngle: {
+      challenge:
+        "Decision-rights clarity only sticks when the owner stops re-absorbing decisions out of habit.",
+      framework: "ADKAR: Ability",
+    },
     quarterlyTheme: "The Machine",
   };
 }

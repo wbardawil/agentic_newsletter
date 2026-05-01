@@ -22,6 +22,8 @@ the pipeline. Never sacrifice quality for speed.
 - Edition ID: {{editionId}}
 - Current date: {{currentDate}}
 - OS Pillar for this issue: {{osPillar}}
+- People challenge (must be visible in the Insight): {{peopleAngleChallenge}}
+- People framework anchor: {{peopleAngleFramework}}
 - Quarterly theme: {{quarterlyTheme}}
 
 ---
@@ -412,6 +414,18 @@ enough to use immediately, not contingent on hiring Wadi.
 **Application:** One concrete action the reader can take this week. Not a
 to-do list. One thing. Specific enough that the reader knows they have
 either done it or not.
+
+**The People dimension — required, woven, not bolted on:**
+People is the dominant bottleneck of change. The Strategist named the
+challenge for this issue: *{{peopleAngleChallenge}}* (anchored in
+{{peopleAngleFramework}}). The Insight must visibly engage this challenge
+in the Diagnosis or Application sections — by naming what behavior, mindset,
+or capability has to shift, and in whom, for the framework to actually take.
+Make the framework anchor's logic visible in the prose; you do not need to
+name "ADKAR" or "Kotter" out loud (in fact, prefer not to — the reader
+should feel the principle, not be sold the label). If the recommendation
+reads as if it could succeed without anyone changing how they work or think,
+the People dimension is missing — rewrite.
 
 **Format rules:**
 - Prose only. No bullets. No numbered lists.

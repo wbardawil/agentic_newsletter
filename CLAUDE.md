@@ -14,18 +14,33 @@ Audience: owner-operators of $5M–$100M businesses across the US-LATAM corridor
 ## Editorial Mandate
 
 Coverage spans the full business transformation lifecycle. Each edition leads with
-**AI business transformation news** (high cadence) and rotates through four
-foundational OS pillars at lower cadence. Pillars are weighted to reflect that
-**People is the dominant bottleneck of change** observed in field engagements,
-and to deliberately under-weight Technology — the pillar readers already
-over-index on themselves:
+**AI business transformation news** (high cadence) and rotates through three
+foundational OS pillars in a non-negotiable causal sequence — Strategy comes
+first, then Operating Model, then Technology — at the rotation below:
 
-| Pillar | Weight | Scope |
+| Pillar | Rotation | Scope |
 |---|---|---|
-| **People OS** | 30% | change management, talent, skills, leadership, culture |
-| **Strategy OS** | 25% | vision, value cases, prioritization, portfolio choices |
-| **Operating Model OS** | 25% | process redesign, governance, decision rights, org structure |
-| **Technology OS** | 20% | architecture, data, platforms, integration, security, vendor selection |
+| **Strategy OS** | 35% | vision, value cases, prioritization, portfolio choices |
+| **Operating Model OS** | 35% | process redesign, governance, decision rights, org structure |
+| **Technology OS** | 30% | architecture, data, platforms, integration, security, vendor selection |
+
+### People is the always-on dimension
+
+Field experience consistently shows **People is the dominant bottleneck of
+change**. Rather than slot People as a 4th pillar (which would make it
+sometimes-relevant), the Strategist declares a required `peopleAngle` on
+**every** issue regardless of pillar:
+
+- **`peopleAngle.challenge`** — the named human shift the recommendation
+  creates: what behavior, mindset, capability, or trust must change, and in whom.
+- **`peopleAngle.framework`** — anchor in a change-management framework:
+  ADKAR step (Awareness/Desire/Knowledge/Ability/Reinforcement),
+  Kotter stage (1–8), or McKinsey 7S element (Strategy/Structure/Systems/
+  Shared Values/Skills/Style/Staff).
+
+The Writer weaves the People dimension into the Insight without naming the
+framework out loud — readers feel the principle, not the label. The Validator
+enforces that every Insight engages the declared challenge substantively.
 
 ### Editorial stance
 

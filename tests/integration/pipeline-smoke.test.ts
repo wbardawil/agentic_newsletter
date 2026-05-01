@@ -39,6 +39,11 @@ function makeAngle(): StrategicAngle {
     suggestedSources: [randomUUID()],
     talkingPoints: ["AI amplifies strategy clarity that is already documented."],
     osPillar: "Operating Model OS",
+    peopleAngle: {
+      challenge:
+        "Owners must accept what the AI surfaces about the operating model rather than blaming the model.",
+      framework: "Kotter Step 4: Communicate the change vision",
+    },
     quarterlyTheme: "The Machine",
   };
 }
@@ -458,6 +463,8 @@ describe("pipeline smoke — Validator word counts come from code, not LLM", () 
         fieldReportNote: null,
         osPillarConsistent: true,
         osPillarNote: null,
+        peopleAngleSubstantive: true,
+        peopleAngleNote: null,
         compassIsGenuine: true,
         compassNote: null,
         aperturaStartsMidThought: true,
