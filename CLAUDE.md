@@ -1,10 +1,10 @@
-# Newsletter Automation System
+# AI Business Transformation — Newsletter Automation System
 
 ## Project Overview
 
-A production-grade multi-agent publishing engine for a bilingual (EN/ES) newsletter on
-**AI business transformation news**, targeting $5M–$100M company executives across the
-US-LATAM corridor.
+**AI Business Transformation** is a production-grade multi-agent publishing engine for a
+bilingual (EN/ES) newsletter on AI business transformation news, targeting $5M–$100M
+company executives across the US-LATAM corridor.
 
 ## Architecture
 
