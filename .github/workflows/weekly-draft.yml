@@ -1,0 +1,106 @@
+name: Weekly Draft
+
+# Cron-driven weekly run that produces a draft edition without anyone's
+# laptop being on. Opens a pull request with the EN/ES drafts so the editor
+# can review on a phone via the GitHub mobile app, request changes via PR
+# comments, and merge to mark the draft approved.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   ANTHROPIC_API_KEY        — required, drives Strategist/Writer/Validator/Localizer/QualityGate/Amplifier
+#   FEEDLY_API_KEY           — optional, supplemental Radar source
+#   AIRTABLE_API_KEY         — optional, run ledger
+#   AIRTABLE_BASE_ID         — optional, run ledger
+#   BEEHIIV_API_KEY          — not used by `pnpm draft` (only by publish:edition); set when ready
+#   BEEHIIV_PUBLICATION_ID   — same
+#
+# Schedule: Mondays 13:00 UTC = 8am ET / 7am CT. Adjust the cron line below
+# if you want a different day or hour.
+
+on:
+  schedule:
+    - cron: "0 13 * * MON"
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: "Edition ID (YYYY-WW); leave blank to auto-compute from current ISO week"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-draft
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v5
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compute edition ID
+        id: edition
+        run: |
+          if [ -n "${{ github.event.inputs.edition }}" ]; then
+            echo "id=${{ github.event.inputs.edition }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "id=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run draft pipeline
+        run: pnpm draft -- --edition ${{ steps.edition.outputs.id }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FEEDLY_API_KEY: ${{ secrets.FEEDLY_API_KEY }}
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          NEWSLETTER_AUTHOR: ${{ secrets.NEWSLETTER_AUTHOR }}
+          LOG_LEVEL: info
+          DRY_RUN: "false"
+
+      - name: Open / update draft PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: drafts/${{ steps.edition.outputs.id }}
+          base: main
+          title: "Draft — Edition ${{ steps.edition.outputs.id }}"
+          add-paths: |
+            drafts/**
+            config/localization-memory.json
+          commit-message: "draft(${{ steps.edition.outputs.id }}): weekly auto-generated draft"
+          body: |
+            Auto-generated weekly draft for edition **${{ steps.edition.outputs.id }}**.
+
+            Review on phone via the GitHub mobile app.
+            Request edits via PR comment, or commit fixes directly to this branch.
+            Merging this PR marks the draft approved (publish flow is a follow-up).
+
+            Run: ${{ github.run_id }} • [logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          labels: |
+            draft
+            weekly
+          delete-branch: false
+
+      - name: Upload drafts as artifact (fallback if no diff was committed)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: drafts-${{ steps.edition.outputs.id }}
+          path: drafts/
+          retention-days: 30
+          if-no-files-found: warn
