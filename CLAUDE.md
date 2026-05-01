@@ -1,21 +1,31 @@
-# AI Business Transformation — Newsletter Automation System
+# The Transformation Letter — Newsletter Automation System
 
 ## Project Overview
 
-**AI Business Transformation** is a production-grade multi-agent publishing engine for a
-bilingual (EN/ES) newsletter on AI business transformation news, targeting $5M–$100M
-company executives across the US-LATAM corridor.
+**The Transformation Letter** is a production-grade multi-agent publishing engine
+for a bilingual (EN/ES) weekly newsletter.
+
+**Tagline:** *AI business transformation playbooks for $5–100M owner-operators in
+the US-LATAM corridor.*
+
+Audience: owner-operators of $5M–$100M businesses across the US-LATAM corridor
+(Miami, Monterrey, Bogotá, Panama City, Mexico City).
 
 ## Editorial Mandate
 
 Coverage spans the full business transformation lifecycle. Each edition leads with
-**AI business transformation news** (high cadence) and rotates through deeper
-foundational pillars at lower cadence:
+**AI business transformation news** (high cadence) and rotates through four
+foundational OS pillars at lower cadence. Pillars are weighted to reflect that
+**People is the dominant bottleneck of change** observed in field engagements,
+and to deliberately under-weight Technology — the pillar readers already
+over-index on themselves:
 
-- **Strategy** — vision, value cases, prioritization, portfolio choices
-- **Operating model** — process redesign, governance, decision rights, org structure
-- **Technology** — architecture, data, platforms, integration, security, vendor selection
-- **People** — change management, talent, skills, leadership, culture
+| Pillar | Weight | Scope |
+|---|---|---|
+| **People OS** | 30% | change management, talent, skills, leadership, culture |
+| **Strategy OS** | 25% | vision, value cases, prioritization, portfolio choices |
+| **Operating Model OS** | 25% | process redesign, governance, decision rights, org structure |
+| **Technology OS** | 20% | architecture, data, platforms, integration, security, vendor selection |
 
 ### Editorial stance
 
