@@ -8,6 +8,12 @@ name: Publish on Merge
 # the editor may have committed copy fixes to the branch (which would otherwise
 # trip the content-hash guard built for tamper detection).
 #
+# Safety controls (so an unrelated PR can't accidentally publish):
+#   1. The PR must have been opened by github-actions[bot] (the cron)
+#   2. The head branch must match the strict pattern drafts/YYYY-WW
+#   3. Pre-publish quality gate refuses to ship if validation.isValid is false
+#      or qaScore is below QA_MIN_SCORE
+#
 # Required repository secrets:
 #   ANTHROPIC_API_KEY        — Amplifier (LLM-driven social copy)
 #   BEEHIIV_API_KEY          — required, creates the Beehiiv post
@@ -20,9 +26,10 @@ name: Publish on Merge
 #   AIRTABLE_API_KEY         — optional, run ledger
 #   AIRTABLE_BASE_ID         — optional
 #
-# Failure recovery: if publish fails after merge, the workflow status is the
-# signal. Re-trigger by running this workflow manually via the Actions tab,
-# passing the edition ID as input.
+# Failure recovery: if publish fails after merge, the workflow comments ❌ on
+# the PR. Re-trigger via Actions tab → "Publish on Merge" → Run workflow,
+# passing the edition ID. Useful when a transient API error or missing secret
+# blocked the auto-run.
 
 on:
   pull_request:
@@ -37,17 +44,26 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: publish-${{ github.event.pull_request.head.ref || inputs.edition }}
   cancel-in-progress: false
 
+env:
+  # Quality threshold below which auto-publish refuses. Validator scores 0–100;
+  # errors subtract 15, warnings 5. 70 = at most 2 errors or 6 warnings.
+  QA_MIN_SCORE: "70"
+
 jobs:
   publish:
-    # Only run on merged PRs whose source branch is drafts/*, OR on manual dispatch.
+    # Trigger requirements:
+    #   - workflow_dispatch (manual re-publish escape hatch), OR
+    #   - merged PR opened by github-actions[bot] with strict drafts/YYYY-WW branch name
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event.pull_request.merged == true &&
+       github.event.pull_request.user.login == 'github-actions[bot]' &&
        startsWith(github.event.pull_request.head.ref, 'drafts/'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -70,7 +86,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Resolve edition ID
+      - name: Resolve and validate edition ID
         id: edition
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -78,6 +94,11 @@ jobs:
           else
             BRANCH="${{ github.event.pull_request.head.ref }}"
             ID="${BRANCH#drafts/}"
+          fi
+          # Strict YYYY-WW format (4-digit year, 2-digit ISO week 01-53)
+          if ! [[ "$ID" =~ ^[0-9]{4}-(0[1-9]|[1-4][0-9]|5[0-3])$ ]]; then
+            echo "::error::Edition ID '$ID' does not match required pattern YYYY-WW. Refusing to publish."
+            exit 1
           fi
           echo "id=$ID" >> "$GITHUB_OUTPUT"
           echo "Resolved edition: $ID"
@@ -89,7 +110,33 @@ jobs:
             echo "::error::drafts/${ID}-draft.json not found on main. Did the PR commit it?"
             exit 1
           fi
-          echo "Found drafts/${ID}-draft.json"
+
+      - name: Quality gate — refuse to publish a low-score draft
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          DRAFT="drafts/${ID}-draft.json"
+          MIN="${QA_MIN_SCORE}"
+          node -e "
+            const fs = require('node:fs');
+            const draft = JSON.parse(fs.readFileSync('${DRAFT}', 'utf-8'));
+            const v = draft.validation;
+            if (!v) {
+              console.error('::error::Draft has no validation field — Validator did not run successfully. Refusing to publish.');
+              process.exit(1);
+            }
+            const errors = (v.issues || []).filter(i => i.severity === 'error');
+            console.log('QA score: ' + v.score + '/100 (isValid=' + v.isValid + ', errors=' + errors.length + ')');
+            if (v.isValid === false) {
+              console.error('::error::Validator marked the draft invalid. Errors:');
+              for (const e of errors) console.error('::error::  [' + e.section + '] ' + e.message);
+              process.exit(1);
+            }
+            if (typeof v.score === 'number' && v.score < Number('${MIN}')) {
+              console.error('::error::QA score ' + v.score + ' is below threshold ${MIN}. Refusing to publish.');
+              process.exit(1);
+            }
+            console.log('Quality gate passed.');
+          "
 
       - name: Publish edition
         id: publish
@@ -132,7 +179,7 @@ jobs:
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = status === "success"
               ? `✅ **Published edition ${id}** — Beehiiv post created, social variants emitted.\n\n[Run logs](${runUrl})`
-              : `❌ **Publish failed for edition ${id}.** The PR was merged but distribution did not complete. Investigate and re-run via the Actions tab.\n\n[Run logs](${runUrl})`;
+              : `❌ **Publish failed for edition ${id}.** The PR was merged but distribution did not complete. See [run logs](${runUrl}). Re-trigger via Actions → Publish on Merge → Run workflow.`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,

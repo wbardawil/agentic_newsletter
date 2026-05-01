@@ -5,6 +5,10 @@ name: Weekly Draft
 # can review on a phone via the GitHub mobile app, request changes via PR
 # comments, and merge to mark the draft approved.
 #
+# Pause / resume: set the repository variable WEEKLY_DRAFT_PAUSED to "true"
+# (Settings → Secrets and variables → Actions → Variables) to skip the cron
+# without disabling the workflow. Vacation mode in two taps from phone.
+#
 # Required repository secrets (Settings → Secrets and variables → Actions):
 #   ANTHROPIC_API_KEY        — required, drives Strategist/Writer/Validator/Localizer/QualityGate/Amplifier
 #   FEEDLY_API_KEY           — optional, supplemental Radar source
@@ -29,13 +33,30 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: weekly-draft
   cancel-in-progress: false
 
 jobs:
+  pause-check:
+    runs-on: ubuntu-latest
+    outputs:
+      paused: ${{ steps.check.outputs.paused }}
+    steps:
+      - id: check
+        run: |
+          if [ "${{ vars.WEEKLY_DRAFT_PAUSED }}" = "true" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "paused=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::WEEKLY_DRAFT_PAUSED=true — skipping this week's cron. Manual dispatch still works."
+          else
+            echo "paused=false" >> "$GITHUB_OUTPUT"
+          fi
+
   draft:
+    needs: pause-check
+    if: needs.pause-check.outputs.paused != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -104,3 +125,51 @@ jobs:
           path: drafts/
           retention-days: 30
           if-no-files-found: warn
+
+  notify-on-failure:
+    needs: [pause-check, draft]
+    if: failure() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open / update failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const title = "🚨 Weekly draft cron failed";
+            const body = [
+              `The Monday cron failed at ${new Date().toUTCString()}.`,
+              ``,
+              `[Run logs](${runUrl})`,
+              ``,
+              `Common causes:`,
+              `- ANTHROPIC_API_KEY missing or revoked`,
+              `- Anthropic API rate limit / outage`,
+              `- A breaking change in the prompt or schema (check recent commits to main)`,
+              ``,
+              `Re-trigger via Actions → Weekly Draft → Run workflow once the cause is fixed.`,
+            ].join("\n");
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "draft-failure",
+              per_page: 1,
+            });
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["draft-failure", "ops"],
+              });
+            }

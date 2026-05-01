@@ -1,0 +1,4 @@
+# Every PR auto-requests review from @wbardawil. For the weekly draft PRs
+# (branch drafts/YYYY-WW), this triggers a GitHub mobile push notification —
+# the phone-only review loop depends on it.
+*       @wbardawil
