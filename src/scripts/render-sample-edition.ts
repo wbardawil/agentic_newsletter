@@ -61,15 +61,15 @@ const INSIGHT =
   "You deployed an AI agent expecting it to compress a workflow. It did. The agent does its part in seconds. The work still stalls. The instinct is to blame the model.\n\n" +
   "It is not the model. The agent is doing exactly what you asked, against the operating model you actually have — not the one you think you have. It escalates to whoever the configuration said to escalate to. It cites whichever system you connected as the source of truth. It follows the process documentation that exists. Where decision rights are undefined, it requests authorization. Where the system of record is fragmented, it confidently surfaces inconsistent data. The agent is reliable. Your operating model is not.\n\n" +
   "Most advisors call this an AI rollout problem. It is not a rollout problem. It is a mirror. The reliability of the agent is the diagnostic instrument. Every place the agent is surprising you, frustrating you, or producing the wrong result is a place your team had quietly worked around the gap and the agent will not. The team's tolerance for ambiguity was a feature you did not know you depended on. The agent has none.\n\n" +
-  "The first move is yours, before it is anyone else's. Before the team can absorb the change, before the process owners can rewrite anything, the owner has to recognize what the agent is actually showing. That recognition is harder than it sounds — the natural reflex is to demand a better model, not to read the deployment as the audit it has become. The owners who get value from this technology are the ones who let the agent's failures redirect them. The ones who keep tuning prompts in search of a fix that does not depend on changing how the business runs are paying for the most expensive set of consulting findings they will ever receive, and ignoring them.\n\n" +
-  "Three artifacts the agent will reveal you do not have. A decision rights map: the agent escalates to whoever the config says, and you discover that role is undefined. A system of record: the agent reports the version of the customer's status from the source you connected, and your team reports a different one because they have been silently reconciling between three. Process documentation that survives turnover: the agent executes the documented version, and the team's actual workflow — the one that has been getting things done for years — was never written down.\n\n" +
-  "This week, pick the one place the agent is failing or surprising you most. Not the one with the highest impact — the one that is the most embarrassing or the most surprising. Ask the question that earns its keep: what artifact am I missing here? Then write the first draft of that artifact. The agent's failure is not a bug report. It is the prescription.";
+  "The first move is yours. Before the team can absorb the change, before the process owners can rewrite anything, the owner has to recognize what the agent is showing. The reflex is to demand a better model, not to read the deployment as the audit it has become. The owners who get value from this technology are the ones who let the agent's failures redirect them. The ones who keep tuning prompts in search of a fix that does not depend on changing how the business runs are paying for the most expensive set of consulting findings they will ever receive, and ignoring them.\n\n" +
+  "**The Operating Model OS shows three structural gaps when an agent is deployed against it.** A decision rights map: the agent escalates to whoever the config says, and you discover that role is undefined. A system of record: the agent reports the version of the customer's status from the source you connected, and your team reports a different one because they have been silently reconciling between three. Process documentation that survives turnover: the agent executes the documented version, and the team's actual workflow — the one that has been getting things done for years — was never written down.\n\n" +
+  "This week, pick the one place the agent is failing or surprising you most. Not the one with the highest impact — the one that is the most surprising. Ask the question that earns its keep: what artifact am I missing here? Then write the first draft of that artifact. The agent's failure is not a bug report. It is the prescription.";
 
 const FIELD_REPORT =
-  "A Texas-based industrial distributor deployed an agent in February to handle the inbound RFQ flow that had been backing up since November. The agent was configured to route quotes through three approval tiers based on margin, customer tier, and contract value. Within two weeks the operations director had escalated five times that the agent was 'breaking,' and the founder had asked whether they should switch vendors. When his team mapped the failures, three of the five involved the same root cause: a customer category that had grown organically over the past two years and was being treated by the human team as a hybrid of two existing tiers. The category had no formal definition. It existed only in the heads of two senior account managers. The agent had no choice but to misroute. The fix was not a better agent. It was a Tuesday afternoon spent writing down what the team had been improvising for eighteen months. The RFQ throughput doubled the following week.";
+  "The pattern across this week's mid-market AI deployment retros is consistent across industries: companies report higher-than-expected agent reliability and lower-than-expected workflow throughput. Industry analysts read the gap as integration friction. The pattern is older than agents. Companies that survive on improvisation produce processes that look written but are actually carried in people's heads. Automation reveals the gap; it does not create it. RPA exposed the same fault line in finance ops a decade ago. Agents are exposing it now in a wider range of operations — quote-to-cash, vendor onboarding, customer credit, hiring intake. For corridor operators specifically, the lesson rhymes with the ERP failures of the 2010s: the technology that succeeds is the one deployed against an operating model already documented enough to teach a stranger. The other technology becomes the most expensive set of consulting findings the business will ever receive.";
 
 const COMPASS =
-  "I have been asking myself this lately: when an AI tool surfaces a gap in how my own work runs, do I receive that as information, or do I receive it as a threat? The honest answer is sometimes one and sometimes the other, depending on the day, depending on how exposed the gap makes me feel. I am not sure that asymmetry serves the work I want to do. It seems worth naming.";
+  "There is a question this letter has not resolved: when the agent surfaces a gap in your operating model, is the right move to write the missing artifact, or to question whether the workflow should exist at all? Some processes that survived as folklore should not survive as code. The agent's failure may be telling you to write more — or to do less. Knowing which is harder than it sounds, and the cost of getting it wrong is invisible until later. Worth sitting with this week before the next deployment decision.";
 
 const DOOR =
   "If something in this issue landed, reply — I read every response.\n\nWhen you're ready to work together directly, here is how we start: [link]";
@@ -94,25 +94,25 @@ const totalWords = [APERTURA, INSIGHT, FIELD_REPORT, COMPASS, DOOR].reduce(
 
 const VALIDATION = {
   isValid: true,
-  score: 87,
+  score: 90,
   issues: [
     {
       severity: "warning",
-      section: "insight",
+      section: "compass",
       message:
-        "Reframe lands but the second paragraph stacks two rebuttals — consider tightening to one for cleaner rhythm.",
+        "Compass reads as an open question derived from the Insight rather than a personal field reflection — acceptable for AI Writer output. Wadi may want to override with a more personally-rooted question via `pnpm choose` after editing.",
     },
     {
       severity: "info",
       section: "fieldReport",
       message:
-        "Texas distributor example is strong on intelligence; could anchor harder in the corridor by naming the cross-border dimension explicitly.",
+        "Field Report uses a multi-source pattern frame rather than a single corridor case study. Strong for opening week; future issues should pull a specific corridor example once the source bundle supports it.",
     },
   ],
   recommendations: [
-    "Tighten the second paragraph of the Insight; the framework name appears implicitly twice.",
-    "Field Report could add one line on why this matters specifically to a US-LATAM operator.",
-    "Compass is genuine — preserve as written.",
+    "Insight is structurally complete — Problem → Diagnosis → Reframe → Framework (Operating Model OS) → Application all present.",
+    "Apertura is third-person market context per voice bible Rule 3. Consider a Wadi-edited first-person version for the published edition.",
+    "Compass is generative-safe but lacks Wadi's interior register; this is the section most worth editing on phone before merge.",
   ],
   wordCounts: {
     signal: 0,
