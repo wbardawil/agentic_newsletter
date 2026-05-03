@@ -55,7 +55,7 @@ const ANGLE = {
 };
 
 const APERTURA =
-  "Three owners I work with deployed AI agents this quarter. All three came back with the same complaint, in different words. The agent did exactly what they configured it to do. The work still did not get done. One of them said it most clearly: I built a tireless employee, and now I can see how dysfunctional my company has been the whole time. He thought he was telling me the agent had failed. He was telling me something else.";
+  "Two patterns from this week's enterprise-AI reporting: agentic workflows are the largest line item in new mid-market AI budgets, and the pilots are failing at roughly twice the rate of last year's RPA wave. The reporting reads them as a maturity problem — the models are not ready, the prompts need work, the integrations are brittle. They are not failing because the models are not ready. They are failing because the operating models on the receiving end were never written down. The agent is not the variable being tested. The variable is what the agent reveals.";
 
 const INSIGHT =
   "You deployed an AI agent expecting it to compress a workflow. It did. The agent does its part in seconds. The work still stalls. The instinct is to blame the model.\n\n" +

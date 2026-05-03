@@ -3,7 +3,7 @@ Draft ready — Edition 2026-18-sample
 QA: 87/100 (valid)
 OS pillar: Operating Model OS
 People: ADKAR: Awareness — The owner must accept that the agent's reliability surfaces gaps the org has been tolerating — and resist blaming the AI for failures it merely exposes.
-Total words: 814
+Total words: 830
 
 Headline: Your AI agent is doing exactly what you asked. That is the problem.
 Thesis:   The agent's reliability is a diagnostic instrument — it surfaces every gap in your operating model your team had quietly worked around.
