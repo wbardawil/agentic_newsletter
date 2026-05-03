@@ -141,6 +141,32 @@ describe("QualityGateAgent", () => {
     expect(output.error).not.toMatch(/payload/i);
   });
 
+  it("accepts priorAngles missing peopleAngle (backward compat with pre-Option-C history)", async () => {
+    const agent = new QualityGateAgent(makeDeps());
+    // Strip peopleAngle to simulate a historical entry written before the
+    // Option C migration made the field required on StrategicAngleSchema.
+    const { peopleAngle: _omit, ...legacyAngle } = makeAngle();
+    void _omit;
+    const input: AgentInput<QualityGateInput> = {
+      runId: randomUUID(),
+      editionId: "2026-17",
+      agentName: "qualityGate",
+      payload: {
+        enContent: makeContent("en"),
+        esContent: makeContent("es"),
+        angle: makeAngle(),
+        sourceBundle: makeBundle(),
+        priorAngles: [legacyAngle as never],
+      },
+    };
+    // Input parse must not throw on the legacy entry; downstream LLM call
+    // will still error because no real Anthropic client — that's fine.
+    const output = await agent.run(input);
+    expect(output.status).toBe("error");
+    expect(output.error).not.toMatch(/peopleAngle/);
+    expect(output.error).not.toMatch(/payload/i);
+  });
+
   it("rejects missing sourceBundle", async () => {
     const agent = new QualityGateAgent(makeDeps());
     const input = {
