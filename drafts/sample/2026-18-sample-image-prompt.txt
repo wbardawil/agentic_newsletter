@@ -1,0 +1,21 @@
+Editorial illustration, 1600x900 (16:9). editorial illustration; abstract geometric; restrained composition.
+
+Visual concept for "Your AI agent is doing exactly what you asked. That is the problem.":
+An abstract architectural composition rendered in deep navy (#0F1A2B) and muted teal (#1F4E5F) with selective ochre (#C7892A) accents. The visual metaphor: a structure being illuminated from within by an external light, revealing the joints and seams that had been invisible. Show this as overlapping geometric planes — a building schematic rendered partially in blueprint line and partially in solid form — where the solid sections reveal load-bearing elements that were not visible in the schematic. Negative space dominates the upper-right quadrant. Cream paper-grain background. Matte finish, hand-drawn feel.
+
+Constraints (DO NOT produce these):
+  - no realistic photography of identifiable people
+  - no stock-photo executives in suits or boardrooms
+  - no AI tropes (robot hands, glowing brains, circuit boards, futuristic UI panels)
+  - no clichéd transformation imagery (caterpillar/butterfly, sunrise/sunset, ladder, mountaintop, lightbulb)
+  - no text or words in the image — typography is added in layout, not generated
+  - no flags, logos, brand marks, or trademarked imagery
+
+Preferences:
+  - abstract geometric forms suggesting structure, sequence, and process
+  - architectural metaphors: foundations, scaffolding, blueprints, load-bearing walls
+  - limited palette: 2–3 brand colors plus neutrals; avoid full-spectrum brightness
+  - negative space as a deliberate composition element
+  - muted, textured backgrounds (paper grain, soft gradient) rather than flat solid colors
+  - asymmetric balance; off-center focal points
+  - matte finish; no shiny gradients, no neon, no chrome
