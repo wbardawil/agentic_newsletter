@@ -23,6 +23,7 @@ export function makeDeps(): AgentDeps {
       twitterAccessSecret: undefined,
       airtableApiKey: undefined,
       airtableBaseId: undefined,
+      geminiApiKey: undefined,
     },
   };
 }

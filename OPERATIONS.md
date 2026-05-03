@@ -83,6 +83,7 @@ Secrets in **Settings → Secrets and variables → Actions → New repository s
 - `BEEHIIV_PUBLICATION_ID` — visible in your Beehiiv URL
 
 **Optional, expand reach when ready:**
+- `GEMINI_API_KEY` — Google Gemini, used by the Designer agent for hero image generation. Required only when Designer is wired into the cron. Until then, set `DRY_RUN=true` to skip image generation if you exercise the Designer manually.
 - `LINKEDIN_ACCESS_TOKEN` — LinkedIn cross-post
 - `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` — X cross-post
 - `FEEDLY_API_KEY` — supplemental Radar source
@@ -100,9 +101,9 @@ You also need the GitHub mobile app installed with notifications enabled for thi
 These are the next building blocks. The order matters: editorial quality first, then design, then approval, then publishing automation.
 
 1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
-2. **Designer agent** — hero/section imagery via Nano Banana. Drafts are text-only until then.
+2. **Designer agent wired into the weekly cron** — `src/agents/designer.ts` exists and has tests, but is not yet called from `src/run.ts`. When wired, every draft PR will include a hero image rendered to `drafts/<edition>/images/hero.png`, alt-text + captions in EN/ES, and an editable image prompt — all reviewable inline on phone via the GitHub PR.
 3. **Email approval gate** — Resend digest with the draft + design assets, magic-link approval. Replaces the current "review on PR, then manually trigger publish" with "review by email, approve to publish."
-4. **Auto-publish on email approval** — only after #3 is solid. Re-introduces a `pull_request: closed` or webhook trigger to the publish workflow, gated by the email approval signal.
+4. **Auto-publish on email approval** — only after #3 is solid. Re-introduces an automated trigger to the publish workflow, gated by the email approval signal.
 
 Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
 

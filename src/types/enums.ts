@@ -13,12 +13,13 @@ export type EditionId = z.infer<typeof EditionIdSchema>;
 export const StepStatus = z.enum(["pending", "running", "success", "error", "skipped"]);
 export type StepStatus = z.infer<typeof StepStatus>;
 
-/** The 9 agents in the newsletter pipeline. */
+/** The agents in the newsletter pipeline. */
 export const AgentName = z.enum([
   "supervisor",
   "radar",
   "strategist",
   "writer",
+  "designer",
   "localizer",
   "validator",
   "qualityGate",

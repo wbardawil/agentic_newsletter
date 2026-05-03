@@ -7,6 +7,10 @@ const MODEL_PRICING: Record<string, { input: number; output: number }> = {
   "claude-sonnet-4-6": { input: 3.0, output: 15.0 },
   "claude-opus-4-6": { input: 5.0, output: 25.0 },
   "claude-opus-4-7": { input: 5.0, output: 25.0 },
+  // Gemini image-gen models are billed per image, not per token. We record
+  // each generated image as ~1290 output tokens so the run-cost cap still
+  // applies meaningfully. Tune output rate if Gemini pricing shifts.
+  "gemini-2.5-flash-image-preview": { input: 0.3, output: 31.0 },
 };
 
 export interface CostTracker {

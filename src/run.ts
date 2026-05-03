@@ -290,6 +290,7 @@ async function main(): Promise<void> {
     twitterAccessSecret: process.env["TWITTER_ACCESS_SECRET"],
     airtableApiKey: process.env["AIRTABLE_API_KEY"],
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
+    geminiApiKey: process.env["GEMINI_API_KEY"],
     logLevel: process.env["LOG_LEVEL"],
     dryRun: process.env["DRY_RUN"] === "true",
     maxCostPerRunUsd: (() => {

@@ -7,6 +7,9 @@ export const AppConfigSchema = z.object({
   defaultModel: z.string().default("claude-sonnet-4-5"),
   writerModel: z.string().default("claude-opus-4-7"),
 
+  // Gemini (Designer agent — image generation; optional)
+  geminiApiKey: z.string().optional(),
+
   // Beehiiv (required for distribution — optional in Phase 2 draft mode)
   beehiivApiKey: z.string().optional(),
   beehiivPublicationId: z.string().optional(),
