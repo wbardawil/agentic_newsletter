@@ -16,6 +16,13 @@ name: Weekly Draft
 #   AIRTABLE_BASE_ID         — optional, run ledger
 #   BEEHIIV_API_KEY          — not used by `pnpm draft` (only by publish:edition); set when ready
 #   BEEHIIV_PUBLICATION_ID   — same
+#   RESEND_API_KEY           — optional, sends digest email after PR is opened
+#   RESEND_FROM              — optional, verified sender address ("Drafts <drafts@yourdomain.com>")
+#   RESEND_TO                — optional, your editor inbox
+#
+# When the three RESEND_* values are set, the workflow sends a digest email
+# after the draft PR is opened. When any of them is missing, the digest step
+# logs "skipping" and the workflow still succeeds.
 #
 # Schedule: Mondays 13:00 UTC = 8am ET / 7am CT. Adjust the cron line below
 # if you want a different day or hour.
@@ -95,6 +102,7 @@ jobs:
           DRY_RUN: "false"
 
       - name: Open / update draft PR
+        id: open_pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: drafts/${{ steps.edition.outputs.id }}
@@ -116,6 +124,30 @@ jobs:
             draft
             weekly
           delete-branch: false
+
+      - name: Send draft digest email
+        if: success() && env.RESEND_API_KEY != '' && env.RESEND_FROM != '' && env.RESEND_TO != ''
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          PR_URL="${{ steps.open_pr.outputs.pull-request-url }}"
+          ID="${{ steps.edition.outputs.id }}"
+          if [ -n "$PR_URL" ]; then
+            pnpm digest:edition -- --edition "$ID" --pr-url "$PR_URL"
+          else
+            pnpm digest:edition -- --edition "$ID"
+          fi
+
+      - name: Note skipped digest when Resend not configured
+        if: success() && (env.RESEND_API_KEY == '' || env.RESEND_FROM == '' || env.RESEND_TO == '')
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
+        run: echo "::notice::Resend not fully configured (RESEND_API_KEY / RESEND_FROM / RESEND_TO) — digest email skipped. PR is the only review channel for this run."
 
       - name: Upload drafts as artifact (fallback if no diff was committed)
         if: always()

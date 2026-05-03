@@ -11,12 +11,12 @@ recovery moves when something breaks.
 | When | What happens | What you do |
 |---|---|---|
 | **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions runs `pnpm draft`. A pull request titled `Draft — Edition YYYY-WW` opens on `drafts/YYYY-WW`. | GitHub mobile pushes a notification. |
-| **Anytime that week** | You open the PR on phone. EN + ES drafts render as markdown. | Review. Comment to request changes, or commit edits via the GitHub mobile editor. |
+| **Within ~1 minute** | If Resend is configured, a digest email lands in your inbox with the EN headline + thesis, QA score, OS pillar, People dimension, top 3 Validator notes, and two buttons: *Review on GitHub* + *Publish to Beehiiv*. | Open the email on phone. Decide whether to review on GitHub or wait. |
+| **Anytime that week** | You tap *Review on GitHub* (or open the PR directly). EN + ES drafts render as markdown. | Comment to request changes, or commit edits via the GitHub mobile editor. |
 | **When the editorial is right** | You tap **Merge**. | The merge means *"editorial approved, drafts saved on main"* — nothing publishes yet. |
-| **Email approval gate** *(coming next)* | A digest email arrives with the canonical draft + design assets. | Approve, edit, or reject from email. |
-| **Final publish** | After email approval, you trigger publish from Actions tab → **Publish to Beehiiv** → Run workflow → enter edition ID. | Beehiiv post + LinkedIn + X. |
+| **Final publish** | Tap *Publish to Beehiiv* in the email (or Actions tab → **Publish to Beehiiv** → Run workflow). Paste the edition ID and tap Run. | Beehiiv post + LinkedIn + X. |
 
-**Why publish is manual today**: the Designer agent (hero images, brand style) and the email approval gate are not yet built. Until they are, design and final approval happen outside this pipeline. **Merging the PR does not push to subscribers.** You explicitly trigger publish when ready.
+**Why publish is manual today**: the magic-link one-click approval (phase 2 of the email gate) is not yet built. The current email gives you everything to decide; the publish step still requires deliberate intent (tap Run on the workflow page). **Merging the PR does not push to subscribers.** You explicitly trigger publish when ready.
 
 ---
 
@@ -43,6 +43,15 @@ The Monday cron failed before producing a draft. Most common causes, in order:
 3. **A recent code change broke a prompt or schema.** Read the run logs. Revert the offending commit on `main`. Re-run.
 
 After fixing: Actions → Weekly Draft → **Run workflow** → leave edition blank. Close the failure issue when the new run succeeds.
+
+### "The PR opened but I didn't get the digest email"
+
+The digest is a best-effort step — the cron does not fail when email isn't configured. Causes, in order:
+
+1. **One of `RESEND_API_KEY` / `RESEND_FROM` / `RESEND_TO` is missing.** The workflow logs `::notice::Resend not fully configured`. Set all three secrets.
+2. **Sender not verified in Resend.** For production you must verify a domain in Resend → Domains. For testing use `RESEND_FROM=onboarding@resend.dev`.
+3. **Email landed in spam.** Check the spam folder. Add the sender to your contacts to retrain.
+4. **Resend quota hit (100/day on free tier).** Unlikely for weekly cadence, but check Resend → Logs.
 
 ### "Publish to Beehiiv failed when I triggered it"
 
@@ -82,6 +91,11 @@ Secrets in **Settings → Secrets and variables → Actions → New repository s
 - `BEEHIIV_API_KEY` — Beehiiv → Settings → API
 - `BEEHIIV_PUBLICATION_ID` — visible in your Beehiiv URL
 
+**For the email digest (phase 1 of the email approval gate):**
+- `RESEND_API_KEY` — from resend.com. Free tier sends 100 emails/day, enough for the weekly digest.
+- `RESEND_FROM` — verified sender. For testing: `onboarding@resend.dev`. For production: a verified address on a domain you own (Resend → Domains).
+- `RESEND_TO` — your editor inbox (the address that gets the weekly digest).
+
 **Optional, expand reach when ready:**
 - `GEMINI_API_KEY` — Google Gemini, used by the Designer agent for hero image generation. Required only when Designer is wired into the cron. Until then, set `DRY_RUN=true` to skip image generation if you exercise the Designer manually.
 - `LINKEDIN_ACCESS_TOKEN` — LinkedIn cross-post
@@ -102,7 +116,7 @@ These are the next building blocks. The order matters: editorial quality first, 
 
 1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
 2. **Designer agent wired into the weekly cron** — `src/agents/designer.ts` exists and has tests, but is not yet called from `src/run.ts`. When wired, every draft PR will include a hero image rendered to `drafts/<edition>/images/hero.png`, alt-text + captions in EN/ES, and an editable image prompt — all reviewable inline on phone via the GitHub PR.
-3. **Email approval gate** — Resend digest with the draft + design assets, magic-link approval. Replaces the current "review on PR, then manually trigger publish" with "review by email, approve to publish."
+3. **Email approval gate phase 2** — a signed magic link in the digest email triggers a webhook receiver (Cloudflare Worker), which dispatches a `repository_dispatch` event that auto-runs the publish workflow. Replaces "tap link → workflow page → paste edition ID → tap Run" with "tap Approve → done."
 4. **Auto-publish on email approval** — only after #3 is solid. Re-introduces an automated trigger to the publish workflow, gated by the email approval signal.
 
 Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
