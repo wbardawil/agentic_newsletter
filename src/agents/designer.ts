@@ -20,6 +20,12 @@ const DesignerInputSchema = z.object({
   enContent: LocalizedContentSchema,
   /** Where to write generated images (e.g. drafts/2026-18/images/). */
   outputDir: z.string().min(1),
+  /**
+   * Filename for the hero image. The pipeline passes `<editionId>-hero.png`
+   * so multiple editions co-exist in the same drafts/ directory without
+   * collision. Defaults to "hero.png" when omitted.
+   */
+  heroFilename: z.string().min(1).optional(),
 });
 export type DesignerInput = z.infer<typeof DesignerInputSchema>;
 
@@ -153,6 +159,7 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
   ): Promise<DesignerOutput> {
     const tokens = loadBrandStyleTokens();
     const { angle, enContent, outputDir } = payload;
+    const heroFilename = payload.heroFilename ?? "hero.png";
 
     const imagePrompt = await this.composeImagePrompt(angle, enContent, tokens);
     const imagePath = await this.renderHeroImage(
@@ -160,6 +167,7 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
       outputDir,
       tokens,
       context.editionId,
+      heroFilename,
     );
     const { altText, caption } = await this.generateAltTextAndCaption(
       angle,
@@ -245,14 +253,15 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
     outputDir: string,
     tokens: BrandStyleTokens,
     editionId: string,
+    heroFilename: string,
   ): Promise<string> {
     mkdirSync(outputDir, { recursive: true });
-    const imagePath = join(outputDir, "hero.png");
+    const imagePath = join(outputDir, heroFilename);
 
     if (this.deps.apiClients.dryRun) {
       // Write a sibling placeholder text file describing what would have been
       // generated. Keeps the run reviewable without spending image-gen $.
-      const placeholderPath = join(outputDir, "hero.dryrun.txt");
+      const placeholderPath = imagePath.replace(/\.png$/, ".dryrun.txt");
       writeFileSync(
         placeholderPath,
         `[dryRun placeholder for ${editionId} hero]\n\nPrompt:\n${imagePrompt}\n`,

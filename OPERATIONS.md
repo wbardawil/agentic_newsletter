@@ -126,7 +126,7 @@ You also need the GitHub mobile app installed with notifications enabled for thi
 These are the next building blocks. The order matters: editorial quality first, then design, then approval, then publishing automation.
 
 1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
-2. **Designer agent wired into the weekly cron** — `src/agents/designer.ts` exists and has tests, but is not yet called from `src/run.ts`. When wired, every draft PR will include a hero image rendered to `drafts/<edition>/images/hero.png`, alt-text + captions in EN/ES, and an editable image prompt — all reviewable inline on phone via the GitHub PR.
+2. **Designer agent — WIRED.** `pnpm draft` now produces `drafts/<id>-hero.png` + `drafts/<id>-designer.json` (alt-text + captions in EN/ES) when `GEMINI_API_KEY` is set. The hero is embedded at the top of `<id>-en.html` and `<id>-es.html` so it renders inline in the GitHub PR preview on phone. Without the key, the step gracefully skips and the run completes without an image. Use `--skip-designer` to force-skip even with the key set (cost-sensitive reruns).
 3. **Email approval gate phase 2 — DEPLOYED.** Signed magic link in the digest triggers a Cloudflare Worker, which dispatches `repository_dispatch: edition_approved`, which auto-runs the publish workflow. To activate: deploy the Worker per `workers/approval-receiver/README.md`, then set `APPROVAL_BASE_URL` + `APPROVAL_SIGNING_SECRET` in repo secrets.
 
 Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
