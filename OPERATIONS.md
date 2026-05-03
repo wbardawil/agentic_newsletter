@@ -137,4 +137,5 @@ Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch ac
 
 - **Run logs**: GitHub repo → Actions tab. Every run is preserved.
 - **The truth about the pipeline**: `CLAUDE.md` (architecture) + `src/voice-bible/voice-bible.md` (editorial spine).
+- **How to verify the system is healthy**: `TESTING.md` (drills, smoke tests, key rotations).
 - **Don't memorize. Don't manage. Read this file.**
