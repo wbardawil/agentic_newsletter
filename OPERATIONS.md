@@ -1,8 +1,8 @@
 # OPERATIONS
 
 The whole point of this doc: you should never have to read code or remember
-how the pipeline works. Just the loop, the three things only you can do, and
-the recovery moves when something breaks.
+how the pipeline works. Just the loop, the things only you can do, and the
+recovery moves when something breaks.
 
 ---
 
@@ -11,19 +11,24 @@ the recovery moves when something breaks.
 | When | What happens | What you do |
 |---|---|---|
 | **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions runs `pnpm draft`. A pull request titled `Draft — Edition YYYY-WW` opens on `drafts/YYYY-WW`. | GitHub mobile pushes a notification. |
-| **Anytime that day** | You open the PR on phone. EN + ES drafts render as markdown. | Review. Comment to request changes, or commit edits via the GitHub mobile editor. |
-| **When happy** | You tap **Merge**. | Quality gate verifies the draft scored ≥ 70 and Validator marked it valid. If yes → Beehiiv post created, social variants emitted. If no → publish refuses, ❌ comment on PR. |
-| **Within a few minutes** | The PR receives a ✅ or ❌ comment with a link to the run logs. | Done — or, if ❌, see "Recovery moves" below. |
+| **Anytime that week** | You open the PR on phone. EN + ES drafts render as markdown. | Review. Comment to request changes, or commit edits via the GitHub mobile editor. |
+| **When the editorial is right** | You tap **Merge**. | The merge means *"editorial approved, drafts saved on main"* — nothing publishes yet. |
+| **Email approval gate** *(coming next)* | A digest email arrives with the canonical draft + design assets. | Approve, edit, or reject from email. |
+| **Final publish** | After email approval, you trigger publish from Actions tab → **Publish to Beehiiv** → Run workflow → enter edition ID. | Beehiiv post + LinkedIn + X. |
+
+**Why publish is manual today**: the Designer agent (hero images, brand style) and the email approval gate are not yet built. Until they are, design and final approval happen outside this pipeline. **Merging the PR does not push to subscribers.** You explicitly trigger publish when ready.
 
 ---
 
-## The three things only you can do
+## The things only you can do
 
-1. **Decide if the draft is good enough.** Tap Merge or request changes.
+1. **Decide if the editorial is good enough.** Tap Merge or request changes on the PR.
 2. **Edit copy on phone.** Use the GitHub mobile editor to fix the apertura, swap a Field Report, sharpen a sentence. Commit directly to the PR branch.
-3. **Pause for vacation.** See "Pause this week" below.
+3. **Approve final design + copy** *(once the email gate is built)*. Until then: review the merged content on `main`, design assets externally, then trigger publish.
+4. **Trigger Beehiiv publish.** Manual until further notice. Actions → Publish to Beehiiv → Run workflow → edition ID.
+5. **Pause for vacation.** See "Knobs" below.
 
-Everything else — sourcing, drafting, translating, validating, publishing, cross-posting — runs on cron without you.
+Everything else — sourcing, drafting, translating, validating, social copy — runs on cron without you.
 
 ---
 
@@ -34,72 +39,72 @@ Everything else — sourcing, drafting, translating, validating, publishing, cro
 The Monday cron failed before producing a draft. Most common causes, in order:
 
 1. **`ANTHROPIC_API_KEY` revoked or missing.** Settings → Secrets and variables → Actions → check the secret is set. Re-paste from console.anthropic.com if needed.
-2. **Anthropic API rate limit or outage.** Just re-run: Actions → Weekly Draft → Run workflow.
+2. **Anthropic API rate limit or outage.** Re-run: Actions → Weekly Draft → Run workflow.
 3. **A recent code change broke a prompt or schema.** Read the run logs. Revert the offending commit on `main`. Re-run.
 
 After fixing: Actions → Weekly Draft → **Run workflow** → leave edition blank. Close the failure issue when the new run succeeds.
 
-### "The PR got a ❌ Publish failed comment after I merged"
+### "Publish to Beehiiv failed when I triggered it"
 
-The merge was approved but distribution failed. Check:
-
-1. **Beehiiv secret missing or wrong.** Most common on first run. Settings → Secrets → set `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID`.
-2. **Quality gate refused** (score below 70 or Validator flagged errors). The run log says which. The fix is to commit edits to the merged content on `main`, then re-trigger.
-3. **Beehiiv API transient error.** Just re-trigger.
-
-To re-trigger: Actions → **Publish on Merge** → Run workflow → enter the edition ID (e.g. `2026-18`).
+1. **Quality gate refused** (score below 70 or Validator flagged errors). The run log says which. Fix the editorial on `main` (commit a copy fix), then re-run **Publish to Beehiiv**.
+2. **Beehiiv secret missing or wrong.** Settings → Secrets → set `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID`.
+3. **Draft not on main.** Did you actually merge the weekly draft PR? The publish job reads `drafts/<id>-draft.json` from `main`.
+4. **Beehiiv API transient error.** Re-run.
 
 ### "The draft is bad / I don't like it"
 
 Don't merge. Comment on the PR with what to change, then either:
-- Wait for next Monday's run (the apertura history feeds back into the Writer's voice)
-- Or close the PR and run **Weekly Draft → Run workflow** to retry
+- Commit a fix directly to the branch from the GitHub mobile editor
+- Or close the PR and run **Weekly Draft → Run workflow** to retry from scratch
 
 ---
 
 ## Knobs you can turn
 
-All of these are settings you can change from phone via Settings → Secrets and variables → Actions.
+All settable from phone via Settings → Secrets and variables → Actions.
 
 | Knob | Where | Effect |
 |---|---|---|
 | **Pause weekly cron** | *Variables* → `WEEKLY_DRAFT_PAUSED = true` | Vacation mode. Cron skips silently until you set it back to `false` or delete the variable. Manual dispatch still works. |
 | **Change schedule** | Edit `.github/workflows/weekly-draft.yml` line `cron:` | Use [crontab.guru](https://crontab.guru) to translate. Default `0 13 * * MON` = Mondays 13:00 UTC. |
-| **Quality threshold** | Edit `.github/workflows/publish-on-merge.yml` env `QA_MIN_SCORE` | Default 70. Lower = more lenient gate. |
+| **Quality threshold** | Edit `.github/workflows/publish-to-beehiiv.yml` env `QA_MIN_SCORE` | Default 70. Lower = more lenient publish gate. |
 
 ---
 
 ## First-time setup (one time only)
 
-The first time the cron runs against a fresh repo, you need these secrets in **Settings → Secrets and variables → Actions → New repository secret**:
+Secrets in **Settings → Secrets and variables → Actions → New repository secret**:
 
 **Required for drafting:**
 - `ANTHROPIC_API_KEY` — from console.anthropic.com
 
-**Required for publishing (when you're ready to ship):**
+**Required to publish to Beehiiv** (when you trigger publish):
 - `BEEHIIV_API_KEY` — Beehiiv → Settings → API
 - `BEEHIIV_PUBLICATION_ID` — visible in your Beehiiv URL
 
 **Optional, expand reach when ready:**
-- `LINKEDIN_ACCESS_TOKEN` — for LinkedIn cross-post
-- `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` — for X cross-post
+- `LINKEDIN_ACCESS_TOKEN` — LinkedIn cross-post
+- `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` — X cross-post
 - `FEEDLY_API_KEY` — supplemental Radar source
-- `AIRTABLE_API_KEY`, `AIRTABLE_BASE_ID` — for the run ledger
+- `AIRTABLE_API_KEY`, `AIRTABLE_BASE_ID` — run ledger
 
-**Repository variables** (Settings → Secrets and variables → Actions → Variables tab):
-- `WEEKLY_DRAFT_PAUSED` — only set this when you want to pause; default state is no variable
+**Repository variables** (Variables tab):
+- `WEEKLY_DRAFT_PAUSED` — only set this when you want to pause
 
-You also need the GitHub mobile app installed and notifications enabled for this repo. That's how the loop reaches your phone.
+You also need the GitHub mobile app installed with notifications enabled for this repo. That's how the loop reaches your phone.
 
 ---
 
 ## What's not yet automated
 
-These are the next building blocks; they don't change the loop above when added.
+These are the next building blocks. The order matters: editorial quality first, then design, then approval, then publishing automation.
 
-- **Designer agent** — hero/section imagery via Nano Banana. Drafts are text-only until then.
-- **Email digest** — for now, GitHub PR notifications are the channel. A Resend integration would add an email path with rich formatting.
-- **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors need to be added to `src/agents/radar.ts`.
+1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
+2. **Designer agent** — hero/section imagery via Nano Banana. Drafts are text-only until then.
+3. **Email approval gate** — Resend digest with the draft + design assets, magic-link approval. Replaces the current "review on PR, then manually trigger publish" with "review by email, approve to publish."
+4. **Auto-publish on email approval** — only after #3 is solid. Re-introduces a `pull_request: closed` or webhook trigger to the publish workflow, gated by the email approval signal.
+
+Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
 
 ---
 

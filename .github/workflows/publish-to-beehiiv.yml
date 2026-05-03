@@ -1,18 +1,20 @@
-name: Publish on Merge
+name: Publish to Beehiiv
 
-# Step 1.5: when a draft PR (branch drafts/<edition-id>) merges to main, treat
-# the merge as the editor's approval and run the publish pipeline.
+# Manual-only publish to Beehiiv. Triggered explicitly by the editor from the
+# Actions tab (or the GitHub mobile app), never automatically on PR merge.
 #
-# The merge IS the integrity attestation — the editor reviewed the diff and
-# approved. So this workflow runs publish:edition with --skip-hash-check, since
-# the editor may have committed copy fixes to the branch (which would otherwise
-# trip the content-hash guard built for tamper detection).
+# Why manual:
+#   The editorial flow is — draft → review on PR → merge to main (which only
+#   means "approved for editorial; canonical content saved") → email
+#   approval gate (forthcoming) → final design + copy review → THEN publish.
+#   Auto-publishing on merge would skip the approval gate and design steps.
 #
-# Safety controls (so an unrelated PR can't accidentally publish):
-#   1. The PR must have been opened by github-actions[bot] (the cron)
-#   2. The head branch must match the strict pattern drafts/YYYY-WW
-#   3. Pre-publish quality gate refuses to ship if validation.isValid is false
+# Safety controls:
+#   1. Edition ID must match strict /^drafts\/?\d{4}-(0[1-9]|[1-4][0-9]|5[0-3])$/
+#   2. Pre-publish quality gate refuses to ship if validation.isValid is false
 #      or qaScore is below QA_MIN_SCORE
+#   3. The drafts/<id>-draft.json must exist on main (it gets there via
+#      merging the weekly draft PR)
 #
 # Required repository secrets:
 #   ANTHROPIC_API_KEY        — Amplifier (LLM-driven social copy)
@@ -25,20 +27,12 @@ name: Publish on Merge
 #   TWITTER_ACCESS_SECRET    — optional
 #   AIRTABLE_API_KEY         — optional, run ledger
 #   AIRTABLE_BASE_ID         — optional
-#
-# Failure recovery: if publish fails after merge, the workflow comments ❌ on
-# the PR. Re-trigger via Actions tab → "Publish on Merge" → Run workflow,
-# passing the edition ID. Useful when a transient API error or missing secret
-# blocked the auto-run.
 
 on:
-  pull_request:
-    types: [closed]
-    branches: [main]
   workflow_dispatch:
     inputs:
       edition:
-        description: "Edition ID (YYYY-WW) to (re-)publish"
+        description: "Edition ID (YYYY-WW) to publish"
         required: true
 
 permissions:
@@ -47,24 +41,16 @@ permissions:
   issues: write
 
 concurrency:
-  group: publish-${{ github.event.pull_request.head.ref || inputs.edition }}
+  group: publish-${{ inputs.edition }}
   cancel-in-progress: false
 
 env:
-  # Quality threshold below which auto-publish refuses. Validator scores 0–100;
+  # Quality threshold below which publish refuses. Validator scores 0–100;
   # errors subtract 15, warnings 5. 70 = at most 2 errors or 6 warnings.
   QA_MIN_SCORE: "70"
 
 jobs:
   publish:
-    # Trigger requirements:
-    #   - workflow_dispatch (manual re-publish escape hatch), OR
-    #   - merged PR opened by github-actions[bot] with strict drafts/YYYY-WW branch name
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.pull_request.merged == true &&
-       github.event.pull_request.user.login == 'github-actions[bot]' &&
-       startsWith(github.event.pull_request.head.ref, 'drafts/'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -86,28 +72,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Resolve and validate edition ID
+      - name: Validate edition ID
         id: edition
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            ID="${{ github.event.inputs.edition }}"
-          else
-            BRANCH="${{ github.event.pull_request.head.ref }}"
-            ID="${BRANCH#drafts/}"
-          fi
-          # Strict YYYY-WW format (4-digit year, 2-digit ISO week 01-53)
+          ID="${{ github.event.inputs.edition }}"
           if ! [[ "$ID" =~ ^[0-9]{4}-(0[1-9]|[1-4][0-9]|5[0-3])$ ]]; then
             echo "::error::Edition ID '$ID' does not match required pattern YYYY-WW. Refusing to publish."
             exit 1
           fi
           echo "id=$ID" >> "$GITHUB_OUTPUT"
-          echo "Resolved edition: $ID"
+          echo "Publishing edition: $ID"
 
       - name: Verify draft files exist
         run: |
           ID="${{ steps.edition.outputs.id }}"
           if [ ! -f "drafts/${ID}-draft.json" ]; then
-            echo "::error::drafts/${ID}-draft.json not found on main. Did the PR commit it?"
+            echo "::error::drafts/${ID}-draft.json not found on main. Has the weekly draft PR been merged?"
             exit 1
           fi
 
@@ -168,21 +148,3 @@ jobs:
             git commit -m "publish(${ID}): record distribution + social artifacts"
             git push origin main
           fi
-
-      - name: Comment publish status on PR
-        if: github.event_name == 'pull_request' && always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const status = "${{ steps.publish.outcome }}";
-            const id = "${{ steps.edition.outputs.id }}";
-            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = status === "success"
-              ? `✅ **Published edition ${id}** — Beehiiv post created, social variants emitted.\n\n[Run logs](${runUrl})`
-              : `❌ **Publish failed for edition ${id}.** The PR was merged but distribution did not complete. See [run logs](${runUrl}). Re-trigger via Actions → Publish on Merge → Run workflow.`;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body,
-            });
