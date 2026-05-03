@@ -29,6 +29,7 @@
 import "dotenv/config";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { buildApprovalLink } from "../utils/approval-token.js";
 
 interface DraftAngle {
   headline: string;
@@ -69,18 +70,31 @@ interface DigestLinks {
   prUrl: string | null;
   publishWorkflowUrl: string;
   reRunDraftUrl: string;
+  /**
+   * Phase-2 one-click approve link. Present only when both APPROVAL_BASE_URL
+   * and APPROVAL_SIGNING_SECRET are set. When absent, the digest falls back
+   * to the manual workflow_dispatch link.
+   */
+  approveUrl: string | null;
 }
 
 function buildLinks(
   editionId: string,
   prUrl: string | null,
   repo: string,
+  approveBaseUrl: string | null,
+  approveSecret: string | null,
 ): DigestLinks {
   const base = `https://github.com/${repo}`;
+  const approveUrl =
+    approveBaseUrl && approveSecret
+      ? buildApprovalLink(approveBaseUrl, editionId, approveSecret)
+      : null;
   return {
     prUrl,
     publishWorkflowUrl: `${base}/actions/workflows/publish-to-beehiiv.yml`,
     reRunDraftUrl: `${base}/actions/workflows/weekly-draft.yml`,
+    approveUrl,
   };
 }
 
@@ -109,7 +123,11 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
   const reviewBtn = links.prUrl
     ? `<a href="${escapeHtml(links.prUrl)}" style="display:inline-block;padding:12px 20px;background:#0F1A2B;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Review draft on GitHub →</a>`
     : "";
-  const publishBtn = `<a href="${escapeHtml(links.publishWorkflowUrl)}" style="display:inline-block;padding:12px 20px;background:#1F4E5F;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Publish to Beehiiv when ready →</a>`;
+  // When the approval Worker is configured, the primary CTA is one-click
+  // approve. Fall back to the manual workflow_dispatch deep-link otherwise.
+  const publishBtn = links.approveUrl
+    ? `<a href="${escapeHtml(links.approveUrl)}" style="display:inline-block;padding:12px 20px;background:#C7892A;color:#0F1A2B;text-decoration:none;border-radius:6px;font-weight:700;margin:4px 4px 4px 0;">✓ Approve and publish →</a>`
+    : `<a href="${escapeHtml(links.publishWorkflowUrl)}" style="display:inline-block;padding:12px 20px;background:#1F4E5F;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Publish to Beehiiv when ready →</a>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -176,7 +194,11 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
   <p style="font-size:12px;color:#7A7466;line-height:1.5;margin:0;">
     The draft is on the <code>drafts/${escapeHtml(draft.editionId)}</code> branch.
     Edit copy via the GitHub mobile editor and merge when the editorial is right.
-    Publishing to Beehiiv is a deliberate manual action — tap "Publish to Beehiiv" above to open the workflow page, paste the edition ID, and tap Run.
+    ${
+      links.approveUrl
+        ? `Tapping <strong>Approve and publish</strong> dispatches the Beehiiv publish workflow via a signed link valid for 7 days.`
+        : `Publishing to Beehiiv is a deliberate manual action — tap "Publish to Beehiiv" above to open the workflow page, paste the edition ID, and tap Run.`
+    }
   </p>
 </div>
 </body>
@@ -216,12 +238,21 @@ export function renderDigestText(draft: DraftJson, links: DigestLinks): string {
     for (const r of recs) lines.push(`  • ${r}`);
   }
   lines.push("");
-  if (links.prUrl) lines.push(`Review:  ${links.prUrl}`);
-  lines.push(`Publish: ${links.publishWorkflowUrl}`);
+  if (links.prUrl) lines.push(`Review:           ${links.prUrl}`);
+  if (links.approveUrl) {
+    lines.push(`Approve+publish:  ${links.approveUrl}`);
+  } else {
+    lines.push(`Publish workflow: ${links.publishWorkflowUrl}`);
+  }
   lines.push("");
   lines.push("Editorial flow: edit on the PR branch via the GitHub mobile editor.");
-  lines.push("Merge when the editorial is right. Publishing to Beehiiv stays manual");
-  lines.push("until the email approval gate phase 2 is wired.");
+  if (links.approveUrl) {
+    lines.push("Tap Approve+publish to dispatch the Beehiiv publish workflow.");
+    lines.push("The signed link is valid for 7 days.");
+  } else {
+    lines.push("Merge when the editorial is right. Publishing to Beehiiv stays manual");
+    lines.push("until the email approval gate phase 2 is wired.");
+  }
   return lines.join("\n");
 }
 
@@ -287,7 +318,21 @@ async function main(): Promise<void> {
   const draftPath = join(process.cwd(), "drafts", `${args.edition}-draft.json`);
   const draft = JSON.parse(readFileSync(draftPath, "utf-8")) as DraftJson;
   const repo = process.env["GITHUB_REPOSITORY"] ?? "wbardawil/agentic_newsletter";
-  const links = buildLinks(args.edition, args.prUrl, repo);
+
+  const approveBaseUrl = process.env["APPROVAL_BASE_URL"]?.trim() || null;
+  const approveSecret = process.env["APPROVAL_SIGNING_SECRET"]?.trim() || null;
+  if ((approveBaseUrl && !approveSecret) || (!approveBaseUrl && approveSecret)) {
+    console.warn(
+      "APPROVAL_BASE_URL and APPROVAL_SIGNING_SECRET must both be set to enable one-click approval. Falling back to the manual workflow_dispatch link.",
+    );
+  }
+  const links = buildLinks(
+    args.edition,
+    args.prUrl,
+    repo,
+    approveBaseUrl,
+    approveSecret,
+  );
 
   const subject = renderSubject(draft);
   const html = renderDigestHtml(draft, links);

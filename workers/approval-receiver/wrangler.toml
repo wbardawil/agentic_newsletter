@@ -1,0 +1,19 @@
+# Cloudflare Worker config for the approval receiver.
+#
+# Deploy:
+#   cd workers/approval-receiver
+#   pnpm install
+#   pnpm wrangler login                              # one-time
+#   pnpm wrangler secret put APPROVAL_SIGNING_SECRET  # paste the same secret used in GitHub Actions
+#   pnpm wrangler secret put GITHUB_TOKEN             # fine-grained PAT (see README)
+#   pnpm wrangler secret put GITHUB_REPO              # e.g. "wbardawil/agentic_newsletter"
+#   pnpm wrangler deploy
+#
+# After deploy, copy the Worker URL (printed by `deploy`) and add it as the
+# APPROVAL_BASE_URL secret in the GitHub repo so the digest sender embeds
+# it in the magic links.
+
+name = "transformation-letter-approval"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+workers_dev = true

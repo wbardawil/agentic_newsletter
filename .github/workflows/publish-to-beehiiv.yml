@@ -34,6 +34,11 @@ on:
       edition:
         description: "Edition ID (YYYY-WW) to publish"
         required: true
+  # Phase 2 of the email approval gate: tapping the magic link in the digest
+  # email triggers a Cloudflare Worker that POSTs a repository_dispatch event
+  # with this exact event_type and a `client_payload.edition` field.
+  repository_dispatch:
+    types: [edition_approved]
 
 permissions:
   contents: write
@@ -41,7 +46,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: publish-${{ inputs.edition }}
+  group: publish-${{ inputs.edition || github.event.client_payload.edition }}
   cancel-in-progress: false
 
 env:
@@ -75,7 +80,13 @@ jobs:
       - name: Validate edition ID
         id: edition
         run: |
-          ID="${{ github.event.inputs.edition }}"
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            ID="${{ github.event.client_payload.edition }}"
+            echo "Source: repository_dispatch (email magic-link approval)"
+          else
+            ID="${{ github.event.inputs.edition }}"
+            echo "Source: manual workflow_dispatch"
+          fi
           if ! [[ "$ID" =~ ^[0-9]{4}-(0[1-9]|[1-4][0-9]|5[0-3])$ ]]; then
             echo "::error::Edition ID '$ID' does not match required pattern YYYY-WW. Refusing to publish."
             exit 1

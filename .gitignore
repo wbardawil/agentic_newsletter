@@ -27,3 +27,7 @@ coverage/
 
 # Temporary
 *.tsbuildinfo
+
+# Cloudflare Worker local dev secrets
+workers/**/.dev.vars
+workers/**/.wrangler/

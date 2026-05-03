@@ -11,12 +11,17 @@ recovery moves when something breaks.
 | When | What happens | What you do |
 |---|---|---|
 | **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions runs `pnpm draft`. A pull request titled `Draft — Edition YYYY-WW` opens on `drafts/YYYY-WW`. | GitHub mobile pushes a notification. |
-| **Within ~1 minute** | If Resend is configured, a digest email lands in your inbox with the EN headline + thesis, QA score, OS pillar, People dimension, top 3 Validator notes, and two buttons: *Review on GitHub* + *Publish to Beehiiv*. | Open the email on phone. Decide whether to review on GitHub or wait. |
+| **Within ~1 minute** | If Resend is configured, a digest email lands in your inbox with the EN headline + thesis, QA score, OS pillar, People dimension, top 3 Validator notes, and two buttons: *Review on GitHub* + *Approve and publish* (or *Publish to Beehiiv* if the Worker isn't deployed). | Open the email on phone. Decide whether to review on GitHub or approve directly. |
 | **Anytime that week** | You tap *Review on GitHub* (or open the PR directly). EN + ES drafts render as markdown. | Comment to request changes, or commit edits via the GitHub mobile editor. |
 | **When the editorial is right** | You tap **Merge**. | The merge means *"editorial approved, drafts saved on main"* — nothing publishes yet. |
-| **Final publish** | Tap *Publish to Beehiiv* in the email (or Actions tab → **Publish to Beehiiv** → Run workflow). Paste the edition ID and tap Run. | Beehiiv post + LinkedIn + X. |
+| **Final publish** | Tap *Approve and publish* in the email (one tap when the Worker is deployed). Or fall back to Actions tab → **Publish to Beehiiv** → Run workflow → paste edition ID. | Beehiiv post + LinkedIn + X. |
 
-**Why publish is manual today**: the magic-link one-click approval (phase 2 of the email gate) is not yet built. The current email gives you everything to decide; the publish step still requires deliberate intent (tap Run on the workflow page). **Merging the PR does not push to subscribers.** You explicitly trigger publish when ready.
+**The two states of the publish gate:**
+
+- **Phase 1 (Resend only)**: digest email shows a *Publish to Beehiiv* button that opens the workflow page on phone. You paste the edition ID and tap Run.
+- **Phase 2 (Resend + approval Worker)**: digest email shows an *Approve and publish* button that runs the publish workflow in one tap. Signed with HMAC, valid for 7 days.
+
+**In both states, merging the PR does not push to subscribers.** Publishing requires the explicit approve action.
 
 ---
 
@@ -96,6 +101,12 @@ Secrets in **Settings → Secrets and variables → Actions → New repository s
 - `RESEND_FROM` — verified sender. For testing: `onboarding@resend.dev`. For production: a verified address on a domain you own (Resend → Domains).
 - `RESEND_TO` — your editor inbox (the address that gets the weekly digest).
 
+**For one-click magic-link approval (phase 2; optional):**
+- `APPROVAL_BASE_URL` — your deployed Cloudflare Worker URL, e.g. `https://transformation-letter-approval.<your-subdomain>.workers.dev`
+- `APPROVAL_SIGNING_SECRET` — random secret shared between the digest sender and the Worker. Generate with `openssl rand -base64 48`. Set the **same value** as a Worker secret via `wrangler secret put APPROVAL_SIGNING_SECRET`.
+
+Both phase-2 secrets must be set together. See [workers/approval-receiver/README.md](workers/approval-receiver/README.md) for the one-time Worker deployment (free Cloudflare account; ~10 minutes).
+
 **Optional, expand reach when ready:**
 - `GEMINI_API_KEY` — Google Gemini, used by the Designer agent for hero image generation. Required only when Designer is wired into the cron. Until then, set `DRY_RUN=true` to skip image generation if you exercise the Designer manually.
 - `LINKEDIN_ACCESS_TOKEN` — LinkedIn cross-post
@@ -116,8 +127,7 @@ These are the next building blocks. The order matters: editorial quality first, 
 
 1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
 2. **Designer agent wired into the weekly cron** — `src/agents/designer.ts` exists and has tests, but is not yet called from `src/run.ts`. When wired, every draft PR will include a hero image rendered to `drafts/<edition>/images/hero.png`, alt-text + captions in EN/ES, and an editable image prompt — all reviewable inline on phone via the GitHub PR.
-3. **Email approval gate phase 2** — a signed magic link in the digest email triggers a webhook receiver (Cloudflare Worker), which dispatches a `repository_dispatch` event that auto-runs the publish workflow. Replaces "tap link → workflow page → paste edition ID → tap Run" with "tap Approve → done."
-4. **Auto-publish on email approval** — only after #3 is solid. Re-introduces an automated trigger to the publish workflow, gated by the email approval signal.
+3. **Email approval gate phase 2 — DEPLOYED.** Signed magic link in the digest triggers a Cloudflare Worker, which dispatches `repository_dispatch: edition_approved`, which auto-runs the publish workflow. To activate: deploy the Worker per `workers/approval-receiver/README.md`, then set `APPROVAL_BASE_URL` + `APPROVAL_SIGNING_SECRET` in repo secrets.
 
 Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
 

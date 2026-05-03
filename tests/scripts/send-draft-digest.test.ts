@@ -46,6 +46,13 @@ const links = {
     "https://github.com/wbardawil/agentic_newsletter/actions/workflows/publish-to-beehiiv.yml",
   reRunDraftUrl:
     "https://github.com/wbardawil/agentic_newsletter/actions/workflows/weekly-draft.yml",
+  approveUrl: null,
+};
+
+const linksWithApprove = {
+  ...links,
+  approveUrl:
+    "https://approve.example.workers.dev/approve?t=eyJhbGciOiJIUzI1NiJ9.signed",
 };
 
 describe("renderDigestText", () => {
@@ -109,6 +116,19 @@ describe("renderDigestText", () => {
     expect(text).not.toContain("Review:");
     expect(text).toContain(links.publishWorkflowUrl);
   });
+
+  it("uses the approval link as the publish CTA when set", () => {
+    const text = renderDigestText(makeDraft() as never, linksWithApprove);
+    expect(text).toContain("Approve+publish:");
+    expect(text).toContain(linksWithApprove.approveUrl!);
+    expect(text).not.toContain("Publish workflow:");
+  });
+
+  it("falls back to the workflow link when approveUrl is null", () => {
+    const text = renderDigestText(makeDraft() as never, links);
+    expect(text).toContain("Publish workflow:");
+    expect(text).toContain(links.publishWorkflowUrl);
+  });
 });
 
 describe("renderDigestHtml", () => {
@@ -148,6 +168,18 @@ describe("renderDigestHtml", () => {
     });
     expect(html).not.toContain("Review draft on GitHub");
     expect(html).toContain("Publish to Beehiiv when ready");
+  });
+
+  it("renders the one-click Approve button when approveUrl is set", () => {
+    const html = renderDigestHtml(makeDraft() as never, linksWithApprove);
+    expect(html).toContain("Approve and publish");
+    expect(html).toContain(linksWithApprove.approveUrl!);
+    expect(html).not.toContain("Publish to Beehiiv when ready");
+  });
+
+  it("explains the signed-link expiry in the footer when one-click is on", () => {
+    const html = renderDigestHtml(makeDraft() as never, linksWithApprove);
+    expect(html).toContain("signed link valid for 7 days");
   });
 });
 

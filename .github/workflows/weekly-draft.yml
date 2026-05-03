@@ -19,10 +19,17 @@ name: Weekly Draft
 #   RESEND_API_KEY           — optional, sends digest email after PR is opened
 #   RESEND_FROM              — optional, verified sender address ("Drafts <drafts@yourdomain.com>")
 #   RESEND_TO                — optional, your editor inbox
+#   APPROVAL_BASE_URL        — optional, Cloudflare Worker URL (phase 2 of the email gate)
+#   APPROVAL_SIGNING_SECRET  — optional, HMAC secret shared with the Worker
 #
 # When the three RESEND_* values are set, the workflow sends a digest email
 # after the draft PR is opened. When any of them is missing, the digest step
 # logs "skipping" and the workflow still succeeds.
+#
+# When APPROVAL_BASE_URL + APPROVAL_SIGNING_SECRET are also set, the digest
+# email contains a one-click "Approve and publish" magic link instead of a
+# manual workflow_dispatch deep-link. See workers/approval-receiver/README.md
+# for the one-time Cloudflare Worker deployment.
 #
 # Schedule: Mondays 13:00 UTC = 8am ET / 7am CT. Adjust the cron line below
 # if you want a different day or hour.
@@ -131,6 +138,8 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
           RESEND_TO: ${{ secrets.RESEND_TO }}
+          APPROVAL_BASE_URL: ${{ secrets.APPROVAL_BASE_URL }}
+          APPROVAL_SIGNING_SECRET: ${{ secrets.APPROVAL_SIGNING_SECRET }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           PR_URL="${{ steps.open_pr.outputs.pull-request-url }}"
