@@ -105,6 +105,14 @@ jobs:
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           NEWSLETTER_AUTHOR: ${{ secrets.NEWSLETTER_AUTHOR }}
+          # Tighter Anthropic per-request timeout in CI than the local default
+          # (120s). 75s × up to 3 retries (1s/2s backoff) caps any single LLM
+          # call at ~3.8 min worst case, vs. ~6 min before. A run with one
+          # hung call now fails by ~12-13 min total instead of dragging past
+          # the 30-min job timeout. Set after a 23-min hang on 2026-19's
+          # second cron attempt where an undiagnosed retry storm consumed
+          # the full budget.
+          LLM_TIMEOUT_MS: "75000"
           LOG_LEVEL: info
           DRY_RUN: "false"
 
