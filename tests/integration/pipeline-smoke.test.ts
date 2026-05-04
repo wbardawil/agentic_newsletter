@@ -461,6 +461,8 @@ describe("pipeline smoke — Validator word counts come from code, not LLM", () 
         shareableSentence: "The AI is not failing. The AI is exposing.",
         fieldReportIsIntelligence: true,
         fieldReportNote: null,
+        fieldReportEntityDistinct: true,
+        fieldReportEntityNote: null,
         osPillarConsistent: true,
         osPillarNote: null,
         peopleAngleSubstantive: true,

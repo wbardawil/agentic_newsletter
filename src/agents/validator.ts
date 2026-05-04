@@ -144,6 +144,8 @@ const LlmResponseSchema = z.object({
   shareableSentence: z.string().nullable(),
   fieldReportIsIntelligence: z.boolean(),
   fieldReportNote: z.string().nullable().optional(),
+  fieldReportEntityDistinct: z.boolean(),
+  fieldReportEntityNote: z.string().nullable().optional(),
   osPillarConsistent: z.boolean(),
   osPillarNote: z.string().nullable().optional(),
   peopleAngleSubstantive: z.boolean(),
@@ -342,6 +344,15 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
         severity: "warning",
         section: "fieldReport",
         message: `Field Report reads as news curation, not corridor intelligence. ${llmData.fieldReportNote ?? ""}`,
+      });
+    }
+
+    if (!llmData.fieldReportEntityDistinct) {
+      issues.push({
+        rule: "field-report-entity-distinct",
+        severity: "warning",
+        section: "fieldReport",
+        message: `Field Report reuses the Apertura's primary entity. The Field Report must anchor on a DIFFERENT company or event than the Apertura's hook. ${llmData.fieldReportEntityNote ?? ""}`,
       });
     }
 

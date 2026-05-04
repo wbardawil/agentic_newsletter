@@ -11,6 +11,9 @@
 — Operating Model OS: how the business runs and scales
 — Technology OS: how systems serve the strategy
 
+**Branded vocabulary** (writers may reference as if the reader knows them):
+— The Decision Rule: a three-component artifact (trigger, test, boundary) that converts a recurring judgment in the owner's head into something the team can apply without escalation. Lives inside the Operating Model OS.
+
 **Positioning:** The only weekly letter for business owners who have already tried everything they know how to try — and are ready to go deeper.
 
 **The core belief, stated or unstated in every issue:**
@@ -121,12 +124,20 @@ One observation from the US-LATAM corridor. A company worth studying, a market p
 
 *The intelligence standard:* The Field Report must deliver intelligence, not news. The test: does the reader gain information they could not have found in 5 minutes on Google News? If yes, it qualifies. If not, find a different story. Intelligence means pattern recognition from corridor-specific observation — not curation of events already reported elsewhere. The story earns its place by showing what the event reveals about a larger shift the reader needs to act on.
 
-**THE COMPASS** (~75 words)
-A question the writer is genuinely sitting with. May relate to business, leadership, character, or the intersection of faith and work. Not answered. Present as an honest open position.
+**THE COMPASS** (~75 words) — dual mode
+The Compass exists in two valid forms; which form ships depends on who is producing it.
 
-**THE DOOR** (~50 words — fixed text, never changes)
+- **AI Writer default** (every Monday's auto-draft): opens with *"Watch for this week:"* (EN) or *"Observe esta semana:"* (ES) and names a specific, trackable signal or indicator the reader can count or notice over the next seven days. It must NOT be a question and must NOT restate the Insight thesis. The signal must be concrete enough that the reader knows whether they hit it. This form is what the Validator's Rule 7 enforces.
+- **Wadi-edited override**: a question Wadi is genuinely sitting with — may relate to business, leadership, character, or the intersection of faith and work. Not answered. Present as an honest open position. This is the form used in golden examples. The AI Writer must not produce this form by default — it requires authentic interior register the AI cannot originate. To use it, edit the auto-generated Compass on the PR branch before merging.
+
+**THE DOOR** (~75 words — fixed text, never changes)
 "If something in this issue landed, reply — I read every response.
+
+If this is useful to someone in your network, forward it — it takes ten seconds and it's the highest compliment.
+
 When you're ready to work together directly, here is how we start: [link]"
+
+The forward line is the highest-converting growth lever for a newsletter at this scale. Keeping it permanent is editorial generosity, not pushiness.
 
 Total target: 900–1,000 words per issue.
 
