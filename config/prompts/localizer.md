@@ -143,6 +143,14 @@ Every ES section maps to its EN counterpart, but with Mexican voice.
   of each bullet.
 - **THE FIELD REPORT** (`spotlight`) — default: same named company and
   same URL as the EN. **Regional touch option** (see below).
+  **Never emit the section type identifier in the body.** Do not write
+  `Sección: spotlight`, `Section: spotlight`, `## Spotlight`, or any
+  similar internal label as a line in the prose. The section's `type`
+  field handles routing — it must never appear as visible text. Caught
+  in production 2026-18 (`## Spotlight` duplicate heading) and 2026-19
+  (`Sección: spotlight` line). The output sanitizer strips these
+  defensively, but never produce them in the first place. This rule
+  applies to every section, not just the Field Report.
 - **THE COMPASS** (`quickTakes`) — same forward-looking signal as the
   EN, rewritten for the Mexican reader. Open with one of the native
   labels: *"La señal a seguir esta semana:"*, *"A vigilar esta
