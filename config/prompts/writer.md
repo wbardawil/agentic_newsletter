@@ -612,6 +612,27 @@ scan for "was/were/is/are/been + past participle" sentences. If more
 than 1 in 20 sentences is passive, rewrite the offender to active
 voice by naming who acts.
 
+**Step 7 — Field Report ≠ Apertura entity (HARD GATE — caught in 2026-19).**
+Identify the primary named entity in your Apertura (e.g. "Spirit Airlines",
+"Berkshire Hathaway", "Lance Thrailkill"). Now scan the Field Report's
+first paragraph. If the same entity is the primary anchor, **rewrite the
+Field Report against a DIFFERENT item from your source pool**. The Apertura
+gives the editorial frame; the Field Report extends the issue's range with
+a different example. Reusing the same entity collapses the issue's range
+and reads as filler — the Validator will flag this as a warning, but you
+should never let it ship. Worked example: if your Apertura anchors on
+Spirit Airlines, your Field Report must anchor on a different company
+(Chadha, Thrailkill, NAB, etc.) or on a sector pattern across two or more
+items. A sector-pattern Field Report (no single named entity) qualifies as
+distinct.
+
+**Step 8 — Tool URLs are simple, not nested.** When listing product URLs in
+the Tool section, use the simple form `[Product Name](https://full-url.com)`.
+**Never** wrap an autolink inside another markdown link, e.g.
+`[[loom.com](http://loom.com)](https://www.loom.com)` — that is broken
+markdown. Caught in 2026-19 Tool URLs. The output sanitizer flattens this
+defensively, but compose it correctly the first time.
+
 **Step 7 — -ly adverbs ≤ 3 across the whole edition.** Grep your own
 draft for *simply, clearly, basically, actually, really, quite,
 essentially, obviously, literally*. Cut until ≤ 3 remain across all
