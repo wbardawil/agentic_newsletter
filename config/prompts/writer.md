@@ -22,6 +22,8 @@ the pipeline. Never sacrifice quality for speed.
 - Edition ID: {{editionId}}
 - Current date: {{currentDate}}
 - OS Pillar for this issue: {{osPillar}}
+- People challenge (must be visible in the Insight): {{peopleAngleChallenge}}
+- People framework anchor: {{peopleAngleFramework}}
 - Quarterly theme: {{quarterlyTheme}}
 
 ---
@@ -413,6 +415,18 @@ enough to use immediately, not contingent on hiring Wadi.
 to-do list. One thing. Specific enough that the reader knows they have
 either done it or not.
 
+**The People dimension — required, woven, not bolted on:**
+People is the dominant bottleneck of change. The Strategist named the
+challenge for this issue: *{{peopleAngleChallenge}}* (anchored in
+{{peopleAngleFramework}}). The Insight must visibly engage this challenge
+in the Diagnosis or Application sections — by naming what behavior, mindset,
+or capability has to shift, and in whom, for the framework to actually take.
+Make the framework anchor's logic visible in the prose; you do not need to
+name "ADKAR" or "Kotter" out loud (in fact, prefer not to — the reader
+should feel the principle, not be sold the label). If the recommendation
+reads as if it could succeed without anyone changing how they work or think,
+the People dimension is missing — rewrite.
+
 **Format rules:**
 - Prose only. No bullets. No numbered lists.
 - Sentences under 25 words.
@@ -435,6 +449,18 @@ either done it or not.
   named in the literature"*), and (3) never introduce it as if the
   reader should already know it.
 
+  Pre-approved Wadi-branded vocabulary (use as if the reader knows them,
+  no flagging required):
+  - Strategy OS, Operating Model OS, Technology OS
+  - Business Transformation OS, the three-pillar sequence
+  - **The Decision Rule** — the trigger / test / boundary artifact for
+    converting an owner's recurring judgment into a team-applicable rule.
+    Lives inside Operating Model OS. May be referenced by name when
+    relevant; do not coin variants ("Strategic Decision Rule", "Rule
+    Architecture") — use "The Decision Rule" as the canonical form.
+  - Section labels (Signal, Apertura, Insight, Field Report, Tool,
+    Compass, Door)
+
 ### Section 3 — THE FIELD REPORT (~150 words)
 
 One observation drawn from the source material, **anchored in the United States
@@ -445,6 +471,7 @@ speaks to the US reader — geographic specificity builds credibility.
 Rules:
 - Factual. Brief. Pointed.
 - 3-4 short paragraphs maximum.
+- **The Field Report's primary example must be a different company / event from the Apertura.** The Apertura already used one item from the source bundle as its hook; the Field Report must pull a DIFFERENT primary entity from `suggestedSources` (or, secondarily, from elsewhere in the source pool). Reusing the same company in both sections collapses the issue's range and reads as filler. If only one item from the bundle truly carries the angle, anchor the Field Report on a sector pattern across two or more other items instead.
 - The named example **must be cited with a source link** (see Citation Discipline).
   Pull the company name, specific facts, and figures directly from `verbatimFacts`.
 - The named example must be US-based. If no US source is available, reframe as

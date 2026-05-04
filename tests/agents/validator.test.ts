@@ -73,6 +73,11 @@ function makeAngle() {
       "Pull the last ten decisions that reached you and name whose they actually are.",
     ],
     osPillar: "Operating Model OS" as const,
+    peopleAngle: {
+      challenge:
+        "The owner has trained the team to escalate by answering decisions that were never his to make.",
+      framework: "ADKAR: Reinforcement",
+    },
     quarterlyTheme: "The Machine",
   };
 }

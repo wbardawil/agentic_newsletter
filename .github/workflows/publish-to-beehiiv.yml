@@ -1,0 +1,161 @@
+name: Publish to Beehiiv
+
+# Manual-only publish to Beehiiv. Triggered explicitly by the editor from the
+# Actions tab (or the GitHub mobile app), never automatically on PR merge.
+#
+# Why manual:
+#   The editorial flow is — draft → review on PR → merge to main (which only
+#   means "approved for editorial; canonical content saved") → email
+#   approval gate (forthcoming) → final design + copy review → THEN publish.
+#   Auto-publishing on merge would skip the approval gate and design steps.
+#
+# Safety controls:
+#   1. Edition ID must match strict /^drafts\/?\d{4}-(0[1-9]|[1-4][0-9]|5[0-3])$/
+#   2. Pre-publish quality gate refuses to ship if validation.isValid is false
+#      or qaScore is below QA_MIN_SCORE
+#   3. The drafts/<id>-draft.json must exist on main (it gets there via
+#      merging the weekly draft PR)
+#
+# Required repository secrets:
+#   ANTHROPIC_API_KEY        — Amplifier (LLM-driven social copy)
+#   BEEHIIV_API_KEY          — required, creates the Beehiiv post
+#   BEEHIIV_PUBLICATION_ID   — required
+#   LINKEDIN_ACCESS_TOKEN    — optional, LinkedIn distribution
+#   TWITTER_API_KEY          — optional
+#   TWITTER_API_SECRET       — optional
+#   TWITTER_ACCESS_TOKEN     — optional
+#   TWITTER_ACCESS_SECRET    — optional
+#   AIRTABLE_API_KEY         — optional, run ledger
+#   AIRTABLE_BASE_ID         — optional
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: "Edition ID (YYYY-WW) to publish"
+        required: true
+  # Phase 2 of the email approval gate: tapping the magic link in the digest
+  # email triggers a Cloudflare Worker that POSTs a repository_dispatch event
+  # with this exact event_type and a `client_payload.edition` field.
+  repository_dispatch:
+    types: [edition_approved]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: publish-${{ inputs.edition || github.event.client_payload.edition }}
+  cancel-in-progress: false
+
+env:
+  # Quality threshold below which publish refuses. Validator scores 0–100;
+  # errors subtract 15, warnings 5. 70 = at most 2 errors or 6 warnings.
+  QA_MIN_SCORE: "70"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v5
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate edition ID
+        id: edition
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            ID="${{ github.event.client_payload.edition }}"
+            echo "Source: repository_dispatch (email magic-link approval)"
+          else
+            ID="${{ github.event.inputs.edition }}"
+            echo "Source: manual workflow_dispatch"
+          fi
+          if ! [[ "$ID" =~ ^[0-9]{4}-(0[1-9]|[1-4][0-9]|5[0-3])$ ]]; then
+            echo "::error::Edition ID '$ID' does not match required pattern YYYY-WW. Refusing to publish."
+            exit 1
+          fi
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          echo "Publishing edition: $ID"
+
+      - name: Verify draft files exist
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          if [ ! -f "drafts/${ID}-draft.json" ]; then
+            echo "::error::drafts/${ID}-draft.json not found on main. Has the weekly draft PR been merged?"
+            exit 1
+          fi
+
+      - name: Quality gate — refuse to publish a low-score draft
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          DRAFT="drafts/${ID}-draft.json"
+          MIN="${QA_MIN_SCORE}"
+          node -e "
+            const fs = require('node:fs');
+            const draft = JSON.parse(fs.readFileSync('${DRAFT}', 'utf-8'));
+            const v = draft.validation;
+            if (!v) {
+              console.error('::error::Draft has no validation field — Validator did not run successfully. Refusing to publish.');
+              process.exit(1);
+            }
+            const errors = (v.issues || []).filter(i => i.severity === 'error');
+            console.log('QA score: ' + v.score + '/100 (isValid=' + v.isValid + ', errors=' + errors.length + ')');
+            if (v.isValid === false) {
+              console.error('::error::Validator marked the draft invalid. Errors:');
+              for (const e of errors) console.error('::error::  [' + e.section + '] ' + e.message);
+              process.exit(1);
+            }
+            if (typeof v.score === 'number' && v.score < Number('${MIN}')) {
+              console.error('::error::QA score ' + v.score + ' is below threshold ${MIN}. Refusing to publish.');
+              process.exit(1);
+            }
+            console.log('Quality gate passed.');
+          "
+
+      - name: Publish edition
+        id: publish
+        run: pnpm publish:edition -- --edition ${{ steps.edition.outputs.id }} --skip-hash-check
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
+          BEEHIIV_PUBLICATION_ID: ${{ secrets.BEEHIIV_PUBLICATION_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          LOG_LEVEL: info
+          DRY_RUN: "false"
+
+      - name: Commit publish artifacts back to main
+        if: success()
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "drafts/${ID}-social.json" "drafts/${ID}-metrics.json" 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No publish artifacts to commit."
+          else
+            git commit -m "publish(${ID}): record distribution + social artifacts"
+            git push origin main
+          fi

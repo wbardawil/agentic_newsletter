@@ -116,6 +116,8 @@ function buildPrompt(
     .replace("{{runId}}", context.runId)
     .replace("{{editionId}}", context.editionId)
     .replace("{{osPillar}}", payload.angle.osPillar)
+    .replace("{{peopleAngleChallenge}}", payload.angle.peopleAngle.challenge)
+    .replace("{{peopleAngleFramework}}", payload.angle.peopleAngle.framework)
     .replace("{{subject}}", payload.content.subject)
     .replace("{{preheader}}", payload.content.preheader)
     .replace("{{apertura}}", sections["apertura"] ?? "")
@@ -142,8 +144,12 @@ const LlmResponseSchema = z.object({
   shareableSentence: z.string().nullable(),
   fieldReportIsIntelligence: z.boolean(),
   fieldReportNote: z.string().nullable().optional(),
+  fieldReportEntityDistinct: z.boolean(),
+  fieldReportEntityNote: z.string().nullable().optional(),
   osPillarConsistent: z.boolean(),
   osPillarNote: z.string().nullable().optional(),
+  peopleAngleSubstantive: z.boolean(),
+  peopleAngleNote: z.string().nullable().optional(),
   compassIsGenuine: z.boolean(),
   compassNote: z.string().nullable().optional(),
   aperturaStartsMidThought: z.boolean(),
@@ -341,12 +347,30 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
       });
     }
 
+    if (!llmData.fieldReportEntityDistinct) {
+      issues.push({
+        rule: "field-report-entity-distinct",
+        severity: "warning",
+        section: "fieldReport",
+        message: `Field Report reuses the Apertura's primary entity. The Field Report must anchor on a DIFFERENT company or event than the Apertura's hook. ${llmData.fieldReportEntityNote ?? ""}`,
+      });
+    }
+
     if (!llmData.osPillarConsistent) {
       issues.push({
         rule: "os-pillar-consistency",
         severity: "error",
         section: "insight",
         message: `Declared OS pillar (${payload.angle.osPillar}) is inconsistent with the Insight content. ${llmData.osPillarNote ?? ""}`,
+      });
+    }
+
+    if (!llmData.peopleAngleSubstantive) {
+      issues.push({
+        rule: "people-angle-substantive",
+        severity: "error",
+        section: "insight",
+        message: `People dimension is not substantively woven into the Insight. Declared challenge: "${payload.angle.peopleAngle.challenge}" (${payload.angle.peopleAngle.framework}). ${llmData.peopleAngleNote ?? ""}`,
       });
     }
 

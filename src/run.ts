@@ -27,6 +27,7 @@ import { StrategistAgent } from "./agents/strategist.js";
 import { WriterAgent } from "./agents/writer.js";
 import { ValidatorAgent } from "./agents/validator.js";
 import { LocalizerAgent } from "./agents/localizer.js";
+import { DesignerAgent, type DesignerOutput } from "./agents/designer.js";
 import { QualityGateAgent, type QualityGateResult } from "./agents/quality-gate.js";
 import { stripAiTells } from "./utils/sanitize-output.js";
 import type { LocalizedContent, ValidationResult } from "./types/edition.js";
@@ -203,12 +204,17 @@ function renderHtml(
   angle: StrategicAngle,
   content: LocalizedContent,
   language: "en" | "es",
+  hero?: { filename: string; altText: string; caption: string },
 ): string {
   const md = renderMarkdown(editionId, angle, content, language);
   // Strip review-only annotations before HTML conversion — these are for
   // markdown review only and must not appear in the Beehiiv-ready HTML.
   const cleanMd = md.replace(/^>[ \t]*⚠️[^\n]*/gm, "").replace(/\n{3,}/g, "\n\n");
   const body = mdToHtml(cleanMd);
+  // Hero image is referenced relatively — both HTML and PNG live in drafts/.
+  const heroHtml = hero
+    ? `<figure style="margin:0 0 1.5rem 0;"><img src="${hero.filename}" alt="${hero.altText.replace(/"/g, "&quot;")}" loading="lazy"><figcaption style="font-size:0.9rem;color:#555;margin-top:.4rem;font-style:italic;">${hero.caption.replace(/</g, "&lt;")}</figcaption></figure>`
+    : "";
   return `<!DOCTYPE html>
 <html lang="${language}">
 <head>
@@ -246,7 +252,7 @@ function renderHtml(
 </style>
 </head>
 <body>
-${body}
+${heroHtml}${body}
 </body>
 </html>`;
 }
@@ -277,6 +283,9 @@ async function main(): Promise<void> {
   }
 
   const costJsonFlag = process.argv.includes("--cost-json");
+  // Designer is opt-in via GEMINI_API_KEY. The --skip-designer flag forces a
+  // skip even when the key is set (useful for cost-sensitive reruns).
+  const skipDesignerFlag = process.argv.includes("--skip-designer");
 
   const config = AppConfigSchema.parse({
     anthropicApiKey: process.env["ANTHROPIC_API_KEY"],
@@ -290,6 +299,7 @@ async function main(): Promise<void> {
     twitterAccessSecret: process.env["TWITTER_ACCESS_SECRET"],
     airtableApiKey: process.env["AIRTABLE_API_KEY"],
     airtableBaseId: process.env["AIRTABLE_BASE_ID"],
+    geminiApiKey: process.env["GEMINI_API_KEY"],
     logLevel: process.env["LOG_LEVEL"],
     dryRun: process.env["DRY_RUN"] === "true",
     maxCostPerRunUsd: (() => {
@@ -503,6 +513,45 @@ async function main(): Promise<void> {
     console.log(`   ✓ Spanish edition ready (${esContent.sections.length} sections)\n`);
   }
 
+  // ── Designer (optional — needs GEMINI_API_KEY) ────────────────────────────
+  // Produces a hero image + bilingual alt-text/caption for the edition.
+  // Gracefully no-ops when GEMINI_API_KEY is absent or --skip-designer is set,
+  // so cron runs without the key still complete successfully.
+  let designer: DesignerOutput | null = null;
+  let heroImagePath: string | null = null;
+  const designerCost = { model: "none", inputTokens: 0, outputTokens: 0, costUsd: 0 };
+  const designerEnabled =
+    !skipDesignerFlag && (apiClients.geminiApiKey || apiClients.dryRun);
+  if (designerEnabled) {
+    console.log("🎨 Designer: composing hero image + bilingual alt-text...");
+    const designerAgent = new DesignerAgent(deps);
+    const designerOutput = await designerAgent.run({
+      runId,
+      editionId,
+      agentName: "designer",
+      payload: {
+        angle,
+        enContent: content,
+        outputDir: draftsDir,
+        heroFilename: `${editionId}-hero.png`,
+      },
+    });
+    if (!designerOutput.success) {
+      console.warn(`   ⚠️  Designer failed: ${designerOutput.error}. Proceeding without hero image.\n`);
+    } else {
+      designer = designerOutput.data as DesignerOutput;
+      heroImagePath = designer.assets[0]?.imagePath ?? null;
+      Object.assign(designerCost, designerOutput.cost);
+      const assetCount = designer.assets.length;
+      console.log(`   ✓ Generated ${assetCount} asset${assetCount === 1 ? "" : "s"} (${designer.imageModel})`);
+      if (heroImagePath) console.log(`     hero: ${heroImagePath.replace(`${draftsDir}/`, "")}`);
+    }
+  } else if (skipDesignerFlag) {
+    console.log("🎨 Designer: skipped (--skip-designer flag set)\n");
+  } else {
+    console.log("🎨 Designer: skipped (GEMINI_API_KEY not set; set DRY_RUN=true to test without spend)\n");
+  }
+
   // ── Save draft ─────────────────────────────────────────────────────────────
   mkdirSync(draftsDir, { recursive: true });
 
@@ -642,15 +691,39 @@ async function main(): Promise<void> {
     logger.info(`Backed up existing draft to ${jsonPath}.bak`);
   }
 
+  const heroAsset = designer?.assets[0];
+  const enHero = heroAsset
+    ? {
+        filename: `${editionId}-hero.png`,
+        altText: heroAsset.altText.en,
+        caption: heroAsset.caption.en,
+      }
+    : undefined;
+  const esHero = heroAsset
+    ? {
+        filename: `${editionId}-hero.png`,
+        altText: heroAsset.altText.es,
+        caption: heroAsset.caption.es,
+      }
+    : undefined;
+
   const enMdContent = stripAiTells(renderMarkdown(editionId, angle, content, "en"));
   writeFileSync(enMdPath, enMdContent, "utf-8");
-  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en"), "utf-8");
+  writeFileSync(join(draftsDir, `${editionId}-en.html`), renderHtml(editionId, angle, content, "en", enHero), "utf-8");
 
   let esMdContent = "";
   if (esContent) {
     esMdContent = stripAiTells(renderMarkdown(editionId, angle, esContent, "es"));
     writeFileSync(esMdPath, esMdContent, "utf-8");
-    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es"), "utf-8");
+    writeFileSync(join(draftsDir, `${editionId}-es.html`), renderHtml(editionId, angle, esContent, "es", esHero), "utf-8");
+  }
+
+  if (designer) {
+    writeFileSync(
+      join(draftsDir, `${editionId}-designer.json`),
+      JSON.stringify(designer, null, 2),
+      "utf-8",
+    );
   }
 
   // Content hash lets publish.ts verify the draft was not corrupted or swapped
@@ -675,12 +748,14 @@ async function main(): Promise<void> {
       esContent: esContent ?? null,
       validation: validatorOutput.success ? validation : null,
       qualityGate: qualityGate ?? null,
+      designer: designer ?? null,
       costs: {
         radar: radarCost,
         strategist: strategistOutput.cost,
         writer: writerOutput.cost,
         validator: validatorOutput.cost,
         localizer: localizerOutput.cost,
+        designer: designerCost,
         qualityGate: qualityGateOutput.cost,
         totalUsd:
           radarCost.costUsd +
@@ -688,6 +763,7 @@ async function main(): Promise<void> {
           writerOutput.cost.costUsd +
           validatorCostUsd +
           localizerCostUsd +
+          designerCost.costUsd +
           qualityGateCostUsd,
       },
     },

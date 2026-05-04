@@ -1,0 +1,26 @@
+Draft ready — Edition 2026-18-sample
+
+QA: 90/100 (valid)
+OS pillar: Operating Model OS
+People: ADKAR: Awareness — The owner must accept that the agent's reliability surfaces gaps the org has been tolerating — and resist blaming the AI for failures it merely exposes.
+Total words: 812
+
+Headline: Your AI agent is doing exactly what you asked. That is the problem.
+Thesis:   The agent's reliability is a diagnostic instrument — it surfaces every gap in your operating model your team had quietly worked around.
+
+Subject (EN): Your AI agent is doing exactly what you asked. That is the problem.
+Preheader:    The agent is reliable. Your operating model is not. The deployment is the audit.
+
+Shareable: "The reliability of the agent is the diagnostic instrument; every place the agent is surprising you is a place your team had quietly worked around the gap and the agent will not."
+
+Validator notes:
+  • Insight is structurally complete — Problem → Diagnosis → Reframe → Framework (Operating Model OS) → Application all present.
+  • Apertura is third-person market context per voice bible Rule 3. Consider a Wadi-edited first-person version for the published edition.
+  • Compass is generative-safe but lacks Wadi's interior register; this is the section most worth editing on phone before merge.
+
+Review:           https://github.com/wbardawil/agentic_newsletter/pull/SAMPLE
+Approve+publish:  https://approve.example.workers.dev/approve?t=SAMPLE-TOKEN-not-functional
+
+Editorial flow: edit on the PR branch via the GitHub mobile editor.
+Tap Approve+publish to dispatch the Beehiiv publish workflow.
+The signed link is valid for 7 days.

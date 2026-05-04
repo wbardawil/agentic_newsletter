@@ -1,0 +1,43 @@
+{
+  "_comment": "Candidate RSS feeds proposed to expand Radar's source pool. Run `pnpm verify:feeds` to check each URL is live and emits valid XML, then add survivors to src/agents/radar.ts. region: us | mx | corridor (the same enum FeedConfig uses). tier: 1 = strategy/insight, 2 = business news, 3 = niche/trade.",
+  "candidates": [
+    { "outlet": "Bloomberg Línea", "url": "https://www.bloomberglinea.com/feed/", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "LatamList", "url": "https://latamlist.com/feed/", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "Contxto", "url": "https://www.contxto.com/feed/", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "La República (CO)", "url": "https://www.larepublica.co/rss", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "El Cronista (AR)", "url": "https://www.cronista.com/files/rss/portada.xml", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "Diario Financiero (CL)", "url": "https://www.df.cl/feed", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "Gestión (PE)", "url": "https://gestion.pe/rss/", "region": "corridor", "tier": 2, "category": "latam" },
+    { "outlet": "BBVA Research", "url": "https://www.bbvaresearch.com/en/feed/", "region": "corridor", "tier": 1, "category": "latam-research" },
+    { "outlet": "IDB Blogs", "url": "https://blogs.iadb.org/en/feed", "region": "corridor", "tier": 1, "category": "latam-research" },
+    { "outlet": "Latinometrics", "url": "https://latinometrics.substack.com/feed", "region": "corridor", "tier": 2, "category": "latam" },
+
+    { "outlet": "BCG Insights", "url": "https://www.bcg.com/publications/rss", "region": "corridor", "tier": 1, "category": "consultancy" },
+    { "outlet": "Bain Insights", "url": "https://www.bain.com/insights/rss", "region": "corridor", "tier": 1, "category": "consultancy" },
+    { "outlet": "Deloitte Insights", "url": "https://www2.deloitte.com/insights/feed.html", "region": "corridor", "tier": 1, "category": "consultancy" },
+    { "outlet": "PwC Global Insights", "url": "https://www.pwc.com/gx/en/feeds/all.xml", "region": "corridor", "tier": 1, "category": "consultancy" },
+    { "outlet": "IBM Institute for Business Value", "url": "https://www.ibm.com/thought-leadership/institute-business-value/rss", "region": "us", "tier": 1, "category": "consultancy" },
+    { "outlet": "Forrester Blogs", "url": "https://www.forrester.com/blogs/feed", "region": "us", "tier": 1, "category": "consultancy" },
+    { "outlet": "Gartner Blogs", "url": "https://blogs.gartner.com/feed/", "region": "us", "tier": 1, "category": "consultancy" },
+
+    { "outlet": "Prosci", "url": "https://blog.prosci.com/rss.xml", "region": "us", "tier": 1, "category": "change-mgmt" },
+    { "outlet": "Kotter Inc.", "url": "https://www.kotterinc.com/feed/", "region": "us", "tier": 1, "category": "change-mgmt" },
+    { "outlet": "Center for Creative Leadership", "url": "https://www.ccl.org/feed/", "region": "us", "tier": 1, "category": "change-mgmt" },
+    { "outlet": "HBR Change Management", "url": "https://hbr.org/topic/change-management.rss", "region": "us", "tier": 1, "category": "change-mgmt" },
+
+    { "outlet": "a16z", "url": "https://a16z.com/feed/", "region": "us", "tier": 1, "category": "ai-biz" },
+    { "outlet": "Latent Space", "url": "https://www.latent.space/feed", "region": "us", "tier": 1, "category": "ai-biz" },
+    { "outlet": "Import AI", "url": "https://importai.substack.com/feed", "region": "us", "tier": 1, "category": "ai-biz" },
+    { "outlet": "AI Snake Oil", "url": "https://www.aisnakeoil.com/feed", "region": "us", "tier": 1, "category": "ai-biz" },
+    { "outlet": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml", "region": "us", "tier": 2, "category": "ai-biz" },
+    { "outlet": "Anthropic News", "url": "https://www.anthropic.com/news/rss.xml", "region": "us", "tier": 2, "category": "ai-biz" },
+    { "outlet": "Stanford HAI", "url": "https://hai.stanford.edu/news/rss", "region": "us", "tier": 1, "category": "ai-research" },
+    { "outlet": "The Batch (DeepLearning.AI)", "url": "https://www.deeplearning.ai/the-batch/feed", "region": "us", "tier": 2, "category": "ai-biz" },
+    { "outlet": "WEF Agenda", "url": "https://www.weforum.org/agenda/rss.xml", "region": "corridor", "tier": 1, "category": "policy" },
+    { "outlet": "OECD.AI", "url": "https://oecd.ai/en/rss", "region": "corridor", "tier": 1, "category": "policy" },
+
+    { "outlet": "arXiv cs.AI", "url": "http://export.arxiv.org/rss/cs.AI", "region": "us", "tier": 1, "category": "primary-research" },
+    { "outlet": "NBER Working Papers", "url": "https://www.nber.org/papers.rss", "region": "us", "tier": 1, "category": "primary-research" },
+    { "outlet": "MIT IDE", "url": "https://ide.mit.edu/feed/", "region": "us", "tier": 1, "category": "primary-research" }
+  ]
+}

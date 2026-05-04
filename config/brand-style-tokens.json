@@ -1,0 +1,65 @@
+{
+  "name": "The Transformation Letter — Brand Style v1",
+  "version": 1,
+  "voice": "advisor not pundit, diagnostic not promotional, restrained not loud",
+  "palette": {
+    "primary": "#0F1A2B",
+    "secondary": "#1F4E5F",
+    "accent": "#C7892A",
+    "neutral": "#F4EFE6",
+    "muted": "#7A7466"
+  },
+  "paletteNotes": {
+    "primary": "deep navy — heading text and primary structural elements",
+    "secondary": "teal — accent forms and secondary structure",
+    "accent": "ochre — pull quotes, highlights, sparingly used",
+    "neutral": "cream — paper-like background; never pure white",
+    "muted": "muted bronze — secondary text and quiet detail"
+  },
+  "typography": {
+    "display": "Cormorant Garamond, Garamond, serif",
+    "body": "Inter, system-ui, sans-serif",
+    "mono": "JetBrains Mono, ui-monospace, monospace"
+  },
+  "imageStyle": {
+    "approach": "editorial illustration; abstract geometric; restrained composition",
+    "constraints": [
+      "no realistic photography of identifiable people",
+      "no stock-photo executives in suits or boardrooms",
+      "no AI tropes (robot hands, glowing brains, circuit boards, futuristic UI panels)",
+      "no clichéd transformation imagery (caterpillar/butterfly, sunrise/sunset, ladder, mountaintop, lightbulb)",
+      "no text or words in the image — typography is added in layout, not generated",
+      "no flags, logos, brand marks, or trademarked imagery"
+    ],
+    "preferences": [
+      "abstract geometric forms suggesting structure, sequence, and process",
+      "architectural metaphors: foundations, scaffolding, blueprints, load-bearing walls",
+      "limited palette: 2–3 brand colors plus neutrals; avoid full-spectrum brightness",
+      "negative space as a deliberate composition element",
+      "muted, textured backgrounds (paper grain, soft gradient) rather than flat solid colors",
+      "asymmetric balance; off-center focal points",
+      "matte finish; no shiny gradients, no neon, no chrome"
+    ],
+    "model": "gemini-2.5-flash-image-preview"
+  },
+  "layout": {
+    "heroAspectRatio": "16:9",
+    "heroDimensions": { "width": 1600, "height": 900 },
+    "socialAspectRatios": {
+      "linkedin": "1.91:1",
+      "twitter": "16:9",
+      "email": "16:9"
+    }
+  },
+  "captionVoice": {
+    "guidance": "One sentence. Anchors the image to the issue's diagnostic — not a description of the picture. Same voice as the letter: advisor, present tense, second-person where natural.",
+    "examplesOk": [
+      "The structure your team needs is not a chart — it is the artifact you have not written yet.",
+      "Decision rights are scaffolding. Without them, every floor of the business rests on you."
+    ],
+    "examplesAvoid": [
+      "An abstract illustration of business transformation.",
+      "Photo of business strategy and AI working together."
+    ]
+  }
+}

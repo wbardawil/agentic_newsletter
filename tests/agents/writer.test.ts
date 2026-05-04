@@ -13,6 +13,11 @@ function makeAngle() {
     suggestedSources: [randomUUID()],
     talkingPoints: ["Decision rights architecture reduces escalation by 40%."],
     osPillar: "Operating Model OS" as const,
+    peopleAngle: {
+      challenge:
+        "The owner must stop answering decisions that should not reach him before delegated authority becomes real.",
+      framework: "ADKAR: Reinforcement",
+    },
     quarterlyTheme: "The Machine",
   };
 }

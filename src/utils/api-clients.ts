@@ -31,6 +31,8 @@ export interface ApiClients {
   airtableApiKey: string | undefined;
   /** Airtable base ID (e.g. "appXXXXXXXX"). */
   airtableBaseId: string | undefined;
+  /** Google Gemini API key — used by the Designer agent for image generation. */
+  geminiApiKey: string | undefined;
 }
 
 export function createApiClients(config: AppConfig): ApiClients {
@@ -54,5 +56,6 @@ export function createApiClients(config: AppConfig): ApiClients {
     twitterAccessSecret: config.twitterAccessSecret,
     airtableApiKey: config.airtableApiKey,
     airtableBaseId: config.airtableBaseId,
+    geminiApiKey: config.geminiApiKey,
   };
 }

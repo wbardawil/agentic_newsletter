@@ -184,6 +184,8 @@ const ALLOWED_SUBSTRINGS = [
   "Operating Model OS",
   "Technology OS",
   "Business Transformation OS",
+  "The Decision Rule",
+  "Decision Rule",
   "The Machine",
   "The Letter",
   "Transformation Letter",

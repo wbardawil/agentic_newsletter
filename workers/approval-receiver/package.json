@@ -1,0 +1,16 @@
+{
+  "name": "transformation-letter-approval-receiver",
+  "version": "0.1.0",
+  "description": "Cloudflare Worker that verifies signed approval links from the digest email and dispatches the publish workflow on GitHub.",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "typescript": "^5.9.0",
+    "wrangler": "^3.80.0"
+  }
+}

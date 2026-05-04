@@ -17,6 +17,8 @@ notes directly.
 - Run ID: {{runId}}
 - Edition ID: {{editionId}}
 - Declared OS Pillar: {{osPillar}}
+- Declared People challenge: {{peopleAngleChallenge}}
+- People framework anchor: {{peopleAngleFramework}}
 
 ---
 
@@ -84,7 +86,8 @@ the reader should recognize them. For each such concept, it must be either:
 
 1. A pre-approved Wadi-branded framework (the only allowed set: *Strategy
    OS, Operating Model OS, Technology OS*, the three-pillar sequence,
-   *Business Transformation OS*, and the newsletter section labels), OR
+   *Business Transformation OS*, *The Decision Rule* (trigger/test/boundary
+   artifact inside Operating Model OS), and the newsletter section labels), OR
 2. An established industry term (e.g., *data architecture*, *source of
    truth*, *system of record*, *operating model*, *master data management*,
    *information architecture*), OR
@@ -105,11 +108,31 @@ corridor-specific observation) — not news that could be found in 5 minutes
 on Google News. The story earns its place by showing what the event reveals
 about a larger shift the reader needs to act on.
 
+**Field Report entity distinctness:**
+The Field Report's primary named entity (company, person, event) must be
+DIFFERENT from the Apertura's primary entity. Reusing the same hook across
+both sections collapses the issue's range and reads as filler. Compare the
+Apertura's lead entity to the Field Report's lead entity — if they match,
+set `fieldReportEntityDistinct: false` and explain in `fieldReportEntityNote`.
+A sector-pattern Field Report (no single named entity) counts as distinct.
+
 **OS Pillar consistency:**
 The Insight content must actually live inside the declared OS pillar:
 - Strategy OS: how the business thinks, decides, sets direction
 - Operating Model OS: how the business runs, executes, scales
 - Technology OS: how systems and information serve the strategy
+
+**People dimension substantive (required on every issue):**
+People is the dominant bottleneck of change. The Strategist declared a People
+challenge ("{{peopleAngleChallenge}}") anchored in {{peopleAngleFramework}}.
+The Insight must do more than name a recommendation — it must visibly engage
+the People-side challenge that recommendation creates. Set
+`peopleAngleSubstantive: true` only when the Insight (a) names what behavior,
+mindset, or capability must shift and in whom, and (b) makes the framework
+anchor's logic visible (even without naming the framework itself).
+Generic mentions of "the team" or "leadership" do not count. If the Insight
+prescribes an action with no engagement of the human work required to make it
+stick, set the field to false and explain in `peopleAngleNote`.
 
 ---
 
@@ -135,8 +158,12 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "shareableSentence": "The single most shareable sentence, or null if none qualifies",
   "fieldReportIsIntelligence": true,
   "fieldReportNote": "One sentence explaining why — only include if false",
+  "fieldReportEntityDistinct": true,
+  "fieldReportEntityNote": "Name both entities and confirm they match — only include if false",
   "osPillarConsistent": true,
   "osPillarNote": "One sentence on consistency — only include if false",
+  "peopleAngleSubstantive": true,
+  "peopleAngleNote": "One sentence on why the People dimension is missing or generic — only include if false",
   "compassIsGenuine": true,
   "compassNote": "One sentence — only include if false",
   "aperturaStartsMidThought": true,

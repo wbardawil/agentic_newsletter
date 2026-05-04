@@ -368,6 +368,10 @@ describe("StrategicAngle", () => {
       suggestedSources: [randomUUID()],
       talkingPoints: ["Point 1", "Point 2"],
       osPillar: "Strategy OS",
+      peopleAngle: {
+        challenge: "Leaders must commit before the supply-chain team reorganizes around the new strategy.",
+        framework: "Kotter Step 1: Establish urgency",
+      },
       quarterlyTheme: "The Machine",
     };
     expect(StrategicAngleSchema.parse(angle)).toBeDefined();
