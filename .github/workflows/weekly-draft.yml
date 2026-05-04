@@ -72,7 +72,13 @@ jobs:
     needs: pause-check
     if: needs.pause-check.outputs.paused != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Was 30 min. Wadi's expectation is 8 min on a normal run; 12 caps a true
+    # hang at 50% over budget instead of 4x. Combined with LLM_TIMEOUT_MS=75s
+    # below, a stuck call cannot consume more than ~3.8 min, so even with one
+    # retry storm the whole pipeline fails by ~13 min — well-aligned with the
+    # job cap. If we ever need more headroom (e.g., adding section imagery to
+    # the Designer), bump back to 15-20.
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v5
 
