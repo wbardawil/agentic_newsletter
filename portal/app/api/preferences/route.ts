@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { TOPIC_IDS } from "@/lib/topics";
 
 const Body = z.object({
   preferred_language: z.enum(["en", "es"]),
@@ -11,7 +12,9 @@ const Body = z.object({
   ]).nullable(),
   industry: z.string().max(120).nullable(),
   role: z.string().max(120).nullable(),
-  pillars_of_interest: z.array(z.enum(["Strategy OS", "Operating Model OS", "Technology OS"])).max(3),
+  topics_of_interest: z
+    .array(z.string().refine((id) => (TOPIC_IDS as string[]).includes(id), "Unknown topic"))
+    .max(TOPIC_IDS.length),
 });
 
 export async function POST(request: Request) {

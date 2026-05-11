@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
+import { topicLabel } from "@/lib/topics";
 
 export const metadata = { title: "Member — The Transformation Letter" };
 
@@ -24,7 +25,7 @@ export default async function MemberHome() {
 
   const { data: latest } = await supabase
     .from("editions")
-    .select("edition_id, edition_number, subject_en, subject_es, pillar, published_at, shareable_sentence_en, shareable_sentence_es")
+    .select("edition_id, edition_number, subject_en, subject_es, topic, pillar, byline, byline_role, published_at, shareable_sentence_en, shareable_sentence_es")
     .eq("is_published", true)
     .order("published_at", { ascending: false })
     .limit(1)
@@ -68,11 +69,18 @@ export default async function MemberHome() {
         {latest ? (
           <article className="card">
             <p className="text-xs text-[var(--color-bronze)] uppercase tracking-wider mb-2">
-              {i18n.latestIssue} · #{latest.edition_number} · {latest.pillar}
+              {i18n.latestIssue} · #{latest.edition_number} · {topicLabel(latest.topic, memberLang)}
+              {latest.pillar ? ` · ${latest.pillar}` : ""}
             </p>
             <h2 className="text-2xl mb-2">
               {memberLang === "es" ? latest.subject_es ?? latest.subject_en : latest.subject_en ?? latest.subject_es}
             </h2>
+            {latest.byline ? (
+              <p className="text-sm text-[var(--color-bronze)] mb-2">
+                {memberLang === "es" ? "por" : "by"} {latest.byline}
+                {latest.byline_role ? ` · ${latest.byline_role}` : ""}
+              </p>
+            ) : null}
             {(memberLang === "es" ? latest.shareable_sentence_es : latest.shareable_sentence_en) ? (
               <p className="pull-quote mb-3">
                 {memberLang === "es" ? latest.shareable_sentence_es : latest.shareable_sentence_en}
@@ -103,7 +111,12 @@ export default async function MemberHome() {
             <dt className="text-[var(--color-bronze)]">Industry</dt><dd>{member.industry ?? "—"}</dd>
             <dt className="text-[var(--color-bronze)]">Role</dt><dd>{member.role ?? "—"}</dd>
             <dt className="text-[var(--color-bronze)]">Language</dt><dd>{member.preferred_language}</dd>
-            <dt className="text-[var(--color-bronze)]">Pillars</dt><dd>{(member.pillars_of_interest ?? []).join(", ") || "—"}</dd>
+            <dt className="text-[var(--color-bronze)]">Topics</dt>
+            <dd>
+              {(member.topics_of_interest ?? []).length > 0
+                ? (member.topics_of_interest ?? []).map((id) => topicLabel(id, memberLang)).join(", ")
+                : "—"}
+            </dd>
           </dl>
           <Link className="text-sm mt-3 inline-block" href="/me/preferences">Edit →</Link>
         </div>

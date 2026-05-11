@@ -23,7 +23,7 @@ export interface MemberRow {
   region: Region | null;
   industry: string | null;
   preferred_language: Language;
-  pillars_of_interest: OsPillar[];
+  topics_of_interest: string[];
   status: MemberStatus;
   is_admin: boolean;
   created_at: string;
@@ -40,6 +40,7 @@ export interface ApplicationRow {
   region: Region;
   industry: string | null;
   preferred_language: Language;
+  topics_of_interest: string[];
   motivation: string;
   status: ApplicationStatus;
   decided_by: string | null;
@@ -57,10 +58,13 @@ export interface EditionRow {
   body_en: string | null;
   body_es: string | null;
   hero_image_url: string | null;
+  topic: string;
   pillar: OsPillar | null;
   quarterly_theme: string | null;
   shareable_sentence_en: string | null;
   shareable_sentence_es: string | null;
+  byline: string | null;
+  byline_role: string | null;
   is_published: boolean;
 }
 

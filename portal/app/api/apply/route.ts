@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import { TOPIC_IDS } from "@/lib/topics";
 
 const Body = z.object({
   email: z.string().email().max(200),
@@ -12,6 +13,10 @@ const Body = z.object({
   region: z.enum(["miami", "monterrey", "bogota", "panama_city", "mexico_city", "other_us", "other_latam", "other"]),
   industry: z.string().max(120).optional().nullable(),
   preferred_language: z.enum(["en", "es"]).default("en"),
+  topics_of_interest: z
+    .array(z.string().refine((id) => (TOPIC_IDS as string[]).includes(id), "Unknown topic"))
+    .max(TOPIC_IDS.length)
+    .default([]),
   motivation: z.string().min(20).max(2000),
 });
 

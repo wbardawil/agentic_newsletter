@@ -3,6 +3,12 @@
 A Next.js 15 + Supabase member portal modeled on Garry's List, sitting
 alongside the multi-agent newsletter pipeline in `../src`.
 
+The portal covers six adjacent topics for one audience ($5–100M owner-operators
+in the US-LATAM corridor): **business transformation**, **conscious capital**,
+**family business**, **family office**, **AI**, and **technology**. Wadi
+Bardawil anchors the transformation / AI / tech editions; family business,
+family office, and conscious capital ride on named guest contributors.
+
 ## What's inside
 
 | Surface | Path |
@@ -65,12 +71,25 @@ psql "$DATABASE_URL" -f supabase/migrations/0003_seed.sql  # optional sample dat
 
 Schema:
 
-- `members` — extends `auth.users` with profile + preferences
-- `applications` — apply gate (anon insert, admin read/write)
-- `editions`, `edition_sources` — published issues + their citations
+- `members` — extends `auth.users` with profile + preferences (`topics_of_interest text[]`)
+- `applications` — apply gate (anon insert, admin read/write); also captures `topics_of_interest`
+- `editions` — published issues; carries `topic`, optional `pillar` (only for transformation), optional `byline` + `byline_role`
+- `edition_sources` — citations for each issue
 - `ai_conversations`, `ai_messages` — per-member chat history
 - `convenings`, `convening_rsvps` — member events
 - `is_admin()` SQL helper + RLS on every table
+
+### Topic taxonomy
+
+Source of truth: **`/portal/lib/topics.ts`**. The six topic IDs
+(`business_transformation`, `conscious_capital`, `family_business`,
+`family_office`, `artificial_intelligence`, `technology`) live there with their
+EN/ES labels and a one-line blurb. The `editions.topic` column is plain text,
+validated against this constant at write time — adding a new topic does not
+require a schema migration.
+
+`requiresOsPillar` flags which topics still demand an OS layer (just
+`business_transformation` today). Other topics carry `pillar = NULL`.
 
 A trigger on `auth.users` auto-provisions a `members` row the first time an
 **approved** applicant signs in via magic link — so the apply gate is enforced
@@ -102,13 +121,20 @@ await supabase.from("editions").upsert({
   body_en: edition.enBody,
   body_es: edition.esBody,
   hero_image_url: edition.heroImageUrl ?? null,
+  topic: edition.angle?.topic ?? "business_transformation",
+  // pillar is required when topic = business_transformation, NULL otherwise
   pillar: edition.angle?.osPillar ?? null,
   quarterly_theme: edition.angle?.quarterlyTheme ?? null,
   shareable_sentence_en: edition.validation?.shareableSentence ?? null,
   shareable_sentence_es: null,
+  byline: edition.byline ?? "Wadi Bardawil",
+  byline_role: edition.bylineRole ?? null,
   is_published: true,
 });
 ```
+
+For non-transformation topics (conscious capital, family business, family
+office) set `byline` to the named guest contributor and leave `pillar` NULL.
 
 Citations from the Radar source bundle should land in `edition_sources` with
 a `title`, `url`, optional `snippet`, and `publisher`.
@@ -123,9 +149,10 @@ a `title`, `url`, optional `snippet`, and `publisher`.
    memory.
 4. Calls `retrieveRelevantExcerpts()` — a simple keyword filter over
    `editions.body_*` / `subject_*`. Swap to pgvector when the archive grows.
-5. Builds a system prompt from `lib/ai/prompt.ts` that pins the editorial
-   mandate (Strategy → Operating Model → Technology, People as always-on,
-   ADKAR / Kotter / 7S anchors).
+5. Builds a system prompt from `lib/ai/prompt.ts` that pins the broader
+   editorial mandate (six topics; OS sequence scoped to business
+   transformation; People always-on across all topics; ADKAR / Kotter / 7S
+   anchors named only when they sharpen the take).
 6. Streams `claude-opus-4-7` back as Server-Sent Events: a `meta` event with
    sources, `token` events for the body, then `done`.
 7. Persists the assistant turn with citations.

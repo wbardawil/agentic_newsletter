@@ -46,7 +46,12 @@ create table if not exists public.members (
   region region,
   industry text,
   preferred_language lang not null default 'en',
-  pillars_of_interest os_pillar[] not null default array[]::os_pillar[],
+  /**
+   * Topic IDs the member opts in to. Validated at write-time against the
+   * TOPICS list in /portal/lib/topics.ts — kept as plain text so adding a
+   * new topic does not require a schema migration.
+   */
+  topics_of_interest text[] not null default array[]::text[],
   status member_status not null default 'active',
   is_admin boolean not null default false,
   created_at timestamptz not null default now(),
@@ -68,6 +73,11 @@ create table if not exists public.applications (
   region region not null,
   industry text,
   preferred_language lang not null default 'en',
+  /**
+   * Topic IDs the applicant flagged on the apply form. Carried into
+   * members.topics_of_interest by the new-user trigger when approved.
+   */
+  topics_of_interest text[] not null default array[]::text[],
   motivation text not null check (char_length(motivation) between 20 and 2000),
   status application_status not null default 'pending',
   decided_by uuid references auth.users(id),
@@ -92,15 +102,36 @@ create table if not exists public.editions (
   body_en text,
   body_es text,
   hero_image_url text,
+  /**
+   * Editorial topic. Validated against /portal/lib/topics.ts at write-time.
+   * Wide enough to cover business transformation, conscious capital,
+   * family business, family office, AI, and tech without a schema change.
+   */
+  topic text not null default 'business_transformation',
+  /**
+   * OS pillar — only meaningful when topic = 'business_transformation'.
+   * Required there by app-level validation; ignored otherwise.
+   */
   pillar os_pillar,
   quarterly_theme text,
   shareable_sentence_en text,
   shareable_sentence_es text,
+  /**
+   * Author for this issue. Wadi anchors business transformation; named
+   * contributors carry the byline on family business / family office /
+   * conscious capital issues. byline_role appears under the name (e.g.
+   * "Family Office Principal"). Both nullable; if NULL the UI falls back
+   * to the publication's house byline.
+   */
+  byline text,
+  byline_role text,
   is_published boolean not null default false
 );
 
 create index if not exists editions_published_idx
   on public.editions (is_published, published_at desc);
+create index if not exists editions_topic_idx
+  on public.editions (topic, is_published, published_at desc);
 
 create table if not exists public.edition_sources (
   id uuid primary key default gen_random_uuid(),
@@ -206,11 +237,13 @@ begin
   if found then
     insert into public.members (
       id, email, full_name, company, role,
-      company_size_band, region, industry, preferred_language, status
+      company_size_band, region, industry, preferred_language,
+      topics_of_interest, status
     )
     values (
       new.id, new.email, app.full_name, app.company, app.role,
-      app.company_size_band, app.region, app.industry, app.preferred_language, 'active'
+      app.company_size_band, app.region, app.industry, app.preferred_language,
+      app.topics_of_interest, 'active'
     )
     on conflict (id) do nothing;
   end if;

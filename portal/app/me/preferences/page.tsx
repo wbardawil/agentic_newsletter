@@ -35,7 +35,7 @@ export default async function PreferencesPage() {
           region: member.region,
           industry: member.industry,
           role: member.role,
-          pillars_of_interest: member.pillars_of_interest ?? [],
+          topics_of_interest: member.topics_of_interest ?? [],
         }}
       />
     </section>

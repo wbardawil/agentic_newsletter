@@ -3,9 +3,8 @@
 import { useState } from "react";
 
 import { t, type Lang } from "@/lib/i18n/dictionary";
-import type { OsPillar, Region } from "@/lib/supabase/types";
-
-const PILLARS: OsPillar[] = ["Strategy OS", "Operating Model OS", "Technology OS"];
+import { TOPICS, type TopicId } from "@/lib/topics";
+import type { Region } from "@/lib/supabase/types";
 
 export function PreferencesForm({
   lang,
@@ -17,18 +16,22 @@ export function PreferencesForm({
     region: Region | null;
     industry: string | null;
     role: string | null;
-    pillars_of_interest: OsPillar[];
+    topics_of_interest: string[];
   };
 }) {
   const i18n = t(lang).preferences;
   const apply = t(lang).apply;
-  const [pillars, setPillars] = useState<OsPillar[]>(initial.pillars_of_interest);
+  const [topics, setTopics] = useState<TopicId[]>(
+    initial.topics_of_interest.filter((id): id is TopicId =>
+      TOPICS.some((t) => t.id === id),
+    ),
+  );
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  function toggle(p: OsPillar) {
-    setPillars((cur) => (cur.includes(p) ? cur.filter((x) => x !== p) : [...cur, p]));
+  function toggle(id: TopicId) {
+    setTopics((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -43,7 +46,7 @@ export function PreferencesForm({
       region: fd.get("region") || null,
       industry: (fd.get("industry") || null) as string | null,
       role: (fd.get("role") || null) as string | null,
-      pillars_of_interest: pillars,
+      topics_of_interest: topics,
     };
 
     const res = await fetch("/api/preferences", {
@@ -90,15 +93,15 @@ export function PreferencesForm({
       </div>
 
       <fieldset>
-        <legend className="field-label">{i18n.pillarsInterest}</legend>
+        <legend className="field-label">{i18n.topicsInterest}</legend>
         <div className="flex flex-wrap gap-2">
-          {PILLARS.map((p) => {
-            const active = pillars.includes(p);
+          {TOPICS.map((topic) => {
+            const active = topics.includes(topic.id);
             return (
               <button
-                key={p}
+                key={topic.id}
                 type="button"
-                onClick={() => toggle(p)}
+                onClick={() => toggle(topic.id)}
                 aria-pressed={active}
                 className={`px-3 py-1.5 rounded-full border text-sm ${
                   active
@@ -106,7 +109,7 @@ export function PreferencesForm({
                     : "border-[var(--color-line)] text-[var(--color-bronze)]"
                 }`}
               >
-                {p}
+                {lang === "es" ? topic.es : topic.en}
               </button>
             );
           })}

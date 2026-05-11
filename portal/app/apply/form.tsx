@@ -3,20 +3,26 @@
 import { useState } from "react";
 
 import { t, type Lang } from "@/lib/i18n/dictionary";
+import { TOPICS, type TopicId } from "@/lib/topics";
 
 export function ApplyForm({ lang }: { lang: Lang }) {
   const i18n = t(lang).apply;
+  const apply2 = t(lang).apply2;
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [topics, setTopics] = useState<TopicId[]>([]);
+
+  function toggle(id: TopicId) {
+    setTopics((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
 
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const payload = Object.fromEntries(fd.entries());
+    const fd = new FormData(e.currentTarget);
+    const payload = { ...Object.fromEntries(fd.entries()), topics_of_interest: topics };
 
     const res = await fetch("/api/apply", {
       method: "POST",
@@ -83,6 +89,31 @@ export function ApplyForm({ lang }: { lang: Lang }) {
           </select>
         </div>
       </div>
+
+      <fieldset>
+        <legend className="field-label">{apply2.topicsInterest}</legend>
+        <div className="flex flex-wrap gap-2">
+          {TOPICS.map((topic) => {
+            const active = topics.includes(topic.id);
+            return (
+              <button
+                key={topic.id}
+                type="button"
+                onClick={() => toggle(topic.id)}
+                aria-pressed={active}
+                className={`px-3 py-1.5 rounded-full border text-sm ${
+                  active
+                    ? "bg-[var(--color-ink)] text-[var(--color-paper)] border-[var(--color-ink)]"
+                    : "border-[var(--color-line)] text-[var(--color-bronze)]"
+                }`}
+              >
+                {lang === "es" ? topic.es : topic.en}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-xs text-[var(--color-bronze)] mt-2">{apply2.topicsInterestHelp}</p>
+      </fieldset>
 
       <div>
         <label className="field-label" htmlFor="motivation">{i18n.motivation}</label>

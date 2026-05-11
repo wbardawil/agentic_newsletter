@@ -6,8 +6,8 @@ import type { Lang } from "@/lib/i18n/dictionary";
  * subject/body contains any of the salient tokens from the user query.
  *
  * Swap to pgvector / embeddings when the archive grows large — the
- * interface (returning {edition_number, subject, pillar, snippet}) stays
- * the same.
+ * interface (returning {edition_number, subject, topic, pillar, snippet})
+ * stays the same.
  */
 export async function retrieveRelevantExcerpts(
   query: string,
@@ -17,6 +17,7 @@ export async function retrieveRelevantExcerpts(
   edition_id: string;
   edition_number: number;
   subject: string;
+  topic: string | null;
   pillar: string | null;
   snippet: string;
 }[]> {
@@ -28,7 +29,7 @@ export async function retrieveRelevantExcerpts(
 
   const supabase = getSupabaseAdminClient();
 
-  const baseSelect = "edition_id, edition_number, subject_en, subject_es, body_en, body_es, pillar, published_at";
+  const baseSelect = "edition_id, edition_number, subject_en, subject_es, body_en, body_es, topic, pillar, published_at";
 
   let q = supabase
     .from("editions")
@@ -54,6 +55,7 @@ export async function retrieveRelevantExcerpts(
       edition_id: r.edition_id,
       edition_number: r.edition_number,
       subject,
+      topic: r.topic ?? null,
       pillar: r.pillar,
       snippet: extractSnippet(body, tokens, 600),
     };

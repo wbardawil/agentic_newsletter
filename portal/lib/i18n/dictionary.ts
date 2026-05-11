@@ -15,7 +15,10 @@ type Dict = {
     subFilter: string;
     primaryCta: string;
     secondaryCta: string;
-    pillarsHeading: string;
+    coverageHeading: string;
+    coverageSub: string;
+    sequenceHeading: string;
+    sequenceBody: string;
     pillarStrategy: string;
     pillarStrategyBody: string;
     pillarOperating: string;
@@ -63,11 +66,12 @@ type Dict = {
     region: string;
     industry: string;
     role: string;
-    pillarsInterest: string;
+    topicsInterest: string;
     save: string;
     saved: string;
   };
-  archive: { title: string; sub: string; search: string; filterPillar: string; filterLang: string; noResults: string };
+  apply2: { topicsInterest: string; topicsInterestHelp: string };
+  archive: { title: string; sub: string; search: string; filterTopic: string; filterLang: string; noResults: string; byline: string };
   ask: { title: string; sub: string; placeholder: string; send: string; thinking: string; sources: string; emptyState: string };
   convenings: { title: string; sub: string; rsvp: string; rsvped: string; capacityFull: string };
   admin: { applications: string; pending: string; approve: string; reject: string; waitlist: string; approved: string; rejected: string; waitlisted: string };
@@ -76,7 +80,8 @@ type Dict = {
 const en: Dict = {
   brand: {
     name: "The Transformation Letter",
-    tagline: "AI business transformation playbooks for $5–100M owner-operators in the US-LATAM corridor.",
+    tagline:
+      "Diagnostics for $5–100M owner-operators across business transformation, conscious capital, family business, family office, AI, and tech — in the US-LATAM corridor.",
   },
   nav: {
     archive: "Archive",
@@ -89,22 +94,27 @@ const en: Dict = {
     preferences: "Preferences",
   },
   landing: {
-    hero: "Strategy before operating model. Operating model before technology. The sequence is the insight.",
+    hero: "Diagnostics for the operator who runs the business, owns the capital, and carries the legacy.",
     filterSentence: "Your business is already running an OS — it was just built by accident, not by design.",
     subFilter: "Weekly diagnostics for owner-operators who have tried everything they know how to try.",
     primaryCta: "Apply to join",
     secondaryCta: "Read the archive",
-    pillarsHeading: "Three layers. One sequence. Non-negotiable order.",
+    coverageHeading: "What we cover",
+    coverageSub:
+      "Six adjacent topics, one audience. Every issue ends in a concrete recommendation and the People-side shift it creates.",
+    sequenceHeading: "The Business Transformation OS — three layers. One sequence.",
+    sequenceBody:
+      "Strategy before Operating Model. Operating Model before Technology. The sequence is the insight, and it anchors every transformation issue.",
     pillarStrategy: "Strategy OS",
     pillarStrategyBody: "Vision, value cases, prioritization, portfolio choices.",
     pillarOperating: "Operating Model OS",
     pillarOperatingBody: "Process redesign, governance, decision rights, structure.",
     pillarTech: "Technology OS",
     pillarTechBody: "Architecture, data, platforms, integration, security.",
-    peopleHeading: "People is the always-on dimension.",
+    peopleHeading: "People is the always-on dimension — across every topic.",
     peopleBody:
       "Every recommendation names the human shift it creates — anchored in ADKAR, Kotter, or McKinsey 7S — because change-management is where most transformations actually fail.",
-    audienceHeading: "Built for the operator already deploying AI — and not yet capturing its full value.",
+    audienceHeading: "Built for the owner-operator already in the room when the hard decisions get made.",
     audienceBody:
       "Owner-operators of $5–100M businesses across Miami, Monterrey, Bogotá, Panama City, and Mexico City. Bilingual EN/ES. One issue per week. Members-only.",
   },
@@ -167,17 +177,22 @@ const en: Dict = {
     region: "Primary region",
     industry: "Industry",
     role: "Role",
-    pillarsInterest: "Pillars I care about most",
+    topicsInterest: "Topics I care about most",
     save: "Save preferences",
     saved: "Saved.",
   },
+  apply2: {
+    topicsInterest: "Topics most relevant to you",
+    topicsInterestHelp: "Pick any that fit. Drives what shows up first in your weekly issue.",
+  },
   archive: {
     title: "Archive",
-    sub: "Every issue. Bilingual. Filterable by pillar and language.",
+    sub: "Every issue. Bilingual. Filterable by topic and language.",
     search: "Search the archive",
-    filterPillar: "Pillar",
+    filterTopic: "Topic",
     filterLang: "Language",
     noResults: "No issues match.",
+    byline: "by",
   },
   ask: {
     title: "Ask the Transformation AI",
@@ -211,7 +226,7 @@ const es: Dict = {
   brand: {
     name: "The Transformation Letter",
     tagline:
-      "Playbooks de transformación con IA para owner-operators de empresas de $5–100M en el corredor US-LATAM.",
+      "Diagnósticos para owner-operators de $5–100M sobre transformación de negocio, capital consciente, empresa familiar, family office, IA y tecnología — en el corredor US-LATAM.",
   },
   nav: {
     archive: "Archivo",
@@ -224,24 +239,29 @@ const es: Dict = {
     preferences: "Preferencias",
   },
   landing: {
-    hero: "Estrategia antes que modelo operativo. Modelo operativo antes que tecnología. La secuencia es la idea.",
+    hero: "Diagnósticos para el operador que dirige el negocio, es dueño del capital y carga el legado.",
     filterSentence:
       "Tu negocio ya está corriendo un OS — solo que se construyó por accidente, no por diseño.",
     subFilter:
       "Diagnósticos semanales para owner-operators que ya probaron todo lo que sabían cómo probar.",
     primaryCta: "Postular para entrar",
     secondaryCta: "Leer el archivo",
-    pillarsHeading: "Tres capas. Una secuencia. Orden innegociable.",
+    coverageHeading: "Qué cubrimos",
+    coverageSub:
+      "Seis temas adyacentes, una sola audiencia. Cada edición termina en una recomendación concreta y el cambio humano que produce.",
+    sequenceHeading: "El Business Transformation OS — tres capas. Una secuencia.",
+    sequenceBody:
+      "Estrategia antes que Modelo Operativo. Modelo Operativo antes que Tecnología. La secuencia es la idea, y ancla cada edición sobre transformación.",
     pillarStrategy: "Strategy OS",
     pillarStrategyBody: "Visión, casos de valor, priorización, portafolio.",
     pillarOperating: "Operating Model OS",
     pillarOperatingBody: "Procesos, gobierno, derechos de decisión, estructura.",
     pillarTech: "Technology OS",
     pillarTechBody: "Arquitectura, datos, plataformas, integración, seguridad.",
-    peopleHeading: "La dimensión humana es permanente.",
+    peopleHeading: "La dimensión humana es permanente — en cada tema.",
     peopleBody:
       "Cada recomendación nombra el cambio humano que crea — anclado en ADKAR, Kotter o McKinsey 7S — porque la gestión del cambio es donde la mayoría de las transformaciones realmente fallan.",
-    audienceHeading: "Para el operador que ya está usando IA — y todavía no captura todo su valor.",
+    audienceHeading: "Para el owner-operator que ya está en la sala cuando se toman las decisiones difíciles.",
     audienceBody:
       "Owner-operators de negocios de $5–100M en Miami, Monterrey, Bogotá, Ciudad de Panamá y Ciudad de México. Bilingüe EN/ES. Una edición por semana. Solo miembros.",
   },
@@ -304,17 +324,22 @@ const es: Dict = {
     region: "Región principal",
     industry: "Industria",
     role: "Cargo",
-    pillarsInterest: "Pilares que me interesan",
+    topicsInterest: "Temas que me interesan",
     save: "Guardar preferencias",
     saved: "Guardado.",
   },
+  apply2: {
+    topicsInterest: "Temas más relevantes para ti",
+    topicsInterestHelp: "Marca los que apliquen. Define qué aparece primero en tu edición semanal.",
+  },
   archive: {
     title: "Archivo",
-    sub: "Todas las ediciones. Bilingüe. Filtrable por pilar e idioma.",
+    sub: "Todas las ediciones. Bilingüe. Filtrable por tema e idioma.",
     search: "Buscar en el archivo",
-    filterPillar: "Pilar",
+    filterTopic: "Tema",
     filterLang: "Idioma",
     noResults: "Ninguna edición coincide.",
+    byline: "por",
   },
   ask: {
     title: "Pregúntale a la IA de Transformación",

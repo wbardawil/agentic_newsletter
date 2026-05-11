@@ -3,20 +3,39 @@
 ## Project Overview
 
 **The Transformation Letter** is a production-grade multi-agent publishing engine
-for a bilingual (EN/ES) weekly newsletter.
+for a bilingual (EN/ES) weekly newsletter, with a member portal under `/portal`
+modeled on Garry's List.
 
-**Tagline:** *AI business transformation playbooks for $5–100M owner-operators in
-the US-LATAM corridor.*
+**Tagline:** *Diagnostics for $5–100M owner-operators across business
+transformation, conscious capital, family business, family office, AI, and tech —
+in the US-LATAM corridor.*
 
 Audience: owner-operators of $5M–$100M businesses across the US-LATAM corridor
 (Miami, Monterrey, Bogotá, Panama City, Mexico City).
 
 ## Editorial Mandate
 
-Coverage spans the full business transformation lifecycle. Each edition leads with
-**AI business transformation news** (high cadence) and rotates through three
-foundational OS pillars in a non-negotiable causal sequence — Strategy comes
-first, then Operating Model, then Technology — at the rotation below:
+Coverage spans **six adjacent topics** for one audience. Every issue carries one
+topic and ends with a concrete recommendation plus the People-side shift it
+creates.
+
+| Topic | Scope | Byline |
+|---|---|---|
+| **Business transformation** | The Business Transformation OS sequence (Strategy → Operating Model → Technology). Lead with AI business transformation; rotate through the OS layers. | Wadi Bardawil |
+| **Conscious capital** | Stewardship of capital — long-term, values-aware returns over hype-cycle exits. | Named guest contributor |
+| **Family business** | Generational continuity, governance, succession. | Named guest contributor |
+| **Family office** | Single- and multi-family offices: investment posture, principal–staff dynamics, multi-generational stewardship. | Named guest contributor |
+| **AI** | Practical AI for mid-market operations — where it captures value vs. where it just adds noise. | Wadi Bardawil (or contributor) |
+| **Technology** | Architecture, data, integration, vendor selection — the third OS layer. | Wadi Bardawil (or contributor) |
+
+The taxonomy lives in `/portal/lib/topics.ts` (single source of truth). Add a
+new topic there; no schema migration is required.
+
+### The OS sequence — scoped to business transformation
+
+Within the **business transformation** topic, the three OS layers rotate in a
+non-negotiable causal sequence — Strategy first, then Operating Model, then
+Technology — at the rotation below:
 
 | Pillar | Rotation | Scope |
 |---|---|---|
@@ -24,12 +43,16 @@ first, then Operating Model, then Technology — at the rotation below:
 | **Operating Model OS** | 35% | process redesign, governance, decision rights, org structure |
 | **Technology OS** | 30% | architecture, data, platforms, integration, security, vendor selection |
 
-### People is the always-on dimension
+Other topics do not rotate through OS layers. Conscious capital, family
+business, and family office issues use topic-native diagnostic frames; the
+OS sequence is invoked only when it sharpens the take.
+
+### People is the always-on dimension — across every topic
 
 Field experience consistently shows **People is the dominant bottleneck of
 change**. Rather than slot People as a 4th pillar (which would make it
 sometimes-relevant), the Strategist declares a required `peopleAngle` on
-**every** issue regardless of pillar:
+**every** issue regardless of topic:
 
 - **`peopleAngle.challenge`** — the named human shift the recommendation
   creates: what behavior, mindset, capability, or trust must change, and in whom.
@@ -52,6 +75,16 @@ enforces that every Insight engages the declared challenge substantively.
 - Diagnose first, prescribe second. Avoid hype-cycle takes.
 
 ## Architecture
+
+The system has two halves:
+
+1. **Agent pipeline (`/src`)** — produces and ships each issue.
+2. **Member portal (`/portal`)** — Next.js 15 + Supabase. Apply gate, member
+   sign-in, bilingual archive, personalization preferences (region, industry,
+   topics), Transformation AI assistant grounded in the archive + Voice Bible,
+   convenings/RSVPs, admin queue for application review. See `/portal/README.md`.
+
+### Agent pipeline
 
 - 11 agents: Supervisor, Radar, Strategist, Writer, Designer, Localizer, Validator,
   QualityGate, Distributor, Amplifier, Analyst
@@ -102,3 +135,6 @@ enforces that every Insight engages the declared challenge substantively.
 - /src/voice-bible/ — Voice Bible and golden examples
 - /config/ — Agent prompt templates (version controlled)
 - /tests/ — Agent unit and integration tests
+- /portal/ — Member portal (Next.js 15 + Supabase). See `/portal/README.md`
+- /portal/lib/topics.ts — Single source of truth for the six-topic taxonomy
+- /portal/supabase/migrations/ — Portal schema + RLS

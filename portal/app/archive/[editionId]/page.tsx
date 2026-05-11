@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { renderBody } from "@/lib/markdown";
+import { topicLabel } from "@/lib/topics";
 
 export default async function EditionPage({
   params,
@@ -43,9 +44,17 @@ export default async function EditionPage({
     <article className="container-prose py-12">
       <header className="mb-8">
         <p className="text-xs text-[var(--color-bronze)] uppercase tracking-wider">
-          #{edition.edition_number} · {edition.pillar} · {edition.quarterly_theme}
+          #{edition.edition_number} · {topicLabel(edition.topic, lang)}
+          {edition.pillar ? ` · ${edition.pillar}` : ""}
+          {edition.quarterly_theme ? ` · ${edition.quarterly_theme}` : ""}
         </p>
         <h1 className="text-4xl mt-2 mb-4">{subject}</h1>
+        {edition.byline ? (
+          <p className="text-sm text-[var(--color-bronze)] mb-3">
+            {lang === "es" ? "por" : "by"} <span className="text-[var(--color-ink)]">{edition.byline}</span>
+            {edition.byline_role ? ` · ${edition.byline_role}` : ""}
+          </p>
+        ) : null}
         {shareable ? <p className="pull-quote">{shareable}</p> : null}
         <nav className="mt-6 text-sm flex gap-2">
           <Link

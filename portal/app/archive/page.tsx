@@ -4,16 +4,14 @@ import { redirect } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
-import type { OsPillar } from "@/lib/supabase/types";
-
-const PILLARS: OsPillar[] = ["Strategy OS", "Operating Model OS", "Technology OS"];
+import { TOPICS, TOPIC_IDS, topicLabel } from "@/lib/topics";
 
 export const metadata = { title: "Archive — The Transformation Letter" };
 
 export default async function ArchivePage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; pillar?: string; lang?: string }>;
+  searchParams: Promise<{ q?: string; topic?: string; lang?: string }>;
 }) {
   const params = await searchParams;
   const supabase = await getSupabaseServerClient();
@@ -25,12 +23,12 @@ export default async function ArchivePage({
 
   let query = supabase
     .from("editions")
-    .select("edition_id, edition_number, subject_en, subject_es, pillar, published_at, shareable_sentence_en, shareable_sentence_es")
+    .select("edition_id, edition_number, subject_en, subject_es, topic, pillar, byline, byline_role, published_at, shareable_sentence_en, shareable_sentence_es")
     .eq("is_published", true)
     .order("published_at", { ascending: false });
 
-  if (params.pillar && (PILLARS as readonly string[]).includes(params.pillar)) {
-    query = query.eq("pillar", params.pillar as OsPillar);
+  if (params.topic && (TOPIC_IDS as string[]).includes(params.topic)) {
+    query = query.eq("topic", params.topic);
   }
 
   if (params.q?.trim()) {
@@ -55,10 +53,12 @@ export default async function ArchivePage({
           <input id="q" name="q" defaultValue={params.q ?? ""} className="field-input" />
         </div>
         <div>
-          <label className="field-label" htmlFor="pillar">{i18n.filterPillar}</label>
-          <select id="pillar" name="pillar" defaultValue={params.pillar ?? ""} className="field-select">
+          <label className="field-label" htmlFor="topic">{i18n.filterTopic}</label>
+          <select id="topic" name="topic" defaultValue={params.topic ?? ""} className="field-select">
             <option value="" />
-            {PILLARS.map((p) => <option key={p} value={p}>{p}</option>)}
+            {TOPICS.map((tp) => (
+              <option key={tp.id} value={tp.id}>{lang === "es" ? tp.es : tp.en}</option>
+            ))}
           </select>
         </div>
         <button type="submit" className="btn btn-ghost">{lang === "es" ? "Filtrar" : "Filter"}</button>
@@ -75,10 +75,21 @@ export default async function ArchivePage({
                 #{e.edition_number}
               </span>
             </div>
-            <div className="text-sm text-[var(--color-bronze)] mb-2">
-              {e.pillar} · {e.published_at ? new Date(e.published_at).toLocaleDateString(lang === "es" ? "es-MX" : "en-US", {
-                year: "numeric", month: "long", day: "numeric",
-              }) : ""}
+            <div className="text-sm text-[var(--color-bronze)] mb-2 flex flex-wrap items-baseline gap-2">
+              <span className="pill">{topicLabel(e.topic, lang)}</span>
+              {e.pillar ? <span>{e.pillar}</span> : null}
+              <span>·</span>
+              <span>
+                {e.published_at ? new Date(e.published_at).toLocaleDateString(lang === "es" ? "es-MX" : "en-US", {
+                  year: "numeric", month: "long", day: "numeric",
+                }) : ""}
+              </span>
+              {e.byline ? (
+                <>
+                  <span>·</span>
+                  <span>{i18n.byline} {e.byline}{e.byline_role ? `, ${e.byline_role}` : ""}</span>
+                </>
+              ) : null}
             </div>
             {(lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en) ? (
               <p className="text-[var(--color-ink)]/85">
