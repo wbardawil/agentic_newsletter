@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { withBase } from "@/lib/site";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -11,9 +12,9 @@ export async function GET(request: Request) {
     const supabase = await getSupabaseServerClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(new URL(next, url));
+      return NextResponse.redirect(new URL(withBase(next), url));
     }
   }
 
-  return NextResponse.redirect(new URL("/sign-in?error=auth", url));
+  return NextResponse.redirect(new URL(withBase("/sign-in?error=auth"), url));
 }

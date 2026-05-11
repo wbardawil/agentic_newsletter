@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/letter",
+      "destination": "/letter"
+    },
+    {
+      "source": "/letter/(.*)",
+      "destination": "/letter/$1"
+    },
+    {
+      "source": "/((?!letter|_next|api|favicon\\.ico|robots\\.txt|sitemap\\.xml).*)",
+      "destination": "https://wadibardawil.lovable.app/$1"
+    }
+  ]
+}

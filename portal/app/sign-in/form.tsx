@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser";
 import { t, type Lang } from "@/lib/i18n/dictionary";
+import { BASE_PATH, withBase } from "@/lib/site";
 
 export function SignInForm({ lang, next }: { lang: Lang; next?: string }) {
   const i18n = t(lang).signIn;
@@ -17,7 +18,7 @@ export function SignInForm({ lang, next }: { lang: Lang; next?: string }) {
     setError(null);
 
     const supabase = getSupabaseBrowserClient();
-    const callbackBase = `${window.location.origin}/auth/callback`;
+    const callbackBase = `${window.location.origin}${BASE_PATH}/auth/callback`;
     const redirectTo = next
       ? `${callbackBase}?next=${encodeURIComponent(next)}`
       : callbackBase;
@@ -32,7 +33,7 @@ export function SignInForm({ lang, next }: { lang: Lang; next?: string }) {
       setError(error.message);
       return;
     }
-    window.location.href = "/sign-in?sent=1";
+    window.location.href = withBase("/sign-in?sent=1");
   }
 
   return (

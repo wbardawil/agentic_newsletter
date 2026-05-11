@@ -3,6 +3,10 @@
 A Next.js 15 + Supabase member portal modeled on Garry's List, sitting
 alongside the multi-agent newsletter pipeline in `../src`.
 
+In production it deploys under **wadibardawil.com/letter** alongside the
+existing Lovable landing — see `deploy/README.md` for the end-to-end
+setup (Cloudflare Worker or Vercel rewrites).
+
 The portal covers six adjacent topics for one audience ($5–100M owner-operators
 in the US-LATAM corridor): **business transformation**, **conscious capital**,
 **family business**, **family office**, **AI**, and **technology**. Wadi
@@ -21,9 +25,16 @@ family office, and conscious capital ride on named guest contributors.
 | Transformation AI chat (Anthropic streaming, grounded in archive + Voice Bible) | `/me/ask` |
 | Bilingual archive — list & detail with EN/ES toggle | `/archive`, `/archive/[editionId]` |
 | Member convenings + RSVP | `/convenings` |
+| Publisher About | `/about` |
 | Admin: application review queue | `/admin/applications` |
 | Bilingual cookie | `POST /lang` |
 | Sign-out | `POST /auth/sign-out` |
+
+Under the production basePath every route becomes `/letter/<path>`
+(e.g. `/letter/apply`, `/letter/me`, `/letter/about`). Next.js handles
+the prefixing automatically for internal `<Link>`s; helpers in
+`lib/site.ts` cover the few places we build absolute URLs by hand
+(magic-link callbacks, redirect responses in Route Handlers).
 
 The portal reads published editions from Supabase. The agent pipeline in
 `../src` writes drafts; on publish, mirror the rendered EN/ES body and

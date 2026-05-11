@@ -75,6 +75,16 @@ type Dict = {
   ask: { title: string; sub: string; placeholder: string; send: string; thinking: string; sources: string; emptyState: string };
   convenings: { title: string; sub: string; rsvp: string; rsvped: string; capacityFull: string };
   admin: { applications: string; pending: string; approve: string; reject: string; waitlist: string; approved: string; rejected: string; waitlisted: string };
+  about: {
+    kicker: string;
+    title: string;
+    publisherName: string;
+    publisherTitlePrimary: string;
+    publisherTitleSecondary: string;
+    publisherTagline: string;
+    paragraphs: string[];
+    contactHeading: string;
+  };
 };
 
 const en: Dict = {
@@ -219,6 +229,20 @@ const en: Dict = {
     approved: "Approved",
     rejected: "Rejected",
     waitlisted: "Waitlisted",
+  },
+  about: {
+    kicker: "The publisher",
+    title: "The room The Transformation Letter is written from.",
+    publisherName: "Wadi Bardawil",
+    publisherTitlePrimary: "Business Transformation Architect",
+    publisherTitleSecondary: "Fractional Chief Strategy & Technology Officer",
+    publisherTagline: "I build the intelligence layer between your decisions and your operations.",
+    paragraphs: [
+      "Wadi works with owner-operators of $5–100M businesses across the US-LATAM corridor. He installs the Business Transformation OS in the correct sequence — Strategy first, then Operating Model, then Technology — and stays in the room while the team learns to run it without him.",
+      "He works with five to ten owners at a time, by design. Transformation requires genuine presence and the discipline to diagnose before prescribing, which does not scale by adding clients — it scales by changing how each owner makes decisions.",
+      "The Transformation Letter is the public artifact of that field practice. It is free, weekly, bilingual, and members-only. The right reader recognizes themselves in it. The wrong reader moves on. Both outcomes are correct.",
+    ],
+    contactHeading: "Get in touch",
   },
 };
 
@@ -366,6 +390,20 @@ const es: Dict = {
     approved: "Aprobado",
     rejected: "Rechazado",
     waitlisted: "En waitlist",
+  },
+  about: {
+    kicker: "El editor",
+    title: "La sala desde donde se escribe The Transformation Letter.",
+    publisherName: "Wadi Bardawil",
+    publisherTitlePrimary: "Business Transformation Architect",
+    publisherTitleSecondary: "Fractional Chief Strategy & Technology Officer",
+    publisherTagline: "Construyo la capa de inteligencia entre tus decisiones y tus operaciones.",
+    paragraphs: [
+      "Wadi trabaja con owner-operators de negocios de $5–100M en el corredor US-LATAM. Instala el Business Transformation OS en el orden correcto — Estrategia primero, luego Modelo Operativo y al final Tecnología — y se queda en la sala mientras el equipo aprende a correrlo sin él.",
+      "Atiende entre cinco y diez dueños a la vez, por diseño. La transformación requiere presencia real y la disciplina de diagnosticar antes de prescribir, lo cual no escala agregando clientes — escala cambiando cómo cada dueño toma decisiones.",
+      "The Transformation Letter es el artefacto público de esa práctica de campo. Es gratuita, semanal, bilingüe y solo para miembros. El lector correcto se reconoce en ella. El lector equivocado sigue de largo. Ambos resultados son correctos.",
+    ],
+    contactHeading: "Contacto",
   },
 };
 

@@ -21,6 +21,8 @@ export function SiteFooter({ lang }: { lang: Lang }) {
         <div className="md:col-span-3">
           <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-3">Letter</p>
           <ul className="space-y-2 text-sm">
+            <li><Link href="/"           className="nav-link">{i18n.about.kicker === "El editor" ? "Letra" : "Letter"}</Link></li>
+            <li><Link href="/about"      className="nav-link">{i18n.about.kicker}</Link></li>
             <li><Link href="/archive"    className="nav-link">{i18n.nav.archive}</Link></li>
             <li><Link href="/convenings" className="nav-link">{i18n.nav.convenings}</Link></li>
             <li><Link href="/apply"      className="nav-link">{i18n.nav.apply}</Link></li>

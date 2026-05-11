@@ -1,0 +1,17 @@
+name = "wadibardawil-router"
+main = "router.ts"
+compatibility_date = "2026-05-01"
+
+# Bind the Worker to your apex domain. Cloudflare must be the
+# authoritative DNS for wadibardawil.com (nameservers updated at the
+# registrar). The route below sends every request through the Worker.
+routes = [
+  { pattern = "wadibardawil.com/*",     zone_name = "wadibardawil.com" },
+  { pattern = "www.wadibardawil.com/*", zone_name = "wadibardawil.com" },
+]
+
+# Replace these placeholders with your actual deployment origins.
+# Both values are public URLs and safe to commit.
+[vars]
+PORTAL_ORIGIN  = "https://transformation-letter-portal.vercel.app"
+LOVABLE_ORIGIN = "https://wadibardawil.lovable.app"
