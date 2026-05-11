@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0F1A2B;
+  --color-teal: #1F4E5F;
+  --color-ochre: #C7892A;
+  --color-cream: #F4EFE6;
+  --color-bronze: #7A7466;
+  --color-paper: #FBF8F2;
+  --color-line: #E6DFD0;
+
+  --font-display: "Cormorant Garamond", Garamond, serif;
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+}
+
+@layer base {
+  html, body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  a { color: var(--color-teal); text-underline-offset: 3px; }
+  a:hover { color: var(--color-ink); }
+  hr { border-color: var(--color-line); }
+}
+
+@layer components {
+  .container-prose { max-width: 68ch; margin-inline: auto; padding-inline: 1.25rem; }
+  .container-wide  { max-width: 72rem;  margin-inline: auto; padding-inline: 1.25rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.1rem; border-radius: var(--radius-md);
+    font-weight: 500; letter-spacing: 0.01em;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn-primary { background: var(--color-ink); color: var(--color-paper); }
+  .btn-primary:hover { background: var(--color-teal); color: var(--color-paper); }
+  .btn-ghost   { border: 1px solid var(--color-line); color: var(--color-ink); }
+  .btn-ghost:hover { border-color: var(--color-ink); }
+
+  .pill {
+    display: inline-flex; padding: 0.15rem 0.55rem; border-radius: 999px;
+    font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--color-cream); color: var(--color-bronze);
+    border: 1px solid var(--color-line);
+  }
+
+  .field-label { display: block; font-size: 0.8rem; color: var(--color-bronze); margin-bottom: 0.35rem; letter-spacing: 0.02em; }
+  .field-input, .field-select, .field-textarea {
+    width: 100%; background: var(--color-paper);
+    border: 1px solid var(--color-line); border-radius: var(--radius-md);
+    padding: 0.6rem 0.75rem; font-size: 0.95rem; color: var(--color-ink);
+  }
+  .field-input:focus, .field-select:focus, .field-textarea:focus {
+    outline: none; border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-teal) 18%, transparent);
+  }
+
+  .card {
+    background: var(--color-paper); border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg); padding: 1.5rem;
+  }
+  .pull-quote {
+    border-left: 3px solid var(--color-ochre);
+    padding-left: 1rem; color: var(--color-ink);
+    font-family: var(--font-display); font-size: 1.35rem; line-height: 1.4;
+  }
+}

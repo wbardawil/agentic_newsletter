@@ -1,0 +1,96 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { getLangFromCookies } from "@/lib/i18n/server";
+import { t } from "@/lib/i18n/dictionary";
+import type { OsPillar } from "@/lib/supabase/types";
+
+const PILLARS: OsPillar[] = ["Strategy OS", "Operating Model OS", "Technology OS"];
+
+export const metadata = { title: "Archive — The Transformation Letter" };
+
+export default async function ArchivePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; pillar?: string; lang?: string }>;
+}) {
+  const params = await searchParams;
+  const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/sign-in?next=/archive");
+
+  const lang = await getLangFromCookies();
+  const i18n = t(lang).archive;
+
+  let query = supabase
+    .from("editions")
+    .select("edition_id, edition_number, subject_en, subject_es, pillar, published_at, shareable_sentence_en, shareable_sentence_es")
+    .eq("is_published", true)
+    .order("published_at", { ascending: false });
+
+  if (params.pillar && (PILLARS as readonly string[]).includes(params.pillar)) {
+    query = query.eq("pillar", params.pillar as OsPillar);
+  }
+
+  if (params.q?.trim()) {
+    const q = `%${params.q.trim()}%`;
+    query = query.or(
+      `subject_en.ilike.${q},subject_es.ilike.${q},shareable_sentence_en.ilike.${q},shareable_sentence_es.ilike.${q}`,
+    );
+  }
+
+  const { data } = await query;
+
+  return (
+    <section className="container-wide py-12">
+      <header className="mb-8">
+        <h1 className="text-4xl mb-2">{i18n.title}</h1>
+        <p className="text-[var(--color-bronze)]">{i18n.sub}</p>
+      </header>
+
+      <form method="get" className="flex flex-wrap gap-3 items-end mb-8">
+        <div className="flex-1 min-w-[16rem]">
+          <label className="field-label" htmlFor="q">{i18n.search}</label>
+          <input id="q" name="q" defaultValue={params.q ?? ""} className="field-input" />
+        </div>
+        <div>
+          <label className="field-label" htmlFor="pillar">{i18n.filterPillar}</label>
+          <select id="pillar" name="pillar" defaultValue={params.pillar ?? ""} className="field-select">
+            <option value="" />
+            {PILLARS.map((p) => <option key={p} value={p}>{p}</option>)}
+          </select>
+        </div>
+        <button type="submit" className="btn btn-ghost">{lang === "es" ? "Filtrar" : "Filter"}</button>
+      </form>
+
+      <ul className="divide-y divide-[var(--color-line)]">
+        {(data ?? []).map((e) => (
+          <li key={e.edition_id} className="py-6">
+            <div className="flex items-baseline justify-between gap-4 mb-1">
+              <Link href={`/archive/${e.edition_id}`} className="font-display text-2xl text-[var(--color-ink)] no-underline hover:text-[var(--color-teal)]">
+                {lang === "es" ? e.subject_es ?? e.subject_en : e.subject_en ?? e.subject_es}
+              </Link>
+              <span className="text-xs text-[var(--color-bronze)] uppercase tracking-wider">
+                #{e.edition_number}
+              </span>
+            </div>
+            <div className="text-sm text-[var(--color-bronze)] mb-2">
+              {e.pillar} · {e.published_at ? new Date(e.published_at).toLocaleDateString(lang === "es" ? "es-MX" : "en-US", {
+                year: "numeric", month: "long", day: "numeric",
+              }) : ""}
+            </div>
+            {(lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en) ? (
+              <p className="text-[var(--color-ink)]/85">
+                {lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en}
+              </p>
+            ) : null}
+          </li>
+        ))}
+        {(!data || data.length === 0) ? (
+          <p className="py-6 text-[var(--color-bronze)]">{i18n.noResults}</p>
+        ) : null}
+      </ul>
+    </section>
+  );
+}
