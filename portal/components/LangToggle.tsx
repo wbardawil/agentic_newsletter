@@ -17,17 +17,25 @@ export function LangToggle({ current }: { current: Lang }) {
         name="lang"
         value="en"
         aria-pressed={current === "en"}
-        className={`px-2 py-1 rounded ${current === "en" ? "bg-[var(--color-ink)] text-[var(--color-paper)]" : "text-[var(--color-bronze)]"}`}
+        className={`px-2 py-1 rounded transition-colors ${
+          current === "en"
+            ? "bg-[var(--color-cta)] text-white"
+            : "text-[var(--color-fg-muted)] hover:text-white"
+        }`}
       >
         EN
       </button>
-      <span className="text-[var(--color-bronze)]">·</span>
+      <span className="text-[var(--color-fg-muted)]">·</span>
       <button
         type="submit"
         name="lang"
         value="es"
         aria-pressed={current === "es"}
-        className={`px-2 py-1 rounded ${current === "es" ? "bg-[var(--color-ink)] text-[var(--color-paper)]" : "text-[var(--color-bronze)]"}`}
+        className={`px-2 py-1 rounded transition-colors ${
+          current === "es"
+            ? "bg-[var(--color-cta)] text-white"
+            : "text-[var(--color-fg-muted)] hover:text-white"
+        }`}
       >
         ES
       </button>

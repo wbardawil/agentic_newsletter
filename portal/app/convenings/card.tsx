@@ -52,18 +52,18 @@ export function ConveningCard({
   return (
     <article className="card">
       <header className="flex items-baseline justify-between mb-2">
-        <h3 className="text-2xl font-display">{convening.city}</h3>
+        <h3 className="text-2xl font-bold">{convening.city}</h3>
         <span className="pill">{convening.language.toUpperCase()}</span>
       </header>
-      <p className="text-[var(--color-bronze)] text-sm mb-3">
+      <p className="text-[var(--color-fg-muted)] text-sm mb-3">
         {new Date(convening.starts_at).toLocaleString(lang === "es" ? "es-MX" : "en-US", {
           weekday: "long", month: "long", day: "numeric", year: "numeric",
           hour: "numeric", minute: "2-digit",
         })}
       </p>
-      <p className="text-[var(--color-ink)]/85 mb-4">{convening.description}</p>
+      <p className="text-[var(--color-fg)]/85 mb-4">{convening.description}</p>
       <div className="flex items-center justify-between">
-        <span className="text-sm text-[var(--color-bronze)]">
+        <span className="text-sm text-[var(--color-fg-muted)]">
           {convening.rsvp_count} / {convening.capacity}
         </span>
         <button

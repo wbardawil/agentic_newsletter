@@ -27,7 +27,7 @@ export default async function PreferencesPage() {
   return (
     <section className="container-prose py-12">
       <h1 className="text-3xl mb-2">{i18n.title}</h1>
-      <p className="text-[var(--color-bronze)] mb-8">{i18n.sub}</p>
+      <p className="text-[var(--color-fg-muted)] mb-8">{i18n.sub}</p>
       <PreferencesForm
         lang={member.preferred_language ?? lang}
         initial={{

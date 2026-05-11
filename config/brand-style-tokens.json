@@ -1,55 +1,78 @@
 {
-  "name": "The Transformation Letter — Brand Style v1",
-  "version": 1,
+  "name": "The Transformation Letter — Brand Style v2 (wadibardawil.com)",
+  "version": 2,
   "voice": "advisor not pundit, diagnostic not promotional, restrained not loud",
   "palette": {
-    "primary": "#0F1A2B",
-    "secondary": "#1F4E5F",
-    "accent": "#C7892A",
-    "neutral": "#F4EFE6",
-    "muted": "#7A7466"
+    "background": "#22252a",
+    "primary": "#22252a",
+    "surface": "#2c2f36",
+    "secondary": "#393e46",
+    "line": "#3a3f47",
+    "foreground": "#ffffff",
+    "mutedForeground": "#a0a4ac",
+    "accent": "#fd7014",
+    "accentHover": "#ff8635"
   },
   "paletteNotes": {
-    "primary": "deep navy — heading text and primary structural elements",
-    "secondary": "teal — accent forms and secondary structure",
-    "accent": "ochre — pull quotes, highlights, sparingly used",
-    "neutral": "cream — paper-like background; never pure white",
-    "muted": "muted bronze — secondary text and quiet detail"
+    "background": "dark charcoal — page background, header, primary dark surface",
+    "primary": "same as background — dark charcoal, never replaced with another color",
+    "surface": "elevated card / surface — slightly lifted off background",
+    "secondary": "secondary surface and borders",
+    "line": "dividers and subtle structural lines",
+    "foreground": "primary text on dark — pure white",
+    "mutedForeground": "secondary text, captions, deprioritized content",
+    "accent": "orange — CTAs and highlights ONLY. Never decorative.",
+    "accentHover": "orange hover state for CTAs"
   },
   "typography": {
-    "display": "Cormorant Garamond, Garamond, serif",
-    "body": "Inter, system-ui, sans-serif",
-    "mono": "JetBrains Mono, ui-monospace, monospace"
+    "display": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+    "body":    "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+    "mono":    "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", monospace",
+    "scale": {
+      "displayMobile": "40px",
+      "displayTablet": "48px",
+      "displayDesktop": "60px",
+      "sectionMobile": "30px",
+      "sectionTablet": "36px",
+      "sectionDesktop": "48px",
+      "executiveBody": "18px",
+      "leading": "relaxed",
+      "weight": { "headings": 700, "body": 400, "cta": 600 },
+      "tracking": "tight (-0.015em on headings)"
+    }
   },
   "imageStyle": {
-    "approach": "editorial illustration; abstract geometric; restrained composition",
+    "approach": "editorial photography or restrained illustration on dark backgrounds; executive aesthetic",
     "constraints": [
-      "no realistic photography of identifiable people",
+      "no realistic photography of identifiable people unless cleared",
       "no stock-photo executives in suits or boardrooms",
       "no AI tropes (robot hands, glowing brains, circuit boards, futuristic UI panels)",
       "no clichéd transformation imagery (caterpillar/butterfly, sunrise/sunset, ladder, mountaintop, lightbulb)",
       "no text or words in the image — typography is added in layout, not generated",
-      "no flags, logos, brand marks, or trademarked imagery"
+      "no flags, logos, brand marks, or trademarked imagery",
+      "no decorative gradients — flat composition only",
+      "no light backgrounds — imagery must read on the dark charcoal canvas"
     ],
     "preferences": [
       "abstract geometric forms suggesting structure, sequence, and process",
       "architectural metaphors: foundations, scaffolding, blueprints, load-bearing walls",
-      "limited palette: 2–3 brand colors plus neutrals; avoid full-spectrum brightness",
+      "limited palette: charcoals + white + orange highlight (used sparingly, only when the photo subject demands it)",
       "negative space as a deliberate composition element",
-      "muted, textured backgrounds (paper grain, soft gradient) rather than flat solid colors",
-      "asymmetric balance; off-center focal points",
       "matte finish; no shiny gradients, no neon, no chrome"
     ],
     "model": "gemini-2.5-flash-image-preview"
   },
   "layout": {
+    "borderRadius": "0.5rem",
+    "sectionPaddingY": { "mobile": "112px", "desktop": "128px" },
     "heroAspectRatio": "16:9",
     "heroDimensions": { "width": 1600, "height": 900 },
     "socialAspectRatios": {
       "linkedin": "1.91:1",
       "twitter": "16:9",
       "email": "16:9"
-    }
+    },
+    "mode": "dark-only"
   },
   "captionVoice": {
     "guidance": "One sentence. Anchors the image to the issue's diagnostic — not a description of the picture. Same voice as the letter: advisor, present tense, second-person where natural.",
@@ -61,5 +84,15 @@
       "An abstract illustration of business transformation.",
       "Photo of business strategy and AI working together."
     ]
+  },
+  "publisher": {
+    "name": "Wadi Bardawil",
+    "primaryTitle": "Business Transformation Architect",
+    "secondaryTitle": "Fractional Chief Strategy & Technology Officer",
+    "positioningTagline": "I build the intelligence layer between your decisions and your operations.",
+    "site": "https://wadibardawil.com",
+    "email": "wadi@wadibardawil.com",
+    "linkedin": "https://linkedin.com/in/wadibardawil",
+    "location": "Monterrey, Mexico — serving Mexico & United States"
   }
 }

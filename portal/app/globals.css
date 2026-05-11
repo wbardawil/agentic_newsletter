@@ -1,81 +1,188 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+ * wadibardawil.com brand tokens.
+ * Dark-only palette. Orange #fd7014 reserved for CTAs and highlights.
+ * System sans, 8px radius, generous vertical spacing.
+ * ------------------------------------------------------------------------- */
 @theme {
-  --color-ink: #0F1A2B;
-  --color-teal: #1F4E5F;
-  --color-ochre: #C7892A;
-  --color-cream: #F4EFE6;
-  --color-bronze: #7A7466;
-  --color-paper: #FBF8F2;
-  --color-line: #E6DFD0;
+  --color-bg:        #22252a;  /* page background, header, primary dark */
+  --color-surface:   #2c2f36;  /* card / elevated surface */
+  --color-surface-2: #393e46;  /* secondary surface, borders */
+  --color-line:      #3a3f47;  /* dividers */
+  --color-fg:        #ffffff;  /* primary text */
+  --color-fg-muted:  #a0a4ac;  /* secondary text, captions */
+  --color-cta:       #fd7014;  /* CTA + highlights only */
+  --color-cta-hover: #ff8635;
 
-  --font-display: "Cormorant Garamond", Garamond, serif;
-  --font-sans: Inter, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", monospace;
 
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
+  --radius:    0.5rem;
+  --radius-lg: 0.75rem;
 }
 
 @layer base {
+  :root { color-scheme: dark; }
+
   html, body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-bg);
+    color: var(--color-fg);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    color: var(--color-ink);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+
+  h1, h2, h3, h4 {
+    color: var(--color-fg);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
   }
-  a { color: var(--color-teal); text-underline-offset: 3px; }
-  a:hover { color: var(--color-ink); }
+
+  a { color: var(--color-fg); text-underline-offset: 4px; }
+  a:hover { color: var(--color-cta); }
+
   hr { border-color: var(--color-line); }
+
+  ::selection { background: var(--color-cta); color: var(--color-bg); }
 }
 
 @layer components {
-  .container-prose { max-width: 68ch; margin-inline: auto; padding-inline: 1.25rem; }
-  .container-wide  { max-width: 72rem;  margin-inline: auto; padding-inline: 1.25rem; }
+  /* Layout containers — generous gutters, mobile-first single column. */
+  .container-prose { max-width: 44rem; margin-inline: auto; padding-inline: 1.5rem; }
+  .container-wide  { max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
 
+  /* Section padding spec: py-28 → py-32 (112–128px). Use as utility classes. */
+
+  /* Display + section headings (mobile → tablet → desktop). */
+  .heading-display {
+    font-size: 2.5rem;        /* 40px */
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) { .heading-display { font-size: 3rem;   } }   /* 48px */
+  @media (min-width: 1024px){ .heading-display { font-size: 3.75rem;} }   /* 60px */
+
+  .heading-section {
+    font-size: 1.875rem;      /* 30px */
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  @media (min-width: 768px) { .heading-section { font-size: 2.25rem;} }  /* 36px */
+  @media (min-width: 1024px){ .heading-section { font-size: 3rem;   } }  /* 48px */
+
+  .text-executive {
+    font-size: 1.125rem;       /* 18px */
+    line-height: 1.7;
+    color: var(--color-fg-muted);
+  }
+
+  /* CTAs. Orange filled / orange outline. No other accent uses orange. */
   .btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.65rem 1.1rem; border-radius: var(--radius-md);
-    font-weight: 500; letter-spacing: 0.01em;
-    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+    border-radius: var(--radius);
+    font-weight: 600; letter-spacing: 0.01em;
+    transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+    text-decoration: none;
   }
-  .btn-primary { background: var(--color-ink); color: var(--color-paper); }
-  .btn-primary:hover { background: var(--color-teal); color: var(--color-paper); }
-  .btn-ghost   { border: 1px solid var(--color-line); color: var(--color-ink); }
-  .btn-ghost:hover { border-color: var(--color-ink); }
+  .btn-sm { padding: 0.5rem 0.9rem;  font-size: 0.875rem; }
+  .btn-md { padding: 0.7rem 1.15rem; font-size: 0.95rem; }
+  .btn-xl { padding: 1rem 1.6rem;    font-size: 1.05rem; min-height: 56px; }
 
+  .btn-cta {
+    background: var(--color-cta);
+    color: #fff;
+  }
+  .btn-cta:hover {
+    background: var(--color-cta-hover);
+    box-shadow: 0 8px 24px -10px color-mix(in oklab, var(--color-cta) 70%, transparent);
+  }
+
+  .btn-cta-outline {
+    background: transparent;
+    color: var(--color-cta);
+    border: 1px solid var(--color-cta);
+  }
+  .btn-cta-outline:hover {
+    background: var(--color-cta);
+    color: #fff;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-fg);
+    border: 1px solid var(--color-line);
+  }
+  .btn-ghost:hover { border-color: var(--color-fg-muted); }
+
+  /* Aliases used by older code paths — both map to the orange CTA. */
+  .btn-primary { background: var(--color-cta); color: #fff; }
+  .btn-primary:hover { background: var(--color-cta-hover); }
+
+  /* Pills — neutral chip with subtle border. Never orange. */
   .pill {
-    display: inline-flex; padding: 0.15rem 0.55rem; border-radius: 999px;
-    font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
-    background: var(--color-cream); color: var(--color-bronze);
+    display: inline-flex; padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--color-surface-2);
+    color: var(--color-fg-muted);
     border: 1px solid var(--color-line);
   }
 
-  .field-label { display: block; font-size: 0.8rem; color: var(--color-bronze); margin-bottom: 0.35rem; letter-spacing: 0.02em; }
-  .field-input, .field-select, .field-textarea {
-    width: 100%; background: var(--color-paper);
-    border: 1px solid var(--color-line); border-radius: var(--radius-md);
-    padding: 0.6rem 0.75rem; font-size: 0.95rem; color: var(--color-ink);
+  /* Form fields. */
+  .field-label {
+    display: block; font-size: 0.8rem;
+    color: var(--color-fg-muted);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em; text-transform: uppercase;
   }
+  .field-input, .field-select, .field-textarea {
+    width: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 0.7rem 0.85rem;
+    font-size: 0.95rem;
+    color: var(--color-fg);
+  }
+  .field-input::placeholder, .field-textarea::placeholder { color: var(--color-fg-muted); }
   .field-input:focus, .field-select:focus, .field-textarea:focus {
-    outline: none; border-color: var(--color-teal);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-teal) 18%, transparent);
+    outline: none;
+    border-color: var(--color-cta);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-cta) 25%, transparent);
   }
 
+  /* Cards — elevated charcoal. */
   .card {
-    background: var(--color-paper); border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg); padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
   }
+
+  /* Pull-quote — left orange bar, no serif. Used sparingly. */
   .pull-quote {
-    border-left: 3px solid var(--color-ochre);
-    padding-left: 1rem; color: var(--color-ink);
-    font-family: var(--font-display); font-size: 1.35rem; line-height: 1.4;
+    border-left: 3px solid var(--color-cta);
+    padding-left: 1rem;
+    color: var(--color-fg);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    font-weight: 500;
   }
+
+  /* Sticky header CTA chip on small screens. */
+  .header-cta-mobile { display: inline-flex; }
+  @media (min-width: 768px) { .header-cta-mobile { display: none; } }
+
+  .nav-link {
+    color: var(--color-fg-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .nav-link:hover { color: var(--color-fg); }
 }

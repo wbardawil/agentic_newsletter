@@ -104,24 +104,24 @@ export function AskClient({ lang }: { lang: Lang }) {
     <div>
       <ol className="space-y-6 mb-8">
         {messages.length === 0 ? (
-          <li className="text-[var(--color-bronze)]">{i18n.emptyState}</li>
+          <li className="text-[var(--color-fg-muted)]">{i18n.emptyState}</li>
         ) : null}
         {messages.map((m, i) => (
           <li key={i} className={m.role === "user" ? "" : "card"}>
-            <div className="text-xs uppercase tracking-wider text-[var(--color-bronze)] mb-1">
+            <div className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-1">
               {m.role === "user" ? (lang === "es" ? "Tú" : "You") : "Transformation AI"}
             </div>
             <div className="whitespace-pre-wrap leading-relaxed">{m.content || (pending ? i18n.thinking : "")}</div>
             {m.role === "assistant" && m.sources && m.sources.length > 0 ? (
               <div className="mt-3 pt-3 border-t border-[var(--color-line)] text-sm">
-                <div className="text-[var(--color-bronze)] mb-1">{i18n.sources}</div>
+                <div className="text-[var(--color-fg-muted)] mb-1">{i18n.sources}</div>
                 <ul className="space-y-1">
                   {m.sources.map((s) => (
                     <li key={s.edition_id}>
                       <Link href={`/archive/${s.edition_id}`}>
                         #{s.edition_number} — {s.subject}
                       </Link>
-                      {s.pillar ? <span className="text-[var(--color-bronze)]"> · {s.pillar}</span> : null}
+                      {s.pillar ? <span className="text-[var(--color-fg-muted)]"> · {s.pillar}</span> : null}
                     </li>
                   ))}
                 </ul>

@@ -43,15 +43,15 @@ export default async function EditionPage({
   return (
     <article className="container-prose py-12">
       <header className="mb-8">
-        <p className="text-xs text-[var(--color-bronze)] uppercase tracking-wider">
+        <p className="text-xs text-[var(--color-fg-muted)] uppercase tracking-wider">
           #{edition.edition_number} · {topicLabel(edition.topic, lang)}
           {edition.pillar ? ` · ${edition.pillar}` : ""}
           {edition.quarterly_theme ? ` · ${edition.quarterly_theme}` : ""}
         </p>
         <h1 className="text-4xl mt-2 mb-4">{subject}</h1>
         {edition.byline ? (
-          <p className="text-sm text-[var(--color-bronze)] mb-3">
-            {lang === "es" ? "por" : "by"} <span className="text-[var(--color-ink)]">{edition.byline}</span>
+          <p className="text-sm text-[var(--color-fg-muted)] mb-3">
+            {lang === "es" ? "por" : "by"} <span className="text-[var(--color-fg)]">{edition.byline}</span>
             {edition.byline_role ? ` · ${edition.byline_role}` : ""}
           </p>
         ) : null}
@@ -59,11 +59,11 @@ export default async function EditionPage({
         <nav className="mt-6 text-sm flex gap-2">
           <Link
             href={`/archive/${editionId}?lang=en`}
-            className={`px-2 py-1 rounded ${lang === "en" ? "bg-[var(--color-ink)] text-[var(--color-paper)]" : "text-[var(--color-bronze)]"}`}
+            className={`px-2 py-1 rounded ${lang === "en" ? "bg-[var(--color-fg)] text-[var(--color-bg)]" : "text-[var(--color-fg-muted)]"}`}
           >EN</Link>
           <Link
             href={`/archive/${editionId}?lang=es`}
-            className={`px-2 py-1 rounded ${lang === "es" ? "bg-[var(--color-ink)] text-[var(--color-paper)]" : "text-[var(--color-bronze)]"}`}
+            className={`px-2 py-1 rounded ${lang === "es" ? "bg-[var(--color-fg)] text-[var(--color-bg)]" : "text-[var(--color-fg-muted)]"}`}
           >ES</Link>
         </nav>
       </header>
@@ -80,8 +80,8 @@ export default async function EditionPage({
             {sources.map((s, i) => (
               <li key={i}>
                 <a href={s.url} target="_blank" rel="noreferrer">{s.title}</a>
-                {s.publisher ? <span className="text-[var(--color-bronze)]"> — {s.publisher}</span> : null}
-                {s.snippet ? <div className="text-[var(--color-bronze)] mt-1">{s.snippet}</div> : null}
+                {s.publisher ? <span className="text-[var(--color-fg-muted)]"> — {s.publisher}</span> : null}
+                {s.snippet ? <div className="text-[var(--color-fg-muted)] mt-1">{s.snippet}</div> : null}
               </li>
             ))}
           </ol>

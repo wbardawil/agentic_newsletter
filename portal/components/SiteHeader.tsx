@@ -3,8 +3,15 @@ import Link from "next/link";
 import { t, type Lang } from "@/lib/i18n/dictionary";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
+import { BrandWordmark } from "@/components/BrandWordmark";
 import { LangToggle } from "@/components/LangToggle";
 
+/**
+ * Sticky header. Public pages: logo + language toggle + sticky CTA only —
+ * zero exit points, per wadibardawil.com brand spec. Member-only pages
+ * (caller is signed in) get a minimal nav since members need to navigate
+ * within the portal.
+ */
 export async function SiteHeader({ lang }: { lang: Lang }) {
   const supabase = await getSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -21,29 +28,29 @@ export async function SiteHeader({ lang }: { lang: Lang }) {
   }
 
   return (
-    <header className="border-b border-[var(--color-line)]">
-      <div className="container-wide flex items-center justify-between gap-6 py-5">
-        <Link href="/" className="font-display text-[1.35rem] leading-none text-[var(--color-ink)] no-underline">
-          The Transformation Letter
+    <header className="sticky top-0 z-40 bg-[var(--color-bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--color-bg)]/80 border-b border-[var(--color-line)]">
+      <div className="container-wide flex items-center justify-between gap-4 py-4">
+        <Link href="/" className="flex items-center no-underline" aria-label="The Transformation Letter — Wadi Bardawil">
+          <BrandWordmark />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="/archive">{i18n.nav.archive}</Link>
-          <Link href="/convenings">{i18n.nav.convenings}</Link>
-          {user ? <Link href="/me/ask">{i18n.nav.ask}</Link> : null}
-          {isAdmin ? <Link href="/admin/applications">Admin</Link> : null}
-        </nav>
+        {user ? (
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/archive"     className="nav-link">{i18n.nav.archive}</Link>
+            <Link href="/me/ask"      className="nav-link">{i18n.nav.ask}</Link>
+            <Link href="/convenings"  className="nav-link">{i18n.nav.convenings}</Link>
+            {isAdmin ? <Link href="/admin/applications" className="nav-link">Admin</Link> : null}
+          </nav>
+        ) : null}
 
         <div className="flex items-center gap-3">
           <LangToggle current={lang} />
           {user ? (
-            <Link href="/me" className="btn btn-ghost text-sm">
-              {i18n.nav.account}
-            </Link>
+            <Link href="/me" className="btn btn-ghost btn-sm">{i18n.nav.account}</Link>
           ) : (
             <>
-              <Link href="/sign-in" className="text-sm">{i18n.nav.signIn}</Link>
-              <Link href="/apply" className="btn btn-primary text-sm">{i18n.nav.apply}</Link>
+              <Link href="/sign-in" className="nav-link hidden sm:inline">{i18n.nav.signIn}</Link>
+              <Link href="/apply" className="btn btn-cta btn-sm">{i18n.nav.apply}</Link>
             </>
           )}
         </div>

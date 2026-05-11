@@ -33,7 +33,7 @@ metadata into the `editions` and `edition_sources` tables.
 
 - **Next.js 15** (App Router, RSC, Turbopack)
 - **Supabase** — Postgres + Auth (magic link) + RLS
-- **Tailwind v4** with brand tokens lifted from `../config/brand-style-tokens.json`
+- **Tailwind v4** with the wadibardawil.com visual brand wired in via `app/globals.css` (`@theme`). The same tokens are mirrored in `../config/brand-style-tokens.json` so the agent pipeline's Designer agent stays visually in sync with the portal.
 - **Anthropic SDK** (`claude-opus-4-7`) for the AI assistant
 - **Zod** at every API boundary
 
@@ -174,6 +174,17 @@ the production URL.
 The Supabase project's **Auth → URL Configuration** needs `NEXT_PUBLIC_SITE_URL`
 in the **Site URL** field and `${NEXT_PUBLIC_SITE_URL}/auth/callback` in the
 **Redirect URLs** list, otherwise magic-link sign-in will fail.
+
+## Brand assets
+
+Drop `logo-horizontal.png`, `logo-icon.png`, `favicon.png`, and (later) `hero-transformation.jpg` into `/portal/public/`. See `public/README.md` for sizing notes and the one-line code change to swap `<BrandWordmark />` for the actual logo image once it's in place.
+
+The visual system (palette, typography, layout principles) is wadibardawil.com:
+
+- Dark-only mode. Backgrounds `#22252a`, surfaces `#2c2f36`, text white, muted text `#a0a4ac`.
+- Orange `#fd7014` is the **only** accent — reserved for CTAs and active states. Never decorative.
+- System sans, 8 px radius, mobile-first, generous vertical padding (`py-28` to `py-32` on landing sections).
+- Public pages have no nav menu. Member-only routes get a minimal internal nav.
 
 ## What's not in this scaffold yet
 

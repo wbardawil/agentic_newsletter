@@ -105,8 +105,8 @@ export function PreferencesForm({
                 aria-pressed={active}
                 className={`px-3 py-1.5 rounded-full border text-sm ${
                   active
-                    ? "bg-[var(--color-ink)] text-[var(--color-paper)] border-[var(--color-ink)]"
-                    : "border-[var(--color-line)] text-[var(--color-bronze)]"
+                    ? "bg-[var(--color-fg)] text-[var(--color-bg)] border-[var(--color-fg)]"
+                    : "border-[var(--color-line)] text-[var(--color-fg-muted)]"
                 }`}
               >
                 {lang === "es" ? topic.es : topic.en}
@@ -117,7 +117,7 @@ export function PreferencesForm({
       </fieldset>
 
       {error ? <p className="text-sm text-red-700">{error}</p> : null}
-      {saved ? <p className="text-sm text-[var(--color-teal)]">{i18n.saved}</p> : null}
+      {saved ? <p className="text-sm text-[var(--color-cta)]">{i18n.saved}</p> : null}
 
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "…" : i18n.save}

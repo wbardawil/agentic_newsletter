@@ -44,7 +44,7 @@ export default async function ArchivePage({
     <section className="container-wide py-12">
       <header className="mb-8">
         <h1 className="text-4xl mb-2">{i18n.title}</h1>
-        <p className="text-[var(--color-bronze)]">{i18n.sub}</p>
+        <p className="text-[var(--color-fg-muted)]">{i18n.sub}</p>
       </header>
 
       <form method="get" className="flex flex-wrap gap-3 items-end mb-8">
@@ -68,14 +68,14 @@ export default async function ArchivePage({
         {(data ?? []).map((e) => (
           <li key={e.edition_id} className="py-6">
             <div className="flex items-baseline justify-between gap-4 mb-1">
-              <Link href={`/archive/${e.edition_id}`} className="font-display text-2xl text-[var(--color-ink)] no-underline hover:text-[var(--color-teal)]">
+              <Link href={`/archive/${e.edition_id}`} className="font-bold text-2xl text-[var(--color-fg)] no-underline hover:text-[var(--color-cta)]">
                 {lang === "es" ? e.subject_es ?? e.subject_en : e.subject_en ?? e.subject_es}
               </Link>
-              <span className="text-xs text-[var(--color-bronze)] uppercase tracking-wider">
+              <span className="text-xs text-[var(--color-fg-muted)] uppercase tracking-wider">
                 #{e.edition_number}
               </span>
             </div>
-            <div className="text-sm text-[var(--color-bronze)] mb-2 flex flex-wrap items-baseline gap-2">
+            <div className="text-sm text-[var(--color-fg-muted)] mb-2 flex flex-wrap items-baseline gap-2">
               <span className="pill">{topicLabel(e.topic, lang)}</span>
               {e.pillar ? <span>{e.pillar}</span> : null}
               <span>·</span>
@@ -92,14 +92,14 @@ export default async function ArchivePage({
               ) : null}
             </div>
             {(lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en) ? (
-              <p className="text-[var(--color-ink)]/85">
+              <p className="text-[var(--color-fg)]/85">
                 {lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en}
               </p>
             ) : null}
           </li>
         ))}
         {(!data || data.length === 0) ? (
-          <p className="py-6 text-[var(--color-bronze)]">{i18n.noResults}</p>
+          <p className="py-6 text-[var(--color-fg-muted)]">{i18n.noResults}</p>
         ) : null}
       </ul>
     </section>

@@ -103,8 +103,8 @@ export function ApplyForm({ lang }: { lang: Lang }) {
                 aria-pressed={active}
                 className={`px-3 py-1.5 rounded-full border text-sm ${
                   active
-                    ? "bg-[var(--color-ink)] text-[var(--color-paper)] border-[var(--color-ink)]"
-                    : "border-[var(--color-line)] text-[var(--color-bronze)]"
+                    ? "bg-[var(--color-fg)] text-[var(--color-bg)] border-[var(--color-fg)]"
+                    : "border-[var(--color-line)] text-[var(--color-fg-muted)]"
                 }`}
               >
                 {lang === "es" ? topic.es : topic.en}
@@ -112,13 +112,13 @@ export function ApplyForm({ lang }: { lang: Lang }) {
             );
           })}
         </div>
-        <p className="text-xs text-[var(--color-bronze)] mt-2">{apply2.topicsInterestHelp}</p>
+        <p className="text-xs text-[var(--color-fg-muted)] mt-2">{apply2.topicsInterestHelp}</p>
       </fieldset>
 
       <div>
         <label className="field-label" htmlFor="motivation">{i18n.motivation}</label>
         <textarea required minLength={20} maxLength={2000} id="motivation" name="motivation" rows={5} className="field-textarea" />
-        <p className="text-xs text-[var(--color-bronze)] mt-1">{i18n.motivationHelp}</p>
+        <p className="text-xs text-[var(--color-fg-muted)] mt-1">{i18n.motivationHelp}</p>
       </div>
 
       {error ? <p className="text-sm text-red-700">{error}</p> : null}

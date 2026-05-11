@@ -35,7 +35,7 @@ export default async function ConveningsPage() {
     <section className="container-wide py-12">
       <header className="mb-8">
         <h1 className="text-4xl mb-2">{i18n.title}</h1>
-        <p className="text-[var(--color-bronze)]">{i18n.sub}</p>
+        <p className="text-[var(--color-fg-muted)]">{i18n.sub}</p>
       </header>
 
       <div className="grid md:grid-cols-2 gap-6">
@@ -48,7 +48,7 @@ export default async function ConveningsPage() {
           />
         ))}
         {(!convenings || convenings.length === 0) ? (
-          <p className="text-[var(--color-bronze)]">{t(lang).member.noUpcoming}</p>
+          <p className="text-[var(--color-fg-muted)]">{t(lang).member.noUpcoming}</p>
         ) : null}
       </div>
     </section>

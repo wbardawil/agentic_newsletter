@@ -46,7 +46,7 @@ export default async function MemberHome() {
             ? "Tu cuenta existe, pero aún no eres miembro activo."
             : "Your account exists, but you are not an active member yet."}
         </h1>
-        <p className="text-[var(--color-bronze)] mb-6">
+        <p className="text-[var(--color-fg-muted)] mb-6">
           {memberLang === "es"
             ? "Si ya aplicaste, te avisaremos por correo cuando entres."
             : "If you have already applied, we will let you know by email once you are in."}
@@ -63,12 +63,12 @@ export default async function MemberHome() {
       <div className="md:col-span-8 space-y-6">
         <header>
           <p className="pill mb-3">{i18n.welcome}</p>
-          <h1 className="text-3xl font-display">{member.full_name ?? user.email}</h1>
+          <h1 className="text-3xl font-bold">{member.full_name ?? user.email}</h1>
         </header>
 
         {latest ? (
           <article className="card">
-            <p className="text-xs text-[var(--color-bronze)] uppercase tracking-wider mb-2">
+            <p className="text-xs text-[var(--color-fg-muted)] uppercase tracking-wider mb-2">
               {i18n.latestIssue} · #{latest.edition_number} · {topicLabel(latest.topic, memberLang)}
               {latest.pillar ? ` · ${latest.pillar}` : ""}
             </p>
@@ -76,7 +76,7 @@ export default async function MemberHome() {
               {memberLang === "es" ? latest.subject_es ?? latest.subject_en : latest.subject_en ?? latest.subject_es}
             </h2>
             {latest.byline ? (
-              <p className="text-sm text-[var(--color-bronze)] mb-2">
+              <p className="text-sm text-[var(--color-fg-muted)] mb-2">
                 {memberLang === "es" ? "por" : "by"} {latest.byline}
                 {latest.byline_role ? ` · ${latest.byline_role}` : ""}
               </p>
@@ -94,7 +94,7 @@ export default async function MemberHome() {
 
         <div className="card">
           <h3 className="text-xl mb-2">{i18n.askAssistant}</h3>
-          <p className="text-[var(--color-bronze)] mb-3">
+          <p className="text-[var(--color-fg-muted)] mb-3">
             {memberLang === "es"
               ? "Pregúntale a la IA, anclada en el archivo y el Voice Bible."
               : "Ask the Transformation AI, grounded in the archive and the Voice Bible."}
@@ -107,11 +107,11 @@ export default async function MemberHome() {
         <div className="card">
           <h3 className="text-lg mb-3">{i18n.yourPreferences}</h3>
           <dl className="text-sm grid grid-cols-[8rem_1fr] gap-y-1">
-            <dt className="text-[var(--color-bronze)]">Region</dt><dd>{member.region ?? "—"}</dd>
-            <dt className="text-[var(--color-bronze)]">Industry</dt><dd>{member.industry ?? "—"}</dd>
-            <dt className="text-[var(--color-bronze)]">Role</dt><dd>{member.role ?? "—"}</dd>
-            <dt className="text-[var(--color-bronze)]">Language</dt><dd>{member.preferred_language}</dd>
-            <dt className="text-[var(--color-bronze)]">Topics</dt>
+            <dt className="text-[var(--color-fg-muted)]">Region</dt><dd>{member.region ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">Industry</dt><dd>{member.industry ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">Role</dt><dd>{member.role ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">Language</dt><dd>{member.preferred_language}</dd>
+            <dt className="text-[var(--color-fg-muted)]">Topics</dt>
             <dd>
               {(member.topics_of_interest ?? []).length > 0
                 ? (member.topics_of_interest ?? []).map((id) => topicLabel(id, memberLang)).join(", ")
@@ -124,13 +124,13 @@ export default async function MemberHome() {
         <div className="card">
           <h3 className="text-lg mb-3">{i18n.upcomingConvenings}</h3>
           {(convenings ?? []).length === 0 ? (
-            <p className="text-sm text-[var(--color-bronze)]">{i18n.noUpcoming}</p>
+            <p className="text-sm text-[var(--color-fg-muted)]">{i18n.noUpcoming}</p>
           ) : (
             <ul className="space-y-3 text-sm">
               {(convenings ?? []).map((c) => (
                 <li key={c.id}>
-                  <div className="font-display text-lg">{c.city}</div>
-                  <div className="text-[var(--color-bronze)]">
+                  <div className="font-bold text-lg">{c.city}</div>
+                  <div className="text-[var(--color-fg-muted)]">
                     {new Date(c.starts_at).toLocaleDateString(memberLang === "es" ? "es-MX" : "en-US", {
                       month: "long", day: "numeric", year: "numeric",
                     })}
@@ -144,7 +144,7 @@ export default async function MemberHome() {
         </div>
 
         <form action="/auth/sign-out" method="post">
-          <button type="submit" className="text-sm text-[var(--color-bronze)] underline">
+          <button type="submit" className="text-sm text-[var(--color-fg-muted)] underline">
             {t(memberLang).nav.signOut}
           </button>
         </form>

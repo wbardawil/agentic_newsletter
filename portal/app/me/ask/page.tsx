@@ -29,7 +29,7 @@ export default async function AskPage() {
     <section className="container-prose py-12">
       <header className="mb-6">
         <h1 className="text-3xl mb-2">{i18n.title}</h1>
-        <p className="text-[var(--color-bronze)]">{i18n.sub}</p>
+        <p className="text-[var(--color-fg-muted)]">{i18n.sub}</p>
       </header>
       <AskClient lang={lang} />
     </section>

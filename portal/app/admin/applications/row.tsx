@@ -32,15 +32,15 @@ export function ApplicationRow({ app, lang }: { app: Row; lang: Lang }) {
     <article className="card">
       <header className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
         <div>
-          <h3 className="text-xl font-display">{app.full_name}</h3>
-          <p className="text-sm text-[var(--color-bronze)]">
+          <h3 className="text-xl font-bold">{app.full_name}</h3>
+          <p className="text-sm text-[var(--color-fg-muted)]">
             {app.role} · {app.company} · {app.region.replace("_", " ")} · {app.company_size_band}
           </p>
         </div>
         <a href={`mailto:${app.email}`} className="text-sm">{app.email}</a>
       </header>
 
-      <p className="text-[var(--color-ink)]/90 whitespace-pre-wrap mb-3">{app.motivation}</p>
+      <p className="text-[var(--color-fg)]/90 whitespace-pre-wrap mb-3">{app.motivation}</p>
 
       <footer className="flex items-center gap-2 flex-wrap">
         <span className="pill">{status}</span>

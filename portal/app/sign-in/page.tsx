@@ -16,7 +16,7 @@ export default async function SignInPage({
   return (
     <section className="container-prose py-16">
       <h1 className="text-4xl mb-2">{i18n.title}</h1>
-      <p className="text-[var(--color-bronze)] mb-8">{i18n.sub}</p>
+      <p className="text-[var(--color-fg-muted)] mb-8">{i18n.sub}</p>
       {params.sent === "1" ? (
         <div className="card">
           <p>{i18n.check}</p>

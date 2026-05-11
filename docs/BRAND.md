@@ -6,10 +6,14 @@
 ## The Publisher
 
 **Wadi Bardawil**
-Fractional Chief Strategy and Information Officer
 Business Transformation Architect
+Fractional Chief Strategy & Technology Officer
+
+Positioning tagline: *"I build the intelligence layer between your decisions and your operations."*
 
 He blends business strategy and information systems into one integrated engagement — because strategy without the operating model to execute it is theory, and technology without the strategy to guide it is waste. He works with 5–10 business owners at a time, by design, because transformation requires genuine presence and commitment from both sides.
+
+Based in Monterrey, Mexico. Serves Mexico and the United States. Site: [wadibardawil.com](https://wadibardawil.com). Newsletter: The Transformation Letter (bilingual EN/ES).
 
 ---
 
@@ -131,3 +135,26 @@ THE FRACTIONAL ENGAGEMENT (5–10 clients maximum)
 ```
 
 The newsletter does the selling. The diagnostic does the selecting. The engagement does the transforming.
+
+---
+
+## Visual Identity (wadibardawil.com)
+
+The portal and Designer agent both consume `/config/brand-style-tokens.json` (v2). Headline summary:
+
+- **Mode:** dark only. No light mode.
+- **Palette:**
+  - Background / primary: `#22252a` (dark charcoal)
+  - Surface (cards): `#2c2f36`
+  - Secondary surface / borders: `#393e46`
+  - Foreground (text on dark): `#ffffff`
+  - Muted foreground (secondary text): `#a0a4ac`
+  - **Accent (CTA + highlights ONLY):** `#fd7014` orange — never decorative.
+- **Typography:** system sans-serif stack. Bold, tight-leading display headlines (40 / 48 / 60 px across mobile / tablet / desktop). 18 px body with relaxed leading. No serif.
+- **Radius:** 8 px default.
+- **Layout:** mobile-first single column. Section vertical padding 112–128 px. Generous whitespace.
+- **Public pages have no nav menu.** Header is logo + language toggle + sticky CTA. Member-only routes get a minimal internal nav.
+- **No decorative gradients.** Flat composition, executive aesthetic.
+- **Logo:** horizontal wordmark "Wadi Bardawil" in white at ~32 px height in the header. WB monogram for favicon and social cards. Drop assets into `/portal/public/`.
+
+The Designer agent's hero / section imagery must read on the dark canvas. See `/config/brand-style-tokens.json#imageStyle` for the full constraint and preference list.

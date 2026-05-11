@@ -43,7 +43,7 @@ export default async function AdminApplicationsPage({
             <a
               key={f}
               href={`?status=${f}`}
-              className={`px-3 py-1 rounded border ${filter === f ? "bg-[var(--color-ink)] text-[var(--color-paper)] border-[var(--color-ink)]" : "border-[var(--color-line)] text-[var(--color-bronze)]"}`}
+              className={`px-3 py-1 rounded border ${filter === f ? "bg-[var(--color-fg)] text-[var(--color-bg)] border-[var(--color-fg)]" : "border-[var(--color-line)] text-[var(--color-fg-muted)]"}`}
             >
               {f}
             </a>
@@ -58,7 +58,7 @@ export default async function AdminApplicationsPage({
           <ApplicationRow key={app.id} app={app} lang={lang} />
         ))}
         {(!data || data.length === 0) ? (
-          <p className="text-[var(--color-bronze)]">No applications in this bucket.</p>
+          <p className="text-[var(--color-fg-muted)]">No applications in this bucket.</p>
         ) : null}
       </div>
     </section>
