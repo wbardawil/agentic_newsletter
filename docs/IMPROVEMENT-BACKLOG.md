@@ -2,7 +2,7 @@
 *Prioritized systemic work not yet shipped. Read top to bottom —
 impact × effort is already in the order.*
 
-**Last updated:** 2026-04-21
+**Last updated:** 2026-05-16
 
 Legend:
 - **Impact:** HIGH / MED / LOW — effect on reader-visible quality or
@@ -116,6 +116,64 @@ coordinates directly. For production resiliency, implement the
 Supervisor as documented in `CLAUDE.md`: stateful run management,
 retry arbitration, partial-failure handling, cost budget
 enforcement.
+
+---
+
+## Portal — member-facing content & perks roadmap
+
+*Scope: `/portal` (the member layer), not the agent pipeline. Category
+P = portal. Milestone-gated by real signals, not a calendar — building a
+course with no audience or perks with no members is wasted effort.*
+
+**Locked product decisions (2026-05-16):**
+- **One generalized model, not eight tables.** A single `resources` table
+  with `kind ∈ {playbook, guide, interview, review, course, training}`,
+  tier-aware from day one, fed into the AI grounding the same way
+  `editions` are. Playbooks / guides / interviews are single documents
+  (reuse the edition renderer + archive UI). Courses / training need a
+  child table (ordered lessons / sessions); training's live side reuses
+  `convenings`.
+- **Perks = member discounts / affiliate.** A `partners` + `perks` engine
+  attaches member-only deals to product reviews. No paid sponsor
+  placements (protects the diagnostic-not-promotional voice). Affiliate
+  cut or nothing — the perk is the reader incentive, the review is its
+  justification. First non-spammy revenue lane.
+- **Tiering deferred.** Build everything tier-aware (a `tier` column on
+  `resources` and `members`), but ship all of it free + apply-gated for
+  now. Revisit a paid tier at M3; do not let that decision block M1/M2.
+- Every resource flows through the same discipline as an edition:
+  curator approval → dual-publish → AI grounding. The Transformation AI
+  must be able to answer "what's the playbook for X?" with the actual
+  playbook, not issue fragments.
+
+### P-M1 — now (archive already compounding) (HIGH / M / P)
+Add the `resources` table + **Playbooks** and **Guides** surfaces:
+list + detail (bilingual, same renderer as `/archive`), admin create,
+dual-publish mirror, and inclusion in `lib/ai/retrieval.ts` so the
+assistant grounds on them. Lowest build cost, highest brand fit ("the
+artifact you have not written yet"), and the biggest immediate lift to
+AI answer quality.
+
+### P-M2 — ~100+ active members (HIGH / L / P)
+- **Interviews** — uses the named-guest-contributor model already
+  chosen; same document shape as playbooks with a `byline`.
+- **Product reviews + Perks engine** — `partners`, `perks`,
+  `perk_redemptions` tables; member-only redeem flow gated on
+  `members.status = active`; each review links the perk it justifies.
+  Reviews and perks ship together or not at all.
+
+### P-M3 — proven retention / paid-tier decision (MED / L / P)
+- **Courses** — `resources(kind=course)` parent + `lessons` child
+  (ordered, progress tracked per member).
+- **Training** — live sessions reuse `convenings`; recorded sessions
+  reuse the course structure. Highest production cost; only justified
+  once the audience and archive depth exist.
+
+### P-M-future — opportunistic
+- pgvector retrieval once the combined editions + resources corpus
+  outgrows keyword search (already flagged in `lib/ai/retrieval.ts`).
+- Perk-redemption analytics → feed which reviewed tools members
+  actually adopt back into the Strategist as signal.
 
 ---
 
