@@ -113,6 +113,11 @@ Both phase-2 secrets must be set together. See [workers/approval-receiver/README
 - `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` — X cross-post
 - `FEEDLY_API_KEY` — supplemental Radar source
 - `AIRTABLE_API_KEY`, `AIRTABLE_BASE_ID` — run ledger
+- `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — portal mirror. On publish,
+  the edition + its Radar sources are upserted into the portal's
+  `editions`/`edition_sources` tables so the member archive and the
+  Transformation AI ground on them. Non-fatal if unset — Beehiiv delivery
+  is never blocked by the mirror. Service-role key is server-side only.
 
 **Repository variables** (Variables tab):
 - `WEEKLY_DRAFT_PAUSED` — only set this when you want to pause

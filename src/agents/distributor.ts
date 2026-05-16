@@ -6,8 +6,8 @@ import {
   LocalizedContentSchema,
   DistributionRecordSchema,
   type DistributionRecord,
-  type LocalizedContent,
 } from "../types/edition.js";
+import { renderLocalizedToMarkdown } from "../utils/edition-markdown.js";
 
 const DistributorInputSchema = z.object({
   enContent: LocalizedContentSchema,
@@ -18,51 +18,6 @@ const DistributorInputSchema = z.object({
 type DistributorInput = z.infer<typeof DistributorInputSchema>;
 
 const DistributorOutputSchema = z.array(DistributionRecordSchema);
-
-// ── Markdown renderer ─────────────────────────────────────────────────────────
-
-function renderToMarkdown(content: LocalizedContent): string {
-  const get = (type: string) =>
-    content.sections.find((s: { type: string }) => s.type === type)?.body ?? "";
-
-  const headings: Record<string, string> = {
-    lead: content.language === "es" ? "LA APERTURA" : "THE APERTURA",
-    analysis: content.language === "es" ? "EL INSIGHT" : "THE INSIGHT",
-    spotlight: content.language === "es" ? "EL REPORTE DE CAMPO" : "THE FIELD REPORT",
-    quickTakes: content.language === "es" ? "LA BRÚJULA" : "THE COMPASS",
-    cta: content.language === "es" ? "LA PUERTA" : "THE DOOR",
-  };
-
-  return [
-    `## ${headings["lead"]}`,
-    "",
-    get("lead"),
-    "",
-    "---",
-    "",
-    `## ${headings["analysis"]}`,
-    "",
-    get("analysis"),
-    "",
-    "---",
-    "",
-    `## ${headings["spotlight"]}`,
-    "",
-    get("spotlight"),
-    "",
-    "---",
-    "",
-    `## ${headings["quickTakes"]}`,
-    "",
-    get("quickTakes"),
-    "",
-    "---",
-    "",
-    `## ${headings["cta"]}`,
-    "",
-    get("cta"),
-  ].join("\n");
-}
 
 // ── Beehiiv API client ────────────────────────────────────────────────────────
 
@@ -204,7 +159,7 @@ export class DistributorAgent extends BaseAgent<
         newsletterAuthor,
         payload.enContent.subject,
         payload.enContent.preheader,
-        renderToMarkdown(payload.enContent),
+        renderLocalizedToMarkdown(payload.enContent),
         `${context.editionId}-en`,
         payload.scheduledAt,
       );
@@ -237,7 +192,7 @@ export class DistributorAgent extends BaseAgent<
         newsletterAuthor,
         payload.esContent.subject,
         payload.esContent.preheader,
-        renderToMarkdown(payload.esContent),
+        renderLocalizedToMarkdown(payload.esContent),
         `${context.editionId}-es`,
         payload.scheduledAt,
       );

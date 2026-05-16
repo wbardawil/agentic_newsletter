@@ -119,36 +119,35 @@ Plus add the email to `ADMIN_EMAILS` so the Next.js middleware lets you into
 
 ## Wiring the agent pipeline → portal
 
-When the Supervisor finishes a successful publish run, write the edition into
-Supabase so it appears in `/archive` and the AI can ground answers in it:
+This is **already wired**. `pnpm publish:edition` (in the parent repo) fans
+each successfully-distributed edition into Supabase right after the Beehiiv
+step, via `src/utils/portal-sync.ts` → `mirrorEditionToPortal()`:
 
-```ts
-await supabase.from("editions").upsert({
-  edition_id: edition.editionId,
-  edition_number: edition.editionNumber,
-  published_at: edition.publishDatetime,
-  subject_en: edition.subjectEN,
-  subject_es: edition.subjectES,
-  body_en: edition.enBody,
-  body_es: edition.esBody,
-  hero_image_url: edition.heroImageUrl ?? null,
-  topic: edition.angle?.topic ?? "business_transformation",
-  // pillar is required when topic = business_transformation, NULL otherwise
-  pillar: edition.angle?.osPillar ?? null,
-  quarterly_theme: edition.angle?.quarterlyTheme ?? null,
-  shareable_sentence_en: edition.validation?.shareableSentence ?? null,
-  shareable_sentence_es: null,
-  byline: edition.byline ?? "Wadi Bardawil",
-  byline_role: edition.bylineRole ?? null,
-  is_published: true,
-});
-```
+- Upserts `editions` on `edition_id` (idempotent — re-running a publish
+  updates the same row). `edition_number` is derived deterministically
+  from the `YYYY-WW` id (`2026-19` → `202619`).
+- `body_en` / `body_es` are rendered with the **same** renderer the
+  Distributor uses for Beehiiv (`src/utils/edition-markdown.ts`), so the
+  archive is byte-identical to the email subscribers receive.
+- Replaces `edition_sources` for the edition from the Radar source-bundle
+  snapshot (`drafts/{editionId}-sources.json`): `title`, `url`,
+  `snippet` (source summary, truncated), `publisher` (outlet).
+- `pillar` ← `angle.osPillar`; `quarterly_theme` ← `angle.quarterlyTheme`;
+  `shareable_sentence_en` ← Validator's shareable sentence.
 
-For non-transformation topics (conscious capital, family business, family
-office) set `byline` to the named guest contributor and leave `pillar` NULL.
+Enable it by setting `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in the
+**parent repo's** `.env`. If they're unset the mirror is skipped (logged,
+non-fatal) and Beehiiv delivery is unaffected — email is never blocked by
+the portal.
 
-Citations from the Radar source bundle should land in `edition_sources` with
-a `title`, `url`, optional `snippet`, and `publisher`.
+Known gaps (intentional, follow-ups):
+
+- `topic` defaults to `business_transformation`. The Strategist does not
+  yet declare a topic; once it does, pass it through `MirrorInput.topic`.
+- `hero_image_url` is `null` — the hero is a local PNG; uploading it to
+  Supabase Storage is a separate step.
+- `byline` defaults to `NEWSLETTER_AUTHOR`. For guest-contributor topics,
+  thread the contributor name through `MirrorInput.byline`.
 
 ## AI assistant — how it's grounded
 

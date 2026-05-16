@@ -38,6 +38,8 @@ import {
 import { EditionIdSchema } from "./types/enums.js";
 import { z } from "zod";
 import { writeRunSummary } from "./utils/airtable.js";
+import { loadSnapshot } from "./utils/source-bundle-snapshot.js";
+import { mirrorEditionToPortal } from "./utils/portal-sync.js";
 import type { SocialPost } from "./agents/amplifier.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -301,6 +303,40 @@ async function main(): Promise<void> {
     JSON.stringify(distributionRecords, null, 2),
     "utf-8",
   );
+
+  // ── Portal mirror (Supabase) ───────────────────────────────────────────────
+  // Fan the same edition into Supabase so it powers the member archive and
+  // the Transformation AI's grounding. Non-fatal — never block publish.
+  if (succeeded.length > 0 && !config.dryRun) {
+    try {
+      const bundle = loadSnapshot(draftsDir, editionId);
+      const result = await mirrorEditionToPortal({
+        editionId,
+        angle,
+        enContent,
+        esContent,
+        shareableSentence: shareableSentence ?? null,
+        sources: bundle?.items,
+        publishedAt: scheduleArg ?? new Date().toISOString(),
+        isPublished: true,
+        byline: process.env["NEWSLETTER_AUTHOR"] ?? null,
+      });
+      if (result.skipped) {
+        logger.info(`Portal mirror skipped: ${result.reason}`, { runId, editionId });
+      } else {
+        console.log(
+          `   ✓ Portal mirror: edition + ${result.sourcesMirrored ?? 0} source(s) synced to Supabase`,
+        );
+        logger.info("Portal mirror written", { runId, editionId });
+      }
+    } catch (err) {
+      logger.warn(
+        `Portal mirror failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`,
+        { runId, editionId },
+      );
+      console.warn(`   ⚠️  Portal mirror failed (non-fatal) — see logs.`);
+    }
+  }
 
   // ── Amplifier ──────────────────────────────────────────────────────────────
   console.log("\n📣 Step 2/2 — Amplifier: generating social posts...");
