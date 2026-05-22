@@ -13,9 +13,10 @@
  * approval.
  *
  * Usage:
- *   pnpm digest:edition -- --edition 2026-18                    (send live)
- *   pnpm digest:edition -- --edition 2026-18 --pr-url <url>     (include PR link)
- *   pnpm digest:edition -- --edition 2026-18 --dry-run          (print, don't send)
+ *   pnpm digest:edition -- --edition 2026-18                       (send live)
+ *   pnpm digest:edition -- --edition 2026-18 --pr-url <url>        (include PR link)
+ *   pnpm digest:edition -- --edition 2026-18 --portal-base-url <u> (include editor link)
+ *   pnpm digest:edition -- --edition 2026-18 --dry-run             (print, don't send)
  *
  * Required env vars (live mode):
  *   RESEND_API_KEY          — from resend.com (free tier supports 100 emails/day)
@@ -24,6 +25,11 @@
  *   RESEND_TO               — recipient address (your editor inbox)
  *   GITHUB_REPOSITORY       — set automatically inside GitHub Actions; defaults to
  *                             "wbardawil/agentic_newsletter" when run locally.
+ *
+ * Optional env vars:
+ *   PORTAL_BASE_URL         — origin + basePath of the portal admin editor,
+ *                             e.g. "https://wadibardawil.com/letter". When set,
+ *                             the digest includes an "Edit in portal" deep-link.
  */
 
 import "dotenv/config";
@@ -76,6 +82,12 @@ interface DigestLinks {
    * to the manual workflow_dispatch link.
    */
   approveUrl: string | null;
+  /**
+   * Deep-link to the portal admin editor. Present only when PORTAL_BASE_URL
+   * is set. Format: `${portalBaseUrl}/admin/drafts/${editionId}/edit`.
+   * Auth is enforced by the portal's Supabase Auth + ADMIN_EMAILS middleware.
+   */
+  editorUrl: string | null;
 }
 
 function buildLinks(
@@ -84,17 +96,22 @@ function buildLinks(
   repo: string,
   approveBaseUrl: string | null,
   approveSecret: string | null,
+  portalBaseUrl: string | null,
 ): DigestLinks {
   const base = `https://github.com/${repo}`;
   const approveUrl =
     approveBaseUrl && approveSecret
       ? buildApprovalLink(approveBaseUrl, editionId, approveSecret)
       : null;
+  const editorUrl = portalBaseUrl
+    ? `${portalBaseUrl.replace(/\/+$/, "")}/admin/drafts/${editionId}/edit`
+    : null;
   return {
     prUrl,
     publishWorkflowUrl: `${base}/actions/workflows/publish-to-beehiiv.yml`,
     reRunDraftUrl: `${base}/actions/workflows/weekly-draft.yml`,
     approveUrl,
+    editorUrl,
   };
 }
 
@@ -122,6 +139,10 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
 
   const reviewBtn = links.prUrl
     ? `<a href="${escapeHtml(links.prUrl)}" style="display:inline-block;padding:12px 20px;background:#0F1A2B;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Review draft on GitHub →</a>`
+    : "";
+  // Portal editor deep-link. Renders only when PORTAL_BASE_URL is set.
+  const editBtn = links.editorUrl
+    ? `<a href="${escapeHtml(links.editorUrl)}" style="display:inline-block;padding:12px 20px;background:#1F4E5F;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Edit in portal →</a>`
     : "";
   // When the approval Worker is configured, the primary CTA is one-click
   // approve. Fall back to the manual workflow_dispatch deep-link otherwise.
@@ -187,13 +208,18 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
 
   <div style="margin:32px 0;">
     ${reviewBtn}
+    ${editBtn}
     ${publishBtn}
   </div>
 
   <hr style="border:none;border-top:1px solid #C7892A;margin:24px 0;opacity:0.4;">
   <p style="font-size:12px;color:#7A7466;line-height:1.5;margin:0;">
     The draft is on the <code>drafts/${escapeHtml(draft.editionId)}</code> branch.
-    Edit copy via the GitHub mobile editor and merge when the editorial is right.
+    ${
+      links.editorUrl
+        ? `Use <strong>Edit in portal</strong> for a side-by-side EN/ES surface that commits directly to the branch, or the GitHub mobile editor for quick tweaks.`
+        : `Edit copy via the GitHub mobile editor and merge when the editorial is right.`
+    }
     ${
       links.approveUrl
         ? `Tapping <strong>Approve and publish</strong> dispatches the Beehiiv publish workflow via a signed link valid for 7 days.`
@@ -239,6 +265,7 @@ export function renderDigestText(draft: DraftJson, links: DigestLinks): string {
   }
   lines.push("");
   if (links.prUrl) lines.push(`Review:           ${links.prUrl}`);
+  if (links.editorUrl) lines.push(`Edit in portal:   ${links.editorUrl}`);
   if (links.approveUrl) {
     lines.push(`Approve+publish:  ${links.approveUrl}`);
   } else {
@@ -295,6 +322,7 @@ export async function sendViaResend(
 function parseArgs(argv: string[]): {
   edition: string | undefined;
   prUrl: string | null;
+  portalBaseUrl: string | null;
   dryRun: boolean;
 } {
   const get = (flag: string): string | undefined => {
@@ -304,6 +332,7 @@ function parseArgs(argv: string[]): {
   return {
     edition: get("--edition"),
     prUrl: get("--pr-url") ?? null,
+    portalBaseUrl: get("--portal-base-url") ?? null,
     dryRun: argv.includes("--dry-run"),
   };
 }
@@ -326,12 +355,15 @@ async function main(): Promise<void> {
       "APPROVAL_BASE_URL and APPROVAL_SIGNING_SECRET must both be set to enable one-click approval. Falling back to the manual workflow_dispatch link.",
     );
   }
+  const portalBaseUrl =
+    args.portalBaseUrl ?? (process.env["PORTAL_BASE_URL"]?.trim() || null);
   const links = buildLinks(
     args.edition,
     args.prUrl,
     repo,
     approveBaseUrl,
     approveSecret,
+    portalBaseUrl,
   );
 
   const subject = renderSubject(draft);

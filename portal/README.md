@@ -27,6 +27,7 @@ family office, and conscious capital ride on named guest contributors.
 | Member convenings + RSVP | `/convenings` |
 | Publisher About | `/about` |
 | Admin: application review queue | `/admin/applications` |
+| Admin: draft editor (EN+ES, commits to GitHub branch) | `/admin/drafts/[edition]/edit` |
 | Bilingual cookie | `POST /lang` |
 | Sign-out | `POST /auth/sign-out` |
 
@@ -66,6 +67,9 @@ Fill in `.env.local`:
 | `ANTHROPIC_API_KEY` | console.anthropic.com |
 | `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` in dev, your deployed URL in prod |
 | `ADMIN_EMAILS` | Comma-separated emails that get the `/admin` queue |
+| `GITHUB_TOKEN` | Fine-grained PAT for the admin draft editor — see [Admin draft editor](#admin-draft-editor) |
+| `GITHUB_REPO` | `owner/repo` of the agentic_newsletter repo (default `wbardawil/agentic_newsletter`) |
+| `GITHUB_DRAFT_BRANCH_PREFIX` | Defaults to `drafts/`. The editor reads/writes `drafts/<edition>-en.md` and `drafts/<edition>-es.md` on `drafts/<edition>`. |
 
 ## Database
 
@@ -116,6 +120,74 @@ update public.members set is_admin = true where email = 'wadi@example.com';
 
 Plus add the email to `ADMIN_EMAILS` so the Next.js middleware lets you into
 `/admin/*` without round-tripping through RLS.
+
+## Admin draft editor
+
+`/admin/drafts/[edition]/edit` is a web editor for the weekly EN/ES `.md`
+drafts. It loads the files from the `drafts/<edition>` branch via the GitHub
+Contents API and commits edits back to the same branch — git remains source of
+truth. The editor never touches the `editions` table in Supabase.
+
+The digest email sent by the weekly cron (`pnpm digest:edition`) deep-links here
+when `PORTAL_BASE_URL` is set as a repository secret.
+
+### Auth model
+
+1. `portal/middleware.ts` requires an authenticated session for any `/admin/*`
+   route AND any `/api/admin/*` route. Not signed in → redirect to `/sign-in`.
+2. Middleware then checks the user's email against `ADMIN_EMAILS`. Not on the
+   list → redirect to `/me`.
+3. The API route handlers re-check `ADMIN_EMAILS` themselves as
+   defense-in-depth (matches the pattern in `app/api/admin/applications/route.ts`).
+
+### GitHub token setup
+
+1. github.com → Settings → Developer settings → Personal access tokens →
+   Fine-grained tokens → Generate new token.
+2. Repository access: **Only this repository** → `wbardawil/agentic_newsletter`.
+3. Permissions: **Contents: read/write** only. No other scopes.
+4. Expiration: 90 days. Set a calendar reminder to rotate.
+5. Set `GITHUB_TOKEN` in Vercel **Production env only** — never Preview.
+6. Mark as Sensitive in Vercel.
+
+### Behaviour
+
+- Both languages load in parallel and render in stacked panels (EN on top).
+- Each panel has its own Save button. The Save flow PUTs to
+  `/api/admin/drafts/[edition]` with `{language, content, sha}`.
+- On 409 SHA_CONFLICT (someone else committed to the branch), the panel shows
+  "Branch moved" with a Reload button. No in-browser merge — the user reloads
+  to fetch the new buffer and re-applies edits.
+- `beforeunload` guards against accidental navigation when any panel is dirty.
+- Word counts use soft thresholds (gray <850, amber 850-1100, red >1100). The
+  Validator runs in the next pipeline pass and is the actual gate.
+- The QA score embedded in the digest email reflects pre-edit state. After
+  large edits, treat the digest score as stale.
+
+### Local development
+
+```bash
+cd portal
+# Set GITHUB_TOKEN, GITHUB_REPO, ADMIN_EMAILS, NEXT_PUBLIC_SUPABASE_* in .env.local
+pnpm install
+pnpm dev
+# Sign in as an ADMIN_EMAILS user, then navigate to:
+# http://localhost:3000/admin/drafts/<existing-edition>/edit
+```
+
+The edition you target needs to exist on the `drafts/<edition>` branch in the
+remote repo (which the weekly cron normally creates).
+
+### Tests
+
+```bash
+cd portal
+pnpm test
+```
+
+Covers the GitHub helper (10 cases — 404/401/403/409/422 mapping, retries,
+base64 encoding) and the PUT API (7 cases — auth gates, Zod, SHA conflict,
+default commit message).
 
 ## Wiring the agent pipeline → portal
 
