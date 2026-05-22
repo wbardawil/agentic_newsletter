@@ -47,18 +47,12 @@ const links = {
   reRunDraftUrl:
     "https://github.com/wbardawil/agentic_newsletter/actions/workflows/weekly-draft.yml",
   approveUrl: null,
-  editorUrl: null,
 };
 
 const linksWithApprove = {
   ...links,
   approveUrl:
     "https://approve.example.workers.dev/approve?t=eyJhbGciOiJIUzI1NiJ9.signed",
-};
-
-const linksWithEditor = {
-  ...links,
-  editorUrl: "https://wadibardawil.com/letter/admin/drafts/2026-18/edit",
 };
 
 describe("renderDigestText", () => {
@@ -186,39 +180,6 @@ describe("renderDigestHtml", () => {
   it("explains the signed-link expiry in the footer when one-click is on", () => {
     const html = renderDigestHtml(makeDraft() as never, linksWithApprove);
     expect(html).toContain("signed link valid for 7 days");
-  });
-
-  it("renders the Edit in portal button when editorUrl is set", () => {
-    const html = renderDigestHtml(makeDraft() as never, linksWithEditor);
-    expect(html).toContain("Edit in portal");
-    expect(html).toContain(linksWithEditor.editorUrl);
-  });
-
-  it("does not render the Edit button when editorUrl is null", () => {
-    const html = renderDigestHtml(makeDraft() as never, links);
-    expect(html).not.toContain("Edit in portal");
-  });
-
-  it("escapes the editorUrl through escapeHtml", () => {
-    const html = renderDigestHtml(makeDraft() as never, {
-      ...links,
-      editorUrl: "https://example.com/edit?a=1&b=2",
-    });
-    expect(html).toContain("a=1&amp;b=2");
-    expect(html).not.toContain("a=1&b=2");
-  });
-});
-
-describe("renderDigestText with editorUrl", () => {
-  it("includes 'Edit in portal:' line when editorUrl is set", () => {
-    const text = renderDigestText(makeDraft() as never, linksWithEditor);
-    expect(text).toContain("Edit in portal:");
-    expect(text).toContain(linksWithEditor.editorUrl);
-  });
-
-  it("omits the editor line when editorUrl is null", () => {
-    const text = renderDigestText(makeDraft() as never, links);
-    expect(text).not.toContain("Edit in portal:");
   });
 });
 

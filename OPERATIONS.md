@@ -13,7 +13,6 @@ recovery moves when something breaks.
 | **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions runs `pnpm draft`. A pull request titled `Draft — Edition YYYY-WW` opens on `drafts/YYYY-WW`. | GitHub mobile pushes a notification. |
 | **Within ~1 minute** | If Resend is configured, a digest email lands in your inbox with the EN headline + thesis, QA score, OS pillar, People dimension, top 3 Validator notes, and two buttons: *Review on GitHub* + *Approve and publish* (or *Publish to Beehiiv* if the Worker isn't deployed). | Open the email on phone. Decide whether to review on GitHub or approve directly. |
 | **Anytime that week** | You tap *Review on GitHub* (or open the PR directly). EN + ES drafts render as markdown. | Comment to request changes, or commit edits via the GitHub mobile editor. |
-| **Or in the portal** | When `PORTAL_BASE_URL` is set, the digest also shows an *Edit in portal* button → opens `/admin/drafts/<edition>/edit` with EN + ES side-by-side. Saving commits directly to the `drafts/<edition>` branch. | Sign in once via Supabase magic link → edit → Save EN / Save ES. The PR auto-updates. |
 | **When the editorial is right** | You tap **Merge**. | The merge means *"editorial approved, drafts saved on main"* — nothing publishes yet. |
 | **Final publish** | Tap *Approve and publish* in the email (one tap when the Worker is deployed). Or fall back to Actions tab → **Publish to Beehiiv** → Run workflow → paste edition ID. | Beehiiv post + LinkedIn + X. |
 
@@ -70,24 +69,7 @@ The digest is a best-effort step — the cron does not fail when email isn't con
 
 Don't merge. Comment on the PR with what to change, then either:
 - Commit a fix directly to the branch from the GitHub mobile editor
-- Use the *Edit in portal* link in the digest for a side-by-side EN/ES surface
 - Or close the PR and run **Weekly Draft → Run workflow** to retry from scratch
-
-### "The portal editor says 'Branch moved' when I save"
-
-A SHA conflict — the branch advanced between when the editor loaded and when
-you saved (someone else committed via GitHub mobile, or the cron rebased).
-
-1. Tap **Reload page** in the editor banner.
-2. Re-apply your edit on top of the fresh buffer.
-3. Save again.
-
-If it conflicts twice in a row, switch to GitHub mobile for this edition.
-The portal editor does not do in-browser merge — that's a Phase 2 concern.
-
-**Note:** after big edits in the portal, the digest's QA score is stale (it
-reflects pre-edit state). The Validator runs again on the next weekly cron,
-not on each save.
 
 ---
 

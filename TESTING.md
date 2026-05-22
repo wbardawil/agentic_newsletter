@@ -134,48 +134,6 @@ If the Worker page shows `GitHub dispatch failed`:
 
 ---
 
-## Tier 3.5 — Portal admin editor (manual, monthly)
-
-Verifies the `/admin/drafts/<edition>/edit` editor end-to-end. Run roughly
-once a month, or any time you rotate the `GITHUB_TOKEN`.
-
-### A. Pre-flight
-
-1. In Vercel → Project → Settings → Environment Variables, confirm:
-   - `GITHUB_TOKEN` is set in **Production** (not Preview)
-   - Expiration > 30 days away
-   - `GITHUB_REPO` matches the repo
-2. Confirm `PORTAL_BASE_URL` is set as a repo secret.
-
-### B. Save drill
-
-1. Sign into the portal with an `ADMIN_EMAILS` user.
-2. Open `/admin/drafts/<existing-edition>/edit`.
-3. Add a single whitespace edit at the bottom of the EN body.
-4. Tap **Save EN**.
-5. Within ~5 seconds, the panel shows "Saved · view commit". Tap *view commit*
-   — confirm the commit landed on the `drafts/<edition>` branch.
-
-### C. Conflict drill
-
-1. Open the same edit page in two browser tabs.
-2. In tab 1: edit + Save EN (success).
-3. In tab 2: edit + Save EN.
-4. Tab 2 should show "Branch moved — reload to merge by hand."
-5. Tap **Reload page**. The fresh buffer comes back. Re-apply, save, success.
-
-### D. Token drill
-
-1. In Vercel, temporarily delete `GITHUB_TOKEN` from Production.
-2. Redeploy.
-3. Load the editor → expect "Editor not configured: GITHUB_TOKEN missing"
-   error on the page (not a crash). Restore the token, redeploy, confirm.
-
-If any drill fails, debug from `wrangler tail`-style logs (Vercel function
-logs) on the `/api/admin/drafts/[edition]` route.
-
----
-
 ## Tier 4 — End-to-end weekly run (production, real spend)
 
 This is the test that actually proves the laptop-free loop works.

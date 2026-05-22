@@ -293,7 +293,6 @@ function main(): void {
       "https://github.com/wbardawil/agentic_newsletter/actions/workflows/weekly-draft.yml",
     approveUrl:
       "https://approve.example.workers.dev/approve?t=SAMPLE-TOKEN-not-functional",
-    editorUrl: "https://wadibardawil.com/letter/admin/drafts/SAMPLE/edit",
   };
 
   const digestHtml = renderDigestHtml(draft as never, links);
