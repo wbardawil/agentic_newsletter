@@ -1,0 +1,33 @@
+{
+  "entries": [
+    {
+      "editionId": "2026-21",
+      "recordedAt": "2026-05-18T23:36:28.068Z",
+      "angle": {
+        "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+        "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
+        "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
+        "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
+        "suggestedSources": [
+          "887df2c7-5c37-47de-972e-3723e53c27aa",
+          "e49b75f7-9084-427c-a123-ac85800f4241",
+          "ce90c745-3e04-4f27-a973-30ad67bf9f85",
+          "3ad324f7-787e-4c65-81e2-400a8fc7684b"
+        ],
+        "talkingPoints": [
+          "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
+          "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
+          "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business.",
+          "Add one diligence workstream focused exclusively on decision rights, escalation patterns, and information flow — not as compliance check, but as operating model architecture assessment."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
+          "framework": "Kotter Step 2: Build the Guiding Coalition"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    }
+  ]
+}

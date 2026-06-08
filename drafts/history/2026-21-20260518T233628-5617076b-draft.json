@@ -1,0 +1,364 @@
+{
+  "runId": "5617076b-a1bc-4503-ba6a-9bf950546de6",
+  "editionId": "2026-21",
+  "generatedAt": "2026-05-18T23:36:28.086Z",
+  "contentHash": "3acde55b9cd90129c1301d973ea1a3cf1ee777c23bb25022fc1b204cc5ebc1c2",
+  "angle": {
+    "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+    "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
+    "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
+    "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
+    "suggestedSources": [
+      "887df2c7-5c37-47de-972e-3723e53c27aa",
+      "e49b75f7-9084-427c-a123-ac85800f4241",
+      "ce90c745-3e04-4f27-a973-30ad67bf9f85",
+      "3ad324f7-787e-4c65-81e2-400a8fc7684b"
+    ],
+    "talkingPoints": [
+      "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
+      "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
+      "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business.",
+      "Add one diligence workstream focused exclusively on decision rights, escalation patterns, and information flow — not as compliance check, but as operating model architecture assessment."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
+      "framework": "Kotter Step 2: Build the Guiding Coalition"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The reason your cleanest deal still failed integration",
+    "preheader": "Diligence audits the visible. The dependency is not visible.",
+    "subjectOptions": [
+      "What diligence cannot see",
+      "The reason your cleanest deal still failed integration",
+      "What ACG's new M&A report tells mid-market sellers"
+    ],
+    "sections": [
+      {
+        "id": "04b84f15-7b5d-4dc1-be1d-546a7d83b24c",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four institutions discover the layer they assumed would hold is the one that is missing.*\n\n- **Strategy:** A new ACG/Middle Market Growth report finds M&A deals consistently underperform, destroy value, or unravel during integration; CLA's Craig Arends pins the cause not on the absence of diligence but on how diligence is conceived. **Strategy is buying what you intend to own.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/)\n- **Operating Models:** Meta announced 10% staff cuts for Wednesday, with HR chief Janelle Gale telling employees that many orgs can now operate with a flatter structure and smaller pods that move faster with more ownership. **The operating model is what stays standing when you remove a layer.** [Read in Business Insider ->](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5)\n- **Technology:** Pope Leo XIV approved a Vatican commission on AI and will release his first papal encyclical on the subject alongside Anthropic cofounder Christopher Olah on May 25. **Technology never decides what it is for.** [Read in Fortune ->](https://fortune.com/2026/05/18/pope-leo-ai-commission-papal-letter-anthropic-co-founder-christopher-olah/)\n- **Human Capital:** A Phenom and Aptitude Research benchmark of 219 organizations found that less than 1% have integrated qualification workflows and 94% offer no automated interview scheduling at the apply moment. **Hiring systems fail at the handoff.** [Read in HR Executive ->](https://hrexecutive.com/most-hiring-automation-stops-at-the-apply-button-study-finds/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "0c768a5e-467e-4408-bd6b-90512275a721",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nA new report on M&A failure puts the diagnosis where most advisors do not: not in the absence of diligence, but in how diligence is conceived. Writing in [ACG's Middle Market Growth](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/), CLA's Craig Arends argues that deals appearing compelling on paper frequently underperform expectations, destroy shareholder value, or unravel during integration, despite increasingly sophisticated advisory support. The number is not new. The framing is. For decades, the industry has treated the failure rate as a tax on dealmaking. This week's report names it as a design flaw. Mid-market sponsors and operators reading it will recognize the company they bought as different from the company they thought they bought.\n===OPTION_B:provocation===\nThe companies most likely to fail in integration are the ones that looked cleanest in the data room. The pattern surfaces again this week in [ACG's coverage of why M&A deals disappoint](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/). Deals appearing compelling on paper, CLA notes, frequently underperform expectations, destroy shareholder value, or unravel during integration. The reason is structural, not analytical. A clean data room means the founder is good at documenting. It does not mean the business can operate without him. Diligence captures the artifacts. It misses the dependency. By the time anyone names the dependency, the deal already closed at the price that assumed it did not exist.\n===OPTION_C:pattern===\nThree pieces this week, three different settings, the same diagnosis. [ACG on M&A](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/): deals unravel during integration despite extensive diligence. [Meta on its own restructuring](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5): many orgs can now operate with a flatter structure of smaller pods carrying more ownership. [Phenom on hiring](https://hrexecutive.com/most-hiring-automation-stops-at-the-apply-button-study-finds/): less than 1% of organizations have integrated qualification workflows. Different industries. Different scales. Same problem underneath. The layer that runs the business when the visible work disappears is the layer no one designs. It only gets named when it breaks.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8a598bc1-f814-44da-b74d-77d21f5b9fb7",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Most advisors call this an M&A diligence problem and prescribe more diligence. It is not a diligence problem. It is an operating model problem that diligence cannot see.\n\nThe pattern plays out the same way every time. The deal closes. The numbers checked out. The integration team arrives Monday morning, ready to run the playbook. Within thirty days, decisions start stalling. Vendor renewals sit. Pricing exceptions wait. A customer escalation surfaces and nobody knows who decides. The seller's team looks at the buyer's team. The buyer's team looks at the seller's team. Both look for the founder.\n\nThis is the diagnosis the data room cannot deliver. The seller's leadership team has never operated without the founder's real-time input. Every meaningful decision routed through one person for years. That is how the business grew. The financials capture the result. They do not capture the dependency. By the time the integration team feels the dependency, the 90-day window is half over and the value case is leaking.\n\n**The pre-close coalition.**\n\nThe Operating Model OS has a discipline most M&A processes skip entirely: ratifying the decision-rights structure before the deal closes, not during integration. The buyer and seller name a small group of leaders (usually three to five people drawn from both sides) who will hold authority over the operating model during the transition. They meet before close. They agree on which decisions each member owns. They publish the structure to both organizations.\n\nThis is not a committee. It is the artifact that lets the business run when the founder steps back. The buyer's integration team gains context. The seller's leadership team gains authority. The founder gains a defined role with a clear exit ramp. The 90-day window stops being a trust crisis and becomes a structured handoff.\n\nThe shift this requires is uncomfortable for the founder. For years the team learned to wait for his input. And he learned to give it. The coalition asks both sides to break that pattern on a date certain. Some founders cannot do it. The ones who can are the ones whose deals close at the price the model said they would.\n\n**This week.**\n\nIf you are preparing to sell, write down the five decisions you made last week that nobody on your team was authorized to make on their own. That list is your integration risk register. Hand it to your advisor before the next diligence call. If you are preparing to buy, ask for the seller's version of that list. Whether you get it tells you what you are actually buying.",
+        "sourceRefs": []
+      },
+      {
+        "id": "98a0f33c-1e8e-428d-a39c-9c98ae5061a4",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions.\n\nIn a memo to employees, HR chief Janelle Gale named what the cuts are actually for. Many orgs, she wrote, can now operate with a flatter structure of smaller pods and cohorts that move faster and carry more ownership. The targets are managerial positions specifically.\n\nFor mid-market operators, the operating signal is not the headcount. It is the language. When Meta names smaller pods with more ownership as the destination, it is naming the architecture every $50M operator needs and rarely builds: distributed decision authority that does not route through one person.\n\nThe cost of getting there is what Meta is paying this week. The cost of not getting there is what shows up in every founder-bound business that tries to scale or sell.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5f618339-270d-4aa6-8b11-79d6307b82ef",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Integration Risk Register** - a one-page list of every decision the founder made last week that nobody else on the team was authorized to make. For owners preparing to sell, this is the operating model artifact the data room cannot capture and the buyer's integration team will spend ninety days trying to reverse-engineer. Build it in a single column. Hand it to your advisor before the next diligence call.",
+        "sourceRefs": []
+      },
+      {
+        "id": "fa64d83a-395e-4ea6-be55-04cce3f6594d",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many decisions land in your inbox before noon Monday that should have been resolved on Friday without you. The count is the metric, not the content. A founder-bound operating model produces a Monday queue. A coalition-run operating model produces a Monday standup. Track the queue size for four weeks and you will know which one you have actually built.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1257be97-92bb-42c4-afb9-7b883b681b22",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué el due diligence más limpio falla en la integración",
+    "preheader": "El due diligence audita lo visible. La dependencia del fundador no lo es.",
+    "thesis": "Los dueños de medianas empresas gastan cifras de seis dígitos en un due diligence que audita el pasado, pero nunca diagnostica si la empresa puede operar sin su fundador. Esa es la variable que decide el resultado post-cierre.",
+    "sections": [
+      {
+        "id": "04b84f15-7b5d-4dc1-be1d-546a7d83b24c",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro instituciones descubren que la capa que daban por sentada es justamente la que falta.*\n\n- **Estrategia:** Un nuevo informe de ACG/Middle Market Growth concluye que las operaciones de M&A subdesempeñan, destruyen valor o se desbaratan en la integración; Craig Arends, de CLA, ubica la causa no en la ausencia de due diligence, sino en cómo se concibe. **La estrategia consiste en comprar aquello que uno pretende operar.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/)\n- **Modelos Operativos:** Meta anunció recortes del 10% para el miércoles; su jefa de RH, Janelle Gale, dijo a los empleados que muchas organizaciones ya operan con estructuras más planas y pods pequeños con más autoridad. **El modelo operativo es lo que queda cuando se retira una capa.** [Leer en Business Insider ->](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5)\n- **Tecnología:** El Papa León XIV aprobó una comisión vaticana sobre IA y publicará su primera encíclica papal sobre el tema junto al cofundador de Anthropic, Christopher Olah, el 25 de mayo. **La tecnología nunca decide para qué sirve.** [Leer en Fortune ->](https://fortune.com/2026/05/18/pope-leo-ai-commission-papal-letter-anthropic-co-founder-christopher-olah/)\n- **Capital Humano:** Un benchmark de Phenom y Aptitude Research sobre 219 organizaciones encontró que menos del 1% tiene flujos de calificación integrados y 94% no ofrece agendamiento automatizado al momento de aplicar. **Los sistemas de contratación fallan en el traspaso.** [Leer en HR Executive ->](https://hrexecutive.com/most-hiring-automation-stops-at-the-apply-button-study-finds/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "0c768a5e-467e-4408-bd6b-90512275a721",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Un nuevo informe sobre por qué fracasan las operaciones de M&A ubica el diagnóstico donde pocos asesores se atreven a señalar: no en la ausencia de due diligence, sino en cómo se concibe. En [Middle Market Growth de ACG](https://middlemarketgrowth.org/cla-m-a-deals-fail-diligence-dilemma/), Craig Arends, de CLA, sostiene que muchas operaciones impecables en el papel terminan por debajo de las expectativas, destruyen valor accionario o se desbaratan en la integración, a pesar del apoyo asesor cada vez más sofisticado. El número no es nuevo. El encuadre, sí. Durante décadas, la industria trató ese índice de fracaso como un impuesto inevitable sobre el dealmaking. El informe de esta semana lo nombra como falla de diseño. Quien lo lea desde la mediana empresa, ya sea sponsor u operador, reconocerá algo incómodo: la empresa que compró no era la empresa que creyó comprar.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8a598bc1-f814-44da-b74d-77d21f5b9fb7",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "La mayoría de los asesores llama a esto un problema de due diligence y prescribe más due diligence. No lo es. Es un problema de modelo operativo que el due diligence no puede ver.\n\nEl patrón se repite sin variación. Cierra la operación. Los números cuadraron. El equipo de integración llega el lunes por la mañana, listo para ejecutar el playbook. A los treinta días, las decisiones empiezan a atorarse. Las renovaciones con proveedores esperan. Las excepciones de precio no avanzan. Surge la escalación de un cliente y nadie sabe quién decide. El equipo del vendedor mira al del comprador. El del comprador mira al del vendedor. Ambos buscan al fundador.\n\nEse es el diagnóstico que el data room no entrega. El equipo directivo del vendedor nunca ha operado sin la señal en tiempo real del fundador. Durante años, cada decisión relevante pasó por una sola persona. Así creció el negocio. Los estados financieros capturan el resultado. No capturan la dependencia. Para cuando el equipo de integración la percibe, la ventana de 90 días ya va por la mitad y el caso de valor se está fugando.\n\n**La coalición pre-cierre.**\n\nEl Operating Model OS contempla una disciplina que la mayoría de los procesos de M&A omite por completo: ratificar la estructura de derechos de decisión antes del cierre, no durante la integración. El comprador y el vendedor designan un grupo pequeño de líderes, tres a cinco personas de ambos lados. Ese grupo sostiene la autoridad sobre el modelo operativo durante la transición. Se reúnen antes del cierre. Acuerdan qué decisiones controla cada quien. Publican la estructura a ambas organizaciones.\n\nNo es un comité. Es el documento que permite que el negocio opere cuando el fundador da un paso atrás. El equipo de integración del comprador gana contexto. El equipo directivo del vendedor gana autoridad. El fundador obtiene un rol acotado, con una rampa de salida clara. La ventana de 90 días deja de ser una crisis de confianza y se convierte en un traspaso estructurado.\n\nEl cambio que esto exige resulta incómodo para el fundador. Durante años, el equipo aprendió a esperar su señal. Y él aprendió a darla. La coalición pide a ambas partes romper ese hábito en una fecha cierta. Hay fundadores que no pueden lograrlo. Los que sí son quienes cierran al precio que el modelo dijo que valía la empresa.\n\n**Esta semana.**\n\nSi usted prepara una venta, escriba las cinco decisiones que tomó la semana pasada y que nadie en su equipo estaba autorizado a tomar por cuenta propia. Esa lista es su registro de riesgo de integración. Entréguela a su asesor antes de la próxima llamada de due diligence. Si usted prepara una compra, pida al vendedor su versión de esa lista. Si la entrega, o no, le dirá qué está comprando en realidad.",
+        "sourceRefs": []
+      },
+      {
+        "id": "98a0f33c-1e8e-428d-a39c-9c98ae5061a4",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\n[Meta anunció esta semana](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) que recortará 10% de su plantilla el miércoles, cerca de 8,000 puestos, en tres olas de notificaciones a las 4 de la mañana hora local de cada región.\n\nEn un memo a los empleados, la jefa de RH, Janelle Gale, dejó en claro para qué son realmente los recortes. Muchas organizaciones, escribió, ya pueden operar con una estructura más plana, con pods y cohortes pequeños que avanzan más rápido y cargan mayor responsabilidad. Los objetivos, en concreto, son las posiciones de mando intermedio.\n\nPara el operador de mediana empresa, la señal operativa no es el corte de plazas. Es el lenguaje. Cuando Meta señala los pods pequeños con más autoridad como el destino, está nombrando la arquitectura que todo operador de 50 mdd necesita y pocas veces construye: autoridad de decisión distribuida que no depende de una sola persona.\n\nEl costo de llegar ahí es lo que Meta paga esta semana. El costo de no llegar es lo que aparece en cada empresa atada al fundador que intenta escalar o vender.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5f618339-270d-4aa6-8b11-79d6307b82ef",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Integration Risk Register** - una lista de una sola página con cada decisión que el fundador tomó la semana pasada y que ningún otro miembro del equipo estaba facultado para tomar. Para el dueño que prepara una venta, es el documento de modelo operativo que el data room no puede capturar y que el equipo de integración del comprador pasará noventa días intentando reconstruir. Constrúyalo en una sola columna. Entréguelo a su asesor antes de la próxima llamada de due diligence.",
+        "sourceRefs": []
+      },
+      {
+        "id": "fa64d83a-395e-4ea6-be55-04cce3f6594d",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuántas decisiones llegan a su bandeja antes del mediodía del lunes y que debieron resolverse el viernes sin usted. El conteo es el indicador, no el contenido. Un modelo operativo atado al fundador genera una cola de lunes. Un modelo dirigido por una coalición produce un standup de lunes. Lleve el conteo durante cuatro semanas y sabrá cuál de los dos construyó en realidad.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1257be97-92bb-42c4-afb9-7b883b681b22",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 74,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 205 — target range is 95–185."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (26 words). Break it up.",
+        "excerpt": "**The pre-close coalition.**\n\nThe Operating Model OS has a discipline most M&A processes skip entirely: ratifying the de"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (30 words). Break it up.",
+        "excerpt": "The buyer and seller name a small group of leaders (usually three to five people drawn from both sides) who will hold au"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (29 words). Break it up.",
+        "excerpt": "**This week.**\n\nIf you are preparing to sell, write down the five decisions you made last week that nobody on your team "
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'pre-close coalition' appears as a named concept with no signal that it is the writer's own framing. It reads as if it should be a recognized industry term. Either add explicit framing ('what I call the pre-close coalition') or use established industry language ('transition steering committee' or 'integration leadership team').",
+        "excerpt": "The Operating Model OS has a discipline most M&A processes skip entirely: ratifying the decision-rights structure before the deal closes, not during integration. The buyer and seller name a small group of leaders (usually three to five people drawn from both sides) who will hold authority over the operating model during the transition. They meet before close. They agree on which decisions each member owns. They publish the structure to both organizations. This is not a committee. It is the artifact that lets the business run when the founder steps back."
+      },
+      {
+        "rule": "rule-7-compass-specificity",
+        "severity": "info",
+        "section": "compass",
+        "message": "The Compass opens correctly with 'Watch for this week:' and names a trackable signal (Monday inbox decision count). However, the metric could be sharper: 'Track the number of decisions that land in your inbox Monday morning that your team should have resolved Friday without you' would eliminate the vague 'before noon' qualifier.",
+        "excerpt": "how many decisions land in your inbox before noon Monday that should have been resolved on Friday without you."
+      }
+    ],
+    "wordCounts": {
+      "signal": 205,
+      "apertura": 109,
+      "insight": 427,
+      "fieldReport": 153,
+      "tool": 70,
+      "compass": 64,
+      "total": 1028
+    },
+    "shareableSentence": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.\"",
+      "Reframe confirmed: \"Most advisors call this an M&A diligence problem and prescribe more diligence. It is not a diligence problem. It is an operating model problem that diligence cannot see.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "ACG/Middle Market Growth report finds M&A deals consistently underperform, destroy value, or unravel during integration",
+          "supportingFactId": "887df2c7-5c37-47de-972e-3723e53c27aa",
+          "language": "en"
+        },
+        {
+          "claim": "CLA's Craig Arends pins the cause not on the absence of diligence but on how diligence is conceived",
+          "supportingFactId": "887df2c7-5c37-47de-972e-3723e53c27aa",
+          "language": "en"
+        },
+        {
+          "claim": "Meta announced 10% staff cuts for Wednesday",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "en"
+        },
+        {
+          "claim": "HR chief Janelle Gale told employees that many orgs can now operate with a flatter structure and smaller pods that move faster with more ownership",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "en"
+        },
+        {
+          "claim": "Pope Leo XIV approved a Vatican commission on AI",
+          "supportingFactId": "5751c91e-3277-4fc0-a96c-cf52a6174470",
+          "language": "en"
+        },
+        {
+          "claim": "Will release his first papal encyclical on the subject alongside Anthropic cofounder Christopher Olah on May 25",
+          "supportingFactId": "5751c91e-3277-4fc0-a96c-cf52a6174470",
+          "language": "en"
+        },
+        {
+          "claim": "Phenom and Aptitude Research benchmark of 219 organizations found that less than 1% have integrated qualification workflows",
+          "supportingFactId": "3eb70ad1-9798-4993-9e24-9bfad1f5ad97",
+          "language": "en"
+        },
+        {
+          "claim": "94% offer no automated interview scheduling at the apply moment",
+          "supportingFactId": "3eb70ad1-9798-4993-9e24-9bfad1f5ad97",
+          "language": "en"
+        },
+        {
+          "claim": "Meta will cut around 8,000 roles in three waves of notifications timed to 4am local time across regions",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "en"
+        },
+        {
+          "claim": "Un nuevo informe de ACG/Middle Market Growth concluye que las operaciones de M&A subdesempeñan, destruyen valor o se desbaratan en la integración",
+          "supportingFactId": "887df2c7-5c37-47de-972e-3723e53c27aa",
+          "language": "es"
+        },
+        {
+          "claim": "Craig Arends, de CLA, ubica la causa no en la ausencia de due diligence, sino en cómo se concibe",
+          "supportingFactId": "887df2c7-5c37-47de-972e-3723e53c27aa",
+          "language": "es"
+        },
+        {
+          "claim": "Meta anunció recortes del 10% para el miércoles",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "es"
+        },
+        {
+          "claim": "Janelle Gale dijo a los empleados que muchas organizaciones ya operan con estructuras más planas y pods pequeños con más autoridad",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "es"
+        },
+        {
+          "claim": "El Papa León XIV aprobó una comisión vaticana sobre IA",
+          "supportingFactId": "5751c91e-3277-4fc0-a96c-cf52a6174470",
+          "language": "es"
+        },
+        {
+          "claim": "Publicará su primera encíclica papal junto al cofundador de Anthropic, Christopher Olah, el 25 de mayo",
+          "supportingFactId": "5751c91e-3277-4fc0-a96c-cf52a6174470",
+          "language": "es"
+        },
+        {
+          "claim": "Meta recortará cerca de 8,000 puestos, en tres olas de notificaciones a las 4 de la mañana hora local",
+          "supportingFactId": "bf8b8fca-648f-4f02-8377-a79482118894",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0,
+      "closestPriorAngle": null,
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Business Insider",
+        "Fortune",
+        "HR Executive",
+        "Middle Market Growth (ACG)"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong voice match (88/100), excellent source diversity (4 distinct outlets), original angle, and zero unverified claims."
+  },
+  "designer": null,
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11313,
+      "outputTokens": 643,
+      "costUsd": 0.043584
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 675,
+      "outputTokens": 11815,
+      "costUsd": 0.29334600000000005
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 641,
+      "costUsd": 0.009687
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1013,
+      "outputTokens": 10118,
+      "costUsd": 0.251181
+    },
+    "designer": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1488,
+      "costUsd": 0.022386
+    },
+    "totalUsd": 0.6201840000000001
+  }
+}
