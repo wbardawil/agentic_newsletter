@@ -10,30 +10,31 @@ recovery moves when something breaks.
 
 | When | What happens | What you do |
 |---|---|---|
-| **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions runs `pnpm draft`. A pull request titled `Draft — Edition YYYY-WW` opens on `drafts/YYYY-WW`. | GitHub mobile pushes a notification. |
-| **Within ~1 minute** | If Resend is configured, a digest email lands in your inbox with the EN headline + thesis, QA score, OS pillar, People dimension, top 3 Validator notes, and two buttons: *Review on GitHub* + *Approve and publish* (or *Publish to Beehiiv* if the Worker isn't deployed). | Open the email on phone. Decide whether to review on GitHub or approve directly. |
-| **Anytime that week** | You tap *Review on GitHub* (or open the PR directly). EN + ES drafts render as markdown. | Comment to request changes, or commit edits via the GitHub mobile editor. |
-| **When the editorial is right** | You tap **Merge**. | The merge means *"editorial approved, drafts saved on main"* — nothing publishes yet. |
-| **Final publish** | Tap *Approve and publish* in the email (one tap when the Worker is deployed). Or fall back to Actions tab → **Publish to Beehiiv** → Run workflow → paste edition ID. | Beehiiv post + LinkedIn + X. |
+| **Monday 13:00 UTC** *(8am ET / 7am CT)* | GitHub Actions drafts EN + ES + hero image. A pull request opens on `drafts/YYYY-WW`. | GitHub mobile notification. |
+| **Within ~2 minutes** | Digest email arrives: hero image preview, headline, thesis, QA score, and four buttons. | Open on phone. |
+| **Step 1 — Review the image** | Tap **Aprobar imagen** if it's good. Or tap **Rechazar imagen** if it misses. Rejecting triggers a new image automatically (up to 5 attempts). | One tap. |
+| **Step 2 — Review the article** | Tap **Aprobar artículo** after the image is approved. This publishes the edition to the newsroom with the hero image. | One tap. |
+| **[Optional] Beehiiv distribution** | If you also want to push to Beehiiv email subscribers, run: Actions → **Publish to Beehiiv (optional)** → edition ID. | Manual action, not required. |
 
-**The two states of the publish gate:**
+**The approval order is enforced:** Approving the article before the image is approved will show an error — approve the image first.
 
-- **Phase 1 (Resend only)**: digest email shows a *Publish to Beehiiv* button that opens the workflow page on phone. You paste the edition ID and tap Run.
-- **Phase 2 (Resend + approval Worker)**: digest email shows an *Approve and publish* button that runs the publish workflow in one tap. Signed with HMAC, valid for 7 days.
-
-**In both states, merging the PR does not push to subscribers.** Publishing requires the explicit approve action.
+**Rejection paths:**
+- **Rechazar imagen** → new hero generated automatically, new digest sent (~10 min)
+- **Rechazar artículo** → full new draft generated with your feedback (~1.5 hours)
+- **Rechazar sección** (Insight, Field Report, etc.) → full new draft with that section rewritten
 
 ---
 
 ## The things only you can do
 
-1. **Decide if the editorial is good enough.** Tap Merge or request changes on the PR.
-2. **Edit copy on phone.** Use the GitHub mobile editor to fix the apertura, swap a Field Report, sharpen a sentence. Commit directly to the PR branch.
-3. **Approve final design + copy** *(once the email gate is built)*. Until then: review the merged content on `main`, design assets externally, then trigger publish.
-4. **Trigger Beehiiv publish.** Manual until further notice. Actions → Publish to Beehiiv → Run workflow → edition ID.
-5. **Pause for vacation.** See "Knobs" below.
+1. **Approve or reject the hero image.** One tap from the digest email.
+2. **Approve or reject the article** (after the image is approved). One tap.
+3. **Provide rejection feedback** via the reject buttons. The more specific, the better the next attempt.
+4. **Edit copy on phone** via the GitHub mobile editor on the PR branch before approving.
+5. **Trigger Beehiiv distribution** (optional). Actions → Publish to Beehiiv → Run.
+6. **Pause for vacation.** See Knobs below.
 
-Everything else — sourcing, drafting, translating, validating, social copy — runs on cron without you.
+Everything else — sourcing, drafting, translating, validating, designing, uploading — runs automatically.
 
 ---
 
@@ -41,35 +42,87 @@ Everything else — sourcing, drafting, translating, validating, social copy —
 
 ### "I got a 🚨 Weekly draft cron failed issue"
 
-The Monday cron failed before producing a draft. Most common causes, in order:
+The Monday cron failed before producing a draft. Causes, in order:
 
-1. **`ANTHROPIC_API_KEY` revoked or missing.** Settings → Secrets and variables → Actions → check the secret is set. Re-paste from console.anthropic.com if needed.
-2. **Anthropic API rate limit or outage.** Re-run: Actions → Weekly Draft → Run workflow.
-3. **A recent code change broke a prompt or schema.** Read the run logs. Revert the offending commit on `main`. Re-run.
+1. **`ANTHROPIC_API_KEY` revoked or missing.** Settings → Secrets → check and re-paste.
+2. **`GEMINI_API_KEY` revoked or model deprecated.** Check `config/brand-style-tokens.json → imageStyle.model` is a valid model name. Set `DRY_RUN=true` temporarily to skip image generation and still get a draft.
+3. **Anthropic API outage.** Re-run: Actions → Weekly Draft → Run workflow.
+4. **Code change broke a schema.** Read run logs. Revert. Re-run.
 
-After fixing: Actions → Weekly Draft → **Run workflow** → leave edition blank. Close the failure issue when the new run succeeds.
+Fix → Actions → Weekly Draft → **Run workflow** → leave edition blank → close the issue.
 
-### "The PR opened but I didn't get the digest email"
+---
 
-The digest is a best-effort step — the cron does not fail when email isn't configured. Causes, in order:
+### "I didn't get the digest email"
 
-1. **One of `RESEND_API_KEY` / `RESEND_FROM` / `RESEND_TO` is missing.** The workflow logs `::notice::Resend not fully configured`. Set all three secrets.
-2. **Sender not verified in Resend.** For production you must verify a domain in Resend → Domains. For testing use `RESEND_FROM=onboarding@resend.dev`.
-3. **Email landed in spam.** Check the spam folder. Add the sender to your contacts to retrain.
-4. **Resend quota hit (100/day on free tier).** Unlikely for weekly cadence, but check Resend → Logs.
+1. One of `RESEND_API_KEY` / `RESEND_FROM` / `RESEND_TO` is missing — set all three secrets.
+2. Sender not verified in Resend. Verify the domain or use `onboarding@resend.dev` for testing.
+3. Email landed in spam. Add sender to contacts.
+4. `APPROVAL_BASE_URL` or `APPROVAL_SIGNING_SECRET` missing — both must be set together for the image/article buttons to appear.
 
-### "Publish to Beehiiv failed when I triggered it"
+---
 
-1. **Quality gate refused** (score below 70 or Validator flagged errors). The run log says which. Fix the editorial on `main` (commit a copy fix), then re-run **Publish to Beehiiv**.
-2. **Beehiiv secret missing or wrong.** Settings → Secrets → set `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID`.
-3. **Draft not on main.** Did you actually merge the weekly draft PR? The publish job reads `drafts/<id>-draft.json` from `main`.
-4. **Beehiiv API transient error.** Re-run.
+### "Image not approved — I tapped approve but got an error"
 
-### "The draft is bad / I don't like it"
+The portal `/review` endpoint could not verify the token. Causes:
 
-Don't merge. Comment on the PR with what to change, then either:
-- Commit a fix directly to the branch from the GitHub mobile editor
-- Or close the PR and run **Weekly Draft → Run workflow** to retry from scratch
+1. **Token expired** (links last 7 days). Generate a new one — ask a developer to run the token generator script.
+2. **`APPROVAL_SIGNING_SECRET` mismatch** between pipeline and portal. Must be the same value in both GitHub Secrets and Vercel env vars.
+3. **review.json not on the draft branch.** The pipeline didn't finish correctly — re-run `weekly-draft.yml`.
+
+---
+
+### "Aprobar artículo shows 'Image approval required'"
+
+You tapped "Aprobar artículo" before "Aprobar imagen". Tap "Aprobar imagen" first, then "Aprobar artículo".
+
+---
+
+### "Quality gate not met on article approval"
+
+The draft didn't pass automated quality checks. This means the Validator found real issues (score < 70 or `isValid: false`).
+
+Options:
+1. Tap "Rechazar artículo" to trigger a new draft — the system will try again.
+2. Or open the PR, edit the copy directly on the branch, then approve.
+
+---
+
+### "🖼️ Image regen limit reached — GitHub issue opened"
+
+The hero image was rejected 5 times in a row. The system stopped and opened a GitHub issue. You have two choices:
+
+**Option A — approve the best version you have:**
+Open the digest email that came after the last regeneration and tap "Aprobar imagen".
+
+**Option B — fresh start:**
+Close the issue, then run: Actions → **Weekly Draft** → Run workflow → same edition ID. This starts a completely new draft cycle.
+
+---
+
+### "📝 Content regen limit reached — GitHub issue opened"
+
+The article was rejected/rerun 3 times. Same two options as above:
+
+**Option A** — open the latest PR, edit the copy you want, merge it, then approve from the email.
+**Option B** — Actions → Weekly Draft → Run → same edition ID.
+
+---
+
+### "The article published but has no image"
+
+`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` were not set in the pipeline secrets when the draft ran, so the hero image was never uploaded to Supabase Storage.
+
+Ask a developer to run the manual upload script and re-approve. Or set the Supabase secrets and re-run the draft.
+
+---
+
+### "Publish to Beehiiv failed"
+
+1. **Review gate blocked it** — the edition's `review.json` doesn't have both approvals. Approve image + article via the email links first.
+2. **Quality gate blocked it** — same as above, score < 70.
+3. **`BEEHIIV_API_KEY` or `BEEHIIV_PUBLICATION_ID` missing.** Set in secrets.
+4. **Beehiiv transient error.** Re-run the workflow.
 
 ---
 
@@ -79,68 +132,80 @@ All settable from phone via Settings → Secrets and variables → Actions.
 
 | Knob | Where | Effect |
 |---|---|---|
-| **Pause weekly cron** | *Variables* → `WEEKLY_DRAFT_PAUSED = true` | Vacation mode. Cron skips silently until you set it back to `false` or delete the variable. Manual dispatch still works. |
-| **Change schedule** | Edit `.github/workflows/weekly-draft.yml` line `cron:` | Use [crontab.guru](https://crontab.guru) to translate. Default `0 13 * * MON` = Mondays 13:00 UTC. |
-| **Quality threshold** | Edit `.github/workflows/publish-to-beehiiv.yml` env `QA_MIN_SCORE` | Default 70. Lower = more lenient publish gate. |
+| **Pause weekly cron** | *Variables* → `WEEKLY_DRAFT_PAUSED = true` | Cron skips silently until you set it back. Manual dispatch still works. |
+| **Change schedule** | Edit `weekly-draft.yml` line `cron:` | Default `0 13 * * MON` = Mondays 13:00 UTC. Use [crontab.guru](https://crontab.guru). |
+| **Skip image generation** | `DRY_RUN=true` secret | Draft runs without calling Gemini. Useful if the Gemini key has issues. |
+| **Regen limits** | `MAX_IMAGE_REGEN_ATTEMPTS` (default 5), `MAX_CONTENT_REGEN_ATTEMPTS` (default 3) | How many automatic retries before a human-intervention issue is opened. |
+| **Quality threshold** | `QA_MIN_SCORE` in portal Vercel env | Default 70. Lower = more lenient. |
 
 ---
 
 ## First-time setup (one time only)
 
-Secrets in **Settings → Secrets and variables → Actions → New repository secret**:
+Secrets in **Settings → Secrets and variables → Actions → New repository secret**.
 
 **Required for drafting:**
 - `ANTHROPIC_API_KEY` — from console.anthropic.com
 
-**Required to publish to Beehiiv** (when you trigger publish):
-- `BEEHIIV_API_KEY` — Beehiiv → Settings → API
-- `BEEHIIV_PUBLICATION_ID` — visible in your Beehiiv URL
+**Required for hero image generation:**
+- `GEMINI_API_KEY` — from Google AI Studio (aistudio.google.com)
+- `SUPABASE_URL` — your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY` — from Supabase project settings → API
 
-**For the email digest (phase 1 of the email approval gate):**
-- `RESEND_API_KEY` — from resend.com. Free tier sends 100 emails/day, enough for the weekly digest.
-- `RESEND_FROM` — verified sender. For testing: `onboarding@resend.dev`. For production: a verified address on a domain you own (Resend → Domains).
-- `RESEND_TO` — your editor inbox (the address that gets the weekly digest).
+**Required for the email approval gate:**
+- `RESEND_API_KEY` — from resend.com (free tier: 100 emails/day)
+- `RESEND_FROM` — verified sender address
+- `RESEND_TO` — your editor inbox
+- `APPROVAL_BASE_URL` — your deployed portal URL, e.g. `https://portal.yourdomain.com`
+- `APPROVAL_SIGNING_SECRET` — random secret shared between pipeline and portal. Generate: `openssl rand -base64 48`. Set the **same value** in both GitHub Secrets and Vercel environment variables.
 
-**For one-click magic-link approval (phase 2; optional):**
-- `APPROVAL_BASE_URL` — your deployed Cloudflare Worker URL, e.g. `https://transformation-letter-approval.<your-subdomain>.workers.dev`
-- `APPROVAL_SIGNING_SECRET` — random secret shared between the digest sender and the Worker. Generate with `openssl rand -base64 48`. Set the **same value** as a Worker secret via `wrangler secret put APPROVAL_SIGNING_SECRET`.
+**Portal Vercel environment variables** (set in Vercel project settings):
+- `NEXT_PUBLIC_SUPABASE_URL` — same as SUPABASE_URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — from Supabase project → API → anon key
+- `SUPABASE_SERVICE_ROLE_KEY` — same as above
+- `APPROVAL_SIGNING_SECRET` — same as GitHub secret
+- `GITHUB_TOKEN` — fine-grained PAT with Contents: read/write on this repo
+- `GITHUB_REPO` — owner/repo format
 
-Both phase-2 secrets must be set together. See [workers/approval-receiver/README.md](workers/approval-receiver/README.md) for the one-time Worker deployment (free Cloudflare account; ~10 minutes).
+**Supabase Storage bucket** (one-time SQL):
+```sql
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('edition-assets', 'edition-assets', true)
+ON CONFLICT (id) DO NOTHING;
+```
 
-**Optional, expand reach when ready:**
-- `GEMINI_API_KEY` — Google Gemini, used by the Designer agent for hero image generation. Required only when Designer is wired into the cron. Until then, set `DRY_RUN=true` to skip image generation if you exercise the Designer manually.
+**Optional distribution:**
+- `BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID` — for Beehiiv email distribution
 - `LINKEDIN_ACCESS_TOKEN` — LinkedIn cross-post
-- `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` — X cross-post
+- `TWITTER_API_KEY/SECRET`, `TWITTER_ACCESS_TOKEN/SECRET` — X cross-post
 - `FEEDLY_API_KEY` — supplemental Radar source
 - `AIRTABLE_API_KEY`, `AIRTABLE_BASE_ID` — run ledger
-- `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — portal mirror. On publish,
-  the edition + its Radar sources are upserted into the portal's
-  `editions`/`edition_sources` tables so the member archive and the
-  Transformation AI ground on them. Non-fatal if unset — Beehiiv delivery
-  is never blocked by the mirror. Service-role key is server-side only.
 
-**Repository variables** (Variables tab):
-- `WEEKLY_DRAFT_PAUSED` — only set this when you want to pause
-
-You also need the GitHub mobile app installed with notifications enabled for this repo. That's how the loop reaches your phone.
+**Repository variables** (Variables tab, not Secrets):
+- `WEEKLY_DRAFT_PAUSED` — only set when you want to pause the cron
 
 ---
 
-## What's not yet automated
+## The Cloudflare Worker (deprecated)
 
-These are the next building blocks. The order matters: editorial quality first, then design, then approval, then publishing automation.
+The `workers/approval-receiver/` directory contains the original approval Worker.
+It is **no longer the primary path** — the portal handles all approvals now.
 
-1. **Source bundle expansion** — `pnpm verify:feeds` proposes 34 new RSS feeds; survivors get added to `src/agents/radar.ts`. Improves editorial quality at the input layer.
-2. **Designer agent — WIRED.** `pnpm draft` now produces `drafts/<id>-hero.png` + `drafts/<id>-designer.json` (alt-text + captions in EN/ES) when `GEMINI_API_KEY` is set. The hero is embedded at the top of `<id>-en.html` and `<id>-es.html` so it renders inline in the GitHub PR preview on phone. Without the key, the step gracefully skips and the run completes without an image. Use `--skip-designer` to force-skip even with the key set (cost-sensitive reruns).
-3. **Email approval gate phase 2 — DEPLOYED.** Signed magic link in the digest triggers a Cloudflare Worker, which dispatches `repository_dispatch: edition_approved`, which auto-runs the publish workflow. To activate: deploy the Worker per `workers/approval-receiver/README.md`, then set `APPROVAL_BASE_URL` + `APPROVAL_SIGNING_SECRET` in repo secrets.
+The Worker used to receive the magic-link tap and trigger Beehiiv publishing via
+`repository_dispatch`. That role now belongs to `portal/app/review/route.ts`,
+which handles granular decisions (image approve/reject, article approve/reject)
+and publishes directly to Supabase.
 
-Until #1–#3 are done, **Beehiiv publishing stays a manual workflow_dispatch action**.
+**You can leave the Worker deployed** — it won't interfere. If you want to clean up,
+set `APPROVAL_BASE_URL` to point to the portal URL instead of the Worker URL,
+then undeploy the Worker at a time that feels right.
 
 ---
 
 ## When in doubt
 
-- **Run logs**: GitHub repo → Actions tab. Every run is preserved.
-- **The truth about the pipeline**: `CLAUDE.md` (architecture) + `src/voice-bible/voice-bible.md` (editorial spine).
-- **How to verify the system is healthy**: `TESTING.md` (drills, smoke tests, key rotations).
+- **Run logs:** GitHub repo → Actions tab.
+- **Pipeline architecture:** `CLAUDE.md`
+- **Editorial spine:** `src/voice-bible/voice-bible.md`
+- **Testing and local simulation:** `TESTING.md`
 - **Don't memorize. Don't manage. Read this file.**
