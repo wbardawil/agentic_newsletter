@@ -33,6 +33,10 @@ export interface ApiClients {
   airtableBaseId: string | undefined;
   /** Google Gemini API key — used by the Designer agent for image generation. */
   geminiApiKey: string | undefined;
+  /** Supabase project URL — used for portal mirror and edition-asset Storage. */
+  supabaseUrl: string | undefined;
+  /** Supabase service-role key — bypasses RLS; server-side only. */
+  supabaseServiceRoleKey: string | undefined;
 }
 
 export function createApiClients(config: AppConfig): ApiClients {
@@ -57,5 +61,7 @@ export function createApiClients(config: AppConfig): ApiClients {
     airtableApiKey: config.airtableApiKey,
     airtableBaseId: config.airtableBaseId,
     geminiApiKey: config.geminiApiKey,
+    supabaseUrl: config.supabaseUrl,
+    supabaseServiceRoleKey: config.supabaseServiceRoleKey,
   };
 }

@@ -10,6 +10,10 @@ export const AppConfigSchema = z.object({
   // Gemini (Designer agent — image generation; optional)
   geminiApiKey: z.string().optional(),
 
+  // Supabase (portal mirror + edition-asset Storage; optional — non-fatal if absent)
+  supabaseUrl: z.string().url().optional(),
+  supabaseServiceRoleKey: z.string().optional(),
+
   // Beehiiv (required for distribution — optional in Phase 2 draft mode)
   beehiivApiKey: z.string().optional(),
   beehiivPublicationId: z.string().optional(),
