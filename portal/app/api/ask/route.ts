@@ -3,6 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { buildSystemPrompt, buildContextBlock } from "@/lib/ai/prompt";
 import { retrieveRelevantExcerpts } from "@/lib/ai/retrieval";
 import { loadVoiceBible } from "@/lib/ai/voice-bible";
@@ -21,11 +22,12 @@ export async function POST(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { data: member } = await supabase
+  const { data: memberData } = await supabase
     .from("members")
     .select("preferred_language, status")
     .eq("id", user.id)
     .maybeSingle();
+  const member = memberData as Pick<Database["public"]["Tables"]["members"]["Row"], "preferred_language" | "status"> | null;
   if (!member || member.status !== "active") {
     return NextResponse.json({ error: "Membership required" }, { status: 403 });
   }
@@ -37,27 +39,37 @@ export async function POST(request: Request) {
 
   let conversationId = parsed.data.conversation_id ?? null;
   if (!conversationId) {
-    const { data: conv, error: convErr } = await supabase
-      .from("ai_conversations")
-      .insert({ member_id: user.id, title: parsed.data.message.slice(0, 80) })
+    const conversationInsert: Database["public"]["Tables"]["ai_conversations"]["Insert"] = {
+      member_id: user.id,
+      title: parsed.data.message.slice(0, 80),
+    };
+    const { data: conv, error: convErr } = await (supabase
+      .from("ai_conversations") as any)
+      .insert(conversationInsert)
       .select("id")
       .single();
     if (convErr || !conv) return NextResponse.json({ error: "Could not create conversation" }, { status: 500 });
     conversationId = conv.id;
   }
 
-  await supabase.from("ai_messages").insert({
+  if (!conversationId) {
+    return NextResponse.json({ error: "Could not create conversation" }, { status: 500 });
+  }
+
+  const userMessageInsert: Database["public"]["Tables"]["ai_messages"]["Insert"] = {
     conversation_id: conversationId,
     role: "user",
     content: parsed.data.message,
-  });
+  };
+  await (supabase.from("ai_messages") as any).insert(userMessageInsert);
 
-  const { data: history } = await supabase
+  const { data: historyData } = await supabase
     .from("ai_messages")
     .select("role, content")
     .eq("conversation_id", conversationId)
     .order("created_at", { ascending: true })
     .limit(20);
+  const history = historyData as Pick<Database["public"]["Tables"]["ai_messages"]["Row"], "role" | "content">[] | null;
 
   const voiceBible = await loadVoiceBible();
   const excerpts = await retrieveRelevantExcerpts(parsed.data.message, lang, 5);
@@ -111,7 +123,7 @@ export async function POST(request: Request) {
         );
       }
 
-      await supabase.from("ai_messages").insert({
+      const assistantMessageInsert: Database["public"]["Tables"]["ai_messages"]["Insert"] = {
         conversation_id: conversationId,
         role: "assistant",
         content: fullText,
@@ -119,7 +131,8 @@ export async function POST(request: Request) {
           edition_id: e.edition_id,
           quote: e.subject,
         })),
-      });
+      };
+      await (supabase.from("ai_messages") as any).insert(assistantMessageInsert);
 
       controller.enqueue(encoder.encode("event: done\ndata: {}\n\n"));
       controller.close();

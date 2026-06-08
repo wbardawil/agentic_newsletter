@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { t, type Lang } from "@/lib/i18n/dictionary";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { LangToggle } from "@/components/LangToggle";
@@ -19,12 +20,13 @@ export async function SiteHeader({ lang }: { lang: Lang }) {
 
   let isAdmin = false;
   if (user) {
-    const { data } = await supabase
+    const { data: memberData } = await supabase
       .from("members")
       .select("is_admin")
       .eq("id", user.id)
       .maybeSingle();
-    isAdmin = data?.is_admin === true;
+    const member = memberData as Pick<Database["public"]["Tables"]["members"]["Row"], "is_admin"> | null;
+    isAdmin = member?.is_admin === true;
   }
 
   return (

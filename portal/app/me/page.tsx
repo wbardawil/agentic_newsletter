@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
 import { topicLabel } from "@/lib/topics";
@@ -13,30 +14,33 @@ export default async function MemberHome() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/sign-in?next=/me");
 
-  const { data: member } = await supabase
+  const { data: memberData } = await supabase
     .from("members")
     .select("*")
     .eq("id", user.id)
     .maybeSingle();
+  const member = memberData as Database["public"]["Tables"]["members"]["Row"] | null;
 
   const lang = await getLangFromCookies();
   const memberLang = member?.preferred_language ?? lang;
   const i18n = t(memberLang).member;
 
-  const { data: latest } = await supabase
+  const { data: latestData } = await supabase
     .from("editions")
     .select("edition_id, edition_number, subject_en, subject_es, topic, pillar, byline, byline_role, published_at, shareable_sentence_en, shareable_sentence_es")
     .eq("is_published", true)
     .order("published_at", { ascending: false })
     .limit(1)
     .maybeSingle();
+  const latest = latestData as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "topic" | "pillar" | "byline" | "byline_role" | "published_at" | "shareable_sentence_en" | "shareable_sentence_es"> | null;
 
-  const { data: convenings } = await supabase
+  const { data: conveningsData } = await supabase
     .from("convenings")
     .select("id, city, starts_at, language, capacity")
     .gte("starts_at", new Date().toISOString())
     .order("starts_at", { ascending: true })
     .limit(3);
+  const convenings = conveningsData as Pick<Database["public"]["Tables"]["convenings"]["Row"], "id" | "city" | "starts_at" | "language" | "capacity">[] | null;
 
   if (!member) {
     return (

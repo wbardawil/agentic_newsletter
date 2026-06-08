@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import type { Database } from "@/lib/supabase/types";
 import { TOPIC_IDS } from "@/lib/topics";
 
 const Body = z.object({
@@ -37,11 +38,12 @@ export async function POST(request: Request) {
   }
 
   const supabase = getSupabaseAdminClient();
-  const { error } = await supabase.from("applications").insert({
+  const insert: Database["public"]["Tables"]["applications"]["Insert"] = {
     ...parsed.data,
     industry: parsed.data.industry ?? null,
     status: "pending",
-  });
+  };
+  const { error } = await (supabase.from("applications") as any).insert(insert);
 
   if (error) {
     if (error.code === "23505") {

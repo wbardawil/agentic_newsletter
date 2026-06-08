@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
 import { TOPICS, TOPIC_IDS, topicLabel } from "@/lib/topics";
@@ -38,7 +39,8 @@ export default async function ArchivePage({
     );
   }
 
-  const { data } = await query;
+  const { data: dataRows } = await query;
+  const data = dataRows as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "topic" | "pillar" | "byline" | "byline_role" | "published_at" | "shareable_sentence_en" | "shareable_sentence_es">[] | null;
 
   return (
     <section className="container-wide py-12">

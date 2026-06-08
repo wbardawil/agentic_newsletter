@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { TOPIC_IDS } from "@/lib/topics";
 
 const Body = z.object({
@@ -25,7 +26,8 @@ export async function POST(request: Request) {
   const parsed = Body.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Invalid body" }, { status: 422 });
 
-  const { error } = await supabase.from("members").update(parsed.data).eq("id", user.id);
+  const update: Database["public"]["Tables"]["members"]["Update"] = parsed.data;
+  const { error } = await (supabase.from("members") as any).update(update).eq("id", user.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ ok: true });
 }

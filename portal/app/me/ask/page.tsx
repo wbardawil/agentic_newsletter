@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
 
@@ -13,11 +14,12 @@ export default async function AskPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/sign-in?next=/me/ask");
 
-  const { data: member } = await supabase
+  const { data: memberData } = await supabase
     .from("members")
     .select("preferred_language, status")
     .eq("id", user.id)
     .maybeSingle();
+  const member = memberData as Pick<Database["public"]["Tables"]["members"]["Row"], "preferred_language" | "status"> | null;
 
   if (!member || member.status !== "active") redirect("/me");
 

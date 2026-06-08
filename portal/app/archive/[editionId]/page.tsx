@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { renderBody } from "@/lib/markdown";
 import { topicLabel } from "@/lib/topics";
@@ -20,19 +21,21 @@ export default async function EditionPage({
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect(`/sign-in?next=/archive/${editionId}`);
 
-  const { data: edition } = await supabase
+  const { data: editionData } = await supabase
     .from("editions")
     .select("*")
     .eq("edition_id", editionId)
     .eq("is_published", true)
     .maybeSingle();
+  const edition = editionData as Database["public"]["Tables"]["editions"]["Row"] | null;
 
   if (!edition) notFound();
 
-  const { data: sources } = await supabase
+  const { data: sourcesData } = await supabase
     .from("edition_sources")
     .select("title, url, snippet, publisher")
     .eq("edition_id", edition.id);
+  const sources = sourcesData as Pick<Database["public"]["Tables"]["edition_sources"]["Row"], "title" | "url" | "snippet" | "publisher">[] | null;
 
   const cookieLang = await getLangFromCookies();
   const lang = overrideLang === "es" ? "es" : overrideLang === "en" ? "en" : cookieLang;

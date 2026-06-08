@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/types";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
 
@@ -16,16 +17,18 @@ export default async function ConveningsPage() {
   const lang = await getLangFromCookies();
   const i18n = t(lang).convenings;
 
-  const { data: convenings } = await supabase
+  const { data: conveningsData } = await supabase
     .from("convenings_with_counts")
     .select("*")
     .gte("starts_at", new Date().toISOString())
     .order("starts_at", { ascending: true });
+  const convenings = conveningsData as Database["public"]["Views"]["convenings_with_counts"]["Row"][] | null;
 
-  const { data: myRsvps } = await supabase
+  const { data: myRsvpsData } = await supabase
     .from("convening_rsvps")
     .select("convening_id, status")
     .eq("member_id", user.id);
+  const myRsvps = myRsvpsData as Pick<Database["public"]["Tables"]["convening_rsvps"]["Row"], "convening_id" | "status">[] | null;
 
   const rsvpMap = new Map(
     (myRsvps ?? []).map((r) => [r.convening_id, r.status]),

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
+import type { Database } from "@/lib/supabase/types";
 
 import { ApplicationRow } from "./row";
 
@@ -31,6 +32,10 @@ export default async function AdminApplicationsPage({
     .eq("status", filter)
     .order("created_at", { ascending: false });
 
+  // Ensure strong typing for application rows to avoid `never` inference
+  type Application = Database["public"]["Tables"]["applications"]["Row"];
+  const apps: Application[] = data ?? [];
+
   const lang = await getLangFromCookies();
   const i18n = t(lang).admin;
 
@@ -54,10 +59,10 @@ export default async function AdminApplicationsPage({
       {error ? <p className="text-sm text-red-700">{error.message}</p> : null}
 
       <div className="space-y-3">
-        {(data ?? []).map((app) => (
+        {apps.map((app) => (
           <ApplicationRow key={app.id} app={app} lang={lang} />
         ))}
-        {(!data || data.length === 0) ? (
+        {apps.length === 0 ? (
           <p className="text-[var(--color-fg-muted)]">No applications in this bucket.</p>
         ) : null}
       </div>

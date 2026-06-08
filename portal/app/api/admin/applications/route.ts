@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import type { Database } from "@/lib/supabase/types";
 
 const Body = z.object({
   id: z.string().uuid(),
@@ -27,13 +28,14 @@ export async function POST(request: Request) {
   }
 
   const admin = getSupabaseAdminClient();
-  const { error } = await admin
-    .from("applications")
-    .update({
-      status: parsed.data.status,
-      decided_by: user.id,
-      decided_at: new Date().toISOString(),
-    })
+  const update: Database["public"]["Tables"]["applications"]["Update"] = {
+    status: parsed.data.status,
+    decided_by: user.id,
+    decided_at: new Date().toISOString(),
+  };
+  const { error } = await (admin
+    .from("applications") as any)
+    .update(update)
     .eq("id", parsed.data.id);
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
