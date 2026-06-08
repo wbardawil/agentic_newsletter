@@ -21,6 +21,10 @@ name: Weekly Draft
 #   RESEND_TO                — optional, your editor inbox
 #   APPROVAL_BASE_URL        — optional, Cloudflare Worker URL (phase 2 of the email gate)
 #   APPROVAL_SIGNING_SECRET  — optional, HMAC secret shared with the Worker
+#   PORTAL_BASE_URL          — optional, portal origin + basePath (e.g.
+#                              "https://wadibardawil.com/letter"). When set, the
+#                              digest includes an "Edit in portal" deep-link to
+#                              /admin/drafts/<edition>/edit.
 #
 # When the three RESEND_* values are set, the workflow sends a digest email
 # after the draft PR is opened. When any of them is missing, the digest step
@@ -41,6 +45,10 @@ on:
     inputs:
       edition:
         description: "Edition ID (YYYY-WW); leave blank to auto-compute from current ISO week"
+        required: false
+        default: ""
+      rejection_feedback:
+        description: "JSON rejection feedback ref (e.g. 'drafts/2026-21-rejection.json'). Set automatically by the portal review flow on content_reject."
         required: false
         default: ""
 
@@ -103,6 +111,15 @@ jobs:
             echo "id=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Restore rejection feedback (if rerun after content_reject)
+        if: github.event.inputs.rejection_feedback != ''
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          REF="${{ github.event.inputs.rejection_feedback }}"
+          echo "::notice::Rerun triggered by content rejection. Feedback ref: $REF"
+          git fetch origin drafts/${ID} --depth=1 2>/dev/null || true
+          git checkout origin/drafts/${ID} -- "$REF" 2>/dev/null || echo "::warning::Could not restore rejection file $REF — proceeding without it."
+
       - name: Run draft pipeline
         run: pnpm draft -- --edition ${{ steps.edition.outputs.id }}
         env:
@@ -146,6 +163,14 @@ jobs:
             weekly
           delete-branch: false
 
+      # create-pull-request commits the generated drafts to the PR branch and
+      # then resets the working tree back to `main`, which deletes them from the
+      # checkout. Restore them from the PR branch so the digest step (and the
+      # artifact upload) can still read drafts/<edition>-draft.json.
+      - name: Restore drafts for digest
+        if: success()
+        run: git checkout drafts/${{ steps.edition.outputs.id }} -- drafts/
+
       - name: Send draft digest email
         if: success() && env.RESEND_API_KEY != '' && env.RESEND_FROM != '' && env.RESEND_TO != ''
         env:
@@ -154,6 +179,7 @@ jobs:
           RESEND_TO: ${{ secrets.RESEND_TO }}
           APPROVAL_BASE_URL: ${{ secrets.APPROVAL_BASE_URL }}
           APPROVAL_SIGNING_SECRET: ${{ secrets.APPROVAL_SIGNING_SECRET }}
+          PORTAL_BASE_URL: ${{ secrets.PORTAL_BASE_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           PR_URL="${{ steps.open_pr.outputs.pull-request-url }}"

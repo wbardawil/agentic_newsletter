@@ -1,0 +1,135 @@
+name: Regenerate Hero Image
+
+# Triggered by the portal /review endpoint when the editor rejects an image.
+# Runs only the DesignerAgent (not the full draft pipeline) using the existing
+# draft content and the rejection history from review.json.
+#
+# Also callable manually from the Actions tab for one-off reruns.
+#
+# Required repository secrets:
+#   ANTHROPIC_API_KEY     — Claude for prompt composition
+#   GEMINI_API_KEY        — Gemini image generation
+#   SUPABASE_URL          — Storage upload for publicUrl
+#   SUPABASE_SERVICE_ROLE_KEY
+#   RESEND_API_KEY        — Resend digest after regeneration
+#   RESEND_FROM
+#   RESEND_TO
+#   APPROVAL_BASE_URL     — Sign review links in resent digest
+#   APPROVAL_SIGNING_SECRET
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: "Edition ID (YYYY-WW)"
+        required: true
+      attempt:
+        description: "Attempt number hint (optional — derived from review.json if absent)"
+        required: false
+        default: ""
+      feedback:
+        description: "Editor feedback for the new image prompt (optional)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: regenerate-image-${{ inputs.edition }}
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Validate edition ID
+        id: edition
+        run: |
+          ID="${{ github.event.inputs.edition }}"
+          if ! [[ "$ID" =~ ^[0-9]{4}-(0[1-9]|[1-4][0-9]|5[0-3])$ ]]; then
+            echo "::error::Edition ID '$ID' does not match required pattern YYYY-WW."
+            exit 1
+          fi
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          echo "Regenerating image for edition: $ID"
+
+      - uses: actions/checkout@v5
+        with:
+          ref: drafts/${{ steps.edition.outputs.id }}
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v5
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate hero image
+        id: regen
+        run: |
+          FEEDBACK="${{ github.event.inputs.feedback }}"
+          if [ -n "$FEEDBACK" ]; then
+            pnpm regenerate-image -- --edition ${{ steps.edition.outputs.id }} --feedback "$FEEDBACK"
+          else
+            pnpm regenerate-image -- --edition ${{ steps.edition.outputs.id }}
+          fi
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MAX_IMAGE_REGEN_ATTEMPTS: "5"
+          LLM_TIMEOUT_MS: "75000"
+          LOG_LEVEL: info
+          DRY_RUN: "false"
+
+      - name: Commit updated draft files
+        if: success()
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "drafts/${ID}-hero.png" "drafts/${ID}-hero-v*.png" "drafts/${ID}-designer.json" "drafts/${ID}-review.json" 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            ATTEMPT=$(node -e "const r=JSON.parse(require('fs').readFileSync('drafts/${ID}-review.json','utf8')); console.log(r.image.attempt);")
+            git commit -m "regen(${ID}): hero image v${ATTEMPT} generated"
+            git push origin drafts/${ID}
+          fi
+
+      - name: Resend digest with new image
+        if: success() && env.RESEND_API_KEY != '' && env.RESEND_FROM != '' && env.RESEND_TO != ''
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
+          APPROVAL_BASE_URL: ${{ secrets.APPROVAL_BASE_URL }}
+          APPROVAL_SIGNING_SECRET: ${{ secrets.APPROVAL_SIGNING_SECRET }}
+          PORTAL_BASE_URL: ${{ secrets.PORTAL_BASE_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          ATTEMPT=$(node -e "const r=JSON.parse(require('fs').readFileSync('drafts/${ID}-review.json','utf8')); console.log(r.image.attempt);")
+          echo "Resending digest for edition ${ID} (image attempt ${ATTEMPT})..."
+          pnpm digest:edition -- --edition "$ID"
+
+      - name: Note skipped digest
+        if: success() && (env.RESEND_API_KEY == '' || env.RESEND_FROM == '' || env.RESEND_TO == '')
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
+        run: echo "::notice::Resend not configured — digest resend skipped. Review the new image via the PR branch."
