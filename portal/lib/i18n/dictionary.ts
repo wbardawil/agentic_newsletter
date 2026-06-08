@@ -6,7 +6,7 @@ export function normalizeLang(input: string | undefined | null): Lang {
   return input === "es" ? "es" : "en";
 }
 
-type Dict = {
+export type Dict = {
   brand: { name: string; tagline: string };
   nav: { archive: string; convenings: string; ask: string; apply: string; signIn: string; signOut: string; account: string; preferences: string };
   landing: {
@@ -84,6 +84,18 @@ type Dict = {
     publisherTagline: string;
     paragraphs: string[];
     contactHeading: string;
+  };
+  newsroom: {
+    featured: string;
+    latest: string;
+    allChannels: string;
+    readMore: string;
+    byMembers: string;
+    empty: string;
+    emptyChannel: string;
+    resetChannel: string;
+    curatorGreeting: string;
+    curatorSubtitle: string;
   };
 };
 
@@ -243,6 +255,19 @@ const en: Dict = {
       "The Transformation Letter is the public artifact of that field practice. It is free, weekly, bilingual, and members-only. The right reader recognizes themselves in it. The wrong reader moves on. Both outcomes are correct.",
     ],
     contactHeading: "Get in touch",
+  },
+  newsroom: {
+    featured: "Featured",
+    latest: "Latest issues",
+    allChannels: "All",
+    readMore: "Read more",
+    byMembers: "Members-only analysis",
+    empty: "The first issue is on the way. Apply to be in the room when it lands.",
+    emptyChannel: "No issues in this channel yet.",
+    resetChannel: "View all channels",
+    curatorGreeting: "Welcome to The Transformation Letter",
+    curatorSubtitle:
+      "A public newsroom for weekly diagnostics on business transformation, capital, family enterprise, AI, and technology in the US-LATAM corridor.",
   },
 };
 
@@ -404,6 +429,19 @@ const es: Dict = {
       "The Transformation Letter es el artefacto público de esa práctica de campo. Es gratuita, semanal, bilingüe y solo para miembros. El lector correcto se reconoce en ella. El lector equivocado sigue de largo. Ambos resultados son correctos.",
     ],
     contactHeading: "Contacto",
+  },
+  newsroom: {
+    featured: "Destacado",
+    latest: "Ediciones recientes",
+    allChannels: "Todos",
+    readMore: "Leer más",
+    byMembers: "Análisis solo para miembros",
+    empty: "La primera edición está en camino. Postula para estar en la sala cuando llegue.",
+    emptyChannel: "Aún no hay ediciones en este canal.",
+    resetChannel: "Ver todos los canales",
+    curatorGreeting: "Bienvenido a The Transformation Letter",
+    curatorSubtitle:
+      "Un newsroom público para diagnósticos semanales sobre transformación de negocio, capital, empresa familiar, IA y tecnología en el corredor US-LATAM.",
   },
 };
 

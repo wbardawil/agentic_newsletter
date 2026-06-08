@@ -6,6 +6,7 @@ const ADMIN_PREFIXES = ["/admin"];
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
+  type CookieToSet = { name: string; value: string; options?: Parameters<typeof response.cookies.set>[2] };
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -15,7 +16,7 @@ export async function middleware(request: NextRequest) {
         getAll() {
           return request.cookies.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieToSet[]) {
           for (const { name, value } of cookiesToSet) {
             request.cookies.set(name, value);
           }
@@ -58,5 +59,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|api/ask).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|api/ask|approve).*)"],
 };

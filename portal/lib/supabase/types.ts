@@ -12,6 +12,7 @@ export type Region =
   | "other";
 export type OsPillar = "Strategy OS" | "Operating Model OS" | "Technology OS";
 export type Language = "en" | "es";
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export interface MemberRow {
   id: string;
@@ -77,6 +78,24 @@ export interface EditionSourceRow {
   publisher: string | null;
 }
 
+/** Body-free public projection of published editions (view: editions_public). */
+export interface EditionPublicRow {
+  id: string;
+  edition_id: string;
+  edition_number: number;
+  published_at: string | null;
+  subject_en: string | null;
+  subject_es: string | null;
+  topic: string;
+  pillar: OsPillar | null;
+  quarterly_theme: string | null;
+  shareable_sentence_en: string | null;
+  shareable_sentence_es: string | null;
+  byline: string | null;
+  byline_role: string | null;
+  hero_image_url: string | null;
+}
+
 export interface AiConversationRow {
   id: string;
   member_id: string;
@@ -89,11 +108,22 @@ export interface AiMessageRow {
   conversation_id: string;
   role: "user" | "assistant";
   content: string;
-  citations: { edition_id: string; quote: string }[] | null;
+  citations: Json | null;
   created_at: string;
 }
 
 export interface ConveningRow {
+  id: string;
+  city: string;
+  region: Region;
+  starts_at: string;
+  capacity: number;
+  description: string;
+  language: Language;
+  rsvp_count: number;
+}
+
+export interface ConveningsWithCountsRow {
   id: string;
   city: string;
   region: Region;
@@ -114,17 +144,27 @@ export interface ConveningRsvpRow {
 export type Database = {
   public: {
     Tables: {
-      members: { Row: MemberRow; Insert: Partial<MemberRow> & { id: string; email: string }; Update: Partial<MemberRow> };
-      applications: { Row: ApplicationRow; Insert: Omit<ApplicationRow, "id" | "created_at" | "status" | "decided_by" | "decided_at"> & { status?: ApplicationStatus }; Update: Partial<ApplicationRow> };
-      editions: { Row: EditionRow; Insert: Partial<EditionRow> & { edition_id: string }; Update: Partial<EditionRow> };
-      edition_sources: { Row: EditionSourceRow; Insert: Omit<EditionSourceRow, "id">; Update: Partial<EditionSourceRow> };
-      ai_conversations: { Row: AiConversationRow; Insert: Omit<AiConversationRow, "id" | "created_at"> & { id?: string }; Update: Partial<AiConversationRow> };
-      ai_messages: { Row: AiMessageRow; Insert: Omit<AiMessageRow, "id" | "created_at"> & { id?: string }; Update: Partial<AiMessageRow> };
-      convenings: { Row: ConveningRow; Insert: Omit<ConveningRow, "id" | "rsvp_count"> & { id?: string }; Update: Partial<ConveningRow> };
-      convening_rsvps: { Row: ConveningRsvpRow; Insert: ConveningRsvpRow; Update: Partial<ConveningRsvpRow> };
+      members: { Row: MemberRow; Insert: Partial<MemberRow> & { id: string; email: string }; Update: Partial<MemberRow>; Relationships: [] };
+      applications: { Row: ApplicationRow; Insert: Omit<ApplicationRow, "id" | "created_at" | "status" | "decided_by" | "decided_at"> & { status?: ApplicationStatus }; Update: Partial<ApplicationRow>; Relationships: [] };
+      editions: { Row: EditionRow; Insert: Partial<EditionRow> & { edition_id: string }; Update: Partial<EditionRow>; Relationships: [] };
+      edition_sources: { Row: EditionSourceRow; Insert: Omit<EditionSourceRow, "id">; Update: Partial<EditionSourceRow>; Relationships: [] };
+      ai_conversations: { Row: AiConversationRow; Insert: Omit<AiConversationRow, "id" | "created_at"> & { id?: string }; Update: Partial<AiConversationRow>; Relationships: [] };
+      ai_messages: { Row: AiMessageRow; Insert: Omit<AiMessageRow, "id" | "created_at" | "citations"> & { id?: string; citations?: Json | null }; Update: Partial<AiMessageRow>; Relationships: [] };
+      convenings: { Row: ConveningRow; Insert: Omit<ConveningRow, "id" | "rsvp_count"> & { id?: string }; Update: Partial<ConveningRow>; Relationships: [] };
+      convening_rsvps: { Row: ConveningRsvpRow; Insert: ConveningRsvpRow; Update: Partial<ConveningRsvpRow>; Relationships: [] };
     };
-    Views: Record<string, never>;
+    Views: {
+      convenings_with_counts: {
+        Row: ConveningsWithCountsRow;
+        Relationships: [];
+      };
+      editions_public: {
+        Row: EditionPublicRow;
+        Relationships: [];
+      };
+    };
     Functions: Record<string, never>;
     Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 };

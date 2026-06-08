@@ -1,5 +1,6 @@
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { Lang } from "@/lib/i18n/dictionary";
+import type { Database } from "@/lib/supabase/types";
 
 /**
  * Lightweight retrieval: pulls the most recently published editions whose
@@ -46,7 +47,7 @@ export async function retrieveRelevantExcerpts(
   }
 
   const { data } = await q;
-  const rows = data ?? [];
+  const rows = (data ?? []) as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "body_en" | "body_es" | "topic" | "pillar" | "published_at">[];
 
   return rows.slice(0, limit).map((r) => {
     const body = (lang === "es" ? r.body_es ?? r.body_en : r.body_en ?? r.body_es) ?? "";
