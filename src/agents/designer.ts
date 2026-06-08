@@ -12,13 +12,14 @@ import {
   type LocalizedContent,
 } from "../types/edition.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
+import { uploadEditionAsset } from "../utils/storage-client.js";
 
 // ── Schemas ────────────────────────────────────────────────────────────────
 
 const DesignerInputSchema = z.object({
   angle: StrategicAngleSchema,
   enContent: LocalizedContentSchema,
-  /** Where to write generated images (e.g. drafts/2026-18/images/). */
+  /** Where to write generated images (e.g. drafts/). */
   outputDir: z.string().min(1),
   /**
    * Filename for the hero image. The pipeline passes `<editionId>-hero.png`
@@ -26,6 +27,23 @@ const DesignerInputSchema = z.object({
    * collision. Defaults to "hero.png" when omitted.
    */
   heroFilename: z.string().min(1).optional(),
+  /**
+   * Generation attempt number (1 = first, 2 = first regen, etc.).
+   * When > 1, the prompt is composed to avoid repeating prior visual proposals.
+   * Defaults to 1 when omitted.
+   */
+  attempt: z.number().int().positive().optional(),
+  /**
+   * Optional free-text reason the previous image was rejected by the editor.
+   * Injected into the prompt composition so the new image avoids the same issues.
+   */
+  rejectionFeedback: z.string().optional(),
+  /**
+   * Prompts from prior attempts that were rejected.
+   * Prevents the model from recycling the same visual concept across retries.
+   * Defaults to [] when omitted.
+   */
+  rejectedPrompts: z.array(z.string()).optional(),
 });
 export type DesignerInput = z.infer<typeof DesignerInputSchema>;
 
@@ -38,10 +56,14 @@ const DesignerAssetSchema = z.object({
   kind: z.literal("hero"),
   /** Filesystem path of the generated image (or dryRun placeholder). */
   imagePath: z.string(),
+  /** Public URL after upload to Supabase Storage. Null when storage is unconfigured or in dryRun. */
+  publicUrl: z.string().nullable(),
   /** The full prompt sent to the image model. */
   prompt: z.string(),
   altText: BilingualTextSchema,
   caption: BilingualTextSchema,
+  /** Generation attempt number for audit trail. */
+  attempt: z.number().int().positive(),
 });
 export type DesignerAsset = z.infer<typeof DesignerAssetSchema>;
 
@@ -142,6 +164,19 @@ async function generateHeroImage(
   return Buffer.from(inline.inlineData.data, "base64");
 }
 
+// ── Versioned filename helper ──────────────────────────────────────────────
+
+/**
+ * Insert a version suffix for attempt > 1.
+ * "2026-21-hero.png" at attempt 2 → "2026-21-hero-v2.png"
+ */
+function versionedFilename(heroFilename: string, attempt: number): string {
+  if (attempt <= 1) return heroFilename;
+  const dotIdx = heroFilename.lastIndexOf(".");
+  if (dotIdx === -1) return `${heroFilename}-v${attempt}`;
+  return `${heroFilename.slice(0, dotIdx)}-v${attempt}${heroFilename.slice(dotIdx)}`;
+}
+
 // ── Designer agent ─────────────────────────────────────────────────────────
 
 export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
@@ -159,16 +194,35 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
   ): Promise<DesignerOutput> {
     const tokens = loadBrandStyleTokens();
     const { angle, enContent, outputDir } = payload;
-    const heroFilename = payload.heroFilename ?? "hero.png";
+    const attempt = payload.attempt ?? 1;
+    const heroFilename = versionedFilename(
+      payload.heroFilename ?? "hero.png",
+      attempt,
+    );
 
-    const imagePrompt = await this.composeImagePrompt(angle, enContent, tokens);
-    const imagePath = await this.renderHeroImage(
+    const imagePrompt = await this.composeImagePrompt(
+      angle,
+      enContent,
+      tokens,
+      attempt,
+      payload.rejectionFeedback,
+      payload.rejectedPrompts ?? [],
+    );
+
+    const { imagePath, imageBytes } = await this.renderHeroImage(
       imagePrompt,
       outputDir,
       tokens,
       context.editionId,
       heroFilename,
     );
+
+    const publicUrl = await this.uploadToStorage(
+      imageBytes,
+      context.editionId,
+      attempt,
+    );
+
     const { altText, caption } = await this.generateAltTextAndCaption(
       angle,
       enContent,
@@ -180,9 +234,11 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
         {
           kind: "hero",
           imagePath,
+          publicUrl,
           prompt: imagePrompt,
           altText,
           caption,
+          attempt,
         },
       ],
       imageModel: tokens.imageStyle.model,
@@ -194,9 +250,32 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
     angle: StrategicAngle,
     enContent: LocalizedContent,
     tokens: BrandStyleTokens,
+    attempt: number,
+    rejectionFeedback: string | undefined,
+    rejectedPrompts: string[],
   ): Promise<string> {
     const insight =
       enContent.sections.find((s) => s.type === "analysis")?.body ?? "";
+
+    const regenerationGuidance =
+      attempt > 1
+        ? [
+            ``,
+            `IMPORTANT — This is attempt ${attempt} (regeneration after rejection).`,
+            rejectedPrompts.length > 0
+              ? [
+                  `The following prompts were REJECTED — do NOT recycle their composition, metaphor, or visual concept:`,
+                  ...rejectedPrompts.map((p, i) => `  [Rejected ${i + 1}]: ${p}`),
+                ].join("\n")
+              : "",
+            rejectionFeedback
+              ? `Editor rejection reason: "${rejectionFeedback}". Address this issue explicitly.`
+              : "",
+            `Produce a fundamentally different visual concept — different structural metaphor, different spatial composition, different symbolic vocabulary.`,
+          ]
+            .filter(Boolean)
+            .join("\n")
+        : "";
 
     const systemPrompt = [
       `You compose a single image-generation prompt for a hero illustration on The Transformation Letter, an editorial newsletter for $5–100M owner-operators in the US-LATAM corridor. The prompt will be sent to ${tokens.imageStyle.model}.`,
@@ -209,11 +288,14 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
       ...tokens.imageStyle.constraints.map((c) => `  - ${c}`),
       `- Palette to evoke: deep navy, teal, ochre, cream, muted bronze. No bright primary colors. Matte finish.`,
       `- Aspect ratio: ${tokens.layout.heroDimensions.width}x${tokens.layout.heroDimensions.height} (16:9).`,
+      regenerationGuidance,
       ``,
       `Compose ONE prompt of 60–120 words. Anchor the visual in this issue's diagnostic — not the surface news. The image is an abstract editorial illustration that evokes the structural/process metaphor of the Insight, not a literal depiction.`,
       ``,
       `Output: only the prompt text. No preamble, no quotes, no labels.`,
-    ].join("\n");
+    ]
+      .filter((line) => line !== undefined)
+      .join("\n");
 
     const userPrompt = [
       `Issue headline: ${angle.headline}`,
@@ -254,20 +336,18 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
     tokens: BrandStyleTokens,
     editionId: string,
     heroFilename: string,
-  ): Promise<string> {
+  ): Promise<{ imagePath: string; imageBytes: Buffer | null }> {
     mkdirSync(outputDir, { recursive: true });
     const imagePath = join(outputDir, heroFilename);
 
     if (this.deps.apiClients.dryRun) {
-      // Write a sibling placeholder text file describing what would have been
-      // generated. Keeps the run reviewable without spending image-gen $.
       const placeholderPath = imagePath.replace(/\.png$/, ".dryrun.txt");
       writeFileSync(
         placeholderPath,
         `[dryRun placeholder for ${editionId} hero]\n\nPrompt:\n${imagePrompt}\n`,
         "utf-8",
       );
-      return placeholderPath;
+      return { imagePath: placeholderPath, imageBytes: null };
     }
 
     const apiKey = this.deps.apiClients.geminiApiKey;
@@ -288,7 +368,36 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
       0,
       GEMINI_TOKENS_PER_IMAGE,
     );
-    return imagePath;
+    return { imagePath, imageBytes };
+  }
+
+  // ── Step 2b: upload to Supabase Storage (non-fatal) ──────────────────────
+  private async uploadToStorage(
+    imageBytes: Buffer | null,
+    editionId: string,
+    attempt: number,
+  ): Promise<string | null> {
+    if (!imageBytes) return null;
+
+    const { supabaseUrl, supabaseServiceRoleKey } = this.deps.apiClients;
+    if (!supabaseUrl || !supabaseServiceRoleKey) return null;
+
+    try {
+      return await uploadEditionAsset(
+        supabaseUrl,
+        supabaseServiceRoleKey,
+        editionId,
+        attempt,
+        imageBytes,
+      );
+    } catch (err) {
+      // Non-fatal: image is generated and saved locally; upload failure only
+      // means no public URL yet. The review.json will have publicUrl = null.
+      console.warn(
+        `   ⚠️  Storage upload failed (edition-assets/${editionId}/hero-v${attempt}.png): ${String(err)}`,
+      );
+      return null;
+    }
   }
 
   // ── Step 3: alt-text + bilingual caption via Claude ──────────────────────
