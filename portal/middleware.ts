@@ -1,7 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 // Edge-safe middleware: no Supabase client instantiation (see hasAuthCookie).
-// rev: 2026-06-09 — force fresh compile, no Node-only deps in the edge bundle.
+// CRITICAL: This middleware does NOT import @supabase/supabase-js or @supabase/ssr.
+// It uses ONLY Web APIs (NextRequest, cookies, NextResponse).
+// If you see __dirname errors on Vercel, the old middleware bundle is cached.
+// See /portal/middleware.ts line 1-50 for the source truth (no Supabase imports).
 
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
