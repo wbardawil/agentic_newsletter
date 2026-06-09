@@ -1,18 +1,21 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-import type { Database } from "@/lib/supabase/types";
-
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
 
 export async function middleware(request: NextRequest) {
+  // Short-circuit if Supabase is not configured — allow all requests through.
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return NextResponse.next({ request });
+  }
+
   let response = NextResponse.next({ request });
   type CookieToSet = { name: string; value: string; options?: Parameters<typeof response.cookies.set>[2] };
 
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
       cookies: {
         getAll() {
@@ -31,8 +34,10 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: { user } } = await (supabase.auth as any).getUser();
+  // getSession reads from the cookie — no network call, safe in Edge Runtime.
+  // getUser (network-validated) runs in Server Components/Route Handlers instead.
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user ?? null;
   const pathname = request.nextUrl.pathname;
 
   const needsAuth = MEMBER_PREFIXES.some((p) => pathname.startsWith(p)) ||
