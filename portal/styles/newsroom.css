@@ -1,0 +1,89 @@
+﻿@layer theme {
+  .newsroom-layout {
+    --color-newsroom-terracotta: #B35C42;
+    --color-newsroom-light-rust: #C97957;
+    --color-newsroom-cream: #FBF7F0;
+    --color-newsroom-dark: #2A2420;
+    --color-newsroom-muted: #7A6F68;
+    --color-newsroom-border: #E8DFD5;
+    --color-newsroom-orange: #FD7014;
+  }
+}
+
+@layer utilities {
+  .newsroom-layout {
+    background: var(--color-newsroom-cream);
+    color: var(--color-newsroom-dark);
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .newsroom-layout h1,
+  .newsroom-layout h2,
+  .newsroom-layout h3,
+  .newsroom-layout p,
+  .newsroom-layout a,
+  .newsroom-layout span {
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .newsroom-layout a { color: inherit; }
+  .newsroom-layout a:hover { color: var(--color-newsroom-light-rust); }
+
+  .newsroom-section { padding-block: 3rem; }
+  @media (min-width: 1024px) { .newsroom-section { padding-block: 4rem; } }
+
+  .newsroom-heading-display {
+    color: var(--color-newsroom-terracotta);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.12;
+  }
+
+  @media (min-width: 768px) { .newsroom-heading-display { font-size: 3.25rem; } }
+
+  .newsroom-heading-section {
+    color: var(--color-newsroom-dark);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+  .newsroom-pill {
+    align-items: center;
+    background: var(--color-newsroom-terracotta);
+    border: 1px solid var(--color-newsroom-terracotta);
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    padding: 0.35rem 0.75rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .newsroom-pill-outline { background: #fff; color: var(--color-newsroom-terracotta); }
+
+  .newsroom-card {
+    background: #fff;
+    border: 1px solid var(--color-newsroom-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  }
+
+  .newsroom-card:hover {
+    border-color: color-mix(in oklab, var(--color-newsroom-terracotta) 55%, var(--color-newsroom-border));
+    box-shadow: 0 18px 40px -32px rgba(42, 36, 32, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .newsroom-cta { background: var(--color-newsroom-orange); border: 1px solid var(--color-newsroom-orange); color: #fff; }
+  .newsroom-cta:hover { background: var(--color-newsroom-terracotta); border-color: var(--color-newsroom-terracotta); color: #fff; }
+}
