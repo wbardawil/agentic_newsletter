@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+import type { Database } from "@/lib/supabase/types";
+
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
 
@@ -8,7 +10,7 @@ export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
   type CookieToSet = { name: string; value: string; options?: Parameters<typeof response.cookies.set>[2] };
 
-  const supabase = createServerClient(
+  const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
