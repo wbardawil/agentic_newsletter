@@ -28,6 +28,34 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-20",
+      "recordedAt": "2026-06-09T23:13:08.528Z",
+      "angle": {
+        "headline": "When AI Becomes Your QoE Team's New Junior Analyst",
+        "thesis": "Middle-market M&A teams lose two days of every engagement to data prep work that produces zero insight—AI now automates what was once the entry point for junior talent, forcing firms to rethink how analysts build judgment.",
+        "targetPersona": "Business owners preparing for exit or acquisition in the $5M-$50M range, plus their deal advisors",
+        "relevanceToAudience": "US-LATAM corridor deals routinely involve QuickBooks exports, multi-currency reconciliations, and non-standardized records across jurisdictions—this is where 15 hours of manual work per engagement disappears, and where AI's entry reshapes both deal timelines and the path to partnership for junior professionals",
+        "suggestedSources": [
+          "9fdcd494-a914-4c02-ab36-6bbe9aef75fb",
+          "61234261-a3f2-4f5b-a811-2f4f45e830e4",
+          "673653ee-4c2f-4ea2-82bc-b1bc3016d863"
+        ],
+        "talkingPoints": [
+          "Quality of earnings engagements in the lower middle market waste 8-15 hours per deal on data normalization that teaches analysts nothing about judgment.",
+          "AI agents now automate the chart-of-accounts mapping and bank statement reconciliation that was the traditional entry point for developing deal intuition.",
+          "The real bottleneck isn't data prep speed—it's that firms built their talent development model around grunt work that no longer exists.",
+          "The corridor operator preparing for exit must now ask: when the buyer's QoE team arrives with AI doing the setup work, what judgment gaps will they expose that your books cannot survive?"
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "Junior analysts built judgment through repetitive data work—when AI eliminates that apprenticeship model, firms must redesign how professionals learn to see what the numbers hide",
+          "framework": "McKinsey 7S: Skills"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "Hung-Lin Lai runs a small law firm in Oklahoma. When a federal court blocked the $100,000 H-1B visa fee this week, [Business Insider](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6) reported that Lai called the ruling a relief. His firm could n"
     }
   ]
 }
