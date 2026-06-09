@@ -1,69 +1,45 @@
-import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
 
-export async function middleware(request: NextRequest) {
-  // Short-circuit if Supabase is not configured — allow all requests through.
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    return NextResponse.next({ request });
-  }
+/**
+ * True if the request carries a Supabase auth-token cookie.
+ *
+ * @supabase/ssr stores the session in cookies named `sb-<project-ref>-auth-token`
+ * (optionally chunked: `…-auth-token.0`, `.1`, …). We only check for presence —
+ * this is a lightweight UX gate. The authoritative validation (getUser, which
+ * verifies the JWT against the auth server) happens in Server Components / Route
+ * Handlers running in the Node runtime, where the full Supabase client is safe.
+ *
+ * The middleware deliberately does NOT instantiate the Supabase client: it runs
+ * in the Edge Runtime, and newer @supabase/supabase-js versions pull in modules
+ * that are incompatible with Edge, which crashes the middleware (500 on every
+ * route). A pure cookie read uses only Web-standard APIs and never throws.
+ */
+function hasAuthCookie(request: NextRequest): boolean {
+  return request.cookies
+    .getAll()
+    .some((c) => /^sb-.*-auth-token(\.\d+)?$/.test(c.name) && c.value.length > 0);
+}
 
-  let response = NextResponse.next({ request });
-  type CookieToSet = { name: string; value: string; options?: Parameters<typeof response.cookies.set>[2] };
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet: CookieToSet[]) {
-          for (const { name, value } of cookiesToSet) {
-            request.cookies.set(name, value);
-          }
-          response = NextResponse.next({ request });
-          for (const { name, value, options } of cookiesToSet) {
-            response.cookies.set(name, value, options);
-          }
-        },
-      },
-    },
-  );
-
-  // getSession reads from the cookie — no network call, safe in Edge Runtime.
-  // getUser (network-validated) runs in Server Components/Route Handlers instead.
-  const { data: { session } } = await supabase.auth.getSession();
-  const user = session?.user ?? null;
+export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  const needsAuth = MEMBER_PREFIXES.some((p) => pathname.startsWith(p)) ||
+  const needsAuth =
+    MEMBER_PREFIXES.some((p) => pathname.startsWith(p)) ||
     ADMIN_PREFIXES.some((p) => pathname.startsWith(p));
 
-  if (needsAuth && !user) {
+  // Admin-email enforcement lives in app/admin/layout.tsx (Node runtime),
+  // where the full session can be validated. Here we only gate on login.
+  if (needsAuth && !hasAuthCookie(request)) {
     const url = request.nextUrl.clone();
     url.pathname = "/sign-in";
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
 
-  if (ADMIN_PREFIXES.some((p) => pathname.startsWith(p)) && user) {
-    const adminEmails = (process.env.ADMIN_EMAILS ?? "")
-      .split(",")
-      .map((e) => e.trim().toLowerCase())
-      .filter(Boolean);
-    const email = (user.email ?? "").toLowerCase();
-    if (!adminEmails.includes(email)) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/me";
-      return NextResponse.redirect(url);
-    }
-  }
-
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {
