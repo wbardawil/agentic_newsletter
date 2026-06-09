@@ -1,5 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+// Edge-safe middleware: no Supabase client instantiation (see hasAuthCookie).
+// rev: 2026-06-09 — force fresh compile, no Node-only deps in the edge bundle.
+
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
 
