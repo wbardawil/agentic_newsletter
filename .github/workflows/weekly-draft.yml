@@ -124,6 +124,7 @@ jobs:
         run: pnpm draft -- --edition ${{ steps.edition.outputs.id }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           FEEDLY_API_KEY: ${{ secrets.FEEDLY_API_KEY }}
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}

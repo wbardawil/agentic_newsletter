@@ -60,7 +60,7 @@
       "negative space as a deliberate composition element",
       "matte finish; no shiny gradients, no neon, no chrome"
     ],
-    "model": "gemini-2.5-flash-image-preview"
+    "model": "gemini-2.5-flash-image"
   },
   "layout": {
     "borderRadius": "0.5rem",

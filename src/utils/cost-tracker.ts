@@ -11,6 +11,10 @@ const MODEL_PRICING: Record<string, { input: number; output: number }> = {
   // each generated image as ~1290 output tokens so the run-cost cap still
   // applies meaningfully. Tune output rate if Gemini pricing shifts.
   "gemini-2.5-flash-image-preview": { input: 0.3, output: 31.0 },
+  // gemini-2.5-flash-image: current GA name (replaces -preview suffix)
+  "gemini-2.5-flash-image": { input: 0.3, output: 31.0 },
+  // gemini-2.0-flash-exp-image-generation: alternative experimental model
+  "gemini-2.0-flash-exp-image-generation": { input: 0.3, output: 31.0 },
 };
 
 export interface CostTracker {
