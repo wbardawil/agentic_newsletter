@@ -28,6 +28,34 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-18",
+      "recordedAt": "2026-06-10T21:22:31.779Z",
+      "angle": {
+        "headline": "Why Your AI Investment Failed Before You Bought It",
+        "thesis": "Most middle-market businesses are spending on AI tools before equipping employees to use them—not because of poor technology selection, but because the operating model that would support adoption was never built.",
+        "targetPersona": "Business owners who have attempted or are considering AI implementation, particularly those who have already experienced one failed technology project (ERP, CRM, digital transformation)",
+        "relevanceToAudience": "The Marsh/Mercer data shows 40% of companies cite spending on AI before employee readiness as their top concern—this is the Technology OS failure pattern these owners have lived before, now repeating at scale with AI. The corridor dimension matters: US-LATAM operators face this across two operating contexts simultaneously.",
+        "suggestedSources": [
+          "81209318-7289-42ca-b2f7-89c0c0d96007",
+          "806db033-5541-41bc-bce7-84624f046e62",
+          "dba93c27-13f6-4f96-bb5e-ceaeba9ae830"
+        ],
+        "talkingPoints": [
+          "The problem: 40% of organizations are deploying AI before their people can actually use it—the same sequence error that killed their last ERP implementation.",
+          "The diagnosis: This isn't a training gap—it's an Operating Model OS failure where work processes were never designed to absorb new capability.",
+          "The framework: Brunswick's CHRO named it: getting tech ROI requires changing how work actually works, not just adding tools to broken workflows.",
+          "The action: Before the next AI purchase, map one complete workflow end-to-end and identify where the handoffs, approvals, and decision rights would need to change for AI to deliver value."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "Employees must shift from executing defined tasks to redesigning their own workflows—a capability shift that requires them to see and articulate how their work actually happens today before AI can augment it.",
+          "framework": "ADKAR: Knowledge"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "A signal for any US owner thinking about a sale within the next 36 months. According to [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), AI is now eliminating the first 48 hours of a standard quality of earnings engagement on a lower middle market acquisition. T"
     }
   ]
 }

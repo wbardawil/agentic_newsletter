@@ -1,0 +1,341 @@
+{
+  "runId": "0374f874-393a-4c7a-ad11-a5753b324d72",
+  "editionId": "2026-18",
+  "generatedAt": "2026-06-10T21:22:31.781Z",
+  "contentHash": "19803917f4293ebd07b5d631fcf143fe3a59cc4527954989237d3f027dd3c80d",
+  "angle": {
+    "headline": "Why Your AI Investment Failed Before You Bought It",
+    "thesis": "Most middle-market businesses are spending on AI tools before equipping employees to use them—not because of poor technology selection, but because the operating model that would support adoption was never built.",
+    "targetPersona": "Business owners who have attempted or are considering AI implementation, particularly those who have already experienced one failed technology project (ERP, CRM, digital transformation)",
+    "relevanceToAudience": "The Marsh/Mercer data shows 40% of companies cite spending on AI before employee readiness as their top concern—this is the Technology OS failure pattern these owners have lived before, now repeating at scale with AI. The corridor dimension matters: US-LATAM operators face this across two operating contexts simultaneously.",
+    "suggestedSources": [
+      "81209318-7289-42ca-b2f7-89c0c0d96007",
+      "806db033-5541-41bc-bce7-84624f046e62",
+      "dba93c27-13f6-4f96-bb5e-ceaeba9ae830"
+    ],
+    "talkingPoints": [
+      "The problem: 40% of organizations are deploying AI before their people can actually use it—the same sequence error that killed their last ERP implementation.",
+      "The diagnosis: This isn't a training gap—it's an Operating Model OS failure where work processes were never designed to absorb new capability.",
+      "The framework: Brunswick's CHRO named it: getting tech ROI requires changing how work actually works, not just adding tools to broken workflows.",
+      "The action: Before the next AI purchase, map one complete workflow end-to-end and identify where the handoffs, approvals, and decision rights would need to change for AI to deliver value."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "Employees must shift from executing defined tasks to redesigning their own workflows—a capability shift that requires them to see and articulate how their work actually happens today before AI can augment it.",
+      "framework": "ADKAR: Knowledge"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The question your team has never been asked to answer",
+    "preheader": "Operating Model OS comes before AI. Every time.",
+    "subjectOptions": [
+      "What your team can't describe, AI can't fix",
+      "The question your team has never been asked to answer",
+      "Marsh: 40% are buying AI before training the team"
+    ],
+    "sections": [
+      {
+        "id": "7f9e185c-6106-4d3c-9ebc-4226492eb831",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: AI is landing on workflows nobody in the building can describe, and the productivity gap is starting to show in the data.*\n\n- **Strategy:** SpaceX is offering 555.6 million shares at a fixed price of $135 each, raising about $75 billion in what is set to become the largest IPO ever, topping Saudi Aramco's $29.4 billion in 2019. **Strategy is the discipline of staying private long enough that the listing is a coronation, not a fundraise.** [Read in Bloomberg ->](https://www.bloomberg.com/news/videos/2026-06-10/the-golden-age-of-ipos-is-here-ipox-s-schuster-video)\n- **Operating Models:** Walmart's US division CEO David Guggina said store workers can now unload trucks in minutes instead of hours, after years of building AI-coordinated distribution centers. **The operating model is where physical work is rearranged before headcount is.** [Read in Business Insider ->](https://www.businessinsider.com/walmarts-ai-warehouses-slash-time-for-workers-to-unload-trucks-2026-6)\n- **Technology:** Thoma Bravo founder Orlando Bravo said AI now handles the late-night modeling and pitch deck work he used to push to junior associates, even as he plans to hire more of them. **Technology relocates work up the org chart.** [Read in Business Insider ->](https://www.businessinsider.com/orlando-bravo-thoma-private-equity-ai-junior-employees-2026-6)\n- **Human Capital:** Marsh and Mercer's 2026 People Risk report, drawn from 4,517 HR and risk leaders, found 40% name AI spending that runs ahead of employee enablement as their top concern, while the share of workers who say they are thriving fell from 66% in 2022 to 44% in 2026. **Human capital decides whether a technology budget becomes an outcome or a write-off.** [Read in HR Executive ->](https://hrexecutive.com/leadership-gaps-are-driving-multiple-workforce-risks-data-shows/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "32d4ad7d-67f8-44e4-b171-0bbebfa88721",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nThe Marsh and Mercer People Risk 2026 report drew responses from 4,517 HR and risk leaders across 26 markets, and the headline number is worth sitting with. 40% name spending on AI before equipping employees to use it as their top workforce concern. The share of workers who say they are thriving at work dropped from 66% in 2022 to 44% in 2026, erasing years of gains. The data is not really about morale. It is about a sequencing failure visible at scale. Companies are installing tools on top of workflows that no one in the building can yet describe.\n===OPTION_B:provocation===\nThe most measured company in this week's coverage is also the one whose employees cannot tell you how their own work actually happens. That is the quiet finding behind the Marsh and Mercer People Risk 2026 report, where 40% of HR and risk leaders flag AI investment that runs ahead of employee enablement. The disengagement story and the stalled-AI-ROI story are usually treated as two problems. They are one problem. A workforce trained to execute defined tasks cannot redesign its own work for a machine. The technology is fine. The workflow it sits on was never written down.\n===OPTION_C:pattern===\nThree pieces this week, three different industries, the same diagnosis. Walmart's US division CEO says store workers can now unload trucks in minutes that used to take hours, because the AI did the rearranging. Thoma Bravo's founder says he no longer wakes junior associates at 2am for modeling work, because the AI handles it. Marsh and Mercer find that 40% of firms are spending on AI ahead of equipping the people who have to use it. The technology is moving across every sector at once. The workflows beneath it are not.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d8e5506d-e125-4a9e-86d9-4c5d2c539e5e",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You bought the AI tool. The pilot worked. The rollout stalled. Your team is using it for what they used to do manually, faster by a margin, but the productivity case in the deck has not arrived.\n\nMost owners read this as an adoption problem and prescribe more training. It is not an adoption problem. Your team is being asked to do something they have never been asked to do before. They are being asked to describe how their own work actually happens. They were hired to execute defined tasks. Nobody asked them to surface the workflow. Now you are asking them to redesign it for a machine, and they do not have the vocabulary or the visibility.\n\nThe Marsh and Mercer 2026 data names this from the outside. 40% of HR and risk leaders cite AI spend that runs ahead of employee enablement. Brunswick Corporation's CHRO put it more plainly: getting tech investments to pay off requires changing how work actually works. That sentence is the entire Operating Model OS argument compressed.\n\nHere is the framework. Before any AI rollout, the team needs to produce the working version of the process. The policy version is what the procedure manual says. The working version is what actually happens: the controller who knows customer X gets net-45 even though the policy says net-30, because of a handshake in 2019. Every business runs on the working version. Almost none of them have written it down. AI cannot be pointed at the right seam until somebody does.\n\nThe reason this gets skipped is structural. The employees who run the process best are often the worst at describing it, because the knowledge is tacit. They have to be coached into seeing their own work as something separable from themselves. That coaching is the Operating Model OS investment that has to precede the Technology OS investment. Skip it, and the AI rollout becomes a license bill the CFO will eventually ask about.\n\nThis week, pick one process. Invoicing, quote-to-order, vendor onboarding. Ask the person who runs it to write down what they actually do, step by step, in the next seven days. Not the policy. The lived version. You will get something incomplete on the first pass. The gaps will be the most important information you receive this quarter, because every gap is a place where the AI cannot yet help.\n\nThe shift you are asking for is not a skill shift. It is a point-of-view shift. You are asking the person who has been the verb to become the noun, to see the work as an object instead of an action. That is a capability change. It is the work that has to land before the technology can.",
+        "sourceRefs": []
+      },
+      {
+        "id": "e41e1ab4-d859-4065-bf39-1344d55f232e",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "A signal for any US owner thinking about a sale within the next 36 months. According to [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), AI is now eliminating the first 48 hours of a standard quality of earnings engagement on a lower middle market acquisition.\n\nThe old pattern is familiar. The seller sends a QuickBooks export, a folder of bank statement PDFs across three accounts, a few Excel schedules, and two lease agreements. The buyer's advisor then spends eight to fifteen hours mapping the chart of accounts and normalizing the financials before a single EBITDA adjustment can be evaluated. ACG puts the average squarely in that window for $5 million to $50 million enterprise value deals.\n\nThe new tools collapse that work to hours. The implication for owners is direct. The buyer's first read of your business will happen faster than you can prepare for it. Books that were good enough because diligence was slow are no longer good enough. The owners getting full value on exit are the ones whose data room is clean before the LOI lands, not after.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c2460959-983b-42e1-84c6-839de9e22114",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Process Street** - A simple workflow documentation tool that lets non-technical employees capture how a process actually runs, with conditional logic for the it-depends moments. Why it matters: before any AI rollout, you need the working version of your processes written down, and a $5M-$100M operator cannot afford a six-month BPM consulting engagement to do it. Start at [process.st](https://www.process.st).",
+        "sourceRefs": []
+      },
+      {
+        "id": "7de94104-296b-4038-bf87-03047b488025",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how your team responds when you ask them to describe, in writing, how one of their core processes actually runs. Track the gap between what they write down and what you know happens day to day. That gap is your Operating Model OS surface area. If the description matches the policy manual exactly, the working version is still hiding. If it diverges, you are seeing the real machine for the first time.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3512e88a-7318-47ac-b1f8-0118a6de6cdf",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "La pregunta que su equipo nunca ha tenido que responder",
+    "preheader": "Operating Model OS antes que la IA. Siempre.",
+    "thesis": "La mayoría de las medianas empresas está gastando en herramientas de IA antes de preparar a su gente para usarlas. No es un problema de elección tecnológica: es el modelo operativo que nunca se construyó.",
+    "sections": [
+      {
+        "id": "7f9e185c-6106-4d3c-9ebc-4226492eb831",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: la IA está aterrizando sobre flujos de trabajo que nadie en la empresa sabe describir, y la brecha de productividad ya asoma en los datos.*\n\n- **Estrategia:** SpaceX colocará 555.6 millones de acciones a 135 dólares cada una, levantando unos 75 mil mdd en la mayor OPI de la historia, por encima de los 29,400 mdd de Saudi Aramco en 2019. **Quedarse privado el tiempo suficiente convierte la salida a bolsa en coronación.** [Leer en Bloomberg ->](https://www.bloomberg.com/news/videos/2026-06-10/the-golden-age-of-ipos-is-here-ipox-s-schuster-video)\n- **Modelos Operativos:** David Guggina, CEO de Walmart en Estados Unidos, dice que sus empleados ya descargan camiones en minutos donde antes tardaban horas, tras años de construir centros de distribución coordinados por IA. **El trabajo físico se rediseña antes que la nómina.** [Leer en Business Insider ->](https://www.businessinsider.com/walmarts-ai-warehouses-slash-time-for-workers-to-unload-trucks-2026-6)\n- **Tecnología:** Orlando Bravo, fundador de Thoma Bravo, contó que la IA ya hace el modelado y los pitch decks de medianoche que antes encargaba a sus asociados junior, incluso mientras planea contratar más. **El trabajo sube en el organigrama.** [Leer en Business Insider ->](https://www.businessinsider.com/orlando-bravo-thoma-private-equity-ai-junior-employees-2026-6)\n- **Capital Humano:** El informe People Risk 2026 de Marsh y Mercer, con 4,517 líderes de RH y riesgo, encontró que 40% señala el gasto en IA por delante de la capacitación como su mayor preocupación, mientras la proporción de empleados que dice prosperar cayó de 66% en 2022 a 44% en 2026. **Sin atención al talento, el presupuesto tecnológico se vuelve castigo contable.** [Leer en HR Executive ->](https://hrexecutive.com/leadership-gaps-are-driving-multiple-workforce-risks-data-shows/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "32d4ad7d-67f8-44e4-b171-0bbebfa88721",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Tres piezas esta semana, tres industrias distintas, el mismo diagnóstico. David Guggina, CEO de Walmart en Estados Unidos, dice que sus empleados descargan camiones en minutos donde antes tardaban horas: la IA reordenó el flujo. Orlando Bravo, fundador de Thoma Bravo, ya no despierta a sus asociados a las dos de la mañana para armar un modelo, porque la máquina lo arma sola. Y el informe People Risk 2026 de Marsh y Mercer encuentra que 40% de las empresas gasta en IA por delante de capacitar a quien tendrá que usarla. La tecnología avanza en paralelo por todos los sectores. Los flujos de trabajo, no.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d8e5506d-e125-4a9e-86d9-4c5d2c539e5e",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Compró la herramienta de IA. El piloto funcionó. El despliegue se atoró. Su equipo la usa para acelerar lo que ya hacía a mano, pero el caso de productividad que aparecía en la presentación todavía no llega.\n\nLa tentación es leer esto como un problema de adopción y recetar más capacitación. No lo es. A su equipo se le está pidiendo algo que nunca antes se le pidió: describir cómo ocurre, paso a paso, su propio trabajo. A esa gente la contrataron para ejecutar tareas definidas. Nadie le pidió jamás sacar el flujo a la luz. Ahora se le pide rediseñarlo para una máquina, y ni tiene el vocabulario ni la visibilidad.\n\nEl informe People Risk 2026 de Marsh y Mercer recoge respuestas de 4,517 líderes de recursos humanos y riesgo. La cifra lo nombra desde afuera: 40% señala que el gasto en IA va por delante de la capacitación de la gente. La CHRO de Brunswick Corporation, Jill Wrobel, lo dijo con más claridad: hacer rentables las inversiones tecnológicas exige cambiar la forma en que el trabajo realmente sucede. Esa frase condensa el argumento de Operating Model OS en una sola oración.\n\nHe aquí el marco. Antes de cualquier despliegue de IA, el equipo tiene que producir la versión real del proceso. La versión normativa es la que aparece en el manual de procedimientos. La versión real es lo que en efecto ocurre. El contralor sabe que al cliente X se le da neto 45, aunque la política diga neto 30, porque hubo un apretón de manos en 2019. Toda empresa opera sobre la versión real. Casi ninguna la tiene escrita. La IA no puede apuntar al lugar correcto hasta que alguien la ponga sobre papel.\n\nLa razón por la que este paso se omite es estructural. Quien mejor ejecuta el proceso suele ser el peor para describirlo, porque el conocimiento es tácito. Hay que acompañarlo para que vea su propio trabajo como algo separable de él. Ese acompañamiento es la inversión en Operating Model OS que debe preceder a la inversión en Technology OS. Si se omite, el despliegue termina como una factura de licencias que el CFO tarde o temprano cuestionará.\n\nEsta semana, escoja un proceso. Facturación, cotización a pedido, alta de proveedores. Pídale a quien lo opera que escriba, en los próximos siete días, lo que realmente hace, paso a paso. No la política. La versión vivida. Lo que reciba en la primera vuelta vendrá incompleto. Esos huecos serán la información más valiosa del trimestre, porque cada hueco es un lugar donde la IA todavía no puede ayudar.\n\nEl cambio que está pidiendo no es de habilidad. Es de punto de vista. Le pide a quien ha sido el verbo que se vuelva el sustantivo, que vea el trabajo como objeto y no como acción. Eso es un cambio de capacidad. Es la obra que tiene que asentarse antes de que la tecnología pueda hacer su parte.",
+        "sourceRefs": []
+      },
+      {
+        "id": "e41e1ab4-d859-4065-bf39-1344d55f232e",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nUna señal para cualquier dueño que piense vender en los próximos 36 meses. Según [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), la IA ya está eliminando las primeras 48 horas de un quality of earnings estándar en una adquisición del segmento medio bajo.\n\nEl patrón viejo es conocido. El vendedor manda un export de QuickBooks, una carpeta con estados de cuenta en PDF de tres bancos, algunos esquemas de Excel y dos contratos de arrendamiento. El asesor del comprador invierte entre ocho y quince horas ordenando el catálogo de cuentas y normalizando los estados financieros, antes de poder evaluar un solo ajuste de EBITDA. ACG sitúa el promedio justo en ese rango para operaciones de 5 a 50 mdd de valor de empresa.\n\nLas nuevas herramientas reducen ese trabajo a horas. La implicación para el dueño es directa: la primera lectura que el comprador haga de su empresa ocurrirá más rápido de lo que usted puede prepararse. Los libros que resultaban aceptables cuando la diligencia era lenta ya no lo son. Los dueños que se llevan el valor pleno al salir son los que tienen el data room limpio antes de que llegue la carta de intención, no después.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c2460959-983b-42e1-84c6-839de9e22114",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Process Street.** Herramienta de documentación de flujos de trabajo diseñada para que un colaborador sin perfil técnico capture cómo opera realmente un proceso, con lógica condicional para los momentos del 'depende'. Resulta relevante esta semana porque antes de cualquier despliegue de IA usted necesita la versión real de sus procesos por escrito, y un operador de 5 a 100 mdd no puede costear una consultoría BPM de seis meses para lograrlo. Comience en [process.st](https://www.process.st).",
+        "sourceRefs": []
+      },
+      {
+        "id": "7de94104-296b-4038-bf87-03047b488025",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cómo responde su equipo cuando le pide describir, por escrito, cómo opera realmente uno de sus procesos centrales. Mida la distancia entre lo que escriben y lo que usted sabe que sucede día a día. Esa distancia es la superficie sobre la que tiene que trabajar Operating Model OS. Si la descripción coincide al pie de la letra con el manual de políticas, la versión real sigue oculta. Si diverge, está viendo la máquina real por primera vez.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3512e88a-7318-47ac-b1f8-0118a6de6cdf",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": false,
+    "score": 65,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "error",
+        "section": "signal",
+        "message": "Signal word count is 242 — expected 50–240."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (26 words). Break it up.",
+        "excerpt": "Your team is using it for what they used to do manually, faster by a margin, but the productivity case in the deck has n"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (27 words). Break it up.",
+        "excerpt": "The working version is what actually happens: the controller who knows customer X gets net-45 even though the policy say"
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'Operating Model OS investment' is used as if it were an established framework the reader should recognize, but it appears positioned as something distinct from 'Technology OS investment' in a way that suggests a branded concept beyond the approved three-pillar system. Consider signaling this explicitly as Wadi framing or using industry-standard terms like 'process documentation work' or 'workflow mapping investment'.",
+        "excerpt": "That coaching is the Operating Model OS investment that has to precede the Technology OS investment."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The terms 'policy version' and 'working version' are introduced as if they are established distinctions in process documentation. While the concept is clear and useful, these specific labels are not industry-standard terminology. Consider either signaling these as the writer's own framing ('what I call the policy version versus the working version') or using established terms like 'documented process' versus 'actual practice' or 'formal procedure' versus 'informal workflow'.",
+        "excerpt": "The policy version is what the procedure manual says. The working version is what actually happens"
+      }
+    ],
+    "wordCounts": {
+      "signal": 242,
+      "apertura": 100,
+      "insight": 454,
+      "fieldReport": 177,
+      "tool": 59,
+      "compass": 76,
+      "total": 1108
+    },
+    "shareableSentence": "The employees who run the process best are often the worst at describing it, because the knowledge is tacit.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"The employees who run the process best are often the worst at describing it, because the knowledge is tacit.\"",
+      "Reframe confirmed: \"Most owners read this as an adoption problem and prescribe more training. It is not an adoption problem. Your team is being asked to do something they have never been asked to do before.\"",
+      "1 error(s) must be resolved before this draft is ready for review."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "SpaceX is offering 555.6 million shares at a fixed price of $135 each, raising about $75 billion",
+          "supportingFactId": "288b710d-89f1-49da-b236-8842e3e34e2c",
+          "language": "en"
+        },
+        {
+          "claim": "The IPO is expected to rank as the biggest ever, topping Saudi Aramco's $29.4 billion listing in 2019",
+          "supportingFactId": "288b710d-89f1-49da-b236-8842e3e34e2c",
+          "language": "en"
+        },
+        {
+          "claim": "Walmart's US division CEO David Guggina said store workers can now unload trucks in minutes instead of hours",
+          "supportingFactId": "99a58bff-9db9-4332-b225-7f0080fcd868",
+          "language": "en"
+        },
+        {
+          "claim": "Thoma Bravo founder Orlando Bravo said AI now handles the late-night modeling and pitch deck work",
+          "supportingFactId": "dba93c27-13f6-4f96-bb5e-ceaeba9ae830",
+          "language": "en"
+        },
+        {
+          "claim": "Marsh and Mercer's 2026 People Risk report drew responses from 4,517 HR and risk leaders",
+          "supportingFactId": "81209318-7289-42ca-b2f7-89c0c0d96007",
+          "language": "en"
+        },
+        {
+          "claim": "40% name AI spending that runs ahead of employee enablement as their top concern",
+          "supportingFactId": "81209318-7289-42ca-b2f7-89c0c0d96007",
+          "language": "en"
+        },
+        {
+          "claim": "The share of workers who say they are thriving fell from 66% in 2022 to 44% in 2026",
+          "supportingFactId": "81209318-7289-42ca-b2f7-89c0c0d96007",
+          "language": "en"
+        },
+        {
+          "claim": "Brunswick Corporation's CHRO said getting tech investments to pay off requires changing how work actually works",
+          "supportingFactId": "81209318-7289-42ca-b2f7-89c0c0d96007",
+          "language": "en"
+        },
+        {
+          "claim": "Average time spent on data preparation work is eight to fifteen hours per engagement for $5M-$50M deals",
+          "supportingFactId": "5c0e587a-5796-4086-aaef-a81d46798ac5",
+          "language": "en"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Bloomberg",
+        "Business Insider",
+        "HR Executive",
+        "Middle Market Growth (ACG)",
+        "process.st"
+      ],
+      "outletCount": 5
+    },
+    "summary": "Draft passes all quality gates with strong voice match (88/100), proper fact verification across all claims, distinct angle from prior editions, and adequate source diversity (4 outlets)."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-18-hero.png",
+        "publicUrl": null,
+        "prompt": "A monochromatic workspace surface photographed from above, showing the ghost outline of a disassembled workflow—scattered index cards, half-erased process diagrams on graph paper, a single mechanical pencil mid-stroke. The composition suggests arrested documentation: someone started mapping how work actually happens, then stopped. Deep charcoal background fades to near-black at edges. One card catches dim side-light, revealing handwritten annotations that trail off incomplete. Negative space dominates the frame. The image reads as forensic evidence of the gap between intention and execution, shot in flat editorial style with no gradient or shine.",
+        "altText": {
+          "en": "Wooden blocks stacked precariously on a table, with one block pulled partway out, threatening the stability of the entire structure.",
+          "es": "Bloques de madera apilados precariamente sobre una mesa, con un bloque parcialmente extraído que amenaza la estabilidad de toda la estructura."
+        },
+        "caption": {
+          "en": "You're asking your people to redesign their workflows without first asking them to describe how they actually work.",
+          "es": "Les pides a tus equipos que rediseñen sus procesos sin antes preguntarles cómo trabajan realmente."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10630,
+      "outputTokens": 531,
+      "costUsd": 0.039855
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 743,
+      "outputTokens": 9381,
+      "costUsd": 0.23189
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 558,
+      "costUsd": 0.008442
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1093,
+      "outputTokens": 12247,
+      "costUsd": 0.30398600000000003
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1296,
+      "outputTokens": 1592,
+      "costUsd": 0.04840799999999999
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 961,
+      "costUsd": 0.014481
+    },
+    "totalUsd": 0.647062
+  }
+}
