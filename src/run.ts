@@ -39,6 +39,7 @@ import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from ".
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
 import { filterUsBundle } from "./utils/bundle-filter.js";
+import { initializeReview, saveReview, updateImageInReview } from "./utils/review-state.js";
 import { findFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
 import { replaceContentMxEntities } from "./utils/mx-entity-replacer.js";
 import { runVoiceSweep } from "./utils/es-voice-sweep.js";
@@ -724,6 +725,26 @@ async function main(): Promise<void> {
       JSON.stringify(designer, null, 2),
       "utf-8",
     );
+  }
+
+  // ── review.json — required by the portal /review endpoint ─────────────────
+  // Must exist on the draft branch before the editor clicks any button in the
+  // digest email. Without it the portal returns 404 "Review state not found".
+  // If the Designer generated an image, image.status = "pending" (needs editor
+  // approval). If no image was generated (key missing / skipped), the image
+  // step is auto-approved so the editor only needs to approve the content.
+  {
+    const heroAsset = designer?.assets[0] ?? null;
+    const baseReview = initializeReview(editionId, runId);
+    const reviewState = heroAsset
+      ? updateImageInReview(baseReview, "pending", {
+          assetPath: heroAsset.imagePath,
+          publicUrl: heroAsset.publicUrl,
+          prompt: heroAsset.prompt,
+        })
+      : updateImageInReview(baseReview, "approved");
+    saveReview(draftsDir, reviewState);
+    console.log(`   ✓ review.json initialized (image: ${reviewState.image.status})`);
   }
 
   // Content hash lets publish.ts verify the draft was not corrupted or swapped
