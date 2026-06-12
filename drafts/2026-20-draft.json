@@ -1,0 +1,318 @@
+{
+  "runId": "eac17165-8439-4fd2-8311-0d53eda604ef",
+  "editionId": "2026-20",
+  "generatedAt": "2026-06-09T23:13:08.530Z",
+  "contentHash": "f1b23cf2c6be8cc598ec9a0c6b6217e998f7761a669d55cb299a95f3270a9e74",
+  "angle": {
+    "headline": "When AI Becomes Your QoE Team's New Junior Analyst",
+    "thesis": "Middle-market M&A teams lose two days of every engagement to data prep work that produces zero insight—AI now automates what was once the entry point for junior talent, forcing firms to rethink how analysts build judgment.",
+    "targetPersona": "Business owners preparing for exit or acquisition in the $5M-$50M range, plus their deal advisors",
+    "relevanceToAudience": "US-LATAM corridor deals routinely involve QuickBooks exports, multi-currency reconciliations, and non-standardized records across jurisdictions—this is where 15 hours of manual work per engagement disappears, and where AI's entry reshapes both deal timelines and the path to partnership for junior professionals",
+    "suggestedSources": [
+      "9fdcd494-a914-4c02-ab36-6bbe9aef75fb",
+      "61234261-a3f2-4f5b-a811-2f4f45e830e4",
+      "673653ee-4c2f-4ea2-82bc-b1bc3016d863"
+    ],
+    "talkingPoints": [
+      "Quality of earnings engagements in the lower middle market waste 8-15 hours per deal on data normalization that teaches analysts nothing about judgment.",
+      "AI agents now automate the chart-of-accounts mapping and bank statement reconciliation that was the traditional entry point for developing deal intuition.",
+      "The real bottleneck isn't data prep speed—it's that firms built their talent development model around grunt work that no longer exists.",
+      "The corridor operator preparing for exit must now ask: when the buyer's QoE team arrives with AI doing the setup work, what judgment gaps will they expose that your books cannot survive?"
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "Junior analysts built judgment through repetitive data work—when AI eliminates that apprenticeship model, firms must redesign how professionals learn to see what the numbers hide",
+      "framework": "McKinsey 7S: Skills"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The apprenticeship hidden in the work AI just eliminated",
+    "preheader": "Junior analysts learned to read a business by doing the tedious work. That work is now gone.",
+    "subjectOptions": [
+      "Your succession plan is in the data work",
+      "The apprenticeship hidden in the work AI just eliminated",
+      "AI eliminated the apprenticeship. Your bench will feel it."
+    ],
+    "sections": [
+      {
+        "id": "ed3a52da-1413-4cad-b033-b3c41155dbca",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: the apprenticeship layer of the mid-market firm is being repriced from three directions at once.*\n\n- **Strategy:** A federal judge blocked the $100,000 H-1B visa fee on Monday, restoring foreign hiring access for small employers who could not absorb the cost. **Strategy is pricing the policies you cannot control into the decisions you can.** [Read in Business Insider ->](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6)\n- **Operating Models:** ACG's Middle Market Growth reports that QoE deal teams spend eight to fifteen hours per engagement on data preparation alone, work AI agents are now compressing into minutes. **The operating model is what stops being a job once it becomes a workflow.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/)\n- **Technology:** OpenAI filed a confidential S-1 on Monday, joining Anthropic and xAI in the public-markets race in the same calendar year. **Technology stops being optional the moment its makers start filing with the SEC.** [Read in Business Insider ->](https://www.businessinsider.com/openai-ipo-reactions-2026-6)\n- **Human Capital:** SBA administrator Kelly Loeffler told Axios on Tuesday that AI will be a 'huge leveler' for Main Street and that small businesses will be the 'biggest beneficiaries.' **Human capital is who learns to see what the machine cannot.** [Read in Axios Business ->](https://www.axios.com/2026/06/09/kelly-loeffler-small-business)",
+        "sourceRefs": []
+      },
+      {
+        "id": "5e8dbad3-58b4-4619-9fd5-5d6fc93076cf",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nAccording to [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), the first two days of every quality-of-earnings engagement on a $5M to $50M target are consumed by data preparation that produces no analytical insight whatsoever. Eight to fifteen hours per engagement, mapping charts of accounts and normalizing financials. AI agents are now doing that work in minutes. The deal community is calling this a productivity win. It is. It is also the quiet end of the apprenticeship model that every senior diligence partner walked through to learn how to read a business. The seeing came from the slogging. What replaces the slogging?\n===OPTION_B:provocation===\nThe firms moving fastest on AI inside their analyst work are the same firms quietly dismantling their own succession plan. They do not see it yet. The eight-to-fifteen hours of data preparation [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) reports AI now eliminates from a QoE engagement was not waste. It was the only mechanism a junior analyst ever had for learning how a business actually moves. What a creative account name looks like. Where a seller hides the EBITDA tax. The senior partner did not teach that. The reconciliation did. Remove the reconciliation and the firm keeps its margin and loses its pipeline of judgment.\n===OPTION_C:pattern===\nThree stories this week point at the same shift from three different angles. [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) documents AI eliminating the data preparation work inside QoE engagements. SBA administrator Kelly Loeffler tells [Axios](https://www.axios.com/2026/06/09/kelly-loeffler-small-business) that AI will be the 'huge leveler' for Main Street businesses. [OpenAI](https://www.businessinsider.com/openai-ipo-reactions-2026-6) files an S-1 to take the underlying technology public. The headline reads as a productivity story. Underneath, a more uncomfortable pattern is forming. The layer of repetitive professional work where junior people used to grow into senior people is the exact layer the machine eats first. Nobody has named what replaces it.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ab8d3719-dd92-4303-b2d5-d22438491ae6",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your junior analysts learned to read a business by doing the work nobody wanted to do. Mapping the chart of accounts. Reconciling three bank statements. Normalizing financials when the seller's controller got creative with account names. According to [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), eight to fifteen hours per quality-of-earnings engagement gets consumed by that preparation alone. An AI agent now does it in minutes.\n\nThe whole industry is calling this a productivity win. It is. It is also something else, and the something else is what most firms are not naming.\n\nThe eight-to-fifteen hours was not waste. It was the only mechanism a professional services firm has ever had for turning a smart hire into someone with judgment. The senior partner did not teach a junior how to spot a hidden expense add-back. The data taught that. The reconciliation taught that. The slog of normalizing twelve months of inconsistent books is where pattern recognition was installed.\n\nRemove the slog and you remove the installation.\n\nThis is not an AI story. It is an Operating Model OS story about how skill enters a firm. Skill does not arrive at hiring. It compounds inside the repetitive work the firm now treats as a margin tax. Three layers operate inside every professional services operating model: the deliverable (what the client receives), the process (how it gets made), and what I would call the practice layer (the repetition that produces seasoned operators five years from now). Most owners see the first two. When AI compresses the second, the firm celebrates margin and quietly loses the third.\n\nYou will not feel this in 2026. You will feel it in 2029, when the senior associate role on your bench is empty and the candidates you interview have never been forced to read a business from the inside out.\n\nThe framework is to treat skill as a deliberate output of the operating model, not an accidental byproduct of inefficiency. Name the judgment a role used to acquire by doing the work. Then design a new artifact that forces the same judgment without the work. For a QoE team, that might mean a weekly review where the junior examines the AI's output and writes down what the model missed, what it surfaced that needs context, what question to ask the seller next. The data preparation is gone. The seeing has to be installed on purpose.\n\nThis week, pick one role where AI now does work a junior used to do. Write down the three things that role used to learn by doing it. Then design one weekly ritual that practices those three things deliberately. If you cannot name the three things, you are looking at the role that will quietly hollow out first.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2e194c65-23e1-488a-9d48-4722938203de",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Hung-Lin Lai runs a small law firm in Oklahoma. When a federal court blocked the $100,000 H-1B visa fee this week, [Business Insider](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6) reported that Lai called the ruling a relief. His firm could not have absorbed the cost for a single foreign hire, and many of his small-business clients sat in the same position.\n\nThe ruling is being read as a win for Main Street employers who need engineering, medical, and technical talent the domestic market does not supply in volume.\n\nThe corridor implication runs deeper than relief. Lai himself notes the ruling may not hold. US-based owners building 2026 hiring plans now have to model two scenarios (one where the fee returns, one where it does not) and decide which roles are mission-critical enough to sponsor under either regime.\n\nThe certainty went away. The planning discipline did not.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1bad0b53-8474-41ce-bde4-793d30f32f3a",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Judgment Audit** - A one-page exercise: for every role in your firm where AI now does work a junior used to do, list (1) the work that was eliminated, (2) the three judgments that role used to acquire by doing it, and (3) the new weekly ritual that practices those judgments without the original work. Run it once per role this quarter. Build it in [Notion](https://www.notion.so) or on paper.",
+        "sourceRefs": []
+      },
+      {
+        "id": "942a516d-a390-4479-ab5d-4113aa2e39d8",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many times your senior people review AI output without a junior watching. Each instance is one apprenticeship moment lost. The senior is doing the seeing. The junior is not learning to see. If the number is more than zero, your firm has already started losing the practice layer of its operating model. The loss stays invisible until the bench is empty.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8f5925a2-38ff-42d1-a7ac-f1aed2b38af1",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "La escuela escondida en el trabajo que la IA acaba de borrar",
+    "preheader": "Los analistas junior aprendían a leer un negocio con el trabajo tedioso. Ese trabajo ya no existe.",
+    "thesis": "Los equipos de M&A del mercado medio pierden dos días por asignación en preparar datos que no producen un solo hallazgo. La IA ya hace ese trabajo en minutos, y con él desaparece la única escuela que tenían los analistas junior para aprender a leer un negocio por dentro.",
+    "sections": [
+      {
+        "id": "ed3a52da-1413-4cad-b033-b3c41155dbca",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: la capa de aprendizaje de la firma de mercado medio se está repreciando desde tres frentes a la vez.*\n\n- **Estrategia:** Un juez federal bloqueó el lunes la cuota de 100,000 dólares para visas H-1B, lo que reabre la puerta a la contratación extranjera para empleadores pequeños que no podían absorber el costo. **Meta las políticas que no controla dentro de las decisiones que sí.** [Leer en Business Insider ->](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6)\n- **Modelos Operativos:** Middle Market Growth, de ACG, reporta que los equipos de quality of earnings dedican entre ocho y quince horas por asignación a preparar datos, trabajo que los agentes de IA hoy resuelven en minutos. **Lo que hoy es un puesto, mañana es un flujo.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/)\n- **Tecnología:** OpenAI presentó el lunes un S-1 confidencial y se suma a Anthropic y xAI en la carrera bursátil del mismo año calendario. **La tecnología deja de ser opcional cuando sus creadores presentan trámites ante la SEC.** [Leer en Business Insider ->](https://www.businessinsider.com/openai-ipo-reactions-2026-6)\n- **Capital Humano:** Kelly Loeffler, titular de la SBA, dijo el martes a Axios que la IA será un 'gran nivelador' para Main Street y que la pequeña empresa será la 'mayor beneficiaria'. **Su ventaja es aprender a ver lo que la máquina no ve.** [Leer en Axios Business ->](https://www.axios.com/2026/06/09/kelly-loeffler-small-business)",
+        "sourceRefs": []
+      },
+      {
+        "id": "5e8dbad3-58b4-4619-9fd5-5d6fc93076cf",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Según [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), los primeros dos días de cada trabajo de quality of earnings sobre una empresa objetivo de entre 5 y 50 millones de dólares se destinan a preparar datos que no producen un solo hallazgo analítico. Entre ocho y quince horas por asignación, dedicadas a mapear catálogos de cuentas y normalizar estados financieros. Los agentes de IA ya hacen eso en minutos. La comunidad de M&A lo celebra como una victoria de productividad. Lo es. Es también el fin silencioso del modelo de aprendizaje por el que pasó cada socio senior de due diligence para aprender a leer un negocio. El ojo se entrenaba con la friega. ¿Qué reemplaza a la friega?",
+        "sourceRefs": []
+      },
+      {
+        "id": "ab8d3719-dd92-4303-b2d5-d22438491ae6",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Sección: analysis\n\nSus analistas junior aprendieron a leer un negocio porque hicieron el trabajo que nadie quería. Mapear el catálogo de cuentas. Conciliar tres estados de cuenta bancarios. Normalizar libros cuando el contralor del vendedor se ponía creativo con los nombres de las cuentas. Según [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/), ocho a quince horas de cada trabajo de quality of earnings se consumen en esa preparación. Un agente de IA hoy lo resuelve en minutos.\n\nLa industria entera lo lee como una victoria de productividad. Lo es. Y es también otra cosa, una cosa que casi nadie está nombrando.\n\nLas ocho a quince horas no eran desperdicio. Eran el único mecanismo que una firma de servicios profesionales ha tenido para convertir a un contratado talentoso en alguien con criterio. El socio senior no le enseñaba al junior cómo detectar un add-back oculto. Eso lo enseñaban los datos. Eso lo enseñaba la conciliación. La friega de normalizar doce meses de libros inconsistentes era donde se instalaba el reconocimiento de patrones.\n\nQuite la friega y quita la instalación.\n\nNo es una historia de IA. Es una historia de Operating Model OS sobre cómo entra el oficio a una firma. El oficio no llega con la contratación. Se compone dentro del trabajo repetitivo que hoy la firma trata como un impuesto al margen. Tres capas operan en cada modelo operativo de servicios profesionales: el entregable, el proceso y lo que yo llamaría la capa de práctica. El entregable es lo que recibe el cliente. El proceso es cómo se produce. La capa de práctica es la repetición que forja operadores curtidos cinco años después. La mayoría de los dueños distingue las dos primeras. Cuando la IA comprime la segunda, la firma celebra el margen y, sin quererlo, pierde la tercera.\n\nNo lo va a sentir en 2026. Lo va a sentir en 2029, cuando el puesto de asociado senior en su banca esté vacío. Y cuando los candidatos que entreviste nunca hayan sido forzados a leer un negocio por dentro.\n\nEl marco consiste en tratar el oficio como un producto deliberado del modelo operativo, no como un subproducto accidental de la ineficiencia. Nombre el criterio que un rol adquiría al hacer el trabajo. Después diseñe un artefacto nuevo que fuerce ese mismo criterio sin el trabajo. Para un equipo de QoE, eso puede ser una revisión semanal: el junior examina lo que produjo la IA y escribe tres cosas. Qué se le escapó al modelo. Qué surgió que necesita contexto. Qué pregunta hay que hacerle al vendedor. La preparación de datos ya no está. El ver hay que instalarlo a propósito.\n\nEsta semana, elija un rol donde la IA ya hace el trabajo que un junior solía hacer. Anote las tres cosas que ese rol aprendía al hacerlo. Después diseñe un ritual semanal que practique esas tres cosas con disciplina. Si no puede nombrar las tres cosas, está mirando el rol que se va a vaciar primero, sin que nadie lo note.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2e194c65-23e1-488a-9d48-4722938203de",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nHung-Lin Lai dirige un despacho pequeño de abogados en Oklahoma. Cuando un tribunal federal bloqueó esta semana la cuota de 100,000 dólares para visas H-1B, [Business Insider](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6) reportó que Lai recibió el fallo con alivio. Su despacho no habría podido absorber ese costo por una sola contratación extranjera, y muchos de sus clientes pyme estaban en la misma situación.\n\nEl fallo se lee como una victoria para los empleadores de Main Street que necesitan talento en ingeniería, medicina y áreas técnicas que el mercado doméstico no entrega en volumen.\n\nLa implicación para el corredor cala más hondo que el alivio. El propio Lai advierte que el fallo puede no sostenerse. Los dueños estadounidenses que están armando su plan de contratación para 2026 tienen que modelar dos escenarios —uno donde la cuota regresa, otro donde no— y determinar qué puestos son lo bastante críticos para patrocinar bajo cualquier régimen.\n\nLa certeza se fue. La disciplina de planeación, no.\n\n**Enfoque México.** Según [Amexcap](https://expansion.mx/mercados/2026/06/09/la-ia-se-posiciona-entre-los-sectores-clave-del-capital-emprendedor-en-mexico-amexcap), la inteligencia artificial ya es el tercer sector con mayor inversión de capital emprendedor en México: 1,614 millones de dólares en 2025 y 525 millones en el primer trimestre de 2026. El capital ya está colocado. Lo que falta es decidir qué oficio sobrevive a la herramienta que ese capital está pagando.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1bad0b53-8474-41ce-bde4-793d30f32f3a",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Judgment Audit.** Una hoja de trabajo: para cada rol en su firma donde la IA ya hace lo que antes hacía un junior, enumere (1) qué trabajo desapareció, (2) los tres criterios que ese rol desarrollaba al realizarlo y (3) el ritual semanal nuevo que ejercita esos criterios sin el trabajo original. Una revisión por rol este trimestre. Hágala en [Notion](https://www.notion.so) o en papel.",
+        "sourceRefs": []
+      },
+      {
+        "id": "942a516d-a390-4479-ab5d-4113aa2e39d8",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuántas veces sus socios senior revisan lo que produjo la IA sin que haya un junior al lado. Cada vez es una oportunidad de aprendizaje que se evapora. El senior observa. El junior no aprende a observar. Si el número es mayor que cero, su firma ya comenzó a perder la capa de práctica de su modelo operativo. La pérdida permanece invisible hasta que la banca queda vacía.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8f5925a2-38ff-42d1-a7ac-f1aed2b38af1",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 74,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 199 — target range is 95–185."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (39 words). Break it up.",
+        "excerpt": "Three layers operate inside every professional services operating model: the deliverable (what the client receives), the"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (33 words). Break it up.",
+        "excerpt": "You will feel it in 2029, when the senior associate role on your bench is empty and the candidates you interview have ne"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (37 words). Break it up.",
+        "excerpt": "For a QoE team, that might mean a weekly review where the junior examines the AI's output and writes down what the model"
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'the practice layer' is presented as an established concept ('Most owners see the first two. When AI compresses the second, the firm celebrates margin and quietly loses the third.') without explicit signaling as the writer's own framing. This should either use an industry term like 'apprenticeship model' or 'skill development layer' or be signaled with 'what I call' language.",
+        "excerpt": "Three layers operate inside every professional services operating model: the deliverable (what the client receives), the process (how it gets made), and what I would call the practice layer (the repetition that produces seasoned operators five years from now)."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "info",
+        "section": "insight",
+        "message": "The writer does use 'what I would call' to signal the practice layer on first use, which satisfies the provenance requirement. However, the subsequent reference ('quietly loses the third') treats it as if now established. This is borderline acceptable given the in-text signal, but worth noting for editorial review.",
+        "excerpt": "Most owners see the first two. When AI compresses the second, the firm celebrates margin and quietly loses the third."
+      }
+    ],
+    "wordCounts": {
+      "signal": 199,
+      "apertura": 102,
+      "insight": 453,
+      "fieldReport": 140,
+      "tool": 70,
+      "compass": 66,
+      "total": 1030
+    },
+    "shareableSentence": "Remove the slog and you remove the installation.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"Remove the slog and you remove the installation.\"",
+      "Reframe confirmed: \"This is not an AI story. It is an Operating Model OS story about how skill enters a firm.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "According to Middle Market Growth, the first two days of every quality-of-earnings engagement on a $5M to $50M target are consumed by data preparation",
+          "supportingFactId": "9fdcd494-a914-4c02-ab36-6bbe9aef75fb-1",
+          "language": "en"
+        },
+        {
+          "claim": "Eight to fifteen hours per engagement, mapping charts of accounts and normalizing financials",
+          "supportingFactId": "9fdcd494-a914-4c02-ab36-6bbe9aef75fb-7",
+          "language": "en"
+        },
+        {
+          "claim": "A federal judge blocked the $100,000 H-1B visa fee on Monday",
+          "supportingFactId": "4aeef8f7-0db0-4f22-b66f-b153733fcf8f-6",
+          "language": "en"
+        },
+        {
+          "claim": "OpenAI filed a confidential S-1 on Monday",
+          "supportingFactId": "8faf9b75-4c28-4344-9273-e7f79822b249-2",
+          "language": "en"
+        },
+        {
+          "claim": "SBA administrator Kelly Loeffler told Axios that AI will be a 'huge leveler' for Main Street",
+          "supportingFactId": "61234261-a3f2-4f5b-a811-2f4f45e830e4-5",
+          "language": "en"
+        },
+        {
+          "claim": "Hung-Lin Lai runs a small law firm in Oklahoma",
+          "supportingFactId": "4aeef8f7-0db0-4f22-b66f-b153733fcf8f-4",
+          "language": "en"
+        },
+        {
+          "claim": "Según Amexcap, la inteligencia artificial ya es el tercer sector con mayor inversión de capital emprendedor en México: 1,614 millones de dólares en 2025 y 525 millones en el primer trimestre de 2026",
+          "supportingFactId": "bada3a60-50ee-430d-8ab5-eff8188a22f2-2",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": null,
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Axios Business",
+        "Business Insider",
+        "Middle Market Growth (ACG)",
+        "notion.so"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all gates: facts verified against source bundle, angle is distinct from prior editions, voice matches golden examples with strong advisor tone and clear framework discipline, and source diversity exceeds minimum threshold."
+  },
+  "designer": null,
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11323,
+      "outputTokens": 534,
+      "costUsd": 0.041979
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 630,
+      "outputTokens": 10968,
+      "costUsd": 0.27229600000000004
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 607,
+      "costUsd": 0.009177
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 984,
+      "outputTokens": 15894,
+      "costUsd": 0.39585400000000004
+    },
+    "designer": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 827,
+      "costUsd": 0.012471000000000001
+    },
+    "totalUsd": 0.731777
+  }
+}
