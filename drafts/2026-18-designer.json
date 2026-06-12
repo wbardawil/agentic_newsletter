@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-18-hero.png",
+      "publicUrl": null,
+      "prompt": "A monochromatic workspace surface photographed from above, showing the ghost outline of a disassembled workflow—scattered index cards, half-erased process diagrams on graph paper, a single mechanical pencil mid-stroke. The composition suggests arrested documentation: someone started mapping how work actually happens, then stopped. Deep charcoal background fades to near-black at edges. One card catches dim side-light, revealing handwritten annotations that trail off incomplete. Negative space dominates the frame. The image reads as forensic evidence of the gap between intention and execution, shot in flat editorial style with no gradient or shine.",
+      "altText": {
+        "en": "Wooden blocks stacked precariously on a table, with one block pulled partway out, threatening the stability of the entire structure.",
+        "es": "Bloques de madera apilados precariamente sobre una mesa, con un bloque parcialmente extraído que amenaza la estabilidad de toda la estructura."
+      },
+      "caption": {
+        "en": "You're asking your people to redesign their workflows without first asking them to describe how they actually work.",
+        "es": "Les pides a tus equipos que rediseñen sus procesos sin antes preguntarles cómo trabajan realmente."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
