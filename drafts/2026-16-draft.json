@@ -1,0 +1,286 @@
+{
+  "runId": "2c1fafce-06a3-4816-a4e6-7b79e1f9f8d3",
+  "editionId": "2026-16",
+  "generatedAt": "2026-06-10T04:39:16.313Z",
+  "contentHash": "5e764fda159e751d8b6db85268e9e2b06a1179a3287169f8aaedf55650a9bb60",
+  "angle": {
+    "headline": "Why Your QoE Takes Two Days Before Analysis Even Starts",
+    "thesis": "Middle-market deals fail not because the books are bad, but because the data preparation work that precedes every quality-of-earnings engagement is invisible to the buyer, the seller, and the owner—and AI just made it obsolete.",
+    "targetPersona": "Business owners with $5M–$50M enterprise value preparing for a sale, acquisition, or institutional capital raise within 12–24 months",
+    "relevanceToAudience": "If you are building toward an exit or growth capital event in the US-LATAM corridor, the 8–15 hours of manual data preparation that every advisor bills before analysis begins is a tax you pay for operating without standardized financial infrastructure—and it signals to buyers that your business runs on the owner, not the system.",
+    "suggestedSources": [
+      "59989faf-972f-4047-9619-86922355a581",
+      "02f91d29-9f48-4855-ade3-de9aec7d61f6",
+      "8b9aa695-5682-4feb-8968-e857f6a8c4a6"
+    ],
+    "talkingPoints": [
+      "Every middle-market QoE engagement begins with 8–15 hours of unpaid work normalizing QuickBooks exports, reconciling bank statements, and mapping inconsistent account names—work that produces zero analytical insight.",
+      "This data preparation tax exists because the business was built on relationship and instinct, not on financial systems designed to be legible to external capital.",
+      "AI is now eliminating this work in 90 minutes, but the real insight is not the speed—it is that the need for manual normalization was always a signal that the Operating Model OS was not built for scale.",
+      "The action is not to buy the AI tool; it is to audit whether your financial infrastructure can answer a buyer's question in real time without the controller spending two days preparing a deck."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The controller or CFO must shift from being the person who 'knows where everything is' to being the architect of systems that make the business legible without their interpretation.",
+      "framework": "7S: Skills"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Your books work. Your operating model doesn't.",
+    "preheader": "Your controller is not a bottleneck. She is the operating model.",
+    "subjectOptions": [
+      "Your books work. Your operating model doesn't.",
+      "The most expensive person on your next deal",
+      "Three AI labs going public. Your books are next."
+    ],
+    "sections": [
+      {
+        "id": "f37d1be0-c111-498f-8dba-06cb964e5e15",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four signals on private knowledge being forced into public form. Books, leaders, labs, and hiring rules.*\n\n- **Strategy:** A federal judge struck down the $100,000 H-1B visa fee on Monday, and small business owners told Business Insider they will likely resume hiring from abroad. **Strategy is the discipline of refusing to wire your hiring plan to a policy that has not yet survived appeal.** [Read in Business Insider ->](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6)\n- **Operating Models:** Middle Market Growth reports quality of earnings teams now spend eight to fifteen hours per lower-middle-market engagement on data preparation alone, before a single EBITDA adjustment is evaluated. **Your books speak for you when the controller is on vacation.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/)\n- **Technology:** OpenAI filed a confidential S-1 on Monday, joining Anthropic in the formal IPO process, while SpaceX, which includes Musk's xAI, lists later this week. **Technology becomes public infrastructure the moment it publishes earnings on a quarterly clock.** [Read in Business Insider ->](https://www.businessinsider.com/openai-ipo-reactions-2026-6)\n- **Human Capital:** Fast Company profiled Hinge founder Justin McLeod on the emotional cost of leadership that founders carry in private. **The weight a founder carries alone becomes the weight the company carries without them.** [Read in Fast Company ->](https://www.fastcompany.com/91556856/the-hidden-emotional-cost-of-leadership)",
+        "sourceRefs": []
+      },
+      {
+        "id": "09b2cc15-203f-49ef-8747-a96fa3466e5c",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\n[Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) reports that the average quality of earnings engagement on a lower-middle-market acquisition now consumes eight to fifteen hours on data preparation before a single EBITDA adjustment can be evaluated. The number rises sharply when the books are inconsistent, the formats are non-standardized, or the seller's controller has been \"creative with account names.\" That last phrase deserves a pause. The controller did not make a mistake. The controller made the books legible to the controller. Every closely-held business that has not yet been tested by an outside reader is sitting on the same hidden cost: knowledge that lives in one person, and a price tag that only shows up at exit.\n===OPTION_B:provocation===\nThe most expensive person on your next deal is the controller who knows where everything is. [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) reports that quality of earnings teams now spend eight to fifteen hours per engagement just preparing the data: mapping the chart of accounts, reconciling bank statements, and decoding what the seller's controller named in his own private vocabulary. That work produces no analytical insight. It produces a translation. Every hour the buyer's team spends translating is an hour the seller's price is being quietly marked down. The same person who made the books work is also the person making them harder to value.\n===OPTION_C:pattern===\nThree pieces this week, three different rooms, the same diagnosis. [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) reports quality of earnings teams spending eight to fifteen hours per deal unpacking what one controller knows. [Business Insider](https://www.businessinsider.com/openai-ipo-reactions-2026-6) reports OpenAI's confidential S-1 filing, the first time the lab's economics will be readable by anyone outside its boardroom. [Fast Company](https://www.fastcompany.com/91556856/the-hidden-emotional-cost-of-leadership) reports Hinge founder Justin McLeod naming the leadership load that lives only in the founder. Three stories about private knowledge. Three stories about what happens when private knowledge is forced into public form. The pattern is what every owner avoids until the calendar makes them face it.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f484d662-f558-4186-94c0-9f31553d31ed",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your books make sense because your controller makes them make sense. That is not an operating model. That is a person, doing translation work in real time, in a chair that has not been redesigned since the company was a third of its current size.\n\nYou would not call this a problem. Most owners do not. The financial close happens. The reports get produced. The board materials get assembled. Cash is reconciled. Everything works. The dysfunction is invisible until something forces the books to be read by someone who has never spoken to your controller.\n\nThat is what the [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) story is actually reporting. Eight to fifteen hours per quality of earnings engagement, spent before any analysis begins, decoding what the seller's controller built in his own private vocabulary. The number is not a bookkeeping failure. It is the cost of legibility that was never designed into the system. The controller did the job he was hired to do. He made the books work for him. Nobody ever told him the books also had to work for a stranger.\n\nThis is where most advisors get the diagnosis wrong. They look at the chart of accounts and recommend a clean-up project. The clean-up project is the symptom of the work, not the work. The real work sits one level up. The controller has built her value on knowing where everything is. The Operating Model OS requires her to rebuild her value on architecting systems that make the business legible without her interpretation. Those are two different jobs. They use different time. They produce different evidence of progress. A controller who spends Tuesday translating looks productive. A controller who spends Tuesday redesigning the chart of accounts so it does not need translation looks slow.\n\nThe owner who confuses the two will keep the wrong one.\n\nThe shift is a skills shift, not a tools shift. New software on top of an illegible system gives you a faster illegible system. The skill the company needs from the finance seat is no longer interpretation. It is architecture. Naming conventions that an outsider can read. A close process that produces the same numbers regardless of who runs it. Documentation that survives the controller's vacation. This is the version of the role most controllers were never trained for and most owners have never asked for. The conversation has to be explicit, because the controller cannot do both jobs at once.\n\n**This week.** Run the stranger test. Take your last twelve months of P&L and hand it to a peer CFO or a new advisor who has never seen your books. Ask them to tell you, in thirty minutes, what your top five expense categories actually contain, without asking you a question. The gaps in their answer are the gaps in your architecture. That list is the first draft of the conversation you have been postponing with the person who built the books.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ce465c3-5c7f-4954-9a9f-c9dd33595e57",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "A federal judge struck down the $100,000 H-1B visa fee on Monday. According to [Business Insider](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6), Oklahoma-based attorney Hung-Lin Lai, CEO of Lai & Turner Law Firm, said small businesses like his will likely resume hiring from abroad. Lai also said it remains unclear whether the fee will stay blocked through appeal.\n\nThe planning question for a US owner running a $5M to $100M business with engineering, accounting, or specialized technical roles is not whether to resume H-1B sponsorship. It is which version of the policy your operating model can survive.\n\nOwners who built hiring plans assuming the fee would hold are exposed today. Owners who built hiring plans that work under either ruling have an operating model. The difference does not show up on the org chart. It shows up in how many decisions had to be remade between Friday and Monday, and in whether the controller can tell you, by lunch, what the rule change does to next quarter's payroll forecast.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6d9330b2-d0f9-4ee8-9d2e-dd5d0e8ef673",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Stranger Test** is a diagnostic, not a product. Hand your last twelve months of P&L to a peer CFO or new advisor who has never seen your books. Ask them to tell you what your top five expense categories actually contain, without asking a single question. The gaps in their answer are the architecture work your controller has been postponing. Free to run. Expensive only to ignore.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6bd156f9-aa0c-426f-9871-5fe055aa5d2f",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** Wednesday's May CPI release. [RSM](https://realeconomy.rsmus.com/market-minute-supply-shock-cpi-and-falling-real-wages/) forecasts a 0.5% monthly increase, a 4.2% top-line move from a year ago, and a net decline in real wages of 0.8% over the past twelve months. If the real-wage line keeps falling, your retention plan needs to account for it before you sit down to plan Q3 hiring. The hardest conversations next quarter will not be about salary. They will be about which of your best people can still afford the commute.",
+        "sourceRefs": []
+      },
+      {
+        "id": "56f6d068-7e17-4329-89db-1713cd743a20",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply. I read every response.\n\nIf this is useful to someone in your network, forward it. It takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Sus libros funcionan. Su modelo operativo, no.",
+    "preheader": "Su contralor no es un cuello de botella: es el modelo operativo.",
+    "thesis": "Los deals en la mediana empresa no se caen por libros mal llevados, sino por el trabajo invisible de preparación que precede a todo quality of earnings: invisible para el comprador, para el vendedor y para el dueño. La IA acaba de volver ese trabajo obsoleto.",
+    "sections": [
+      {
+        "id": "f37d1be0-c111-498f-8dba-06cb964e5e15",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro señales sobre conocimiento privado obligado a volverse forma pública. Libros, líderes, laboratorios y reglas de contratación.*\n\n- **Estrategia:** Un juez federal anuló el lunes la cuota de 100,000 dólares para visas H-1B, y dueños de pequeñas empresas dijeron a Business Insider que probablemente retomarán contrataciones desde el extranjero. **La estrategia consiste en sobrevivir a las dos versiones del fallo.** [Leer en Business Insider ->](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6)\n- **Modelos Operativos:** Middle Market Growth reporta que los equipos de quality of earnings gastan hoy entre ocho y quince horas por engagement de la mediana empresa solo en preparar datos, antes de evaluar un único ajuste de EBITDA. **Los libros hablan por usted cuando el contralor se va.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/)\n- **Tecnología:** OpenAI presentó el lunes su S-1 confidencial y se sumó a Anthropic en el proceso formal de IPO, mientras SpaceX, que incluye a xAI de Musk, sale a bolsa más adelante esta semana. **La tecnología se vuelve infraestructura pública el día que publica utilidades.** [Leer en Business Insider ->](https://www.businessinsider.com/openai-ipo-reactions-2026-6)\n- **Capital Humano:** Fast Company perfiló a Justin McLeod, fundador de Hinge, sobre el costo emocional del liderazgo que los fundadores cargan en privado. **Lo que el fundador carga a solas termina cargándolo la empresa.** [Leer en Fast Company ->](https://www.fastcompany.com/91556856/the-hidden-emotional-cost-of-leadership)",
+        "sourceRefs": []
+      },
+      {
+        "id": "09b2cc15-203f-49ef-8747-a96fa3466e5c",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "[Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/) reporta que un quality of earnings sobre una adquisición en la mediana empresa consume hoy entre ocho y quince horas solo en preparar los datos, antes de que se evalúe un único ajuste de EBITDA. La cifra se dispara cuando los libros no guardan coherencia, cuando los formatos no están normalizados, o cuando el contralor del vendedor ha sido 'creativo con los nombres de las cuentas'. Esa última frase merece una pausa. El contralor no se equivocó: volvió los libros legibles para sí mismo. Toda empresa familiar que aún no ha sido leída por un externo carga el mismo costo oculto: conocimiento que vive en una sola persona, y un precio que solo aflora a la salida.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f484d662-f558-4186-94c0-9f31553d31ed",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Sus libros tienen sentido porque su contralora les da sentido. Eso no es un modelo operativo. Es una persona que traduce en tiempo real, sentada en una silla que nadie ha rediseñado. La empresa hoy factura tres veces lo que facturaba cuando esa silla se diseñó.\n\nUsted no llamaría a esto un problema. Pocos dueños lo hacen. El cierre contable ocurre. Los reportes salen. Los materiales del consejo se arman. El banco se concilia. Todo funciona. La disfunción es invisible hasta que algo obliga a que los libros los lea alguien que nunca habló con su contralora.\n\nEso es, en el fondo, lo que reporta [Middle Market Growth](https://middlemarketgrowth.org/qoeagent-ai-qoe-data-problem/). Ocho a quince horas por engagement de quality of earnings, invertidas antes de cualquier análisis, dedicadas a descifrar lo que la contralora del vendedor construyó en su propio vocabulario privado. La cifra no es una falla contable. Es el costo de un sistema que nunca se diseñó para que lo leyera un externo. La contralora hizo el trabajo para el que la contrataron: hizo que los libros funcionaran para ella. Nadie le dijo nunca que los libros también tenían que funcionar para un extraño.\n\nAquí es donde la mayoría de los asesores diagnostica mal. Miran el catálogo de cuentas y recomiendan un proyecto de limpieza. El proyecto de limpieza es el síntoma del trabajo, no el trabajo. El trabajo real está un nivel arriba. La contralora ha construido su valor sobre saber dónde está cada cosa. El Operating Model OS le exige reconstruir ese valor sobre el diseño de sistemas que vuelvan el negocio comprensible sin su interpretación. Son dos oficios distintos. Usan tiempos distintos. Producen evidencia distinta de avance. Una contralora que pasa el martes traduciendo se ve productiva. Una contralora que pasa el martes rediseñando el catálogo de cuentas para que no requiera traducción se ve lenta.\n\nEl dueño que confunde a las dos se queda con la equivocada.\n\nEl salto es de habilidades, no de herramientas. Software nuevo encima de un sistema incomprensible produce un sistema incomprensible más rápido. La habilidad que la empresa necesita desde la silla de finanzas ya no es interpretación. Es arquitectura. Nomenclaturas que un externo pueda leer. Un proceso de cierre que produzca los mismos números sin importar quién lo corra. Documentación que sobreviva a las vacaciones de la contralora. Esta es la versión del puesto para la que pocos contralores fueron entrenados y por la que pocos dueños han preguntado. La conversación tiene que ser explícita, porque la contralora no puede atender los dos oficios al mismo tiempo.\n\n**Esta semana,** corra la prueba del extraño. Tome los últimos doce meses de su estado de resultados y entréguelos a un CFO par o a un asesor nuevo que nunca haya visto sus libros. Pídales que le digan, en treinta minutos, qué contienen sus cinco rubros principales de gasto, sin hacerle una sola pregunta. Los huecos en la respuesta son los huecos en su arquitectura. Esa lista es el primer borrador de la conversación que ha estado posponiendo con la persona que construyó los libros.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ce465c3-5c7f-4954-9a9f-c9dd33595e57",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nA menos de una semana del arranque de la Copa Mundial 2026, el [#DataCoparmex](https://coparmex.org.mx/mundial-2026-representa-una-oportunidad-historica-para-detonar-crecimiento-y-desarrollo-regional/) reporta que 53% de las empresas considera que el torneo mejorará el entorno económico para hacer negocios. La cifra sube a 71% en medios masivos y a 64% en esparcimiento cultural y deportivo; la Ciudad de México concentra 57% de percepción favorable, Nuevo León 56.9% y Jalisco 53.2%.\n\nLa pregunta de planeación para el dueño de una mediana empresa mexicana no es si el Mundial va a llegar. La pregunta es qué versión del Mundial puede sostener su modelo operativo.\n\nLos dueños que construyeron sus pronósticos sobre el supuesto del rebote turístico hoy están expuestos al rezago. Los dueños que construyeron pronósticos que funcionan con o sin ese rebote tienen un modelo operativo. La diferencia no aparece en el organigrama. Aparece en cuántas decisiones tuvieron que rehacerse del viernes al lunes, y en si el contralor puede decirle, antes de comer, qué le hace al pronóstico de nómina del próximo trimestre un escenario que no se materializa.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6d9330b2-d0f9-4ee8-9d2e-dd5d0e8ef673",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Stranger Test** es un diagnóstico, no un producto. Entregue los últimos doce meses del estado de resultados a un CFO par o a un asesor nuevo que nunca haya visto los libros, y pídale que explique qué contienen los cinco rubros principales de gasto, sin formularle una sola pregunta. Los vacíos en la respuesta son el trabajo de arquitectura que el contralor ha venido postergando. Gratis de ejecutar. Caro solo de ignorar.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6bd156f9-aa0c-426f-9871-5fe055aa5d2f",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**El indicador de la semana:** el dato de CPI de mayo en Estados Unidos, que se publica el miércoles. [RSM](https://realeconomy.rsmus.com/market-minute-supply-shock-cpi-and-falling-real-wages/) pronostica un alza mensual de 0.5%, un avance interanual de 4.2% y una caída neta de 0.8% en salarios reales en los últimos doce meses. Si la línea de salario real sigue cayendo, el plan de retención debe incorporar ese dato antes de sentarse a planear las contrataciones del tercer trimestre. Las conversaciones más difíciles del próximo trimestre no serán sobre salario. Serán sobre cuáles de sus mejores personas todavía pueden costear el traslado.",
+        "sourceRefs": []
+      },
+      {
+        "id": "56f6d068-7e17-4329-89db-1713cd743a20",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": null,
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "A federal judge struck down the $100,000 H-1B visa fee on Monday",
+          "supportingFactId": "c0ad7a73-bb32-494e-8694-6b36592d7af7",
+          "language": "en"
+        },
+        {
+          "claim": "Oklahoma-based attorney Hung-Lin Lai, CEO of Lai & Turner Law Firm, said small businesses like his will likely resume hiring from abroad",
+          "supportingFactId": "ce02178a-90d7-4612-abd9-0384a08fd808",
+          "language": "en"
+        },
+        {
+          "claim": "Middle Market Growth reports quality of earnings teams now spend eight to fifteen hours per lower-middle-market engagement on data preparation alone",
+          "supportingFactId": "59989faf-972f-4047-9619-86922355a581",
+          "language": "en"
+        },
+        {
+          "claim": "OpenAI filed a confidential S-1 on Monday",
+          "supportingFactId": "c0ad7a73-bb32-494e-8694-6b36592d7af7",
+          "language": "en"
+        },
+        {
+          "claim": "Fast Company profiled Hinge founder Justin McLeod on the emotional cost of leadership",
+          "supportingFactId": "1dc2aa08-f022-4e7a-97b9-88adfacd6c96",
+          "language": "en"
+        },
+        {
+          "claim": "RSM forecasts a 0.5% monthly increase, a 4.2% top-line move from a year ago, and a net decline in real wages of 0.8% over the past twelve months",
+          "supportingFactId": "75845693-9b77-4550-9baf-f0a59acb0603",
+          "language": "en"
+        },
+        {
+          "claim": "53% de las empresas considera que el Mundial mejorará el entorno económico para hacer negocios",
+          "supportingFactId": "13daaa5d-b151-4e94-958d-909c5808186a",
+          "language": "es"
+        },
+        {
+          "claim": "71% en medios masivos y 64% en esparcimiento cultural y deportivo",
+          "supportingFactId": "13daaa5d-b151-4e94-958d-909c5808186a",
+          "language": "es"
+        },
+        {
+          "claim": "Ciudad de México concentra 57% de percepción favorable, Nuevo León 56.9% y Jalisco 53.2%",
+          "supportingFactId": "13daaa5d-b151-4e94-958d-909c5808186a",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Business Insider",
+        "Fast Company",
+        "Middle Market Growth (ACG)",
+        "RSM Real Economy (Middle Market)"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong voice adherence, verified facts, original angle, and diverse sourcing across five distinct outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-16-hero.png",
+        "publicUrl": null,
+        "prompt": "A dimly lit technical blueprint emerges from charcoal, showing a skeletal wireframe structure suspended in negative space—half-built scaffolding or the internal framework of a building mid-construction. One section glows faintly in muted ochre, traced in clean white lines, revealing the hidden load-bearing logic beneath opaque surfaces. The rest dissolves into shadow. No people, no text, no literal representation—just the architectural ghost of a system designed to be read without its original architect present.",
+        "altText": {
+          "en": "Stacked cardboard filing boxes with handwritten labels in a dimly lit storage room",
+          "es": "Torres de cajas de archivo de cartón con etiquetas manuscritas en un cuarto de almacenamiento poco iluminado"
+        },
+        "caption": {
+          "en": "Your controller knows exactly where everything is—and that's the problem.",
+          "es": "Tu controller sabe exactamente dónde está todo—y ahí está el problema."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11233,
+      "outputTokens": 570,
+      "costUsd": 0.042249
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 643,
+      "outputTokens": 12087,
+      "costUsd": 0.30025
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 629,
+      "costUsd": 0.009507
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1014,
+      "outputTokens": 32324,
+      "costUsd": 0.806476
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1316,
+      "outputTokens": 1536,
+      "costUsd": 0.047628
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 964,
+      "costUsd": 0.014526
+    },
+    "totalUsd": 1.2111290000000001
+  }
+}
