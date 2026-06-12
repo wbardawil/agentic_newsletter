@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Route } from "next";
 
 import type { Lang } from "@/lib/i18n/dictionary";
 import { topicLabel } from "@/lib/topics";
@@ -12,7 +11,7 @@ import { type NewsroomItem, itemTitle, itemExcerpt, itemDate } from "./types";
  * has a hero image (seed editions have none → text-only, never a broken image).
  */
 export function ArticleCard({ item, lang }: { item: NewsroomItem; lang: Lang }) {
-  const href = `/edition/${item.edition_id}` as Route;
+  const href = `/edition/${item.edition_id}` as const;
   const title = itemTitle(item, lang);
   const excerpt = itemExcerpt(item, lang);
   const date = itemDate(item, lang);

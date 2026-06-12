@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Route } from "next";
 
 import type { Lang, Dict } from "@/lib/i18n/dictionary";
 import { topicLabel } from "@/lib/topics";
@@ -20,7 +19,7 @@ export function HeroArticle({
   lang: Lang;
   labels: Dict["newsroom"];
 }) {
-  const href = `/edition/${item.edition_id}` as Route;
+  const href = `/edition/${item.edition_id}` as const;
   const title = itemTitle(item, lang);
   const excerpt = itemExcerpt(item, lang);
   const date = itemDate(item, lang);
