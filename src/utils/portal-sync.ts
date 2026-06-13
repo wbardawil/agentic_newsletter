@@ -89,7 +89,7 @@ export function buildEditionRow(input: MirrorInput): EditionRow {
     pillar: input.angle.osPillar ?? null,
     quarterly_theme: input.angle.quarterlyTheme ?? null,
     shareable_sentence_en: input.shareableSentence,
-    shareable_sentence_es: null,
+    shareable_sentence_es: input.esContent.shareableSentence ?? null,
     byline: input.byline ?? null,
     byline_role: input.bylineRole ?? null,
     is_published: input.isPublished,

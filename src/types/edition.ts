@@ -63,6 +63,13 @@ export const LocalizedContentSchema = z.object({
    * must populate it so the rendered draft does not leak English.
    */
   thesis: z.string().optional(),
+  /**
+   * The single most shareable sentence of this language variant (Rule 14).
+   * ES editions populate it natively — the Localizer extracts it from its
+   * own Insight, never translating the EN sentence. EN editions leave it
+   * unset because the Validator extracts the EN sentence separately.
+   */
+  shareableSentence: z.string().nullable().optional(),
   sections: z.array(ContentSectionSchema).min(1),
 });
 export type LocalizedContent = z.infer<typeof LocalizedContentSchema>;

@@ -67,6 +67,7 @@ const SectionSchema = z.object({ type: z.string(), body: z.string() });
 const LocalizedSchema = z.object({
   language: z.enum(["en", "es"]),
   subject: z.string().min(1),
+  shareableSentence: z.string().nullish(),
   sections: z.array(SectionSchema).min(1),
 });
 const DraftSchema = z.object({

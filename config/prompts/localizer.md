@@ -996,6 +996,7 @@ Respond with valid JSON only — no preamble, no markdown wrapper:
   "subject": "Subject line AUTORADO para el lector mexicano. Sentence case. Registro de prensa de negocios MX.",
   "preheader": "Preheader AUTORADO para el lector mexicano (máx 150 chars). Complementa el subject, no lo repite.",
   "thesis": "Tesis estratégica en registro de prensa mexicana (1-2 oraciones). Es la tesis del EN rescrita en voz mexicana nativa — misma afirmación estratégica, nunca traducción literal. Debe poder leerse sola como lo que un asesor le diría a un cliente mexicano. Aparece como 'Resumen del Insight' al inicio del draft.",
+  "shareableSentence": "La oración más compartible de TU Insight ES (Regla 14): una afirmación declarativa que se sostiene sola fuera de contexto, ≤25 palabras, tomada o destilada del Insight que acabas de escribir. NO es traducción de ninguna frase EN — sale de tu propio texto. Usa null si ninguna oración califica.",
   "sections": [
     {
       "id": "{{signalId}}",

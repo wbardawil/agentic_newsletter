@@ -38,6 +38,8 @@ export interface LocalizedContent {
   language: "en" | "es";
   subject: string;
   preheader?: string;
+  /** Native shareable sentence of this variant (the ES one feeds shareable_sentence_es). */
+  shareableSentence?: string | null;
   sections: ContentSection[];
 }
 
@@ -151,7 +153,7 @@ export function buildEditionRow(input: MirrorInput): EditionInsert {
     pillar: (input.angle.osPillar ?? null) as EditionInsert["pillar"],
     quarterly_theme: input.angle.quarterlyTheme ?? null,
     shareable_sentence_en: input.shareableSentence,
-    shareable_sentence_es: null,
+    shareable_sentence_es: input.esContent.shareableSentence ?? null,
     byline: input.byline ?? null,
     byline_role: input.bylineRole ?? null,
     is_published: input.isPublished,

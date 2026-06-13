@@ -4,6 +4,7 @@ import { z } from "zod";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { Database } from "@/lib/supabase/types";
 import { TOPIC_IDS } from "@/lib/topics";
+import { sendApplicationConfirmation } from "@/lib/email";
 
 const Body = z.object({
   email: z.string().email().max(200),
@@ -54,6 +55,11 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  // Fire-and-log: never block the 200 on email failure.
+  sendApplicationConfirmation(parsed.data.email, parsed.data.full_name).catch((e) =>
+    console.error("[apply] confirmation email failed:", e),
+  );
 
   return NextResponse.json({ ok: true });
 }

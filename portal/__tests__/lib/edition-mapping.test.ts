@@ -104,6 +104,20 @@ describe("buildEditionRow", () => {
     expect(row.body_es).toContain("## LA APERTURA");
   });
 
+  it("maps shareable_sentence_es from the ES edition's native sentence", () => {
+    const row = buildEditionRow({
+      ...base,
+      esContent: { ...localized("es"), shareableSentence: "Una línea compartible nativa." },
+    });
+    expect(row.shareable_sentence_es).toBe("Una línea compartible nativa.");
+    expect(row.shareable_sentence_en).toBe("A shareable line.");
+  });
+
+  it("keeps shareable_sentence_es null when the ES edition has no native sentence", () => {
+    const row = buildEditionRow({ ...base, esContent: { ...localized("es"), shareableSentence: null } });
+    expect(row.shareable_sentence_es).toBeNull();
+  });
+
   it("nulls published_at when not published", () => {
     const row = buildEditionRow({ ...base, isPublished: false });
     expect(row.published_at).toBeNull();

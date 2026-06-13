@@ -69,6 +69,9 @@ export function sanitizeLocalizedContent(
     ...content,
     subject: stripAiTells(content.subject),
     preheader: stripAiTells(content.preheader),
+    shareableSentence: content.shareableSentence
+      ? stripAiTells(content.shareableSentence)
+      : content.shareableSentence,
     sections: content.sections.map((s) => ({
       ...s,
       heading: stripAiTells(s.heading),
