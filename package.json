@@ -19,6 +19,7 @@
     "publish:edition": "node --import tsx src/publish.ts",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:portal": "vitest run --config vitest.portal.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
