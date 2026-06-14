@@ -1,35 +1,57 @@
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-
-// Edge-safe middleware: no Supabase client instantiation (see hasAuthCookie).
-// CRITICAL: This middleware does NOT import @supabase/supabase-js or @supabase/ssr.
-// It uses ONLY Web APIs (NextRequest, cookies, NextResponse).
-// If you see __dirname errors on Vercel, the old middleware bundle is cached.
-// See /portal/middleware.ts line 1-50 for the source truth (no Supabase imports).
 
 const MEMBER_PREFIXES = ["/me", "/archive", "/convenings", "/ask"];
 const ADMIN_PREFIXES = ["/admin"];
 
 /**
- * True if the request carries a Supabase auth-token cookie.
+ * Middleware using @supabase/ssr's recommended pattern.
  *
- * @supabase/ssr stores the session in cookies named `sb-<project-ref>-auth-token`
- * (optionally chunked: `…-auth-token.0`, `.1`, …). We only check for presence —
- * this is a lightweight UX gate. The authoritative validation (getUser, which
- * verifies the JWT against the auth server) happens in Server Components / Route
- * Handlers running in the Node runtime, where the full Supabase client is safe.
+ * MUST call supabase.auth.getUser() on every request so that:
+ * 1. Expired access tokens are exchanged for a fresh one via the refresh token.
+ * 2. The refreshed token is written to the response cookies BEFORE the Server
+ *    Component renders — Server Components cannot set cookies themselves.
  *
- * The middleware deliberately does NOT instantiate the Supabase client: it runs
- * in the Edge Runtime, and newer @supabase/supabase-js versions pull in modules
- * that are incompatible with Edge, which crashes the middleware (500 on every
- * route). A pure cookie read uses only Web-standard APIs and never throws.
+ * Without this, users appear logged-out in Server Components even with a valid
+ * refresh token, because the access-token cookie is stale and there is no
+ * middleware writing the refreshed one.
+ *
+ * History: an earlier version omitted the Supabase client here to avoid
+ * __dirname errors from @supabase/supabase-js on the Edge runtime. Those
+ * errors came from the old auth-helpers package. @supabase/ssr is Edge-safe.
  */
-function hasAuthCookie(request: NextRequest): boolean {
-  return request.cookies
-    .getAll()
-    .some((c) => /^sb-.*-auth-token(\.\d+)?$/.test(c.name) && c.value.length > 0);
-}
+export async function middleware(request: NextRequest) {
+  // Start with a passthrough response. setAll() below will replace it if
+  // Supabase needs to write refreshed auth cookies.
+  let response = NextResponse.next({ request });
 
-export function middleware(request: NextRequest) {
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet: { name: string; value: string; options?: Record<string, unknown> }[]) {
+          // Mutate the request cookies so downstream middleware/handlers see them.
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+          // Rebuild the response so the new cookies reach the browser.
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          );
+        },
+      },
+    },
+  );
+
+  // Calling getUser() is what triggers the token refresh and writes the cookies.
+  // Do NOT use getSession() here — it doesn't revalidate the token.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const pathname = request.nextUrl.pathname;
 
   const needsAuth =
@@ -38,14 +60,14 @@ export function middleware(request: NextRequest) {
 
   // Admin-email enforcement lives in app/admin/layout.tsx (Node runtime),
   // where the full session can be validated. Here we only gate on login.
-  if (needsAuth && !hasAuthCookie(request)) {
+  if (needsAuth && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/sign-in";
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {

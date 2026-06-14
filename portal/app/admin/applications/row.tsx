@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 import { t, type Lang } from "@/lib/i18n/dictionary";
 import type { ApplicationRow as Row } from "@/lib/supabase/types";
 
 export function ApplicationRow({ app, lang }: { app: Row; lang: Lang }) {
   const i18n = t(lang).admin;
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<Row["status"]>(app.status);
   const [error, setError] = useState<string | null>(null);
@@ -25,6 +27,7 @@ export function ApplicationRow({ app, lang }: { app: Row; lang: Lang }) {
         return;
       }
       setStatus(next);
+      router.refresh();
     });
   }
 
@@ -42,8 +45,8 @@ export function ApplicationRow({ app, lang }: { app: Row; lang: Lang }) {
 
       <p className="text-[var(--color-fg)]/90 whitespace-pre-wrap mb-3">{app.motivation}</p>
 
-      <footer className="flex items-center gap-2 flex-wrap">
-        <span className="pill">{status}</span>
+      <footer className={`flex items-center gap-2 flex-wrap transition-opacity ${isPending ? "opacity-50 pointer-events-none" : ""}`}>
+        <span className="pill">{isPending ? "…" : status}</span>
         <button disabled={isPending || status === "approved"} onClick={() => decide("approved")}   className="btn btn-primary text-sm">{i18n.approve}</button>
         <button disabled={isPending || status === "waitlisted"} onClick={() => decide("waitlisted")} className="btn btn-ghost text-sm">{i18n.waitlist}</button>
         <button disabled={isPending || status === "rejected"} onClick={() => decide("rejected")}   className="btn btn-ghost text-sm">{i18n.reject}</button>
