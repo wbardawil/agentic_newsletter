@@ -28,6 +28,35 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-25",
+      "recordedAt": "2026-06-15T18:05:41.977Z",
+      "angle": {
+        "headline": "Why Your Best Operator is Your Biggest Bottleneck",
+        "thesis": "The CEO who built the business through force of will eventually becomes the constraint preventing the business from running without him — not because he lacks capability, but because capability without transfer is dependency.",
+        "targetPersona": "Business owner with $15M-$75M revenue who is the most capable person in their company and has recognized this is now the problem, not the solution",
+        "relevanceToAudience": "The Vistage data on CEO plateaus and the Chief Executive survey on innovation ROI both point to the same corridor reality: mid-market owners expanding between US and LATAM markets hit a wall not because they lack vision, but because they remain the bottleneck in execution — making decisions that should belong to their operating model, not their calendar.",
+        "suggestedSources": [
+          "71600023-f82b-42a2-a03d-60be44bf9e04",
+          "f292ae2c-a09a-4664-a2e5-9535bb171606",
+          "14580ee2-7ca9-4e2d-8c65-6c3d88ab3062",
+          "7baceb6d-1afd-4501-9ae0-718d03b0df54"
+        ],
+        "talkingPoints": [
+          "Strong CEOs plateau when they optimize for being right instead of building systems that work without them — the Vistage research shows even high performers stop growing without external challenge.",
+          "The diagnosis: innovation stalls not from lack of ideas but from centralized decision rights — 59% of CEOs say future growth requires new offerings, yet most revenue still comes from five-year-old products because only one person can greenlight change.",
+          "The framework is decision rights mapping: distinguish between Strategy OS decisions (direction), Operating Model OS decisions (execution), and Technology OS decisions (enablement) — then transfer the latter two.",
+          "The concrete action: identify the three most common decisions you made last week that should have been made two levels down, document the decision criteria, and transfer the authority with the accountability."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The owner must shift from being the best operator to being the architect of operations — trusting that documented decision criteria plus capable people will produce 80% quality decisions without his intervention, which is sufficient for the business to scale.",
+          "framework": "ADKAR: Desire"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "When Sumit Singh joined Chewy as COO in 2017, customer care reported to him. He has [told Fast Company](https://www.fastcompany.com/91557196/chewys-ceo-is-chasing-empathy-at-scale) he initially thought of it as a cost center. He says that was the wrong way to think about it in a category where empat"
     }
   ]
 }
