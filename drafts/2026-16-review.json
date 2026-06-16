@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-16",
+  "runId": "aa982f47-94e9-41d4-a2dd-b3a4f295fff9",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": null,
+    "publicUrl": null,
+    "prompt": null,
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-06-16T23:39:32.051Z",
+  "updatedAt": "2026-06-16T23:39:32.052Z"
+}
