@@ -15,6 +15,7 @@
 
 import { verifyApprovalToken } from "@/lib/approval-token";
 import { publishEdition, PublishError } from "@/lib/publish-edition";
+import { sendPublicationConfirmation } from "@/lib/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,6 +77,11 @@ export async function GET(request: Request): Promise<Response> {
 
   try {
     const result = await publishEdition(payload.editionId);
+    sendPublicationConfirmation({
+      editionId: result.editionId,
+      qaScore: result.qaScore,
+      sourcesMirrored: result.sourcesMirrored,
+    }).catch((e) => console.error("[approve] publication confirmation email failed:", e));
     return page(
       200,
       `Edition ${result.editionId} published`,

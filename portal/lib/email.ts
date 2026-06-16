@@ -80,6 +80,54 @@ export async function sendApplicationConfirmation(to: string, name: string): Pro
 }
 
 /**
+ * Sent to the curator (RESEND_TO) after an edition is successfully published
+ * to the portal. Includes a direct link to the live article and QA metadata.
+ *
+ * Uses RESEND_TO from env (same address the digest digest is sent to).
+ * No-ops silently if RESEND_TO is not set.
+ */
+export async function sendPublicationConfirmation(opts: {
+  editionId: string;
+  qaScore: number;
+  sourcesMirrored: number;
+  heroImageUrl?: string | null;
+}): Promise<void> {
+  const to = process.env.RESEND_TO;
+  if (!to) {
+    console.warn("[email] RESEND_TO not set — skipping publication confirmation");
+    return;
+  }
+  const articleUrl = `${portalUrl()}/edition/${opts.editionId}`;
+  await send({
+    to,
+    subject: `Publicada: Edición ${opts.editionId} — The Transformation Letter`,
+    html: `
+<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
+  <p style="font-size:13px;color:#7A7466;margin:0 0 4px 0;text-transform:uppercase;letter-spacing:0.05em;">The Transformation Letter</p>
+  <h2 style="font-family:'Cormorant Garamond',Garamond,serif;font-size:22px;margin:0 0 16px 0;">Edición ${escHtml(opts.editionId)} publicada ✓</h2>
+  <p>El artículo ya está disponible en el portal y el archivo público.</p>
+  <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-top:1px solid #C7892A;border-bottom:1px solid #C7892A;padding:8px 0;margin:16px 0;">
+    <tr>
+      <td style="padding:6px 0;font-size:14px;color:#7A7466;">QA score</td>
+      <td style="padding:6px 0;font-size:14px;text-align:right;">${opts.qaScore}/100</td>
+    </tr>
+    <tr>
+      <td style="padding:6px 0;font-size:14px;color:#7A7466;">Fuentes sincronizadas</td>
+      <td style="padding:6px 0;font-size:14px;text-align:right;">${opts.sourcesMirrored}</td>
+    </tr>
+  </table>
+  <p style="margin:24px 0">
+    <a href="${escHtml(articleUrl)}" style="background:#C7892A;color:#0F1A2B;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
+      Ver en el portal →
+    </a>
+  </p>
+  <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
+  <p style="font-size:12px;color:#6B7280">The Transformation Letter · Edición ${escHtml(opts.editionId)}</p>
+</div>`,
+  });
+}
+
+/**
  * Sent when an admin marks an application as approved.
  * Points the applicant to /sign-in so they can claim their magic link.
  */

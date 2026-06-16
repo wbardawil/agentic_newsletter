@@ -25,6 +25,7 @@ import {
 } from "@/lib/review-state";
 import { publishEdition, PublishError } from "@/lib/publish-edition";
 import { dispatchWorkflow, GitHubError } from "@/lib/github";
+import { sendPublicationConfirmation } from "@/lib/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -213,6 +214,12 @@ export async function GET(request: Request): Promise<Response> {
     // publishEdition reads review.json internally and gets heroImageUrl from there.
     try {
       const result = await publishEdition(editionId);
+      sendPublicationConfirmation({
+        editionId: result.editionId,
+        qaScore: result.qaScore,
+        sourcesMirrored: result.sourcesMirrored,
+        heroImageUrl: result.heroImageUrl,
+      }).catch((e) => console.error("[review] publication confirmation email failed:", e));
       return page(
         200,
         `Edición ${result.editionId} publicada ✓`,
