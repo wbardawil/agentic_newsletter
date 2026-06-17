@@ -10,7 +10,7 @@
     "prompt": null,
     "rejectedPrompts": [],
     "approvedAt": null,
-    "rejectedAt": "2026-06-17T00:17:46.715Z",
+    "rejectedAt": "2026-06-17T05:26:24.552Z",
     "rejectionReason": null
   },
   "content": {
@@ -30,8 +30,12 @@
     {
       "timestamp": "2026-06-17T00:17:46.715Z",
       "decision": "image_reject"
+    },
+    {
+      "timestamp": "2026-06-17T05:26:24.552Z",
+      "decision": "image_reject"
     }
   ],
   "createdAt": "2026-06-16T23:39:32.051Z",
-  "updatedAt": "2026-06-17T00:17:46.715Z"
+  "updatedAt": "2026-06-17T05:26:24.553Z"
 }
