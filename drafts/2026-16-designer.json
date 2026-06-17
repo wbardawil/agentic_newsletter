@@ -2,18 +2,18 @@
   "assets": [
     {
       "kind": "hero",
-      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-16-hero.png",
-      "publicUrl": null,
-      "prompt": "A dimly lit technical blueprint emerges from charcoal, showing a skeletal wireframe structure suspended in negative space—half-built scaffolding or the internal framework of a building mid-construction. One section glows faintly in muted ochre, traced in clean white lines, revealing the hidden load-bearing logic beneath opaque surfaces. The rest dissolves into shadow. No people, no text, no literal representation—just the architectural ghost of a system designed to be read without its original architect present.",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-16-hero-v2.png",
+      "publicUrl": "https://zdsxodeudlgnzilzgaxx.supabase.co/storage/v1/object/public/edition-assets/2026-16/hero-v2.png",
+      "prompt": "A geometric cross-section of filing cabinet drawers suspended in darkness, each drawer pulled open at different depths revealing layered translucent sheets instead of folders — some sheets crisp and aligned, others chaotic and overlapping. Soft directional light from upper left casts subtle shadows between the layers. Matte charcoal background fades to black at edges. Ochre accent on a single drawer pull. The composition suggests forensic archaeology: excavating meaning from accumulated strata, where legibility depends on knowing which layer to read first. No text, no people, no decorative elements — just structural metaphor for invisible translation work becoming visible under external scrutiny.",
       "altText": {
-        "en": "Stacked cardboard filing boxes with handwritten labels in a dimly lit storage room",
-        "es": "Torres de cajas de archivo de cartón con etiquetas manuscritas en un cuarto de almacenamiento poco iluminado"
+        "en": "Stacked cardboard archive boxes labeled with handwritten markers sit on metal shelving in a windowless storage room",
+        "es": "Cajas de archivo apiladas con etiquetas manuscritas sobre estantería metálica en una sala de almacenamiento sin ventanas"
       },
       "caption": {
-        "en": "Your controller knows exactly where everything is—and that's the problem.",
-        "es": "Tu controller sabe exactamente dónde está todo—y ahí está el problema."
+        "en": "Your books close on time, but two days vanish before analysis can even begin.",
+        "es": "Tus libros cierran a tiempo, pero dos días se evaporan antes de que el análisis siquiera comience."
       },
-      "attempt": 1
+      "attempt": 2
     }
   ],
   "imageModel": "gemini-2.5-flash-image"

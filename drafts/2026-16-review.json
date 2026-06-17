@@ -3,11 +3,11 @@
   "runId": "aa982f47-94e9-41d4-a2dd-b3a4f295fff9",
   "reviewVersion": 1,
   "image": {
-    "status": "regenerating",
-    "attempt": 1,
-    "assetPath": null,
-    "publicUrl": null,
-    "prompt": null,
+    "status": "pending",
+    "attempt": 2,
+    "assetPath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-16-hero-v2.png",
+    "publicUrl": "https://zdsxodeudlgnzilzgaxx.supabase.co/storage/v1/object/public/edition-assets/2026-16/hero-v2.png",
+    "prompt": "A geometric cross-section of filing cabinet drawers suspended in darkness, each drawer pulled open at different depths revealing layered translucent sheets instead of folders — some sheets crisp and aligned, others chaotic and overlapping. Soft directional light from upper left casts subtle shadows between the layers. Matte charcoal background fades to black at edges. Ochre accent on a single drawer pull. The composition suggests forensic archaeology: excavating meaning from accumulated strata, where legibility depends on knowing which layer to read first. No text, no people, no decorative elements — just structural metaphor for invisible translation work becoming visible under external scrutiny.",
     "rejectedPrompts": [],
     "approvedAt": null,
     "rejectedAt": "2026-06-17T05:26:24.552Z",
@@ -23,7 +23,7 @@
   },
   "publish": {
     "status": "blocked",
-    "blockedReason": "image_rejected",
+    "blockedReason": "image_pending",
     "publishedAt": null
   },
   "events": [
@@ -37,5 +37,5 @@
     }
   ],
   "createdAt": "2026-06-16T23:39:32.051Z",
-  "updatedAt": "2026-06-17T05:26:24.553Z"
+  "updatedAt": "2026-06-17T05:27:01.513Z"
 }
