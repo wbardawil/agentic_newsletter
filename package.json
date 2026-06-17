@@ -17,6 +17,7 @@
     "sample": "node --import tsx src/scripts/render-sample-edition.ts",
     "sample:hero": "node --import tsx src/scripts/sample-hero.ts",
     "publish:edition": "node --import tsx src/publish.ts",
+    "regenerate-image": "node --import tsx src/regenerate-image.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
