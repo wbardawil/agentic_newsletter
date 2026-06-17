@@ -32,5 +32,6 @@ coverage/
 workers/**/.dev.vars
 workers/**/.wrangler/
 
-# logs folder
-logs/
+# Logs
+logs
+*.log
