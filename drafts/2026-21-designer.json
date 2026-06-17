@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-21-hero.png",
+      "publicUrl": null,
+      "prompt": "A single load-bearing column stands in a vast charcoal void, its surface embedded with thin horizontal lines like sedimentary layers — each line representing accumulated decisions compressed into structure over time. At mid-height, several lines begin to pull away from the column, suspended in space as independent threads, taut but no longer integrated. The column remains solid where the threads have detached, revealing that the integrity was never dependent on their presence. Deep teal shadows. Matte concrete texture. The space around the column is deliberate emptiness, suggesting the room created when weight transfers from person to system.",
+      "altText": {
+        "en": "Single bright lightbulb illuminated among rows of dark, unlit bulbs in an industrial grid",
+        "es": "Una bombilla brillante encendida entre filas de bombillas apagadas en una cuadrícula industrial"
+      },
+      "caption": {
+        "en": "Your brilliance becomes the bottleneck when every decision requires your light to turn on.",
+        "es": "Tu brillantez se convierte en el cuello de botella cuando cada decisión requiere que tu luz se encienda."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
