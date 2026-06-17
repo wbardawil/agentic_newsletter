@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-16-hero.png",
+      "publicUrl": null,
+      "prompt": "A dimly lit technical blueprint emerges from charcoal, showing a skeletal wireframe structure suspended in negative space—half-built scaffolding or the internal framework of a building mid-construction. One section glows faintly in muted ochre, traced in clean white lines, revealing the hidden load-bearing logic beneath opaque surfaces. The rest dissolves into shadow. No people, no text, no literal representation—just the architectural ghost of a system designed to be read without its original architect present.",
+      "altText": {
+        "en": "Stacked cardboard filing boxes with handwritten labels in a dimly lit storage room",
+        "es": "Torres de cajas de archivo de cartón con etiquetas manuscritas en un cuarto de almacenamiento poco iluminado"
+      },
+      "caption": {
+        "en": "Your controller knows exactly where everything is—and that's the problem.",
+        "es": "Tu controller sabe exactamente dónde está todo—y ahí está el problema."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}

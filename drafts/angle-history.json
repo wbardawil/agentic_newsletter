@@ -28,6 +28,34 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-16",
+      "recordedAt": "2026-06-10T04:39:16.310Z",
+      "angle": {
+        "headline": "Why Your QoE Takes Two Days Before Analysis Even Starts",
+        "thesis": "Middle-market deals fail not because the books are bad, but because the data preparation work that precedes every quality-of-earnings engagement is invisible to the buyer, the seller, and the owner—and AI just made it obsolete.",
+        "targetPersona": "Business owners with $5M–$50M enterprise value preparing for a sale, acquisition, or institutional capital raise within 12–24 months",
+        "relevanceToAudience": "If you are building toward an exit or growth capital event in the US-LATAM corridor, the 8–15 hours of manual data preparation that every advisor bills before analysis begins is a tax you pay for operating without standardized financial infrastructure—and it signals to buyers that your business runs on the owner, not the system.",
+        "suggestedSources": [
+          "59989faf-972f-4047-9619-86922355a581",
+          "02f91d29-9f48-4855-ade3-de9aec7d61f6",
+          "8b9aa695-5682-4feb-8968-e857f6a8c4a6"
+        ],
+        "talkingPoints": [
+          "Every middle-market QoE engagement begins with 8–15 hours of unpaid work normalizing QuickBooks exports, reconciling bank statements, and mapping inconsistent account names—work that produces zero analytical insight.",
+          "This data preparation tax exists because the business was built on relationship and instinct, not on financial systems designed to be legible to external capital.",
+          "AI is now eliminating this work in 90 minutes, but the real insight is not the speed—it is that the need for manual normalization was always a signal that the Operating Model OS was not built for scale.",
+          "The action is not to buy the AI tool; it is to audit whether your financial infrastructure can answer a buyer's question in real time without the controller spending two days preparing a deck."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The controller or CFO must shift from being the person who 'knows where everything is' to being the architect of systems that make the business legible without their interpretation.",
+          "framework": "7S: Skills"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "A federal judge struck down the $100,000 H-1B visa fee on Monday. According to [Business Insider](https://www.businessinsider.com/lawyer-couldnt-pay-100k-h-1b-visa-opportunities-reopen-scrapped-2026-6), Oklahoma-based attorney Hung-Lin Lai, CEO of Lai & Turner Law Firm, said small businesses like hi"
     }
   ]
 }
