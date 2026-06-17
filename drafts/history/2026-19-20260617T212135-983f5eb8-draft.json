@@ -1,0 +1,333 @@
+{
+  "runId": "983f5eb8-e9d7-4010-9ce7-c8245b7fc0f5",
+  "editionId": "2026-19",
+  "generatedAt": "2026-06-17T21:21:35.042Z",
+  "contentHash": "40b7e160dcb3d64c5c135e590a0072f5e18c61d2f16cf655412a7eec563745f8",
+  "angle": {
+    "headline": "The Board You Built Is Now the Ceiling You Hit",
+    "thesis": "Most mid-market owners believe their board exists to validate decisions, but the moment validation becomes the only function, the board stops being a governance body and becomes a bottleneck disguised as oversight.",
+    "targetPersona": "Family business owners ($20M-$100M revenue) preparing for succession or institutional investment, particularly those who built advisory boards of friends, investors, or retired executives who never challenge the founder's instincts",
+    "relevanceToAudience": "US-LATAM corridor operators face a specific governance trap: boards composed of regional advisors who understand relationships but not operating models, or US investors who understand structure but not the corridor's realities. As private equity interest grows in the region and succession pressures mount, the board that got you here becomes the constraint preventing institutional transition.",
+    "suggestedSources": [
+      "96d9bf52-e673-47f4-b34d-f35b6431cdab",
+      "d881465c-1f34-484b-879d-3c0f61537481",
+      "1f376b8f-e93c-4912-bb0c-4db36ce554ca",
+      "2b9ec8dc-5ef7-4671-b79c-e05d7e918b06"
+    ],
+    "talkingPoints": [
+      "You assembled a board to formalize decision-making, but if every meeting ends with unanimous approval of what you already decided, you built a compliance theater, not a governance body.",
+      "The dysfunction appears when you pursue institutional investment, succession planning, or geographic expansion — moments that require the board to challenge your assumptions, not rubber-stamp your instincts.",
+      "Jim Collins' Level 5 Leadership applied to boards: great boards require collective humility and disciplined confrontation, not individual brilliance and polite consensus.",
+      "Audit your last six board meetings — if no major decision was reversed or delayed due to board challenge, you have a validation body, not a governance body, and that is now your constraint."
+    ],
+    "osPillar": "Strategy OS",
+    "peopleAngle": {
+      "challenge": "The founder must shift from treating the board as validators of instinct to treating them as counterweights to certainty, which requires surrendering the psychological safety of being right in every room.",
+      "framework": "7S: Shared Values"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Your board stopped surprising you",
+    "preheader": "The counterweight you built has quietly become the chorus you trained.",
+    "subjectOptions": [
+      "Your board stopped surprising you",
+      "The room where you rehearse decisions you've made",
+      "What Anthropic's 48-hour shutdown teaches strategy"
+    ],
+    "sections": [
+      {
+        "id": "2d88f24c-943f-43dc-9219-394e0424ee12",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four stories about what certainty costs in boardrooms, in succession plans, in AI stacks, and in the leaders who run them.*\n\n- **Strategy:** [Chief Executive Magazine](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) argues that \"all in on AI\" headlines ease nervous boards but rarely make the strongest opening move for enterprise rollout. **Strategy is choosing dose size, not just direction.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Operating Models:** Three Hills Family Office now runs a formal onboarding for nearly 30 family members across four living generations, with mentors assigned at 18 and structured introductions for spouses, per [Family Business Magazine](https://familybusinessmagazine.com/family-offices/bringing-new-family-members-into-the-family-office/). **An operating model lets the next generation arrive without disrupting the current one.** [Read in Family Business Magazine ->](https://familybusinessmagazine.com/family-offices/bringing-new-family-members-into-the-family-office/)\n- **Technology:** Amazon CEO Andy Jassy's security concerns triggered a White House directive that shut off global access to Anthropic's Fable 5 and Mythos 5 within 48 hours, also blocking the company's own foreign-born researchers, [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/) reports. **Political weather enters your stack alongside the technology.** [Read in HR Executive ->](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/)\n- **Human Capital:** [Chief Executive Magazine](https://chiefexecutive.net/humility-is-a-leadership-discipline/) frames humility as a discipline, not a virtue, naming the willingness to challenge one's own certainty as the practice that keeps learning alive at the top. **Human capital compounds where leaders can still be argued with.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/humility-is-a-leadership-discipline/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "22a07077-868a-481d-a3db-52675cf262b5",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nFamily businesses with more than $100 million in revenue are projected to grow 22 percent by 2030, according to Deloitte Private research cited in [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) this week. Revenues are projected to rise 84 percent over the same window. Twenty-six percent are now targeting outside capital or private equity. The growth is not the story. The story is the governance that will not survive it. A board that worked at the founder's scale rarely works at the next scale. The same room that ratified instinct at $30 million cannot stress-test judgment at $300 million.\n===OPTION_B:provocation===\nThe most discussed dysfunction in this week's coverage is the one founders are least willing to name. [Chief Executive Magazine](https://chiefexecutive.net/humility-is-a-leadership-discipline/), [Family Business Magazine](https://familybusinessmagazine.com/memberships/premium-content-categories/articles/good-to-great-in-the-boardroom-level-5-leadership-2/), and an [American Textile Company CEO interview](https://familybusinessmagazine.com/memberships/family-business-ceos/we-believe-that-leading-with-what-the-family-needs-is-a-mistake-2/) each circle the same diagnosis from different angles. The board you assembled to challenge you has quietly become the board you assembled to agree with you. The shift was not a betrayal. It was a slow, mutual accommodation. You stopped bringing real questions. They stopped offering real answers. Both sides preferred the comfort, and neither side noticed the cost until a decision went sideways and no one in the room had questioned it.\n===OPTION_C:pattern===\nThree pieces this week, three different angles, the same diagnosis. [Chief Executive Magazine](https://chiefexecutive.net/humility-is-a-leadership-discipline/) on humility as a leadership discipline. [Family Business Magazine](https://familybusinessmagazine.com/memberships/premium-content-categories/articles/good-to-great-in-the-boardroom-level-5-leadership-2/) on Level 5 leadership in the boardroom. An [American Textile Company CEO interview](https://familybusinessmagazine.com/memberships/family-business-ceos/we-believe-that-leading-with-what-the-family-needs-is-a-mistake-2/) arguing that leading with what the family needs is a mistake. The pattern underneath: founders who treat agreement as a deliverable rather than a signal. When agreement becomes the product, disagreement becomes a defect to manage. The board becomes a service desk. And the certainty the founder walked in with walks out unchanged, week after week, until reality finally arrives uninvited.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3d1fb6a1-1352-4c3a-8a17-98f40046801a",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your board has stopped surprising you. The meetings still happen. The agenda still circulates. The minutes still get filed. But sometime in the last eighteen months, you noticed something. The recommendations you bring in are the recommendations that walk out. Slightly polished. Never overturned.\n\nMost advisors call this an alignment problem and prescribe better board composition. It is not an alignment problem. The board you built is doing exactly what you trained it to do.\n\nYou recruited people who share your values. That part you got right. Then you confused shared values with shared judgment. You began bringing the board decisions you had already made, looking for validation dressed as deliberation. The board learned the game. They became the room where you rehearse, not the room where you get challenged.\n\nStrategy OS treats the board as one specific instrument: a counterweight to founder certainty. The shared values are the floor. They make the room safe enough to disagree. They are not the conclusion. They are the precondition for genuine disagreement.\n\nA working board runs two registers. Values alignment asks one question: do we agree on what this company is for, and on who we will not become. Judgment alignment asks a different one. Do we agree this acquisition is the right move. Do we agree this hire is the right person. Do we agree this pricing change is the right risk. The first register must be shared. The second must be contested.\n\nWhen the two registers collapse into one, the founder hears agreement on judgment as proof of values. Disagreement on judgment becomes evidence of misalignment. That is the trap. It is also the moment the board stops being useful.\n\nWhat this asks of you is harder than a new board charter. It asks you to surrender the psychological safety of being right in every room. The board you actually need is the one that can tell you no without you flinching. You build that board by inviting the no, not by tolerating it. The first time the room pushes back and you do not defend, the room learns it is allowed to push again.\n\nThis week, pick one decision you are eighty percent convinced about. Walk it into the next board meeting as a question, not a recommendation. Present three options. Say which one you prefer and why. Then stop talking and watch what happens.\n\nIf the room moves to ratify your preference, you built a validator board. If someone challenges the frame itself, not the option but the question, you built a counterweight board. Most founders find out, in that single meeting, which board they actually built.",
+        "sourceRefs": []
+      },
+      {
+        "id": "46607914-32eb-4461-87ec-15b2e4b87641",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "In a 48-hour window this month, a single executive's conviction removed a tool from every operator who had built around it. Amazon CEO Andy Jassy raised concerns with Treasury Secretary Scott Bessent about researchers extracting cyberattack-relevant information from Anthropic's Claude Fable 5, according to [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/) reporting on Wall Street Journal and CNBC coverage.\n\nWhite House officials convened. Security researchers tested Amazon's claims. President Trump signed a global freeze on foreign access to Fable 5 and Mythos 5. Anthropic shut off worldwide access to both models. Many of the company's own foreign-born researchers were blocked from the models they had been hired to build.\n\nRead the timeline for what it reveals about vendor risk. The shutdown did not begin in a contract clause. It began in a conversation between two executives.\n\nFor a US-based owner running a $5M to $100M business, the operational implication is direct. If a vendor's continuity depends on one administration's confidence in one CEO's framing of one rival's product, that vendor is not a system. It is a position. Treat it accordingly in your continuity plan.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ea0d88c5-4bf0-4824-b202-20bfa64a4df8",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Two-Register Board Audit** - A one-page review run before every board meeting. Column one names the values question on the table and whether the room is aligned. Column two names the judgment question on the table and where you genuinely disagree. If column two stays empty across three consecutive meetings, the board has shifted from counterweight to chorus. Build it in [Google Docs](https://docs.google.com), share it with the chair before the agenda goes out.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5957dde1-3a93-4344-a417-fefb9fcd08c0",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many decisions you walk into your board meeting carrying one recommended option versus three. Count the meetings, not the decisions. If you find yourself presenting a single preferred path more than once, you are using the board as ratifier. The number is a diagnostic on you, not on them. The counterweight you need begins with the question you bring.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f1d2cad0-89a9-4a68-b4aa-b1b74000c23b",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Su consejo dejó de sorprenderlo",
+    "preheader": "El contrapeso que construyó se convirtió, sin que lo notara, en el coro que entrenó.",
+    "thesis": "La mayoría de los dueños cree que su consejo existe para validar decisiones. En el momento en que validar es lo único que hace, el consejo deja de ser un órgano de gobierno y se vuelve un cuello de botella disfrazado de supervisión.",
+    "shareableSentence": "El consejo que de verdad necesita es uno que pueda decirle no sin que usted se contraiga.",
+    "sections": [
+      {
+        "id": "2d88f24c-943f-43dc-9219-394e0424ee12",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro historias sobre lo que cuesta la certeza en la sala del consejo, en la sucesión, en la arquitectura tecnológica y en quien dirige.*\n\n- **Estrategia:** [Chief Executive Magazine](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) sostiene que el titular de \"todo a la IA\" tranquiliza a los consejos nerviosos pero rara vez es el primer movimiento más sólido en una implementación corporativa. **La estrategia consiste en elegir la dosis, no solo la dirección.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Modelos Operativos:** Three Hills Family Office mantiene un onboarding formal para casi 30 miembros de una familia con cuatro generaciones vivas, asigna mentores desde los 18 años y diseña presentaciones estructuradas para los cónyuges, según [Family Business Magazine](https://familybusinessmagazine.com/family-offices/bringing-new-family-members-into-the-family-office/). **El modelo evita que la siguiente generación desacomode a la actual.** [Leer en Family Business Magazine ->](https://familybusinessmagazine.com/family-offices/bringing-new-family-members-into-the-family-office/)\n- **Tecnología:** La preocupación de seguridad del CEO de Amazon, Andy Jassy, detonó una directiva de la Casa Blanca que cortó el acceso global a Fable 5 y Mythos 5 de Anthropic en 48 horas, y bloqueó también a los propios investigadores extranjeros de la compañía, informa [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/). **El clima político ya es parte de su arquitectura tecnológica.** [Leer en HR Executive ->](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/)\n- **Capital Humano:** [Chief Executive Magazine](https://chiefexecutive.net/humility-is-a-leadership-discipline/) plantea la humildad como una disciplina, no una virtud, y nombra la voluntad de cuestionar la propia certeza como la práctica que mantiene vivo el aprendizaje en la cima. **El capital humano se acumula donde al líder todavía se le puede contradecir.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/humility-is-a-leadership-discipline/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "22a07077-868a-481d-a3db-52675cf262b5",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Las empresas familiares con más de 100 millones de dólares en ingresos crecerán 22% rumbo a 2030, según una investigación de Deloitte Private citada por [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) esta semana. Los ingresos subirán 84% en el mismo periodo. Veintiséis por ciento ya buscan capital externo o private equity. El crecimiento no es la historia. La historia es la gobernanza que no va a sobrevivirlo. Un consejo que funcionaba a la escala del fundador rara vez funciona en la siguiente. La misma sala que ratificaba el instinto a 30 millones de dólares no puede estresar el juicio a 300 millones.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3d1fb6a1-1352-4c3a-8a17-98f40046801a",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su consejo dejó de sorprenderlo. Las juntas siguen sucediendo. La agenda sigue circulando. Las minutas siguen archivándose. Pero en algún momento de los últimos dieciocho meses, usted notó algo. Las recomendaciones que entran son las recomendaciones que salen. Un poco pulidas. Nunca revertidas.\n\nLa mayoría de los asesores diagnostica esto como un problema de alineación y receta una mejor composición del consejo. No es un problema de alineación. El consejo que usted construyó está haciendo exactamente lo que usted le enseñó a hacer.\n\nReclutó personas que comparten sus valores. Eso lo hizo bien. Después confundió valores compartidos con juicio compartido. Empezó a llevar al consejo decisiones que ya había tomado, buscando validación disfrazada de deliberación. El consejo aprendió el juego. Se volvió la sala donde usted ensaya, no la sala donde lo confrontan.\n\nStrategy OS trata al consejo como un instrumento específico: un contrapeso a la certeza del fundador. Los valores compartidos son la base. Hacen la sala segura para disentir. No son la conclusión. Son la precondición del desacuerdo genuino.\n\nUn consejo que funciona opera en dos registros. La alineación de valores hace una sola pregunta: ¿coincidimos en para qué existe esta empresa y en quién no queremos convertirnos? La alineación de juicio hace otra distinta. ¿Coincidimos en que esta adquisición es el movimiento correcto? ¿En que esta contratación es la persona indicada? ¿En que este ajuste de precios es el riesgo correcto? El primer registro debe estar compartido. El segundo, disputado.\n\nCuando los dos registros se colapsan en uno, el fundador interpreta el acuerdo en juicio como prueba de valores. El desacuerdo en juicio se vuelve evidencia de mala alineación. Ahí está la trampa. Es también el momento en que el consejo deja de ser útil.\n\nLo que esto exige es más difícil que un nuevo reglamento. Exige ceder la seguridad psicológica de tener la razón en todas las salas. El consejo que de verdad necesita es uno que pueda decirle no sin que usted se contraiga. Ese consejo se construye invitando el no, no tolerándolo. La primera vez que la sala le empuje de regreso y usted no se defienda, la sala aprende que tiene permiso de empujar otra vez.\n\nEsta semana, elija una decisión sobre la que esté ochenta por ciento convencido. Llévela a la próxima junta como pregunta, no como recomendación. Presente tres opciones. Diga cuál prefiere y por qué. Después cállese y observe qué pasa.\n\nSi la sala se mueve a ratificar su preferencia, construyó un consejo validador. Si alguien cuestiona el marco mismo —no la opción sino la pregunta—, construyó un consejo contrapeso. La mayoría de los fundadores descubre, en esa sola junta, cuál consejo construyeron de verdad.",
+        "sourceRefs": []
+      },
+      {
+        "id": "46607914-32eb-4461-87ec-15b2e4b87641",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "## Spotlight\n\nLas compras agroalimentarias de Estados Unidos a México cayeron casi 10% en 2025, su primera baja anual en 28 años, y la debilidad continúa en 2026 con un retroceso de 6% entre enero y abril, según datos del USDA reportados por [Expansión México](https://expansion.mx/economia/2026/06/17/eu-compra-menos-alimentos-mexicanos). El campo mexicano construyó una operación de 48,629 millones de dólares en exportaciones concentrada en un solo cliente.\n\nFuncionó durante casi tres décadas. Hasta que el regreso de Trump a la Casa Blanca, la sequía interna y la revisión del T-MEC alteraron el clima político de forma simultánea. La caída no se originó en una cláusula contractual. Se originó en una conversación en Washington.\n\nPara el dueño de una mediana empresa del corredor T-MEC con facturación entre 5 y 100 millones de dólares, la lectura es directa. Si la continuidad de su empresa depende de la voluntad de una administración hacia un tratado, ese cliente no es un sistema. Es una posición. Trátelo así en su plan de continuidad.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ea0d88c5-4bf0-4824-b202-20bfa64a4df8",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Two-Register Board Audit** - una revisión de una página que se corre antes de cada junta del consejo. La primera columna identifica la pregunta de valores sobre la mesa y si la sala está alineada. La segunda columna señala la pregunta de juicio sobre la mesa y dónde usted genuinamente disiente. Si la segunda columna queda vacía en tres juntas consecutivas, el consejo dejó de ser contrapeso para convertirse en coro. Constrúyalo en [Google Docs](https://docs.google.com) y compártalo con el presidente del consejo antes de que circule la agenda.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5957dde1-3a93-4344-a417-fefb9fcd08c0",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**La señal a seguir esta semana:** cuántas decisiones llega a la junta del consejo cargando una sola opción recomendada en lugar de tres. Cuente las juntas, no las decisiones. Si se descubre presentando una única ruta preferida más de una vez, está usando al consejo como ratificador. El número es un diagnóstico sobre usted, no sobre ellos. El contrapeso que necesita empieza con la pregunta que lleva.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f1d2cad0-89a9-4a68-b4aa-b1b74000c23b",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 85,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 215 — target range is 95–185."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'two registers' (values alignment vs. judgment alignment) is presented as a framework the reader should recognize, but it appears to be invented terminology. Could use industry terms like 'governance domains' or signal as the writer's framing with 'what I call' language.",
+        "excerpt": "A working board runs two registers. Values alignment asks one question: do we agree on what this company is for, and on who we will not become. Judgment alignment asks a different one."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "'Counterweight board' and 'validator board' are presented as established categories but appear to be invented frameworks. Could either use industry terms ('independent board,' 'advisory board') or explicitly signal as the writer's framing.",
+        "excerpt": "If the room moves to ratify your preference, you built a validator board. If someone challenges the frame itself, not the option but the question, you built a counterweight board."
+      }
+    ],
+    "wordCounts": {
+      "signal": 215,
+      "apertura": 103,
+      "insight": 439,
+      "fieldReport": 180,
+      "tool": 74,
+      "compass": 64,
+      "total": 1075
+    },
+    "shareableSentence": "You began bringing the board decisions you had already made, looking for validation dressed as deliberation.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"You began bringing the board decisions you had already made, looking for validation dressed as deliberation.\"",
+      "Reframe confirmed: \"Most advisors call this an alignment problem and prescribe better board composition. It is not an alignment problem. The board you built is doing exactly what you trained it to do.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Family businesses with more than $100 million in revenue are projected to grow 22 percent by 2030",
+          "supportingFactId": "8488fc30-22d5-4c3e-96ac-b8fa79cf1b9d-3",
+          "language": "en"
+        },
+        {
+          "claim": "Revenues are projected to rise 84 percent over the same window",
+          "supportingFactId": "8488fc30-22d5-4c3e-96ac-b8fa79cf1b9d-3",
+          "language": "en"
+        },
+        {
+          "claim": "Twenty-six percent are now targeting outside capital or private equity",
+          "supportingFactId": "8488fc30-22d5-4c3e-96ac-b8fa79cf1b9d-4",
+          "language": "en"
+        },
+        {
+          "claim": "Three Hills Family Office now runs a formal onboarding for nearly 30 family members across four living generations",
+          "supportingFactId": "1f376b8f-e93c-4912-bb0c-4db36ce554ca-7",
+          "language": "en"
+        },
+        {
+          "claim": "Amazon CEO Andy Jassy raised concerns with Treasury Secretary Scott Bessent about researchers extracting cyberattack-relevant information from Anthropic's Claude Fable 5",
+          "supportingFactId": "0fdff0f9-225e-4eac-ab06-8f36c9edee22-2",
+          "language": "en"
+        },
+        {
+          "claim": "President Trump signed a global freeze on foreign access to Fable 5 and Mythos 5",
+          "supportingFactId": "0fdff0f9-225e-4eac-ab06-8f36c9edee22-4",
+          "language": "en"
+        },
+        {
+          "claim": "Anthropic shut off worldwide access to both models",
+          "supportingFactId": "0fdff0f9-225e-4eac-ab06-8f36c9edee22-5",
+          "language": "en"
+        },
+        {
+          "claim": "Many of the company's own foreign-born researchers were blocked from the models they had been hired to build",
+          "supportingFactId": "0fdff0f9-225e-4eac-ab06-8f36c9edee22-4",
+          "language": "en"
+        },
+        {
+          "claim": "Las compras agroalimentarias de Estados Unidos a México cayeron casi 10% en 2025",
+          "supportingFactId": "cfa5eb4c-4bde-4c82-b33e-55e851da6d2f-4",
+          "language": "es"
+        },
+        {
+          "claim": "48,629 millones de dólares en exportaciones",
+          "supportingFactId": "cfa5eb4c-4bde-4c82-b33e-55e851da6d2f-4",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Family Business Magazine",
+        "HR Executive",
+        "docs.google.com"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong voice alignment, verified factual claims, distinct angle from prior editions, and adequate source diversity across four outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-19-hero.png",
+        "publicUrl": null,
+        "prompt": "A dark architectural cross-section showing load-bearing columns arranged in perfect symmetry, but one central column has begun to bow under invisible weight, creating subtle distortion in the grid above it. The structure is rendered in charcoal and deep navy with ochre highlights picking out stress points where the geometry no longer holds true. The composition emphasizes negative space around the warping column, suggesting the absence of counterforce. Matte finish, no text, abstract geometry only—the image reads as a diagram of structural failure caused not by weakness but by unchallenged assumptions about what holds things up.",
+        "altText": {
+          "en": "Empty boardroom table with a single coffee cup at the head seat, morning light through windows",
+          "es": "Mesa de junta directiva vacía con una taza de café solitaria en la cabecera, luz matutina entrando por las ventanas"
+        },
+        "caption": {
+          "en": "The moment your board stops challenging you is the moment it stops serving you.",
+          "es": "El momento en que tu junta deja de cuestionarte es el momento en que deja de servírte."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10919,
+      "outputTokens": 590,
+      "costUsd": 0.041607000000000005
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 774,
+      "outputTokens": 11566,
+      "costUsd": 0.286278
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 518,
+      "costUsd": 0.007842
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1146,
+      "outputTokens": 12145,
+      "costUsd": 0.30084500000000003
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1274,
+      "outputTokens": 1563,
+      "costUsd": 0.047907
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1031,
+      "costUsd": 0.015531
+    },
+    "totalUsd": 0.70001
+  }
+}
