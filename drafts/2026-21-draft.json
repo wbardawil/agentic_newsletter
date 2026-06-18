@@ -1,0 +1,340 @@
+{
+  "runId": "89daf10b-ec64-42d0-9738-dcb6e3e8d64e",
+  "editionId": "2026-21",
+  "generatedAt": "2026-06-17T16:51:55.945Z",
+  "contentHash": "24aa930dae059b16c950cd2bba4e4dfd04a63a0cb075ab7ed3cd77f12be948f5",
+  "angle": {
+    "headline": "Your Best Employee Is Killing Your Business Model",
+    "thesis": "The business that runs because the owner is brilliant in every decision will fail when that brilliance is required to scale — the machine breaks when the operator is irreplaceable.",
+    "targetPersona": "Founder-CEOs with $10M-$50M revenue who built the business through force of capability and now face the ceiling their own competence created",
+    "relevanceToAudience": "US-LATAM corridor operators built businesses on relationship capital and founder instinct — but cross-border complexity demands systems that work when the founder is in Miami and the operation is in Monterrey, not heroic intervention in every decision.",
+    "suggestedSources": [
+      "db53d5a4-5e2c-4cb0-ad6d-3d41ca594fd1",
+      "43a543b1-2420-4c8f-90d0-fa8122a38822",
+      "1120af68-bc81-44bc-8671-c80d4f97913c",
+      "22367c44-0c8f-4eb5-88cf-ba75221b6997"
+    ],
+    "talkingPoints": [
+      "The owner who answers every strategic question becomes the bottleneck that prevents the business from making any decision without them — brilliance at the center creates dependency at the edge.",
+      "Succession planning in family businesses fails not because there is no successor, but because the business was never designed to run without the founder's judgment in every choice — you cannot hand off what was never systematized.",
+      "Active lenders differentiate by taking equity-like involvement in strategy because most businesses have no operating model that survives sponsor exit — if your lender needs to step in operationally, your business model is the collateral risk.",
+      "Build decision rights and approval thresholds before you hire the next VP — humility is not modesty, it is the discipline to design a system that makes you less necessary, not more indispensable."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The founder must shift from being the answer to every question to being the architect of a system that produces answers without them — requiring the psychological willingness to become less operationally necessary while remaining strategically accountable.",
+      "framework": "ADKAR: Desire"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Why your team still asks",
+    "preheader": "Delegation moves tasks. What this issue names moves identity.",
+    "subjectOptions": [
+      "Why your team still asks",
+      "Your team still asks. Here is what advisors miss.",
+      "The Anthropic shutdown is an operating model warning"
+    ],
+    "sections": [
+      {
+        "id": "65dff7f3-8fcf-45ab-95e4-1cb6a6afd163",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: the bottleneck in every story is the founder who has not decided to stop being the answer.*\n\n- **Strategy:** Per [RSM's Joe Brusuelas](https://realeconomy.rsmus.com/market-minute-at-the-fomc-meeting-a-rate-hike-to-be-determined-later/), markets are now pricing one 25 basis point rate hike for March 2027, reversing earlier expectations of a cut by year-end. **Reprice your assumptions faster than the market does.** [Read in RSM Real Economy (Middle Market) ->](https://realeconomy.rsmus.com/market-minute-at-the-fomc-meeting-a-rate-hike-to-be-determined-later/)\n- **Operating Models:** [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) published a fifteen-year reflection from a founder who inherited his family business at 29, naming letting go as harder than taking hold. **The operating model becomes real the moment the founder is no longer required.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/)\n- **Technology:** Per [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/), the administration cut global access to Anthropic's Fable 5 and Mythos 5 models within 48 hours of Amazon CEO Andy Jassy raising security concerns with Treasury Secretary Scott Bessent. **Technology dependence is a governance question.** [Read in HR Executive ->](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/)\n- **Human Capital:** LinkedIn's 2026 Labor Market Report cited by [Fast Company](https://www.fastcompany.com/91557984/what-business-leaders-are-getting-wrong-about-ais-impact-on-entry-level-jobs-ai-leadership-entry-level-jobs) counts at least 1.3 million AI-related job opportunities created over the past two years, including roles that did not exist five years ago. **Human capital compounds when the work itself changes beneath it.** [Read in Fast Company ->](https://www.fastcompany.com/91557984/what-business-leaders-are-getting-wrong-about-ais-impact-on-entry-level-jobs-ai-leadership-entry-level-jobs)",
+        "sourceRefs": []
+      },
+      {
+        "id": "1c3ab4c3-940a-4b0b-9a70-2956dd6d4579",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\n[Convey raised $38 million](https://www.businessinsider.com/convey-raises-38-million-a16z-to-automate-repetitive-office-work-2026-6) this week from Andreessen Horowitz to build AI teammates that take repetitive work off employees' plates. The pitch lands because the underlying problem is real. Founders and operators are still doing the work the system should have absorbed years ago. The funding round is the cosmetic version of a deeper question. If a sufficiently good system would have replaced the work, what does it say that you are still doing it. Convey's customers will discover what every transformation buyer eventually does. The tool is the easy part. The decision to stop being the answer is the hard one.\n===OPTION_B:provocation===\nThe most common reason a twenty-million-dollar business stays at twenty million is that the founder still wants to be the one who knows. Not the one who decides. The one who knows. This week's coverage of family business succession, family office onboarding, and a chief executive's confession that letting go is harder than taking hold all point at the same thing from different angles. The bottleneck is not capability. It is identity. The team is waiting because the founder has not yet decided to stop being needed in that particular way. Everything downstream of that decision is theatre until the decision is made.\n===OPTION_C:pattern===\nThree pieces this week, three different angles, the same diagnosis. [Chief Executive's reflection](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) on family business succession names letting go as harder than taking hold. American Textile's CEO Lance Ruttenberg tells [Family Business Magazine](https://familybusinessmagazine.com/memberships/family-business-ceos/we-believe-that-leading-with-what-the-family-needs-is-a-mistake-2/) that leading with what the family needs is a mistake. A separate [Family Business piece](https://familybusinessmagazine.com/family-offices/bringing-new-family-members-into-the-family-office/) describes families building intentional pathways into governance years before any transition. The pattern is one move with three faces. The founder has to become less operationally necessary while remaining strategically accountable. The instruments differ. The work is the same. And the work begins long before any successor is named.",
+        "sourceRefs": []
+      },
+      {
+        "id": "59c96ecc-fff2-4466-8523-66f90f4e52dd",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your team still asks. You have built the dashboards. You have written the procedures. You have said the words out loud in three different meetings. And every Monday, the same questions land on your desk in slightly different wrappers.\n\nThe instinct is to add more system. A clearer dashboard. A better procedure document. A new accountability framework that will, this time, finally release you from the loop.\n\nIt will not work. Not because the system is wrong. Because the system was never the bottleneck.\n\nMost advisors call this a delegation problem and prescribe better tooling. It is not a delegation problem. Delegation moves tasks. What you are looking at is something older and stickier. Your team is asking because you have not yet decided, at the level beneath conscious choice, to stop being the one who knows. The question lands on your desk because part of you still wants it to.\n\nThis is the architecture problem hiding inside the operating model. The Operating Model OS rests on a class of artifact you may know as The Decision Rule: a written trigger, a test the team applies, and a boundary that defines when the decision returns to you. Three components. Roughly an index card. The artifact converts what lives in your head into something the team can run without you.\n\nThe Decision Rule is the tool. The tool is not the work. The work is the prior question: do you actually want this decision to leave your desk?\n\nMost founders cannot answer that honestly the first time. The business was built on being the one who could feel when the call was right. That instinct earned the company every dollar it now has. Releasing it does not feel like progress. It feels like loss. And the system, however well designed, will not override an unresolved no.\n\nThis is the moment most transformation work stalls. Not at the dashboard. Not at the org chart. At the founder's quiet, unstated preference to remain necessary in the way they have always been necessary. The team senses it. They escalate because escalation is the rational response to a system that says you decide while the human in the room says, with a thousand small signals, bring it to me first.\n\nThis week, do not write a Decision Rule yet. Pick one decision type that keeps returning to you. Sit with the question for ten minutes: do I actually want this off my desk. If the answer is yes, write the rule on Friday. If the answer is no, name what part of you still wants to be asked. The system follows the willingness. Never the other way around.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ed04346-85eb-41f9-b947-21d976418ae7",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "The Anthropic shutdown showed what single-source dependency looks like when the source is removed. Per [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/), Amazon CEO Andy Jassy raised security concerns with Treasury Secretary Scott Bessent about prompts extracting sensitive information from Anthropic's Fable 5 model. Within 48 hours, the administration signed a directive cutting global access. Anthropic complied. Foreign-born researchers who had built the models were locked out of their own work.\n\nThe operational lesson sits one layer below the headline. Every business has its Anthropic. A vendor, a relationship, a key person whose presence the operating model quietly assumes. When that source is removed by force or by choice, the system designed around it does not adapt. It stops.\n\nFor US owners running $5M to $100M businesses, the audit is direct. Name the three single points of failure in your operating model. Write the decision rule that runs without each one. A model that depends on a single source is not a model. It is a hope.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2dbcb575-d9ab-4ab3-8fed-241ff4e82dd8",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Decision Rule, written on an index card** - A three-line artifact: the trigger that activates the rule, the test the team applies to decide, and the boundary that defines when the decision returns to you. It converts what lives in your head into something a manager can run without you. Where to find it: write it Friday on actual paper, then share Monday with the role that owns the decision.",
+        "sourceRefs": []
+      },
+      {
+        "id": "4ae52554-da18-4e91-86b0-935e0b71d6e1",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** the decisions that land in your inbox or WhatsApp between Tuesday and Friday. Not the volume. The type. Sort them into two piles: decisions that genuinely required you, and decisions that arrived because nobody knew you had given them away. The second pile is your operating model's actual interface with your team. It is also the first draft of next week's Decision Rules.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a699af4f-1f0f-4316-83da-b67b6c925ccb",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué su equipo le sigue preguntando",
+    "preheader": "Delegar mueve tareas. Lo que se nombra aquí mueve identidad.",
+    "thesis": "El negocio que funciona porque el dueño es brillante en cada decisión se rompe cuando esa brillantez tiene que escalar. La máquina deja de operar el día que el operador es insustituible.",
+    "shareableSentence": "El sistema sigue a la disposición, nunca al revés.",
+    "sections": [
+      {
+        "id": "65dff7f3-8fcf-45ab-95e4-1cb6a6afd163",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: el cuello de botella en cada historia es el fundador que no ha decidido dejar de ser la respuesta.*\n\n- **Estrategia:** Joe Brusuelas, de RSM, advierte que el mercado ya descuenta un alza de 25 puntos base para marzo de 2027, en lugar del recorte que se esperaba antes del cierre de año. **La estrategia se prueba en la velocidad con que se reprecian los supuestos.** [Leer en RSM Real Economy (Middle Market) ->](https://realeconomy.rsmus.com/market-minute-at-the-fomc-meeting-a-rate-hike-to-be-determined-later/)\n- **Modelos Operativos:** Chief Executive publicó la reflexión de un fundador que heredó la empresa familiar a los 29 años. Quince años después, soltar le resulta más difícil que haber tomado el mando. **El modelo operativo madura el día que el fundador deja de ser indispensable.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/)\n- **Tecnología:** Según HR Executive, la administración cortó el acceso global a los modelos Fable 5 y Mythos 5 de Anthropic en 48 horas. El detonante: Andy Jassy, CEO de Amazon, le planteó dudas de seguridad al secretario del Tesoro Scott Bessent. **La dependencia tecnológica es, en el fondo, gobierno corporativo.** [Leer en HR Executive ->](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/)\n- **Capital Humano:** El Reporte de Mercado Laboral 2026 de LinkedIn, citado por Fast Company, contabiliza al menos 1.3 millones de oportunidades ligadas a IA creadas en los últimos dos años, incluidos puestos que no existían hace cinco. **El capital humano se reescribe cuando el trabajo cambia por debajo.** [Leer en Fast Company ->](https://www.fastcompany.com/91557984/what-business-leaders-are-getting-wrong-about-ais-impact-on-entry-level-jobs-ai-leadership-entry-level-jobs)",
+        "sourceRefs": []
+      },
+      {
+        "id": "1c3ab4c3-940a-4b0b-9a70-2956dd6d4579",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "[Convey levantó 38 millones de dólares](https://www.businessinsider.com/convey-raises-38-million-a16z-to-automate-repetitive-office-work-2026-6) esta semana con Andreessen Horowitz, según Business Insider, para construir \"compañeros de IA\" que absorban el trabajo repetitivo del escritorio del empleado. El pitch convence porque el problema es real. Fundadores y operadores siguen haciendo lo que el sistema debió incorporar hace años. La ronda es la versión cosmética de una pregunta más honda. Si un buen sistema ya habría eliminado ese trabajo, ¿qué dice de usted que aún lo esté haciendo? Los clientes de Convey descubrirán lo que todo comprador de transformación termina descubriendo. La herramienta es la parte fácil. Decidir dejar de ser la respuesta es la difícil.",
+        "sourceRefs": []
+      },
+      {
+        "id": "59c96ecc-fff2-4466-8523-66f90f4e52dd",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su equipo sigue preguntándole. Usted ya armó los tableros, redactó los procedimientos y lo dijo en voz alta en tres juntas distintas. Y cada lunes, las mismas preguntas regresan a su escritorio con empaque apenas distinto.\n\nLa tentación es agregar más sistema. Un tablero más nítido. Un manual de procedimientos más robusto. Un nuevo esquema de rendición de cuentas que, esta vez sí, lo libere del ciclo.\n\nNo va a funcionar. No porque el sistema esté mal diseñado. Porque el sistema nunca fue el cuello de botella.\n\nCasi todos los asesores nombrarán esto un problema de delegación y recetarán mejores herramientas. No es un problema de delegación. Delegar mueve tareas. Lo que usted tiene enfrente es algo más viejo y más pegajoso. Su equipo pregunta porque usted, por debajo de la decisión consciente, todavía no ha resuelto dejar de ser el que sabe. La pregunta cae en su escritorio porque una parte de usted aún quiere que caiga ahí.\n\nEse es el problema de arquitectura escondido dentro del modelo operativo. El Operating Model OS descansa sobre una clase de artefacto que quizá conozca como The Decision Rule. Son tres piezas: un disparador escrito, una prueba que el equipo aplica y una frontera que define cuándo la decisión regresa a usted. Poco más que una ficha de archivo. El artefacto convierte lo que vive en su cabeza en algo que el equipo puede ejecutar sin usted.\n\nThe Decision Rule es la herramienta. La herramienta no es el trabajo. El trabajo es la pregunta previa: ¿de verdad quiere que esa decisión salga de su escritorio?\n\nCasi ningún fundador puede responderla con honestidad la primera vez. El negocio se construyó sobre ser el que percibía cuándo la jugada era la correcta. Ese instinto le ganó a la empresa cada peso que hoy tiene en el banco. Soltarlo no se siente como avance. Se siente como pérdida. Y el sistema, por bien diseñado que esté, no va a sobreescribir un \"no\" sin resolver.\n\nAhí se atora la mayor parte del trabajo de transformación. No en el tablero. No en el organigrama. En la preferencia silenciosa y no enunciada del fundador a seguir siendo necesario de la manera en que siempre lo ha sido. El equipo lo percibe. Escala porque escalar es la respuesta racional ante un sistema cuya boca dice usted decide y cuyo cuerpo, en mil gestos pequeños, dice tráiganmelo primero.\n\nEsta semana, no redacte todavía una Decision Rule. Elija un tipo de decisión que insiste en regresar a su escritorio. Dedique diez minutos a la pregunta: ¿de verdad quiero esto fuera de mi escritorio? Si la respuesta es sí, escríbala el viernes. Si es no, nombre qué parte de usted todavía quiere que le consulten. El sistema sigue a la disposición. Nunca al revés.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ed04346-85eb-41f9-b947-21d976418ae7",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nEl déficit comercial de México con China se amplió 0.65% anual en el primer cuatrimestre de 2026, pese a los aranceles que el gobierno impuso este año, [según datos de Banxico citados por El CEO](https://elceo.com/economia/deficit-comercial-mexico-se-amplia-con-china-taiwan-y-4-paises-mas-pese-a-aranceles/). De enero a abril, China envió 42,851 millones de dólares a México y compró apenas 4,994. El desbalance no cedió ante la política comercial.\n\nLa lección operativa está una capa debajo del titular. En un solo mes, México le compró a China 370.9 millones de dólares únicamente en teléfonos inteligentes. Cuando el modelo de abasto descansa sobre una sola fuente, los aranceles no rebalancean: encarecen. Toda empresa tiene su propio proveedor crítico, una relación, una persona clave cuya presencia el modelo operativo asume sin nombrarla. Cuando esa fuente se retira —por fuerza mayor, decisión política o voluntad propia— el sistema diseñado a su alrededor no se adapta. Se detiene.\n\nPara el dueño con facturación entre $5M y $100M en el corredor, la auditoría es directa. Nombre los tres puntos únicos de falla en el modelo operativo. Escriba la regla de decisión que opera sin cada uno. Un modelo que depende de una sola fuente no es un modelo. Es una esperanza.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2dbcb575-d9ab-4ab3-8fed-241ff4e82dd8",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Decision Rule, escrita en una ficha de archivo.** Un artefacto de tres líneas: el disparador que la activa, la prueba que el equipo aplica para decidir y el límite que define cuándo la decisión regresa a usted. Convierte lo que vive en su cabeza en algo que un gerente puede operar sin usted. Dónde encontrarla: escríbala el viernes en papel y compártala el lunes con el responsable de la decisión.",
+        "sourceRefs": []
+      },
+      {
+        "id": "4ae52554-da18-4e91-86b0-935e0b71d6e1",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** las decisiones que le lleguen al correo o al WhatsApp entre martes y viernes. No el volumen. El tipo. Sepárelas en dos pilas: las que genuinamente lo requerían a usted y las que llegaron porque nadie sabía que ya las había delegado. La segunda pila es la interfaz real de su modelo operativo con el equipo. Es, además, el primer borrador de sus Decision Rules para la semana siguiente.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a699af4f-1f0f-4316-83da-b67b6c925ccb",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 85,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 203 — target range is 95–185."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (36 words). Break it up.",
+        "excerpt": "The Operating Model OS rests on a class of artifact you may know as The Decision Rule: a written trigger, a test the tea"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (32 words). Break it up.",
+        "excerpt": "They escalate because escalation is the rational response to a system that says you decide while the human in the room s"
+      }
+    ],
+    "wordCounts": {
+      "signal": 203,
+      "apertura": 103,
+      "insight": 443,
+      "fieldReport": 162,
+      "tool": 71,
+      "compass": 67,
+      "total": 1049
+    },
+    "shareableSentence": "Your team is asking because you have not yet decided, at the level beneath conscious choice, to stop being the one who knows.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"Your team is asking because you have not yet decided, at the level beneath conscious choice, to stop being the one who knows.\"",
+      "Reframe confirmed: \"Most advisors call this a delegation problem and prescribe better tooling. It is not a delegation problem. Delegation moves tasks. What you are looking at is something older and stickier. Your team is asking because you have not yet decided, at the level beneath conscious choice, to stop being the one who knows.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "markets are now pricing one 25 basis point rate hike for March 2027, reversing earlier expectations of a cut by year-end",
+          "supportingFactId": "7961954f-af96-4eb2-a311-012123cfc35e",
+          "language": "en"
+        },
+        {
+          "claim": "Convey raised $38 million from Andreessen Horowitz",
+          "supportingFactId": "f5698848-3c2a-435a-983f-af578cc0b56e",
+          "language": "en"
+        },
+        {
+          "claim": "Amazon CEO Andy Jassy raising security concerns with Treasury Secretary Scott Bessent",
+          "supportingFactId": "7cf49f93-452f-4fe5-8fd2-ce391e8131cd",
+          "language": "en"
+        },
+        {
+          "claim": "administration cut global access to Anthropic's Fable 5 and Mythos 5 models within 48 hours",
+          "supportingFactId": "7cf49f93-452f-4fe5-8fd2-ce391e8131cd",
+          "language": "en"
+        },
+        {
+          "claim": "LinkedIn's 2026 Labor Market Report counts at least 1.3 million AI-related job opportunities created over the past two years",
+          "supportingFactId": "ef5223d5-cdd5-4786-9115-123cc41a6a38",
+          "language": "en"
+        },
+        {
+          "claim": "founder who inherited his family business at 29, naming letting go as harder than taking hold",
+          "supportingFactId": "43a543b1-2420-4c8f-90d0-fa8122a38822",
+          "language": "en"
+        },
+        {
+          "claim": "Lance Ruttenberg tells Family Business Magazine that leading with what the family needs is a mistake",
+          "supportingFactId": "ebd74683-bd33-4d7b-8754-67a9f6ddc115",
+          "language": "en"
+        },
+        {
+          "claim": "Foreign-born researchers who had built the models were locked out of their own work",
+          "supportingFactId": "7cf49f93-452f-4fe5-8fd2-ce391e8131cd",
+          "language": "en"
+        },
+        {
+          "claim": "déficit comercial de México con China se amplió 0.65% anual en el primer cuatrimestre de 2026",
+          "supportingFactId": "7dee8d23-dadd-4f08-aefe-efccdd72b450",
+          "language": "es"
+        },
+        {
+          "claim": "De enero a abril, China envió 42,851 millones de dólares a México y compró apenas 4,994",
+          "supportingFactId": "7dee8d23-dadd-4f08-aefe-efccdd72b450",
+          "language": "es"
+        },
+        {
+          "claim": "México le compró a China 370.9 millones de dólares únicamente en teléfonos inteligentes",
+          "supportingFactId": "7dee8d23-dadd-4f08-aefe-efccdd72b450",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Business Insider",
+        "Chief Executive Magazine",
+        "Family Business Magazine",
+        "Fast Company",
+        "HR Executive",
+        "RSM Real Economy (Middle Market)"
+      ],
+      "outletCount": 6
+    },
+    "summary": "Draft passes all quality gates with strong voice match, excellent source diversity, original angle, and zero unverified claims."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-21-hero.png",
+        "publicUrl": null,
+        "prompt": "A single load-bearing column stands in a vast charcoal void, its surface embedded with thin horizontal lines like sedimentary layers — each line representing accumulated decisions compressed into structure over time. At mid-height, several lines begin to pull away from the column, suspended in space as independent threads, taut but no longer integrated. The column remains solid where the threads have detached, revealing that the integrity was never dependent on their presence. Deep teal shadows. Matte concrete texture. The space around the column is deliberate emptiness, suggesting the room created when weight transfers from person to system.",
+        "altText": {
+          "en": "Single bright lightbulb illuminated among rows of dark, unlit bulbs in an industrial grid",
+          "es": "Una bombilla brillante encendida entre filas de bombillas apagadas en una cuadrícula industrial"
+        },
+        "caption": {
+          "en": "Your brilliance becomes the bottleneck when every decision requires your light to turn on.",
+          "es": "Tu brillantez se convierte en el cuello de botella cuando cada decisión requiere que tu luz se encienda."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10866,
+      "outputTokens": 582,
+      "costUsd": 0.041328000000000004
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 850,
+      "outputTokens": 14300,
+      "costUsd": 0.35416600000000004
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 309,
+      "costUsd": 0.004706999999999999
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1053,
+      "outputTokens": 14551,
+      "costUsd": 0.361656
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1282,
+      "outputTokens": 1564,
+      "costUsd": 0.047946
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1112,
+      "costUsd": 0.016746
+    },
+    "totalUsd": 0.8265490000000001
+  }
+}

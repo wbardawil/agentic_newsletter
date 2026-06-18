@@ -2,32 +2,32 @@
   "entries": [
     {
       "editionId": "2026-21",
-      "recordedAt": "2026-05-18T23:36:28.068Z",
+      "recordedAt": "2026-06-17T16:51:55.942Z",
       "angle": {
-        "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
-        "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
-        "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
-        "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
+        "headline": "Your Best Employee Is Killing Your Business Model",
+        "thesis": "The business that runs because the owner is brilliant in every decision will fail when that brilliance is required to scale — the machine breaks when the operator is irreplaceable.",
+        "targetPersona": "Founder-CEOs with $10M-$50M revenue who built the business through force of capability and now face the ceiling their own competence created",
+        "relevanceToAudience": "US-LATAM corridor operators built businesses on relationship capital and founder instinct — but cross-border complexity demands systems that work when the founder is in Miami and the operation is in Monterrey, not heroic intervention in every decision.",
         "suggestedSources": [
-          "887df2c7-5c37-47de-972e-3723e53c27aa",
-          "e49b75f7-9084-427c-a123-ac85800f4241",
-          "ce90c745-3e04-4f27-a973-30ad67bf9f85",
-          "3ad324f7-787e-4c65-81e2-400a8fc7684b"
+          "db53d5a4-5e2c-4cb0-ad6d-3d41ca594fd1",
+          "43a543b1-2420-4c8f-90d0-fa8122a38822",
+          "1120af68-bc81-44bc-8671-c80d4f97913c",
+          "22367c44-0c8f-4eb5-88cf-ba75221b6997"
         ],
         "talkingPoints": [
-          "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
-          "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
-          "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business.",
-          "Add one diligence workstream focused exclusively on decision rights, escalation patterns, and information flow — not as compliance check, but as operating model architecture assessment."
+          "The owner who answers every strategic question becomes the bottleneck that prevents the business from making any decision without them — brilliance at the center creates dependency at the edge.",
+          "Succession planning in family businesses fails not because there is no successor, but because the business was never designed to run without the founder's judgment in every choice — you cannot hand off what was never systematized.",
+          "Active lenders differentiate by taking equity-like involvement in strategy because most businesses have no operating model that survives sponsor exit — if your lender needs to step in operationally, your business model is the collateral risk.",
+          "Build decision rights and approval thresholds before you hire the next VP — humility is not modesty, it is the discipline to design a system that makes you less necessary, not more indispensable."
         ],
         "osPillar": "Operating Model OS",
         "peopleAngle": {
-          "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
-          "framework": "Kotter Step 2: Build the Guiding Coalition"
+          "challenge": "The founder must shift from being the answer to every question to being the architect of a system that produces answers without them — requiring the psychological willingness to become less operationally necessary while remaining strategically accountable.",
+          "framework": "ADKAR: Desire"
         },
         "quarterlyTheme": "The Machine"
       },
-      "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+      "fieldReportSummary": "The Anthropic shutdown showed what single-source dependency looks like when the source is removed. Per [HR Executive](https://hrexecutive.com/inside-the-anthropic-ban-that-shut-down-global-ai-access-in-48-hours/), Amazon CEO Andy Jassy raised security concerns with Treasury Secretary Scott Bessent a"
     }
   ]
 }
