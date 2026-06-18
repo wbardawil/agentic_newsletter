@@ -934,10 +934,22 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err instanceof Error ? err.message : String(err));
-  if (process.env["LOG_LEVEL"] === "debug" && err instanceof Error && err.stack) {
-    console.error(err.stack);
-  }
-  process.exit(1);
-});
+main()
+  .then(() => {
+    // Belt-and-suspenders: the Anthropic SDK keeps HTTP keep-alive sockets
+    // open on api.anthropic.com, which holds the event loop alive after
+    // main() resolves on success. Other entry points in this repo (publish.ts,
+    // regenerate-image.ts, choose-apertura.ts, verify-feeds.ts) all end with
+    // an explicit process.exit(0); run.ts is the only one that did not, and
+    // that caused CI jobs to hang ~5-6 min after printing "Done" until the
+    // 12-min job timeout killed the process. Exit explicitly so the runner
+    // reports a clean exit code the moment the pipeline finishes.
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error("Fatal error:", err instanceof Error ? err.message : String(err));
+    if (process.env["LOG_LEVEL"] === "debug" && err instanceof Error && err.stack) {
+      console.error(err.stack);
+    }
+    process.exit(1);
+  });
