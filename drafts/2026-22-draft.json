@@ -1,0 +1,358 @@
+{
+  "runId": "ed57513c-9ada-4588-b4e2-b0ff96ea1259",
+  "editionId": "2026-22",
+  "generatedAt": "2026-06-18T23:52:31.534Z",
+  "contentHash": "7f7bad76ae6bef91a543af0de94da72315778a65346e98420b6b8b0fc2954ede",
+  "angle": {
+    "headline": "Why Your Best People Leave When You Finally Fix the System",
+    "thesis": "Business owners who delay succession planning discover too late that building the operating model that runs without them creates the very conditions that make their successors unwilling to stay.",
+    "targetPersona": "Founder-owners age 50+ with $10M–$50M revenue who built the business through force of will and now face the paradox that the stronger they make the machine, the less attractive the opportunity becomes to the next generation",
+    "relevanceToAudience": "The T-MEC revision (items 5, 14) creates urgency for institutional succession planning in corridor businesses, but most owners are discovering that the Operating Model OS they need to scale is being built exactly when their natural successors are evaluating other options—succession isn't failing because owners won't let go, it's failing because they're letting go of the wrong things at the wrong time",
+    "suggestedSources": [
+      "f9baa90e-df22-45af-a079-d3db7ad797bf",
+      "c15e7a4b-5027-4e9f-8b0b-731c300ab69a",
+      "872e2bed-2de0-4371-a29d-4935723ffb1f",
+      "e744815d-2a5e-4dd4-81bd-4fc66ad6ac5a"
+    ],
+    "talkingPoints": [
+      "The owner who spent 15 years building systems to run without him now faces a successor who sees a professional management job, not an ownership opportunity—the machine works, but the mission died in the transition",
+      "Succession fails when owners confuse delegation (giving away tasks) with development (giving away decisions)—NextGen doesn't want your processes, they want your judgment, and by the time you systematize judgment you've removed the reason they wanted the business",
+      "The Kotter mistake: most owners skip Step 2 (building the guiding coalition) and jump to Step 5 (removing obstacles)—they build the operating model before they build the ownership team, so there's no one left who wants to own what they built",
+      "The corridor dimension: Latin American family businesses that succeed multi-generationally don't wait until the machine is perfect—they transfer equity and authority early, messily, while the business still needs the successor's instinct, not just their execution"
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The owner must transfer decision-making authority (not just operational responsibility) early enough that the successor still sees an ownership opportunity worth the risk, which requires the owner to trust an incomplete leader with an incomplete system—the opposite of how they built the business",
+      "framework": "Kotter Step 2: Build the Guiding Coalition"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Why your successor is still waiting",
+    "preheader": "You handed over responsibility. You kept authority. They are not the same thing.",
+    "subjectOptions": [
+      "Why your successor is still waiting",
+      "The half of every succession founders rarely hand over",
+      "What Pizza Hut's $1.5B sale signals for mid-market owners"
+    ],
+    "sections": [
+      {
+        "id": "bb6b40b5-4205-486d-bdd3-2562d18c485f",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: ownership transitions land on tables that were never finished being built.*\n\n- **Strategy:** Yum Brands is selling Pizza Hut to LongRange Capital for $1.5 billion, with Yum China separately acquiring the Mainland business for $1.2 billion, per [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). **Strategy is choosing what to own and what to release before the market decides for you.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Operating Models:** Deloitte projects family businesses above $100M in revenue will grow 22% by 2030, yet succession remains the sector's biggest blind spot, [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) reports. **The operating model is what a founder can actually hand over; everything else is improvisation.** [Read in Family Business Magazine ->](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/)\n- **Technology:** [Chief Executive Magazine](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) argues that microdosing AI in small, measurable rollouts beats the all-in enterprise pitch. **Technology compounds where a model already runs; it does not substitute for one.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Human Capital:** Norse Construction owner Bruce Jovaag told [Entrepreneur](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open) he is ready to retire after years of stay-open pressure with no clear handoff in place. **Human capital is the cost of decisions you postpone until they make themselves.** [Read in Entrepreneur ->](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open)",
+        "sourceRefs": []
+      },
+      {
+        "id": "36838274-1bb9-4412-b237-bd50effa648b",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nDeloitte projects family businesses above $100 million in revenue will grow 22 percent by 2030, with revenues rising 84 percent over the same period. The same research, summarized this week in [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/), names succession as the sector's biggest blind spot. Twenty-six percent of these owners are now targeting outside investment or private equity. Read the three numbers together. Owners are about to grow into the largest companies they have ever run, with revenues nearly doubling, while the question of who is actually allowed to decide goes unanswered. The growth is real. The handover plan is mostly a calendar.\n===OPTION_B:provocation===\nSuccession is the only operating problem owners try to solve by hiring themselves a replacement. The [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) piece this week is written by a founder who inherited his family company at 29 and, fifteen years in, says letting go is harder than taking hold. He had the title. He had the building. He still describes the work of release as the harder problem. That is the part nobody warns the next generation about. The successor is not waiting for the office. They are waiting for the decisions the office was supposed to come with.\n===OPTION_C:pattern===\nThree pieces this week, three different exit stories, one diagnosis. Yum Brands [divests Pizza Hut](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/) for $1.5 billion. A home-remodeling owner tells [Entrepreneur](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open) he is ready to retire after years of stay-open pressure. A second-generation CEO writes in [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) that fifteen years after inheriting the company, the hardest leadership work has been letting go. Different scales. Different sectors. The same pattern. In each case, the operating model arrived at the handover unfinished, and the cost of finishing it became part of the deal.",
+        "sourceRefs": []
+      },
+      {
+        "id": "06258da4-2ee6-437a-8a32-921f9c95e480",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You named a successor. You gave them the title. You may have written it into the org chart. And the decisions that matter still land on your desk.\n\nYou watch them defer to you on calls. You watch them check in before they commit. You tell them, again, to make the call. They nod. The next decision still routes through you.\n\nThe conventional reading is that they are not ready. The honest reading is that you have not transferred what you said you transferred.\n\nYou handed over responsibility. You kept authority. Those are not the same thing.\n\nResponsibility is the work of running a function. Authority is the right to decide without your sign-off. Most owners hand over the first and hold the second without naming it, because the second is what built the business. The successor inherits a job, not an ownership stake in the decision. They learn fast that the company is still yours. They start to manage you instead of the business.\n\nThis is the part the conventional advisor misses. They prescribe more time, more coaching, more clarity in the org chart. The org chart is not the bottleneck. The decision rights are.\n\nThere is a second cost, less visible. The longer the successor decides under your shadow, the smaller the ownership opportunity they think they are getting. In time they leave, or they stop pushing, or they accept the title without the role. The transfer fails before it starts.\n\nInside Operating Model OS, the authority transfer has three layers, and they have to move in sequence. Scope: name the categories of decisions that are theirs alone, like hiring below a level, pricing inside a band, vendor contracts under a threshold. Threshold: the dollar amount or risk boundary above which you want to be consulted, not asked. Reversal rights: who can override the successor's decision, when, and through what process.\n\nMost owners hand over scope and silently keep reversal. The team learns this within a quarter. They route around the successor to you, and the title becomes decoration. The order is non-negotiable: scope, threshold, reversal. Once reversal is written down, you have to use it sparingly enough that it remains a backstop, not a default.\n\nThe work is yours to do, and it is harder than naming the successor. You are being asked to trust an incomplete leader with an incomplete system. That is the opposite of how you built the company. That trust is the actual transfer. Everything else is paperwork.\n\nThis week, pull the last ten decisions you made. For each one, ask: should this have been my successor's? Then write the threshold above which you still want to be consulted. The gap between what you decided and what you would now delegate is your real succession map. Show it to your successor. The conversation it starts is the one you have been postponing.",
+        "sourceRefs": []
+      },
+      {
+        "id": "486ed269-04e3-4cac-8612-269ee857a1df",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Yum Brands sold Pizza Hut to LongRange Capital for $1.5 billion this week, with Yum China separately acquiring the Mainland business for $1.2 billion, according to [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). The transaction divests one of the largest restaurant brands in the United States from its publicly listed parent.\n\nThe strategic read is that Yum could not get the returns it wanted from Pizza Hut inside the portfolio. The operating model read is more interesting. LongRange is buying a brand the parent could not, or would not, run the way private capital believes it should be run. The thesis is operational, not strategic.\n\nThe pattern shows up at the lower end of the market too. Trulink Capital announced an investment this week in Horwitz, a mechanical, electrical, and plumbing services provider, per the same [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/) brief. The capital is following operating models that an owner-operator built but never finished documenting.\n\nFor a US owner of a $5M to $100M business, the buyer's first ninety-day question is not what your strategy is. It is who decides what, and where it is written down. If the answer is the owner, in their head, the multiple compresses before due diligence closes.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d2078854-8b94-4c70-b7c7-91d1823297a8",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Decision Rights One-Pager (built with Claude or ChatGPT)** - A single page that lists the twenty most common recurring decisions in your business and assigns each to a role with a dollar or risk threshold. Why it matters for a $5M to $100M owner: it forces the conversation you have been avoiding and gives your successor something to point to when the team tries to route around them. Start by pasting the last thirty days of decisions you made into the model and asking it to cluster them, then propose owner, threshold, and reversal rights for each cluster.",
+        "sourceRefs": []
+      },
+      {
+        "id": "eb3c74bb-ca30-4d10-b155-1105e69b0fa7",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** the decisions that land in your inbox that your named, or unnamed, successor should be making. Count them. The count is the diagnostic, not the content. If the number is above five, your transfer is not underway. If it is below five, notice which specific ones still came to you and why. That distinction is where the real succession work lives.",
+        "sourceRefs": []
+      },
+      {
+        "id": "60ebd5ed-0051-423b-b475-d991301e9011",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué su sucesor sigue esperando",
+    "preheader": "Entregó la responsabilidad. Conservó la autoridad. No son lo mismo.",
+    "thesis": "Los dueños que postergan la sucesión descubren tarde que el modelo operativo construido para correr sin ellos genera, al mismo tiempo, las condiciones que empujan al sucesor a marcharse.",
+    "shareableSentence": "El organigrama no es el cuello de botella. Los derechos de decisión sí lo son.",
+    "sections": [
+      {
+        "id": "bb6b40b5-4205-486d-bdd3-2562d18c485f",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: las transiciones de propiedad llegan a mesas que nadie terminó de armar.*\n\n- **Estrategia:** Yum Brands vende Pizza Hut a LongRange Capital por 1,500 millones de dólares, mientras Yum China adquiere por separado el negocio en China continental por 1,200 millones, según [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). **Decidir qué conservar y qué soltar antes de que el mercado lo decida es la estrategia.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Modelos Operativos:** Deloitte proyecta que las empresas familiares con ingresos superiores a 100 millones de dólares crecerán 22% hacia 2030, pero la sucesión sigue siendo el mayor punto ciego del sector, reporta [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/). **Lo que no se documenta no se entrega; se improvisa.** [Leer en Family Business Magazine ->](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/)\n- **Tecnología:** [Chief Executive Magazine](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) sostiene que microdosificar la IA en despliegues pequeños y medibles le gana al discurso de implementación total. **Compone donde ya corre un modelo; no lo sustituye.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Capital Humano:** Bruce Jovaag, dueño de Norse Construction, dijo a [Entrepreneur](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open) que está listo para retirarse después de años de presión por mantener el negocio abierto, sin un relevo claro en pie. **Las decisiones pospuestas no desaparecen; se toman solas.** [Leer en Entrepreneur ->](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open)",
+        "sourceRefs": []
+      },
+      {
+        "id": "36838274-1bb9-4412-b237-bd50effa648b",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Deloitte proyecta que las empresas familiares con más de 100 millones de dólares en ingresos crecerán 22% hacia 2030, con facturación al alza de 84% en el mismo periodo. La investigación, recogida esta semana por [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/), señala a la sucesión como el mayor punto ciego del sector. Un 26% de esos dueños ya apunta a inversión externa o capital privado. Lea los tres datos juntos: los empresarios están a punto de operar las compañías más grandes que han dirigido, con ingresos casi al doble, mientras la pregunta de quién decide en realidad sigue sin respuesta. El crecimiento es real. El plan de relevo, en su mayoría, es un calendario.",
+        "sourceRefs": []
+      },
+      {
+        "id": "06258da4-2ee6-437a-8a32-921f9c95e480",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Usted nombró a un sucesor. Le entregó el título. Quizá lo plasmó en el organigrama. Y las decisiones que importan siguen llegando a su escritorio.\n\nLo ve en las llamadas: el sucesor voltea hacia usted antes de comprometerse. Lo ve en los correos: consulta antes de avanzar. Usted le insiste, una vez más, en que decida. Asiente. La siguiente decisión vuelve a pasar por su mesa.\n\nLa lectura convencional es que no está listo. La lectura honesta es que usted no transfirió lo que dijo haber transferido.\n\nEntregó la responsabilidad. Conservó la autoridad. No son lo mismo.\n\nLa responsabilidad es el trabajo de operar una función. La autoridad es el derecho de decidir sin su firma. La mayoría de los dueños cede lo primero y retiene lo segundo sin nombrarlo, porque lo segundo es lo que construyó el negocio. El sucesor hereda un puesto, no una participación real en las decisiones. Aprende rápido que la empresa sigue siendo suya. Y empieza a administrarlo a usted, en lugar de administrar el negocio.\n\nAquí es donde el asesor convencional se equivoca. Recomienda más tiempo, más coaching, más claridad en el organigrama. El organigrama no es el cuello de botella. Los derechos de decisión sí lo son.\n\nHay un segundo costo, menos visible. Mientras el sucesor decida bajo su sombra, más pequeña le parecerá la oportunidad que está recibiendo. Con el tiempo se va, o deja de empujar, o acepta el título sin el rol. La transferencia fracasa antes de comenzar.\n\nDentro de Operating Model OS, la transferencia de autoridad tiene tres capas que deben moverse en secuencia. Alcance: nombre las categorías de decisiones que son solo suyas, como contratación por debajo de cierto nivel, precios dentro de una banda, contratos con proveedores bajo un umbral. Umbral: el monto o el límite de riesgo a partir del cual usted quiere ser consultado, no preguntado. Derecho de reversa: quién puede revocar la decisión del sucesor, cuándo y bajo qué proceso.\n\nLa mayoría cede el alcance y se reserva, en silencio, el derecho de reversa. El equipo lo descubre en un trimestre. Empieza a esquivar al sucesor y vuelve a tocar su puerta. El título se vuelve decoración. El orden no es negociable: alcance, umbral, reversa. Una vez escrito el derecho de reversa, hay que ejercerlo lo suficientemente poco para que siga siendo respaldo, no opción por defecto.\n\nEl trabajo es suyo, y es más difícil que nombrar al sucesor. Le piden confiar en un líder incompleto que opera un sistema incompleto. Es lo opuesto a cómo construyó la empresa. Esa confianza es la transferencia real. Lo demás es papeleo.\n\nEsta semana, revise las últimas diez decisiones que tomó. Para cada una, pregúntese: ¿debió haberla decidido su sucesor? Escriba el umbral por arriba del cual sí quiere ser consultado. La distancia entre lo que decidió y lo que ahora delegaría es su mapa real de sucesión. Muéstreselo a su sucesor. La conversación que abre es la que lleva tiempo postergando.",
+        "sourceRefs": []
+      },
+      {
+        "id": "486ed269-04e3-4cac-8612-269ee857a1df",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nUn CEO de segunda generación escribe esta semana en [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) que, quince años después de heredar la empresa familiar a los 29, la lección más dura del liderazgo no fue tomar el mando: fue soltarlo.\n\nTenía el título. Tenía el edificio. Y aun así describe el trabajo de soltar como el problema más difícil. En esa misma semana, Yum Brands vendió Pizza Hut a LongRange Capital por 1,500 millones de dólares. Una operación en la que el private equity se queda con una marca que la matriz cotizada no quiso, o no pudo, operar como el comprador considera que debe operarse.\n\nDistintas escalas. Distintos sectores. El mismo patrón. En ambos casos, el modelo operativo llegó al traspaso sin terminar de construirse, y el costo de completarlo quedó incorporado al trato.\n\nPara el dueño mexicano de una empresa de entre 5 y 100 millones de dólares, la primera pregunta del comprador en los primeros noventa días no es cuál es la estrategia. Es quién decide qué y dónde está escrito. Si la respuesta es el dueño —en su cabeza—, el múltiplo se comprime antes de cerrar la auditoría.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d2078854-8b94-4c70-b7c7-91d1823297a8",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Decision Rights One-Pager (armado con Claude o ChatGPT).** Una sola página que enlista las veinte decisiones recurrentes más comunes del negocio y asigna cada una a un rol, con su umbral en dinero o riesgo. Por qué importa para un dueño de 5 a 100 millones de dólares: obliga la conversación que ha estado postergando y le da al sucesor algo concreto a qué referirse cuando el equipo intenta esquivarlo. Empiece pegando las últimas treinta decisiones que tomó en la herramienta y pídale que las agrupe; luego, que proponga responsable, umbral y derecho de reversa para cada grupo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "eb3c74bb-ca30-4d10-b155-1105e69b0fa7",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**La señal a seguir esta semana:** las decisiones que llegan a su bandeja de entrada y que su sucesor, nombrado o no, debería estar tomando. Cuéntelas. El número es el diagnóstico, no el contenido. Si supera las cinco, la transferencia no ha comenzado. Si está por debajo de cinco, identifique cuáles siguen llegando a usted y por qué. Ahí vive el trabajo real de sucesión.",
+        "sourceRefs": []
+      },
+      {
+        "id": "60ebd5ed-0051-423b-b475-d991301e9011",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 80,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 194 — target range is 95–185."
+      },
+      {
+        "rule": "word-count-fieldReport",
+        "severity": "warning",
+        "section": "fieldReport",
+        "message": "Field Report word count is 198 — target range is 110–190."
+      },
+      {
+        "rule": "word-count-tool",
+        "severity": "warning",
+        "section": "tool",
+        "message": "Tool word count is 98 — target range is 30–80."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'Reversal rights: who can override the successor's decision, when, and through what process' introduces 'reversal rights' as a named concept without signaling it as the writer's own framing. If this is a Wadi-specific term, it should be flagged. Industry standard terms would be 'override authority,' 'escalation rights,' or 'decision veto authority.'",
+        "excerpt": "Reversal rights: who can override the successor's decision, when, and through what process."
+      }
+    ],
+    "wordCounts": {
+      "signal": 194,
+      "apertura": 100,
+      "insight": 479,
+      "fieldReport": 198,
+      "tool": 98,
+      "compass": 65,
+      "total": 1134
+    },
+    "shareableSentence": "You handed over responsibility. You kept authority. Those are not the same thing.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"You handed over responsibility. You kept authority. Those are not the same thing.\"",
+      "Reframe confirmed: \"You handed over responsibility. You kept authority. Those are not the same thing.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Yum Brands is selling Pizza Hut to LongRange Capital for $1.5 billion",
+          "supportingFactId": "009b13d3-f40a-40c1-a9c8-6fd26af71351",
+          "language": "en"
+        },
+        {
+          "claim": "Yum China separately acquiring the Mainland business for $1.2 billion",
+          "supportingFactId": "009b13d3-f40a-40c1-a9c8-6fd26af71351",
+          "language": "en"
+        },
+        {
+          "claim": "Deloitte projects family businesses above $100M in revenue will grow 22% by 2030",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "en"
+        },
+        {
+          "claim": "revenues rising 84% over the same period",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "en"
+        },
+        {
+          "claim": "succession remains the sector's biggest blind spot",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "en"
+        },
+        {
+          "claim": "26% of family businesses now targeting outside investment or private equity",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "en"
+        },
+        {
+          "claim": "Bruce Jovaag, owner of home remodeling company Norse Construction, says he is ready to retire",
+          "supportingFactId": "e744815d-2a5e-4dd4-81bd-4fc66ad6ac5a",
+          "language": "en"
+        },
+        {
+          "claim": "Trulink Capital announced an investment in Horwitz, a mechanical, electrical, and plumbing services provider",
+          "supportingFactId": "009b13d3-f40a-40c1-a9c8-6fd26af71351",
+          "language": "en"
+        },
+        {
+          "claim": "A CEO inherited his family company at 29 and fifteen years in says letting go is harder than taking hold",
+          "supportingFactId": "f9baa90e-df22-45af-a079-d3db7ad797bf",
+          "language": "en"
+        },
+        {
+          "claim": "Yum Brands vende Pizza Hut a LongRange Capital por 1,500 millones de dólares",
+          "supportingFactId": "009b13d3-f40a-40c1-a9c8-6fd26af71351",
+          "language": "es"
+        },
+        {
+          "claim": "Yum China adquiere el negocio en China continental por 1,200 millones",
+          "supportingFactId": "009b13d3-f40a-40c1-a9c8-6fd26af71351",
+          "language": "es"
+        },
+        {
+          "claim": "Deloitte proyecta que las empresas familiares con ingresos superiores a 100 millones de dólares crecerán 22% hacia 2030",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "es"
+        },
+        {
+          "claim": "facturación al alza de 84% en el mismo periodo",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "es"
+        },
+        {
+          "claim": "26% de esos dueños ya apunta a inversión externa o capital privado",
+          "supportingFactId": "f4c32d33-dbbc-4956-b114-f47098d605e3",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Entrepreneur",
+        "Family Business Magazine",
+        "Middle Market Growth (ACG)"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong fact verification, original angle distinct from prior editions, excellent voice alignment with golden examples, and robust source diversity across four outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-22-hero.png",
+        "publicUrl": null,
+        "prompt": "A minimalist composition on deep charcoal: a single load-bearing column, cast in concrete or aged steel, standing vertical in the frame's left third. From its top, a thick horizontal beam extends rightward but stops mid-span—unfinished, cantilevered over empty space. The beam's end is clean-cut, not broken. Negative space dominates the right two-thirds of the frame. The structure reads as deliberately incomplete: capable of bearing weight, but not yet transferred. Matte texture throughout. No figures, no text, no decorative elements. The palette is slate gray, weathered bronze, and chalk white on the deep background. The image suggests arrested transfer—the infrastructure exists, but the handoff has not occurred.",
+        "altText": {
+          "en": "Empty executive chair at head of polished conference table with morning light streaming through tall windows",
+          "es": "Silla ejecutiva vacía a la cabecera de una mesa de conferencias pulida con luz matutina entrando por ventanas altas"
+        },
+        "caption": {
+          "en": "You perfect the system while your successor perfects their exit plan.",
+          "es": "Perfeccionas el sistema mientras tu sucesor perfecciona su plan de salida."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10398,
+      "outputTokens": 685,
+      "costUsd": 0.041469
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 758,
+      "outputTokens": 12844,
+      "costUsd": 0.31833000000000006
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 478,
+      "costUsd": 0.007242
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1115,
+      "outputTokens": 12745,
+      "costUsd": 0.316182
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1297,
+      "outputTokens": 1590,
+      "costUsd": 0.04838099999999999
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1301,
+      "costUsd": 0.019581
+    },
+    "totalUsd": 0.7511850000000001
+  }
+}

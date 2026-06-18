@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-22-hero.png",
+      "publicUrl": null,
+      "prompt": "A minimalist composition on deep charcoal: a single load-bearing column, cast in concrete or aged steel, standing vertical in the frame's left third. From its top, a thick horizontal beam extends rightward but stops mid-span—unfinished, cantilevered over empty space. The beam's end is clean-cut, not broken. Negative space dominates the right two-thirds of the frame. The structure reads as deliberately incomplete: capable of bearing weight, but not yet transferred. Matte texture throughout. No figures, no text, no decorative elements. The palette is slate gray, weathered bronze, and chalk white on the deep background. The image suggests arrested transfer—the infrastructure exists, but the handoff has not occurred.",
+      "altText": {
+        "en": "Empty executive chair at head of polished conference table with morning light streaming through tall windows",
+        "es": "Silla ejecutiva vacía a la cabecera de una mesa de conferencias pulida con luz matutina entrando por ventanas altas"
+      },
+      "caption": {
+        "en": "You perfect the system while your successor perfects their exit plan.",
+        "es": "Perfeccionas el sistema mientras tu sucesor perfecciona su plan de salida."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
