@@ -42,37 +42,45 @@
     }
   },
   "imageStyle": {
-    "approach": "editorial photography or restrained illustration on dark backgrounds; executive aesthetic",
+    "approach": "sophisticated editorial illustration inspired by The New York Times, The Economist, Financial Times; intellectual and minimalist approach, strategic storytelling through visuals; professional illustration feeling.",
     "constraints": [
       "no realistic photography of identifiable people unless cleared",
       "no stock-photo executives in suits or boardrooms",
       "no AI tropes (robot hands, glowing brains, circuit boards, futuristic UI panels)",
       "no clichéd transformation imagery (caterpillar/butterfly, sunrise/sunset, ladder, mountaintop, lightbulb)",
-      "no text or words in the image — typography is added in layout, not generated",
-      "no flags, logos, brand marks, or trademarked imagery",
+      "no comic style, no cartoon style, no exaggerated characters",
+      "no futuristic sci-fi rendering",
+      "no overloaded compositions, no multiple simultaneous messages, no excessive decorative elements",
+      "no flags, logos, brand marks, or trademarked imagery (except for a small, discreet WB logo in a corner, only once, never competing with the main message)",
       "no decorative gradients — flat composition only",
-      "no light backgrounds — imagery must read on the dark charcoal canvas"
+      "no dark backgrounds, prefer white or off-white backgrounds",
+      "no bright primary colors (other than specified orange accent)",
+      "no text or words in the image unless explicitly requested as an editorial headline, strategic statement, or memorable insight (max 8-12 words, editorial serif typography, similar to premium newspapers)"
     ],
     "preferences": [
+      "elegant pencil sketch style, hand-drawn graphite lines, handmade texture, refined details",
       "abstract geometric forms suggesting structure, sequence, and process",
       "architectural metaphors: foundations, scaffolding, blueprints, load-bearing walls",
-      "limited palette: charcoals + white + orange highlight (used sparingly, only when the photo subject demands it)",
+      "limited palette: charcoals (#222831) + white (#ffffff) + light gray (#d4d4d4) + orange (#fd4002) highlight (used sparingly for key visual elements)",
       "negative space as a deliberate composition element",
-      "matte finish; no shiny gradients, no neon, no chrome"
+      "matte finish; no shiny gradients, no neon, no chrome",
+      "white backgrounds, off-white backgrounds, clean spaces, large areas of negative space",
+      "environments representing modern offices, technology environments, contemporary corporate scenarios, strategic business contexts",
+      "one central idea, a clear visual metaphor, defined visual hierarchy, minimal but meaningful elements"
     ],
     "model": "gemini-2.5-flash-image"
   },
   "layout": {
     "borderRadius": "0.5rem",
     "sectionPaddingY": { "mobile": "112px", "desktop": "128px" },
-    "heroAspectRatio": "16:9",
-    "heroDimensions": { "width": 1600, "height": 900 },
+    "heroAspectRatio": "1:1",
+    "heroDimensions": { "width": 1600, "height": 1600 },
     "socialAspectRatios": {
-      "linkedin": "1.91:1",
+      "linkedin": "1:1",
       "twitter": "16:9",
       "email": "16:9"
     },
-    "mode": "dark-only"
+    "mode": "light-only"
   },
   "captionVoice": {
     "guidance": "One sentence. Anchors the image to the issue's diagnostic — not a description of the picture. Same voice as the letter: advisor, present tense, second-person where natural.",
