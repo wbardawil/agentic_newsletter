@@ -15,8 +15,12 @@ export const StrategicAngleSchema = z.object({
   thesis: z.string().min(1),
   targetPersona: z.string(),
   relevanceToAudience: z.string(),
-  suggestedSources: z.array(z.string().uuid()),
-  talkingPoints: z.array(z.string()).min(1),
+  suggestedSources: z.array(z.string().uuid()) ,
+  "justification": z.object({
+    "angleChoice": z.string().min(1),
+    "osPillarChoice": z.string().min(1),
+    "peopleAngleChoice": z.string().min(1)
+  }),
   /** Which OS layer this issue's Insight lives in. */
   osPillar: OsPillarSchema,
   /**

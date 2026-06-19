@@ -193,11 +193,26 @@ Generate **three subject line options**:
 
 ---
 
-## FINAL CHECK: How to Pass the Validator
+## FINAL CHECK: How to Pass the Validator & Quality Gate
 
-Run this checklist against your draft before writing JSON. Fixing issues here is
-10x cheaper than a failed Validator run.
+Run this multi-step check against your draft before writing JSON. Fixing issues here is
+10x cheaper than a failed downstream run.
 
+**Step 1: Content Grounding & Temporal Accuracy (CRITICAL - Hardest Gate)**
+This is the most important check. The Quality Gate agent will fail your draft if you
+make claims that are not directly supported by the `verbatimFacts`.
+
+-   **Internal Monologue Check:** For every single sentence you have written in the
+    **Insight** and **Field Report**, find the exact `verbatimFact` from the
+    `{{input}}` that supports it. If you cannot find a direct supporting fact,
+    your sentence is a fabrication and must be removed or rewritten to be a general
+    framework statement.
+-   **Temporal Accuracy:** For any event, check the tense. If a source says "Company
+    X *will acquire* Y", you MUST use the future tense. Stating it in the
+    present tense (e.g., "Company X is acquiring Y") is a temporal inaccuracy
+    and will cause a HARD FAIL.
+
+**Step 2: Key Structural Checks**
 1.  **Insight is Prose Only:** No lines start with `-`, `*`, `•`, or `1.`. (Hard failure)
 2.  **Signal Word Count:** Is the `signal` text between 95–185 words?
 3.  **Field Report ≠ Apertura Entity:** Is the main company/event in the Field Report
