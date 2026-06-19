@@ -442,6 +442,8 @@ async function main(): Promise<void> {
     payload: { content, angle },
   });
 
+  const validation = validatorOutput.data as ValidationResult | undefined;
+
   if (!validatorOutput.success || !validation) {
     console.error(`❌ Validator failed: ${validatorOutput.error}`);
     process.exit(1);
