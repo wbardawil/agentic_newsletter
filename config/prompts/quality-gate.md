@@ -31,6 +31,8 @@ Extract every specific claim from the EN and ES drafts. A "specific claim" is:
 For each claim, check if it is supported by a `verbatimFact` from the source
 bundle. Supported means: the claim can be reasonably inferred from one of the
 `verbatimFacts` — paraphrase is OK, invention is not.
+**Pay special attention to temporal accuracy.** A claim using past tense (e.g., "acquired") is not supported by a `verbatimFact` using future tense (e.g., "will acquire"). This is a factual error and must be flagged as an unverified claim.
+
 
 **Unsupported claims = HARD FAIL.** The draft cannot ship with them.
 

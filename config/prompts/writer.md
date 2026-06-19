@@ -83,6 +83,8 @@ Each source includes:
 
 **The `verbatimFacts` are the only authoritative content.** You must not invent,
 paraphrase inaccurately, or synthesize claims that aren't grounded in those facts.
+**Temporal accuracy is critical:** If a `verbatimFact` uses future tense (e.g., "Company X *will acquire* Y"), your description of the event must also use future tense. Do not report future events as if they have already happened.
+
 
 {{input}}
 
@@ -99,6 +101,9 @@ will check. Invented quotes or fabricated stats destroy trust permanently.
 1. **If you cite a number, name, quote, or specific event → it must come from a
    source's `verbatimFacts`.** No exceptions. If no source provides it, don't
    include it.
+
+2. **Every attribution must be a Markdown link.** Phrases like "according to" or "reports show" are not stand-alone text; they must be part of the link itself. E.g., `[according to Fast Company](https://...)`. Any attribution phrase that is not part of a link will be flagged as a hard failure.
+
 
 2. **Cite inline using Markdown links**: `According to [Fast Company](https://...), [claim].`
    Use the source's `url` field as the link target.

@@ -147,7 +147,9 @@ there is a genuine problem. An empty array is correct when the draft is clean.
 
 ## Output Format
 
-Respond with valid JSON only — no preamble, no markdown wrapper:
+Respond with valid JSON only — no preamble, no markdown wrapper.
+**Every field in the JSON schema below is required.** Do not omit any fields. If a check passes, use the appropriate value (e.g., `true`, `null`, or an empty array).
+
 
 ```json
 {
