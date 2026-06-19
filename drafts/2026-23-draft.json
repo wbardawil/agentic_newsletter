@@ -1,0 +1,302 @@
+{
+  "runId": "b16097a5-778a-43a1-923b-c5d68dd7d765",
+  "editionId": "2026-23",
+  "generatedAt": "2026-06-19T05:57:40.889Z",
+  "contentHash": "51ec704dd47a4501cd97b6aad5d22306203d6b2ecfb1284566b3707251933b41",
+  "angle": {
+    "headline": "When Your Best People Leave Because You Won't Let Go",
+    "thesis": "Business owners who refuse to delegate strategic decisions aren't protecting the business — they're guaranteeing that the people capable of scaling it will leave for environments where their judgment matters.",
+    "targetPersona": "$15M–$75M business owners who have built the company through personal relationships and instinct, now watching high-potential managers plateau or exit despite offering competitive compensation",
+    "relevanceToAudience": "The US-LATAM corridor creates unique succession pressure: institutional buyers expect scalable operations, but owner-operators who built through personal networks treat delegation as loss of control rather than as the architecture of sale-readiness.",
+    "suggestedSources": [
+      "040d8607-1c62-43f1-aff4-c3077dbb4a62",
+      "086c7a03-1759-4b49-8659-ee37cbd1ba87",
+      "3e052918-19f0-40cf-9b9c-207b71705ed5"
+    ],
+    "talkingPoints": [
+      "The pattern: you hire talented operators, watch them succeed in execution, then override their strategic recommendations because 'they don't see the full picture.'",
+      "The diagnosis: avoiding critical conversations about decision rights creates a revolving door where capable people leave not for more money but for more authority.",
+      "The framework: decision rights mapping — explicitly defining which decisions require owner approval, which require consultation, and which belong fully to functional leaders.",
+      "The action: before your next strategic meeting, write down the three decisions you will delegate completely this quarter and announce them with the constraint that you cannot reverse them for 90 days."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The owner must shift from being the person with the best answers to being the person who builds the system that produces good answers — requiring them to trust others' judgment on decisions where their own instinct has historically been correct.",
+      "framework": "ADKAR: Desire"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The system that decides without you",
+    "preheader": "Delegating decisions doesn't scale. Building the system that produces them does.",
+    "subjectOptions": [
+      "The system that decides without you",
+      "You delegated the decision. They asked you again.",
+      "What the $1.5B Pizza Hut deal teaches founder-run shops"
+    ],
+    "sections": [
+      {
+        "id": "210a4f43-1f77-4060-8788-23864bec7e67",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: succession, delegation, and AI rollouts all point to the same question. Who decides when the owner steps back.*\n\n- **Strategy:** Yum Brands agreed to sell Pizza Hut to LongRange Capital for $1.5 billion, with the China business carving off to Yum China Holdings for $1.2 billion, according to [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). **Strategy is the discipline of deciding what the business is no longer about.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Operating Models:** Deloitte projects family businesses above $100M will grow 22% by 2030 with revenues rising 84%, yet succession remains what [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) calls the sector's biggest blind spot. **An operating model isn't built until it runs while the owner lets go.** [Read in Family Business Magazine ->](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/)\n- **Technology:** [Chief Executive](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) argues that small contained AI deployments outperform enterprise rollouts driven by board pressure. **Technology adopted in small doses compounds; technology deployed as ambition produces license bills.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Human Capital:** [Chief Executive](https://chiefexecutive.net/the-high-cost-of-avoided-conversations/) names avoided conversations as the highest hidden cost in the leader's calendar. **Human capital means having the conversation before it shows up in a resignation letter.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/the-high-cost-of-avoided-conversations/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "c259bd7b-e502-4181-a85e-8b5b6fde9291",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nDeloitte projects that family businesses above $100 million in revenue will grow 22 percent by 2030, with revenues rising 84 percent over the same window, according to research previewed by [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) this week. The growth is not the story. The story is the one variable Deloitte names as the sector's biggest blind spot: succession. Twenty-six percent of these businesses are now targeting outside capital or private equity. None of that capital lands well in a company whose decisions still route through one person's calendar. The growth curve and the readiness curve are not the same curve.\n===OPTION_B:provocation===\nThe most expensive asset in a $20 million business is the owner's instinct that is still right. [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) ran two pieces this week pointing at the same idea from different angles: one on the cost of conversations leaders avoid, one on a fifteen-year inheritor admitting that letting go is harder than taking hold. Both arrive at a place most owners do not want to sit. The instinct that built the business is the same instinct that now keeps the team from building anything. Being right has become a way of staying central. The business pays for the centrality in ways that do not show up on the P&L.\n===OPTION_C:pattern===\nThree pieces this week, three different categories, the same diagnosis. [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) names succession as the sector's most under-planned challenge. [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) runs a fifteen-year inheritor admitting that letting go is harder than taking hold. [Entrepreneur](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open) quotes a home remodeling owner ready to retire but unable to find the path out. The headlines look different. The structural problem is identical. None of these businesses have an operating model that produces good decisions without the founder in the room. The founder is the operating model. That is the part nobody is naming.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d7bf40bd-0e18-4c73-8eae-7a88dc2b320a",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your team brings you decisions you have already told them to handle. You delegated last quarter. You said the words again last week. The decisions keep arriving anyway.\n\nThe instinct is to read this as a confidence problem in the team. It is not. It is a design problem in you.\n\nMost owners try to delegate decisions one at a time. A decision lands, you push it back, you tell the manager to own it. Two weeks later a similar decision lands from the same manager. You push it back again. Over a year you delegate the same decision forty times and feel like nothing is moving. Nothing is moving because you are delegating decisions instead of building the system that produces them.\n\nThere is a difference. Delegating a decision moves one item off your desk. Building a system that produces decisions moves a whole category off your desk permanently. The first is generosity. The second is architecture.\n\nThe Operating Model OS uses one specific artifact for this work: the Decision Rule. Three components, written down, on one page. The trigger names the recurring situation. The test names the question the team should answer before acting, usually a numeric threshold, a customer tier, a risk band. The boundary names the line above which the decision still escalates to you. A vendor renewal under $25,000 with a customer impact rating below three is decided by operations, full stop. Above either line, the call comes back to ownership. Trigger, test, boundary. That is the artifact.\n\nHere is the part harder than writing the rule. The Decision Rule only works when you actually want to stop being the person with the best answer. The framework is straightforward. The shift it requires is not. You have been right enough times that your instinct has become the company's default operating system. The team has learned this. They are not waiting for permission. They are waiting for the chance to ask you, because asking you is how good decisions have always been made here.\n\nTo install the rule, you have to want a different version of being right. You have to want a system that produces a decision 85 percent as good as yours, made in two hours instead of two weeks, by someone who is not you. That is not a capability question. It is a desire question. Most owners stall right here. They write the rule. They never use it. The first time the team applies it and the answer is slightly off from what they would have chosen, they intervene. The intervention teaches the team to wait again.\n\nThis week, pick one recurring decision that lands on your desk weekly. Write the trigger, the test, the boundary. Send it to the role that should own it. Then watch the next instance go by without your input. The discomfort you feel watching it is the diagnosis. Sit with it.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8e0d2b47-f255-490d-8ce3-90cc57d439e9",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "LongRange Capital agreed this week to acquire Pizza Hut from Yum Brands for $1.5 billion, with Yum China Holdings taking the Mainland China business for an additional $1.2 billion, according to [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/).\n\nA $1.5 billion platform deal is not a logo purchase. It is a bet that the operating model can be rebuilt outside Yum's decision rights, supply chain rules, and capital allocation logic. Yum made those decisions for decades. They now have to come from somewhere else inside Pizza Hut. The next twelve months at LongRange will be a case study in installing decision architecture into a business that lived inside someone else's.\n\nFor US mid-market owners, the lesson is structural. When the system that produced decisions disappears, capital does not replace it. Architecture does. The carve-out playbook is the same playbook the founder-run business needs. Sponsors run it with a clock. Owners often run it without one, which is why they run out of time before they realize what they were supposed to be building.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a7b9b2b9-9221-44eb-a733-e8a025b84628",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Decision Rule One-Pager** - a single page documenting the trigger, test, and boundary for one recurring decision in your business. The template the owner writes once and the team applies without escalation. Every decision still routing through your calendar is a recurring decision the business has not yet converted into an artifact. Build it in Notion, Google Docs, or a printed sheet. One page. Three sections. Start with the decision that arrived twice this month.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3473abd7-9035-42ad-976b-a5a218aa3d6f",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** the number of decisions that land in your inbox that should have been resolved one level down. Count them. Not as a self-improvement exercise. As a diagnostic. If the count is more than five, the constraint is not your team's capability. The constraint is that no one has written down which decisions are theirs. The count is your first data point.",
+        "sourceRefs": []
+      },
+      {
+        "id": "28bcad45-42c1-4fa3-b0ee-3e513a7c8757",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "El sistema que decide cuando usted no está",
+    "preheader": "Delegar decisiones no escala. Construir el sistema que las produce, sí.",
+    "thesis": "El dueño que se niega a delegar decisiones estratégicas no protege la empresa: garantiza que la gente capaz de hacerla crecer se vaya a entornos donde su criterio sí cuenta.",
+    "shareableSentence": "Delegar una decisión saca un pendiente del escritorio. Construir el sistema que la produce saca una categoría entera, para siempre.",
+    "sections": [
+      {
+        "id": "210a4f43-1f77-4060-8788-23864bec7e67",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: sucesión, delegación y despliegues de IA apuntan a la misma pregunta. Quién decide cuando el dueño da un paso atrás.*\n\n- **Estrategia:** Yum Brands acordó vender Pizza Hut a LongRange Capital por 1,500 mdd, con la operación en China continental escindida hacia Yum China Holdings por 1,200 mdd, según [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). **La estrategia es decidir de qué deja de tratarse el negocio.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Modelos Operativos:** Deloitte proyecta que las empresas familiares con ingresos superiores a 100 mdd crecerán 22% hacia 2030 y elevarán ventas 84%, pero la sucesión sigue siendo lo que [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) llama el punto ciego más grande del sector. **Un modelo operativo no está construido hasta que opera mientras el dueño suelta.** [Leer en Family Business Magazine ->](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/)\n- **Tecnología:** [Chief Executive](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/) argumenta que los despliegues acotados de IA superan a los proyectos empresariales lanzados bajo presión del consejo. **La IA en dosis pequeñas compone; desplegada como ambición, produce facturas.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Capital Humano:** [Chief Executive](https://chiefexecutive.net/the-high-cost-of-avoided-conversations/) nombra a las conversaciones postergadas como el costo oculto más alto en la agenda del líder. **El capital humano es tener esa conversación antes de que aparezca en una carta de renuncia.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/the-high-cost-of-avoided-conversations/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "c259bd7b-e502-4181-a85e-8b5b6fde9291",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Tres notas esta semana, tres categorías distintas, el mismo diagnóstico. [Family Business Magazine](https://familybusinessmagazine.com/succession/legacy-leadership-the-family-business/) señala la sucesión como el reto más postergado del sector. [Chief Executive](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) publica al heredero de quince años admitiendo que soltar es más difícil que tomar el mando. [Entrepreneur](https://www.entrepreneur.com/business-news/small-business-owners-say-it-has-been-an-incredible-challenge-to-stay-open) cita a un dueño de remodelación residencial listo para retirarse, pero sin salida a la vista. Los titulares parecen distintos. El problema estructural es idéntico: ninguno de esos negocios cuenta con un modelo operativo que genere buenas decisiones sin el fundador en la sala. El fundador es el modelo operativo. Eso es lo que nadie está nombrando.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d7bf40bd-0e18-4c73-8eae-7a88dc2b320a",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su equipo le trae decisiones que usted ya les pidió manejar. Las delegó el trimestre pasado. Lo repitió hace una semana. Las decisiones siguen llegando.\n\nLa tentación es leerlo como un problema de confianza del equipo. No lo es. Es un problema de diseño suyo.\n\nLa mayoría de los dueños intenta delegar decisiones una por una. Llega una decisión, usted la regresa, le pide al gerente que se haga cargo. Dos semanas después llega una decisión parecida del mismo gerente. La regresa otra vez. En un año delegó la misma decisión cuarenta veces y siente que nada avanza. Nada avanza porque está delegando decisiones en lugar de construir el sistema que las produce.\n\nHay una diferencia. Delegar una decisión saca un pendiente del escritorio. Construir el sistema que produce decisiones elimina una categoría entera, para siempre. Lo primero es generosidad. Lo segundo es arquitectura.\n\nEl Operating Model OS usa un artefacto específico para este trabajo: la Regla de Decisión. Tres componentes, por escrito, en una página. El detonador nombra la situación recurrente. El criterio nombra la pregunta que el equipo debe responder antes de actuar —por lo general un umbral numérico, un nivel de cliente, una banda de riesgo—. El límite nombra la línea por encima de la cual la decisión todavía sube al dueño. Una renovación de proveedor por debajo de 500 mil pesos y con calificación de impacto al cliente inferior a tres la decide operaciones, punto. Por encima de cualquiera de las dos líneas, la llamada regresa a la propiedad. Detonador, criterio, límite. Ese es el artefacto.\n\nAquí viene la parte más difícil que escribir la regla. La Regla de Decisión solo funciona cuando usted realmente quiere dejar de ser la persona con la mejor respuesta. El marco es sencillo. El cambio que pide, no. Usted ha tenido la razón suficientes veces como para que su instinto se convirtiera en el sistema operativo por defecto de la empresa. El equipo aprendió. No están esperando permiso. Están esperando la oportunidad de consultarle, porque consultarle es como siempre se han tomado las buenas decisiones aquí.\n\nPara que la regla funcione, usted tiene que querer una versión distinta de tener la razón. Tiene que querer un sistema que produzca una decisión 85% tan buena como la suya. Tomada en dos horas en lugar de dos semanas, por alguien que no es usted. No es una pregunta de capacidad. Es una pregunta de deseo. La mayoría se queda aquí. Escriben la regla. Nunca la usan. La primera vez que el equipo la aplica y la respuesta queda ligeramente distinta a la que ellos habrían elegido, intervienen. Esa intervención le enseña al equipo a volver a esperar.\n\nEsta semana, elija una decisión recurrente que llega cada semana a su escritorio. Escriba el detonador, el criterio, el límite. Mándelo al puesto que debería ser el responsable. Después observe cómo pasa el siguiente caso sin su intervención. La incomodidad que sienta al verlo es el diagnóstico. Quédese con ella.",
+        "sourceRefs": []
+      },
+      {
+        "id": "8e0d2b47-f255-490d-8ce3-90cc57d439e9",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nLongRange Capital cerró esta semana la adquisición de Pizza Hut a Yum Brands por 1,500 mdd, con Yum China Holdings tomando la operación de China continental por otros 1,200 mdd.\n\nUna plataforma de 1,500 mdd no es la compra de un logotipo. Es una apuesta a que el modelo operativo puede reconstruirse fuera de los derechos de decisión, las reglas de cadena de suministro y la lógica de asignación de capital de Yum. Yum tomó esas decisiones durante décadas. Ahora tienen que surgir de otro lugar dentro de Pizza Hut. Los próximos doce meses en LongRange serán un caso de estudio sobre cómo instalar arquitectura de decisión en un negocio que vivió dentro de la de alguien más.\n\nEnfoque México: el ranking del IMD que [Expansión](https://expansion.mx/economia/2026/06/18/mexico-cae-siete-lugares-ranking-competitividad-imd-2026) publicó esta semana ubica al país en el lugar 62 de competitividad, con eficiencia gubernamental como el pilar más débil. La traducción operativa para la mediana empresa es directa: cuando las instituciones no generan decisiones predecibles, la única arquitectura disponible es la del propio dueño. Y esa, por definición, no escala.\n\nPara el dueño de una mediana empresa en México, la lección es estructural. Cuando desaparece el sistema que producía las decisiones, el capital no lo reemplaza. La arquitectura sí. El manual del carve-out es el mismo manual que necesita el negocio fundado por su dueño. Los fondos lo corren con un reloj. Los dueños suelen correrlo sin uno, y por eso se les agota el tiempo antes de entender qué tenían que estar construyendo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a7b9b2b9-9221-44eb-a733-e8a025b84628",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Decision Rule One-Pager** - una sola página que documenta el detonador, el criterio y el límite de una decisión recurrente del negocio. La plantilla que el dueño escribe una vez y el equipo aplica sin necesidad de escalar. Cada decisión que sigue ocupando un lugar en su agenda es una decisión recurrente que el negocio todavía no convirtió en artefacto. Constrúyala en Notion, Google Docs o una hoja impresa. Una página. Tres secciones. Comience por la decisión que llegó dos veces este mes.",
+        "sourceRefs": []
+      },
+      {
+        "id": "3473abd7-9035-42ad-976b-a5a218aa3d6f",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** el número de decisiones que llegan a su bandeja de entrada y que debieron resolverse un nivel abajo. Cuéntelas. No como ejercicio de autoayuda. Como diagnóstico. Si la cuenta supera cinco, la restricción no es la capacidad de su equipo. La restricción es que nadie ha puesto por escrito qué decisiones le corresponden a quién. La cuenta es el primer dato.",
+        "sourceRefs": []
+      },
+      {
+        "id": "28bcad45-42c1-4fa3-b0ee-3e513a7c8757",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": null,
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Yum Brands agreed to sell Pizza Hut to LongRange Capital for $1.5 billion",
+          "supportingFactId": "a0633a65-43f4-46b0-9aa2-4c4a5871be00-fact-1",
+          "language": "en"
+        },
+        {
+          "claim": "Yum China Holdings acquiring Pizza Hut in Mainland China for $1.2 billion",
+          "supportingFactId": "a0633a65-43f4-46b0-9aa2-4c4a5871be00-fact-3",
+          "language": "en"
+        },
+        {
+          "claim": "Deloitte projects family businesses above $100M will grow 22% by 2030",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-3",
+          "language": "en"
+        },
+        {
+          "claim": "revenues rising 84% over the same period",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-3",
+          "language": "en"
+        },
+        {
+          "claim": "26% of family businesses now targeting outside investment or private equity",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-4",
+          "language": "en"
+        },
+        {
+          "claim": "succession remains the sector's biggest blind spot",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-5",
+          "language": "en"
+        },
+        {
+          "claim": "Yum Brands acordó vender Pizza Hut a LongRange Capital por 1,500 mdd",
+          "supportingFactId": "a0633a65-43f4-46b0-9aa2-4c4a5871be00-fact-1",
+          "language": "es"
+        },
+        {
+          "claim": "Yum China Holdings por 1,200 mdd",
+          "supportingFactId": "a0633a65-43f4-46b0-9aa2-4c4a5871be00-fact-3",
+          "language": "es"
+        },
+        {
+          "claim": "empresas familiares con ingresos superiores a 100 mdd crecerán 22% hacia 2030",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-3",
+          "language": "es"
+        },
+        {
+          "claim": "elevarán ventas 84%",
+          "supportingFactId": "2a481f05-0b69-4bd4-9686-413e0e684d4f-fact-3",
+          "language": "es"
+        },
+        {
+          "claim": "el país en el lugar 62 de competitividad",
+          "supportingFactId": "9b41aaa4-9692-4891-8435-246b7567c2e9-fact-1",
+          "language": "es"
+        },
+        {
+          "claim": "eficiencia gubernamental como el pilar más débil",
+          "supportingFactId": "9b41aaa4-9692-4891-8435-246b7567c2e9-fact-6",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Entrepreneur",
+        "Family Business Magazine",
+        "Middle Market Growth (ACG)"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong voice match, verified facts, original angle, and excellent source diversity across five distinct outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-23-hero.png",
+        "publicUrl": null,
+        "prompt": "A hand-drawn architectural blueprint showing a precise decision-making scaffolding structure rendered in charcoal pencil strokes. Three vertical support beams labeled with clean editorial typography: \"Trigger,\" \"Test,\" \"Boundary.\" Each beam anchors transparent geometric planes suggesting authority layers and threshold lines at different heights. Orange highlights mark the critical decision points where authority transfers. White negative space dominates the composition. The structure appears stable, load-bearing, deliberately engineered—not organic or fluid. Matte graphite texture throughout. The blueprint aesthetic suggests this is infrastructure being intentionally designed, not a metaphor for growth or transformation. Professional editorial illustration style, sophisticated restraint.",
+        "altText": {
+          "en": "Empty executive chair at head of conference table with laptop open and papers scattered, other chairs pushed back",
+          "es": "Silla ejecutiva vacía a la cabecera de mesa de juntas con laptop abierta y papeles dispersos, otras sillas alejadas"
+        },
+        "caption": {
+          "en": "The seat you won't share becomes the seat no one wants to fill.",
+          "es": "El asiento que no compartes se convierte en el asiento que nadie quiere ocupar."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10493,
+      "outputTokens": 509,
+      "costUsd": 0.039114
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 718,
+      "outputTokens": 11224,
+      "costUsd": 0.27809
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 604,
+      "costUsd": 0.009132
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1077,
+      "outputTokens": 15214,
+      "costUsd": 0.37805300000000003
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1517,
+      "outputTokens": 1578,
+      "costUsd": 0.048861
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1164,
+      "costUsd": 0.017526000000000003
+    },
+    "totalUsd": 0.7616440000000001
+  }
+}

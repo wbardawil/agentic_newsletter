@@ -28,6 +28,34 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-23",
+      "recordedAt": "2026-06-19T05:57:40.887Z",
+      "angle": {
+        "headline": "When Your Best People Leave Because You Won't Let Go",
+        "thesis": "Business owners who refuse to delegate strategic decisions aren't protecting the business — they're guaranteeing that the people capable of scaling it will leave for environments where their judgment matters.",
+        "targetPersona": "$15M–$75M business owners who have built the company through personal relationships and instinct, now watching high-potential managers plateau or exit despite offering competitive compensation",
+        "relevanceToAudience": "The US-LATAM corridor creates unique succession pressure: institutional buyers expect scalable operations, but owner-operators who built through personal networks treat delegation as loss of control rather than as the architecture of sale-readiness.",
+        "suggestedSources": [
+          "040d8607-1c62-43f1-aff4-c3077dbb4a62",
+          "086c7a03-1759-4b49-8659-ee37cbd1ba87",
+          "3e052918-19f0-40cf-9b9c-207b71705ed5"
+        ],
+        "talkingPoints": [
+          "The pattern: you hire talented operators, watch them succeed in execution, then override their strategic recommendations because 'they don't see the full picture.'",
+          "The diagnosis: avoiding critical conversations about decision rights creates a revolving door where capable people leave not for more money but for more authority.",
+          "The framework: decision rights mapping — explicitly defining which decisions require owner approval, which require consultation, and which belong fully to functional leaders.",
+          "The action: before your next strategic meeting, write down the three decisions you will delegate completely this quarter and announce them with the constraint that you cannot reverse them for 90 days."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The owner must shift from being the person with the best answers to being the person who builds the system that produces good answers — requiring them to trust others' judgment on decisions where their own instinct has historically been correct.",
+          "framework": "ADKAR: Desire"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "LongRange Capital agreed this week to acquire Pizza Hut from Yum Brands for $1.5 billion, with Yum China Holdings taking the Mainland China business for an additional $1.2 billion, according to [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). A $1"
     }
   ]
 }

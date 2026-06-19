@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-23",
+  "runId": "b16097a5-778a-43a1-923b-c5d68dd7d765",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-23-hero.png",
+    "publicUrl": null,
+    "prompt": "A hand-drawn architectural blueprint showing a precise decision-making scaffolding structure rendered in charcoal pencil strokes. Three vertical support beams labeled with clean editorial typography: \"Trigger,\" \"Test,\" \"Boundary.\" Each beam anchors transparent geometric planes suggesting authority layers and threshold lines at different heights. Orange highlights mark the critical decision points where authority transfers. White negative space dominates the composition. The structure appears stable, load-bearing, deliberately engineered—not organic or fluid. Matte graphite texture throughout. The blueprint aesthetic suggests this is infrastructure being intentionally designed, not a metaphor for growth or transformation. Professional editorial illustration style, sophisticated restraint.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-06-19T05:57:40.888Z",
+  "updatedAt": "2026-06-19T05:57:40.889Z"
+}
