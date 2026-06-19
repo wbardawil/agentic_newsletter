@@ -442,22 +442,21 @@ async function main(): Promise<void> {
     payload: { content, angle },
   });
 
-  const validation = validatorOutput.data as ValidationResult | undefined;
-
   if (!validatorOutput.success || !validation) {
-    console.warn(`   ⚠️  Validator failed: ${validatorOutput.error}. Continuing without QA score.\n`);
-  } else {
-    const icon = validation.isValid ? "✅" : "⚠️ ";
-    console.log(`   ${icon} Score: ${validation.score}/100 — ${validation.isValid ? "PASS" : "FAIL"}`);
-    const errors = validation.issues.filter((i) => i.severity === "error");
-    const warnings = validation.issues.filter((i) => i.severity === "warning");
-    if (errors.length > 0) console.log(`   Errors (${errors.length}):`);
-    for (const e of errors) console.log(`     • [${e.section}] ${e.message}`);
-    if (warnings.length > 0) console.log(`   Warnings (${warnings.length}):`);
-    for (const w of warnings.slice(0, 3)) console.log(`     • [${w.section}] ${w.message}`);
-    for (const rec of validation.recommendations) console.log(`   → ${rec}`);
-    console.log();
+    console.error(`❌ Validator failed: ${validatorOutput.error}`);
+    process.exit(1);
   }
+
+  const icon = validation.isValid ? "✅" : "⚠️ ";
+  console.log(`   ${icon} Score: ${validation.score}/100 — ${validation.isValid ? "PASS" : "FAIL"}`);
+  const errors = validation.issues.filter((i) => i.severity === "error");
+  const warnings = validation.issues.filter((i) => i.severity === "warning");
+  if (errors.length > 0) console.log(`   Errors (${errors.length}):`);
+  for (const e of errors) console.log(`     • [${e.section}] ${e.message}`);
+  if (warnings.length > 0) console.log(`   Warnings (${warnings.length}):`);
+  for (const w of warnings.slice(0, 3)) console.log(`     • [${w.section}] ${w.message}`);
+  for (const rec of validation.recommendations) console.log(`   → ${rec}`);
+  console.log();
 
   // ── ES Writer (renders the shared angle in native Mexican voice) ──────────
   // Receives the EN content + the shared angle + the full bundle. Its job
