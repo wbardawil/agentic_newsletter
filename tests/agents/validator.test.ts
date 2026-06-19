@@ -66,12 +66,6 @@ function makeAngle() {
     targetPersona: "$5M–$100M owner-operator with a team of 10–50",
     relevanceToAudience: "Every corridor operator eventually hits the autonomy wall.",
     suggestedSources: [randomUUID(), randomUUID()],
-    talkingPoints: [
-      "Your team escalates because escalation is the safe choice when decision rights are unclear.",
-      "You trained this behavior by answering decisions that weren't yours to answer.",
-      "Decision Rights Architecture: a three-tier map of who owns which decisions.",
-      "Pull the last ten decisions that reached you and name whose they actually are.",
-    ],
     osPillar: "Operating Model OS" as const,
     peopleAngle: {
       challenge:
@@ -79,6 +73,11 @@ function makeAngle() {
       framework: "ADKAR: Reinforcement",
     },
     quarterlyTheme: "The Machine",
+    justification: {
+      angleChoice: "test",
+      osPillarChoice: "test",
+      peopleAngleChoice: "test",
+    },
   };
 }
 

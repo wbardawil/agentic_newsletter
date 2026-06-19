@@ -37,7 +37,6 @@ function makeAngle(): StrategicAngle {
     relevanceToAudience:
       "Every corridor operator running an AI rollout hits this wall.",
     suggestedSources: [randomUUID()],
-    talkingPoints: ["AI amplifies strategy clarity that is already documented."],
     osPillar: "Operating Model OS",
     peopleAngle: {
       challenge:
@@ -45,6 +44,11 @@ function makeAngle(): StrategicAngle {
       framework: "Kotter Step 4: Communicate the change vision",
     },
     quarterlyTheme: "The Machine",
+    justification: {
+      angleChoice: "test",
+      osPillarChoice: "test",
+      peopleAngleChoice: "test",
+    },
   };
 }
 

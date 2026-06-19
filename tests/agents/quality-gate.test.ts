@@ -13,7 +13,6 @@ function makeAngle() {
     targetPersona: "Mid-market CEO",
     relevanceToAudience: "High — affects daily decisions",
     suggestedSources: [],
-    talkingPoints: ["escalation is rational", "clarity replaces courage"],
     osPillar: "Operating Model OS" as const,
     peopleAngle: {
       challenge:
@@ -21,6 +20,11 @@ function makeAngle() {
       framework: "ADKAR: Ability",
     },
     quarterlyTheme: "The Machine",
+    justification: {
+      angleChoice: "test",
+      osPillarChoice: "test",
+      peopleAngleChoice: "test",
+    },
   };
 }
 

@@ -18,7 +18,6 @@ function makeAngle() {
     targetPersona: "$5M–$100M owner-operator",
     relevanceToAudience: "Every corridor operator hits the autonomy wall.",
     suggestedSources: [randomUUID()],
-    talkingPoints: ["Decision rights architecture reduces escalation."],
     osPillar: "Operating Model OS" as const,
     peopleAngle: {
       challenge:
@@ -26,6 +25,11 @@ function makeAngle() {
       framework: "ADKAR: Reinforcement",
     },
     quarterlyTheme: "The Machine",
+    justification: {
+      angleChoice: "test",
+      osPillarChoice: "test",
+      peopleAngleChoice: "test",
+    },
   };
 }
 

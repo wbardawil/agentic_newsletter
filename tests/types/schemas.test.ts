@@ -366,28 +366,33 @@ describe("StrategicAngle", () => {
       targetPersona: "COO at $20M manufacturing company",
       relevanceToAudience: "Direct impact on operational costs",
       suggestedSources: [randomUUID()],
-      talkingPoints: ["Point 1", "Point 2"],
       osPillar: "Strategy OS",
       peopleAngle: {
         challenge: "Leaders must commit before the supply-chain team reorganizes around the new strategy.",
         framework: "Kotter Step 1: Establish urgency",
       },
       quarterlyTheme: "The Machine",
+      justification: {
+        angleChoice: "Reasoning here",
+        osPillarChoice: "Reasoning here",
+        peopleAngleChoice: "Reasoning here",
+      }
     };
     expect(StrategicAngleSchema.parse(angle)).toBeDefined();
   });
 
-  it("requires at least one talking point", () => {
-    expect(() =>
-      StrategicAngleSchema.parse({
-        headline: "Test",
-        thesis: "Test",
-        targetPersona: "Test",
-        relevanceToAudience: "Test",
-        suggestedSources: [],
-        talkingPoints: [],
-      }),
-    ).toThrow();
+  it("requires a justification object", () => {
+    const angle = {
+      headline: "Test",
+      thesis: "Test",
+      targetPersona: "Test",
+      relevanceToAudience: "Test",
+      suggestedSources: [],
+      osPillar: "Strategy OS",
+      peopleAngle: { challenge: "Test", framework: "Test" },
+      quarterlyTheme: "Test",
+    };
+    expect(() => StrategicAngleSchema.parse(angle)).toThrow();
   });
 });
 
