@@ -28,6 +28,34 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-24",
+      "recordedAt": "2026-06-19T15:44:32.411Z",
+      "angle": {
+        "headline": "The 30-Second Filter: Why Your Best Hires Never Get Past the Interview",
+        "thesis": "Business owners who personally interview every candidate believe they're protecting quality, but they've actually made themselves the bottleneck — the same instinct that built the business now prevents it from scaling.",
+        "targetPersona": "Founder-led businesses with $10M-$50M revenue where the owner still personally approves every key hire and complains the talent pool has deteriorated",
+        "relevanceToAudience": "SpaceX's radical interview protocol exposes the paradox of founder-led hiring: the same judgment that identified early winners becomes the constraint preventing the next 100 hires — especially critical for corridor operators building cross-border teams where cultural fluency matters more than résumé pedigree",
+        "suggestedSources": [
+          "67506fa6-4d98-41d2-8804-1f44f4256bc9",
+          "905aa25e-d137-4edf-a08c-b9fa3ab5b81a",
+          "4a546a2c-d75c-4788-a992-feb89a0d5b6e"
+        ],
+        "talkingPoints": [
+          "You can't complain about talent quality when you're the reason qualified candidates walk away — a 30-second interview that ends badly isn't screening for excellence, it's screening for desperation",
+          "Musk's method works at SpaceX because he built the hiring machine first: structured rubrics, trained interviewers, clear go/no-go criteria that don't require him in every room — most owners skip that step and wonder why nothing scales",
+          "The Delegation Threshold framework: you can personally interview up to 50 employees; beyond that, you're either building an interviewing system or building a 50-person company",
+          "Pick one role this quarter where you will not interview the final candidate — design the hiring rubric, train the interviewer, review the decision after the fact, and learn whether your business can make a good call without you"
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The owner must trust that someone else can identify talent as well as they can — which requires admitting that their personal judgment, while valuable, is not the only valid filter and may actually encode biases that limit the team's diversity and capability",
+          "framework": "ADKAR: Desire"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "LongRange Capital is acquiring Pizza Hut from Yum Brands for $1.5 billion, [according to Middle Market Growth's PE Weekly](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/), with Yum China Holdings buying the Mainland China business for $1.2 billion. The chain has lost gro"
     }
   ]
 }
