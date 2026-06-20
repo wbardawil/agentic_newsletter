@@ -139,24 +139,32 @@ const LlmIssueSchema = z.object({
   excerpt: z.string().optional(),
 });
 
+// The LLM returns a nested assessment-object format that mirrors the rubric
+// structure. We parse it here and flatten to named booleans below.
+const AssessmentItemSchema = z.object({
+  assessment: z.enum(["Excellent", "Good", "Needs Improvement", "Fails"]),
+  reasoning: z.string().nullable().optional(),
+  recommendation: z.string().nullable().optional(),
+});
+
 const LlmResponseSchema = z.object({
-  hasExplicitReframe: z.boolean(),
-  reframeExcerpt: z.string().nullable().optional(),
-  misdiagnosisNamed: z.boolean(),
-  misdiagnosisExcerpt: z.string().nullable().optional(),
-  shareableSentence: z.string().nullable(),
-  fieldReportIsIntelligence: z.boolean(),
-  fieldReportNote: z.string().nullable().optional(),
-  fieldReportEntityDistinct: z.boolean(),
-  fieldReportEntityNote: z.string().nullable().optional(),
-  osPillarConsistent: z.boolean(),
-  osPillarNote: z.string().nullable().optional(),
-  peopleAngleSubstantive: z.boolean(),
-  peopleAngleNote: z.string().nullable().optional(),
-  compassIsGenuine: z.boolean(),
-  compassNote: z.string().nullable().optional(),
-  aperturaStartsMidThought: z.boolean(),
-  aperturaNote: z.string().nullable().optional(),
+  osPillarConsistency: AssessmentItemSchema,
+  peopleAngleSubstance: AssessmentItemSchema,
+  reframe: AssessmentItemSchema.extend({
+    excerpt: z.string().nullable().optional(),
+  }),
+  misdiagnosis: AssessmentItemSchema.extend({
+    excerpt: z.string().nullable().optional(),
+  }),
+  fieldReport: AssessmentItemSchema.extend({
+    entityDistinct: z.boolean().optional(),
+    entityDistinctNote: z.string().nullable().optional(),
+  }),
+  shareableSentence: AssessmentItemSchema.extend({
+    sentence: z.string().nullable().optional(),
+  }),
+  compass: AssessmentItemSchema.optional(),
+  apertura: AssessmentItemSchema.optional(),
   llmIssues: z.array(LlmIssueSchema).default([]),
 });
 
@@ -426,7 +434,34 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     );
 
     const rawText = extractTextFromMessage(message.content);
-    const llmData = LlmResponseSchema.parse(parseLlmJson(rawText, "ValidatorAgent"));
+    const llmRaw = LlmResponseSchema.parse(parseLlmJson(rawText, "ValidatorAgent"));
+
+    // Flatten nested assessment objects to named booleans used throughout.
+    function passes(item: { assessment: string }): boolean {
+      return item.assessment === "Excellent" || item.assessment === "Good";
+    }
+    const llmData = {
+      hasExplicitReframe:       passes(llmRaw.reframe),
+      reframeExcerpt:           llmRaw.reframe.excerpt ?? null,
+      misdiagnosisNamed:        passes(llmRaw.misdiagnosis),
+      misdiagnosisExcerpt:      llmRaw.misdiagnosis.excerpt ?? null,
+      shareableSentence:        llmRaw.shareableSentence.sentence ?? null,
+      fieldReportIsIntelligence: passes(llmRaw.fieldReport),
+      fieldReportNote:          llmRaw.fieldReport.recommendation ?? null,
+      // entityDistinct is explicit when provided; fall back to overall assessment
+      fieldReportEntityDistinct: llmRaw.fieldReport.entityDistinct ?? passes(llmRaw.fieldReport),
+      fieldReportEntityNote:    llmRaw.fieldReport.entityDistinctNote ?? null,
+      osPillarConsistent:       passes(llmRaw.osPillarConsistency),
+      osPillarNote:             llmRaw.osPillarConsistency.recommendation ?? null,
+      peopleAngleSubstantive:   passes(llmRaw.peopleAngleSubstance),
+      peopleAngleNote:          llmRaw.peopleAngleSubstance.recommendation ?? null,
+      // compass/apertura are optional rubric items; default to pass if absent
+      compassIsGenuine:         llmRaw.compass ? passes(llmRaw.compass) : true,
+      compassNote:              llmRaw.compass?.recommendation ?? null,
+      aperturaStartsMidThought: llmRaw.apertura ? passes(llmRaw.apertura) : true,
+      aperturaNote:             llmRaw.apertura?.recommendation ?? null,
+      llmIssues:                llmRaw.llmIssues,
+    };
 
     // Convert LLM boolean checks to issues
     if (!llmData.hasExplicitReframe) {

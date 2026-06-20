@@ -124,27 +124,55 @@ for the pipeline's learning loop. Be honest and specific.
 ## Output Format
 
 Respond with valid JSON only — no preamble, no markdown wrapper.
-**Every boolean field is required. Note fields are optional strings — use them to quote evidence or explain your verdict.**
+Use `"Excellent"`, `"Good"`, `"Needs Improvement"`, or `"Fails"` for every `assessment` field.
 
 ```json
 {
-  "hasExplicitReframe": true,
-  "reframeExcerpt": "Quote the three-part reframe sequence here, or null if absent.",
-  "misdiagnosisNamed": true,
-  "misdiagnosisExcerpt": "Quote the misdiagnosis sentence here, or null if absent.",
-  "shareableSentence": "The single most shareable sentence from the Insight, or null if none qualifies.",
-  "fieldReportIsIntelligence": true,
-  "fieldReportNote": "Explain why it passes or fails the intelligence test. Name the key insight it surfaces.",
-  "fieldReportEntityDistinct": true,
-  "fieldReportEntityNote": "Name the primary entity in the Apertura and the primary entity in the Field Report to confirm they are different.",
-  "osPillarConsistent": true,
-  "osPillarNote": "If inconsistent, quote the sentence that deviates and name the correct pillar it actually belongs to.",
-  "peopleAngleSubstantive": true,
-  "peopleAngleNote": "Quote the sentence where the declared challenge is addressed. If only a passing mention, explain what mechanism is missing.",
-  "compassIsGenuine": true,
-  "compassNote": "If not genuine, quote the compass question and explain why it reads as rhetorical rather than real.",
-  "aperturaStartsMidThought": true,
-  "aperturaNote": "If it fails, quote the opening phrase and explain why it reads as a thesis statement rather than a mid-thought hook.",
+  "osPillarConsistency": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "reasoning": "Explain why. Quote the sentence that deviates if it fails.",
+    "recommendation": "Suggest a specific fix if not Excellent."
+  },
+  "peopleAngleSubstance": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "reasoning": "Quote the sentence where the declared challenge is addressed. If only a passing mention, explain what mechanism is missing.",
+    "recommendation": "If not Excellent, provide a concrete suggestion."
+  },
+  "reframe": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "excerpt": "Quote the three-part reframe sequence, or null if absent.",
+    "reasoning": "Is the conventional→wrong→correct sequence present and in order?",
+    "recommendation": "How to fix if incomplete."
+  },
+  "misdiagnosis": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "excerpt": "Quote the misdiagnosis sentence, or null if absent.",
+    "reasoning": "Does the Insight name what the reader already tried and why it failed?",
+    "recommendation": "Where and how to add the misdiagnosis if absent."
+  },
+  "fieldReport": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "entityDistinct": true,
+    "entityDistinctNote": "Name the primary entity in the Apertura and the primary entity in the Field Report to confirm they differ.",
+    "reasoning": "Assess both intelligence quality and entity distinctness from the Apertura.",
+    "recommendation": "Suggest fix if needed."
+  },
+  "shareableSentence": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "sentence": "The single most shareable sentence from the Insight, or null if none qualifies.",
+    "reasoning": "Does a truly powerful, screenshot-worthy sentence exist?",
+    "recommendation": "If not Excellent, suggest a candidate sentence to sharpen."
+  },
+  "compass": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "reasoning": "Does the Compass question read as a genuine, open question — not rhetorical?",
+    "recommendation": "How to make it feel real if it fails."
+  },
+  "apertura": {
+    "assessment": "Excellent | Good | Needs Improvement | Fails",
+    "reasoning": "Does the Apertura open mid-thought (pass) or with a thesis statement / summary (fail)?",
+    "recommendation": "How to rewrite the opening if it fails."
+  },
   "llmIssues": [
     {
       "rule": "rule-id (e.g., rule-7-compass, rule-15-invented-concept)",

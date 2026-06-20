@@ -458,23 +458,51 @@ describe("pipeline smoke — Validator word counts come from code, not LLM", () 
     // the agent by counting tokens in each section.
     fake.enqueue({
       text: JSON.stringify({
-        hasExplicitReframe: true,
-        reframeExcerpt: "Most advisors call this a data problem. It is a source-of-truth problem.",
-        misdiagnosisNamed: true,
-        misdiagnosisExcerpt: "Most advisors call this a data problem.",
-        shareableSentence: "The AI is not failing. The AI is exposing.",
-        fieldReportIsIntelligence: true,
-        fieldReportNote: null,
-        fieldReportEntityDistinct: true,
-        fieldReportEntityNote: null,
-        osPillarConsistent: true,
-        osPillarNote: null,
-        peopleAngleSubstantive: true,
-        peopleAngleNote: null,
-        compassIsGenuine: true,
-        compassNote: null,
-        aperturaStartsMidThought: true,
-        aperturaNote: null,
+        osPillarConsistency: {
+          assessment: "Excellent",
+          reasoning: "Content aligns with the declared Technology OS pillar.",
+          recommendation: null,
+        },
+        peopleAngleSubstance: {
+          assessment: "Excellent",
+          reasoning: "Insight explicitly names the behavior change required of the operations team.",
+          recommendation: null,
+        },
+        reframe: {
+          assessment: "Excellent",
+          excerpt: "Most advisors call this a data problem. It is a source-of-truth problem.",
+          reasoning: "All three reframe parts present: conventional belief, why it fails, correct frame.",
+          recommendation: null,
+        },
+        misdiagnosis: {
+          assessment: "Good",
+          excerpt: "Most advisors call this a data problem.",
+          reasoning: "Misdiagnosis named clearly.",
+          recommendation: null,
+        },
+        fieldReport: {
+          assessment: "Excellent",
+          entityDistinct: true,
+          entityDistinctNote: "Apertura anchors on Acme Corp; Field Report anchors on Globex — distinct.",
+          reasoning: "Surfaces a pattern, not just news. Entity is distinct from Apertura.",
+          recommendation: null,
+        },
+        shareableSentence: {
+          assessment: "Excellent",
+          sentence: "The AI is not failing. The AI is exposing.",
+          reasoning: "Precise diagnosis, screenshot-worthy.",
+          recommendation: null,
+        },
+        compass: {
+          assessment: "Good",
+          reasoning: "Question is open and genuine.",
+          recommendation: null,
+        },
+        apertura: {
+          assessment: "Good",
+          reasoning: "Opens mid-thought, not with a summary.",
+          recommendation: null,
+        },
         llmIssues: [],
       }),
     });
