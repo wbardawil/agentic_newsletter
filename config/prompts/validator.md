@@ -126,6 +126,12 @@ for the pipeline's learning loop. Be honest and specific.
 Respond with valid JSON only — no preamble, no markdown wrapper.
 Use `"Excellent"`, `"Good"`, `"Needs Improvement"`, or `"Fails"` for every `assessment` field.
 
+**Keep it tight to avoid truncation:**
+- `reasoning`: ONE sentence, max ~25 words.
+- `recommendation`: include ONLY when the assessment is `"Needs Improvement"` or `"Fails"`; otherwise set it to `null`.
+- `excerpt` / `sentence`: quote at most one sentence verbatim.
+- Do not repeat the draft text back. Be terse.
+
 ```json
 {
   "osPillarConsistency": {

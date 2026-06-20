@@ -410,7 +410,11 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     // as the rules text stays fixed.
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 1500,
+      // The nested assessment format (8 rubric items × assessment + reasoning
+      // + recommendation) easily exceeds 1500 tokens and truncates the JSON
+      // mid-string, producing a malformed-JSON parse error. 4000 gives the
+      // model room to close the object cleanly.
+      max_tokens: 4000,
       system: [
         {
           type: "text",
