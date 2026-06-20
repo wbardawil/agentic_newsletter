@@ -124,47 +124,33 @@ for the pipeline's learning loop. Be honest and specific.
 ## Output Format
 
 Respond with valid JSON only — no preamble, no markdown wrapper.
-**Every field in the JSON schema below is required.**
+**Every boolean field is required. Note fields are optional strings — use them to quote evidence or explain your verdict.**
 
 ```json
 {
-  "osPillarConsistency": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Explain why. If it fails, specify where the content deviates from the {{osPillar}}.",
-    "recommendation": "If not 'Excellent', suggest a specific fix. e.g., 'Reframe the application step to focus on decision-making (Strategy) instead of process execution (Operating Model).'"
-  },
-  "peopleAngleSubstance": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Does the Insight substantively engage with '{{peopleAngleChallenge}}'? Explain how, or why it fails to.",
-    "recommendation": "If not 'Excellent', provide a concrete suggestion. e.g., 'In the Diagnosis section, explicitly state how the people challenge leads to the business problem.'"
-  },
-  "reframe": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Is the 'conventional -> wrong -> correct' reframe sequence present and clear? Quote the core reframe sentence.",
-    "recommendation": "If not 'Excellent', suggest how to clarify the reframe. e.g., 'Add a sentence that explicitly states the conventional wisdom before challenging it.'"
-  },
-  "misdiagnosis": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Does the Insight name what the reader has already tried and why it failed? Quote the sentence if present.",
-    "recommendation": "If not 'Excellent', suggest where to add the misdiagnosis. e.g., 'In the Problem section, add a sentence like: Many leaders try to solve this with more training, but that fails because...'"
-  },
-  "fieldReport": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Assess both intelligence and distinctness from the Apertura. Name the primary entities in both sections to confirm they are different.",
-    "recommendation": "If not 'Excellent', suggest a fix. e.g., 'The Field Report reuses the same company as the Apertura. Replace it with another relevant example from the source bundle.'"
-  },
-  "shareableSentence": {
-    "assessment": "Excellent | Good | Needs Improvement | Fails",
-    "reasoning": "Does a truly powerful, shareable sentence exist? Quote it. If not, explain why none of the candidates meet the bar.",
-    "recommendation": "If 'Needs Improvement' or 'Fails', suggest a candidate sentence from the text to sharpen or propose a new one.",
-    "sentence": "The single most shareable sentence, or null if none qualifies."
-  },
+  "hasExplicitReframe": true,
+  "reframeExcerpt": "Quote the three-part reframe sequence here, or null if absent.",
+  "misdiagnosisNamed": true,
+  "misdiagnosisExcerpt": "Quote the misdiagnosis sentence here, or null if absent.",
+  "shareableSentence": "The single most shareable sentence from the Insight, or null if none qualifies.",
+  "fieldReportIsIntelligence": true,
+  "fieldReportNote": "Explain why it passes or fails the intelligence test. Name the key insight it surfaces.",
+  "fieldReportEntityDistinct": true,
+  "fieldReportEntityNote": "Name the primary entity in the Apertura and the primary entity in the Field Report to confirm they are different.",
+  "osPillarConsistent": true,
+  "osPillarNote": "If inconsistent, quote the sentence that deviates and name the correct pillar it actually belongs to.",
+  "peopleAngleSubstantive": true,
+  "peopleAngleNote": "Quote the sentence where the declared challenge is addressed. If only a passing mention, explain what mechanism is missing.",
+  "compassIsGenuine": true,
+  "compassNote": "If not genuine, quote the compass question and explain why it reads as rhetorical rather than real.",
+  "aperturaStartsMidThought": true,
+  "aperturaNote": "If it fails, quote the opening phrase and explain why it reads as a thesis statement rather than a mid-thought hook.",
   "llmIssues": [
     {
       "rule": "rule-id (e.g., rule-7-compass, rule-15-invented-concept)",
       "severity": "error | warning",
-      "section": "apertura | insight | compass | overall",
-      "message": "For other specific rule violations (e.g., Compass format, invented frameworks).",
+      "section": "apertura | insight | fieldReport | compass | overall",
+      "message": "Specific description of the violation.",
       "excerpt": "The exact text from the draft that triggered this issue."
     }
   ]
