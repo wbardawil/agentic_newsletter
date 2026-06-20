@@ -219,15 +219,15 @@ export class QualityGateAgent extends BaseAgent<
     // objects so Zod doesn't throw and the fact-check result is preserved.
     if (parsed && typeof parsed === "object") {
       const p = parsed as Record<string, unknown>;
-      const fc = p.factCheck as Record<string, unknown> | undefined;
+      const fc = p["factCheck"] as Record<string, unknown> | undefined;
       if (fc) {
-        if (Array.isArray(fc.verifiedClaims)) {
-          fc.verifiedClaims = fc.verifiedClaims.map((c: unknown) =>
+        if (Array.isArray(fc["verifiedClaims"])) {
+          fc["verifiedClaims"] = fc["verifiedClaims"].map((c: unknown) =>
             typeof c === "string" ? { claim: c, language: "en" as const } : c,
           );
         }
-        if (Array.isArray(fc.unverifiedClaims)) {
-          fc.unverifiedClaims = fc.unverifiedClaims.map((c: unknown) =>
+        if (Array.isArray(fc["unverifiedClaims"])) {
+          fc["unverifiedClaims"] = fc["unverifiedClaims"].map((c: unknown) =>
             typeof c === "string" ? { claim: c, language: "en" as const } : c,
           );
         }
