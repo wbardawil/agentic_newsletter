@@ -193,24 +193,42 @@ Generate **three subject line options**:
 
 ---
 
+## PRE-WRITE EVIDENCE AUDIT — Complete before drafting any section
+
+This is a mandatory internal check. Do it silently before writing a single word of content.
+A draft that skips this step will fail the Quality Gate.
+
+**Audit Step 1 — Map every intended claim to a verbatimFact:**
+For each factual claim you plan to make in the Insight and Field Report, locate the exact
+`verbatimFact` from the source bundle that supports it. Ask: "Which source ID and which
+fact index backs this sentence?" If you cannot identify one, the claim must become a
+general framework observation — not a stated fact.
+
+**Audit Step 2 — Temporal tense check (the single most common HARD FAIL):**
+For each source you plan to cite:
+-   If the verbatimFacts use future tense ("will acquire," "plans to," "expected to,"
+    "is set to"), you MUST write about that event in future or conditional tense.
+-   NEVER write "Company X acquired Y" if the source says "Company X will acquire Y."
+    This is a temporal inaccuracy. The Quality Gate treats it as fabrication. HARD FAIL.
+-   Example: Source says "Retailer plans to close 200 stores." → You write: "The retailer
+    has announced plans to close 200 stores" (future intent framing). NOT "closed 200 stores."
+
+**Audit Step 3 — Entity distinctness check:**
+Identify the main company or person named in your Apertura option. Now identify the main
+company you plan to anchor the Field Report on. They must be different entities. If they
+match, choose a different Field Report anchor from the source bundle before you start writing.
+
+Only after completing all three audit steps, begin drafting.
+
+---
+
 ## FINAL CHECK: How to Pass the Validator & Quality Gate
 
-Run this multi-step check against your draft before writing JSON. Fixing issues here is
-10x cheaper than a failed downstream run.
+Run this multi-step check against your *completed* draft before writing JSON.
 
 **Step 1: Content Grounding & Temporal Accuracy (CRITICAL - Hardest Gate)**
-This is the most important check. The Quality Gate agent will fail your draft if you
-make claims that are not directly supported by the `verbatimFacts`.
-
--   **Internal Monologue Check:** For every single sentence you have written in the
-    **Insight** and **Field Report**, find the exact `verbatimFact` from the
-    `{{input}}` that supports it. If you cannot find a direct supporting fact,
-    your sentence is a fabrication and must be removed or rewritten to be a general
-    framework statement.
--   **Temporal Accuracy:** For any event, check the tense. If a source says "Company
-    X *will acquire* Y", you MUST use the future tense. Stating it in the
-    present tense (e.g., "Company X is acquiring Y") is a temporal inaccuracy
-    and will cause a HARD FAIL.
+-   Re-verify: every factual sentence in Insight and Field Report traces to a verbatimFact.
+-   Re-verify: all events from future-tense sources are written in future/conditional tense.
 
 **Step 2: Key Structural Checks**
 1.  **Insight is Prose Only:** No lines start with `-`, `*`, `•`, or `1.`. (Hard failure)
@@ -221,8 +239,11 @@ make claims that are not directly supported by the `verbatimFacts`.
     the Voice Bible? (Hard failure)
 5.  **Citations Correct:** Does every stat, quote, or specific company fact have
     a `[Source](url)` link? Are there no "naked" attributions?
-6.  **People Angle Woven In?** Did you use the "This happens because..." method
-    to explicitly connect your Insight to the `peopleAngle.challenge`?
+6.  **People Angle Woven In?** Did you use the "This happens because..." method?
+    Do NOT name the framework out loud (no "ADKAR" or "Kotter Step 4"). Instead,
+    show the mechanism: "This requires the management team to build the habit of
+    deciding without escalating — which only forms when the decision boundary is
+    written down and held."
 7.  **OS Pillar Consistent?** Does your entire Insight align with the **{{osPillar}}**?
 8.  **Sentence Lengths:** Is the longest sentence in any section ≤ 25 words?
 9.  **No Em-dashes:** Did you remove all `—` and `–` characters?

@@ -723,7 +723,9 @@ function toStr(v: unknown): string {
   return String(v);
 }
 
-function extractFacts(rawContent: string, fallbackTitle: string, outlet: string): string[] {
+function extractFacts(rawContent: string, fallbackTitle: string, outlet: string, tier: 1 | 2 | 3 = 2): string[] {
+  const maxFacts = tier === 1 ? 10 : 7;
+
   const cleaned = rawContent
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
@@ -736,7 +738,7 @@ function extractFacts(rawContent: string, fallbackTitle: string, outlet: string)
     .filter((s) => s.length > 40 && s.length < 400);
 
   if (sentences.length >= 3) {
-    return sentences.slice(0, 7);
+    return sentences.slice(0, maxFacts);
   }
 
   // Try splitting on paragraphs
@@ -746,7 +748,7 @@ function extractFacts(rawContent: string, fallbackTitle: string, outlet: string)
     .filter((s) => s.length > 40);
 
   if (paras.length >= 3) {
-    return paras.slice(0, 7);
+    return paras.slice(0, maxFacts);
   }
 
   // Pad with synthesized facts to satisfy the min(3) requirement
@@ -755,7 +757,43 @@ function extractFacts(rawContent: string, fallbackTitle: string, outlet: string)
   while (facts.length < 3) {
     facts.push(cleaned.substring(0, 250).trim() || `Coverage from ${outlet}.`);
   }
-  return facts.slice(0, 7);
+  return facts.slice(0, maxFacts);
+}
+
+const FUTURE_TENSE_RE = /\b(will|would|plans? to|is (set|expected|poised|positioned) to|expected to|is planning|intends? to|is projected to|aims? to)\b/i;
+const STATISTIC_RE = /\b\d[\d,.]*\s*(%|percent|billion|million|trillion|thousand|bps|basis points)\b/i;
+const QUOTE_RE = /[""][^""]{10,}[""]/;
+const PATTERN_RE = /\b(trend|across|multiple|many|most|growing number|increasingly|pattern|sector-wide|industry-wide)\b/i;
+
+function classifyTemporalSignals(facts: string[]): {
+  hasFutureOnlyFacts: boolean;
+  hasMixedTense: boolean;
+  futureFactIndices: number[];
+} {
+  const futureFactIndices = facts
+    .map((f, i) => (FUTURE_TENSE_RE.test(f) ? i : -1))
+    .filter((i) => i >= 0);
+
+  const hasFutureOnlyFacts = futureFactIndices.length === facts.length;
+  const hasMixedTense = futureFactIndices.length > 0 && !hasFutureOnlyFacts;
+
+  return { hasFutureOnlyFacts, hasMixedTense, futureFactIndices };
+}
+
+function classifyClaimTypes(facts: string[]): Array<"statistic" | "event" | "quote" | "projection" | "pattern"> {
+  const types = new Set<"statistic" | "event" | "quote" | "projection" | "pattern">();
+
+  for (const fact of facts) {
+    if (STATISTIC_RE.test(fact)) types.add("statistic");
+    if (QUOTE_RE.test(fact)) types.add("quote");
+    if (FUTURE_TENSE_RE.test(fact)) types.add("projection");
+    else if (PATTERN_RE.test(fact)) types.add("pattern");
+    else if (/\b(announced|launched|acquired|reported|said|confirmed|signed|closed|completed|released)\b/i.test(fact)) {
+      types.add("event");
+    }
+  }
+
+  return Array.from(types);
 }
 
 export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
@@ -875,7 +913,7 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
         if (!url || !title || title === "Untitled") continue;
 
         const relevanceScore = scoreRelevance(title, summary, tags, feed);
-        const verbatimFacts = extractFacts(rawContent, title, feed.outlet);
+        const verbatimFacts = extractFacts(rawContent, title, feed.outlet, feed.tier);
 
         // Tag competitive items so the Strategist can avoid saturated angles
         const itemTags = feed.competitive
@@ -902,6 +940,9 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
           // fresh into the ES Signal/Field Report/Compass by the Localizer,
           // us items anchor the EN edition.
           region: feed.region,
+          sourceReliabilityTier: feed.tier,
+          temporalSignals: classifyTemporalSignals(verbatimFacts),
+          claimTypes: classifyClaimTypes(verbatimFacts),
         });
       }
     }
@@ -951,6 +992,9 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
             // Feedly items lack a known FeedConfig — default to corridor so
             // either edition can use them without bias.
             region: "corridor",
+            sourceReliabilityTier: 2,
+            temporalSignals: classifyTemporalSignals(verbatimFacts),
+            claimTypes: classifyClaimTypes(verbatimFacts),
           });
           feedlyAdded++;
           totalScanned++;

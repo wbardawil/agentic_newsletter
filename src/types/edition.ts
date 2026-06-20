@@ -41,6 +41,28 @@ export const StrategicAngleSchema = z.object({
   }),
   /** Quarterly narrative theme (e.g. "The Machine"). */
   quarterlyTheme: z.string().min(1),
+  /**
+   * Evidence map produced by the Strategist linking each intended claim to its
+   * supporting verbatimFact. Used by the Writer to avoid temporal inaccuracies
+   * and unsupported assertions. Optional for backward compatibility.
+   */
+  evidenceMap: z
+    .object({
+      insightClaims: z.array(
+        z.object({
+          claim: z.string().min(1),
+          supportingFactId: z.string().uuid(),
+          factIndex: z.number().int().nonnegative(),
+          temporalSafety: z.enum(["safe", "future-only", "mixed"]),
+        }),
+      ),
+      fieldReportAnchor: z.object({
+        company: z.string().min(1),
+        sourceId: z.string().uuid(),
+        isDistinctFromAperturaHook: z.boolean(),
+      }),
+    })
+    .optional(),
 });
 export type StrategicAngle = z.infer<typeof StrategicAngleSchema>;
 

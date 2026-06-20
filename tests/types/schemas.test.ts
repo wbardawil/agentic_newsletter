@@ -281,23 +281,23 @@ describe("SourceItem", () => {
     ).toThrow();
   });
 
-  it("rejects verbatimFacts with more than 7 items", () => {
+  it("rejects verbatimFacts with more than 10 items", () => {
     expect(() =>
       SourceItemSchema.parse(
         makeSourceItem({
-          verbatimFacts: ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8"],
+          verbatimFacts: ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11"],
         }),
       ),
     ).toThrow();
   });
 
-  it("accepts verbatimFacts at the boundaries (3 and 7)", () => {
+  it("accepts verbatimFacts at the boundaries (3 and 10)", () => {
     expect(
       SourceItemSchema.parse(makeSourceItem({ verbatimFacts: ["A", "B", "C"] })),
     ).toBeDefined();
     expect(
       SourceItemSchema.parse(
-        makeSourceItem({ verbatimFacts: ["A", "B", "C", "D", "E", "F", "G"] }),
+        makeSourceItem({ verbatimFacts: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"] }),
       ),
     ).toBeDefined();
   });

@@ -59,17 +59,43 @@ There should be no ambiguity or blending of pillars.
 ### 2. People Dimension Substance
 This is the most common failure point. The Insight must deeply engage with the
 declared People challenge: **"{{peopleAngleChallenge}}"**. A generic mention is a
-failure.
+failure. The framework must NOT be named out loud — the mechanism should be shown.
 
--   **Weak (Fails):** "Leaders need to get buy-in from the team." (Generic)
--   **Strong (Passes):** "The framework requires leaders to delegate budget authority, which directly addresses the core people challenge: a lack of trust in junior managers' decision-making." (Specific, connects action to challenge)
+**Weak examples (Fail):**
+-   "Leaders need to get buy-in from the team." (Generic — no connection to declared challenge)
+-   "Applying ADKAR here means building Awareness first." (Names the label, shows no mechanism)
+-   "Change management is required for this transition." (No action, no specificity)
+
+**Strong examples (Pass):**
+-   "The framework requires leaders to delegate budget authority. This only works when the team trusts that decisions made below the owner level will be honored — and that trust is built by holding the boundary even when the first delegated decision feels uncomfortable." (Specific mechanism, connects to challenge)
+-   "Most leaders try to solve this by increasing meeting frequency. That fails because the problem is not communication — it is the absence of a written decision rule that lets the team act without asking. The moment the rule is written and a manager uses it without escalating, the behavior changes." (Names misdiagnosis, shows mechanism)
+
+To assess: identify the sentence in the Insight where the declared challenge ("{{peopleAngleChallenge}}") is addressed. If it is only a passing mention without a causal mechanism, it fails.
 
 ### 3. The Reframe (Rule 11)
-The Insight MUST contain an explicit reframe:
-1.  Here is the conventional (wrong/incomplete) understanding.
-2.  Here is why it's wrong.
-3.  Here is the correct frame.
-The sequence is non-negotiable.
+The Insight MUST contain an explicit reframe in this non-negotiable sequence:
+1.  State the conventional (wrong/incomplete) understanding.
+2.  Name why it is wrong or incomplete.
+3.  State the correct frame.
+
+The sequence cannot be reversed. The reader must feel the wrongness of the old frame
+before the new one can land.
+
+**Incomplete reframe (Fails):**
+-   "The real problem is not software — it's the operating model." (States the new frame
+    but skips naming the conventional belief and why it fails.)
+-   "Many think this is a technology problem, but it isn't." (Names the conventional view
+    but does not explain why it is wrong before pivoting.)
+
+**Complete reframe (Passes):**
+-   "Most advisors diagnose this as a communication problem and prescribe more all-hands
+    meetings. That fails because the team is not missing information — they are missing
+    the decision-making authority to act on it. The real fix is not more communication.
+    It is a written decision rule that removes the escalation path entirely."
+    (Conventional belief stated → why it fails → correct frame in sequence.)
+
+To assess: quote the three-part sequence from the Insight. If any part is missing or out
+of order, the reframe fails.
 
 ### 4. The Misdiagnosis (Rule 12)
 The Insight must name what the reader has already tried and why it solved the

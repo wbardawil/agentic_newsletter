@@ -12,12 +12,15 @@ import {
   type ValidationResult,
   type ValidationIssue,
 } from "../types/edition.js";
+import { SourceBundleSchema } from "../types/source-bundle.js";
 import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 import { findBannedPhrases } from "../utils/banned-phrases.js";
 
 const ValidatorInputSchema = z.object({
   content: LocalizedContentSchema,
   angle: StrategicAngleSchema,
+  /** Optional source bundle — when provided, enables deterministic temporal accuracy checks. */
+  sourceBundle: SourceBundleSchema.optional(),
 });
 type ValidatorInput = z.infer<typeof ValidatorInputSchema>;
 
@@ -169,6 +172,99 @@ function computeScore(issues: ValidationIssue[]): number {
   return Math.max(0, score);
 }
 
+// ── Deterministic temporal & entity checks ───────────────────────────────────
+
+const PAST_TENSE_VERB_RE =
+  /\b(acquired|launched|announced|completed|signed|closed|deployed|released|merged|purchased|sold|filed|opened|secured|raised|won|lost|hired|fired|appointed|resigned|achieved|delivered|shipped|published|reported|confirmed|established|formed|restructured)\b/i;
+
+/**
+ * For each source with hasFutureOnlyFacts=true, extract a name anchor from
+ * the title (first 2-4 word capitalized sequence) and check whether that
+ * anchor appears near a past-tense verb in the Insight or Field Report.
+ * Returns issues when temporal mismatches are detected.
+ */
+function detectTemporalMismatch(
+  insight: string,
+  fieldReport: string,
+  sourceBundle: z.infer<typeof SourceBundleSchema> | undefined,
+): ValidationIssue[] {
+  if (!sourceBundle) return [];
+
+  const issues: ValidationIssue[] = [];
+  const combinedText = `${insight}\n\n${fieldReport}`;
+
+  for (const source of sourceBundle.items) {
+    if (!source.temporalSignals?.hasFutureOnlyFacts) continue;
+
+    // Extract company/entity anchor: first sequence of 1-3 capitalized words from title
+    const titleMatch = source.title.match(/\b([A-Z][a-záéíóúüñA-Z&]{1,}(?:\s+[A-Z][a-záéíóúüñA-Z&]{1,}){0,2})\b/);
+    if (!titleMatch) continue;
+    const anchor = titleMatch[1]!;
+
+    // Check if the anchor appears in the draft near a past-tense verb (within ±60 chars)
+    const anchorRe = new RegExp(anchor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+    const anchorIdx = combinedText.search(anchorRe);
+    if (anchorIdx === -1) continue;
+
+    const window = combinedText.substring(Math.max(0, anchorIdx - 20), anchorIdx + anchor.length + 80);
+    if (PAST_TENSE_VERB_RE.test(window)) {
+      issues.push({
+        rule: "temporal-tense-mismatch",
+        severity: "error",
+        section: insight.includes(anchor) ? "insight" : "fieldReport",
+        message:
+          `Temporal inaccuracy detected: "${anchor}" appears with a past-tense verb, ` +
+          `but the source "${source.outlet ?? source.title}" describes a future event. ` +
+          `Rewrite using future or conditional tense.`,
+        excerpt: window.substring(0, 120),
+      });
+    }
+  }
+
+  return issues;
+}
+
+/**
+ * Deterministic check: extract the first significant entity from the Apertura
+ * and verify it does not appear as the anchor in the Field Report.
+ * Converts the existing LLM-only check into a pre-LLM fail-fast gate.
+ */
+function detectFieldReportEntityDuplicate(
+  apertura: string,
+  fieldReport: string,
+): ValidationIssue | null {
+  if (!apertura || !fieldReport) return null;
+
+  // Use first 80 words of apertura for entity extraction
+  const aperturaHead = apertura.split(/\s+/).slice(0, 80).join(" ");
+  const capitalTokenRe = /\b([A-Z][a-záéíóúüñA-Z]{2,}(?:\s+[A-Z][a-záéíóúüñA-Z]{2,})?)\b/g;
+
+  const aperturaEntities: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = capitalTokenRe.exec(aperturaHead)) !== null) {
+    const token = m[1]!;
+    // Exclude common non-entity capitalized words
+    if (!["The", "This", "That", "When", "While", "Most", "Many", "Some", "These", "Those"].includes(token)) {
+      aperturaEntities.push(token.toLowerCase());
+    }
+  }
+
+  const fieldReportLower = fieldReport.toLowerCase();
+  const overlap = aperturaEntities.filter(
+    (e) => e.length > 4 && fieldReportLower.includes(e),
+  );
+
+  if (overlap.length === 0) return null;
+
+  return {
+    rule: "field-report-entity-duplicate",
+    severity: "error",
+    section: "fieldReport",
+    message: `Field Report reuses the Apertura's primary entity ("${overlap[0]}"). The Field Report must anchor on a DIFFERENT company or event than the Apertura's hook.`,
+    excerpt: overlap[0],
+  };
+}
+
 // ── Validator agent ───────────────────────────────────────────────────────────
 
 export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> {
@@ -268,6 +364,21 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
         message: "Bullet points are not permitted in the Insight section. Rewrite as prose.",
       });
     }
+
+    // Temporal accuracy: detect past-tense claims about future-only sources
+    const temporalIssues = detectTemporalMismatch(
+      sections["insight"],
+      sections["fieldReport"],
+      payload.sourceBundle,
+    );
+    issues.push(...temporalIssues);
+
+    // Field Report entity distinctness: deterministic pre-LLM gate
+    const entityDuplicateIssue = detectFieldReportEntityDuplicate(
+      sections["apertura"],
+      sections["fieldReport"],
+    );
+    if (entityDuplicateIssue) issues.push(entityDuplicateIssue);
 
     // Long sentences in Insight
     const longSentences = findLongSentences(sections["insight"]);

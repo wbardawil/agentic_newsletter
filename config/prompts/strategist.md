@@ -86,6 +86,22 @@ week's issue. The angle must:
 
 {{recentFieldReports}}
 
+{{recentFailurePatterns}}
+
+### STEP 0 — Temporal Safety Check (do this BEFORE choosing the angle)
+
+Before selecting an angle, classify the supporting facts by tense:
+
+-   **Confirmed facts** (safe to use as assertions): Past or present tense in the source.
+    Examples: "announced," "reported," "has deployed," "increased by."
+-   **Projected facts** (future-only — handle with care): Future tense in the source.
+    Examples: "will acquire," "plans to launch," "is expected to," "is set to."
+
+**Rule:** If your angle depends entirely on future-tense projections, you MUST write the
+angle using conditional or forward-looking language ("X is positioned to…", "If Y lands,
+it signals…"). Do NOT select an angle where the central factual claim is a projection
+reported as a present-day reality — the Quality Gate will reject it as temporal inaccuracy.
+
 ### Competitive signals
 
 Some source items are tagged `competitive-signal`. This means the target audience may have
@@ -104,14 +120,20 @@ Every recommendation creates a People-side challenge. Name it explicitly:
     -   **Kotter**: Step 1 (Urgency), 2 (Coalition), 3 (Vision), 4 (Communicate), 5 (Empower), 6 (Wins), 7 (Consolidate), 8 (Anchor)
     -   **7S**: Strategy, Structure, Systems, Shared Values, Skills, Style, or Staff
 
+**The `peopleAngle` must name the concrete action that the framework activates.** It is
+not enough to name the framework step — state what the owner or leader must *do differently*
+as a result. Weak: "ADKAR: Awareness." Strong: "ADKAR: Awareness — the leadership team
+must first be shown the cost of the current pattern in their own operating data before
+they will have the desire to change it."
+
 If the recommendation has no real People dimension, the angle is wrong.
 
 ---
 
 ## Output Format
 
-Respond with valid JSON only. Your primary task is to be thorough in the `justification`
-field, as this is how the quality of your work is measured.
+Respond with valid JSON only. Be thorough in `justification` and `evidenceMap` — these are
+the primary indicators of output quality for downstream agents.
 
 ```json
 {
@@ -123,13 +145,33 @@ field, as this is how the quality of your work is measured.
   "osPillar": "Strategy OS | Operating Model OS | Technology OS",
   "peopleAngle": {
     "challenge": "One sentence naming the specific People-side challenge this recommendation creates.",
-    "framework": "ADKAR: <step> | Kotter Step <n>: <name> | 7S: <element>"
+    "framework": "ADKAR: <step> — <concrete action the owner must take> | Kotter Step <n>: <name> — <concrete action> | 7S: <element> — <concrete action>"
   },
   "quarterlyTheme": "{{quarterlyTheme}}",
   "justification": {
     "angleChoice": "Why is this the single most compelling angle from the bundle for this specific audience? Why is it better than other potential angles? Mention sources that informed this choice.",
     "osPillarChoice": "Explain the explicit connection between the thesis, the supporting sources, and the chosen OS Pillar. Why not the other two pillars?",
-    "peopleAngleChoice": "Explain how the 'challenge' and 'framework' directly map to the recommended action in the thesis. Why is this the correct change management lens?"
+    "peopleAngleChoice": "Explain how the 'challenge' and 'framework' directly map to the recommended action in the thesis. Name the concrete behavior change the framework activates."
+  },
+  "evidenceMap": {
+    "insightClaims": [
+      {
+        "claim": "The specific assertion the Writer will make (e.g., 'Company X reported a 40% drop in...')",
+        "supportingFactId": "uuid-of-source-item",
+        "factIndex": 2,
+        "temporalSafety": "safe | future-only | mixed"
+      }
+    ],
+    "fieldReportAnchor": {
+      "company": "Name of company/entity the Field Report will anchor on",
+      "sourceId": "uuid-of-source-item",
+      "isDistinctFromAperturaHook": true
+    }
   }
 }
 ```
+
+**Evidence map instructions:**
+- `insightClaims`: List 3–5 specific assertions the Writer will need to make in the Insight or Field Report, each with its supporting source UUID and verbatimFacts array index (0-based).
+- `temporalSafety`: Mark `"future-only"` when the supporting fact uses future tense ("will", "plans to", "expected to"). The Writer MUST write future-tense claims from these sources.
+- `fieldReportAnchor.isDistinctFromAperturaHook`: Must be `true`. If your best Field Report anchor uses the same company as your Apertura hook, choose a different source for one of them.

@@ -16,6 +16,22 @@ import { extractTextFromMessage, parseLlmJson } from "../utils/llm-json.js";
 const StrategistInputSchema = SourceBundleSchema.extend({
   /** Snippets from recent Field Reports — used to avoid repeating the same companies. */
   recentFieldReports: z.array(z.string()).optional(),
+  /** Recent QualityGate failure patterns — used to guide angle selection away from proven failure modes. */
+  recentFailurePatterns: z
+    .array(
+      z.object({
+        editionId: z.string(),
+        pattern: z.enum([
+          "temporal-tense-mismatch",
+          "unverified-motivation",
+          "overgeneralization",
+          "none",
+        ]),
+        sourceOutlets: z.array(z.string()),
+        failureReasons: z.array(z.string()),
+      }),
+    )
+    .optional(),
 });
 type StrategistInput = z.infer<typeof StrategistInputSchema>;
 
@@ -101,6 +117,22 @@ function buildPrompt(
         bundle.recentFieldReports.map((s) => `- ${s}`).join("\n")
       : "";
 
+  const failurePatternsBlock =
+    bundle.recentFailurePatterns && bundle.recentFailurePatterns.length > 0
+      ? `### Recent QualityGate failures — learn from these\n\n` +
+        `These editions failed the QualityGate. Avoid the same patterns when selecting this week's angle:\n\n` +
+        bundle.recentFailurePatterns
+          .map(
+            (p) =>
+              `- Edition **${p.editionId}** — Pattern: \`${p.pattern}\`\n` +
+              (p.sourceOutlets.length > 0
+                ? `  Implicated sources: ${p.sourceOutlets.join(", ")}\n`
+                : "") +
+              `  Failure reasons:\n${p.failureReasons.map((r) => `    - ${r}`).join("\n")}`,
+          )
+          .join("\n\n")
+      : "";
+
   return template
     .replace("{{runId}}", context.runId)
     .replace("{{editionId}}", context.editionId)
@@ -109,6 +141,7 @@ function buildPrompt(
     .replace(/\{\{quarterlyTheme\}\}/g, quarterInfo.theme)
     .replace("{{quarterlyThemeDescription}}", quarterInfo.description)
     .replace("{{recentFieldReports}}", fieldReportBlock)
+    .replace("{{recentFailurePatterns}}", failurePatternsBlock)
     .replace("{{input}}", sourceSummary);
 }
 
@@ -131,7 +164,7 @@ export class StrategistAgent extends BaseAgent<StrategistInput, StrategicAngle> 
 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 2000,
+      max_tokens: 3500,
       system: prompt,
       messages: [
         {

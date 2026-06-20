@@ -35,7 +35,7 @@ import { loadSnapshot, saveSnapshot } from "./utils/source-bundle-snapshot.js";
 import type { SourceBundle } from "./types/source-bundle.js";
 import type { StrategicAngle } from "./types/edition.js";
 import { writeRunSummary } from "./utils/airtable.js";
-import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries } from "./utils/angle-history.js";
+import { loadAngleHistory, recordAngle, loadRecentFieldReportSummaries, loadRecentFailurePatterns, recordAngleFailure } from "./utils/angle-history.js";
 import { scanEdition } from "./utils/citation-guard.js";
 import { rewriteContentOutletLinks } from "./utils/outlet-link-rewriter.js";
 import { filterUsBundle } from "./utils/bundle-filter.js";
@@ -381,12 +381,13 @@ async function main(): Promise<void> {
   // same strategic spine with a Mexican voice over two independent topics.
   console.log("🧠 Step 2/4 — Strategist: selecting angle...");
   const recentFieldReports = loadRecentFieldReportSummaries(draftsDir);
+  const recentFailurePatterns = loadRecentFailurePatterns(draftsDir);
   const strategistAgent = new StrategistAgent(deps);
   const strategistOutput = await strategistAgent.run({
     runId,
     editionId,
     agentName: "strategist",
-    payload: { ...bundle, recentFieldReports },
+    payload: { ...bundle, recentFieldReports, recentFailurePatterns },
   });
 
   if (!strategistOutput.success) {
@@ -439,7 +440,7 @@ async function main(): Promise<void> {
     runId,
     editionId,
     agentName: "validator",
-    payload: { content, angle },
+    payload: { content, angle, sourceBundle: bundle },
   });
 
   const validation = validatorOutput.data as ValidationResult | undefined;
@@ -596,6 +597,12 @@ async function main(): Promise<void> {
       }
       console.error(`\n   Draft cannot ship with fabricated claims.\n`);
       hadBlockingIssue = true;
+      // Record the failure pattern so the next Strategist run can avoid it
+      const impliedOutlets = bundle.items
+        .filter((item) => item.temporalSignals?.hasFutureOnlyFacts === true)
+        .map((item) => item.outlet ?? "unknown")
+        .filter(Boolean);
+      recordAngleFailure(draftsDir, editionId, qualityGate.hardFailures, impliedOutlets);
     }
     if (qualityGate.angleOriginality.recommendation === "consider rerun") {
       console.warn(

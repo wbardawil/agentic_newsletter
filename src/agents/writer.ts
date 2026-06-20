@@ -317,6 +317,148 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
   }
 
   /**
+   * If any source in the bundle has exclusively future-tense verbatimFacts, scan the
+   * Insight and Field Report for those entities presented in past or present tense, and
+   * correct the tense to future/conditional. This is the most common QualityGate HARD FAIL.
+   */
+  private async repairTemporalErrors(
+    insight: string,
+    fieldReport: string,
+    sources: SourceItem[],
+  ): Promise<{ insight: string; fieldReport: string }> {
+    const futureSources = sources.filter(
+      (s) => s.temporalSignals?.hasFutureOnlyFacts === true,
+    );
+    if (futureSources.length === 0) return { insight, fieldReport };
+
+    const futureSourceList = futureSources
+      .map((s) => `- "${s.title}" from ${s.outlet ?? "unknown outlet"}\n  Facts: ${s.verbatimFacts.slice(0, 3).join(" | ")}`)
+      .join("\n");
+
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    this.logger.info(
+      `Temporal repair: ${futureSources.length} future-only source(s) found — running tense audit`,
+    );
+
+    const response = await this.deps.apiClients.anthropic.messages.create({
+      model: REPAIR_MODEL,
+      max_tokens: 3000,
+      messages: [
+        {
+          role: "user",
+          content:
+            `The following newsletter sections may contain temporal inaccuracies. ` +
+            `These source articles describe FUTURE events (plans, expectations, projections) — ` +
+            `any claims about them in the newsletter MUST use future or conditional tense, never past or present:\n\n` +
+            `FUTURE-ONLY SOURCES:\n${futureSourceList}\n\n` +
+            `INSIGHT SECTION:\n${insight}\n\n` +
+            `FIELD REPORT SECTION:\n${fieldReport}\n\n` +
+            `Instructions:\n` +
+            `1. Identify any sentence in either section that describes an event from the FUTURE-ONLY SOURCES as if it has already happened (past tense) or is happening now (present tense).\n` +
+            `2. Rewrite those sentences to use future or conditional tense (e.g., "is planning to", "has announced plans to", "is set to").\n` +
+            `3. If both sections are already correct, return them unchanged.\n` +
+            `4. Do not change any other content — only fix tense errors related to the listed sources.\n\n` +
+            `Output valid JSON only:\n` +
+            `{"insight": "<corrected insight text>", "fieldReport": "<corrected field report text>"}`,
+        },
+      ],
+    });
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+    const block = response.content[0];
+    if (block?.type !== "text") return { insight, fieldReport };
+    try {
+      const parsed = JSON.parse(block.text.trim()) as { insight?: string; fieldReport?: string };
+      const repairedInsight = typeof parsed.insight === "string" ? parsed.insight : insight;
+      const repairedFieldReport = typeof parsed.fieldReport === "string" ? parsed.fieldReport : fieldReport;
+      this.logger.info("Temporal repair pass complete");
+      return { insight: repairedInsight, fieldReport: repairedFieldReport };
+    } catch {
+      this.logger.warn("Temporal repair pass returned unparseable JSON — using originals");
+      return { insight, fieldReport };
+    }
+  }
+
+  /**
+   * If the main entity in the Field Report matches the main entity in any Apertura option,
+   * make a targeted Sonnet call to rewrite the Field Report with a different anchor.
+   * This prevents the Validator's `field-report-entity-distinct` hard failure.
+   */
+  private async repairFieldReportDistinctness(
+    aperturaOptions: AperturaOption[],
+    fieldReport: string,
+    sources: SourceItem[],
+  ): Promise<string> {
+    if (aperturaOptions.length === 0) return fieldReport;
+
+    // Extract first significant proper-noun-style token from the longest apertura option
+    const longestApertura = aperturaOptions.reduce((a, b) =>
+      b.body.length > a.body.length ? b : a,
+    );
+    const aperturaWords = longestApertura.body.split(/\s+/).slice(0, 60).join(" ");
+
+    // Heuristic: look for words >= 3 chars starting with uppercase that appear in both sections
+    const capitalTokenRe = /\b([A-Z][a-záéíóúüñA-Z]{2,}(?:\s+[A-Z][a-záéíóúüñA-Z]{2,})?)\b/g;
+    const aperturaEntities = new Set<string>();
+    let m: RegExpExecArray | null;
+    while ((m = capitalTokenRe.exec(aperturaWords)) !== null) {
+      aperturaEntities.add(m[1]!.toLowerCase());
+    }
+
+    const fieldReportLower = fieldReport.toLowerCase();
+    const overlap = [...aperturaEntities].filter(
+      (e) => e.length > 3 && fieldReportLower.includes(e),
+    );
+
+    if (overlap.length === 0) return fieldReport;
+
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    this.logger.info(
+      `Field Report distinctness repair: entity overlap detected [${overlap.slice(0, 3).join(", ")}] — rewriting Field Report anchor`,
+    );
+
+    const alternativeSources = sources
+      .filter((s) => !overlap.some((e) => (s.title + " " + (s.outlet ?? "")).toLowerCase().includes(e)))
+      .slice(0, 5)
+      .map((s) => `- "${s.title}" (${s.outlet ?? "unknown"})\n  ${s.verbatimFacts.slice(0, 2).join(" ")}`)
+      .join("\n");
+
+    const response = await this.deps.apiClients.anthropic.messages.create({
+      model: REPAIR_MODEL,
+      max_tokens: 1500,
+      messages: [
+        {
+          role: "user",
+          content:
+            `The Field Report below reuses the same company/entity as the Apertura. ` +
+            `This is a hard editorial failure — the two sections must anchor on different entities.\n\n` +
+            `APERTURA (first option, abbreviated):\n${aperturaWords}...\n\n` +
+            `FIELD REPORT TO REWRITE:\n${fieldReport}\n\n` +
+            `ALTERNATIVE SOURCES (pick one to anchor a new Field Report):\n${alternativeSources}\n\n` +
+            `Instructions:\n` +
+            `1. Rewrite the Field Report using one of the alternative sources as the anchor.\n` +
+            `2. Keep the same structure (~150 words, 3-4 short paragraphs).\n` +
+            `3. End with the operational implication for a $5M-$100M owner.\n` +
+            `4. Include a Markdown citation link to the source URL.\n` +
+            `Output only the rewritten Field Report text, nothing else.`,
+        },
+      ],
+    });
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+    const block = response.content[0];
+    const rewritten = block?.type === "text" ? block.text.trim() : fieldReport;
+    this.logger.info("Field Report distinctness repair complete");
+    return rewritten;
+  }
+
+  /**
    * If the Signal section runs over 185 words, make a targeted Sonnet call to trim.
    * Preserves the italicized thread sentence and every `[Read ->](url)` link.
    */
@@ -419,6 +561,24 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     if (isSignalOverCeiling(writerOutput.sections.signal)) {
       writerOutput.sections.signal = await this.repairSignalLength(writerOutput.sections.signal);
     }
+
+    // Temporal repair: fix tense errors caused by future-only sources before
+    // the Quality Gate performs its hard fact-check.
+    const temporalFixed = await this.repairTemporalErrors(
+      writerOutput.sections.insight,
+      writerOutput.sections.fieldReport,
+      payload.sources,
+    );
+    writerOutput.sections.insight = temporalFixed.insight;
+    writerOutput.sections.fieldReport = temporalFixed.fieldReport;
+
+    // Field Report distinctness: prevent the Validator hard failure when the
+    // Field Report reuses the same company/entity anchor as the Apertura.
+    writerOutput.sections.fieldReport = await this.repairFieldReportDistinctness(
+      writerOutput.sections.aperturaOptions,
+      writerOutput.sections.fieldReport,
+      payload.sources,
+    );
 
     // Banned-phrase scan runs over every prose section. Insight has seen the
     // most violations, but a single offender in Signal, Field Report, Tool, or
