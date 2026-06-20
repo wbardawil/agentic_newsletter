@@ -171,6 +171,31 @@ describe("QualityGateAgent", () => {
     expect(output.error).not.toMatch(/payload/i);
   });
 
+  it("accepts priorAngles missing justification (backward compat with pre-justification history)", async () => {
+    const agent = new QualityGateAgent(makeDeps());
+    // Simulate an angle-history.json entry written before justification was
+    // required — e.g. the committed 2026-21 entry that had talkingPoints instead.
+    const { justification: _omit, ...legacyAngle } = makeAngle();
+    void _omit;
+    const input: AgentInput<QualityGateInput> = {
+      runId: randomUUID(),
+      editionId: "2026-17",
+      agentName: "qualityGate",
+      payload: {
+        enContent: makeContent("en"),
+        esContent: makeContent("es"),
+        angle: makeAngle(),
+        sourceBundle: makeBundle(),
+        priorAngles: [legacyAngle as never],
+      },
+    };
+    const output = await agent.run(input);
+    expect(output.status).toBe("error");
+    // The error must come from the LLM call, NOT from input schema validation
+    expect(output.error).not.toMatch(/justification/);
+    expect(output.error).not.toMatch(/payload/i);
+  });
+
   it("rejects missing sourceBundle", async () => {
     const agent = new QualityGateAgent(makeDeps());
     const input = {

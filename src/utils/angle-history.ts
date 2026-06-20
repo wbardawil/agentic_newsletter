@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
-import type { StrategicAngle } from "../types/edition.js";
+import { StrategicAngleSchema, type StrategicAngle } from "../types/edition.js";
 
 const HISTORY_FILE = "angle-history.json";
 const MAX_HISTORY = 8;
@@ -41,7 +41,13 @@ export function loadAngleHistory(draftsDir: string): StrategicAngle[] {
   if (!existsSync(path)) return [];
   try {
     const raw = JSON.parse(readFileSync(path, "utf-8")) as HistoryFile;
-    return raw.entries.map((e) => e.angle);
+    // Use safeParse so old-schema entries (missing justification, talkingPoints
+    // instead of justification, etc.) are silently skipped rather than crashing
+    // the QualityGate input validation.
+    return raw.entries
+      .map((e) => StrategicAngleSchema.safeParse(e.angle))
+      .filter((r) => r.success)
+      .map((r) => (r as { success: true; data: StrategicAngle }).data);
   } catch {
     return [];
   }

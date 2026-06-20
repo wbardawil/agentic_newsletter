@@ -17,12 +17,21 @@ import { computeDistinctOutlets } from "../utils/source-diversity.js";
 
 // ── Input ──────────────────────────────────────────────────────────────────────
 
-// Historical angles in drafts/angle-history.json may pre-date the peopleAngle
-// requirement (Option C migration). QualityGate only reads headline + thesis
-// from priorAngles, so loosen the field for backward compatibility — this
-// avoids a fatal parse error on the first post-migration run while keeping
-// the current angle strictly validated.
-const PriorAngleSchema = StrategicAngleSchema.partial({ peopleAngle: true });
+// Historical angles in drafts/angle-history.json may pre-date any required
+// field added to StrategicAngleSchema (peopleAngle, justification, …).
+// QualityGate only reads headline + thesis from priorAngles, so treat every
+// field except those two as optional for backward compatibility — this avoids
+// a fatal parse error when the committed history file has old-schema entries.
+const PriorAngleSchema = StrategicAngleSchema.partial({
+  peopleAngle: true,
+  justification: true,
+  targetPersona: true,
+  relevanceToAudience: true,
+  suggestedSources: true,
+  osPillar: true,
+  quarterlyTheme: true,
+  evidenceMap: true,
+}).passthrough(); // ignore unknown fields (e.g. legacy talkingPoints)
 
 const QualityGateInputSchema = z.object({
   enContent: LocalizedContentSchema,
