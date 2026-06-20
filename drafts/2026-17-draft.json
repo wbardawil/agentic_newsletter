@@ -1,0 +1,287 @@
+{
+  "runId": "1de01443-5d67-4a0a-8c78-2898171e7581",
+  "editionId": "2026-17",
+  "generatedAt": "2026-06-20T06:47:33.732Z",
+  "contentHash": "abcd947daabdefa697325a8c378fdcba72075562bf30e7e47775c992ce4f18dd",
+  "angle": {
+    "headline": "AI Adoption's Real Bottleneck: Your Operating Model, Not Your Technology",
+    "thesis": "Mid-market firms are deploying AI tools for efficiency gains but failing to capture strategic value because they haven't redesigned the operating model that governs how decisions flow, who owns outcomes, and how work gets done—the technology works, but the machine around it doesn't.",
+    "targetPersona": "US-LATAM corridor operators in the $10M-$100M revenue range who have already deployed AI point solutions (chatbots, automation tools, analytics) but are seeing marginal returns and wondering why the promised transformation hasn't materialized.",
+    "relevanceToAudience": "Many mid-market owners in the corridor have responded to AI hype by purchasing tools—often from vendors promising quick wins. They're now 6-12 months into deployment and realizing efficiency gains plateau quickly. The real barrier isn't the technology's capability; it's that their decision rights, process ownership, and accountability structures were designed for a pre-AI operating rhythm. This angle reframes AI disappointment as an operating model design problem, not a technology problem.",
+    "suggestedSources": [
+      "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+      "73f6f8c4-dede-48cb-96be-dd38c7995d7a",
+      "b66af50e-a497-4bcc-8ceb-11cc8789def7"
+    ],
+    "justification": {
+      "angleChoice": "This angle is the most compelling because it addresses a lived dysfunction: mid-market operators have bought AI tools but aren't seeing transformation. Source 62bb7325 (Grata's 'AI Trust Problem') and source 73f6f8c4 (Fast Company's 'Youngest Employees as AI Teachers') both point to implementation challenges, but the deeper insight comes from connecting these to source b66af50e (Insperity's 'Human Capital Drives Operational Agility'). The Insperity piece explicitly names 'operational agility' as requiring the right 'human capital strategy'—this is operating model language. The angle is better than alternatives (e.g., 'AI as competitive advantage' or 'generational AI skills gap') because it names the specific failure mode: tools deployed before the model was redesigned. This is a Q2 'Machine' fit: the machine (operating model) must be rebuilt before the technology can deliver value.",
+      "osPillarChoice": "This maps to Operating Model OS because the core dysfunction is not strategic (the owner knows AI matters) and not technological (the tools work as advertised). The failure occurs in the execution layer: decision rights, process ownership, accountability structures, and workflow design. Source b66af50e explicitly connects operational agility to human capital strategy pre- and post-transaction, naming the operating model dimension. Source 73f6f8c4 notes that junior employees 'grew up using tools like AI agents' but organizations aren't capturing that capability—this is an operating model failure (role design, knowledge transfer, authority delegation), not a strategy failure. Source 62bb7325 frames AI risk mitigation for dealmakers, but the underlying issue is the same: AI works when the operating processes around it are clear. This is not Strategy OS (the vision is clear: 'we need AI') and not Technology OS (the tools function). It's Operating Model OS: the machine that executes strategy is broken.",
+      "peopleAngleChoice": "The challenge names the specific behavior shift required: leaders must stop treating AI as a bolt-on and start redesigning authority and ownership structures. This creates direct resistance from middle managers whose roles are defined by control over manual processes. Kotter Step 5 (Empower Action) is the correct framework because the obstacle isn't lack of vision or urgency—it's structural. Managers block automation because it threatens their span of control. The concrete action: explicitly reassign decision rights (e.g., 'marketing approvals now automated, manager role shifts to exception handling') and process ownership (e.g., 'customer onboarding process now owned by ops, not sales'). This is not about training or communication (ADKAR) or cultural alignment (7S). It's about removing structural barriers—Kotter Step 5's core mandate."
+    },
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "Leaders must shift from viewing AI as a productivity add-on to redesigning how decision authority and process ownership flow through the organization—requiring them to confront which managers are blocking automation because it threatens their control, and which processes exist only because 'that's how we've always done it.'",
+      "framework": "Kotter Step 5: Empower Action — Remove obstacles by explicitly reassigning decision rights and process ownership away from managers who resist automation, creating clear accountability for new AI-enabled workflows rather than layering tools onto broken processes."
+    },
+    "quarterlyTheme": "The Machine",
+    "evidenceMap": {
+      "insightClaims": [
+        {
+          "claim": "Grata's VP of Sales told dealmakers that AI has become central to deal processes but represents a 'major credibility risk' when trust safeguards aren't in place.",
+          "supportingFactId": "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+          "factIndex": 1,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "Fast Company reported that junior employees entering the workforce 'grew up using tools like AI agents, generative workflows, and automation,' yet organizations fail to capture this native capability—not because the employees lack skill, but because knowledge flows in organizations are still designed top-down.",
+          "supportingFactId": "73f6f8c4-dede-48cb-96be-dd38c7995d7a",
+          "factIndex": 5,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "Insperity's Brad Burke stated that firms gaining competitive advantage through operational agility require 'the right human capital strategy, a component that is often overlooked,' naming this as critical both pre- and post-acquisition.",
+          "supportingFactId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+          "factIndex": 2,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "The Insperity podcast explicitly connected operational agility to 'responding swiftly to a complicated and rapidly shifting investment environment,' framing agility as an operating model capability, not a strategic or technological one.",
+          "supportingFactId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+          "factIndex": 1,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "Grata's discussion of AI risk mitigation for dealmakers underscores that AI's value depends on trust systems—but trust systems are process design, not technology features.",
+          "supportingFactId": "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+          "factIndex": 0,
+          "temporalSafety": "safe"
+        }
+      ],
+      "fieldReportAnchor": {
+        "company": "Mid-market manufacturing firm deploying AI-powered demand forecasting and discovering that the bottleneck wasn't forecast accuracy—it was that the sales team still overrode every prediction because decision authority hadn't shifted from gut feel to model-informed judgment.",
+        "sourceId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+        "isDistinctFromAperturaHook": true
+      }
+    }
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Your managers are quietly blocking your AI rollout",
+    "preheader": "The tools work. The operating model around them does not.",
+    "subjectOptions": [
+      "AI didn't fix your process. It exposed it.",
+      "Your managers are quietly blocking your AI rollout",
+      "The hidden reason your AI productivity hasn't landed"
+    ],
+    "sections": [
+      {
+        "id": "5e400fb0-214a-492d-a19f-7cc5c654344f",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: AI is not exposing a tooling gap. It is exposing which managers were never running the process. They were just gatekeeping it.*\n\n- **Strategy:** LongRange Capital will acquire Pizza Hut from Yum Brands for $1.5 billion, while Yum China takes Mainland China operations for $1.2 billion. **A business that cannot be cleanly separated cannot be cleanly sold.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Operating Models:** Insperity argues operational agility after acquisition depends on a human capital strategy most firms treat as an afterthought. **The operating model decides whether agility is a slogan or a system.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/)\n- **Technology:** Grata describes AI in deal processes as a credibility risk as often as a productivity gain. **Tools earn trust only when the system around them already does.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/video-grata-ai-trust-problem-dealmakers-solve/)\n- **Human Capital:** Fast Company reports that junior employees who grew up with AI now hold knowledge senior leaders need to learn. **Expertise no longer flows in the direction the org chart was built to assume.** [Read in Fast Company ->](https://www.fastcompany.com/91557976/your-youngest-employees-may-be-your-most-valuable-ai-teachers)",
+        "sourceRefs": []
+      },
+      {
+        "id": "0451bc00-ef34-4123-b022-0dc5e8cf8c3d",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:statistic===\n[LongRange Capital will pay $1.5 billion](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/) to take Pizza Hut private, while Yum China will acquire the Mainland China business for $1.2 billion in a separate transaction. The number is interesting. The structure is more interesting. Yum Brands is not selling a pizza chain. It is selling the parts of itself that no longer fit the operating model it wants to run. That requires knowing, in advance, which parts of the business are clean enough to be separated from the parent and which parts are still tangled in the founder's decisions. Most middle-market companies cannot answer that question yet.\n===OPTION_B:provocation===\nMost owners think buying AI is a technology decision. It is not. [Grata's VP of sales recently described AI in deal processes](https://middlemarketgrowth.org/video-grata-ai-trust-problem-dealmakers-solve/) as a credibility risk as much as a productivity gain. The tool is fine. The problem is what the tool exposes. When you deploy AI into a process, every step that existed only to give a manager veto power becomes visible. Every approval that was control wearing the costume of value is now standing in front of you, unmasked. The buyers who get the productivity gain are the ones willing to look at what AI is showing them.\n===OPTION_C:pattern===\nThree stories this week. [Insperity's private capital consultant](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/) argued operational agility post-acquisition depends on a human capital strategy most firms treat as an afterthought. [Grata described AI in dealmaking](https://middlemarketgrowth.org/video-grata-ai-trust-problem-dealmakers-solve/) as a credibility risk as much as a productivity gain. [Fast Company argued](https://www.fastcompany.com/91557976/your-youngest-employees-may-be-your-most-valuable-ai-teachers) that junior employees now hold knowledge senior leaders need to learn. Different sectors. Same underlying shift. Authority is no longer where the org chart says it is. The owners still running their companies as if expertise flows from the top down are managing a building that no longer exists.",
+        "sourceRefs": []
+      },
+      {
+        "id": "44fb7a4c-dcd1-4f84-9546-77a92a8886b4",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You bought the AI tool. Your team is using it in pockets. The productivity gain you were sold has not arrived. The reports still come in late. The approvals still bottleneck through the same people. The dashboard that was supposed to give you visibility is being updated by someone who copies data from another system into it. You assume the rollout was incomplete. You schedule another training session.\n\nIt is not a rollout problem. It is an operating model problem. And the people who built the operating model you have today are the ones quietly making sure the new tool does not change it.\n\nHere is the mechanism. Most processes in a middle-market company were not designed. They accumulated. A manager added a step because a mistake happened once. Another manager added an approval because she wanted visibility. Over time, the process became a record of which managers wanted to be in which loops. When you deploy AI into that workflow, the AI handles the work fine. What it cannot handle is the politics. The step where Marcus has to review the file is still there. Not because Marcus adds judgment. Because Marcus's role is partly defined by being the person who reviews the file.\n\nThis is the diagnosis most owners miss. The managers blocking AI adoption are not blocking it because they do not understand the tool. They are blocking it because they understand exactly what it threatens. The process is the moat around their authority. Automate the process and the moat is gone.\n\nThe Operating Model OS asks a harder question than the productivity question. It asks three things. Which decisions in this workflow require human judgment. Which decisions require human accountability. And which 'decisions' are actually control checkpoints that produce nothing. The first two stay. The third must be reassigned before the tool is deployed. Not after. Before.\n\nThis requires you to do something most owners avoid. You have to look at each manager whose role includes approval authority and ask honestly whether the approval adds value or absorbs it. The managers who add value will welcome the tool, because it frees them from work that was never theirs. The managers who absorb value will resist it, by raising risks, by insisting on edge cases, by quietly slowing the project. Their resistance is the diagnosis. You wanted a signal for where the bottleneck lives. They are it.\n\n**This week.** Pick one workflow where AI was deployed and adoption stalled. List every approval step in that workflow. For each approval, ask what would happen if the step was removed. If the honest answer is nothing bad, the approval was never decision authority. It was process ownership held in place to protect a role. Reassign it to the person actually doing the work. Then redeploy the tool.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5dca4a7e-06af-4433-9d81-18a2b1195892",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "[Leonard Green & Partners has acquired Cumming Group](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/) from New Mountain Capital. Cumming is a project and cost management advisory platform serving blue chip clients across capital projects. The deal is worth studying not for the price but for what the asset actually was.\n\nCumming was not bought for its technology. It was bought for a repeatable operating model that delivers complex project oversight at scale. The judgment is codified. The decision rights are clear. A new project manager can deliver value within weeks because the system tells them what to decide and what to escalate.\n\nFor a US owner between $5M and $100M, the implication is direct. The valuation premium in your next exit will not come from your client list. It will come from how much of your judgment has been turned into a system someone else could run without you in the room.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d76640c1-6dda-4515-8536-4671ff5cd7a8",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**RACI Matrix Template (Atlassian)** - A free template for mapping who is Responsible, Accountable, Consulted, and Informed for each decision in a workflow. It forces the conversation about which approvals exist for value versus control before you deploy any tool on top of the process. Available at [atlassian.com](https://www.atlassian.com/work-management/project-management/raci-chart).",
+        "sourceRefs": []
+      },
+      {
+        "id": "def20263-4f21-4361-b8e5-777cc2ae8903",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** Count the approval requests that hit your inbox between Monday and Friday. For each one, ask whether the person sending it could have decided alone. The count is your operating model's verdict on whether your team has authority or only the appearance of it. If the number is above ten, the AI tool you bought this quarter is not going to deliver what you expected.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a4cd081f-157f-491c-b5ec-af146ab005cf",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Sus gerentes están bloqueando su despliegue de IA en silencio",
+    "preheader": "La herramienta funciona. El modelo operativo a su alrededor, no.",
+    "thesis": "Las empresas medianas están desplegando herramientas de IA en busca de eficiencia, pero no capturan valor estratégico porque no rediseñaron el modelo operativo que decide cómo fluyen las decisiones y quién responde por los resultados. La tecnología funciona; lo que falla es la máquina alrededor.",
+    "shareableSentence": "El proceso es el foso que rodea la autoridad del gerente. Automatice el proceso y el foso desaparece.",
+    "sections": [
+      {
+        "id": "5e400fb0-214a-492d-a19f-7cc5c654344f",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: la IA no expone una falla de herramientas. Expone qué gerentes nunca corrieron el proceso, solo lo controlaban.*\n\n- **Estrategia:** LongRange Capital comprará Pizza Hut a Yum Brands por 1,500 mdd, mientras Yum China toma la operación en China continental por 1,200 mdd. **Un negocio que no se puede separar limpio tampoco se puede vender limpio.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Modelos Operativos:** Insperity sostiene que la agilidad operativa tras una adquisición depende de una estrategia de capital humano que casi nadie diseña. **El modelo operativo decide si la agilidad es eslogan o sistema.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/)\n- **Tecnología:** Grata describe a la IA en procesos de M&A como riesgo de credibilidad tanto como ganancia de productividad. **Las herramientas se ganan la confianza solo cuando el sistema que las rodea ya la tiene.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/video-grata-ai-trust-problem-dealmakers-solve/)\n- **Capital Humano:** Fast Company reporta que los empleados junior que crecieron con IA hoy poseen el conocimiento que los líderes senior necesitan aprender. **La experticia ya no fluye en la dirección que el organigrama daba por sentada.** [Leer en Fast Company ->](https://www.fastcompany.com/91557976/your-youngest-employees-may-be-your-most-valuable-ai-teachers)",
+        "sourceRefs": []
+      },
+      {
+        "id": "0451bc00-ef34-4123-b022-0dc5e8cf8c3d",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Tres historias esta semana. [El consultor de capital privado de Insperity](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/) sostiene que la agilidad operativa tras una adquisición depende de una estrategia de capital humano que casi nadie diseña. [Grata describe a la IA en M&A](https://middlemarketgrowth.org/video-grata-ai-trust-problem-dealmakers-solve/) como riesgo de credibilidad tanto como ganancia de productividad. Y [Fast Company plantea](https://www.fastcompany.com/91557976/your-youngest-employees-may-be-your-most-valuable-ai-teachers) que los empleados junior cargan hoy un saber que los líderes senior necesitan aprender. Sectores distintos, mismo movimiento de fondo: la autoridad ya no reside donde el organigrama indica. El dueño que opera su empresa como si el conocimiento fluyera de arriba hacia abajo está administrando un edificio que ya no existe.",
+        "sourceRefs": []
+      },
+      {
+        "id": "44fb7a4c-dcd1-4f84-9546-77a92a8886b4",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Compró la herramienta de IA. El equipo la usa a medias. La ganancia de productividad que le prometieron no llegó. Los reportes siguen entregándose tarde. Las aprobaciones siguen embotellándose en las mismas personas. El tablero que prometía visibilidad lo actualiza alguien que copia datos de otro sistema y los pega ahí. Usted asume que el despliegue quedó incompleto y agenda otra capacitación.\n\nNo es un problema de despliegue. Es un problema de modelo operativo. Y quienes construyeron el modelo operativo que rige hoy son los mismos que, en silencio, se aseguran de que la herramienta nueva no lo altere.\n\nEl mecanismo funciona así. La mayoría de los procesos en una mediana empresa no se diseñaron: se fueron acumulando. Un gerente metió un paso porque alguna vez ocurrió un error. Otra agregó una aprobación porque quería visibilidad. Con el tiempo, el proceso se convirtió en un registro de qué gerentes querían estar en qué circuitos. Al desplegar IA sobre ese flujo, la herramienta atiende el trabajo sin dificultad. Lo que no puede atender es la política. El paso donde Marcus revisa el archivo sigue ahí. No porque Marcus aporte criterio. Sino porque su rol está definido, en parte, por ser quien revisa el archivo.\n\nAhí aparece el diagnóstico que casi todos los dueños pasan por alto. Los gerentes que frenan la adopción no la frenan porque no entiendan la herramienta. La frenan porque entienden con precisión qué es lo que amenaza. El proceso es el foso que rodea su autoridad. Automatice el proceso y el foso desaparece.\n\nEl Operating Model OS plantea una pregunta más incómoda que la de productividad. Pregunta tres cosas. Cuáles decisiones del flujo requieren criterio humano. Cuáles requieren responsabilidad humana. Y cuáles \"decisiones\" son, en realidad, puntos de control que no producen nada. Las dos primeras se conservan. La tercera hay que reasignarla antes de desplegar la herramienta. No después. Antes.\n\nEsto le exige hacer algo que la mayoría de los dueños evita. Mirar a cada gerente con autoridad de aprobación y preguntarse, con honestidad, si esa aprobación aporta valor o lo absorbe. Quienes aportan valor recibirán bien la herramienta, porque los libera de trabajo que nunca fue suyo. Quienes absorben valor la frenarán: levantarán riesgos, insistirán en casos extremos, retrasarán el proyecto en voz baja. Esa resistencia es el diagnóstico. Usted buscaba una señal para localizar el cuello de botella. La señal son ellos.\n\n**Esta semana,** elija un flujo donde la IA se desplegó y la adopción se atascó. Liste cada paso de aprobación. Por cada uno, pregúntese qué pasaría si lo elimina. Si la respuesta honesta es nada malo, esa aprobación nunca fue autoridad de decisión. Era propiedad de proceso sostenida para proteger un rol. Reasígnela a quien hace el trabajo. Después vuelva a desplegar la herramienta.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5dca4a7e-06af-4433-9d81-18a2b1195892",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "[BMW Group anunció](https://elceo.com/negocios/bmw-group-fabricara-dos-modelos-electricos-en-mexico-para-2027/) que su planta de San Luis Potosí producirá dos modelos eléctricos de la plataforma Neue Klasse a partir de 2027, con una inversión cercana a los 2,000 mdd. Lo interesante no es el monto. Es lo que el monto compra.\n\nBMW no está construyendo una operación nueva en México. Está extendiendo un modelo operativo que ya funciona en Múnich, Spartanburg y Shenyang. El criterio de producción está codificado en el sistema, no en la cabeza del director de planta. Un ingeniero recién llegado entrega calidad premium en semanas porque la decisión sobre qué hacer y qué escalar ya la tomó el sistema, no él.\n\nPara el dueño de una empresa mediana mexicana, entre 5 y 100 millones de dólares de facturación, la lectura es directa. La prima de valuación en su próxima salida no vendrá de su cartera de clientes. Vendrá de cuánto de su criterio quedó convertido en un sistema que alguien más pueda operar sin usted en la sala.",
+        "sourceRefs": []
+      },
+      {
+        "id": "d76640c1-6dda-4515-8536-4671ff5cd7a8",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**RACI Matrix Template (Atlassian)** - una plantilla gratuita para identificar quién es Responsable, Aprobador, Consultado e Informado en cada decisión de un flujo. Obliga a sostener la conversación sobre qué aprobaciones existen por valor real y cuáles solo por control, antes de montar cualquier herramienta encima del proceso. Disponible en [atlassian.com](https://www.atlassian.com/work-management/project-management/raci-chart).",
+        "sourceRefs": []
+      },
+      {
+        "id": "def20263-4f21-4361-b8e5-777cc2ae8903",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**El indicador de la semana:** cuente las solicitudes de aprobación que llegan a su bandeja de lunes a viernes. Por cada una, pregúntese si quien la envió pudo haber decidido por su cuenta. Ese conteo es el veredicto de su modelo operativo sobre si el equipo tiene autoridad real o sólo la apariencia. Si supera diez, la herramienta de IA que adquirió este trimestre no va a entregar lo que usted esperaba.",
+        "sourceRefs": []
+      },
+      {
+        "id": "a4cd081f-157f-491c-b5ec-af146ab005cf",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 90,
+    "issues": [
+      {
+        "rule": "rule-3-declarative-verbs",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Phrase 'requires you to do something' softens agency slightly — could be tightened to 'requires doing X' for more directness.",
+        "excerpt": "This requires you to do something most owners avoid."
+      },
+      {
+        "rule": "rule-16-pacing",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The diagnostic sequence is long (7 paragraphs) — consider breaking with a subhead or shorter graf between mechanism explanation and action step.",
+        "excerpt": "Here is the mechanism... [continues through multiple paragraphs to] This week."
+      }
+    ],
+    "wordCounts": {
+      "signal": 183,
+      "apertura": 100,
+      "insight": 468,
+      "fieldReport": 146,
+      "tool": 48,
+      "compass": 69,
+      "total": 1014
+    },
+    "shareableSentence": "The managers blocking AI adoption are not blocking it because they do not understand the tool. They are blocking it because they understand exactly what it threatens.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"The managers blocking AI adoption are not blocking it because they do not understand the tool. They are blocking it because they understand exactly what it threatens.\"",
+      "Reframe confirmed: \"You assume the rollout was incomplete. You schedule another training session. It is not a rollout problem. It is an operating model problem. And the people who built the operating model you have today are the ones quietly making sure the new tool does not change it.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": null,
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-17-hero.png",
+        "publicUrl": null,
+        "prompt": "A hand-drawn architectural blueprint rendered in charcoal pencil showing a building's foundation with misaligned load-bearing walls—one section drawn in precise technical lines, another in rough sketches that refuse to connect. Orange graphite highlights mark the structural gaps where support columns should meet but don't. Negative space dominates the composition. The drawing suggests a structure where new engineering collides with old scaffolding that was never designed to carry weight, only to maintain positions. Matte white background, elegant editorial illustration style, minimalist geometric forms, sophisticated pencil texture.",
+        "altText": {
+          "en": "Tangled organizational chart with AI tool icons floating disconnected outside the structure",
+          "es": "Organigrama enredado con íconos de herramientas de IA flotando desconectados fuera de la estructura"
+        },
+        "caption": {
+          "en": "Your AI tools work fine—it's the org chart that's breaking them.",
+          "es": "Tus herramientas de IA funcionan bien—es el organigrama el que las está rompiendo."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11321,
+      "outputTokens": 1853,
+      "costUsd": 0.061758
+    },
+    "writer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 96,
+      "outputTokens": 27498,
+      "costUsd": 0.68793
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 25,
+      "outputTokens": 894,
+      "costUsd": 0.013485
+    },
+    "localizer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 246,
+      "outputTokens": 10699,
+      "costUsd": 0.268705
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1597,
+      "outputTokens": 1556,
+      "costUsd": 0.048770999999999995
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1708,
+      "costUsd": 0.025686
+    },
+    "totalUsd": 1.080649
+  }
+}
