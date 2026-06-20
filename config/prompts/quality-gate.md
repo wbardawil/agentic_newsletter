@@ -80,13 +80,26 @@ Respond with valid JSON only.
     Claim: The writer claims a sector-wide pattern, but sources only mention a
     single company.").
 
+Each element of `verifiedClaims` and `unverifiedClaims` MUST be a JSON object —
+never a plain string. Use this exact shape:
+
+```json
+// verifiedClaims element:
+{ "claim": "The specific claim text", "language": "en", "supportingFactId": "<uuid of the source item>" }
+
+// unverifiedClaims element:
+{ "claim": "The specific claim text", "language": "en", "section": "insight | fieldReport | etc." }
+```
+
 ```json
 {
   "passed": true,
   "hardFailures": [],
   "factCheck": {
-    "verifiedClaims": [...],
-    "unverifiedClaims": [...]
+    "verifiedClaims": [
+      { "claim": "Example verified claim.", "language": "en", "supportingFactId": "source-uuid" }
+    ],
+    "unverifiedClaims": []
   },
   "angleOriginality": {
     "similarityScore": 0.0,

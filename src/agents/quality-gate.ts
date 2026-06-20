@@ -213,6 +213,27 @@ export class QualityGateAgent extends BaseAgent<
 
     const text = extractTextFromMessage(message.content);
     const parsed = parseLlmJson(text, "quality-gate") as unknown;
+
+    // Normalize factCheck arrays — the LLM sometimes returns flat string arrays
+    // instead of the required {claim, language} object shape. Coerce strings to
+    // objects so Zod doesn't throw and the fact-check result is preserved.
+    if (parsed && typeof parsed === "object") {
+      const p = parsed as Record<string, unknown>;
+      const fc = p.factCheck as Record<string, unknown> | undefined;
+      if (fc) {
+        if (Array.isArray(fc.verifiedClaims)) {
+          fc.verifiedClaims = fc.verifiedClaims.map((c: unknown) =>
+            typeof c === "string" ? { claim: c, language: "en" as const } : c,
+          );
+        }
+        if (Array.isArray(fc.unverifiedClaims)) {
+          fc.unverifiedClaims = fc.unverifiedClaims.map((c: unknown) =>
+            typeof c === "string" ? { claim: c, language: "en" as const } : c,
+          );
+        }
+      }
+    }
+
     const result = QualityGateResultSchema.parse(parsed);
 
     // Source diversity is a pure URL-parse, not a judgment call. Override the
