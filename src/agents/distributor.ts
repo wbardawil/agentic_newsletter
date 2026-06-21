@@ -130,12 +130,6 @@ export class DistributorAgent extends BaseAgent<
     const { beehiivApiKey, beehiivPublicationId, newsletterAuthor, dryRun } =
       this.deps.apiClients;
 
-    if (!beehiivApiKey || !beehiivPublicationId) {
-      throw new Error(
-        "BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID must be set to distribute",
-      );
-    }
-
     if (dryRun) {
       this.logger.info("Distributor: dry-run mode — skipping Beehiiv API calls", {
         runId: context.runId,
@@ -145,6 +139,12 @@ export class DistributorAgent extends BaseAgent<
         { platform: "beehiiv", distributedAt: now, status: "draft", externalId: "dry-run-en" },
         { platform: "beehiiv", distributedAt: now, status: "draft", externalId: "dry-run-es" },
       ];
+    }
+
+    if (!beehiivApiKey || !beehiivPublicationId) {
+      throw new Error(
+        "BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID must be set to distribute",
+      );
     }
 
     const records: DistributionRecord[] = [];
