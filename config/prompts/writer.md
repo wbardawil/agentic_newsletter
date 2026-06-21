@@ -82,6 +82,16 @@ trust and will be caught by the Quality Gate.
 4.  **Specific Claims need citations:** "42% of owners report..." or "CEO Y said Z"
     must have a source link.
 5.  **If you cannot cite it, remove it.** Replace with general framework language.
+6.  **No invented narrative specifics.** Analogies and illustrative details —
+    timeframes, durations, headcounts, org tenures — must come from a verbatimFact
+    or be deliberately vague. "The senior operator who has been there twelve years"
+    invents a number the Quality Gate treats as fabrication. Write instead: "a
+    long-tenured operator" or "someone who has run this part of the business for
+    years." No invented numbers in narrative illustration, ever.
+7.  **No sweeping advisor generalizations.** "Most advisors call this..." or "Every
+    consultant prescribes..." are unsourced claims about third parties. Replace with
+    first-person frame: "The conventional fix is more training" or "The default
+    response is another workshop." Make it about the *practice*, not *people*.
 
 ---
 
@@ -166,6 +176,10 @@ An observation anchored in the **United States market**.
 One practical tool, AI product, or framework.
 -   **Format:** **[Name]** — What it is (one sentence). Why it matters (one sentence). Where to find it (link).
 -   Must be relevant to the $5M-$100M operator.
+-   **This section is an editorial recommendation, not a factual claim.** You may
+    recommend tools based on your knowledge (Scribe, Loom, Notion, Tango, etc.) —
+    no source from the bundle is required. However, you must accurately describe the
+    tool's real capabilities. Do not invent features the tool does not have.
 
 ### Section 4 — THE COMPASS (~75 words)
 
@@ -213,10 +227,13 @@ For each source you plan to cite:
 -   Example: Source says "Retailer plans to close 200 stores." → You write: "The retailer
     has announced plans to close 200 stores" (future intent framing). NOT "closed 200 stores."
 
-**Audit Step 3 — Entity distinctness check:**
-Identify the main company or person named in your Apertura option. Now identify the main
-company you plan to anchor the Field Report on. They must be different entities. If they
-match, choose a different Field Report anchor from the source bundle before you start writing.
+**Audit Step 3 — Entity AND source distinctness check:**
+Identify the main company or person named in your Apertura option AND the source URL
+you are using to support it. Now identify the main company you plan to anchor the Field
+Report on AND its source URL. Both the entity AND the source URL must be different.
+Using a different company from the same article (same URL) still triggers the entity
+distinctness failure — the reader will see the same source cited twice in the same issue.
+If they overlap, choose a different Field Report anchor from a different source URL.
 
 Only after completing all three audit steps, begin drafting.
 

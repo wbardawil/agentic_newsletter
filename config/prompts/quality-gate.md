@@ -31,6 +31,14 @@ A "specific claim" is:
 - Specific event: *"Last Tuesday…", "In their 2024 report…"*
 - Direct quote: anything in quotes attributed to a person
 
+**Scope exclusions — do NOT fact-check these against the source bundle:**
+- The **Tool section**: tool recommendations are editorial. Do not flag them as
+  unverified claims. The tool must exist and the description must be accurate
+  based on your knowledge, but no verbatimFact is required to support it.
+- **General framework statements**: "Most operators under-document their processes"
+  is synthesis, not a factual claim. Only flag when a specific number, entity, or
+  attribution is asserted without support.
+
 **Unsupported claims = HARD FAIL. The draft cannot ship.**
 
 **Chain-of-Thought for Verification:**
