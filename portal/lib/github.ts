@@ -41,6 +41,14 @@ export interface GitHubFile {
   size: number;
 }
 
+export interface GitHubAsset {
+  content: Buffer;
+  contentType: string;
+  sha: string;
+  path: string;
+  size: number;
+}
+
 export interface CommitResult {
   newSha: string;
   commitSha: string;
@@ -71,6 +79,11 @@ function authHeaders(token: string): HeadersInit {
 function decodeBase64(b64: string): string {
   const clean = b64.replace(/\n/g, "");
   return Buffer.from(clean, "base64").toString("utf-8");
+}
+
+function decodeBase64ToBuffer(b64: string): Buffer {
+  const clean = b64.replace(/\n/g, "");
+  return Buffer.from(clean, "base64");
 }
 
 function encodeBase64(text: string): string {
@@ -159,6 +172,54 @@ export async function fetchDraftJson<T = unknown>(
     throw new GitHubError(422, "VALIDATION", `File ${path} on ${branch} is not valid JSON`);
   }
 }
+
+/**
+ * Fetch a binary asset from a draft branch.
+ *
+ * Used by the publish flow to read hero images. Throws a GitHubError on
+ * transport failure.
+ */
+export async function fetchDraftAsset(
+  repo: string,
+  branch: string,
+  path: string,
+  fetchImpl: typeof fetch = fetch,
+): Promise<GitHubAsset> {
+  const token = requireToken();
+  const url = `${GITHUB_API}/repos/${repo}/contents/${encodeURI(path)}?ref=${encodeURIComponent(branch)}`;
+  const init: RequestInit = { method: "GET", headers: authHeaders(token) };
+
+  let response = await fetchOnce(url, init, fetchImpl);
+  if (!response.ok && response.status >= 500) {
+    await new Promise((r) => setTimeout(r, 500));
+    response = await fetchOnce(url, init, fetchImpl);
+  }
+  if (!response.ok) {
+    throw mapStatus(response.status, await readBody(response));
+  }
+
+  const data = (await response.json()) as {
+    content?: string;
+    sha?: string;
+    path?: string;
+    size?: number;
+    encoding?: string;
+  };
+  if (!data.content || !data.sha || data.encoding !== "base64") {
+    throw new GitHubError(502, "UNKNOWN", "GitHub Contents API response for asset is missing content/sha or is not base64 encoded");
+  }
+
+  const contentType = response.headers.get("Content-Type") ?? "application/octet-stream";
+
+  return {
+    content: decodeBase64ToBuffer(data.content),
+    contentType,
+    sha: data.sha,
+    path: data.path ?? path,
+    size: data.size ?? 0,
+  };
+}
+
 
 /**
  * Create or update a file on a draft branch.

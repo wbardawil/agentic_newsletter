@@ -6,6 +6,13 @@ import { GitHubError } from "@/lib/github";
 let draftFixture: unknown;
 let sourcesFixture: unknown | (() => never);
 let reviewFixture: unknown | (() => never);
+let assetFixture: Buffer | (() => never) = Buffer.from("mock-image");
+
+const uploadAssetMock = vi.fn();
+
+vi.mock("@/lib/supabase/storage", () => ({
+  uploadAsset: uploadAssetMock,
+}));
 
 vi.mock("@/lib/github", async (importActual) => {
   const actual = await importActual<typeof import("@/lib/github")>();
@@ -24,6 +31,10 @@ vi.mock("@/lib/github", async (importActual) => {
         if (typeof reviewFixture === "function") return (reviewFixture as () => never)();
         return reviewFixture;
       }
+    }),
+    fetchDraftAsset: vi.fn(async (_repo: string, _branch: string, _path: string) => {
+      if (typeof assetFixture === "function") return (assetFixture as () => never)();
+      return { content: assetFixture, contentType: "image/png" };
     }),
   };
 });
@@ -108,6 +119,7 @@ beforeEach(() => {
   upsertSingle.mockResolvedValue({ data: { id: "db-1" }, error: null });
   deleteEq.mockResolvedValue({ error: null });
   sourcesInsert.mockResolvedValue({ error: null });
+  uploadAssetMock.mockResolvedValue("https://storage.example.com/edition-assets/2026-19/hero.png");
   draftFixture = validDraft();
   sourcesFixture = { items: [{ title: "S", url: "https://x.example", summary: "sum", outlet: "Out" }] };
   reviewFixture = approvedReview();
@@ -182,13 +194,36 @@ describe("publishEdition — review gate", () => {
     expect(upsertSingle).toHaveBeenCalledOnce();
   });
 
-  it("populates heroImageUrl from review.image.publicUrl", async () => {
+  it("uploads hero asset from review.image.assetPath and populates heroImageUrl", async () => {
+    const { fetchDraftAsset } = await import("@/lib/github");
+    reviewFixture = approvedReview({
+      image: {
+        ...approvedReview().image,
+        assetPath: "drafts/2026-19/hero-conceptual.png",
+        publicUrl: "this-should-not-be-used",
+      },
+    });
     const result = await publishEdition("2026-19");
-    expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero-v1.png");
+    expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero.png");
+    expect(fetchDraftAsset).toHaveBeenCalledWith(expect.any(String), expect.any(String), "drafts/2026-19/hero-conceptual.png");
+    expect(uploadAssetMock).toHaveBeenCalledOnce();
+    const uploadCall = uploadAssetMock.mock.calls[0];
+    expect(uploadCall[0]).toBe("2026-19/hero-conceptual.png"); // storage path
+    expect(uploadCall[1]).toBeInstanceOf(Buffer); // body
+    expect(uploadCall[2]).toBe("image/png"); // content type
   });
 
-  it("sets heroImageUrl to null when review.image.publicUrl is null", async () => {
-    reviewFixture = approvedReview({ image: { ...approvedReview().image, publicUrl: null } });
+  it("falls back to review.image.publicUrl if assetPath is missing", async () => {
+    const { fetchDraftAsset } = await import("@/lib/github");
+    reviewFixture = approvedReview({ image: { ...approvedReview().image, assetPath: null } });
+    const result = await publishEdition("2026-19");
+    expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero-v1.png");
+    expect(fetchDraftAsset).not.toHaveBeenCalled();
+    expect(uploadAssetMock).not.toHaveBeenCalled();
+  });
+
+  it("sets heroImageUrl to null when both assetPath and publicUrl are null", async () => {
+    reviewFixture = approvedReview({ image: { ...approvedReview().image, assetPath: null, publicUrl: null } });
     const result = await publishEdition("2026-19");
     expect(result.heroImageUrl).toBeNull();
   });
@@ -261,12 +296,11 @@ describe("publishEdition — review gate", () => {
 // ── hero_image_url in Supabase row ────────────────────────────────────────────
 
 describe("publishEdition — hero_image_url propagation", () => {
-  it("upserts with hero_image_url from approved review", async () => {
-    await publishEdition("2026-19");
-    // The upsert was called — validate the row passed includes the URL
-    // (We can't easily inspect the row directly, but the result confirms it ran)
-    expect(upsertSingle).toHaveBeenCalledOnce();
+  it("upserts with hero_image_url from asset upload", async () => {
+    uploadAssetMock.mockResolvedValue("https://storage.example.com/a-new-hero.png");
     const result = await publishEdition("2026-19");
-    expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero-v1.png");
+    expect(result.heroImageUrl).toBe("https://storage.example.com/a-new-hero.png");
+    expect(uploadAssetMock).toHaveBeenCalledOnce();
+    expect(upsertSingle).toHaveBeenCalledOnce();
   });
 });

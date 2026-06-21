@@ -23,7 +23,8 @@
 import { z } from "zod";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
-import { fetchDraftJson, GitHubError } from "@/lib/github";
+import { uploadAsset } from "@/lib/supabase/storage";
+import { fetchDraftJson, fetchDraftAsset, GitHubError } from "@/lib/github";
 import {
   buildEditionRow,
   buildSourceRows,
@@ -108,6 +109,8 @@ const SourceBundleSchema = z.object({
 const ReviewGateSchema = z.object({
   image: z.object({
     status: z.string(),
+    // The asset path lives on the draft branch, not in the final storage bucket.
+    assetPath: z.string().optional(),
     publicUrl: z.string().nullable().optional(),
   }),
   content: z.object({
@@ -223,7 +226,23 @@ export async function publishEdition(editionId: string): Promise<PublishResult> 
       );
     }
 
-    heroImageUrl = review.image.publicUrl ?? null;
+    // If we have an asset path, we need to upload it and get the public URL.
+    if (review.image.assetPath) {
+      try {
+        const asset = await fetchDraftAsset(repo, branch, review.image.assetPath);
+        const storagePath = review.image.assetPath.replace(/^drafts\//, "");
+        heroImageUrl = await uploadAsset(storagePath, asset.content, asset.contentType);
+      } catch (err) {
+        if (err instanceof GitHubError) {
+          throw new PublishError("GITHUB", `Failed to fetch hero image asset: ${err.message}`);
+        }
+        // Could be a Supabase storage error
+        throw new PublishError("DB", `Failed to upload hero image: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    } else {
+      // If there's no asset path, we can still use the publicUrl if it exists.
+      heroImageUrl = review.image.publicUrl ?? null;
+    }
   }
 
   // ── 4. optional sources snapshot (non-fatal if absent) ────────────────────
