@@ -64,7 +64,7 @@ create policy "editions member read" on public.editions for select
   using (
     auth.uid() is not null
     and is_published = true
-    and exists (select 1 from public.members m where m.id = auth.uid() and m.status = 'active')
+    and exists (select 1 from public.members m where m.id = auth.uid())
   );
 
 create policy "editions admin write" on public.editions for all
