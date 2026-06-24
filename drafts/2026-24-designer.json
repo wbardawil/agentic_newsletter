@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-24-hero.png",
+      "publicUrl": null,
+      "prompt": "A hand-drawn graphite illustration showing an architectural cross-section: a single narrow doorway at ground level, with long queues of abstract human figures waiting outside. Above the doorway, multiple empty floors and rooms suggest capacity without access. The doorway itself is rendered in heavy charcoal, a visual bottleneck. Behind it, a barely-visible owner figure holds a clipboard. Orange highlight on the doorway frame emphasizes the constraint. Elegant pencil sketch style, matte finish, white background, minimal composition with deliberate negative space conveying structural limitation rather than human failure.",
+      "altText": {
+        "en": "Entrepreneur sitting alone at desk reviewing resumes while empty chairs line the hallway outside",
+        "es": "Empresario sentado solo revisando currículums mientras sillas vacías se alinean en el pasillo afuera"
+      },
+      "caption": {
+        "en": "You've become the constraint you were trying to eliminate.",
+        "es": "Te has convertido en la limitación que intentabas eliminar."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}

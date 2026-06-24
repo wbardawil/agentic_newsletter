@@ -1,0 +1,286 @@
+{
+  "runId": "cae17e5f-2185-47f8-a661-db0271589f5a",
+  "editionId": "2026-24",
+  "generatedAt": "2026-06-19T15:44:32.414Z",
+  "contentHash": "60b5f8562d1a07bfe5be220695c66e51fe39caf9b6616e7c4fc1ec4d2bee02f0",
+  "angle": {
+    "headline": "The 30-Second Filter: Why Your Best Hires Never Get Past the Interview",
+    "thesis": "Business owners who personally interview every candidate believe they're protecting quality, but they've actually made themselves the bottleneck — the same instinct that built the business now prevents it from scaling.",
+    "targetPersona": "Founder-led businesses with $10M-$50M revenue where the owner still personally approves every key hire and complains the talent pool has deteriorated",
+    "relevanceToAudience": "SpaceX's radical interview protocol exposes the paradox of founder-led hiring: the same judgment that identified early winners becomes the constraint preventing the next 100 hires — especially critical for corridor operators building cross-border teams where cultural fluency matters more than résumé pedigree",
+    "suggestedSources": [
+      "67506fa6-4d98-41d2-8804-1f44f4256bc9",
+      "905aa25e-d137-4edf-a08c-b9fa3ab5b81a",
+      "4a546a2c-d75c-4788-a992-feb89a0d5b6e"
+    ],
+    "talkingPoints": [
+      "You can't complain about talent quality when you're the reason qualified candidates walk away — a 30-second interview that ends badly isn't screening for excellence, it's screening for desperation",
+      "Musk's method works at SpaceX because he built the hiring machine first: structured rubrics, trained interviewers, clear go/no-go criteria that don't require him in every room — most owners skip that step and wonder why nothing scales",
+      "The Delegation Threshold framework: you can personally interview up to 50 employees; beyond that, you're either building an interviewing system or building a 50-person company",
+      "Pick one role this quarter where you will not interview the final candidate — design the hiring rubric, train the interviewer, review the decision after the fact, and learn whether your business can make a good call without you"
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The owner must trust that someone else can identify talent as well as they can — which requires admitting that their personal judgment, while valuable, is not the only valid filter and may actually encode biases that limit the team's diversity and capability",
+      "framework": "ADKAR: Desire"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Why your next twenty hires will look like the last",
+    "preheader": "When the owner is the only hiring filter, the team gets narrower over time.",
+    "subjectOptions": [
+      "The hiring filter only you can read",
+      "Why your next twenty hires will look like the last",
+      "What LongRange's $1.5B Pizza Hut bet means for you"
+    ],
+    "sections": [
+      {
+        "id": "2eea4fe1-6e3b-4e8d-8973-fdbd1468ce47",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: every signal points to the same question: what survives in the business once the founder stops being the system.*\n\n- **Strategy:** LongRange Capital is acquiring Pizza Hut from Yum Brands for $1.5 billion, with Yum China taking the Mainland China business for $1.2 billion. **Strategy is choosing which parts of a business deserve their own operating model and which were only ever a line on a parent's portfolio.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Operating Models:** A second-generation owner writing on family business succession concludes that letting go is harder than taking hold, fifteen years after inheriting the company at 29. **An operating model is revealed by what continues when the founder withdraws.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/)\n- **Technology:** Chief Executive argues that 'all in on AI' makes for headlines but loses to small, structured deployments that compound. **Technology adoption reflects the smallest unit of work the organization can actually change.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Human Capital:** Insperity's Brad Burke told the ACG podcast that human capital strategy is the most overlooked variable in M&A operational agility, before and after close. **Human capital is not a function inside an operating model. It is the operating model, distributed across people.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "df17d257-005f-4611-a36d-94e7febd058d",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nLongRange Capital paid $1.5 billion this week to take Pizza Hut private, [per Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). Yum Brands had owned the chain for decades and could not get the operations to scale on its terms. The transaction is not a bet on pizza. It is a bet that pulling the brand out of a parent company's operating model frees decisions the previous structure could not make. The thesis sits underneath most mid-market deals right now: the product is not the problem, the system around it is. For owners in the $5M-$100M range, the question that lands hardest this week is not whether the business has value. It is whether the operating model can be separated from the owner who built it.\n===OPTION_B:provocation===\nThe most expensive hire in any $5M-$100M company is still the one the founder makes alone. Not because the founder picks badly. Most pick well, which is why the business exists. The expense is what the solo decision encodes. Every hire reflects criteria that live only in the owner's head. The team cannot replicate what it has never seen. The next twenty hires get narrower, not because the founder wanted that, but because the filter never got written down and never got tested against anyone else's read. This week's coverage of human capital in M&A and family business succession both point at the same gap. The filter is the founder, and the founder is the ceiling.\n===OPTION_C:pattern===\nThree pieces in this week's coverage describe different problems and arrive at the same diagnosis. A second-generation owner writing on [family business succession](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) concludes that letting go is harder than taking hold. [Insperity's M&A consultant](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/) tells the ACG podcast that human capital strategy is the most overlooked variable in operational agility. A [Chief Executive piece on avoided conversations](https://chiefexecutive.net/the-high-cost-of-avoided-conversations/) argues that leaders create problems by waiting too long to say anything. Different industries, different framings, one pattern. The bottleneck is the owner who has not yet let someone else carry the decision, and the decisions stack up while the team waits for permission the system never gave them.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f5d6549d-2ad6-4970-9522-6dc17e334e08",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You hire by gut. It worked. Every key person on your team was your call, and most of them turned out to be the right call. The business exists because of that judgment.\n\nNow the team is twenty, fifty, two hundred. You are still the only person who can decide whether someone is the right fit. The pattern that built the business has become the constraint on it.\n\nMost owners diagnose this as a recruiting problem. They hire an HR lead. They buy an ATS. The decisions still route to the owner. The new system processes more candidates faster, but the final filter never moves.\n\nThe real diagnosis sits in two places. First, the hiring criteria never got converted into an artifact. They live in your head at full resolution and nowhere else. Your team cannot apply what they cannot see. Second, and this is the harder one, the instinct that built the company encodes biases you have not examined. People who feel right tend to look like the people who worked before. Your team gets narrower. Capability concentrates. The diversity of judgment your next phase requires does not arrive.\n\nThe Operating Model OS frames this as a missing Decision Rule for hiring. Three components. Trigger: the role and the moment the rule applies. Test: the specific criteria (skills, behaviors, evidence) that determine fit. Boundary: what makes the answer no regardless of how the conversation feels.\n\nWriting the rule does two things at once. It gives your team something to apply without you. And it shows you, for the first time, what you have been filtering for. Some criteria will be about performance and should stay. Some will be about familiarity, comfort, or shared background. Those you confront.\n\nThe hardest part is not writing the rule. It is wanting someone else to use it. Wanting to be relieved of the hiring filter is the precondition. Without it, you will write the rule and override it the moment a candidate sits across from you. Agreeing in principle is not the same as wanting it.\n\nThis week, write the Decision Rule for the next role you are hiring. Trigger, test, boundary. Hand it to one person on your team and let them screen the first round without you. Read their notes before you meet anyone. The gap between their assessment and yours is the data. The question that matters is not whose read is right. It is what your read filtered out that you never noticed.",
+        "sourceRefs": []
+      },
+      {
+        "id": "071a66ce-7db3-42af-9292-fbcec57c6d69",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "LongRange Capital is acquiring Pizza Hut from Yum Brands for $1.5 billion, [according to Middle Market Growth's PE Weekly](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/), with Yum China Holdings buying the Mainland China business for $1.2 billion. The chain has lost ground for years inside a parent company that prioritized Taco Bell and KFC.\n\nThe transaction reads as a financing event. It is an operating model event. Yum ran Pizza Hut as one brand inside a portfolio where capital, talent, and decisions flowed through corporate. LongRange is betting that pulling the chain out lets operational moves happen at a speed the parent-company structure could not support.\n\nThis is the thesis underneath most mid-market PE take-privates right now. The product is not broken. The system around it stopped scaling, and the people inside it stopped having the authority to fix it.\n\nFor US owners in the $5M-$100M range, the implication is direct. The businesses that get bought and turned around are not the ones with bad products. They are the ones whose operating model became the founder's preferences, frozen in place, with no one else authorized to change them.",
+        "sourceRefs": []
+      },
+      {
+        "id": "73993eda-1a29-4dec-9610-fd39e8afd012",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Metaview**: an AI assistant that records interviews and structures candidate notes against a defined rubric. It matters here because it lets a hiring team apply the same evaluation criteria across rounds, so the founder's gut filter stops being the only signal that counts. Find it at [metaview.ai](https://metaview.ai).",
+        "sourceRefs": []
+      },
+      {
+        "id": "09373395-d32b-43f1-b2ee-632e58d52c78",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many hiring or talent decisions reach your desk that should have been resolved one level below you. Count them. Three or fewer says your filter lives somewhere your team can see. Five or more says the rule lives only in your head, and your team is still waiting for you to be the answer.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ed027dd0-60be-4e5c-b1a8-669d0d9deb0d",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué sus próximas veinte contrataciones se parecerán a las últimas",
+    "preheader": "Cuando el dueño es el único filtro de contratación, el equipo se angosta con el tiempo.",
+    "thesis": "El dueño que entrevista a cada candidato cree que protege la calidad. En realidad se volvió el cuello de botella: el mismo instinto que construyó la empresa hoy le impide escalar.",
+    "shareableSentence": "El equipo no puede aplicar lo que no puede leer.",
+    "sections": [
+      {
+        "id": "2eea4fe1-6e3b-4e8d-8973-fdbd1468ce47",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana las señales apuntan a una pregunta: qué queda del negocio cuando el fundador deja de ser el sistema.*\n\n- **Estrategia:** LongRange Capital adquiere Pizza Hut a Yum Brands por 1,500 millones de dólares, mientras Yum China toma el negocio de China continental por 1,200 millones. **La estrategia decide qué partes merecen modelo operativo propio y cuáles eran solo una línea en el portafolio ajeno.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/)\n- **Modelos Operativos:** Un dueño de segunda generación, quince años después de heredar la empresa a los 29, concluye que soltar es más difícil que tomar. **El modelo operativo se revela en lo que sigue funcionando cuando el fundador se va.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/)\n- **Tecnología:** Chief Executive sostiene que el discurso de \"todo a la IA\" pierde frente a despliegues pequeños y estructurados que componen valor con el tiempo. **La adopción tecnológica refleja la unidad mínima de trabajo que la organización puede cambiar de verdad.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/microdosing-ai-small-doses-big-performance-gains/)\n- **Capital Humano:** Brad Burke, de Insperity, dijo al podcast de ACG que la estrategia de capital humano es la variable más subestimada en la agilidad operativa de un M&A, antes y después del cierre. **No es una función dentro del modelo operativo: es el modelo, distribuido en personas.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-insperity-human-capital-operational-agility/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "df17d257-005f-4611-a36d-94e7febd058d",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "La contratación más cara en una mediana empresa sigue siendo la que el dueño hace en solitario. No porque elija mal. La mayoría elige bien, y por eso el negocio existe. El costo está en lo que la decisión aislada deja codificado. Cada contratación refleja criterios que viven únicamente en la cabeza del fundador. El equipo no puede replicar lo que nunca ha visto. Las siguientes veinte contrataciones se estrechan, no porque el dueño lo quisiera, sino porque el filtro nunca quedó por escrito ni se contrastó con la lectura de alguien más. La cobertura de esta semana sobre capital humano en M&A y sucesión familiar apunta al mismo hueco: el filtro es el fundador, y el fundador es el techo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "f5d6549d-2ad6-4970-9522-6dc17e334e08",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Usted contrata por intuición. Funcionó. Cada persona clave de su equipo fue su decisión, y la mayoría resultó la correcta. El negocio existe gracias a ese criterio.\n\nHoy el equipo es de veinte, cincuenta, doscientas personas. Usted sigue siendo el único que puede decidir si alguien encaja. El mismo patrón que construyó la empresa se convirtió en la restricción que la frena.\n\nLa mayoría de los dueños diagnostica esto como un problema de reclutamiento. Contratan a un líder de Recursos Humanos. Compran un ATS. Las decisiones siguen llegando al escritorio del dueño. El nuevo sistema procesa más candidatos en menos tiempo, pero el filtro final no cede.\n\nEl diagnóstico real vive en dos lugares. Primero, los criterios de contratación nunca se plasmaron en un documento. Existen en la cabeza del dueño con toda su nitidez, y en ningún otro sitio. El equipo no puede aplicar lo que no puede leer. Segundo, y aquí viene lo incómodo: el instinto que construyó la empresa carga sesgos que el dueño no ha examinado. Las personas que le parecen idóneas tienden a parecerse a quienes funcionaron antes. El equipo se estrecha. La capacidad se concentra. La diversidad de criterio que exige la siguiente fase no llega.\n\nEl Operating Model OS lo llama una Regla de Decisión faltante para contratar. Tres piezas. Disparador: el puesto y el momento en que aplica la regla. Prueba: los criterios concretos —habilidades, comportamientos, evidencia— que determinan el ajuste. Frontera: lo que convierte la respuesta en un no, sin importar qué tan bien salió la conversación.\n\nEscribir la regla hace dos cosas a la vez. Le da al equipo algo que aplicar sin usted. Y le muestra, por primera vez, qué ha estado filtrando. Algunos criterios serán de desempeño y deben quedarse. Otros responderán a familiaridad, comodidad o trasfondo compartido. Esos hay que confrontarlos.\n\nLo más difícil no es escribir la regla. Es querer que otra persona la use. Querer dejar de ser el filtro de contratación es la precondición. Sin eso, usted escribirá la regla y la saltará en cuanto un candidato se siente enfrente. Coincidir en principio no es lo mismo que quererlo de verdad.\n\nEsta semana, escriba la Regla de Decisión para la siguiente vacante. Disparador, prueba, frontera. Entréguesela a alguien del equipo y déjelo filtrar la primera ronda sin usted. Lea sus notas antes de conocer a nadie. La distancia entre su lectura y la de esa persona es el dato. La pregunta que importa no es quién tiene razón. Es qué ha estado filtrando usted sin darse cuenta.",
+        "sourceRefs": []
+      },
+      {
+        "id": "071a66ce-7db3-42af-9292-fbcec57c6d69",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nLongRange Capital adquiere Pizza Hut a Yum Brands por 1,500 millones de dólares, unos 26 mil mdp, [según el reporte semanal de Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). Yum China Holdings, en paralelo, se queda con el negocio de China continental por 1,200 millones. La cadena llevaba años perdiendo terreno dentro de una corporativa que priorizó Taco Bell y KFC.\n\nLa operación parece un evento de financiamiento. En rigor, es un evento de modelo operativo. Yum administraba Pizza Hut como una marca más dentro de un portafolio donde el capital, el talento y las decisiones pasaban por el corporativo. LongRange apuesta a que, al separar la cadena, las decisiones operativas ocurrirán a una velocidad que la estructura matricial no podía sostener.\n\nEsa es la tesis detrás de la mayoría de los take-privates del mercado medio. El producto no está roto. El sistema a su alrededor dejó de escalar, y quienes operaban adentro perdieron autoridad para corregirlo.\n\nPara el dueño mexicano de una empresa mediana, la lectura es directa. Los negocios que se adquieren y se reactivan no son los del producto fallido. Son aquellos cuyo modelo operativo se congeló en las preferencias del fundador, sin nadie con facultades para moverlas.",
+        "sourceRefs": []
+      },
+      {
+        "id": "73993eda-1a29-4dec-9610-fd39e8afd012",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Metaview** - un asistente de IA que graba entrevistas y estructura las notas del candidato conforme a una rúbrica predefinida. Vale la pena considerarlo esta semana porque permite que el equipo de contratación aplique los mismos criterios de evaluación en cada ronda, de manera que la intuición del dueño deje de ser la única señal que importa. Encuéntrelo en [metaview.ai](https://metaview.ai).",
+        "sourceRefs": []
+      },
+      {
+        "id": "09373395-d32b-43f1-b2ee-632e58d52c78",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuántas decisiones de contratación o de talento llegan a su escritorio siendo que pudieron resolverse un nivel más abajo. Cuéntelas. Tres o menos indica que su criterio está en un lugar que el equipo puede consultar. Cinco o más indica que la regla vive únicamente en su cabeza, y el equipo sigue esperando que usted sea quien resuelva.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ed027dd0-60be-4e5c-b1a8-669d0d9deb0d",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": null,
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "LongRange Capital is acquiring Pizza Hut from Yum Brands for $1.5 billion",
+          "supportingFactId": "d981a6ed-ca61-4c2b-be3c-2d4b97d94f25",
+          "language": "en"
+        },
+        {
+          "claim": "Yum China Holdings acquiring Pizza Hut in Mainland China for $1.2 billion",
+          "supportingFactId": "d981a6ed-ca61-4c2b-be3c-2d4b97d94f25",
+          "language": "en"
+        },
+        {
+          "claim": "A second-generation owner writing on family business succession concludes that letting go is harder than taking hold, fifteen years after inheriting the company at 29",
+          "supportingFactId": "4a546a2c-d75c-4788-a992-feb89a0d5b6e",
+          "language": "en"
+        },
+        {
+          "claim": "Insperity's Brad Burke told the ACG podcast that human capital strategy is the most overlooked variable in M&A operational agility",
+          "supportingFactId": "905aa25e-d137-4edf-a08c-b9fa3ab5b81a",
+          "language": "en"
+        },
+        {
+          "claim": "Chief Executive argues that 'all in on AI' makes for headlines but loses to small, structured deployments",
+          "supportingFactId": "26d693f2-6c1e-439a-88fc-7d2f5d5ca784",
+          "language": "en"
+        },
+        {
+          "claim": "LongRange Capital adquiere Pizza Hut a Yum Brands por 1,500 millones de dólares",
+          "supportingFactId": "d981a6ed-ca61-4c2b-be3c-2d4b97d94f25",
+          "language": "es"
+        },
+        {
+          "claim": "Yum China toma el negocio de China continental por 1,200 millones",
+          "supportingFactId": "d981a6ed-ca61-4c2b-be3c-2d4b97d94f25",
+          "language": "es"
+        },
+        {
+          "claim": "Un dueño de segunda generación, quince años después de heredar la empresa a los 29",
+          "supportingFactId": "4a546a2c-d75c-4788-a992-feb89a0d5b6e",
+          "language": "es"
+        },
+        {
+          "claim": "Brad Burke, de Insperity, dijo al podcast de ACG que la estrategia de capital humano es la variable más subestimada",
+          "supportingFactId": "905aa25e-d137-4edf-a08c-b9fa3ab5b81a",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": null,
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Middle Market Growth (ACG)",
+        "metaview.ai"
+      ],
+      "outletCount": 3
+    },
+    "summary": "Draft passes all checks with strong voice match (82/100), verified facts, and distinct angle; source diversity at threshold with 2 outlets cited inline."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-24-hero.png",
+        "publicUrl": null,
+        "prompt": "A hand-drawn graphite illustration showing an architectural cross-section: a single narrow doorway at ground level, with long queues of abstract human figures waiting outside. Above the doorway, multiple empty floors and rooms suggest capacity without access. The doorway itself is rendered in heavy charcoal, a visual bottleneck. Behind it, a barely-visible owner figure holds a clipboard. Orange highlight on the doorway frame emphasizes the constraint. Elegant pencil sketch style, matte finish, white background, minimal composition with deliberate negative space conveying structural limitation rather than human failure.",
+        "altText": {
+          "en": "Entrepreneur sitting alone at desk reviewing resumes while empty chairs line the hallway outside",
+          "es": "Empresario sentado solo revisando currículums mientras sillas vacías se alinean en el pasillo afuera"
+        },
+        "caption": {
+          "en": "You've become the constraint you were trying to eliminate.",
+          "es": "Te has convertido en la limitación que intentabas eliminar."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10137,
+      "outputTokens": 600,
+      "costUsd": 0.039411
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 647,
+      "outputTokens": 14112,
+      "costUsd": 0.35087700000000005
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 912,
+      "costUsd": 0.013752
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 985,
+      "outputTokens": 11776,
+      "costUsd": 0.292837
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1555,
+      "outputTokens": 1541,
+      "costUsd": 0.04842
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 966,
+      "costUsd": 0.014556
+    },
+    "totalUsd": 0.7461010000000001
+  }
+}
