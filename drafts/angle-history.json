@@ -27,6 +27,35 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-22",
+      "recordedAt": "2026-06-18T23:52:31.531Z",
+      "angle": {
+        "headline": "Why Your Best People Leave When You Finally Fix the System",
+        "thesis": "Business owners who delay succession planning discover too late that building the operating model that runs without them creates the very conditions that make their successors unwilling to stay.",
+        "targetPersona": "Founder-owners age 50+ with $10M–$50M revenue who built the business through force of will and now face the paradox that the stronger they make the machine, the less attractive the opportunity becomes to the next generation",
+        "relevanceToAudience": "The T-MEC revision (items 5, 14) creates urgency for institutional succession planning in corridor businesses, but most owners are discovering that the Operating Model OS they need to scale is being built exactly when their natural successors are evaluating other options—succession isn't failing because owners won't let go, it's failing because they're letting go of the wrong things at the wrong time",
+        "suggestedSources": [
+          "f9baa90e-df22-45af-a079-d3db7ad797bf",
+          "c15e7a4b-5027-4e9f-8b0b-731c300ab69a",
+          "872e2bed-2de0-4371-a29d-4935723ffb1f",
+          "e744815d-2a5e-4dd4-81bd-4fc66ad6ac5a"
+        ],
+        "talkingPoints": [
+          "The owner who spent 15 years building systems to run without him now faces a successor who sees a professional management job, not an ownership opportunity—the machine works, but the mission died in the transition",
+          "Succession fails when owners confuse delegation (giving away tasks) with development (giving away decisions)—NextGen doesn't want your processes, they want your judgment, and by the time you systematize judgment you've removed the reason they wanted the business",
+          "The Kotter mistake: most owners skip Step 2 (building the guiding coalition) and jump to Step 5 (removing obstacles)—they build the operating model before they build the ownership team, so there's no one left who wants to own what they built",
+          "The corridor dimension: Latin American family businesses that succeed multi-generationally don't wait until the machine is perfect—they transfer equity and authority early, messily, while the business still needs the successor's instinct, not just their execution"
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The owner must transfer decision-making authority (not just operational responsibility) early enough that the successor still sees an ownership opportunity worth the risk, which requires the owner to trust an incomplete leader with an incomplete system—the opposite of how they built the business",
+          "framework": "Kotter Step 2: Build the Guiding Coalition"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "Yum Brands sold Pizza Hut to LongRange Capital for $1.5 billion this week, with Yum China separately acquiring the Mainland business for $1.2 billion, according to [Middle Market Growth](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/). The transaction divests one of the"
     }
   ]
 }
