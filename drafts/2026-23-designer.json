@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-23-hero.png",
+      "publicUrl": null,
+      "prompt": "A hand-drawn architectural blueprint showing a precise decision-making scaffolding structure rendered in charcoal pencil strokes. Three vertical support beams labeled with clean editorial typography: \"Trigger,\" \"Test,\" \"Boundary.\" Each beam anchors transparent geometric planes suggesting authority layers and threshold lines at different heights. Orange highlights mark the critical decision points where authority transfers. White negative space dominates the composition. The structure appears stable, load-bearing, deliberately engineered—not organic or fluid. Matte graphite texture throughout. The blueprint aesthetic suggests this is infrastructure being intentionally designed, not a metaphor for growth or transformation. Professional editorial illustration style, sophisticated restraint.",
+      "altText": {
+        "en": "Empty executive chair at head of conference table with laptop open and papers scattered, other chairs pushed back",
+        "es": "Silla ejecutiva vacía a la cabecera de mesa de juntas con laptop abierta y papeles dispersos, otras sillas alejadas"
+      },
+      "caption": {
+        "en": "The seat you won't share becomes the seat no one wants to fill.",
+        "es": "El asiento que no compartes se convierte en el asiento que nadie quiere ocupar."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
