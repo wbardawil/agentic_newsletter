@@ -1,0 +1,350 @@
+{
+  "runId": "60715ad3-37b1-4c5f-b7ba-dedb1d762635",
+  "editionId": "2026-25",
+  "generatedAt": "2026-06-15T18:05:41.981Z",
+  "contentHash": "41b11823d6dde75dcbada44a16a4dc7df122ed4ea005139903470ed52c6775cd",
+  "angle": {
+    "headline": "Why Your Best Operator is Your Biggest Bottleneck",
+    "thesis": "The CEO who built the business through force of will eventually becomes the constraint preventing the business from running without him — not because he lacks capability, but because capability without transfer is dependency.",
+    "targetPersona": "Business owner with $15M-$75M revenue who is the most capable person in their company and has recognized this is now the problem, not the solution",
+    "relevanceToAudience": "The Vistage data on CEO plateaus and the Chief Executive survey on innovation ROI both point to the same corridor reality: mid-market owners expanding between US and LATAM markets hit a wall not because they lack vision, but because they remain the bottleneck in execution — making decisions that should belong to their operating model, not their calendar.",
+    "suggestedSources": [
+      "71600023-f82b-42a2-a03d-60be44bf9e04",
+      "f292ae2c-a09a-4664-a2e5-9535bb171606",
+      "14580ee2-7ca9-4e2d-8c65-6c3d88ab3062",
+      "7baceb6d-1afd-4501-9ae0-718d03b0df54"
+    ],
+    "talkingPoints": [
+      "Strong CEOs plateau when they optimize for being right instead of building systems that work without them — the Vistage research shows even high performers stop growing without external challenge.",
+      "The diagnosis: innovation stalls not from lack of ideas but from centralized decision rights — 59% of CEOs say future growth requires new offerings, yet most revenue still comes from five-year-old products because only one person can greenlight change.",
+      "The framework is decision rights mapping: distinguish between Strategy OS decisions (direction), Operating Model OS decisions (execution), and Technology OS decisions (enablement) — then transfer the latter two.",
+      "The concrete action: identify the three most common decisions you made last week that should have been made two levels down, document the decision criteria, and transfer the authority with the accountability."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The owner must shift from being the best operator to being the architect of operations — trusting that documented decision criteria plus capable people will produce 80% quality decisions without his intervention, which is sufficient for the business to scale.",
+      "framework": "ADKAR: Desire"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The 80% rule that lets the business run without you",
+    "preheader": "Stop holding every decision hostage to your own judgment.",
+    "subjectOptions": [
+      "Stop being the best operator in the room",
+      "The 80% rule that lets the business run without you",
+      "Why CEOs hungry for innovation cannot find the ROI"
+    ],
+    "sections": [
+      {
+        "id": "818898a3-1469-4bb3-bfea-fa00883ae06f",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four signals point to the same gap. The operator who built the business is now its slowest moving part.*\n\n- **Strategy:** Chief Executive's latest CEO poll finds most leaders say future growth depends on new categories, but most revenue still comes from products and services they offered five years ago. **Strategy is the discipline of deciding what you stop selling, not what you start.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/)\n- **Operating Models:** Kimberly-Clark credited supply chain work, simplifying its value stream, optimizing its network, and scaling automation, as the engine of a five-year productivity plan. **The operating model is the only place where productivity compounds.** [Read in Supply Chain Dive ->](https://www.supplychaindive.com/news/kimberly-clark-credits-supply-chain-for-productivity-gains/822811/)\n- **Technology:** The White House imposed export controls on Anthropic's Fable 5 and Mythos 5, and Anthropic pulled both models offline. **Technology stacks built on a single vendor are governance bets in disguise.** [Read in Business Insider ->](https://www.businessinsider.com/anthropic-white-house-fable-mythos-5-drama-explained-2026-6)\n- **Human Capital:** Vista Equity Partners CEO Robert F. Smith told Fortune's Brainstorm Tech audience not to destroy their intern programs as AI scales. **Human capital is the bench you fund before you need it.** [Read in Fortune ->](https://fortune.com/2026/06/15/vista-equity-robert-smith-dont-destroy-intern-programs-ai-brainstorm-tech/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "c1cf1af2-6640-45eb-921c-6921ba503f58",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nChief Executive's latest CEO poll names the contradiction plainly. Most CEOs say future growth depends on expansion into new categories, new markets, new offerings. Most of their revenue still comes from products and services they offered five years ago. That is not a creativity problem. It is a capacity problem. The operating model that built today's revenue base is the same one expected to find time to launch the next one. Until the machine that runs today can run without the owner inside every decision, the new categories stay on a planning deck nobody opens.\n===OPTION_B:provocation===\nThe most ambitious CEO in this week's coverage is the one whose business has changed the least. Chief Executive's poll names the pattern: leaders hungry for innovation, revenue still coming from products they shipped five years ago. The problem is not that they lack ideas. The problem is that every new bet still needs the same brain that is running today's business. An owner cannot build two operating models with the same set of hands. The new category does not get built. The old one gets defended.\n===OPTION_C:pattern===\nThree pieces this week, three different sectors, the same diagnosis. Chief Executive's poll says CEOs want innovation but remain locked in five-year-old products. Vistage says strong CEOs plateau because their challenge is no longer external. Vista Equity Partners' Robert Smith tells Fortune the next generation will not exist if the bench gets hollowed out by AI. Three signals, one shape. The ceiling on the business is the operator who built it, and the machine that operator built has no slack to make the next one.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5dca26fa-9b2d-4993-b1d9-0a9424e817a3",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You have hired well. The team is competent. They still produce decisions that are not quite right, so you step in. You correct the work, redo the conversation, send the email yourself. Each correction confirms what your team already suspected. The right answer lives in your head, and the safest move is to wait for it. You built a business that runs on your judgment, and it now cannot run without it.\n\nThe misdiagnosis is that your team is not good enough. The real diagnosis is that you never wrote down the criteria you use. They reproduce every recurring judgment by reading your face. They get close. Eighty percent close. You hold the work to ninety-five, and the gap between eighty and ninety-five is the gap they cannot cross without you. So they stop trying.\n\nThe hard part is not the rule. The hard part is accepting that eighty percent is enough. Most owners cannot. They built the business on being the best operator in the room, and being the best is the identity they cannot put down. The shift the work asks of you is not delegation. It is letting your business run at eighty percent quality. Ten times more often than you could run it at ninety-five.\n\nOperating Model OS has one artifact that does this work. We call it the Decision Rule, and it has three components.\n\nThe trigger names the recurring situation in language anyone in the seat would recognize. A vendor invoice over a threshold. A discount request from an account in a specific tier. A hire below the director level. The trigger is not the decision. It is the moment the decision begins.\n\nThe test names the criteria. Not the answer. The criteria the answer must meet. Two or three conditions, written in language a new hire could apply. The discipline is that the test contains your judgment, not your conclusion. You are not deciding for them. You are giving them the rule you used.\n\nThe boundary names what falls outside the rule and still belongs to you. Above this number. Above this seniority. Outside this customer segment. The boundary tells your team exactly when to bring the decision back. Without a boundary, they bring everything.\n\nThis week, pick one decision that came to you three or more times this quarter and should not have. Write its three components on one page. Trigger, test, boundary. Hand the page to the person whose seat the decision belongs in. Then do the harder thing. The next time the decision comes back to you, send it back. Not with the answer. With the page.",
+        "sourceRefs": []
+      },
+      {
+        "id": "12bde7b5-d3c1-4c58-b27b-9c361c65bf9b",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "When Sumit Singh joined Chewy as COO in 2017, customer care reported to him. He has [told Fast Company](https://www.fastcompany.com/91557196/chewys-ceo-is-chasing-empathy-at-scale) he initially thought of it as a cost center. He says that was the wrong way to think about it in a category where empathy matters. He became CEO the following year.\n\nThe reframe became operational. Chewy did not staff up customer care as a margin drag to be optimized down. It built the function as the channel through which customer loyalty compounds. [Net sales topped $2.1 billion the year Singh joined](https://www.fastcompany.com/91557196/chewys-ceo-is-chasing-empathy-at-scale), more than double the prior year. Chewy is now the third-largest direct-to-consumer e-commerce network in the US.\n\nFor US mid-market owners, the lesson is structural. The cost-center label is rarely a financial classification. It is a decision rule the owner inherited and never rewrote. The categories you treat as cost determine which capabilities you let compound, and which ones quietly cap the business.",
+        "sourceRefs": []
+      },
+      {
+        "id": "71b6696b-dd0b-4187-b3ad-0b6dc6e8c0a7",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Decision Rule One-Pager** - A single page with three fields: trigger (when does this decision come up), test (two or three criteria the right answer must meet), boundary (when does it leave the rule and come back to you). Most $5M-$100M operators have no place to put their judgment outside their own head, so it never leaves. Build it in [Notion](https://www.notion.so) or a Google Doc. Tag it with the role that owns it, not the person.",
+        "sourceRefs": []
+      },
+      {
+        "id": "9536bf26-370d-4a9b-a931-8c845ec3d552",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** the decisions that came to you that should not have. Not the ones you escalated to yourself with a vendor or partner. The ones your team brought up that had a clear seat-owner who is not you. Write each one down with the name of the person whose decision it actually was. The list is the first draft of your Decision Rule backlog. If the list has ten items by Friday, the bottleneck is not your team.",
+        "sourceRefs": []
+      },
+      {
+        "id": "19b61fc6-a5f5-4722-8782-a7e10baa2916",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "La regla del 80% que permite que el negocio opere sin usted",
+    "preheader": "Deje de retener cada decisión bajo el filtro de su propio juicio.",
+    "thesis": "El dueño que levantó el negocio a pulso termina convertido en el cuello de botella que impide operarlo sin él. No por falta de capacidad, sino porque la capacidad sin transferencia se vuelve dependencia.",
+    "shareableSentence": "El negocio que corre sobre su criterio es el negocio que no sabe correr sin usted.",
+    "sections": [
+      {
+        "id": "818898a3-1469-4bb3-bfea-fa00883ae06f",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro señales apuntan a la misma grieta. El operador que levantó el negocio es ahora su pieza más lenta.*\n\n- **Estrategia:** La encuesta más reciente de Chief Executive a CEOs revela que el crecimiento futuro depende de nuevas categorías, pero la mayor parte de los ingresos sigue viniendo de productos lanzados hace cinco años. **La estrategia es decidir qué se deja de vender.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/)\n- **Modelos Operativos:** Kimberly-Clark identificó la cadena de suministro como el motor de su plan quinquenal de productividad: simplificación del flujo de valor, optimización de la red, escalamiento de la automatización. **El modelo operativo es donde la productividad se compone.** [Leer en Supply Chain Dive ->](https://www.supplychaindive.com/news/kimberly-clark-credits-supply-chain-for-productivity-gains/822811/)\n- **Tecnología:** La Casa Blanca impuso controles de exportación sobre Fable 5 y Mythos 5 de Anthropic, y la empresa retiró ambos modelos. **Depender de un solo proveedor es una apuesta de gobernanza disfrazada.** [Leer en Business Insider ->](https://www.businessinsider.com/anthropic-white-house-fable-mythos-5-drama-explained-2026-6)\n- **Capital Humano:** Robert F. Smith, CEO de Vista Equity Partners, pidió en Brainstorm Tech de Fortune no desmantelar los programas de internos mientras la IA escala. **La cantera de talento se financia antes de necesitarla.** [Leer en Fortune ->](https://fortune.com/2026/06/15/vista-equity-robert-smith-dont-destroy-intern-programs-ai-brainstorm-tech/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "c1cf1af2-6640-45eb-921c-6921ba503f58",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "La encuesta más reciente de Chief Executive nombra la contradicción sin rodeos. La mayoría de los CEOs apuesta el crecimiento futuro a nuevas categorías, nuevos mercados, nuevas ofertas. Con todo, la mayor parte de sus ingresos sigue proviniendo de productos y servicios que ya ofrecían hace cinco años. No es un problema de creatividad. Es un problema de capacidad. El modelo operativo que sostiene los ingresos de hoy es el mismo al que se le pide encontrar tiempo para construir los de mañana. Mientras la máquina que opera el presente no pueda funcionar sin que el dueño intervenga en cada decisión, las nuevas categorías se quedan en un plan que nadie abre.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5dca26fa-9b2d-4993-b1d9-0a9424e817a3",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Usted contrató bien. El equipo es competente. Aun así produce decisiones que no terminan de ser las correctas, así que usted entra a corregir. Reescribe el documento, retoma la conversación, manda el correo desde su cuenta. Cada corrección confirma lo que el equipo ya sospechaba: la respuesta correcta vive en su cabeza, y lo más prudente es esperar a que usted la diga. Construyó un negocio que corre sobre su criterio, y ahora ese negocio no sabe correr sin él.\n\nEl diagnóstico fácil es que el equipo no es suficientemente bueno. El diagnóstico real es otro: usted nunca puso por escrito los criterios que usa. Ellos reproducen cada juicio recurrente leyéndole la cara. Se acercan. Llegan a un ochenta por ciento. Usted exige noventa y cinco, y la brecha entre ochenta y noventa y cinco es la que no pueden cerrar sin usted. Así que dejan de intentarlo.\n\nLo difícil no es la regla. Lo difícil es aceptar que el ochenta por ciento es suficiente. La mayoría de los dueños no lo acepta. Levantaron el negocio siendo el mejor operador del cuarto, y esa identidad no saben soltar. El trabajo no pide delegar. Pide dejar que el negocio opere al ochenta por ciento de calidad. Diez veces más veces de las que usted podría operarlo al noventa y cinco.\n\nOperating Model OS tiene un artefacto que hace exactamente este trabajo. Lo llamamos la Regla de Decisión, y tiene tres componentes.\n\nEl detonador nombra la situación recurrente en un lenguaje que cualquiera en el puesto reconocería. Una factura de proveedor por arriba de cierto monto. Una petición de descuento de una cuenta en un segmento específico. Una contratación por debajo del nivel directivo. El detonador no es la decisión. Es el momento en que la decisión empieza.\n\nLa prueba nombra los criterios. No la respuesta. Los criterios que la respuesta debe cumplir. Dos o tres condiciones, escritas en un lenguaje que una persona nueva pueda aplicar. La disciplina está en que la prueba contiene su criterio, no su conclusión. Usted no decide por ellos. Les entrega la regla que usted usaba.\n\nLa frontera nombra lo que queda fuera de la regla y le sigue perteneciendo. Por arriba de cierta cifra. Por arriba de cierto nivel. Fuera de cierto segmento de cliente. La frontera le dice al equipo exactamente cuándo devolverle la decisión. Sin frontera, le regresan todo.\n\nEsta semana, elija una decisión que llegó tres o más veces a su escritorio este trimestre sin deberse haberlo hecho. Escriba sus tres componentes en una página. Detonador, prueba, frontera. Entregue la página a la persona cuyo puesto carga esa decisión. Después haga lo difícil: la próxima vez que la decisión regrese, devuélvala. No con la respuesta. Con la página.",
+        "sourceRefs": []
+      },
+      {
+        "id": "12bde7b5-d3c1-4c58-b27b-9c361c65bf9b",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Cuando Sumit Singh se incorporó a Chewy como COO en 2017, el área de atención al cliente le reportaba directo. Le ha [dicho a Fast Company](https://www.fastcompany.com/91557196/chewys-ceo-is-chasing-empathy-at-scale) que al principio la concibió como un centro de costos. Reconoce que era la manera equivocada de verla en una categoría donde la empatía es determinante. Al año siguiente lo nombraron CEO.\n\nEl replanteamiento se volvió operación. Chewy no trató al área de atención como un margen incómodo a optimizar. La construyó como el canal donde se consolida la lealtad del cliente. [Las ventas netas rebasaron los 2,100 millones de dólares (unos 42,000 mdp)](https://www.fastcompany.com/91557196/chewys-ceo-is-chasing-empathy-at-scale) el año en que Singh entró, más del doble que el ejercicio anterior. Hoy Chewy es la tercera red de comercio electrónico directo al consumidor más grande de Estados Unidos.\n\nPara el dueño de una mediana empresa mexicana, la lectura es estructural. La etiqueta de centro de costos rara vez es una clasificación financiera. Es una regla de decisión que el dueño heredó y nunca reescribió. Las categorías que usted trata como costo determinan qué capacidades deja desarrollar, y cuáles, en silencio, le ponen techo al negocio.",
+        "sourceRefs": []
+      },
+      {
+        "id": "71b6696b-dd0b-4187-b3ad-0b6dc6e8c0a7",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Decision Rule One-Pager**: una sola página con tres campos: detonador (cuándo aparece la decisión), prueba (dos o tres criterios que la respuesta correcta debe cumplir) y frontera (cuándo sale de la regla y regresa a usted). La mayoría de los operadores de empresas entre $5M y $100M no tiene dónde depositar su criterio fuera de la propia cabeza. Por eso ahí se queda. Constrúyala en [Notion](https://www.notion.so) o en un Google Doc. Etiquétela con el puesto que la posee, no con la persona.",
+        "sourceRefs": []
+      },
+      {
+        "id": "9536bf26-370d-4a9b-a931-8c845ec3d552",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** las decisiones que llegaron a su escritorio sin que debieran haberlo hecho. No las que usted mismo escaló con un proveedor o un socio. Las que su equipo le subió pese a tener un dueño de puesto claro distinto a usted. Anote cada una con el nombre de quien le correspondía decidir. Esa lista es el primer borrador de su Regla de Decisión pendiente. Si para el viernes suma diez entradas, el cuello de botella no es el equipo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "19b61fc6-a5f5-4722-8782-a7e10baa2916",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 89,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 191 — target range is 95–185."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'Decision Rule' is presented as if established but is actually Wadi-branded artifact from Operating Model OS. Should be explicitly signaled as framework component with context.",
+        "excerpt": "Operating Model OS has one artifact that does this work. We call it the Decision Rule, and it has three components."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "info",
+        "section": "compass",
+        "message": "The phrase 'Decision Rule backlog' treats Decision Rule as if it's an established term the reader would recognize without context. First mention in Insight is correctly signaled, but callback here assumes familiarity.",
+        "excerpt": "The list is the first draft of your Decision Rule backlog."
+      }
+    ],
+    "wordCounts": {
+      "signal": 191,
+      "apertura": 95,
+      "insight": 437,
+      "fieldReport": 154,
+      "tool": 77,
+      "compass": 81,
+      "total": 1035
+    },
+    "shareableSentence": "You built a business that runs on your judgment, and it now cannot run without it.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"You built a business that runs on your judgment, and it now cannot run without it.\"",
+      "Reframe confirmed: \"The misdiagnosis is that your team is not good enough. The real diagnosis is that you never wrote down the criteria you use.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Chief Executive's latest CEO poll finds most leaders say future growth depends on expansion into new categories, markets and offerings—but most of their revenue still comes from products and services they offered five years ago.",
+          "supportingFactId": "f292ae2c-a09a-4664-a2e5-9535bb171606",
+          "language": "en"
+        },
+        {
+          "claim": "Kimberly-Clark credited supply chain work, simplifying its value stream, optimizing its network, and scaling automation, as the engine of a five-year productivity plan.",
+          "supportingFactId": "e7cd14a6-1250-4a25-8ec4-7927e8d5cc39",
+          "language": "en"
+        },
+        {
+          "claim": "The White House imposed export controls on Anthropic's Fable 5 and Mythos 5, and Anthropic pulled both models offline.",
+          "supportingFactId": "4b30d6da-237a-43c7-8864-b793fef82be8",
+          "language": "en"
+        },
+        {
+          "claim": "Vista Equity Partners CEO Robert F. Smith told Fortune's Brainstorm Tech audience not to destroy their intern programs as AI scales.",
+          "supportingFactId": "e7cd14a6-1250-4a25-8ec4-7927e8d5cc39",
+          "language": "en"
+        },
+        {
+          "claim": "When Sumit Singh joined Chewy as COO in 2017, customer care reported to him.",
+          "supportingFactId": "7baceb6d-1afd-4501-9ae0-718d03b0df54",
+          "language": "en"
+        },
+        {
+          "claim": "Net sales topped $2.1 billion the year Singh joined, more than double the prior year.",
+          "supportingFactId": "7baceb6d-1afd-4501-9ae0-718d03b0df54",
+          "language": "en"
+        },
+        {
+          "claim": "Chewy is now the third-largest direct-to-consumer e-commerce network in the US.",
+          "supportingFactId": "7baceb6d-1afd-4501-9ae0-718d03b0df54",
+          "language": "en"
+        },
+        {
+          "claim": "La encuesta más reciente de Chief Executive a CEOs revela que el crecimiento futuro depende de nuevas categorías, pero la mayor parte de los ingresos sigue viniendo de productos lanzados hace cinco años.",
+          "supportingFactId": "f292ae2c-a09a-4664-a2e5-9535bb171606",
+          "language": "es"
+        },
+        {
+          "claim": "Kimberly-Clark identificó la cadena de suministro como el motor de su plan quinquenal de productividad.",
+          "supportingFactId": "e7cd14a6-1250-4a25-8ec4-7927e8d5cc39",
+          "language": "es"
+        },
+        {
+          "claim": "La Casa Blanca impuso controles de exportación sobre Fable 5 y Mythos 5 de Anthropic, y la empresa retiró ambos modelos.",
+          "supportingFactId": "4b30d6da-237a-43c7-8864-b793fef82be8",
+          "language": "es"
+        },
+        {
+          "claim": "Robert F. Smith, CEO de Vista Equity Partners, pidió en Brainstorm Tech de Fortune no desmantelar los programas de internos mientras la IA escala.",
+          "supportingFactId": "e7cd14a6-1250-4a25-8ec4-7927e8d5cc39",
+          "language": "es"
+        },
+        {
+          "claim": "Las ventas netas rebasaron los 2,100 millones de dólares el año en que Singh entró, más del doble que el ejercicio anterior.",
+          "supportingFactId": "7baceb6d-1afd-4501-9ae0-718d03b0df54",
+          "language": "es"
+        },
+        {
+          "claim": "Hoy Chewy es la tercera red de comercio electrónico directo al consumidor más grande de Estados Unidos.",
+          "supportingFactId": "7baceb6d-1afd-4501-9ae0-718d03b0df54",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals — Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Business Insider",
+        "Chief Executive Magazine",
+        "Fast Company",
+        "Fortune",
+        "Supply Chain Dive",
+        "notion.so"
+      ],
+      "outletCount": 6
+    },
+    "summary": "Draft passes all checks with strong voice match (88/100), excellent source diversity (5 outlets), clear angle differentiation from prior work, and zero unverifiable claims."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-25-hero.png",
+        "publicUrl": null,
+        "prompt": "A single structural column stands in deep charcoal space, its surface inscribed with faint geometric decision trees that fade toward the top where the column fragments into three thinner beams of varying heights — the tallest reaches 95% up the frame, the others stop at 80%. Negative space dominates. The column material suggests poured concrete or brushed steel, matte finish. A subtle ochre glow emanates from the junction where the column divides, indicating the transfer point. No人figures, no text, no decorative elements. The composition reads as an architectural study of load distribution and structural sufficiency rather than perfection.",
+        "altText": {
+          "en": "Silhouette of a person standing in a doorway with bright light behind them, casting a long shadow forward",
+          "es": "Silueta de una persona parada en un marco de puerta con luz brillante detrás, proyectando una sombra larga hacia adelante"
+        },
+        "caption": {
+          "en": "You become the bottleneck the moment your judgment becomes irreplaceable.",
+          "es": "Te conviertes en el cuello de botella cuando tu criterio se vuelve irremplazable."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11461,
+      "outputTokens": 608,
+      "costUsd": 0.043503
+    },
+    "writer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 48,
+      "outputTokens": 10442,
+      "costUsd": 0.26129
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 472,
+      "costUsd": 0.0071519999999999995
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 993,
+      "outputTokens": 14073,
+      "costUsd": 0.350296
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1315,
+      "outputTokens": 1581,
+      "costUsd": 0.048299999999999996
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1439,
+      "costUsd": 0.021651
+    },
+    "totalUsd": 0.7321920000000001
+  }
+}

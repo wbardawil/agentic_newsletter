@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-25-hero.png",
+      "publicUrl": null,
+      "prompt": "A single structural column stands in deep charcoal space, its surface inscribed with faint geometric decision trees that fade toward the top where the column fragments into three thinner beams of varying heights — the tallest reaches 95% up the frame, the others stop at 80%. Negative space dominates. The column material suggests poured concrete or brushed steel, matte finish. A subtle ochre glow emanates from the junction where the column divides, indicating the transfer point. No人figures, no text, no decorative elements. The composition reads as an architectural study of load distribution and structural sufficiency rather than perfection.",
+      "altText": {
+        "en": "Silhouette of a person standing in a doorway with bright light behind them, casting a long shadow forward",
+        "es": "Silueta de una persona parada en un marco de puerta con luz brillante detrás, proyectando una sombra larga hacia adelante"
+      },
+      "caption": {
+        "en": "You become the bottleneck the moment your judgment becomes irreplaceable.",
+        "es": "Te conviertes en el cuello de botella cuando tu criterio se vuelve irremplazable."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
