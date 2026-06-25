@@ -27,6 +27,35 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-19",
+      "recordedAt": "2026-06-17T21:21:35.039Z",
+      "angle": {
+        "headline": "The Board You Built Is Now the Ceiling You Hit",
+        "thesis": "Most mid-market owners believe their board exists to validate decisions, but the moment validation becomes the only function, the board stops being a governance body and becomes a bottleneck disguised as oversight.",
+        "targetPersona": "Family business owners ($20M-$100M revenue) preparing for succession or institutional investment, particularly those who built advisory boards of friends, investors, or retired executives who never challenge the founder's instincts",
+        "relevanceToAudience": "US-LATAM corridor operators face a specific governance trap: boards composed of regional advisors who understand relationships but not operating models, or US investors who understand structure but not the corridor's realities. As private equity interest grows in the region and succession pressures mount, the board that got you here becomes the constraint preventing institutional transition.",
+        "suggestedSources": [
+          "96d9bf52-e673-47f4-b34d-f35b6431cdab",
+          "d881465c-1f34-484b-879d-3c0f61537481",
+          "1f376b8f-e93c-4912-bb0c-4db36ce554ca",
+          "2b9ec8dc-5ef7-4671-b79c-e05d7e918b06"
+        ],
+        "talkingPoints": [
+          "You assembled a board to formalize decision-making, but if every meeting ends with unanimous approval of what you already decided, you built a compliance theater, not a governance body.",
+          "The dysfunction appears when you pursue institutional investment, succession planning, or geographic expansion — moments that require the board to challenge your assumptions, not rubber-stamp your instincts.",
+          "Jim Collins' Level 5 Leadership applied to boards: great boards require collective humility and disciplined confrontation, not individual brilliance and polite consensus.",
+          "Audit your last six board meetings — if no major decision was reversed or delayed due to board challenge, you have a validation body, not a governance body, and that is now your constraint."
+        ],
+        "osPillar": "Strategy OS",
+        "peopleAngle": {
+          "challenge": "The founder must shift from treating the board as validators of instinct to treating them as counterweights to certainty, which requires surrendering the psychological safety of being right in every room.",
+          "framework": "7S: Shared Values"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "In a 48-hour window this month, a single executive's conviction removed a tool from every operator who had built around it. Amazon CEO Andy Jassy raised concerns with Treasury Secretary Scott Bessent about researchers extracting cyberattack-relevant information from Anthropic's Claude Fable 5, accor"
     }
   ]
 }

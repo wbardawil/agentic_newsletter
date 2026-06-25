@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-19-hero.png",
+      "publicUrl": null,
+      "prompt": "A dark architectural cross-section showing load-bearing columns arranged in perfect symmetry, but one central column has begun to bow under invisible weight, creating subtle distortion in the grid above it. The structure is rendered in charcoal and deep navy with ochre highlights picking out stress points where the geometry no longer holds true. The composition emphasizes negative space around the warping column, suggesting the absence of counterforce. Matte finish, no text, abstract geometry only—the image reads as a diagram of structural failure caused not by weakness but by unchallenged assumptions about what holds things up.",
+      "altText": {
+        "en": "Empty boardroom table with a single coffee cup at the head seat, morning light through windows",
+        "es": "Mesa de junta directiva vacía con una taza de café solitaria en la cabecera, luz matutina entrando por las ventanas"
+      },
+      "caption": {
+        "en": "The moment your board stops challenging you is the moment it stops serving you.",
+        "es": "El momento en que tu junta deja de cuestionarte es el momento en que deja de servírte."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
