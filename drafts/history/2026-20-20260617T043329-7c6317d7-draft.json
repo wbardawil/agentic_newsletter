@@ -1,0 +1,315 @@
+{
+  "runId": "7c6317d7-3a0c-4138-9633-261f6de776e7",
+  "editionId": "2026-20",
+  "generatedAt": "2026-06-17T04:33:29.031Z",
+  "contentHash": "7a376008066b63e6caf480556342daaae818b5affc390de2d96d8cb982909a35",
+  "angle": {
+    "headline": "Your Innovation Team Is Theater. Your Line Employees Are the Real R&D.",
+    "thesis": "Most middle-market companies fail at innovation not because they lack ideas, but because they built innovation as a separate function instead of embedding problem-solving authority into the people who actually do the work.",
+    "targetPersona": "Founder-CEOs with $10M-$75M revenue who created an 'innovation committee' or hired a Chief Innovation Officer but still see no meaningful operational improvement",
+    "relevanceToAudience": "US-LATAM corridor operators have built businesses on relationship and instinct, but when they try to formalize innovation, they copy Fortune 500 structures that don't work at their scale—creating overhead without velocity, and alienating the frontline employees who already know what's broken.",
+    "suggestedSources": [
+      "595e71a2-37bd-44c5-ad43-653a40a9487d",
+      "548e53a0-1546-49cf-a246-63fc08672b3e",
+      "a5bce373-e8e2-4bbf-8894-6f926536c712"
+    ],
+    "talkingPoints": [
+      "CEOs say growth depends on innovation but 80%+ of revenue still comes from the same products they offered five years ago—the innovation theater isn't producing results.",
+      "The dysfunction happens because innovation gets assigned to people furthest from customer pain, while the employees closest to problems are never given authority to solve them.",
+      "The framework is decision rights architecture: map who encounters which problems, then push solve authority to that level with clear constraints and fast feedback loops.",
+      "The action is to kill your innovation committee this quarter and instead give three frontline teams a $10K budget and 90 days to fix the one thing that wastes their time most—then showcase the winner company-wide."
+    ],
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "Frontline employees have been trained to escalate problems upward, not solve them—rewiring them to own solutions requires explicit permission, skill development, and visible protection when experiments fail.",
+      "framework": "Kotter Step 5: Empower Action"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The reason your team escalates (and what to write instead)",
+    "preheader": "Empowerment is not a speech. It is an artifact.",
+    "subjectOptions": [
+      "Why your team keeps bringing problems back",
+      "The reason your team escalates (and what to write instead)",
+      "CEOs want innovation. ROI is flat. The operating fix."
+    ],
+    "sections": [
+      {
+        "id": "b1fb19f9-1a77-4a0f-b214-35873bdec7bb",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: every pillar tells the same story. The work that scales is done by the people closest to the problem, when the system lets them act.*\n\n- **Strategy:** [Chief Executive's June poll](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/) found CEOs expect future growth from new categories and markets, while most current revenue still comes from products offered five years ago. **Name next year's growth source before this year's revenue stops carrying you.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/)\n\n- **Operating Models:** A Chief Executive piece this week argued that good innovation does not happen in isolation; it happens when leaders trust the people doing the work to find better ways to do it. **The operating model is the contract between work and permission to change it.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/you-dont-need-an-innovation-team-you-need-problem-solvers/)\n\n- **Technology:** SpaceX is moving forward with its $60 billion acquisition of AI coding startup Cursor, citing Cursor's wide distribution to expert software engineers as the strategic asset. **Technology acquisitions buy distribution into the team, not the code.** [Read in Fast Company ->](https://www.fastcompany.com/91560594/spacex-cursor-acquisition-vibe-coding)\n\n- **Human Capital:** Lundberg Family Farms, founded 1937, now operates with a non-family CEO while a fourth generation of family owners steps into ownership rather than operations. **Human capital strategy decides which seats the family keeps and which the company fills.** [Read in Family Business Magazine ->](https://familybusinessmagazine.com/legacy/rooted-in-values/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "ae870039-3f41-46a5-b504-c46ed63d167b",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\n[Chief Executive's June survey](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/) found CEOs expect future growth from new categories, markets, and offerings. Most of their current revenue still comes from products and services they were already selling five years ago. The gap between growth ambition and growth delivery is widening at the exact moment owners are most squeezed on capital. The conventional read is an innovation problem. It is not. It is an operating model problem. The companies hitting their innovation targets did not build an innovation team. They built a system where the people closest to the work have permission to fix it.\n===OPTION_B:provocation===\nThe most expensive line item in this year's mid-market budget is the innovation function that did not exist three years ago. [Chief Executive's June survey](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/) found CEOs hungry for growth from new categories, while most revenue still comes from products offered five years ago. The hires were made. The ROI did not arrive. The diagnosis is rarely the team. It is the operating model that quarantined innovation into a department, away from the people who know what is broken.\n===OPTION_C:pattern===\nThree Chief Executive pieces ran this week. Different topics. Same diagnosis underneath. [One on family succession](https://chiefexecutive.net/how-to-get-succession-right-in-a-family-business/) and the harder discipline of letting go. [One on humility as a leadership practice](https://chiefexecutive.net/humility-is-a-leadership-discipline/), pairing confidence with willingness to challenge your own certainty. [One on why innovation belongs to the people doing the work](https://chiefexecutive.net/you-dont-need-an-innovation-team-you-need-problem-solvers/), not a team you hire. The conversations look unrelated. They are the same conversation. Each one names a different version of the same operating constraint: the owner who cannot let the decision leave his head.",
+        "sourceRefs": []
+      },
+      {
+        "id": "efb1704b-613c-478a-a38d-4afae78e9062",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your team brings you the problem. You wanted them to bring the solution. You said so in the all-hands. Nothing changed.\n\nThe instinct is to call this a capability issue, or a confidence issue, or a culture issue. It is none of those. It is an operating model issue. Your frontline has been trained, by every prior incentive in the building, to escalate rather than solve. Escalation is never punished. A solution that breaks something gets reviewed. Under those rules, escalation is rational.\n\nYou told them to solve. You did not change the rules that made escalation rational.\n\nOperating Model OS treats empowerment as an artifact, not a speech. Three pieces have to be in place before the rule changes for real.\n\nFirst: permission, written down. When you see X, you decide. You do not ask. The boundary is named. The spend limit, the customer tier, the time window. This is The Decision Rule in its working form: trigger, test, boundary. Without the artifact, your stated trust is a memory the team cannot rely on.\n\nSecond: skill. You cannot tell someone trained for ten years to escalate that they now decide, and assume the muscle is there. Walk them through three real examples of how you would have decided. Name the test you applied. The test is more transferable than the answer.\n\nThird: visible protection. The first time a team member makes a call inside the rule, and it goes badly, you stand behind it in public. If the team sees the protection, the rule lives. If they see you correct in public after a rule-aligned call goes badly, the speech was always a speech.\n\nMost owners install the first piece and skip the other two. The decision rule appears in a document. Nobody acts on it. The owner reads this as a culture problem and considers replacing the team. The team is doing exactly what they have always done: waiting until they see whether the new rule is real.\n\nPick one recurring problem your team escalated to you in the last thirty days. Write the trigger, test, and boundary on a single page. Hand it to the person closest to the work. Tell them, by name, that this decision is theirs from now on. Then wait. The next time it lands, watch what they do. The first call inside the rule is the one that matters. How you respond to it is the rule.",
+        "sourceRefs": []
+      },
+      {
+        "id": "098d0f9d-27a9-4dd3-9c09-9ddfefbe4d53",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "[Lundberg Family Farms](https://familybusinessmagazine.com/legacy/rooted-in-values/) was founded in 1937 when Albert and Frances Lundberg left Nebraska for Northern California with four young sons, a Farmall tractor, and a Chevy one-ton truck. The company now operates with a non-family CEO and a fourth generation of family owners stepping into ownership rather than operations, with a continued commitment to regenerative agriculture.\n\nThe structural choice is the part worth studying. The family did not install a fourth-generation operator. The operators are now non-family. The family holds the seat the company cannot recruit for, which is ownership, identity, and generational memory. The company hires for the seat it can.\n\nFor a US-based corridor owner at $5M to $100M, the implication is direct. If your succession plan assumes the next generation runs operations, you have set up two parallel transitions: ownership and operating capability. Most families cannot afford to lose on both. Naming which seat the family will hold protects the other.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6db33c91-403c-410b-8c66-7b91d00fac0c",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Claude (or ChatGPT)** - A general-purpose AI assistant. The bottleneck in writing a Decision Rule is not the writing. It is translating how you decide in your head into language your team can apply without you. Record yourself walking through your last three escalations. Paste the transcript. Ask for trigger, test, and boundary. First draft in ten minutes. [claude.ai](https://claude.ai)",
+        "sourceRefs": []
+      },
+      {
+        "id": "b326d879-2148-4ab1-b31e-81eddc55e011",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many problems land on your desk that, by your own stated rules, should not have. Keep a count by Friday. If the same person escalates the same type of problem twice, the rule has not landed yet, and the second escalation is the diagnostic, not the first. The fix is rarely repeating the speech. The fix is making the rule visible in writing.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1e8276ff-34fa-4412-b1c2-24e72bfdcaec",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué su equipo escala en lugar de decidir",
+    "preheader": "Delegar no es un discurso. Es un documento que vive en una página.",
+    "thesis": "La mayoría de las medianas empresas no fallan en innovación por falta de ideas: fallan porque montan la innovación como un área aparte, en lugar de darle autoridad para resolver a quienes hacen el trabajo todos los días.",
+    "shareableSentence": "La delegación no es un discurso: es un documento que el equipo puede invocar cuando usted no está en la sala.",
+    "sections": [
+      {
+        "id": "b1fb19f9-1a77-4a0f-b214-35873bdec7bb",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cada pilar dice lo mismo. El trabajo que escala lo hace quien está más cerca del problema, cuando el sistema le permite actuar.*\n\n- **Estrategia:** La [encuesta de junio de Chief Executive](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/) encontró que los directores generales esperan crecer con nuevas categorías y mercados, mientras la mayor parte de los ingresos actuales sigue saliendo de productos que ya vendían hace cinco años. **El próximo motor de ingresos se nombra antes de que el actual deje de cargar.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/)\n- **Modelos Operativos:** Un texto publicado esta semana en Chief Executive sostiene que la buena innovación ocurre cuando el líder confía en quien hace el trabajo para encontrar mejores formas de hacerlo. **El modelo operativo es el contrato entre el trabajo y el permiso para cambiarlo.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/you-dont-need-an-innovation-team-you-need-problem-solvers/)\n- **Tecnología:** SpaceX avanza con la compra de Cursor por 60 mil mdd, citando la distribución amplia entre ingenieros expertos como el activo estratégico. **Las adquisiciones tecnológicas compran distribución al equipo, no el código.** [Leer en Fast Company ->](https://www.fastcompany.com/91560594/spacex-cursor-acquisition-vibe-coding)\n- **Capital Humano:** [Lundberg Family Farms](https://familybusinessmagazine.com/legacy/rooted-in-values/), fundada en 1937, opera hoy con un director general externo mientras una cuarta generación entra a la propiedad y no a la operación. **La estrategia de capital humano define qué sillas conserva la familia y cuáles llena la empresa.** [Leer en Family Business Magazine ->](https://familybusinessmagazine.com/legacy/rooted-in-values/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "ae870039-3f41-46a5-b504-c46ed63d167b",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "La [encuesta de junio de Chief Executive](https://chiefexecutive.net/poll-finds-ceos-hungry-for-innovation-but-struggle-to-find-roi/) reveló que los directores generales esperan el crecimiento futuro de nuevas categorías, mercados y ofertas. La mayor parte de sus ingresos actuales sigue proviniendo de productos y servicios que ya vendían hace cinco años. La brecha entre la ambición de crecer y la entrega real se ensancha justo cuando el dueño tiene menos holgura de capital. La lectura habitual es que se trata de un problema de innovación. No lo es: es un problema de modelo operativo. Las empresas que sí cumplen su meta no montaron un área de innovación. Montaron un sistema donde quien está más cerca del trabajo tiene permiso para arreglarlo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "efb1704b-613c-478a-a38d-4afae78e9062",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su equipo le trae el problema. Usted quería que le trajera la solución. Lo dijo en la junta general. No cambió nada.\n\nLa tentación es leerlo como un asunto de capacidad, de confianza o de cultura. No es ninguno de los tres. Es un asunto de modelo operativo. Su primera línea fue entrenada, por cada incentivo previo dentro de la casa, a escalar en lugar de resolver. Escalar nunca se castiga. Una solución que rompe algo se revisa. Bajo esas reglas, escalar es racional.\n\nUsted les pidió resolver. No cambió las reglas que volvían racional escalar.\n\nOperating Model OS trata la delegación como un documento, no como un discurso. Tres piezas deben estar en su lugar antes de que la regla cambie de verdad.\n\nPrimero: el permiso, por escrito. Cuando vea X, usted decide. No pregunta. La frontera está nombrada. El límite de gasto, el segmento de cliente, la ventana de tiempo. Esta es La Regla de Decisión en su forma operativa: detonador, prueba, frontera. Sin el documento, la confianza declarada es un recuerdo en el que el equipo no puede apoyarse.\n\nSegundo: la habilidad. No puede decirle a alguien entrenado durante diez años para escalar que ahora decide, y suponer que el músculo ya está ahí. Explíquele tres casos reales de cómo habría decidido usted. Nombre la prueba que aplicó. La prueba se transfiere mejor que la respuesta.\n\nTercero: la protección visible. La primera vez que un miembro del equipo tome una decisión dentro de la regla y salga mal, usted lo respalda en público. Si el equipo ve la protección, la regla vive. Si lo ven corregir en público tras una decisión alineada con la regla, el discurso siempre fue solo eso: un discurso.\n\nAhora bien, la mayoría de los dueños instala la primera pieza y omite las otras dos. La Regla de Decisión aparece en un documento. Nadie actúa sobre ella. El dueño lo lee como problema de cultura y piensa en reemplazar al equipo. El equipo está haciendo exactamente lo que siempre hizo: esperar a ver si la nueva regla es real.\n\nEsta semana, elija un problema recurrente que su equipo le haya escalado en los últimos treinta días. Escriba el detonador, la prueba y la frontera en una sola página. Entréguesela a la persona más cercana al trabajo. Dígale, por nombre, que esa decisión es suya de ahora en adelante. Después espere. La próxima vez que el problema llegue a su escritorio, observe qué hace. La primera decisión dentro de la regla es la que cuenta. Cómo responde usted es la regla.",
+        "sourceRefs": []
+      },
+      {
+        "id": "098d0f9d-27a9-4dd3-9c09-9ddfefbe4d53",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\n[Lundberg Family Farms](https://familybusinessmagazine.com/legacy/rooted-in-values/) se fundó en 1937. Albert y Frances Lundberg salieron de Nebraska rumbo al norte de California con cuatro hijos pequeños, un tractor Farmall y una camioneta Chevy de una tonelada. La empresa opera hoy con un director general ajeno a la familia y una cuarta generación de propietarios que entra a la propiedad, no a la operación. El compromiso con la agricultura regenerativa permanece intacto.\n\nLa decisión estructural es lo que merece estudiarse. La familia no instaló a un operador de cuarta generación. Los operadores son ahora externos. La familia conserva la silla que la empresa no puede reclutar: propiedad, identidad y memoria generacional. La compañía contrata para la silla que sí puede.\n\n**Enfoque México.** Para el dueño de una empresa familiar mediana de entre 100 y 2,000 mdp en el corredor T-MEC, la implicación es directa. Si su plan de sucesión supone que la siguiente generación operará el negocio, montó dos transiciones en paralelo: la propiedad y la capacidad operativa. Pocas familias pueden ceder en ambas. De ahí que definir cuál silla conserva la familia proteja la otra.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6db33c91-403c-410b-8c66-7b91d00fac0c",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Claude (o ChatGPT).** Asistente de IA de propósito general. El cuello de botella al redactar una Regla de Decisión no está en la redacción: está en traducir cómo decide usted en su cabeza a un lenguaje que el equipo pueda aplicar sin usted. Grábese mientras explica sus últimas tres escaladas. Pegue la transcripción. Pídale detonador, prueba y frontera. Primer borrador en diez minutos. [claude.ai](https://claude.ai)",
+        "sourceRefs": []
+      },
+      {
+        "id": "b326d879-2148-4ab1-b31e-81eddc55e011",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**El indicador de la semana:** cuántos problemas llegan a su escritorio que, según sus propias reglas declaradas, no deberían haber llegado. Lleve la cuenta hasta el viernes. Si la misma persona escala el mismo tipo de problema dos veces, la regla todavía no permea, y la segunda escalada es el diagnóstico, no la primera. El arreglo pocas veces consiste en repetir el discurso. El arreglo es volver la regla visible por escrito.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1e8276ff-34fa-4412-b1c2-24e72bfdcaec",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 90,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 217 — target range is 95–185."
+      },
+      {
+        "rule": "rule-7-compass-specificity",
+        "severity": "warning",
+        "section": "compass",
+        "message": "The Compass opens correctly with 'Watch for this week:' and names a trackable signal (count of escalations that should not have landed). However, the instruction to 'keep a count by Friday' is slightly generic. A stronger version would specify what threshold or pattern triggers action (e.g., 'if the count exceeds 3' or 'if the same person appears twice').",
+        "excerpt": "Watch for this week: how many problems land on your desk that, by your own stated rules, should not have. Keep a count by Friday."
+      }
+    ],
+    "wordCounts": {
+      "signal": 217,
+      "apertura": 97,
+      "insight": 405,
+      "fieldReport": 155,
+      "tool": 59,
+      "compass": 68,
+      "total": 1001
+    },
+    "shareableSentence": "Escalation is never punished. A solution that breaks something gets reviewed. Under those rules, escalation is rational.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"Escalation is never punished. A solution that breaks something gets reviewed. Under those rules, escalation is rational.\"",
+      "Reframe confirmed: \"The instinct is to call this a capability issue, or a confidence issue, or a culture issue. It is none of those. It is an operating model issue.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Chief Executive's June poll found CEOs expect future growth from new categories and markets, while most current revenue still comes from products offered five years ago",
+          "supportingFactId": "548e53a0-1546-49cf-a246-63fc08672b3e",
+          "language": "en"
+        },
+        {
+          "claim": "A Chief Executive piece this week argued that good innovation does not happen in isolation; it happens when leaders trust the people doing the work to find better ways to do it",
+          "supportingFactId": "595e71a2-37bd-44c5-ad43-653a40a9487d",
+          "language": "en"
+        },
+        {
+          "claim": "SpaceX is moving forward with its $60 billion acquisition of AI coding startup Cursor, citing Cursor's wide distribution to expert software engineers as the strategic asset",
+          "supportingFactId": "b110d9cd-38d8-4e29-a1f4-3fc1f852728e",
+          "language": "en"
+        },
+        {
+          "claim": "Lundberg Family Farms, founded 1937, now operates with a non-family CEO while a fourth generation of family owners steps into ownership rather than operations",
+          "supportingFactId": "2fb4d7d1-a016-4681-a6fc-4a3ab51589b2",
+          "language": "en"
+        },
+        {
+          "claim": "Albert and Frances Lundberg left Nebraska for Northern California with four young sons, a Farmall tractor, and a Chevy one-ton truck",
+          "supportingFactId": "2fb4d7d1-a016-4681-a6fc-4a3ab51589b2",
+          "language": "en"
+        },
+        {
+          "claim": "La encuesta de junio de Chief Executive encontró que los directores generales esperan crecer con nuevas categorías y mercados, mientras la mayor parte de los ingresos actuales sigue saliendo de productos que ya vendían hace cinco años",
+          "supportingFactId": "548e53a0-1546-49cf-a246-63fc08672b3e",
+          "language": "es"
+        },
+        {
+          "claim": "SpaceX avanza con la compra de Cursor por 60 mil mdd, citando la distribución amplia entre ingenieros expertos como el activo estratégico",
+          "supportingFactId": "b110d9cd-38d8-4e29-a1f4-3fc1f852728e",
+          "language": "es"
+        },
+        {
+          "claim": "Lundberg Family Farms, fundada en 1937, opera hoy con un director general externo mientras una cuarta generación entra a la propiedad y no a la operación",
+          "supportingFactId": "2fb4d7d1-a016-4681-a6fc-4a3ab51589b2",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": null,
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Family Business Magazine",
+        "Fast Company",
+        "claude.ai"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all quality gates with strong voice match (88/100), verified claims across all sources, distinct angle from prior editions, and adequate source diversity across three outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-20-hero.png",
+        "publicUrl": null,
+        "prompt": "A stark architectural cross-section: the upper floor is a pristine, empty exhibition space—polished concrete, dramatic ceiling height, nothing functional happening. The lower floor is a dense working shop floor, packed with tools, scaffolding, half-assembled structures, hands at work. The two levels are structurally connected but operationally separate. Charcoal background. Matte finish. The composition emphasizes the vertical separation and the contrast between performative space above and productive activity below. No people visible, only the spatial logic of the building itself.",
+        "altText": {
+          "en": "Factory worker in safety vest examines industrial equipment control panel with focused attention",
+          "es": "Trabajador de planta con chaleco de seguridad examina panel de control de equipo industrial con atención concentrada"
+        },
+        "caption": {
+          "en": "Your frontline already sees what's broken—you've just never given them permission to fix it.",
+          "es": "Tu primera línea ya ve lo que está roto—simplemente nunca le has dado permiso para arreglarlo."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10276,
+      "outputTokens": 548,
+      "costUsd": 0.039048
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 658,
+      "outputTokens": 14615,
+      "costUsd": 0.363275
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 403,
+      "costUsd": 0.006117
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1035,
+      "outputTokens": 11422,
+      "costUsd": 0.28374699999999997
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1324,
+      "outputTokens": 1553,
+      "costUsd": 0.047907
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 967,
+      "costUsd": 0.014571
+    },
+    "totalUsd": 0.7546649999999999
+  }
+}

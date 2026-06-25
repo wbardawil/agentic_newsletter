@@ -27,6 +27,34 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-20",
+      "recordedAt": "2026-06-17T04:33:29.028Z",
+      "angle": {
+        "headline": "Your Innovation Team Is Theater. Your Line Employees Are the Real R&D.",
+        "thesis": "Most middle-market companies fail at innovation not because they lack ideas, but because they built innovation as a separate function instead of embedding problem-solving authority into the people who actually do the work.",
+        "targetPersona": "Founder-CEOs with $10M-$75M revenue who created an 'innovation committee' or hired a Chief Innovation Officer but still see no meaningful operational improvement",
+        "relevanceToAudience": "US-LATAM corridor operators have built businesses on relationship and instinct, but when they try to formalize innovation, they copy Fortune 500 structures that don't work at their scale—creating overhead without velocity, and alienating the frontline employees who already know what's broken.",
+        "suggestedSources": [
+          "595e71a2-37bd-44c5-ad43-653a40a9487d",
+          "548e53a0-1546-49cf-a246-63fc08672b3e",
+          "a5bce373-e8e2-4bbf-8894-6f926536c712"
+        ],
+        "talkingPoints": [
+          "CEOs say growth depends on innovation but 80%+ of revenue still comes from the same products they offered five years ago—the innovation theater isn't producing results.",
+          "The dysfunction happens because innovation gets assigned to people furthest from customer pain, while the employees closest to problems are never given authority to solve them.",
+          "The framework is decision rights architecture: map who encounters which problems, then push solve authority to that level with clear constraints and fast feedback loops.",
+          "The action is to kill your innovation committee this quarter and instead give three frontline teams a $10K budget and 90 days to fix the one thing that wastes their time most—then showcase the winner company-wide."
+        ],
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "Frontline employees have been trained to escalate problems upward, not solve them—rewiring them to own solutions requires explicit permission, skill development, and visible protection when experiments fail.",
+          "framework": "Kotter Step 5: Empower Action"
+        },
+        "quarterlyTheme": "The Machine"
+      },
+      "fieldReportSummary": "[Lundberg Family Farms](https://familybusinessmagazine.com/legacy/rooted-in-values/) was founded in 1937 when Albert and Frances Lundberg left Nebraska for Northern California with four young sons, a Farmall tractor, and a Chevy one-ton truck. The company now operates with a non-family CEO and a fou"
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-20",
+  "runId": "7c6317d7-3a0c-4138-9633-261f6de776e7",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-20-hero.png",
+    "publicUrl": null,
+    "prompt": "A stark architectural cross-section: the upper floor is a pristine, empty exhibition space—polished concrete, dramatic ceiling height, nothing functional happening. The lower floor is a dense working shop floor, packed with tools, scaffolding, half-assembled structures, hands at work. The two levels are structurally connected but operationally separate. Charcoal background. Matte finish. The composition emphasizes the vertical separation and the contrast between performative space above and productive activity below. No people visible, only the spatial logic of the building itself.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-06-17T04:33:29.031Z",
+  "updatedAt": "2026-06-17T04:33:29.031Z"
+}
