@@ -4,6 +4,7 @@ import { QualityGateAgent } from "../../src/agents/quality-gate.js";
 import type { AgentInput } from "../../src/types/agent-io.js";
 import { makeDeps } from "../helpers/make-deps.js";
 import type { QualityGateInput } from "../../src/agents/quality-gate.js";
+import { createFakeAnthropic } from "../helpers/fake-anthropic.js";
 
 function makeAngle() {
   return {
@@ -211,5 +212,257 @@ describe("QualityGateAgent", () => {
       },
     } as unknown as AgentInput<QualityGateInput>;
     await expect(agent.run(input)).rejects.toThrow();
+  });
+
+  describe("QualityGate flexibility implementation", () => {
+    function depsWithFakeAnthropic(fake: ReturnType<typeof createFakeAnthropic>) {
+      const base = makeDeps();
+      return {
+        ...base,
+        apiClients: {
+          ...base.apiClients,
+          anthropic: fake as never,
+        },
+      };
+    }
+
+    it("Check 1: Angle Originality Level 1 warning (similarity 75% to 84%) approves the draft", async () => {
+      const fake = createFakeAnthropic();
+      fake.enqueue({
+        text: JSON.stringify({
+          passed: true,
+          hardFailures: [],
+          factCheck: { verifiedClaims: [], unverifiedClaims: [] },
+          angleOriginality: {
+            similarityScore: 0.78,
+            closestPriorAngle: "An older angle",
+            recommendation: "pass",
+          },
+          voiceMatch: {
+            voiceScore: 88,
+            deviations: [],
+          },
+          sourceDiversity: {
+            distinctOutlets: ["HBR", "Bloomberg"],
+            outletCount: 2,
+          },
+          summary: "Approved with moderate overlap",
+        }),
+      });
+
+      const agent = new QualityGateAgent(depsWithFakeAnthropic(fake));
+      const input: AgentInput<QualityGateInput> = {
+        runId: randomUUID(),
+        editionId: "2026-17",
+        agentName: "qualityGate",
+        payload: {
+          enContent: makeContent("en"),
+          esContent: null,
+          angle: makeAngle(),
+          sourceBundle: makeBundle(),
+          priorAngles: [],
+        },
+      };
+
+      const result = await agent.run(input);
+      expect(result.status).toBe("success");
+      const data = result.data as any;
+      expect(data.passed).toBe(true);
+      expect(data.angleOriginality.similarityScore).toBe(0.78);
+      expect(data.angleOriginality.angleAlertLevel).toBe("warning_l1");
+      expect(data.angleOriginality.angle_alert_level).toBe("warning_l1");
+    });
+
+    it("Check 1: Angle Originality Level 2 warning (similarity >= 85%) holds the draft", async () => {
+      const fake = createFakeAnthropic();
+      fake.enqueue({
+        text: JSON.stringify({
+          passed: true,
+          hardFailures: [],
+          factCheck: { verifiedClaims: [], unverifiedClaims: [] },
+          angleOriginality: {
+            similarityScore: 0.88,
+            closestPriorAngle: "A very similar angle",
+            recommendation: "consider rerun",
+          },
+          voiceMatch: {
+            voiceScore: 90,
+            deviations: [],
+          },
+          sourceDiversity: {
+            distinctOutlets: ["HBR", "Bloomberg"],
+            outletCount: 2,
+          },
+          summary: "Held for high overlap",
+        }),
+      });
+
+      const agent = new QualityGateAgent(depsWithFakeAnthropic(fake));
+      const input: AgentInput<QualityGateInput> = {
+        runId: randomUUID(),
+        editionId: "2026-17",
+        agentName: "qualityGate",
+        payload: {
+          enContent: makeContent("en"),
+          esContent: null,
+          angle: makeAngle(),
+          sourceBundle: makeBundle(),
+          priorAngles: [],
+        },
+      };
+
+      const result = await agent.run(input);
+      expect(result.status).toBe("success");
+      const data = result.data as any;
+      expect(data.passed).toBe(false); // held!
+      expect(data.hardFailures.length).toBeGreaterThan(0);
+      expect(data.hardFailures[0]).toContain("High thematic overlap detected");
+      expect(data.angleOriginality.angleAlertLevel).toBe("warning_l2");
+      expect(data.angleOriginality.angle_alert_level).toBe("warning_l2");
+    });
+
+    it("Check 1: Angle Originality Level 2 allows override when manualOverride is passed", async () => {
+      const fake = createFakeAnthropic();
+      fake.enqueue({
+        text: JSON.stringify({
+          passed: true,
+          hardFailures: [],
+          factCheck: { verifiedClaims: [], unverifiedClaims: [] },
+          angleOriginality: {
+            similarityScore: 0.88,
+            closestPriorAngle: "A very similar angle",
+            recommendation: "consider rerun",
+          },
+          voiceMatch: {
+            voiceScore: 90,
+            deviations: [],
+          },
+          sourceDiversity: {
+            distinctOutlets: ["HBR", "Bloomberg"],
+            outletCount: 2,
+          },
+          summary: "Held for high overlap",
+        }),
+      });
+
+      const agent = new QualityGateAgent(depsWithFakeAnthropic(fake));
+      const input: AgentInput<QualityGateInput> = {
+        runId: randomUUID(),
+        editionId: "2026-17",
+        agentName: "qualityGate",
+        payload: {
+          enContent: makeContent("en"),
+          esContent: null,
+          angle: makeAngle(),
+          sourceBundle: makeBundle(),
+          priorAngles: [],
+          manualOverride: true, // override!
+        },
+      };
+
+      const result = await agent.run(input);
+      expect(result.status).toBe("success");
+      const data = result.data as any;
+      expect(data.passed).toBe(true); // overridden to pass!
+    });
+
+    it("Check 2: Voice Match classifies critical and minor deviations", async () => {
+      const fake = createFakeAnthropic();
+      fake.enqueue({
+        text: JSON.stringify({
+          passed: true,
+          hardFailures: [],
+          factCheck: { verifiedClaims: [], unverifiedClaims: [] },
+          angleOriginality: {
+            similarityScore: 0.1,
+            closestPriorAngle: null,
+            recommendation: "pass",
+          },
+          voiceMatch: {
+            voice_score: 82,
+            critical_deviations: ["Shift in formality level in paragraph 3."],
+            minor_deviations: ["Vocabulary variation in section 2."],
+            deviations: ["Shift in formality level in paragraph 3."],
+            recommendation: "Revise paragraph 3.",
+          },
+          sourceDiversity: {
+            distinctOutlets: ["HBR"],
+            outletCount: 1,
+          },
+          summary: "deviations test",
+        }),
+      });
+
+      const agent = new QualityGateAgent(depsWithFakeAnthropic(fake));
+      const input: AgentInput<QualityGateInput> = {
+        runId: randomUUID(),
+        editionId: "2026-17",
+        agentName: "qualityGate",
+        payload: {
+          enContent: makeContent("en"),
+          esContent: null,
+          angle: makeAngle(),
+          sourceBundle: makeBundle(),
+          priorAngles: [],
+        },
+      };
+
+      const result = await agent.run(input);
+      expect(result.status).toBe("success");
+      const data = result.data as any;
+      expect(data.voiceMatch.voiceScore).toBe(82);
+      expect(data.voiceMatch.criticalDeviations).toEqual(["Shift in formality level in paragraph 3."]);
+      expect(data.voiceMatch.critical_deviations).toEqual(["Shift in formality level in paragraph 3."]);
+      expect(data.voiceMatch.minorDeviations).toEqual(["Vocabulary variation in section 2."]);
+      expect(data.voiceMatch.minor_deviations).toEqual(["Vocabulary variation in section 2."]);
+      expect(data.voiceMatch.deviations).toEqual(["Shift in formality level in paragraph 3."]); // only critical ones surfaced
+    });
+
+    it("Check 3: Source Diversity is waived when justificationForLowSourceCount is present", async () => {
+      const fake = createFakeAnthropic();
+      fake.enqueue({
+        text: JSON.stringify({
+          passed: true,
+          hardFailures: [],
+          factCheck: { verifiedClaims: [], unverifiedClaims: [] },
+          angleOriginality: {
+            similarityScore: 0.1,
+            closestPriorAngle: null,
+            recommendation: "pass",
+          },
+          voiceMatch: {
+            voiceScore: 95,
+            deviations: [],
+          },
+          sourceDiversity: {
+            distinctOutlets: ["HBR"],
+            outletCount: 1,
+          },
+          summary: "sources test",
+        }),
+      });
+
+      const agent = new QualityGateAgent(depsWithFakeAnthropic(fake));
+      const input: AgentInput<QualityGateInput> = {
+        runId: randomUUID(),
+        editionId: "2026-17",
+        agentName: "qualityGate",
+        payload: {
+          enContent: makeContent("en"),
+          esContent: null,
+          angle: makeAngle(),
+          sourceBundle: makeBundle(),
+          priorAngles: [],
+          justificationForLowSourceCount: "Single-source book summary format",
+        },
+      };
+
+      const result = await agent.run(input);
+      expect(result.status).toBe("success");
+      const data = result.data as any;
+      expect(data.sourceDiversity.sourceCheckWaived).toBe(true);
+      expect(data.sourceDiversity.source_check_waived).toBe(true);
+      expect(data.sourceDiversity.justification).toBe("Single-source book summary format");
+    });
   });
 });

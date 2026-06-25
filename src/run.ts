@@ -613,7 +613,11 @@ async function main(): Promise<void> {
     for (const d of qualityGate.voiceMatch.deviations) {
       console.warn(`   ⚠️  Voice deviation: ${d}`);
     }
-    if (qualityGate.sourceDiversity.outletCount < 3) {
+    if (
+      qualityGate.sourceDiversity.outletCount < 2 &&
+      !qualityGate.sourceDiversity.sourceCheckWaived &&
+      !qualityGate.sourceDiversity.source_check_waived
+    ) {
       console.warn(
         `   ⚠️  Low source diversity: only ${qualityGate.sourceDiversity.outletCount} outlets cited\n`,
       );

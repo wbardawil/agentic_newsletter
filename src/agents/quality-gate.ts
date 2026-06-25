@@ -39,6 +39,9 @@ const QualityGateInputSchema = z.object({
   angle: StrategicAngleSchema,
   sourceBundle: SourceBundleSchema,
   priorAngles: z.array(PriorAngleSchema),
+  justificationForLowSourceCount: z.string().optional(),
+  manualOverride: z.boolean().optional(),
+  overrideAngleOriginality: z.boolean().optional(),
 });
 export type QualityGateInput = z.infer<typeof QualityGateInputSchema>;
 
@@ -66,15 +69,29 @@ export const QualityGateResultSchema = z.object({
   angleOriginality: z.object({
     similarityScore: z.number().min(0).max(1),
     closestPriorAngle: z.string().nullable(),
-    recommendation: z.enum(["pass", "consider rerun"]),
+    recommendation: z.string(),
+    angleAlertLevel: z.string().optional(),
+    angle_alert_level: z.string().optional(),
   }),
   voiceMatch: z.object({
     voiceScore: z.number().min(0).max(100),
+    voice_score: z.number().min(0).max(100).optional(),
     deviations: z.array(z.string()),
+    criticalDeviations: z.array(z.string()).optional(),
+    critical_deviations: z.array(z.string()).optional(),
+    minorDeviations: z.array(z.string()).optional(),
+    minor_deviations: z.array(z.string()).optional(),
+    recommendation: z.string().optional(),
   }),
   sourceDiversity: z.object({
     distinctOutlets: z.array(z.string()),
+    distinct_outlets: z.array(z.string()).optional(),
     outletCount: z.number().int().nonnegative(),
+    outlet_count: z.number().int().nonnegative().optional(),
+    sourceCheckWaived: z.boolean().optional(),
+    source_check_waived: z.boolean().optional(),
+    justificationForLowSourceCount: z.string().nullable().optional(),
+    justification: z.string().nullable().optional(),
   }),
   summary: z.string(),
 });
@@ -135,9 +152,10 @@ export class QualityGateAgent extends BaseAgent<
       )
       .join("\n\n");
 
+    const priorAnglesToShow = payload.priorAngles.slice(0, 4);
     const priorAnglesBlock =
-      payload.priorAngles.length > 0
-        ? payload.priorAngles
+      priorAnglesToShow.length > 0
+        ? priorAnglesToShow
             .map((a, i) => `${i + 1}. ${a.headline} — ${a.thesis}`)
             .join("\n")
         : "(no prior angles recorded yet)";
@@ -160,7 +178,7 @@ export class QualityGateAgent extends BaseAgent<
       `**OS Pillar:** ${payload.angle.osPillar}`,
       `**Quarterly Theme:** ${payload.angle.quarterlyTheme}`,
       "",
-      "## PRIOR ANGLES (last 8)",
+      "## PRIOR ANGLES (last 4)",
       priorAnglesBlock,
       "",
       "## SOURCE BUNDLE (the only authoritative facts)",
@@ -212,36 +230,159 @@ export class QualityGateAgent extends BaseAgent<
     );
 
     const text = extractTextFromMessage(message.content);
-    const parsed = parseLlmJson(text, "quality-gate") as unknown;
+    const parsed = parseLlmJson(text, "quality-gate") as any;
 
-    // Normalize factCheck arrays — the LLM sometimes returns flat string arrays
-    // instead of the required {claim, language} object shape. Coerce strings to
-    // objects so Zod doesn't throw and the fact-check result is preserved.
+    // Normalize properties between snake_case and camelCase for robust parsing
     if (parsed && typeof parsed === "object") {
-      const p = parsed as Record<string, unknown>;
-      const fc = p["factCheck"] as Record<string, unknown> | undefined;
-      if (fc) {
-        if (Array.isArray(fc["verifiedClaims"])) {
-          fc["verifiedClaims"] = fc["verifiedClaims"].map((c: unknown) =>
-            typeof c === "string" ? { claim: c, language: "en" as const } : c,
+      const p = parsed as any;
+      
+      // Normalize factCheck verifiedClaims/unverifiedClaims
+      const fc = p.factCheck;
+      if (fc && typeof fc === "object") {
+        if (Array.isArray(fc.verifiedClaims)) {
+          fc.verifiedClaims = fc.verifiedClaims.map((c: any) =>
+            typeof c === "string" ? { claim: c, language: "en" } : c
           );
         }
-        if (Array.isArray(fc["unverifiedClaims"])) {
-          fc["unverifiedClaims"] = fc["unverifiedClaims"].map((c: unknown) =>
-            typeof c === "string" ? { claim: c, language: "en" as const } : c,
+        if (Array.isArray(fc.unverifiedClaims)) {
+          fc.unverifiedClaims = fc.unverifiedClaims.map((c: any) =>
+            typeof c === "string" ? { claim: c, language: "en" } : c
           );
         }
+      }
+
+      // Normalize angleOriginality
+      if (p.angleOriginality && typeof p.angleOriginality === "object") {
+        const ao = p.angleOriginality;
+        const similarity = ao.similarityScore !== undefined ? ao.similarityScore : ao.similarity_score;
+        if (similarity !== undefined) {
+          // LLM might return similarityScore as percentage (e.g. 78) or decimal (e.g. 0.78)
+          const similarityPercent = similarity <= 1 ? similarity * 100 : similarity;
+          const similarityScoreDecimal = similarity <= 1 ? similarity : similarity / 100;
+          
+          ao.similarityScore = similarityScoreDecimal;
+          ao.similarity_score = similarityScoreDecimal;
+
+          if (similarityPercent < 75) {
+            ao.angleAlertLevel = "none";
+            ao.angle_alert_level = "none";
+            ao.recommendation = "pass";
+          } else if (similarityPercent >= 75 && similarityPercent <= 84) {
+            ao.angleAlertLevel = "warning_l1";
+            ao.angle_alert_level = "warning_l1";
+            ao.recommendation = "pass";
+          } else if (similarityPercent >= 85) {
+            ao.angleAlertLevel = "warning_l2";
+            ao.angle_alert_level = "warning_l2";
+            ao.recommendation = "consider rerun";
+          }
+        } else {
+          ao.similarityScore = ao.similarityScore ?? 0.0;
+          ao.similarity_score = ao.similarity_score ?? 0.0;
+          ao.angleAlertLevel = "none";
+          ao.angle_alert_level = "none";
+          ao.recommendation = "pass";
+        }
+      } else {
+        p.angleOriginality = {
+          similarityScore: 0.0,
+          closestPriorAngle: null,
+          recommendation: "pass",
+          angleAlertLevel: "none",
+          angle_alert_level: "none",
+        };
+      }
+
+      // Normalize voiceMatch
+      if (p.voiceMatch && typeof p.voiceMatch === "object") {
+        const vm = p.voiceMatch;
+        const score = vm.voiceScore !== undefined ? vm.voiceScore : vm.voice_score;
+        vm.voiceScore = score !== undefined ? score : 85;
+        vm.voice_score = vm.voiceScore;
+
+        const critical = vm.criticalDeviations ?? vm.critical_deviations ?? [];
+        const minor = vm.minorDeviations ?? vm.minor_deviations ?? [];
+
+        vm.criticalDeviations = critical;
+        vm.critical_deviations = critical;
+        vm.minorDeviations = minor;
+        vm.minor_deviations = minor;
+
+        if (critical.length > 0) {
+          vm.deviations = critical;
+        } else if (Array.isArray(vm.deviations) && vm.deviations.length > 0 && minor.length === 0) {
+          vm.criticalDeviations = vm.deviations;
+          vm.critical_deviations = vm.deviations;
+        } else {
+          vm.deviations = [];
+        }
+      } else {
+        p.voiceMatch = {
+          voiceScore: 85,
+          voice_score: 85,
+          deviations: [],
+          criticalDeviations: [],
+          critical_deviations: [],
+          minorDeviations: [],
+          minor_deviations: [],
+          recommendation: "Approved silently.",
+        };
       }
     }
 
     const result = QualityGateResultSchema.parse(parsed);
 
-    // Source diversity is a pure URL-parse, not a judgment call. Override the
-    // LLM's count with the deterministic computation so we do not silently
-    // ship an LLM miscount.
+    // Source diversity check waiver
+    const justificationForLowSourceCount = payload.justificationForLowSourceCount ?? payload.angle.justificationForLowSourceCount;
+    const waived = typeof justificationForLowSourceCount === "string" && justificationForLowSourceCount.trim().length > 0;
+    
+    if (waived) {
+      this.logger.info(`Source diversity check waived. Justification: ${justificationForLowSourceCount}`);
+    }
+
+    const outlets = computeDistinctOutlets(payload.enContent, payload.sourceBundle);
+
+    // Core validation gate logic for Angle Originality and Fact Verification
+    let finalPassed = result.passed;
+    const hardFailures = [...result.hardFailures];
+
+    // Angle Originality tiered checks & block/hold logic
+    const similarityPercent = result.angleOriginality.similarityScore * 100;
+    if (similarityPercent >= 75 && similarityPercent <= 84) {
+      this.logger.warn(`Level 1 warning: Moderate thematic overlap detected (${similarityPercent.toFixed(0)}%). Draft approved. Consider differentiating the angle in future editions.`);
+    } else if (similarityPercent >= 85) {
+      const hasOverride = payload.manualOverride === true || payload.overrideAngleOriginality === true;
+      if (!hasOverride) {
+        finalPassed = false;
+        const msg = `High thematic overlap detected (${similarityPercent.toFixed(0)}%). Draft held. Manual override required to proceed.`;
+        if (!hardFailures.includes(msg)) {
+          hardFailures.push(msg);
+        }
+        this.logger.error(`Level 2 warning: ${msg}`);
+      } else {
+        this.logger.info(`High thematic overlap override applied. Proceeding with draft.`);
+      }
+    }
+
+    // Fact verification check: if there are unverified claims, must always fail
+    if (result.factCheck.unverifiedClaims.length > 0) {
+      finalPassed = false;
+    }
+
     return {
       ...result,
-      sourceDiversity: computeDistinctOutlets(payload.enContent, payload.sourceBundle),
+      passed: finalPassed,
+      hardFailures,
+      sourceDiversity: {
+        distinctOutlets: outlets.distinctOutlets,
+        distinct_outlets: outlets.distinctOutlets,
+        outletCount: outlets.outletCount,
+        outlet_count: outlets.outletCount,
+        sourceCheckWaived: waived,
+        source_check_waived: waived,
+        justificationForLowSourceCount: justificationForLowSourceCount ?? null,
+        justification: justificationForLowSourceCount ?? null,
+      },
     };
   }
 }

@@ -23,6 +23,8 @@ export const StrategicAngleSchema = z.object({
   }),
   /** Which OS layer this issue's Insight lives in. */
   osPillar: OsPillarSchema,
+  /** Optional flag to waive source diversity checks in QualityGate. */
+  justificationForLowSourceCount: z.string().optional(),
   /**
    * People dimension — required on every issue, regardless of OS pillar.
    * People is the dominant bottleneck of change; every recommendation

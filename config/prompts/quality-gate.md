@@ -66,14 +66,44 @@ For each claim, you must perform this internal monologue:
 
 ---
 
-## Check 2, 3, 4 (Originality, Voice, Diversity)
+## Check 2 — Angle Originality (TIERED ALERT SYSTEM)
 
-Perform these checks as previously defined. They are important but secondary to the
-Fact Verification hard gate.
+Compare the strategic angle of the current draft (headline and thesis) against the prior angles provided (limited to the last 4 drafts). Calculate a semantic similarity score (expressed as a decimal from 0.0 to 1.0).
 
--   **Angle Originality:** Compare to prior angles. Warn on ≥70% semantic overlap.
--   **Voice Match:** Compare the EN Insight to golden examples. Score 0-100.
--   **Source Diversity:** Count distinct outlets cited in the EN draft. Warn on <3.
+Apply this tiered logic:
+- **Similarity < 75% (< 0.75):** Draft is approved. Set `angle_alert_level` to `"none"`, and `recommendation` to `"pass"`.
+- **Similarity >= 75% and <= 84% (0.75 to 0.84):** Draft is approved with a Level 1 warning. Set `angle_alert_level` to `"warning_l1"`, and `recommendation` to `"pass"`. Put this warning in the summary: *"Moderate thematic overlap detected ({similarity}%). Draft approved. Consider differentiating the angle in future editions."*
+- **Similarity >= 85% (>= 0.85):** Draft is held for review. Set `angle_alert_level` to `"warning_l2"`, and `recommendation` to `"consider rerun"`. Put this warning in the summary: *"High thematic overlap detected ({similarity}%). Draft held. Manual override required to proceed."*
+
+---
+
+## Check 3 — Voice Match (SEVERITY CLASSIFICATION)
+
+Compare the English draft's style and tone (especially the "Perspective" / Insight section) against the Voice Bible and Golden Examples.
+Classify each deviation you find into one of two categories:
+
+- **CRITICAL deviation** (must be reported in `critical_deviations` and `deviations`):
+  - Shift in formality level (e.g., analytical tone → promotional or colloquial, like using hype words like 'game-changer')
+  - Change in narrative perspective (e.g., second-person to third-person address)
+  - Structural tone mismatch in the "Perspective" section
+- **MINOR deviation** (report in `minor_deviations` only; do NOT include in `deviations`):
+  - Vocabulary variation that doesn't alter tone
+  - Sentence length variation within acceptable stylistic range
+  - Synonymous phrasing that preserves analytical register
+
+**Gate behavior:**
+- If `critical_deviations` is non-empty: emit a warning and flag for review. Do not hard-block.
+- If only `minor_deviations` are present: approve silently. Do not surface in the primary `deviations` array.
+
+---
+
+## Check 4 — Source Diversity (CONTEXT-AWARE Check)
+
+If `justificationForLowSourceCount` is provided and is a non-empty string, **skip the source count check entirely**, set `source_check_waived` to `true`, and set `justification` to that string.
+Otherwise:
+- Count the unique root domains from all Markdown links in the draft.
+- If unique sources is `< 2` (minimum is 2), set `source_check_waived` to `false` and issue a warning: *"Only {count} unique source(s) detected. Editorial minimum is 2. Consider adding supporting references."*
+- If unique sources is `>= 2`, set `source_check_waived` to `false` and approve.
 
 ---
 
@@ -81,7 +111,7 @@ Fact Verification hard gate.
 
 Respond with valid JSON only.
 
--   **`passed`** must be `false` if `unverifiedClaims` is not empty.
+-   **`passed`** must be `false` if `unverifiedClaims` is not empty (or if similarity is >= 0.85 and no manual override has been applied).
 -   **`hardFailures`** must be a clear, actionable list of strings for every
     unverified claim, explaining *why* it failed (e.g., "Temporal Inaccuracy:
     Claimed event as present tense, but source states future tense.", "Unsupported
@@ -99,6 +129,8 @@ never a plain string. Use this exact shape:
 { "claim": "The specific claim text", "language": "en", "section": "insight | fieldReport | etc." }
 ```
 
+Expected JSON response shape:
+
 ```json
 {
   "passed": true,
@@ -112,15 +144,25 @@ never a plain string. Use this exact shape:
   "angleOriginality": {
     "similarityScore": 0.0,
     "closestPriorAngle": null,
-    "recommendation": "pass"
+    "recommendation": "pass",
+    "angle_alert_level": "none"
   },
   "voiceMatch": {
-    "voiceScore": 0,
-    "deviations": []
+    "voice_score": 85,
+    "voiceScore": 85,
+    "critical_deviations": [],
+    "minor_deviations": [],
+    "deviations": [],
+    "recommendation": "Minor deviations do not require action."
   },
   "sourceDiversity": {
+    "distinct_outlets": [],
     "distinctOutlets": [],
-    "outletCount": 0
+    "outlet_count": 0,
+    "outletCount": 0,
+    "source_check_waived": false,
+    "sourceCheckWaived": false,
+    "justification": null
   },
   "summary": "One-sentence overall verdict."
 }
