@@ -182,8 +182,8 @@ An observation anchored in the **United States market**.
 -   **Must feature a DIFFERENT company/event from the Apertura.** Reusing the hook is a failure.
 -   The named example must be cited with a source link.
 -   **Two-Paragraph Structure (CRITICAL):** You must split this section into exactly two paragraphs to separate literal source facts from editorial implication:
-    1.  *Paragraph 1 (The Grounding Fact):* State the news item, the named company, and the exact findings, supported by an inline citation link. Do not add editorial implications or general commentary here.
-    2.  *Paragraph 2 (The Operational Implication):* Start a new paragraph detailing the strategic implication for a $5M-$100M owner. Use phrases like "For the mid-market operator, the reading of this shift is..." or "Our view is..." to clearly signal this is your editorial interpretation, not the source's literal finding. This prevents the Quality Gate from misinterpreting original commentary as unverified facts.
+    1.  *Paragraph 1 (The Grounding Fact):* State the news item, the named company, and the exact findings, supported by an inline citation link. Do not add editorial implications or general commentary here. Mirror only what the source literally states.
+    2.  *Paragraph 2 (The Operational Implication):* Start a new paragraph detailing the strategic implication for a $5M-$100M owner. You MUST open this paragraph with an explicit editorial signal phrase. Approved openers: "For the mid-market operator, the reading of this shift is…", "Our view is…", "What this signals for the $5M–$100M operator is…", "In our experience, what follows from this is…". **Do NOT open with a bare assertion that sounds like a reported fact** ("The advantage is moving toward...", "That knowledge has typically lived inside...") — those read as unverified claims to the Quality Gate even if they are your own analysis. Every sentence in this paragraph must either begin with or be clearly downstream of the editorial signal opener.
 
 ### Section 3.5 — THE TOOL (~60 words)
 

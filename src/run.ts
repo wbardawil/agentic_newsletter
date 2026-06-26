@@ -426,7 +426,8 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const content = rewriteContentOutletLinks(
+  // `let` because the QG repair loop may patch sections in-place
+  let content = rewriteContentOutletLinks(
     writerOutput.data as LocalizedContent,
     bundle,
     "en",
@@ -575,6 +576,12 @@ async function main(): Promise<void> {
     },
   });
 
+  // ── Quality Gate repair loop ─────────────────────────────────────────────
+  // If the QG finds hard failures, the Writer makes a targeted surgical repair
+  // (max 2 attempts) before we declare the draft blocked. Each repair call uses
+  // claude-sonnet-4-6 on only the flagged sentences — cheap (~$0.05/attempt).
+  const MAX_QG_REPAIRS = 2;
+
   let qualityGate: QualityGateResult | undefined;
   let hadBlockingIssue = false;
   if (!qualityGateOutput.success) {
@@ -583,6 +590,69 @@ async function main(): Promise<void> {
     );
   } else {
     qualityGate = qualityGateOutput.data as QualityGateResult;
+
+    // ── Repair loop ────────────────────────────────────────────────────────
+    if (!qualityGate.passed) {
+      for (let repairAttempt = 1; repairAttempt <= MAX_QG_REPAIRS; repairAttempt++) {
+        console.warn(
+          `   ⚠️  Quality Gate HARD FAIL (attempt ${repairAttempt}/${MAX_QG_REPAIRS}) — ` +
+            `${qualityGate.hardFailures.length} claim(s) flagged. Running Writer repair...\n`,
+        );
+        for (const f of qualityGate.hardFailures) console.warn(`     • ${f}`);
+
+        const writerRepairAgent = new WriterAgent(deps);
+        const repairedContent = await writerRepairAgent.repairQualityGateFailures(
+          content,
+          qualityGate.hardFailures,
+          bundle.items,
+          editionId,
+          repairAttempt,
+          MAX_QG_REPAIRS,
+        );
+
+        if (!repairedContent) {
+          console.warn(`   ⚠️  Writer repair ${repairAttempt} failed to parse — skipping.\n`);
+          break;
+        }
+
+        // Replace the EN content with the repaired version
+        content = repairedContent;
+
+        // Re-run Quality Gate on the repaired draft
+        console.log(`   🔁 Re-running Quality Gate after repair ${repairAttempt}...\n`);
+        const rerunOutput = await qualityGateAgent.run({
+          runId,
+          editionId,
+          agentName: "qualityGate",
+          payload: {
+            enContent: content,
+            esContent: esContent ?? null,
+            angle,
+            sourceBundle: bundle,
+            priorAngles,
+          },
+        });
+
+        if (!rerunOutput.success) {
+          console.warn(`   ⚠️  Quality Gate re-run failed: ${rerunOutput.error}\n`);
+          break;
+        }
+
+        qualityGate = rerunOutput.data as QualityGateResult;
+        if (qualityGate.passed) {
+          console.log(`   ✅ Quality Gate passed after repair ${repairAttempt}.\n`);
+          break;
+        }
+
+        if (repairAttempt === MAX_QG_REPAIRS) {
+          console.warn(
+            `   ⚠️  Draft still has ${qualityGate.hardFailures.length} unresolved claim(s) after ${MAX_QG_REPAIRS} repair(s). Continuing as blocking issue.\n`,
+          );
+        }
+      }
+    }
+    // ── End repair loop ────────────────────────────────────────────────────
+
     if (qualityGate.passed) {
       console.log(
         `   ✅ Passed — ${qualityGate.factCheck.verifiedClaims.length} claims verified, ` +

@@ -32,20 +32,65 @@ A "specific claim" is:
 - Direct quote: anything in quotes attributed to a person
 
 **Scope exclusions — do NOT fact-check these against the source bundle:**
+
 - The **Tool section**: tool recommendations are editorial. Do not flag them as
   unverified claims. The tool must exist and the description must be accurate
   based on your knowledge, but no verbatimFact is required to support it.
-- **General framework statements**: "Most operators under-document their processes"
-  is synthesis, not a factual claim. Only flag when a specific number, entity, or
-  attribution is asserted without support.
+
+- **Editorial synthesis and framework statements (EXEMPT — do not flag):**
+  The newsletter's value comes from the author's strategic frameworks and
+  diagnostic patterns applied *on top of* the cited facts. These are opinion,
+  not reportage. You must NOT flag them as unverified claims.
+
+  A statement is an **exempt framework/synthesis** if it meets ANY of these
+  criteria:
+  1. It uses a **pattern/generalization marker**: phrases like "In most
+     mid-market firms…", "More often than not…", "What typically happens is…",
+     "In our experience…", "As a rule…", "The pattern we see is…",
+     "Most operators…", "What usually follows is…"
+  2. It is a **second-order implication** — a logical consequence the author
+     draws *from* a cited fact, clearly separated into its own sentence or
+     paragraph after the citation. Example: source says "hiring is flat"; author
+     concludes "the advantage is moving toward operators who can document
+     process knowledge." The implication is editorial, not a fabricated fact.
+  3. It is a **universal truth about business dynamics** stated in second person
+     ("Your team…", "Your tools…") or generic present tense without citing a
+     specific company, study, or date. Example: "That knowledge has typically
+     lived inside specific people" — this is a transferable observation, not a
+     reportable claim.
+  4. It describes a **behavioral pattern** that is the author's diagnosis,
+     signaled by words like "typically", "usually", "often", "rarely",
+     "historically", "by default", "as a rule."
+
+  **Concrete examples of EXEMPT statements (do NOT flag these):**
+  - ✅ "In most mid-market firms, the leadership team has never built shared
+    literacy on what AI can automate versus what it can augment."
+  - ✅ "That knowledge has typically lived inside specific people."
+  - ✅ "Buy a license, hope for leverage, watch nothing change."
+  - ✅ "The advantage is moving toward operators who can document and transfer
+    process knowledge." (second-order implication from a cited NIST fact)
+  - ✅ "Right now, your tools are inheriting nothing." (universal diagnostic
+    in second person, not attributed to a specific company)
+  - ✅ "More often than not, the tool inherits nothing because the decision
+    protocol was never written down."
+
+  **Concrete examples of claims that ARE still verifiable (flag if unsupported):**
+  - ❌ "Company X reported a 40% increase in productivity." (specific stat +
+    named entity — needs verbatimFact)
+  - ❌ "CEO Y said the market will contract." (named quote — needs verbatimFact)
+  - ❌ "The Vistage survey shows owners are cutting payroll." (specific survey
+    finding misrepresented — the survey said hiring is "flat", not declining)
 
 **Unsupported claims = HARD FAIL. The draft cannot ship.**
 
 **Chain-of-Thought for Verification:**
 For each claim, you must perform this internal monologue:
 1.  Identify the claim in the draft.
-2.  Scan the `verbatimFacts` of every source item.
-3.  Can the claim be directly and reasonably inferred from one or more facts?
+2.  **First, apply the exclusion test:** Is this an exempt framework/synthesis
+    statement (see criteria above)? If yes, skip it — add to `verifiedClaims`
+    with a note like `"supportingFactId": "editorial-synthesis"` and move on.
+3.  If NOT exempt, scan the `verbatimFacts` of every source item.
+4.  Can the claim be directly and reasonably inferred from one or more facts?
     -   If yes, add it to `verifiedClaims`.
     -   If no, it is an `unverifiedClaim`. Add it to that list and create a
         corresponding entry in `hardFailures`.
@@ -56,13 +101,19 @@ For each claim, you must perform this internal monologue:
     (e.g., "acquired," "is acquiring") is **NOT** supported by a `verbatimFact`
     using future tense (e.g., "will acquire"). This is a factual error and a
     HARD FAIL.
+    **Exception — recent past events:** If the verbatimFact also uses past tense
+    for an event published in the same week or month as the edition, this is NOT
+    a temporal inaccuracy. Do not flag "Small business confidence rose in June"
+    as a temporal error when the source itself says "rose in June" — the tenses
+    match. Only flag mismatches where the *direction* of tense differs (future
+    source vs. past draft).
 -   **Claiming Intent or Motivation:** The writer may claim *why* a company did
     something (e.g., "to preserve its market share"). If the `verbatimFacts` do
     not explicitly state this motivation, the claim is unverified.
--   **Generalizing from a Single Point:** The writer may see one company's action
-    and create a broad pattern claim (e.g., "Companies in this sector are now
-    all doing X"). If the sources do not explicitly state this is a sector-wide
-    pattern, the claim is unverified.
+-   **Magnitude or Direction Inflation:** The writer may dramatize a neutral
+    statistic (e.g., source says "flat", writer says "declining" or "being cut").
+    Flag any claim where the magnitude or direction of a fact exceeds what the
+    source literally states.
 
 ---
 

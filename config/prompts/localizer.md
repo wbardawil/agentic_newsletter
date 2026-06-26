@@ -178,6 +178,24 @@ These are OPTIONAL. If the MX bundle has nothing strong enough this
 week, don't force it — the EN citation base is already valid for the
 Mexican reader and the voice is what makes it Mexican.
 
+**"Enfoque México" hard constraints (Quality Gate will reject violations):**
+When writing the "Enfoque México" paragraph, you may ONLY use facts, statistics,
+and named entities that appear explicitly in the MX source bundle items. You must NOT:
+- Invent strategic implications or conclusions about the Mexican market that are
+  not stated in the MX bundle. Example of a forbidden sentence: *"el contrato se
+  queda con el operador que mejor documente el proceso"* — this is a strategic
+  inference, not a fact from any source.
+- Add competitive dynamics, market predictions, or causal claims ("whoever does X
+  will win Y") unless the MX source explicitly states them.
+- Reframe the EN's second-order implication as a Mexican fact. The implication
+  belongs to the EN editorial voice; your job is to apply the EN's *framework*
+  to a Mexican *data point* from the bundle, not to invent a new conclusion.
+
+If you cannot find a genuine MX data point that illustrates the EN framework
+without requiring a fabricated strategic inference, **skip the Enfoque México
+entirely**. An edition without a regional touch is better than one that fails
+the Quality Gate.
+
 ### Citation discipline and Factual Parity (CRITICAL)
 
 Every URL, number, named company, and quote in the ES edition must

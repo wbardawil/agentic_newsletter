@@ -624,4 +624,110 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
 
     return sanitizeLocalizedContent(transformToLocalizedContent(writerOutput, lang));
   }
+
+  /**
+   * Targeted surgical repair: given the current EN draft sections and the
+   * Quality Gate's hardFailures, rewrites ONLY the flagged sentences using
+   * claude-sonnet-4-6 (cheaper than opus). Returns the patched LocalizedContent
+   * or null if the LLM response cannot be parsed.
+   *
+   * Called by run.ts when qualityGate.passed === false and repairAttempt < MAX_REPAIRS.
+   */
+  async repairQualityGateFailures(
+    current: LocalizedContent,
+    hardFailures: string[],
+    sources: SourceItem[],
+    editionId: string,
+    repairAttempt: number,
+    maxRepairs: number,
+  ): Promise<LocalizedContent | null> {
+    const REPAIR_MODEL = "claude-sonnet-4-6";
+    this.logger.info(
+      `Writer repair pass ${repairAttempt}/${maxRepairs} — ${hardFailures.length} flagged claim(s)`,
+    );
+
+    const repairPromptPath = join(
+      dirname(fileURLToPath(import.meta.url)),
+      "..", "..",
+      "config", "prompts", "writer-repair.md",
+    );
+    const repairTemplate = readFileSync(repairPromptPath, "utf-8");
+
+    const getSectionBody = (type: string) =>
+      current.sections.find((s) => s.type === type)?.body ?? "";
+
+    const sourceMaterial = sources
+      .map(
+        (item) =>
+          `<item>\n**${item.title}** (${item.outlet ?? "Unknown"})\nURL: ${item.url}\nKey facts:\n${item.verbatimFacts.map((f) => `  - ${f}`).join("\n")}\n</item>`,
+      )
+      .join("\n\n---\n\n");
+
+    const hardFailuresBlock = hardFailures
+      .map((f, i) => `${i + 1}. ${f}`)
+      .join("\n");
+
+    const prompt = repairTemplate
+      .replace("{{editionId}}", editionId)
+      .replace("{{osPillar}}", current.sections.find((s) => s.type === "analysis")?.heading ?? "")
+      .replace("{{repairAttempt}}", String(repairAttempt))
+      .replace("{{maxRepairs}}", String(maxRepairs))
+      .replace("{{hardFailures}}", hardFailuresBlock)
+      .replace("{{insight}}", getSectionBody("analysis"))
+      .replace("{{fieldReport}}", getSectionBody("spotlight"))
+      .replace("{{apertura}}", getSectionBody("lead"))
+      .replace("{{sourceMaterial}}", sourceMaterial);
+
+    let response;
+    try {
+      response = await this.deps.apiClients.anthropic.messages.create({
+        model: REPAIR_MODEL,
+        max_tokens: 3000,
+        messages: [{ role: "user", content: prompt }],
+      });
+    } catch (err) {
+      this.logger.error(`Writer repair LLM call failed: ${String(err)}`);
+      return null;
+    }
+
+    this.costTracker.recordUsage(
+      REPAIR_MODEL,
+      response.usage.input_tokens,
+      response.usage.output_tokens,
+    );
+
+    const rawText = extractTextFromMessage(response.content);
+    let parsed: { repairedSections: { insight: string | null; fieldReport: string | null; apertura: string | null }; repairLog: unknown[] };
+    try {
+      parsed = parseLlmJson(rawText, "writer-repair") as typeof parsed;
+    } catch {
+      this.logger.error("Writer repair: could not parse LLM JSON response");
+      return null;
+    }
+
+    // Patch only the sections that were changed
+    const patched = structuredClone(current);
+    const { insight, fieldReport, apertura } = parsed.repairedSections;
+
+    if (insight) {
+      const sec = patched.sections.find((s) => s.type === "analysis");
+      if (sec) sec.body = insight;
+    }
+    if (fieldReport) {
+      const sec = patched.sections.find((s) => s.type === "spotlight");
+      if (sec) sec.body = fieldReport;
+    }
+    if (apertura) {
+      const sec = patched.sections.find((s) => s.type === "lead");
+      if (sec) sec.body = apertura;
+    }
+
+    if (parsed.repairLog?.length) {
+      this.logger.info(
+        `Writer repair log: ${JSON.stringify(parsed.repairLog)}`,
+      );
+    }
+
+    return sanitizeLocalizedContent(patched);
+  }
 }
