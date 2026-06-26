@@ -286,6 +286,46 @@ function detectFieldReportEntityDuplicate(
   };
 }
 
+/**
+ * Deterministic check: extract markdown link URLs from the Signal and the
+ * Field Report and flag any URL reused across both. Reusing a Signal URL in
+ * the Field Report makes the reader see the same source cited twice in one
+ * issue — caught in production 2026-26.
+ */
+function detectFieldReportUrlDuplicate(
+  signal: string,
+  fieldReport: string,
+): ValidationIssue | null {
+  if (!signal || !fieldReport) return null;
+
+  const urlRe = /\]\((https?:\/\/[^)]+)\)/g;
+  const extract = (text: string): Set<string> => {
+    const urls = new Set<string>();
+    let m: RegExpExecArray | null;
+    urlRe.lastIndex = 0;
+    while ((m = urlRe.exec(text)) !== null) {
+      // Normalize by stripping tracking params and trailing slash
+      const clean = m[1]!.split("?")[0]!.replace(/\/$/, "");
+      urls.add(clean);
+    }
+    return urls;
+  };
+
+  const signalUrls = extract(signal);
+  const fieldReportUrls = extract(fieldReport);
+  const overlap = [...fieldReportUrls].filter((u) => signalUrls.has(u));
+
+  if (overlap.length === 0) return null;
+
+  return {
+    rule: "field-report-url-duplicate",
+    severity: "error",
+    section: "fieldReport",
+    message: `Field Report cites a URL already used in the Signal ("${overlap[0]}"). Pick a different US/corridor example from the bundle, or fall back to sector framing without a link.`,
+    excerpt: overlap[0],
+  };
+}
+
 // ── Validator agent ───────────────────────────────────────────────────────────
 
 export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> {
@@ -400,6 +440,13 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
       sections["fieldReport"],
     );
     if (entityDuplicateIssue) issues.push(entityDuplicateIssue);
+
+    // Field Report URL distinctness: deterministic pre-LLM gate (prod 2026-26)
+    const urlDuplicateIssue = detectFieldReportUrlDuplicate(
+      sections["signal"],
+      sections["fieldReport"],
+    );
+    if (urlDuplicateIssue) issues.push(urlDuplicateIssue);
 
     // Long sentences in Insight
     const longSentences = findLongSentences(sections["insight"]);

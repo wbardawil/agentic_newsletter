@@ -102,6 +102,16 @@ angle using conditional or forward-looking language ("X is positioned to…", "I
 it signals…"). Do NOT select an angle where the central factual claim is a projection
 reported as a present-day reality — the Quality Gate will reject it as temporal inaccuracy.
 
+### STEP 0.5 — Evidence Scope Check (do this BEFORE finalizing the angle)
+
+The Quality Gate rejects drafts that overgeneralize from narrow sources. Before locking the angle, verify that each `insightClaims` entry stays within the literal scope of its supporting fact:
+
+-   **No magnitude inflation:** If a source says a metric is "flat" or "modest", the claim cannot describe it as a "decline", "cut", or "collapse". Match the exact direction and magnitude.
+-   **No scope inflation:** If a source describes a specific company, program, or pilot (e.g., a single NIST additive-manufacturing pilot), the claim cannot generalize it to an entire industry, country, or sector trend.
+-   **No motive invention:** If a source reports an action, the claim cannot assert the unstated motive behind it ("owners are reallocating budget from hiring to AI") unless the source explicitly states that motive.
+
+If an angle can only work by stretching a small data point into a sweeping claim, choose a different angle or narrow the thesis. A tightly-scoped angle that the Writer can ground 1:1 is always better than an ambitious one that fabricates the connective tissue.
+
 ### Competitive signals
 
 Some source items are tagged `competitive-signal`. This means the target audience may have

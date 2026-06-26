@@ -95,6 +95,15 @@ trust and will be caught by the Quality Gate.
 8.  **Separate Attribution from Synthesis (THE EDITORIAL PIVOT):** You must never attribute your strategic frameworks, change-management theory, or people-angle diagnoses to a cited source. Keep source-attributed statements strictly limited to what the verbatimFacts actually state. Use the "Editorial Pivot" technique:
     - ❌ BAD (Attribution Bleeding): "Chief Executive named this exact pattern this week: software made fragility visible but did not redefine what the team was rewarded for [Source](url)."
     - ✅ GOOD (Editorial Pivot): "According to Chief Executive, the current supply chain crisis is not a technology problem, but a fundamentals one [Source](url). From our perspective, this highlights a classic Strategy OS failure: while software successfully made the underlying operational fragility visible, it did not redefine what the team was rewarded to protect."
+9.  **Data Fidelity — Never dramatize or extrapolate a statistic (CRITICAL HARD FAIL):** You must mirror the exact magnitude and direction of every source statistic. Do not turn a soft/neutral data point into a hard/dramatic one. The Quality Gate flags any extrapolation that exceeds what the source literally states.
+    - ❌ BAD (Extrapolation): Source says "hiring remains flat." You write: "Owners are pulling money out of headcount" or "cutting payroll." (Flat hiring is NOT an active reduction — this is a fabricated claim.)
+    - ✅ GOOD (Faithful): Source says "hiring remains flat." You write: "Hiring stayed flat even as confidence rose [Source](url)."
+    - ❌ BAD (Overgeneralization): Source describes a specific NIST program for additive manufacturing. You write: "US industrial capacity will be rebuilt through codified protocols, not craft knowledge." (This is a massive logical leap the source does not support.)
+    - ✅ GOOD (Scoped): "The NIST pilot focuses narrowly on additive manufacturing and critical minerals [Source](url)."
+10. **Generalization Signaling — Mark your frameworks as opinion, not fact (CRITICAL):** When you state a universal truth, framework, or diagnostic observation that is NOT tied to a specific source fact, you MUST signal it linguistically as synthesis so the Quality Gate recognizes it as editorial commentary rather than an unverified factual claim. Use explicit opinion/pattern markers.
+    - ❌ BAD (Asserted as fact): "Your middle managers still escalate the same decisions they escalated last year." / "Right now, your tools are inheriting nothing." (These read as reported facts about the reader's specific company and get flagged.)
+    - ✅ GOOD (Signaled as pattern): "In most mid-market firms, middle managers keep escalating the same decisions year after year." / "More often than not, the tool inherits nothing because the decision protocol was never written down."
+    - Use markers like: "In our experience…", "More often than not…", "The pattern we see is…", "In most mid-market firms…", "What typically happens is…", "As a rule…". These signal a transferable framework, not a sourced fact.
 
 ---
 
@@ -251,6 +260,8 @@ Run this multi-step check against your *completed* draft before writing JSON.
 **Step 1: Content Grounding & Temporal Accuracy (CRITICAL - Hardest Gate)**
 -   Re-verify: every factual sentence in Insight and Field Report traces to a verbatimFact.
 -   Re-verify: all events from future-tense sources are written in future/conditional tense.
+-   **Data Fidelity:** Re-verify that no statistic was dramatized or extrapolated. Does any sentence claim a magnitude, direction, or scope larger than the source literally states (e.g., "flat hiring" rewritten as "cutting payroll", or a narrow program rewritten as a whole-industry strategy)? If so, scope it back down.
+-   **Generalization Signaling:** Re-scan every assertive, concrete-sounding sentence that is NOT backed by a verbatimFact. Does it read like a reported fact about the reader's company? If so, add an opinion/pattern marker ("In most mid-market firms…", "More often than not…") so it reads as transferable synthesis, not an unverified claim.
 
 **Step 2: Key Structural Checks**
 1.  **Insight is Prose Only:** No lines start with `-`, `*`, `•`, or `1.`. (Hard failure)
