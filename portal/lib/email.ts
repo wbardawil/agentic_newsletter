@@ -29,7 +29,7 @@ function fromAddress(): string {
 }
 
 function portalUrl(): string {
-  return (process.env.PORTAL_BASE_URL ?? "").replace(/\/$/, "");
+  return (process.env.NEXT_PUBLIC_SITE_URL ?? process.env.PORTAL_BASE_URL ?? "").replace(/\/$/, "");
 }
 
 function getSmtpConfig() {
