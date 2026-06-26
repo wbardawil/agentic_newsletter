@@ -15,6 +15,9 @@ if (typeof window !== "undefined") {
   throw new Error("portal/lib/email.ts is server-only.");
 }
 
+import nodemailer from "nodemailer";
+import { normalizeLang } from "./i18n/dictionary";
+
 const RESEND_API = "https://api.resend.com/emails";
 
 function resendKey(): string | null {
@@ -29,11 +32,50 @@ function portalUrl(): string {
   return (process.env.PORTAL_BASE_URL ?? "").replace(/\/$/, "");
 }
 
+function getSmtpConfig() {
+  const host = process.env.SMTP_HOST;
+  const portStr = process.env.SMTP_PORT;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (host && portStr && user && pass) {
+    return {
+      host,
+      port: parseInt(portStr, 10),
+      secure: portStr === "465", // true for 465, false for 587 or other ports
+      auth: {
+        user,
+        pass,
+      },
+    };
+  }
+  return null;
+}
+
 async function send(payload: {
   to: string;
   subject: string;
   html: string;
 }): Promise<void> {
+  const smtpConfig = getSmtpConfig();
+
+  if (smtpConfig) {
+    try {
+      const transporter = nodemailer.createTransport(smtpConfig);
+      const from = process.env.SMTP_FROM ?? fromAddress();
+      await transporter.sendMail({
+        from,
+        to: payload.to,
+        subject: payload.subject,
+        html: payload.html,
+      });
+      console.log(`[email] Email sent successfully via SMTP to ${payload.to}`);
+      return;
+    } catch (smtpError) {
+      console.error(`[email] SMTP delivery failed to ${payload.to}, falling back to Resend:`, smtpError);
+    }
+  }
+
   const key = resendKey();
   if (!key) {
     console.warn("[email] RESEND_API_KEY not set — skipping email to", payload.to);
@@ -57,6 +99,8 @@ async function send(payload: {
   if (!res.ok) {
     const body = await res.text().catch(() => "(no body)");
     console.error(`[email] Resend error ${res.status} for ${payload.to}: ${body}`);
+  } else {
+    console.log(`[email] Email sent successfully via Resend to ${payload.to}`);
   }
 }
 
@@ -130,19 +174,43 @@ export async function sendPublicationConfirmation(opts: {
 /**
  * Sent when an admin marks an application as approved.
  * Points the applicant to /sign-in so they can claim their magic link.
+ * Supports bilingual (EN/ES) output based on applicant preference.
  */
-export async function sendApprovalNotification(to: string, name: string): Promise<void> {
+export async function sendApprovalNotification(
+  to: string,
+  name: string,
+  preferredLang?: string | null
+): Promise<void> {
+  const lang = normalizeLang(preferredLang);
   const signInUrl = `${portalUrl()}/sign-in`;
-  await send({
-    to,
-    subject: "You're in — The Transformation Letter",
-    html: `
+
+  const subject = lang === "es"
+    ? "Ya estás adentro — The Transformation Letter"
+    : "You're in — The Transformation Letter";
+
+  const html = lang === "es"
+    ? `
+<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
+  <p>Hola ${escHtml(name)},</p>
+  <p>Tu postulación a <strong>The Transformation Letter</strong> ha sido aprobada.</p>
+  <p>Para acceder al archivo bilingüe completo y al asistente de IA de Transformación, inicia sesión con tu correo:</p>
+  <p style="margin:24px 0">
+    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
+      Acceder al archivo →
+    </a>
+  </p>
+  <p>Solo ingresa el correo electrónico que usaste en tu postulación — te enviaremos un enlace mágico de acceso.</p>
+  <p style="margin-top:32px">— Wadi</p>
+  <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
+  <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnósticos para owner-operators de $5–100M</p>
+</div>`
+    : `
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
   <p>Hi ${escHtml(name)},</p>
   <p>Your application to <strong>The Transformation Letter</strong> has been approved.</p>
   <p>To access the full bilingual archive and the Transformation AI assistant, sign in with your email:</p>
   <p style="margin:24px 0">
-    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px">
+    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
       Access the archive →
     </a>
   </p>
@@ -150,8 +218,9 @@ export async function sendApprovalNotification(to: string, name: string): Promis
   <p style="margin-top:32px">— Wadi</p>
   <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
   <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnostics for $5–100M owner-operators</p>
-</div>`,
-  });
+</div>`;
+
+  await send({ to, subject, html });
 }
 
 function escHtml(s: string): string {

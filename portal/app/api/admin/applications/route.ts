@@ -81,7 +81,11 @@ export async function POST(request: Request) {
     }
 
     // Fire-and-log approval email.
-    sendApprovalNotification(appRow.email as string, appRow.full_name as string).catch((e) =>
+    sendApprovalNotification(
+      appRow.email as string,
+      appRow.full_name as string,
+      appRow.preferred_language as string
+    ).catch((e) =>
       console.error("[approve] approval email failed:", e),
     );
   }
