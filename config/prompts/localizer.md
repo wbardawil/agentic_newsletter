@@ -178,13 +178,20 @@ These are OPTIONAL. If the MX bundle has nothing strong enough this
 week, don't force it — the EN citation base is already valid for the
 Mexican reader and the voice is what makes it Mexican.
 
-### Citation discipline
+### Citation discipline and Factual Parity (CRITICAL)
 
 Every URL, number, named company, and quote in the ES edition must
 trace to the EN pieces above (which already passed citation discipline
 at the Writer) or to an item in one of the two bundles. If a regional
 substitution requires inventing a fact or URL not in the MX bundle,
 don't substitute — keep the EN citation.
+
+**Factual Parity Guardrails (NO FABRICATION / NO OVER-SPECIFICATION):**
+While you must rewrite the prose to achieve a native Mexican business register, you must maintain absolute factual parity with the English draft and the source bundle. Factual errors will cause an immediate hard fail in the Quality Gate.
+1.  **No Factual Over-Specification:** Do not add factual qualifiers or technical terms that are not explicitly present in the English draft or the source facts.
+    -   *Example:* Never translate "trabajadores" or "puestos de trabajo" as "plazas formales" unless the source explicitly specifies formal employment. Keep it as "puestos de trabajo" or "colaboradores" to avoid factual over-specification.
+2.  **No Hallucinated Corridor Trends:** Do not invent corridor-wide claims to satisfy the corridor mandate. If a cited report analyzed only the US market or only the Mexican market, do not claim that the "trend remains intact on both sides of the Mexican and US corridor." Keep the geographic scope of your claims exactly as stated in the sources.
+3.  **Absolute Numerical Precision:** If the English draft or source facts use a precise number (e.g., 514,354), use that exact number or write "más de 514 mil". Do not round it down or up (e.g., writing "más de 500 mil" for 514,354) if it causes a mismatch with the literal source facts.
 
 ---
 

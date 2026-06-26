@@ -229,6 +229,19 @@ function detectTemporalMismatch(
     }
   }
 
+  // Additional Check: Look for historical data (e.g. "May peak" or "mayo") coupled with completed/present tenses which are common temporal pitfalls
+  const historicalTimeMatch = combinedText.match(/\b(May|mayo|June|junio)\s+(peak|apex|pico|máximo|mencionó|señaló|reportó)\b.*\b(has|have|had|dropped|fallen|lost|caído|perdido)\b/i) ||
+                         combinedText.match(/\b(has|have|had|dropped|fallen|lost|caído|perdido)\b.*\b(May|mayo|June|junio)\s+(peak|apex|pico|máximo|mencionó|señaló|reportó)\b/i);
+  if (historicalTimeMatch) {
+    issues.push({
+      rule: "historical-temporal-mismatch",
+      severity: "warning",
+      section: "overall",
+      message: "Potential temporal mismatch: Historical data (e.g., May peak or previous months) may be framed with completed verbs as if occurring this week. Ensure it is framed as a historical report reference rather than a current-week action.",
+      excerpt: historicalTimeMatch[0].substring(0, 120),
+    });
+  }
+
   return issues;
 }
 

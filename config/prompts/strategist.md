@@ -172,6 +172,6 @@ the primary indicators of output quality for downstream agents.
 ```
 
 **Evidence map instructions:**
-- `insightClaims`: List 3–5 specific assertions the Writer will need to make in the Insight or Field Report, each with its supporting source UUID and verbatimFacts array index (0-based).
+- `insightClaims`: List 3–5 specific assertions the Writer will need to make in the Insight or Field Report, each with its supporting source UUID and verbatimFacts array index (0-based). Ensure each claim reflects **only literal, grounded facts** from the source, completely free of any strategic commentary or analysis. This ensures the downstream Writer knows exactly which parts are rigid fact and which parts are flexible editorial commentary.
 - `temporalSafety`: Mark `"future-only"` when the supporting fact uses future tense ("will", "plans to", "expected to"). The Writer MUST write future-tense claims from these sources.
 - `fieldReportAnchor.isDistinctFromAperturaHook`: Must be `true`. If your best Field Report anchor uses the same company as your Apertura hook, choose a different source for one of them.

@@ -92,6 +92,9 @@ trust and will be caught by the Quality Gate.
     consultant prescribes..." are unsourced claims about third parties. Replace with
     first-person frame: "The conventional fix is more training" or "The default
     response is another workshop." Make it about the *practice*, not *people*.
+8.  **Separate Attribution from Synthesis (THE EDITORIAL PIVOT):** You must never attribute your strategic frameworks, change-management theory, or people-angle diagnoses to a cited source. Keep source-attributed statements strictly limited to what the verbatimFacts actually state. Use the "Editorial Pivot" technique:
+    - ❌ BAD (Attribution Bleeding): "Chief Executive named this exact pattern this week: software made fragility visible but did not redefine what the team was rewarded for [Source](url)."
+    - ✅ GOOD (Editorial Pivot): "According to Chief Executive, the current supply chain crisis is not a technology problem, but a fundamentals one [Source](url). From our perspective, this highlights a classic Strategy OS failure: while software successfully made the underlying operational fragility visible, it did not redefine what the team was rewarded to protect."
 
 ---
 
@@ -169,7 +172,9 @@ You must substantively weave this into the **Diagnosis** and **Application** sec
 An observation anchored in the **United States market**.
 -   **Must feature a DIFFERENT company/event from the Apertura.** Reusing the hook is a failure.
 -   The named example must be cited with a source link.
--   Ends with the operational implication for a US-based $5M-$100M owner.
+-   **Two-Paragraph Structure (CRITICAL):** You must split this section into exactly two paragraphs to separate literal source facts from editorial implication:
+    1.  *Paragraph 1 (The Grounding Fact):* State the news item, the named company, and the exact findings, supported by an inline citation link. Do not add editorial implications or general commentary here.
+    2.  *Paragraph 2 (The Operational Implication):* Start a new paragraph detailing the strategic implication for a $5M-$100M owner. Use phrases like "For the mid-market operator, the reading of this shift is..." or "Our view is..." to clearly signal this is your editorial interpretation, not the source's literal finding. This prevents the Quality Gate from misinterpreting original commentary as unverified facts.
 
 ### Section 3.5 — THE TOOL (~60 words)
 
