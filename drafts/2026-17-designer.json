@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-17-hero.png",
+      "publicUrl": null,
+      "prompt": "A hand-drawn architectural blueprint rendered in charcoal pencil showing a building's foundation with misaligned load-bearing walls—one section drawn in precise technical lines, another in rough sketches that refuse to connect. Orange graphite highlights mark the structural gaps where support columns should meet but don't. Negative space dominates the composition. The drawing suggests a structure where new engineering collides with old scaffolding that was never designed to carry weight, only to maintain positions. Matte white background, elegant editorial illustration style, minimalist geometric forms, sophisticated pencil texture.",
+      "altText": {
+        "en": "Tangled organizational chart with AI tool icons floating disconnected outside the structure",
+        "es": "Organigrama enredado con íconos de herramientas de IA flotando desconectados fuera de la estructura"
+      },
+      "caption": {
+        "en": "Your AI tools work fine—it's the org chart that's breaking them.",
+        "es": "Tus herramientas de IA funcionan bien—es el organigrama el que las está rompiendo."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}

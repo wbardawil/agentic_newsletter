@@ -27,6 +27,72 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-17",
+      "recordedAt": "2026-06-20T06:47:33.729Z",
+      "angle": {
+        "headline": "AI Adoption's Real Bottleneck: Your Operating Model, Not Your Technology",
+        "thesis": "Mid-market firms are deploying AI tools for efficiency gains but failing to capture strategic value because they haven't redesigned the operating model that governs how decisions flow, who owns outcomes, and how work gets done—the technology works, but the machine around it doesn't.",
+        "targetPersona": "US-LATAM corridor operators in the $10M-$100M revenue range who have already deployed AI point solutions (chatbots, automation tools, analytics) but are seeing marginal returns and wondering why the promised transformation hasn't materialized.",
+        "relevanceToAudience": "Many mid-market owners in the corridor have responded to AI hype by purchasing tools—often from vendors promising quick wins. They're now 6-12 months into deployment and realizing efficiency gains plateau quickly. The real barrier isn't the technology's capability; it's that their decision rights, process ownership, and accountability structures were designed for a pre-AI operating rhythm. This angle reframes AI disappointment as an operating model design problem, not a technology problem.",
+        "suggestedSources": [
+          "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+          "73f6f8c4-dede-48cb-96be-dd38c7995d7a",
+          "b66af50e-a497-4bcc-8ceb-11cc8789def7"
+        ],
+        "justification": {
+          "angleChoice": "This angle is the most compelling because it addresses a lived dysfunction: mid-market operators have bought AI tools but aren't seeing transformation. Source 62bb7325 (Grata's 'AI Trust Problem') and source 73f6f8c4 (Fast Company's 'Youngest Employees as AI Teachers') both point to implementation challenges, but the deeper insight comes from connecting these to source b66af50e (Insperity's 'Human Capital Drives Operational Agility'). The Insperity piece explicitly names 'operational agility' as requiring the right 'human capital strategy'—this is operating model language. The angle is better than alternatives (e.g., 'AI as competitive advantage' or 'generational AI skills gap') because it names the specific failure mode: tools deployed before the model was redesigned. This is a Q2 'Machine' fit: the machine (operating model) must be rebuilt before the technology can deliver value.",
+          "osPillarChoice": "This maps to Operating Model OS because the core dysfunction is not strategic (the owner knows AI matters) and not technological (the tools work as advertised). The failure occurs in the execution layer: decision rights, process ownership, accountability structures, and workflow design. Source b66af50e explicitly connects operational agility to human capital strategy pre- and post-transaction, naming the operating model dimension. Source 73f6f8c4 notes that junior employees 'grew up using tools like AI agents' but organizations aren't capturing that capability—this is an operating model failure (role design, knowledge transfer, authority delegation), not a strategy failure. Source 62bb7325 frames AI risk mitigation for dealmakers, but the underlying issue is the same: AI works when the operating processes around it are clear. This is not Strategy OS (the vision is clear: 'we need AI') and not Technology OS (the tools function). It's Operating Model OS: the machine that executes strategy is broken.",
+          "peopleAngleChoice": "The challenge names the specific behavior shift required: leaders must stop treating AI as a bolt-on and start redesigning authority and ownership structures. This creates direct resistance from middle managers whose roles are defined by control over manual processes. Kotter Step 5 (Empower Action) is the correct framework because the obstacle isn't lack of vision or urgency—it's structural. Managers block automation because it threatens their span of control. The concrete action: explicitly reassign decision rights (e.g., 'marketing approvals now automated, manager role shifts to exception handling') and process ownership (e.g., 'customer onboarding process now owned by ops, not sales'). This is not about training or communication (ADKAR) or cultural alignment (7S). It's about removing structural barriers—Kotter Step 5's core mandate."
+        },
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "Leaders must shift from viewing AI as a productivity add-on to redesigning how decision authority and process ownership flow through the organization—requiring them to confront which managers are blocking automation because it threatens their control, and which processes exist only because 'that's how we've always done it.'",
+          "framework": "Kotter Step 5: Empower Action — Remove obstacles by explicitly reassigning decision rights and process ownership away from managers who resist automation, creating clear accountability for new AI-enabled workflows rather than layering tools onto broken processes."
+        },
+        "quarterlyTheme": "The Machine",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "Grata's VP of Sales told dealmakers that AI has become central to deal processes but represents a 'major credibility risk' when trust safeguards aren't in place.",
+              "supportingFactId": "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+              "factIndex": 1,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Fast Company reported that junior employees entering the workforce 'grew up using tools like AI agents, generative workflows, and automation,' yet organizations fail to capture this native capability—not because the employees lack skill, but because knowledge flows in organizations are still designed top-down.",
+              "supportingFactId": "73f6f8c4-dede-48cb-96be-dd38c7995d7a",
+              "factIndex": 5,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Insperity's Brad Burke stated that firms gaining competitive advantage through operational agility require 'the right human capital strategy, a component that is often overlooked,' naming this as critical both pre- and post-acquisition.",
+              "supportingFactId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+              "factIndex": 2,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "The Insperity podcast explicitly connected operational agility to 'responding swiftly to a complicated and rapidly shifting investment environment,' framing agility as an operating model capability, not a strategic or technological one.",
+              "supportingFactId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+              "factIndex": 1,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Grata's discussion of AI risk mitigation for dealmakers underscores that AI's value depends on trust systems—but trust systems are process design, not technology features.",
+              "supportingFactId": "62bb7325-aaab-42ae-921c-e2caf50a3b4c",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Mid-market manufacturing firm deploying AI-powered demand forecasting and discovering that the bottleneck wasn't forecast accuracy—it was that the sales team still overrode every prediction because decision authority hadn't shifted from gut feel to model-informed judgment.",
+            "sourceId": "b66af50e-a497-4bcc-8ceb-11cc8789def7",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "[Leonard Green & Partners has acquired Cumming Group](https://middlemarketgrowth.org/pe-weekly-pizza-hut-take-private-tech-deals/) from New Mountain Capital. Cumming is a project and cost management advisory platform serving blue chip clients across capital projects. The deal is worth studying not f"
     }
   ]
 }

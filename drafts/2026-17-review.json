@@ -1,0 +1,41 @@
+{
+  "editionId": "2026-17",
+  "runId": "1de01443-5d67-4a0a-8c78-2898171e7581",
+  "reviewVersion": 1,
+  "image": {
+    "status": "approved",
+    "attempt": 1,
+    "assetPath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-17-hero.png",
+    "publicUrl": null,
+    "prompt": "A hand-drawn architectural blueprint rendered in charcoal pencil showing a building's foundation with misaligned load-bearing walls—one section drawn in precise technical lines, another in rough sketches that refuse to connect. Orange graphite highlights mark the structural gaps where support columns should meet but don't. Negative space dominates the composition. The drawing suggests a structure where new engineering collides with old scaffolding that was never designed to carry weight, only to maintain positions. Matte white background, elegant editorial illustration style, minimalist geometric forms, sophisticated pencil texture.",
+    "rejectedPrompts": [],
+    "approvedAt": "2026-06-20T14:56:12.949Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "approved",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": "2026-06-20T14:56:30.736Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "ready",
+    "blockedReason": null,
+    "publishedAt": null
+  },
+  "events": [
+    {
+      "timestamp": "2026-06-20T14:56:12.949Z",
+      "decision": "image_approve"
+    },
+    {
+      "timestamp": "2026-06-20T14:56:30.736Z",
+      "decision": "content_approve"
+    }
+  ],
+  "createdAt": "2026-06-20T06:47:33.731Z",
+  "updatedAt": "2026-06-20T14:57:19.931Z"
+}
