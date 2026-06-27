@@ -27,6 +27,72 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-26",
+      "recordedAt": "2026-06-27T05:50:28.463Z",
+      "angle": {
+        "headline": "The AI Implementation Gap: Why Mid-Market Firms Deploy Tools But Capture No Value",
+        "thesis": "Mid-market firms are deploying AI point solutions to automate tasks but failing to capture strategic value because they haven't redesigned their operating model to support the technology—treating AI as a productivity tool rather than a capability that requires new workflows, decision rights, and measurement systems.",
+        "targetPersona": "US-LATAM corridor operators with 50-500 employees who have already invested in AI tools (CRM automation, customer service bots, data analytics platforms) but are frustrated that efficiency gains haven't translated to margin improvement or competitive advantage",
+        "relevanceToAudience": "This audience is caught in the second wave of AI adoption: past the hype, into the implementation, but not yet seeing returns. They're experiencing the disconnect between vendor promises and operational reality. The US-LATAM context amplifies this—cross-border operations require tighter coordination, making the mismatch between AI tools and broken processes more expensive.",
+        "suggestedSources": [
+          "ebb24a00-5a37-4ac9-8e92-f541e3618d2a",
+          "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+          "7010a305-6aef-4414-90ec-4dc60ff8ed9f"
+        ],
+        "justification": {
+          "angleChoice": "This angle emerges from the convergence of three sources that all point to the same underlying dysfunction: companies are investing in technology without addressing the operational foundation. The Entrepreneur piece (ebb24a00) explicitly warns about 'AI traps' that founders fall into—treating AI as a plug-and-play solution. The Chief Executive article (c51d9024) argues that successful CEOs in 2031 won't be those who adopted AI most aggressively, but those who 'built organizations that could develop judgment, exercise it at speed and embed it into the systems making decisions around them.' The supply chain piece (7010a305) reinforces this with its headline that 'resilience demands discipline, not just digitalization'—the current crisis 'isn't a technology problem, it's a fundamentals problem.' This pattern is the Operating Model OS dysfunction in its purest form: technology deployed before the model was ready. This angle beats alternatives (e.g., focusing on hiring constraints from 3900d333, or family business succession from a0745e64) because it addresses the most pressing current investment decision this audience is making—AI spending—and explains why it's not working.",
+          "osPillarChoice": "This is Operating Model OS because the core dysfunction is not strategic (the decision to invest in AI is correct) and not technological (the tools themselves work). The breakdown occurs in the middle layer: how the business runs, executes, and scales. The Chief Executive piece makes this explicit: 'They will be the ones who built organizations that could develop judgment, exercise it at speed and embed it into the systems making decisions around them.' This is operating model language—judgment systems, decision velocity, embedding capability into workflows. The supply chain article reinforces this: calling for 'discipline' and 'fundamentals' over 'digitalization' is a call to fix the operating model first. The Entrepreneur piece's 'AI traps' are all operating model errors: deploying tools without redesigning processes, lacking governance, failing to integrate systems. This is not a Strategy OS issue (the vision is clear: use AI to compete) and not a Technology OS issue (the platforms are available). It's the classic Operating Model OS failure: the business cannot execute the strategy because the model wasn't built to support it.",
+          "peopleAngleChoice": "The challenge is that leadership views AI as an IT project because that's how it was sold to them—as a tool, not a transformation. This creates resistance to the deeper work: redesigning processes, changing decision rights, creating new metrics. Kotter Step 4 (Communicate Vision) is the precise intervention because the vision exists ('use AI to improve operations') but hasn't been translated into what it actually means for how work gets done. The concrete action is for leaders to repeatedly show—using their own operational data—that AI value comes from workflow redesign, not automation of current state. Example: 'Our AI customer service bot reduced response time by 40%, but customer satisfaction didn't improve because the bot can't resolve issues that require cross-functional coordination—which our current model doesn't support.' This communication must be persistent, concrete, and tied to measurable outcomes to shift the mindset from 'deploy tools' to 'rebuild how we work.'"
+        },
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The leadership team believes AI deployment is an IT project, not a transformation requiring new decision rights, process ownership, and performance metrics across functions.",
+          "framework": "Kotter Step 4: Communicate Vision — Leaders must repeatedly articulate that AI value comes from redesigning how work flows through the organization, not from automating existing broken processes, using concrete examples from their own operations to make the shift tangible."
+        },
+        "quarterlyTheme": "The Machine",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "Business leaders are falling into AI traps by treating AI as a plug-and-play solution without addressing underlying operational challenges.",
+              "supportingFactId": "ebb24a00-5a37-4ac9-8e92-f541e3618d2a",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "The CEOs who will thrive won't be those who adopted AI most aggressively, but those who built organizations that could develop judgment, exercise it at speed, and embed it into the systems making decisions around them.",
+              "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+              "factIndex": 1,
+              "temporalSafety": "future-only"
+            },
+            {
+              "claim": "The current supply chain crisis isn't a technology problem but a fundamentals problem, indicating that digitalization alone doesn't solve operational breakdowns.",
+              "supportingFactId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Small business confidence rose in June, but hiring remains flat as CEOs balance wage pressure and AI investment, suggesting AI is being used to avoid hiring rather than to redesign operations.",
+              "supportingFactId": "3900d333-54bb-48f1-bfc0-ec13bec368c6",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Five key questions about an organization's ability to develop and embed judgment will likely determine CEO success by 2031.",
+              "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+              "factIndex": 3,
+              "temporalSafety": "future-only"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Supply chain operations (generic mid-market reference based on Chief Executive Magazine reporting)",
+            "sourceId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "KeyBank's Middle Market Snapshot survey finds that mid-market borrowers are increasingly using private capital as a growth lever, not a rescue mechanism. According to Middle Market Growth, CFOs and owners are playing offense - structuring capital to fund strategic moves rather than bridging distress"
     }
   ]
 }
