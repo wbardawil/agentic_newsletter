@@ -204,4 +204,34 @@ describe("citation-guard", () => {
       });
     });
   });
+
+  // ── Regression: falsos positivos en español ────────────────────────────────
+
+  describe("Spanish demonstrative false positives (prod 2026-26)", () => {
+    it("does NOT flag 'Ese documento' — demostrativo + sustantivo, not entity+verb", () => {
+      const body =
+        "con el líder de operaciones, no con TI. Ese documento es la primera capa de la máquina que la empresa necesita construir.";
+      const issues = scanSection(body, "es/analysis");
+      expect(issues).toHaveLength(0);
+    });
+
+    it("does NOT flag 'Esa decisión' — another demonstrative pattern", () => {
+      const body = "Esa decisión define el rumbo del trimestre.";
+      const issues = scanSection(body, "es/analysis");
+      expect(issues).toHaveLength(0);
+    });
+
+    it("does NOT flag 'Dicho documento' — anaphoric reference", () => {
+      const body = "Dicho documento establece los criterios de aprobación.";
+      const issues = scanSection(body, "es/analysis");
+      expect(issues).toHaveLength(0);
+    });
+
+    it("STILL flags 'Grupo Elektra ha documentado' correctly", () => {
+      const body = "Grupo Elektra ha documentado los resultados del trimestre.";
+      const issues = scanSection(body, "es/fieldReport");
+      expect(issues).toHaveLength(1);
+      expect(issues[0]!.entity).toBe("Grupo Elektra");
+    });
+  });
 });

@@ -60,7 +60,10 @@ const ATTRIBUTION_VERBS = [
   "confirmó",
   "confirmo",
   "documentó",
-  "documento",
+  // NOTE: "documento" (without accent) is intentionally omitted — it is
+  // homonymous with the Spanish noun "documento" and causes systematic false
+  // positives (e.g. "Ese documento es…" → flagged as entity+verb attribution).
+  // The compound form "ha documentado" below covers the verbal use without ambiguity.
   "reveló",
   "revelo",
   "publicó",
@@ -174,6 +177,33 @@ const STOP_WORDS_LEADING = new Set([
   "Una",
   "Unos",
   "Unas",
+  // Spanish demonstrative pronouns/adjectives — frequently appear capitalized
+  // at the start of a sentence and are never entity names
+  "Ese",
+  "Esa",
+  "Esos",
+  "Esas",
+  "Aquel",
+  "Aquella",
+  "Aquellos",
+  "Aquellas",
+  "Dicho",
+  "Dicha",
+  "Dichos",
+  "Dichas",
+  // English demonstratives not yet in the list
+  "Such",
+  "Each",
+  "Every",
+  "Both",
+  "Either",
+  "Neither",
+  "Another",
+  "Other",
+  "What",
+  "Which",
+  "Where",
+  "When",
 ]);
 
 // Substrings that, if present in the captured entity, mark it as non-claim-bearing.
