@@ -246,6 +246,37 @@ function detectTemporalMismatch(
 }
 
 /**
+ * Stop words for entity-duplicate detection. These words frequently appear
+ * capitalised at sentence start but are never company or person names.
+ * Kept as a Set for O(1) lookups during the regex scan.
+ */
+const ENTITY_DUPLICATE_STOP_WORDS = new Set([
+  // English — pronouns, connectives, determiners, common sentence starters
+  "The", "This", "That", "When", "While", "Most", "Many", "Some",
+  "These", "Those", "According", "After", "Also", "Although", "Among",
+  "And", "Another", "Any", "Are", "As", "At", "Because", "Before",
+  "Between", "Both", "But", "Can", "Could", "Did", "Does", "During",
+  "Each", "Either", "Even", "Every", "For", "From", "Had", "Has",
+  "Have", "Her", "Here", "His", "How", "However", "If", "In",
+  "Into", "Its", "Just", "Last", "Like", "More", "Much", "Neither",
+  "New", "Next", "No", "Nor", "Not", "Now", "Of", "On", "One",
+  "Only", "Or", "Other", "Our", "Out", "Over", "Own", "Per",
+  "Rather", "She", "Should", "Since", "So", "Still", "Such",
+  "Than", "Their", "Them", "Then", "There", "They", "Through",
+  "Today", "Too", "Under", "Until", "Very", "Was", "We", "Were",
+  "What", "Where", "Which", "Who", "Why", "Will", "With", "Would",
+  "Yet", "You", "Your",
+  // Spanish — pronouns, connectives, determiners
+  "Según", "Segun", "Además", "Ademas", "Aunque", "Como", "Con",
+  "Cuando", "Del", "Desde", "Donde", "Durante", "Ella", "Ellos",
+  "Entre", "Ese", "Esa", "Esos", "Esas", "Este", "Esta", "Estos",
+  "Estas", "Hay", "Las", "Los", "Más", "Mas", "Mientras", "Nos",
+  "Otra", "Otro", "Otras", "Otros", "Para", "Pero", "Por", "Porque",
+  "Sin", "Sobre", "Son", "Sus", "También", "Tambien", "Toda",
+  "Todo", "Todos", "Usted", "Ustedes",
+]);
+
+/**
  * Deterministic check: extract the first significant entity from the Apertura
  * and verify it does not appear as the anchor in the Field Report.
  * Converts the existing LLM-only check into a pre-LLM fail-fast gate.
@@ -264,8 +295,11 @@ function detectFieldReportEntityDuplicate(
   let m: RegExpExecArray | null;
   while ((m = capitalTokenRe.exec(aperturaHead)) !== null) {
     const token = m[1]!;
-    // Exclude common non-entity capitalized words
-    if (!["The", "This", "That", "When", "While", "Most", "Many", "Some", "These", "Those"].includes(token)) {
+    // Exclude common non-entity capitalized words that appear at sentence
+    // starts but are never company/person names. Prod 2026-26: "According"
+    // was captured as an entity and caused a false-positive entity-duplicate
+    // error that cascaded into isValid=false → unpublishable draft.
+    if (!ENTITY_DUPLICATE_STOP_WORDS.has(token)) {
       aperturaEntities.push(token.toLowerCase());
     }
   }

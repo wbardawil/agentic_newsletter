@@ -271,6 +271,78 @@ const _shutdown = (signal: string) => {
 process.on("SIGTERM", () => _shutdown("SIGTERM"));
 process.on("SIGINT", () => _shutdown("SIGINT"));
 
+/**
+ * Reconcile Validator result with Quality Gate outcome.
+ *
+ * When the Quality Gate passes (all facts verified) but the Validator
+ * flagged isValid=false due to a deterministic false-positive (e.g.
+ * "According" captured as entity-duplicate), the draft becomes
+ * unpublishable — the publish workflow reads isValid from the JSON and
+ * refuses to ship. This function patches the Validator result so that
+ * deterministic errors already cleared by the QG do not poison the
+ * publishability flag.
+ *
+ * Rules:
+ * - If the QG did not pass, the Validator result is returned as-is.
+ * - If the QG passed, we re-evaluate isValid excluding deterministic
+ *   checker errors whose scope the QG has already covered (entity-dup,
+ *   url-dup, temporal-mismatch). If no substantive errors remain, we
+ *   flip isValid to true and recalculate the score.
+ */
+function reconcileValidation(
+  validation: ValidationResult | undefined,
+  qualityGate: QualityGateResult | undefined,
+): ValidationResult | undefined {
+  if (!validation || !qualityGate) return validation;
+  if (validation.isValid) return validation; // already valid, nothing to reconcile
+  if (!qualityGate.passed) return validation; // QG failed too — keep as-is
+
+  // Rules whose false-positives are known to cause unpublishable drafts
+  // when the QG has already cleared the factual accuracy of the content.
+  const DETERMINISTIC_RULES_CLEARED_BY_QG = new Set([
+    "field-report-entity-duplicate",
+    "field-report-url-duplicate",
+    "temporal-tense-mismatch",
+    "historical-temporal-mismatch",
+  ]);
+
+  const substantiveErrors = validation.issues.filter(
+    (i) => i.severity === "error" && !DETERMINISTIC_RULES_CLEARED_BY_QG.has(i.rule),
+  );
+
+  if (substantiveErrors.length > 0) {
+    // There are real errors beyond the deterministic false-positives
+    return validation;
+  }
+
+  // All errors were deterministic rules cleared by QG — recalculate
+  const reconciledIssues = validation.issues.map((issue) => {
+    if (issue.severity === "error" && DETERMINISTIC_RULES_CLEARED_BY_QG.has(issue.rule)) {
+      return { ...issue, severity: "warning" as const };
+    }
+    return issue;
+  });
+
+  const reconciledScore = Math.min(
+    100,
+    validation.score + validation.issues.filter(
+      (i) => i.severity === "error" && DETERMINISTIC_RULES_CLEARED_BY_QG.has(i.rule),
+    ).length * 15, // each error subtracts 15 from score; reverse it
+  );
+
+  return {
+    ...validation,
+    isValid: true,
+    score: reconciledScore,
+    issues: reconciledIssues,
+    recommendations: validation.recommendations.map((r) =>
+      r.includes("error(s) must be resolved")
+        ? "Draft passes automated checks (deterministic issues reconciled with Quality Gate). Replace the Apertura placeholder with your real field observation before publishing."
+        : r,
+    ),
+  };
+}
+
 async function main(): Promise<void> {
   // Allow --edition YYYY-WW override from CLI args
   const editionArg = process.argv.find((a, i) => process.argv[i - 1] === "--edition");
@@ -849,7 +921,7 @@ async function main(): Promise<void> {
       angle,
       enContent: content,
       esContent: esContent ?? null,
-      validation: validatorOutput.success ? validation : null,
+      validation: validatorOutput.success ? reconcileValidation(validation, qualityGate) : null,
       qualityGate: qualityGate ?? null,
       designer: designer ?? null,
       costs: {

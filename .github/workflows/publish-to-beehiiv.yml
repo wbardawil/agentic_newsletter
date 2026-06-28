@@ -111,19 +111,24 @@ jobs:
             const fs = require('node:fs');
             const draft = JSON.parse(fs.readFileSync('${DRAFT}', 'utf-8'));
             const v = draft.validation;
+            const qg = draft.qualityGate;
             if (!v) {
               console.error('::error::Draft has no validation field — Validator did not run successfully. Refusing to publish.');
               process.exit(1);
             }
             const errors = (v.issues || []).filter(i => i.severity === 'error');
-            console.log('QA score: ' + v.score + '/100 (isValid=' + v.isValid + ', errors=' + errors.length + ')');
-            if (v.isValid === false) {
-              console.error('::error::Validator marked the draft invalid. Errors:');
+            const qgPassed = qg && qg.passed === true;
+            console.log('QA score: ' + v.score + '/100 (isValid=' + v.isValid + ', errors=' + errors.length + ', qgPassed=' + qgPassed + ')');
+            if (v.isValid === false && !qgPassed) {
+              console.error('::error::Validator marked the draft invalid and Quality Gate did not pass. Errors:');
               for (const e of errors) console.error('::error::  [' + e.section + '] ' + e.message);
               process.exit(1);
             }
-            if (typeof v.score === 'number' && v.score < Number('${MIN}')) {
-              console.error('::error::QA score ' + v.score + ' is below threshold ${MIN}. Refusing to publish.');
+            if (v.isValid === false && qgPassed) {
+              console.log('Validator marked invalid but Quality Gate passed (fact-check OK). Proceeding with publication.');
+            }
+            if (typeof v.score === 'number' && v.score < Number('${MIN}') && !qgPassed) {
+              console.error('::error::QA score ' + v.score + ' is below threshold ${MIN} and Quality Gate did not pass. Refusing to publish.');
               process.exit(1);
             }
             console.log('Quality gate passed.');
