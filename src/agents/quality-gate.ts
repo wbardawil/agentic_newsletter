@@ -344,7 +344,34 @@ export class QualityGateAgent extends BaseAgent<
 
     // Core validation gate logic for Angle Originality and Fact Verification
     let finalPassed = result.passed;
-    const hardFailures = [...result.hardFailures];
+
+    // The QG LLM sometimes performs chain-of-thought reasoning where it
+    // initially flags a claim, then retracts it ("NOT a temporal inaccuracy",
+    // "Retracting this failure", etc.) but still leaves the entry in the
+    // structured JSON arrays. Filter these self-retracted items so they
+    // don't trigger the expensive Writer repair loop or crash the pipeline.
+    const RETRACTION_PATTERNS = [
+      /retract(?:ing|ed)\s+this\s+(?:failure|claim)/i,
+      /\bNOT\s+a\s+temporal\s+inaccurac/i,
+      /should\s+NOT\s+be\s+flagged/i,
+      /(?:this\s+is\s+)?actually\s+(?:VERIFIED|verified|correct)/i,
+      /\bexempt\s+(?:framework|synthesis|editorial)/i,
+      /\bNo\s+failure\s+here\b/i,
+      /\bdoes\s+not\s+appear\s+in\s+the\s+provided\s+drafts\b/i,
+      /\bnot\s+a\s+factual\s+claim\s+requiring\s+verification\b/i,
+    ];
+
+    const isRetracted = (text: string): boolean =>
+      RETRACTION_PATTERNS.some((re) => re.test(text));
+
+    const hardFailures = result.hardFailures.filter((f) => !isRetracted(f));
+
+    // Also filter unverifiedClaims that were retracted in hardFailures narrative
+    const filteredUnverifiedClaims = result.factCheck.unverifiedClaims.filter((c) => {
+      // Keep the claim unless the corresponding hardFailure that mentions it was retracted
+      const matchingFailure = result.hardFailures.find((f) => f.includes(c.claim));
+      return !matchingFailure || !isRetracted(matchingFailure);
+    });
 
     // Angle Originality tiered checks & block/hold logic
     const similarityPercent = result.angleOriginality.similarityScore * 100;
@@ -364,8 +391,8 @@ export class QualityGateAgent extends BaseAgent<
       }
     }
 
-    // Fact verification check: if there are unverified claims, must always fail
-    if (result.factCheck.unverifiedClaims.length > 0) {
+    // Fact verification check: if there are genuine unverified claims, must always fail
+    if (filteredUnverifiedClaims.length > 0) {
       finalPassed = false;
     }
 
@@ -373,6 +400,10 @@ export class QualityGateAgent extends BaseAgent<
       ...result,
       passed: finalPassed,
       hardFailures,
+      factCheck: {
+        ...result.factCheck,
+        unverifiedClaims: filteredUnverifiedClaims,
+      },
       sourceDiversity: {
         distinctOutlets: outlets.distinctOutlets,
         distinct_outlets: outlets.distinctOutlets,

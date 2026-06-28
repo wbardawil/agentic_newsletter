@@ -299,11 +299,15 @@ function reconcileValidation(
 
   // Rules whose false-positives are known to cause unpublishable drafts
   // when the QG has already cleared the factual accuracy of the content.
+  // We include LLM-based "people-angle-substantive" here because it is a
+  // subjective style/coaching check. If the Quality Gate passed (fact-check OK),
+  // a subjective layout/weaving warning should not permanently block publication.
   const DETERMINISTIC_RULES_CLEARED_BY_QG = new Set([
     "field-report-entity-duplicate",
     "field-report-url-duplicate",
     "temporal-tense-mismatch",
     "historical-temporal-mismatch",
+    "people-angle-substantive",
   ]);
 
   const substantiveErrors = validation.issues.filter(

@@ -95,6 +95,9 @@ For each claim, you must perform this internal monologue:
     -   If no, it is an `unverifiedClaim`. Add it to that list and create a
         corresponding entry in `hardFailures`.
 
+**CRITICAL STRUCTURAL RULE (NO FALSE POSITIVES IN JSON):** 
+If your internal chain-of-thought monologue or reasoning determines that a claim is exempt, verified, or not a factual error, you MUST completely exclude it from the `unverifiedClaims` and `hardFailures` arrays in your final JSON output. Only include claims in those arrays that are genuinely unverified and unsupported. Including retracted or exempt claims in the JSON arrays will disrupt the automated draft-repair workflow.
+
 ### Common Failures to Catch (Pay Close Attention)
 
 -   **Temporal Inaccuracy (CRITICAL):** A claim using past or present tense

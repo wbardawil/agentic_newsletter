@@ -72,6 +72,8 @@ failure. The framework must NOT be named out loud — the mechanism should be sh
 
 To assess: identify the sentence in the Insight where the declared challenge ("{{peopleAngleChallenge}}") is addressed. If it is only a passing mention without a causal mechanism, it fails.
 
+**CRITICAL DATA FIDELITY NUANCE:** The declared challenge and framework descriptions are written by the upstream Strategist agent, which occasionally invents arbitrary numbers or specific statistics (e.g. "510-day delay", "14-step review", etc.) that do not exist in the source bundle. The Writer is strictly instructed by "Data Fidelity" rules NOT to include invented statistics. Therefore, if the declared framework references a specific statistic but the Insight addresses the exact same underlying change-management mechanism using general or factual framing (e.g., "multi-year review cycles" instead of "510-day delay"), you MUST treat this as a PASS. Evaluate whether the *behavioral mechanism and change framework* were substantively addressed, NOT whether the Writer replicated a potentially hallucinated or invented statistic.
+
 ### 3. The Reframe (Rule 11)
 The Insight MUST contain an explicit reframe in this non-negotiable sequence:
 1.  State the conventional (wrong/incomplete) understanding.

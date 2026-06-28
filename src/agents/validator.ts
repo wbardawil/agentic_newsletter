@@ -591,7 +591,7 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
       });
     }
 
-    if (!llmData.fieldReportEntityDistinct) {
+    if (!llmData.fieldReportEntityDistinct && !entityDuplicateIssue) {
       issues.push({
         rule: "field-report-entity-distinct",
         severity: "warning",

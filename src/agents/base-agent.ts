@@ -33,13 +33,16 @@ export abstract class BaseAgent<TInput = unknown, TOutput = unknown> {
 
   protected readonly logger: Logger;
   /**
-   * Per-invocation cost tracker assigned at the start of each `run()` call.
-   * Always valid inside `execute()`. Never shared between concurrent invocations.
+   * Per-invocation cost tracker. Initialized to a default in the constructor
+   * so that public helper methods (e.g. repairQualityGateFailures) that are
+   * called outside of `run()` do not crash on `undefined`. Each `run()` call
+   * replaces it with a fresh tracker scoped to that invocation.
    */
-  protected costTracker!: CostTracker;
+  protected costTracker: CostTracker;
 
   constructor(protected readonly deps: AgentDeps) {
     this.logger = deps.logger;
+    this.costTracker = createCostTracker();
   }
 
   async run(input: AgentInput<TInput>): Promise<AgentOutput<TOutput>> {
