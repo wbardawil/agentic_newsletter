@@ -249,6 +249,8 @@ Using a different company from the same article (same URL) still triggers the en
 distinctness failure — the reader will see the same source cited twice in the same issue.
 If they overlap, choose a different Field Report anchor from a different source URL.
 
+**CRITICAL SIGNAL DUP RULE:** You must NOT use any source URL in your Field Report that has already been cited in THE SIGNAL (Section 0) bullets. Citing the same URL in both places triggers a duplicative citation failure in the Validator. If there's an overlap, choose a different Field Report source URL from your bundle.
+
 Only after completing all three audit steps, begin drafting.
 
 ---

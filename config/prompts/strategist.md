@@ -132,6 +132,13 @@ Every recommendation creates a People-side challenge. Name it explicitly:
 
 **The `peopleAngle` must name the concrete action that the framework activates.** It is
 not enough to name the framework step — state what the owner or leader must *do differently*
+as a result.
+
+**NEVER INVENT NUMBERS OR STATISTICS (CRITICAL):** Do NOT invent arbitrary numbers, timeframes, or statistics (such as "510-day delay", "14-step review", "40% decline") in the `peopleAngle.challenge` or `peopleAngle.framework` unless they are explicitly present in the selected sources' verbatimFacts. Any invented specific numbers will cause the downstream Writer to fail on Data Fidelity or cause the Validator to reject the draft due to misalignment. Keep the challenges and frameworks anchored in qualitative shifts, or use actual numbers from the sources.
+
+Weak: "ADKAR: Awareness." Strong: "ADKAR: Awareness — the leadership team
+must first be shown the cost of the current pattern in their own operating data before
+they will have the desire to change it."
 as a result. Weak: "ADKAR: Awareness." Strong: "ADKAR: Awareness — the leadership team
 must first be shown the cost of the current pattern in their own operating data before
 they will have the desire to change it."
