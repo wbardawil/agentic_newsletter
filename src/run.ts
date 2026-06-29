@@ -694,6 +694,34 @@ async function main(): Promise<void> {
         // Replace the EN content with the repaired version
         content = repairedContent;
 
+        // Propagate repairs to the Spanish draft by regenerating it
+        if (esContent) {
+          console.log(`   🌎 ES Writer: regenerating Spanish edition from repaired English draft...\n`);
+          const localizerOutput = await localizerAgent.run({
+            runId,
+            editionId,
+            agentName: "localizer",
+            payload: { content, angle, targetLanguage: "es", draftsDir, sourceBundle: bundle },
+          });
+
+          if (localizerOutput.success) {
+            let stage = localizerOutput.data as LocalizedContent;
+            const entityFix = replaceContentMxEntities(stage);
+            if (entityFix.report.length > 0) {
+              console.log(`   🔧 MX entity fixes applied during repair:`);
+              for (const r of entityFix.report) {
+                console.log(`      • ${r.note} (${r.occurrences} occurrence${r.occurrences === 1 ? "" : "s"})`);
+              }
+            }
+            stage = entityFix.content;
+            stage = await runVoiceSweep(stage, apiClients, costTracker, logger);
+            esContent = rewriteContentOutletLinks(stage, bundle, "es");
+            console.log(`   ✓ Spanish edition repaired and aligned successfully\n`);
+          } else {
+            console.warn(`   ⚠️  Localizer failed during repair: ${localizerOutput.error}. Keeping previous Spanish draft.\n`);
+          }
+        }
+
         // Re-run Quality Gate on the repaired draft
         console.log(`   🔁 Re-running Quality Gate after repair ${repairAttempt}...\n`);
         const rerunOutput = await qualityGateAgent.run({

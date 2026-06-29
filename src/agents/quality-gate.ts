@@ -144,11 +144,13 @@ export class QualityGateAgent extends BaseAgent<
 
     const sourcesBlock = payload.sourceBundle.items
       .map(
-        (item) =>
-          `### Source [${item.id}] ${item.outlet ?? "unknown"} — ${item.title}\n` +
-          `URL: ${item.url}\n` +
-          `verbatimFacts:\n` +
-          item.verbatimFacts.map((f, i) => `  ${i + 1}. ${f}`).join("\n"),
+        (item) => {
+          const dateStr = item.publishedAt ? ` (${item.publishedAt.split("T")[0]})` : "";
+          return `### Source [${item.id}] ${item.outlet ?? "unknown"} — ${item.title}${dateStr}\n` +
+                 `URL: ${item.url}\n` +
+                 `verbatimFacts:\n` +
+                 item.verbatimFacts.map((f, i) => `  ${i + 1}. ${f}`).join("\n");
+        }
       )
       .join("\n\n");
 

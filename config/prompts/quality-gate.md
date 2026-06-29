@@ -61,6 +61,10 @@ A "specific claim" is:
   4. It describes a **behavioral pattern** that is the author's diagnosis,
      signaled by words like "typically", "usually", "often", "rarely",
      "historically", "by default", "as a rule."
+  5. It describes **general historical baseline business conditions** (e.g.,
+     "timelines were a constant", "friction was a given", "compliance was a
+     checklist") used solely to construct an editorial contrast with a newly
+     introduced change. Do NOT fact-check these rhetorical setup phrases.
 
   **Concrete examples of EXEMPT statements (do NOT flag these):**
   - ✅ "In most mid-market firms, the leadership team has never built shared
