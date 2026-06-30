@@ -311,11 +311,11 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
       // 24 k output budget so the full 7-section JSON fits without truncation.
-      // Fixed thinking budget (4 k) instead of "adaptive" to avoid the model
-      // silently spending 8–12 k tokens on internal reasoning and leaving too
-      // little headroom for the actual JSON output.
+      // claude-opus-4-7 requires thinking.type = "adaptive"; the "enabled" variant
+      // with budget_tokens is not supported and returns HTTP 400. The model manages
+      // its own thinking budget internally under "adaptive".
       max_tokens: 24000,
-      thinking: { type: "enabled", budget_tokens: 4000 },
+      thinking: { type: "adaptive" },
       system: [
         {
           type: "text",

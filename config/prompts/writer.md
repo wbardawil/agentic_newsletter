@@ -75,8 +75,27 @@ source article's `verbatimFacts`**. Inventing quotes or fabricating stats destro
 trust and will be caught by the Quality Gate.
 
 1.  **Cite Inline:** Use Markdown links: `[According to Fast Company](https://...), [claim].`
-2.  **No Naked Attributions:** Phrases like "according to" or "reports show" must be
-    part of the link. A standalone attribution phrase is a hard failure.
+2.  **No Naked Attributions — ZERO EXCEPTIONS:** Any phrase using "according to",
+    "reports show", "says", "found", "noted", "stated", or "according to [Publication]"
+    **MUST** include the markdown URL link `[Publication Name](url)` in the same
+    sentence. A standalone attribution phrase with no adjacent URL is a **hard failure**
+    caught by an automated Citation Guard that will block the entire edition from
+    shipping — no exceptions, no second chances.
+
+    **WRONG (will be caught and block shipping):**
+    - `According to Middle Market Growth, healthcare M&A is…`
+    - `The Wall Street Journal reports that…`
+    - `According to the Association for Corporate Growth…`
+
+    **CORRECT (always inline the URL):**
+    - `[According to Middle Market Growth](https://middlemarketgrowth.org/…), healthcare M&A is…`
+    - `[The Wall Street Journal reports](https://wsj.com/…) that…`
+    - `[The Association for Corporate Growth found](https://acg.org/…) that…`
+
+    If you do not have the URL of a publication in the source bundle, do NOT attribute
+    by name — convert to anonymous framing: "Industry research shows…" or "Recent
+    deal data suggests…" (no attribution required for vague framings).
+
 3.  **General Frameworks need no citations:** "Most founders build procedures before
     they build judgment" is your synthesis and is allowed uncited.
 4.  **Specific Claims need citations:** "42% of owners report..." or "CEO Y said Z"

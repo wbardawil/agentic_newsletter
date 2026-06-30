@@ -40,6 +40,12 @@ interface FeedConfig {
    * The Strategist prompt receives this signal to avoid saturated angles.
    */
   competitive?: boolean;
+  /**
+   * When true, this feed is skipped entirely. Use for feeds that consistently
+   * 403 or timeout in CI (e.g. BLS.gov blocks Azure runner IPs, Substack
+   * blocks scrapers) — keeps run logs clean and saves Radar time.
+   */
+  disabled?: boolean;
 }
 
 const RSS_FEEDS: FeedConfig[] = [
@@ -50,6 +56,7 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Harvard Business Review",
     region: "corridor",
     tier: 1,
+    disabled: true, // TLS handshake fails consistently from GH Actions runners
   },
   {
     url: "https://sloanreview.mit.edu/feed/",
@@ -224,6 +231,7 @@ const RSS_FEEDS: FeedConfig[] = [
     region: "corridor",
     tier: 3,
     competitive: true,
+    disabled: true, // Substack 403s CI runners
   },
 
   // ── Technology & AI in Business ────────────────────────────────────────────
@@ -369,6 +377,7 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Andrew Chen (Growth & Network Effects)",
     region: "corridor",
     tier: 1,
+    disabled: true, // Substack 403s CI runners
   },
   {
     url: "https://www.svpg.com/feed/",
@@ -387,6 +396,7 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Product Growth — Aakash Gupta (Growth & Metrics)",
     region: "corridor",
     tier: 2,
+    disabled: true, // Substack 403s CI runners
   },
 
   // ── Tech-Business Strategy — Executive Tier ────────────────────────────────
@@ -420,24 +430,28 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "BLS Employment Situation",
     region: "us",
     tier: 2,
+    disabled: true, // BLS.gov 403s Azure-hosted GH Actions runners
   },
   {
     url: "https://www.bls.gov/feed/eci.rss",
     outlet: "BLS Employment Cost Index",
     region: "us",
     tier: 2,
+    disabled: true, // BLS.gov 403s Azure-hosted GH Actions runners
   },
   {
     url: "https://www.bls.gov/feed/jolts.rss",
     outlet: "BLS Job Openings (JOLTS)",
     region: "us",
     tier: 3,
+    disabled: true, // BLS.gov 403s Azure-hosted GH Actions runners
   },
   {
     url: "https://www.bls.gov/feed/prod2.rss",
     outlet: "BLS Productivity",
     region: "us",
     tier: 3,
+    disabled: true, // BLS.gov 403s Azure-hosted GH Actions runners
   },
   {
     url: "https://hrexecutive.com/feed/",
@@ -842,9 +856,10 @@ export class RadarAgent extends BaseAgent<RadarInput, SourceBundle> {
       | { status: "ok"; feed: FeedConfig; parsed: ParsedOutput }
       | { status: "err"; feed: FeedConfig; error: unknown };
 
+    const activeFeeds = RSS_FEEDS.filter((f) => !f.disabled);
     const results = await Promise.race([
       Promise.all(
-        RSS_FEEDS.map(async (feed): Promise<FeedResult> => {
+        activeFeeds.map(async (feed): Promise<FeedResult> => {
           try {
             const parsed = await parser.parseURL(feed.url);
             return { status: "ok", feed, parsed };

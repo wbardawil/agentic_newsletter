@@ -510,6 +510,30 @@ async function main(): Promise<void> {
   );
   console.log(`   ✓ Draft complete (${content.sections.length} sections)\n`);
 
+  // ── Early Citation Guard pre-scan (post-Writer, pre-QG) ────────────────────
+  // Catch naked attributions ("According to X") without an adjacent URL before
+  // the QG repair loop. If issues are found here the Writer has a chance to fix
+  // them via the QG repair loop; without this pre-scan they only surface at the
+  // final Citation Guard (post-QG) where no repair budget remains.
+  {
+    const earlyGuardIssues = scanEdition(
+      content.sections.map((s) => ({ type: s.type, body: s.body })),
+      "en",
+    );
+    if (earlyGuardIssues.length > 0) {
+      console.warn(
+        `\n⚠️  Citation Guard (pre-QG) — ${earlyGuardIssues.length} attribution(s) without a source link:`,
+      );
+      for (const issue of earlyGuardIssues) {
+        console.warn(`   • [${issue.section}] "${issue.entity} ${issue.verb}"`);
+        console.warn(`     … ${issue.excerpt} …`);
+      }
+      console.warn(
+        `   Writer will have a chance to fix these during the QG repair loop.\n`,
+      );
+    }
+  }
+
   // ── Validator ──────────────────────────────────────────────────────────────
   console.log("🔎 Step 4/5 — Validator: checking draft against Voice Bible...");
   const validatorAgent = new ValidatorAgent(deps);
