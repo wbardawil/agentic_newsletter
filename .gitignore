@@ -35,3 +35,10 @@ workers/**/.wrangler/
 # Logs
 logs
 *.log
+
+# Draft artifacts — generated per-run, should not be committed to the repo.
+# angle-history.json is the single exception: it persists historical angles
+# across runs so the Strategist can avoid repeating topics.
+drafts/*
+drafts/sample/
+!drafts/angle-history.json
