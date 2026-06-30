@@ -722,6 +722,17 @@ async function main(): Promise<void> {
           }
         }
 
+        // Skip the QG re-run when this was the last repair slot — the result
+        // cannot improve further and running the QG again wastes ~35 s that
+        // would push the GH Actions job over its timeout limit.
+        if (repairAttempt === MAX_QG_REPAIRS) {
+          console.warn(
+            `   ⚠️  Draft still has ${qualityGate.hardFailures.length} unresolved claim(s) after ${MAX_QG_REPAIRS} repair(s). Skipping final QG re-run to avoid timeout.\n`,
+          );
+          hadBlockingIssue = true;
+          break;
+        }
+
         // Re-run Quality Gate on the repaired draft
         console.log(`   🔁 Re-running Quality Gate after repair ${repairAttempt}...\n`);
         const rerunOutput = await qualityGateAgent.run({
@@ -747,12 +758,8 @@ async function main(): Promise<void> {
           console.log(`   ✅ Quality Gate passed after repair ${repairAttempt}.\n`);
           break;
         }
-
-        if (repairAttempt === MAX_QG_REPAIRS) {
-          console.warn(
-            `   ⚠️  Draft still has ${qualityGate.hardFailures.length} unresolved claim(s) after ${MAX_QG_REPAIRS} repair(s). Continuing as blocking issue.\n`,
-          );
-        }
+        // Loop continues — next iteration will either repair again or hit the
+        // early-exit at MAX_QG_REPAIRS before the final QG re-run.
       }
     }
     // ── End repair loop ────────────────────────────────────────────────────

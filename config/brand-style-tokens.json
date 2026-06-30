@@ -68,7 +68,7 @@
       "environments representing modern offices, technology environments, contemporary corporate scenarios, strategic business contexts",
       "one central idea, a clear visual metaphor, defined visual hierarchy, minimal but meaningful elements"
     ],
-    "model": "gemini-2.5-flash-image"
+    "model": "gemini-3-pro-image"
   },
   "layout": {
     "borderRadius": "0.5rem",

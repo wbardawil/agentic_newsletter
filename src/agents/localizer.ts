@@ -310,8 +310,12 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
 
     const stream = await this.deps.apiClients.anthropic.messages.stream({
       model: MODEL,
-      max_tokens: 16000,
-      thinking: { type: "adaptive" },
+      // 24 k output budget so the full 7-section JSON fits without truncation.
+      // Fixed thinking budget (4 k) instead of "adaptive" to avoid the model
+      // silently spending 8–12 k tokens on internal reasoning and leaving too
+      // little headroom for the actual JSON output.
+      max_tokens: 24000,
+      thinking: { type: "enabled", budget_tokens: 4000 },
       system: [
         {
           type: "text",

@@ -82,9 +82,10 @@ jobs:
     runs-on: ubuntu-latest
     # Was 12 min. Since we have added several sophisticated steps (image generation,
     # bilingual localization, and especially the multi-step Quality Gate self-repair loop),
-    # a normal run with any minor LLM retry can take up to 13-14 minutes total. 
-    # Bumping to 18 min provides comfortable headroom for self-healing and complete executions.
-    timeout-minutes: 18
+    # a normal run with any minor LLM retry can take up to 13-14 minutes total.
+    # Localizer uses claude-opus-4-7 with 24k max_tokens; each attempt can take ~3.5 min.
+    # 25 min provides headroom for up to 2 Localizer retries + 2 QG repair passes.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
 

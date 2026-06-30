@@ -15,6 +15,9 @@ const MODEL_PRICING: Record<string, { input: number; output: number }> = {
   "gemini-2.5-flash-image": { input: 0.3, output: 31.0 },
   // gemini-2.0-flash-exp-image-generation: alternative experimental model
   "gemini-2.0-flash-exp-image-generation": { input: 0.3, output: 31.0 },
+  // gemini-3-pro-image: current production model (updated from gemini-2.5-flash-image)
+  // Pro-tier pricing is estimated; update when Google publishes official rates.
+  "gemini-3-pro-image": { input: 0.6, output: 55.0 },
 };
 
 export interface CostTracker {

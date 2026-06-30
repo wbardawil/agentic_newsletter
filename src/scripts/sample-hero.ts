@@ -19,7 +19,7 @@ import { join } from "node:path";
 const SAMPLE_DIR = join(process.cwd(), "drafts", "sample");
 const PROMPT_FILE = join(SAMPLE_DIR, "2026-18-sample-image-prompt.txt");
 const OUTPUT_FILE = join(SAMPLE_DIR, "2026-18-sample-hero.png");
-const MODEL = "gemini-2.5-flash-image-preview";
+const MODEL = "gemini-3-pro-image";
 
 interface GeminiResponse {
   candidates?: Array<{

@@ -65,6 +65,13 @@ A "specific claim" is:
      "timelines were a constant", "friction was a given", "compliance was a
      checklist") used solely to construct an editorial contrast with a newly
      introduced change. Do NOT fact-check these rhetorical setup phrases.
+  6. It is an **author-attributed editorial position** — any claim that begins
+     with first-person editorial markers such as "In our experience…",
+     "Our view is…", "Our assessment is…", "We observe…", "In our reading…",
+     or "What we see consistently…". These are the newsletter author's
+     professional opinions, not reportable facts attributable to third parties.
+     They are **inherently unfalsifiable** and must NOT be flagged as
+     unverified claims. Treat them as exempt regardless of their content.
 
   **Concrete examples of EXEMPT statements (do NOT flag these):**
   - ✅ "In most mid-market firms, the leadership team has never built shared
@@ -77,6 +84,11 @@ A "specific claim" is:
     in second person, not attributed to a specific company)
   - ✅ "More often than not, the tool inherits nothing because the decision
     protocol was never written down."
+  - ✅ "In our experience, when those three numbers have never been measured,
+    the gap between AI ambition and AI capture is always wider than the
+    leadership team believes." (author editorial position — exempt)
+  - ✅ "Our view is that the compliance surface has widened faster than most
+    operators realize." (author editorial opinion — exempt)
 
   **Concrete examples of claims that ARE still verifiable (flag if unsupported):**
   - ❌ "Company X reported a 40% increase in productivity." (specific stat +

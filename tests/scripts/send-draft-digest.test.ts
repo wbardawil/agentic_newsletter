@@ -67,7 +67,7 @@ function makeDraftWithDesigner(overrides: Record<string, unknown> = {}) {
           attempt: 1,
         },
       ],
-      imageModel: "gemini-2.5-flash-image-preview",
+      imageModel: "gemini-3-pro-image",
     },
     ...overrides,
   });
@@ -174,7 +174,7 @@ describe("renderDigestText", () => {
     const text = renderDigestText(makeDraftWithDesigner() as never, linksWithReview);
     expect(text).toContain("Hero image");
     expect(text).toContain("intento 1");
-    expect(text).toContain("gemini-2.5-flash-image-preview");
+    expect(text).toContain("gemini-3-pro-image");
     expect(text).toContain("project.supabase.co");
     expect(text).toContain("Decision rights are scaffolding");
     expect(text).toContain("Los derechos de decisión");
@@ -288,7 +288,7 @@ describe("renderDigestHtml", () => {
           caption: { en: "Caption.", es: "Caption ES." },
           attempt: 1,
         }],
-        imageModel: "gemini-2.5-flash-image-preview",
+        imageModel: "gemini-3-pro-image",
       },
     });
     const html = renderDigestHtml(draft as never, linksWithReview, { hasAttachment: true });
@@ -307,7 +307,7 @@ describe("renderDigestHtml", () => {
           caption: { en: 'Caption with <b>bold</b> & "quotes"', es: "Caption ES." },
           attempt: 1,
         }],
-        imageModel: "gemini-2.5-flash-image-preview",
+        imageModel: "gemini-3-pro-image",
       },
     });
     const html = renderDigestHtml(draft as never, linksWithReview);
