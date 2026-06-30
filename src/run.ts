@@ -924,7 +924,11 @@ async function main(): Promise<void> {
     const baseReview = initializeReview(editionId, runId);
     const reviewState = heroAsset
       ? updateImageInReview(baseReview, "pending", {
-          assetPath: heroAsset.imagePath,
+          // Use a repo-relative path so the portal can fetch it via the
+          // GitHub Contents API. heroAsset.imagePath is the absolute runner
+          // filesystem path (/home/runner/work/…) which does not exist in the
+          // GitHub API. The hero is always committed as drafts/<editionId>-hero.png.
+          assetPath: `drafts/${editionId}-hero.png`,
           publicUrl: heroAsset.publicUrl,
           prompt: heroAsset.prompt,
         })

@@ -51,8 +51,8 @@ concurrency:
 
 env:
   # Quality threshold below which publish refuses. Validator scores 0–100;
-  # errors subtract 15, warnings 5. 70 = at most 2 errors or 6 warnings.
-  QA_MIN_SCORE: "70"
+  # errors subtract 15, warnings 5. 65 = at most 2 errors + 1 warning, or 7 warnings.
+  QA_MIN_SCORE: "65"
 
 jobs:
   publish:

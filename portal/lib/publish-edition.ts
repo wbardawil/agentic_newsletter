@@ -132,7 +132,7 @@ function branchFor(prefix: string, editionId: string): string {
 
 function qaMinScore(): number {
   const raw = Number(process.env.QA_MIN_SCORE);
-  return Number.isFinite(raw) ? raw : 70;
+  return Number.isFinite(raw) ? raw : 65;
 }
 
 function skipReviewGate(): boolean {

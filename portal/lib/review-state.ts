@@ -269,16 +269,27 @@ export function applyDecision(
     }
 
     case "content_approve": {
-      if (review.image.status !== "approved") {
+      // If the image was explicitly rejected (and not yet regenerated), block.
+      // If the image is still "pending" (never reviewed), auto-approve it so
+      // the editor can approve content in a single click from the digest email
+      // without being forced into a two-step flow they may not expect.
+      if (review.image.status === "rejected") {
         throw new ReviewStateError(
           "IMAGE_REQUIRED",
-          `Cannot approve content before the image is approved. Image status is "${review.image.status}" — approve the image first.`,
+          `Cannot approve content — the image was rejected. Wait for the regenerated image before approving.`,
         );
       }
       // Idempotent: already approved → return as-is
       if (review.content.status === "approved") return review;
+      // Auto-approve a pending image when the editor approves content
+      const imageNow = review.image.status === "approved" ? review.image : {
+        ...review.image,
+        status: "approved" as const,
+        approvedAt: review.image.approvedAt ?? now,
+      };
       return {
         ...review,
+        image: imageNow,
         content: {
           ...review.content,
           status: "approved",

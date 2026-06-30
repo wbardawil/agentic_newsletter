@@ -180,7 +180,10 @@ async function main(): Promise<void> {
   // ── Update review.json ───────────────────────────────────────────────────────
   const rejectionNote = args.feedback ?? currentReview.image.rejectionReason ?? null;
   const updatedReview = updateImageInReview(currentReview, "pending", {
-    assetPath: heroAsset.imagePath,
+    // Use a repo-relative path so the portal can fetch it via the GitHub
+    // Contents API (absolute runner paths like /home/runner/work/… are not
+    // resolvable from the GitHub API). Hero is always committed under drafts/.
+    assetPath: `drafts/${editionId}-hero.png`,
     publicUrl: heroAsset.publicUrl,
     prompt: heroAsset.prompt,
     attempt: nextAttempt,

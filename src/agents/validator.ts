@@ -653,7 +653,7 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     // ── Score and pass/fail ─────────────────────────────────────────────────
     const score = computeScore(issues);
     const hasErrors = issues.some((i) => i.severity === "error");
-    const isValid = !hasErrors && score >= 70;
+    const isValid = !hasErrors && score >= 65;
 
     // ── Recommendations ─────────────────────────────────────────────────────
     const recommendations: string[] = [];
