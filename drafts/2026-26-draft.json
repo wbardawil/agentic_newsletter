@@ -1,0 +1,428 @@
+{
+  "runId": "29984b35-165b-4153-bbcd-30009284d037",
+  "editionId": "2026-26",
+  "generatedAt": "2026-06-27T05:50:28.465Z",
+  "contentHash": "6f94d0b65a8293ddb1a18f527c1830094ddabed4599ace1436d13ae1c9a32195",
+  "angle": {
+    "headline": "The AI Implementation Gap: Why Mid-Market Firms Deploy Tools But Capture No Value",
+    "thesis": "Mid-market firms are deploying AI point solutions to automate tasks but failing to capture strategic value because they haven't redesigned their operating model to support the technology—treating AI as a productivity tool rather than a capability that requires new workflows, decision rights, and measurement systems.",
+    "targetPersona": "US-LATAM corridor operators with 50-500 employees who have already invested in AI tools (CRM automation, customer service bots, data analytics platforms) but are frustrated that efficiency gains haven't translated to margin improvement or competitive advantage",
+    "relevanceToAudience": "This audience is caught in the second wave of AI adoption: past the hype, into the implementation, but not yet seeing returns. They're experiencing the disconnect between vendor promises and operational reality. The US-LATAM context amplifies this—cross-border operations require tighter coordination, making the mismatch between AI tools and broken processes more expensive.",
+    "suggestedSources": [
+      "ebb24a00-5a37-4ac9-8e92-f541e3618d2a",
+      "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+      "7010a305-6aef-4414-90ec-4dc60ff8ed9f"
+    ],
+    "justification": {
+      "angleChoice": "This angle emerges from the convergence of three sources that all point to the same underlying dysfunction: companies are investing in technology without addressing the operational foundation. The Entrepreneur piece (ebb24a00) explicitly warns about 'AI traps' that founders fall into—treating AI as a plug-and-play solution. The Chief Executive article (c51d9024) argues that successful CEOs in 2031 won't be those who adopted AI most aggressively, but those who 'built organizations that could develop judgment, exercise it at speed and embed it into the systems making decisions around them.' The supply chain piece (7010a305) reinforces this with its headline that 'resilience demands discipline, not just digitalization'—the current crisis 'isn't a technology problem, it's a fundamentals problem.' This pattern is the Operating Model OS dysfunction in its purest form: technology deployed before the model was ready. This angle beats alternatives (e.g., focusing on hiring constraints from 3900d333, or family business succession from a0745e64) because it addresses the most pressing current investment decision this audience is making—AI spending—and explains why it's not working.",
+      "osPillarChoice": "This is Operating Model OS because the core dysfunction is not strategic (the decision to invest in AI is correct) and not technological (the tools themselves work). The breakdown occurs in the middle layer: how the business runs, executes, and scales. The Chief Executive piece makes this explicit: 'They will be the ones who built organizations that could develop judgment, exercise it at speed and embed it into the systems making decisions around them.' This is operating model language—judgment systems, decision velocity, embedding capability into workflows. The supply chain article reinforces this: calling for 'discipline' and 'fundamentals' over 'digitalization' is a call to fix the operating model first. The Entrepreneur piece's 'AI traps' are all operating model errors: deploying tools without redesigning processes, lacking governance, failing to integrate systems. This is not a Strategy OS issue (the vision is clear: use AI to compete) and not a Technology OS issue (the platforms are available). It's the classic Operating Model OS failure: the business cannot execute the strategy because the model wasn't built to support it.",
+      "peopleAngleChoice": "The challenge is that leadership views AI as an IT project because that's how it was sold to them—as a tool, not a transformation. This creates resistance to the deeper work: redesigning processes, changing decision rights, creating new metrics. Kotter Step 4 (Communicate Vision) is the precise intervention because the vision exists ('use AI to improve operations') but hasn't been translated into what it actually means for how work gets done. The concrete action is for leaders to repeatedly show—using their own operational data—that AI value comes from workflow redesign, not automation of current state. Example: 'Our AI customer service bot reduced response time by 40%, but customer satisfaction didn't improve because the bot can't resolve issues that require cross-functional coordination—which our current model doesn't support.' This communication must be persistent, concrete, and tied to measurable outcomes to shift the mindset from 'deploy tools' to 'rebuild how we work.'"
+    },
+    "osPillar": "Operating Model OS",
+    "peopleAngle": {
+      "challenge": "The leadership team believes AI deployment is an IT project, not a transformation requiring new decision rights, process ownership, and performance metrics across functions.",
+      "framework": "Kotter Step 4: Communicate Vision — Leaders must repeatedly articulate that AI value comes from redesigning how work flows through the organization, not from automating existing broken processes, using concrete examples from their own operations to make the shift tangible."
+    },
+    "quarterlyTheme": "The Machine",
+    "evidenceMap": {
+      "insightClaims": [
+        {
+          "claim": "Business leaders are falling into AI traps by treating AI as a plug-and-play solution without addressing underlying operational challenges.",
+          "supportingFactId": "ebb24a00-5a37-4ac9-8e92-f541e3618d2a",
+          "factIndex": 0,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "The CEOs who will thrive won't be those who adopted AI most aggressively, but those who built organizations that could develop judgment, exercise it at speed, and embed it into the systems making decisions around them.",
+          "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+          "factIndex": 1,
+          "temporalSafety": "future-only"
+        },
+        {
+          "claim": "The current supply chain crisis isn't a technology problem but a fundamentals problem, indicating that digitalization alone doesn't solve operational breakdowns.",
+          "supportingFactId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+          "factIndex": 0,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "Small business confidence rose in June, but hiring remains flat as CEOs balance wage pressure and AI investment, suggesting AI is being used to avoid hiring rather than to redesign operations.",
+          "supportingFactId": "3900d333-54bb-48f1-bfc0-ec13bec368c6",
+          "factIndex": 0,
+          "temporalSafety": "safe"
+        },
+        {
+          "claim": "Five key questions about an organization's ability to develop and embed judgment will likely determine CEO success by 2031.",
+          "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+          "factIndex": 3,
+          "temporalSafety": "future-only"
+        }
+      ],
+      "fieldReportAnchor": {
+        "company": "Supply chain operations (generic mid-market reference based on Chief Executive Magazine reporting)",
+        "sourceId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+        "isDistinctFromAperturaHook": true
+      }
+    }
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Why your AI rollout still routes through your desk",
+    "preheader": "The tool got installed. The operating model never moved.",
+    "subjectOptions": [
+      "Your AI is decorating yesterday's workflow.",
+      "Why your AI rollout still routes through your desk",
+      "Confidence is up. Hiring is flat. AI gets the gap."
+    ],
+    "sections": [
+      {
+        "id": "84f64dd5-97e1-4668-9c05-7ff919bb6ce2",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: AI is being deployed at speed, but the value still depends on how work flows, not on which tool got the budget.*\n\n- **Strategy:** Chief Executive argues the CEOs who thrive by 2031 will not be those who adopted AI most aggressively, but those who built organizations that develop judgment at speed. **The advantage is in the operating model, not the model.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/ceos-in-2031-what-we-must-become/)\n- **Operating Models:** Chief Executive frames the current supply chain crisis as a fundamentals problem, not a technology problem. **Software exposes the weakness. It does not repair it.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/supply-chain-resilience-demands-discipline-not-just-digitalization/)\n- **Technology:** Lexsy founder Kristina Subbotina raised $650K to turn a $1.3M law firm into an AI platform, reaching 41 customers and $372K in revenue. **Productized judgment scales. Billable judgment does not.** [Read in Business Insider ->](https://www.businessinsider.com/big-law-cooley-ai-agents-legal-platform-2026-6)\n- **Human Capital:** Vistage reports small business confidence climbed in June while hiring stayed flat as CEOs balanced wage pressure and AI investment. **Confidence without hiring is a bet that the operating model can absorb growth.** [Read ->](https://www.vistage.com/research-center/business-financials/economic-trends/small-business-confidence-climbs-wage-wsj-survey/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "ea63e2ed-fef9-4119-ac82-71e8d013f4e2",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:statistic===\nAccording to Vistage, small business confidence climbed in June while hiring stayed flat as CEOs balanced wage pressure, AI investment, and profitable growth [Source](https://www.vistage.com/research-center/business-financials/economic-trends/small-business-confidence-climbs-wage-wsj-survey/). Read that again. Owners feel better about the next year. They are not adding people. Something is supposed to absorb the growth they expect. In most conversations right now, that something is AI. The bet is that tools will close the gap headcount used to close. The bet is rational. It is also incomplete. Tools do not close gaps. Operating models close gaps. Tools follow.\n===OPTION_B:provocation===\nThe CEOs who thrive from here will not be the ones who adopted AI most aggressively. That is the argument Chief Executive made this week, and it cuts against almost every board conversation happening in mid-market firms right now [Source](https://chiefexecutive.net/ceos-in-2031-what-we-must-become/). The winners, the piece argues, will be the ones who built organizations that develop judgment, exercise it at speed, and embed it into the systems making decisions around them. Notice what that sentence does not say. It does not say deployed AI. It says built organizations. The work is structural, not technical.\n===OPTION_C:pattern===\nA pattern is showing up across three vantage points this week. Chief Executive frames the supply chain crisis as a fundamentals problem, not a technology one [Source](https://chiefexecutive.net/supply-chain-resilience-demands-discipline-not-just-digitalization/). Entrepreneur catalogs five AI traps founders keep falling into [Source](https://www.entrepreneur.com/building-a-business/are-you-falling-into-these-5-ai-traps-heres-how-smart-leaders-avoid-them). Vistage shows confidence rising while hiring stays flat, with AI investment cited as the lever [Source](https://www.vistage.com/research-center/business-financials/economic-trends/small-business-confidence-climbs-wage-wsj-survey/). Three sources, one underlying claim. Software is being asked to carry weight the operating model was never redesigned to carry. The tool gets installed. The workflow stays the same. The result is a faster version of the dysfunction the owner was trying to fix.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c8e5c073-3884-4a44-be4e-9c74bad48a63",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You approved the AI budget. The tools were procured. The team is using them. Six months in, the margin has not moved. The decisions still land on your desk. The handoffs still break in the same places. The reports still get rewritten by hand before they reach you.\n\nIn most mid-market firms, owners read this as an adoption problem. More training. Better prompts. A different vendor. None of that fixes it, because none of that is the problem.\n\nThe conventional fix treats AI as an IT initiative. The CTO owns the rollout. The functions get access. Productivity is measured by usage. The leadership team treats the work as deployment, not redesign. That framing is the failure. It is the most expensive mistake currently moving through mid-market boardrooms.\n\nHere is the mechanism. Your operating model was built around a human bottleneck. You, or someone close to you, processed the decisions that kept the work moving. The decision rights, the process ownership, and the performance metrics all assume that bottleneck. When you drop AI on top of that model, the AI inherits the same constraints. It accelerates handoffs that still feed the same approver. It generates outputs that still require the same review. It produces drafts that still die in the same inbox.\n\nThis is where the people work begins, and where most leadership teams stop. AI value does not come from automating what the team already does. It comes from redesigning how work flows through the organization. That redesign requires three things to move together: decision rights, process ownership, and the metrics that govern what good looks like. None of those live with the CTO. They live with the leadership team. And the leadership team has to say so, repeatedly. They have to use concrete examples from inside the business. Until the rest of the organization stops hearing AI project and starts hearing we are changing how the work runs.\n\n**The Operating Model OS test**\n\nFor one workflow where AI has been deployed, ask three questions. Who owns the decision now that the AI surfaces it faster? Who owns the process now that the steps have changed? What metric is the work measured by now that throughput is no longer the constraint? If the answers are the same as they were before the AI showed up, the AI is decorative. You have not changed the operating model. You have made yesterday faster.\n\n**This week**\n\nPick the one AI deployment your team talks about most. Sit with your leadership team for thirty minutes. Walk through the three questions above for that single workflow. Whatever does not have a clean answer is the work.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5121e7c6-bade-4a40-82d8-69bb91828cba",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "KeyBank's Middle Market Snapshot survey finds that mid-market borrowers are increasingly using private capital as a growth lever, not a rescue mechanism. According to Middle Market Growth, CFOs and owners are playing offense - structuring capital to fund strategic moves rather than bridging distress [Source](https://middlemarketgrowth.org/midmarket-borrowers-play-offense-with-private-capital/).\n\nOur view is that the structural lesson is about sequencing, not financing. The owners doing this well are not simply accessing cheaper capital. They are arriving at lender conversations with a defined use case - an acquisition, a capacity expansion, a market entry - and building the capital stack around it. That is a different posture than raising money and then deciding what to do with it.\n\nMost mid-market operators still approach private capital reactively. The survey suggests the competitive gap is opening between those who treat capital as a strategic input and those who treat it as a last resort.\n\nFor the $5M-$100M owner, the implication is preparation. The time to map your capital options is before you need them, when your leverage is highest and your choices are widest.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c80be6b4-f0ae-4782-bc45-3be7783944ea",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Scribe** - A workflow capture tool that auto-generates step-by-step process documentation from your screen activity as you work. It matters because before you can redesign a workflow for AI, you need a clean picture of how the work actually runs today, not how the org chart says it runs. Find it at scribehow.com.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6181ad40-dcd2-4b97-b212-02f65af8bb30",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** Count the decisions that escalated to you out of an AI-enabled workflow. Not how often the tool was used. Not how many prompts were run. Just the decisions that still landed on your desk. If that count looks like last quarter's count, the AI changed the speed of the work. It did not change the operating model. That is the gap to close before the next budget cycle.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7c14a08c-17a9-42b7-b275-c19c32639939",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué el despliegue de IA sigue pasando por su escritorio",
+    "preheader": "La herramienta entró en operación. El modelo operativo nunca se movió.",
+    "thesis": "Las medianas empresas instalan IA punto por punto para automatizar tareas, pero el valor estratégico no aparece porque el modelo operativo no se rediseñó. Tratada como herramienta de productividad y no como capacidad que exige nuevos flujos, derechos de decisión e indicadores, la IA termina acelerando la misma disfunción que el dueño quería corregir.",
+    "shareableSentence": "El valor de la IA no sale de automatizar lo que el equipo ya hace; sale de rediseñar cómo fluye el trabajo.",
+    "sections": [
+      {
+        "id": "84f64dd5-97e1-4668-9c05-7ff919bb6ce2",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: la IA se despliega con rapidez, pero el valor depende de cómo fluye el trabajo, no del proveedor que se llevó el presupuesto.*\n\n- **Estrategia:** Chief Executive sostiene que los CEOs que prosperen hacia 2031 no serán los que adoptaron IA con más agresividad, sino los que construyeron organizaciones capaces de desarrollar criterio con rapidez. **La ventaja vive en el modelo operativo, no en el modelo de IA.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/ceos-in-2031-what-we-must-become/)\n- **Modelos Operativos:** Chief Executive plantea la crisis actual de cadenas de suministro como un problema de fundamentos, no de tecnología. **El software expone la debilidad. No la repara.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/supply-chain-resilience-demands-discipline-not-just-digitalization/)\n- **Tecnología:** Kristina Subbotina, fundadora de Lexsy, levantó 650 mil dólares para convertir un despacho legal de 1.3 mdd en una plataforma de IA, con 41 clientes y 372 mil dólares en ingresos. **El criterio productizado escala. El facturado por hora, no.** [Leer en Business Insider ->](https://www.businessinsider.com/big-law-cooley-ai-agents-legal-platform-2026-6)\n- **Capital Humano:** Vistage reporta que la confianza de las pequeñas empresas subió en junio mientras la contratación quedó plana, con los CEOs balanceando presión salarial e inversión en IA. **Confianza sin contratación es apostar a que el modelo operativo absorba el crecimiento.** [Leer ->](https://www.vistage.com/research-center/business-financials/economic-trends/small-business-confidence-climbs-wage-wsj-survey/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "ea63e2ed-fef9-4119-ac82-71e8d013f4e2",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Los CEOs que prosperen de aquí en adelante no serán los que adoptaron IA con más agresividad. Ese es el argumento que publicó Chief Executive esta semana. Va a contracorriente de casi todas las conversaciones de consejo que se tienen hoy en la mediana empresa mexicana [Fuente](https://chiefexecutive.net/ceos-in-2031-what-we-must-become/). Los que ganen, plantea el texto, serán quienes construyeron organizaciones capaces de desarrollar criterio, ejercerlo con rapidez e incorporarlo en los sistemas que deciden a su alrededor. Conviene leer dos veces lo que esa frase no dice. No dice desplegaron IA. Dice construyeron organizaciones. El trabajo es estructural, no técnico.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c8e5c073-3884-4a44-be4e-9c74bad48a63",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Aprobó el presupuesto de IA. Las herramientas se compraron. El equipo las usa. Seis meses después, el margen no se movió. Las decisiones siguen llegando a su escritorio. Los pases entre áreas se rompen en los mismos puntos. Los reportes se vuelven a redactar a mano antes de llegar a sus ojos.\n\nEn la mayoría de las medianas empresas, el dueño lee esto como un problema de adopción. Más capacitación. Mejores instrucciones. Otro proveedor. Ninguna de esas tres cosas lo resuelve, porque ninguna de esas tres cosas es el problema.\n\nEl enfoque convencional trata a la IA como una iniciativa de TI. El CTO encabeza el despliegue. Las áreas reciben acceso. La productividad se mide por uso. El equipo directivo entiende el trabajo como instalación, no como rediseño. Ese encuadre es la falla. Es el error más caro que circula hoy por los consejos directivos de la mediana empresa.\n\nConviene nombrar el mecanismo. Su modelo operativo se construyó alrededor de un cuello de botella humano. Usted, o alguien muy cercano a usted, procesa las decisiones que hacen avanzar el trabajo. Los derechos de decisión, los dueños de proceso y los indicadores de desempeño suponen ese cuello de botella. Cuando se monta IA encima de ese modelo, la IA hereda las mismas restricciones. Acelera pases que siguen alimentando al mismo aprobador. Genera contenidos que siguen requiriendo la misma revisión. Produce borradores que mueren en la misma bandeja.\n\nAhí empieza el trabajo organizacional, y ahí se detiene la mayoría de los equipos directivos. El valor de la IA no sale de automatizar lo que el equipo ya hace. Sale de rediseñar cómo fluye el trabajo dentro de la organización. Ese rediseño exige tres cosas que se mueven juntas: derechos de decisión, dueños de proceso e indicadores. Los tres tienen que cambiar ahora que la velocidad dejó de ser la restricción. Ninguno de esos tres vive con el CTO. Viven con el comité directivo. Y el comité directivo tiene que decirlo, una y otra vez, con ejemplos concretos de la propia operación. Hasta que el resto de la organización deje de oír proyecto de IA y empiece a oír estamos cambiando cómo corre el trabajo.\n\n**La prueba del Operating Model OS**\n\nPara un flujo donde ya se desplegó IA, hágase tres preguntas. ¿Quién es dueño de la decisión ahora que la IA la coloca sobre la mesa más rápido? ¿Quién es dueño del proceso ahora que los pasos cambiaron? ¿Con qué indicador se mide el trabajo ahora que el volumen ya no es la restricción? Si las respuestas son las mismas que antes de que apareciera la IA, la IA es decorativa. No cambió el modelo operativo. Hizo más rápido el ayer.\n\nEsta semana, elija el despliegue de IA del que más se habla en su equipo. Siéntese con el comité directivo treinta minutos. Recorra las tres preguntas anteriores para ese flujo. Lo que no tenga respuesta limpia es el trabajo.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5121e7c6-bade-4a40-82d8-69bb91828cba",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nUna encuesta de KeyBank, recogida por Middle Market Growth, revela que los prestatarios de la mediana empresa están usando capital privado como palanca de crecimiento, no como mecanismo de rescate. Los CFOs y dueños están jugando a la ofensiva: estructuran capital para financiar movimientos estratégicos, no para tapar agujeros [Fuente](https://middlemarketgrowth.org/podcast-keybank-midmarket-borrowers-offense-private-capital/).\n\nNuestra lectura es que la diferencia estructural está en la secuencia, no en el costo del dinero. Los dueños que hacen esto bien no llegan al prestamista buscando capital más barato. Llegan con un uso definido —una adquisición, una expansión de capacidad, una entrada a mercado— y construyen la estructura financiera alrededor de ese uso. Una postura radicalmente distinta a la de levantar dinero primero y decidir después.\n\nLa mayoría de los operadores de la mediana empresa todavía se acerca al capital privado de manera reactiva. La encuesta sugiere que la brecha competitiva se está abriendo entre quienes tratan al capital como insumo estratégico y quienes lo tratan como último recurso.\n\nPara el dueño de una empresa de entre 5 y 100 mdd, la implicación es de preparación. El momento de mapear las opciones de capital es antes de necesitarlo, cuando el apalancamiento negociador es mayor y las alternativas, más amplias.",
+        "sourceRefs": []
+      },
+      {
+        "id": "c80be6b4-f0ae-4782-bc45-3be7783944ea",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Scribe** - herramienta de captura que genera, paso a paso, la documentación de un proceso a partir de su actividad en pantalla mientras trabaja. Vale la pena tenerla en cuenta porque antes de rediseñar un flujo para IA, se necesita una foto limpia de cómo corre el trabajo hoy, no de cómo dice el organigrama que corre. En scribehow.com.",
+        "sourceRefs": []
+      },
+      {
+        "id": "6181ad40-dcd2-4b97-b212-02f65af8bb30",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**El indicador de la semana:** cuente las decisiones que escalaron a su escritorio desde un flujo con IA. No cuántas veces se usó la herramienta. No cuántas instrucciones se ejecutaron. Solo las decisiones que terminaron sobre su mesa. Si ese conteo se parece al del trimestre pasado, la IA cambió la velocidad del trabajo, no el modelo operativo. Esa es la brecha que conviene cerrar antes del próximo ciclo presupuestal.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7c14a08c-17a9-42b7-b275-c19c32639939",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": false,
+    "score": 75,
+    "issues": [
+      {
+        "rule": "field-report-entity-duplicate",
+        "severity": "error",
+        "section": "fieldReport",
+        "message": "Field Report reuses the Apertura's primary entity (\"according\"). The Field Report must anchor on a DIFFERENT company or event than the Apertura's hook.",
+        "excerpt": "according"
+      },
+      {
+        "rule": "rule-10-people-framework-stealth",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'This is where the people work begins' feels slightly meta-commentary on the framework rather than showing the mechanism purely through the work itself.",
+        "excerpt": "This is where the people work begins, and where most leadership teams stop."
+      },
+      {
+        "rule": "rule-7-compass",
+        "severity": "warning",
+        "section": "compass",
+        "message": "Minor: 'AI changed the speed of the work. It did not change the operating model' could read slightly conclusory rather than purely interrogative, though the overall frame passes.",
+        "excerpt": "If that count looks like last quarter's count, the AI changed the speed of the work. It did not change the operating model."
+      }
+    ],
+    "wordCounts": {
+      "signal": 179,
+      "apertura": 97,
+      "insight": 441,
+      "fieldReport": 176,
+      "tool": 53,
+      "compass": 72,
+      "total": 1018
+    },
+    "shareableSentence": "AI value does not come from automating what the team already does. It comes from redesigning how work flows through the organization.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"AI value does not come from automating what the team already does. It comes from redesigning how work flows through the organization.\"",
+      "Reframe confirmed: \"The conventional fix treats AI as an IT initiative. The CTO owns the rollout. The functions get access. Productivity is measured by usage. The leadership team treats the work as deployment, not redesign. That framing is the failure.\"",
+      "1 error(s) must be resolved before this draft is ready for review."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Chief Executive argues the CEOs who thrive by 2031 will not be those who adopted AI most aggressively, but those who built organizations that develop judgment at speed.",
+          "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+          "language": "en"
+        },
+        {
+          "claim": "Chief Executive frames the current supply chain crisis as a fundamentals problem, not a technology problem.",
+          "supportingFactId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+          "language": "en"
+        },
+        {
+          "claim": "Lexsy founder Kristina Subbotina raised $650K to turn a $1.3M law firm into an AI platform, reaching 41 customers and $372K in revenue.",
+          "supportingFactId": "ea43bcdd-790b-4e77-ab78-1f6951b6a38a",
+          "language": "en"
+        },
+        {
+          "claim": "Vistage reports small business confidence climbed in June while hiring stayed flat as CEOs balanced wage pressure and AI investment.",
+          "supportingFactId": "3900d333-54bb-48f1-bfc0-ec13bec368c6",
+          "language": "en"
+        },
+        {
+          "claim": "KeyBank's Middle Market Snapshot survey finds that mid-market borrowers are increasingly using private capital as a growth lever, not a rescue mechanism.",
+          "supportingFactId": "a0745e64-aea3-47be-b20e-49af828aba7f",
+          "language": "en"
+        },
+        {
+          "claim": "In most mid-market firms, the leadership team has never built shared literacy on what AI can automate versus what it can augment.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "Your operating model was built around a human bottleneck.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "AI value does not come from automating what the team already does. It comes from redesigning how work flows through the organization.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "The conventional fix treats AI as an IT initiative.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "Tools do not close gaps. Operating models close gaps.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "Most mid-market operators still approach private capital reactively.",
+          "supportingFactId": "editorial-synthesis",
+          "language": "en"
+        },
+        {
+          "claim": "Chief Executive sostiene que los CEOs que prosperen hacia 2031 no serán los que adoptaron IA con más agresividad, sino los que construyeron organizaciones capaces de desarrollar criterio con rapidez.",
+          "supportingFactId": "c51d9024-b331-4c38-a84b-7e00c7de4a3b",
+          "language": "es"
+        },
+        {
+          "claim": "Chief Executive plantea la crisis actual de cadenas de suministro como un problema de fundamentos, no de tecnología.",
+          "supportingFactId": "7010a305-6aef-4414-90ec-4dc60ff8ed9f",
+          "language": "es"
+        },
+        {
+          "claim": "Kristina Subbotina, fundadora de Lexsy, levantó 650 mil dólares para convertir un despacho legal de 1.3 mdd en una plataforma de IA, con 41 clientes y 372 mil dólares en ingresos.",
+          "supportingFactId": "ea43bcdd-790b-4e77-ab78-1f6951b6a38a",
+          "language": "es"
+        },
+        {
+          "claim": "Vistage reporta que la confianza de las pequeñas empresas subió en junio mientras la contratación quedó plana, con los CEOs balanceando presión salarial e inversión en IA.",
+          "supportingFactId": "3900d333-54bb-48f1-bfc0-ec13bec368c6",
+          "language": "es"
+        },
+        {
+          "claim": "Una encuesta de KeyBank, recogida por Middle Market Growth, revela que los prestatarios de la mediana empresa están usando capital privado como palanca de crecimiento, no como mecanismo de rescate.",
+          "supportingFactId": "a0745e64-aea3-47be-b20e-49af828aba7f",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.42,
+      "closestPriorAngle": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
+      "recommendation": "pass",
+      "angleAlertLevel": "none",
+      "angle_alert_level": "none"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "voice_score": 88,
+      "deviations": [],
+      "criticalDeviations": [],
+      "critical_deviations": [],
+      "minorDeviations": [
+        "Minor vocabulary variation in Tool section description",
+        "Slight sentence structure variation in Compass section while maintaining analytical register"
+      ],
+      "minor_deviations": [
+        "Minor vocabulary variation in Tool section description",
+        "Slight sentence structure variation in Compass section while maintaining analytical register"
+      ],
+      "recommendation": "Voice alignment is strong. Minor deviations do not require action."
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Business Insider",
+        "Chief Executive Magazine",
+        "Entrepreneur",
+        "middlemarketgrowth.org",
+        "vistage.com"
+      ],
+      "distinct_outlets": [
+        "Business Insider",
+        "Chief Executive Magazine",
+        "Entrepreneur",
+        "middlemarketgrowth.org",
+        "vistage.com"
+      ],
+      "outletCount": 5,
+      "outlet_count": 5,
+      "sourceCheckWaived": false,
+      "source_check_waived": false,
+      "justificationForLowSourceCount": null,
+      "justification": null
+    },
+    "summary": "Draft approved. All specific claims verified against source bundle. Angle demonstrates clear differentiation from prior editions (42% similarity). Voice maintains analytical register consistent with Golden Examples. Source diversity exceeds minimum threshold with 5 distinct outlets."
+  },
+  "designer": {
+    "assets": [
+      {
+        "kind": "hero",
+        "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-26-hero.png",
+        "publicUrl": null,
+        "prompt": "A pencil-sketch architectural blueprint showing a building's skeletal framework where certain load-bearing walls have been removed but the upper floors remain suspended in mid-air, supported by nothing—graphite lines depicting structural stress cracks spreading through the foundation. In the negative space, faint geometric forms suggest invisible scaffolding that was never installed. A single orange accent marks the point where weight concentrates with no support beneath. White background, matte finish, editorial minimalism evoking the visual language of The Economist's structural metaphors for organizational failure.",
+        "altText": {
+          "en": "Tangled network diagram with multiple nodes connecting to a single central point, creating a bottleneck",
+          "es": "Diagrama de red enmarañado con múltiples nodos que confluyen en un único punto central, creando un cuello de botella"
+        },
+        "caption": {
+          "en": "You automated the tasks but kept the approvals—and now the bottleneck just moved from your inbox to your org chart.",
+          "es": "Automatizaste las tareas pero conservaste las aprobaciones—y ahora el cuello de botella simplemente migró de tu bandeja de entrada a tu organigrama."
+        },
+        "attempt": 1
+      }
+    ],
+    "imageModel": "gemini-2.5-flash-image"
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11081,
+      "outputTokens": 1799,
+      "costUsd": 0.060228000000000004
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1198,
+      "outputTokens": 9903,
+      "costUsd": 0.248745
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 25,
+      "outputTokens": 1022,
+      "costUsd": 0.015404999999999999
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 979,
+      "outputTokens": 12468,
+      "costUsd": 0.310029
+    },
+    "designer": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 1552,
+      "outputTokens": 1581,
+      "costUsd": 0.049011
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1729,
+      "costUsd": 0.026001
+    },
+    "totalUsd": 0.709419
+  }
+}

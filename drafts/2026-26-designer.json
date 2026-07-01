@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-26-hero.png",
+      "publicUrl": null,
+      "prompt": "A pencil-sketch architectural blueprint showing a building's skeletal framework where certain load-bearing walls have been removed but the upper floors remain suspended in mid-air, supported by nothing—graphite lines depicting structural stress cracks spreading through the foundation. In the negative space, faint geometric forms suggest invisible scaffolding that was never installed. A single orange accent marks the point where weight concentrates with no support beneath. White background, matte finish, editorial minimalism evoking the visual language of The Economist's structural metaphors for organizational failure.",
+      "altText": {
+        "en": "Tangled network diagram with multiple nodes connecting to a single central point, creating a bottleneck",
+        "es": "Diagrama de red enmarañado con múltiples nodos que confluyen en un único punto central, creando un cuello de botella"
+      },
+      "caption": {
+        "en": "You automated the tasks but kept the approvals—and now the bottleneck just moved from your inbox to your org chart.",
+        "es": "Automatizaste las tareas pero conservaste las aprobaciones—y ahora el cuello de botella simplemente migró de tu bandeja de entrada a tu organigrama."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-2.5-flash-image"
+}
