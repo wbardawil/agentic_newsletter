@@ -139,6 +139,27 @@ jobs:
           LOG_LEVEL: info
           DRY_RUN: "false"
 
+      # drafts/ is listed in .gitignore (to keep generated artifacts out of main),
+      # so create-pull-request's internal `git add drafts/**` would only pick up
+      # angle-history.json. Force-stage every draft file for this edition so the
+      # PR branch contains the full draft — the Restore step below can then do a
+      # plain `git checkout drafts/<id> -- drafts/` to bring them back.
+      - name: Force-stage draft files for PR branch
+        run: |
+          ID="${{ steps.edition.outputs.id }}"
+          git add -f \
+            "drafts/${ID}-draft.json" \
+            "drafts/${ID}-en.md" \
+            "drafts/${ID}-es.md" \
+            "drafts/${ID}-en.html" \
+            "drafts/${ID}-es.html" \
+            "drafts/${ID}-designer.json" \
+            "drafts/${ID}-review.json" \
+            "drafts/history/" \
+            "config/localization-memory.json" 2>/dev/null || true
+          # hero PNG is large — add only when it exists
+          [ -f "drafts/${ID}-hero.png" ] && git add -f "drafts/${ID}-hero.png" || true
+
       - name: Open / update draft PR
         id: open_pr
         uses: peter-evans/create-pull-request@v7
