@@ -52,6 +52,14 @@ const LocalizerInputSchema = z.object({
    * Field Report when the story calls for it).
    */
   sourceBundle: SourceBundleSchema,
+  /**
+   * Hard failures surfaced by the Quality Gate on a prior ES draft.
+   * When set, the ES Writer must correct EACH listed claim in the new
+   * edition — injected verbatim into the prompt so the model knows
+   * exactly what went wrong in the previous regeneration.
+   * Optional: absent on the first (non-repair) Localizer call.
+   */
+  qgHardFailures: z.array(z.string()).optional(),
 });
 type LocalizerInput = z.infer<typeof LocalizerInputSchema>;
 
@@ -111,11 +119,25 @@ function formatBundleForPrompt(items: SourceItem[], label: string): string {
     .join("\n\n---\n\n");
 }
 
+function buildQgCorrectionsBlock(qgHardFailures: string[] | undefined): string {
+  if (!qgHardFailures || qgHardFailures.length === 0) return "";
+  return (
+    `\n\n## CORRECCIONES REQUERIDAS POR EL QUALITY GATE\n\n` +
+    `El borrador español anterior fue rechazado por el Quality Gate por las siguientes ` +
+    `afirmaciones incorrectas. Debes corregir CADA UNA de ellas en esta nueva versión:\n\n` +
+    qgHardFailures.map((f, i) => `${i + 1}. ${f}`).join("\n") +
+    `\n\nPara cada punto: elimina o reformula la afirmación problemática usando SOLO los ` +
+    `hechos literales (verbatimFacts) disponibles en las fuentes. No inventes datos, ` +
+    `no atribuyas causalidad donde la fuente solo reporta correlación, y usa el ` +
+    `tiempo verbal que corresponda al momento de publicación.\n`
+  );
+}
+
 function buildPrompt(
   context: AgentInput<LocalizerInput>,
   payload: LocalizerInput,
 ): string {
-  const { content, angle, draftsDir, sourceBundle } = payload;
+  const { content, angle, draftsDir, sourceBundle, qgHardFailures } = payload;
   const template = loadPromptTemplate();
   const localizationMemory = formatLocalizationMemoryForPrompt(loadLocalizationMemory());
 
@@ -168,7 +190,8 @@ function buildPrompt(
     .replace("{{fieldReportId}}", getSectionId(content, "spotlight"))
     .replace("{{toolId}}", getSectionId(content, "tool"))
     .replace("{{compassId}}", getSectionId(content, "quickTakes"))
-    .replace("{{doorId}}", getSectionId(content, "cta"));
+    .replace("{{doorId}}", getSectionId(content, "cta")) +
+    buildQgCorrectionsBlock(qgHardFailures);
 }
 
 // ── Localizer agent (= ES Writer) ────────────────────────────────────────────
@@ -296,8 +319,45 @@ export class LocalizerAgent extends BaseAgent<LocalizerInput, LocalizedContent> 
     const remaining = findBannedPhrases(rewritten);
     if (remaining.length > 0) {
       this.logger.warn(
-        `ES ${sectionName} repair did not remove: ${remaining.map((h) => `"${h}"`).join(", ")}`,
+        `ES ${sectionName} repair did not remove: ${remaining.map((h) => `"${h}"`).join(", ")} — retrying with stronger constraint`,
       );
+      // Second attempt: escalate with compound-phrase guidance
+      const retryResponse = await this.deps.apiClients.anthropic.messages.create({
+        model: REPAIR_MODEL,
+        max_tokens: 3000,
+        messages: [
+          {
+            role: "user",
+            content:
+              `El texto español siguiente AÚN contiene frases prohibidas: ${remaining.map((h) => `"${h}"`).join(", ")}. ` +
+              `DEBES eliminar cada ocurrencia.\n\n` +
+              `Si la frase forma parte de un sustantivo compuesto (p. ej. "disrupción comercial"), ` +
+              `reemplaza TODA la frase nominal (p. ej. "disrupción comercial" → "choque comercial" o "impacto comercial"). ` +
+              `Si aparece dentro de un título o cita, reformula la referencia sin usar la palabra prohibida.\n\n` +
+              `Reglas (se aplican sin excepción):\n` +
+              `- Conserva cada URL, número, nombre propio y estructura markdown exactamente como están.\n` +
+              `- No agregues nuevas afirmaciones ni cambies el significado — solo elimina las frases prohibidas.\n` +
+              `- Mantén el registro de prensa de negocios mexicana nativa.\n` +
+              `- Escribe ÚNICAMENTE el texto reescrito, sin preámbulo:\n\n${rewritten}`,
+          },
+        ],
+      });
+      this.costTracker.recordUsage(
+        REPAIR_MODEL,
+        retryResponse.usage.input_tokens,
+        retryResponse.usage.output_tokens,
+      );
+      const retryBlock = retryResponse.content[0];
+      const retried = retryBlock?.type === "text" ? retryBlock.text.trim() : rewritten;
+      const retryRemaining = findBannedPhrases(retried);
+      if (retryRemaining.length > 0) {
+        this.logger.warn(
+          `ES ${sectionName} retry repair still has: ${retryRemaining.map((h) => `"${h}"`).join(", ")} — accepting first-pass result`,
+        );
+        return rewritten; // return the first repair (better than the original)
+      }
+      this.logger.info(`ES ${sectionName} retry repair cleared all banned phrases`);
+      return retried;
     }
     return rewritten;
   }

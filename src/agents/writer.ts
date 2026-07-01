@@ -308,8 +308,44 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     const stillFound = findBannedPhrases(rewritten);
     if (stillFound.length > 0) {
       this.logger.warn(
-        `${sectionName} repair did not clear all banned phrases: [${stillFound.join(", ")}] still present`,
+        `${sectionName} repair did not clear all banned phrases: [${stillFound.join(", ")}] still present — retrying with stronger constraint`,
       );
+      // Second attempt: escalate with compound-phrase guidance
+      const retryResponse = await this.deps.apiClients.anthropic.messages.create({
+        model: REPAIR_MODEL,
+        max_tokens: 1500,
+        messages: [
+          {
+            role: "user",
+            content:
+              `The text below STILL contains banned phrase(s): ${stillFound.map((p) => `"${p}"`).join(", ")}. ` +
+              `You MUST eliminate every occurrence.\n\n` +
+              `If the phrase appears as part of a compound noun (e.g. "trade disruption"), ` +
+              `replace the ENTIRE noun phrase (e.g. "trade disruption" → "trade shock" or "trade friction"). ` +
+              `If it appears inside a title or quote reference, rephrase the reference without quoting the banned word.\n\n` +
+              `Rules (strictly enforced):\n` +
+              `- Keep every URL, number, proper noun, and markdown structure exactly as written.\n` +
+              `- Do not add new claims or change any meaning — only remove the banned phrase(s).\n` +
+              `- Output ONLY the fully rewritten section, no preamble:\n\n${rewritten}`,
+          },
+        ],
+      });
+      this.costTracker.recordUsage(
+        REPAIR_MODEL,
+        retryResponse.usage.input_tokens,
+        retryResponse.usage.output_tokens,
+      );
+      const retryBlock = retryResponse.content[0];
+      const retried = retryBlock?.type === "text" ? retryBlock.text.trim() : rewritten;
+      const retryStillFound = findBannedPhrases(retried);
+      if (retryStillFound.length > 0) {
+        this.logger.warn(
+          `${sectionName} retry repair still has: [${retryStillFound.join(", ")}] — accepting first-pass result`,
+        );
+        return rewritten; // return the first repair (better than the original)
+      }
+      this.logger.info(`${sectionName} retry repair cleared all banned phrases`);
+      return retried;
     } else {
       this.logger.info(`${sectionName} repair cleared all banned phrases`);
     }

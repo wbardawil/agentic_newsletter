@@ -715,17 +715,30 @@ async function main(): Promise<void> {
           break;
         }
 
+        // Capture the pre-repair sections fingerprint before overwriting content.
+        // Used below to detect whether this repair attempt actually changed anything.
+        const preRepairFingerprint = content.sections.map((s) => s.body).join("|");
+
         // Replace the EN content with the repaired version
         content = repairedContent;
 
-        // Propagate repairs to the Spanish draft by regenerating it
+        // Propagate repairs to the Spanish draft by regenerating it.
+        // Pass the QG hard failures so the ES Writer knows exactly which
+        // claims were rejected and can correct them in the new edition.
         if (esContent) {
           console.log(`   🌎 ES Writer: regenerating Spanish edition from repaired English draft...\n`);
           const localizerOutput = await localizerAgent.run({
             runId,
             editionId,
             agentName: "localizer",
-            payload: { content, angle, targetLanguage: "es", draftsDir, sourceBundle: bundle },
+            payload: {
+              content,
+              angle,
+              targetLanguage: "es",
+              draftsDir,
+              sourceBundle: bundle,
+              qgHardFailures: qualityGate.hardFailures,
+            },
           });
 
           if (localizerOutput.success) {
@@ -746,14 +759,51 @@ async function main(): Promise<void> {
           }
         }
 
-        // Skip the QG re-run when this was the last repair slot — the result
-        // cannot improve further and running the QG again wastes ~35 s that
-        // would push the GH Actions job over its timeout limit.
+        // On the last repair slot, only re-run the QG when the repair
+        // actually changed something. If the repair made no changes the
+        // content is identical to what the previous QG already evaluated,
+        // so re-running wastes ~40 s without any benefit.
+        // If the repair DID change content, skip the unconditional block
+        // and fall through to the standard QG re-run below.
         if (repairAttempt === MAX_QG_REPAIRS) {
-          console.warn(
-            `   ⚠️  Draft still has ${qualityGate.hardFailures.length} unresolved claim(s) after ${MAX_QG_REPAIRS} repair(s). Skipping final QG re-run to avoid timeout.\n`,
-          );
-          hadBlockingIssue = true;
+          const postRepairFingerprint = content.sections.map((s) => s.body).join("|");
+          const repairMadeChanges = postRepairFingerprint !== preRepairFingerprint;
+
+          if (!repairMadeChanges) {
+            console.warn(
+              `   ⚠️  Draft still has ${qualityGate.hardFailures.length} unresolved claim(s) after ${MAX_QG_REPAIRS} repair(s). Repair made no changes — skipping final QG re-run.\n`,
+            );
+            hadBlockingIssue = true;
+            break;
+          }
+
+          // Repair did change content — run one final QG to confirm.
+          console.log(`   🔁 Running final QG check after repair ${MAX_QG_REPAIRS} (repair made changes)...\n`);
+          const finalRerunOutput = await qualityGateAgent.run({
+            runId,
+            editionId,
+            agentName: "qualityGate",
+            payload: {
+              enContent: content,
+              esContent: esContent ?? null,
+              angle,
+              sourceBundle: bundle,
+              priorAngles,
+            },
+          });
+
+          if (!finalRerunOutput.success) {
+            console.warn(`   ⚠️  Final QG re-run failed: ${finalRerunOutput.error}\n`);
+            hadBlockingIssue = true;
+          } else {
+            qualityGate = finalRerunOutput.data as QualityGateResult;
+            if (qualityGate.passed) {
+              console.log(`   ✅ Quality Gate passed after final repair.\n`);
+            } else {
+              console.error(`   ❌ Final QG still has ${qualityGate.hardFailures.length} unresolved claim(s).\n`);
+              hadBlockingIssue = true;
+            }
+          }
           break;
         }
 

@@ -194,6 +194,7 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "América Economía",
     region: "corridor",
     tier: 2,
+    disabled: true, // Consistently times out (>12 s) from GH Actions runners — 2026-07-01
   },
 
   // ── Supply Chain, Trade & Nearshore ───────────────────────────────────────
@@ -512,6 +513,7 @@ const RSS_FEEDS: FeedConfig[] = [
     outlet: "Family Business Magazine",
     region: "us",
     tier: 2,
+    disabled: true, // Returns HTTP 403 from GH Actions runners (bot-block) — 2026-07-01
   },
   {
     url: "https://endeavor.org/feed/",

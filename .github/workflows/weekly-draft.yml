@@ -221,7 +221,7 @@ jobs:
 
       - name: Upload drafts as artifact (fallback if no diff was committed)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: drafts-${{ steps.edition.outputs.id }}
           path: drafts/
