@@ -102,6 +102,16 @@ function loadBrandStyleTokens(): BrandStyleTokens {
   );
 }
 
+function loadVisualGuide(): string {
+  const guidePath = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "..",
+    "VISUAL-GUIDE.txt",
+  );
+  return readFileSync(guidePath, "utf-8").trim();
+}
+
 // ── Constants ──────────────────────────────────────────────────────────────
 
 const PROMPT_COMPOSE_MODEL = "claude-sonnet-4-5";
@@ -256,6 +266,8 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
   ): Promise<string> {
     const insight =
       enContent.sections.find((s) => s.type === "analysis")?.body ?? "";
+    const summaryInsight =
+      enContent.sections.find((s) => s.type === "lead")?.body ?? "";
 
     const regenerationGuidance =
       attempt > 1
@@ -277,6 +289,8 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
             .join("\n")
         : "";
 
+    const visualGuide = loadVisualGuide();
+
     const systemPrompt = [
       `You compose a single image-generation prompt for a hero illustration on The Transformation Letter, an editorial newsletter for $5–100M owner-operators in the US-LATAM corridor. The prompt will be sent to ${tokens.imageStyle.model}.`,
       ``,
@@ -288,6 +302,10 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
       ...tokens.imageStyle.constraints.map((c) => `  - ${c}`),
       `- Palette to evoke: deep navy, teal, ochre, cream, muted bronze. No bright primary colors. Matte finish.`,
       `- Aspect ratio: ${tokens.layout.heroDimensions.width}x${tokens.layout.heroDimensions.height} (16:9).`,
+      ``,
+      `[VISUAL GUIDE — Brand Reference]`,
+      visualGuide,
+      `[END VISUAL GUIDE]`,
       regenerationGuidance,
       ``,
       `Compose ONE prompt of 60–120 words. Anchor the visual in this issue's diagnostic — not the surface news. The image is an abstract editorial illustration that evokes the structural/process metaphor of the Insight, not a literal depiction.`,
@@ -303,7 +321,12 @@ export class DesignerAgent extends BaseAgent<DesignerInput, DesignerOutput> {
       `OS pillar: ${angle.osPillar}`,
       `People dimension challenge: ${angle.peopleAngle.challenge}`,
       ``,
-      `Insight excerpt:`,
+      `Story copy (use as narrative anchor for the image):`,
+      `- Subject line: ${enContent.subject}`,
+      `- Preheader: ${enContent.preheader}`,
+      `- Summary insight: ${summaryInsight.slice(0, 400)}`,
+      ``,
+      `Full insight excerpt:`,
       insight.slice(0, 1500),
     ].join("\n");
 
