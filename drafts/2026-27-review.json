@@ -1,0 +1,41 @@
+{
+  "editionId": "2026-27",
+  "runId": "4082ad08-9064-4d2f-85d9-ae4f24764c39",
+  "reviewVersion": 1,
+  "image": {
+    "status": "approved",
+    "attempt": 1,
+    "assetPath": "drafts/2026-27-hero.png",
+    "publicUrl": null,
+    "prompt": "A precise pencil sketch illustration showing an organizational flowchart fragmenting into multiple parallel streams, each representing a different country jurisdiction. The central approval node—depicted as an overloaded architectural keystone—cracks under pressure while decision pathways queue and tangle. In contrast, a redesigned structure on the right shows clean, independent decision columns with clear horizontal lines marking authority thresholds. Use charcoal graphite for the congested left side, white space for breathing room, and a single orange line highlighting the new jurisdictional boundary that enables local execution. The composition suggests architectural blueprints being redrawn, with the headline \"Your team isn't slow. Your approval loop is.\" positioned as an editorial serif statement. Contemporary office environment, white background, large negative space, one central metaphor.",
+    "rejectedPrompts": [],
+    "approvedAt": "2026-07-02T22:09:46.258Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "approved",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": "2026-07-02T22:09:54.025Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "ready",
+    "blockedReason": null,
+    "publishedAt": null
+  },
+  "events": [
+    {
+      "timestamp": "2026-07-02T22:09:46.258Z",
+      "decision": "image_approve"
+    },
+    {
+      "timestamp": "2026-07-02T22:09:54.025Z",
+      "decision": "content_approve"
+    }
+  ],
+  "createdAt": "2026-07-02T21:47:45.301Z",
+  "updatedAt": "2026-07-02T22:11:23.177Z"
+}
