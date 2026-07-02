@@ -302,12 +302,21 @@ function reconcileValidation(
   // We include LLM-based "people-angle-substantive" here because it is a
   // subjective style/coaching check. If the Quality Gate passed (fact-check OK),
   // a subjective layout/weaving warning should not permanently block publication.
+  //
+  // "banned-phrase": the Writer runs two LLM repair passes before giving up.
+  // When both passes fail to eliminate the phrase (e.g. "disruption" embedded in
+  // a trade-policy compound noun) and the QG's voice check still scores ≥80, the
+  // human approver — not an automated gate — should be the final arbiter of
+  // whether the phrase is acceptable in context. Blocking the approval link
+  // after the editor already clicked "Approve article" defeats the purpose of
+  // the human review gate.
   const DETERMINISTIC_RULES_CLEARED_BY_QG = new Set([
     "field-report-entity-duplicate",
     "field-report-url-duplicate",
     "temporal-tense-mismatch",
     "historical-temporal-mismatch",
     "people-angle-substantive",
+    "banned-phrase",
   ]);
 
   const substantiveErrors = validation.issues.filter(
@@ -334,7 +343,7 @@ function reconcileValidation(
     ).length * 15, // each error subtracts 15 from score; reverse it
   );
 
-  return {
+  const reconciled = {
     ...validation,
     isValid: true,
     score: reconciledScore,
@@ -345,6 +354,17 @@ function reconcileValidation(
         : r,
     ),
   };
+
+  // Surface the reconciliation in the pipeline log so future debugging is immediate.
+  console.log(
+    `   ✅ reconcileValidation: isValid false→true, score ${validation.score}→${reconciledScore} ` +
+    `(cleared: ${validation.issues
+      .filter((i) => i.severity === "error" && DETERMINISTIC_RULES_CLEARED_BY_QG.has(i.rule))
+      .map((i) => i.rule)
+      .join(", ")})`,
+  );
+
+  return reconciled;
 }
 
 async function main(): Promise<void> {

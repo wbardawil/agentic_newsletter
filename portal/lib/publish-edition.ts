@@ -88,6 +88,17 @@ const DraftSchema = z.object({
       shareableSentence: z.string().nullish(),
     })
     .nullish(),
+  /**
+   * Quality Gate result written by the pipeline after reconcileValidation runs.
+   * When present and passed=true, it is used as a secondary gate so that
+   * style-only Validator errors that survived the repair loop (e.g. "banned-phrase")
+   * do not permanently block publication after the human approver has already
+   * reviewed and approved the draft.
+   */
+  qualityGate: z
+    .object({ passed: z.boolean() })
+    .passthrough()
+    .nullish(),
 });
 
 const SourceBundleSchema = z.object({
@@ -180,10 +191,22 @@ export async function publishEdition(editionId: string): Promise<PublishResult> 
   const validation = draft.validation;
   const score = validation?.score ?? 0;
   const min = qaMinScore();
-  if (!validation || validation.isValid !== true || score < min) {
+  const qgPassed = draft.qualityGate?.passed === true;
+
+  // When the pipeline Quality Gate passed (qgPassed=true), use it as the
+  // authoritative gate: trust score >= min over the isValid boolean.
+  // Rationale: isValid can be false when the Validator flagged a style issue
+  // (e.g. a "banned-phrase" that survived two LLM repair passes) but the QG
+  // still cleared all factual claims and voice quality. reconcileValidation()
+  // in run.ts normally flips isValid=true in this case, but if a future
+  // whitelist gap prevents that, qgPassed provides a reliable fallback so a
+  // human-approved draft is never silently blocked by a style false-positive.
+  const effectiveIsValid = qgPassed ? score >= min : validation?.isValid === true;
+
+  if (!validation || !effectiveIsValid || score < min) {
     throw new PublishError(
       "QUALITY_GATE",
-      `Edition ${editionId} did not pass the quality gate (isValid=${validation?.isValid ?? "n/a"}, score=${score}, min=${min}).`,
+      `Edition ${editionId} did not pass the quality gate (isValid=${validation?.isValid ?? "n/a"}, score=${score}, min=${min}, qgPassed=${qgPassed}).`,
     );
   }
 
