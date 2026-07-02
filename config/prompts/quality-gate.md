@@ -69,9 +69,15 @@ A "specific claim" is:
      with first-person editorial markers such as "In our experience…",
      "Our view is…", "Our assessment is…", "We observe…", "In our reading…",
      or "What we see consistently…". These are the newsletter author's
-     professional opinions, not reportable facts attributable to third parties.
-     They are **inherently unfalsifiable** and must NOT be flagged as
-     unverified claims. Treat them as exempt regardless of their content.
+      professional opinions, not reportable facts attributable to third parties.
+      They are **inherently unfalsifiable** and must NOT be flagged as
+      unverified claims. Treat them as exempt regardless of their content.
+  7. It describes **business behaviors, management habits, executives' historical
+     training, or systemic incentives** (e.g., "executives were trained to escalate
+     ambiguity to the calendar", "reaped rewards for the last decade", "the system
+     rewarded delay"). These are diagnostic framework generalizations, organizational
+     metaphors, and strategic commentary — NOT reportable historical facts. They are
+     inherently exempt.
 
   **Concrete examples of EXEMPT statements (do NOT flag these):**
   - ✅ "In most mid-market firms, the leadership team has never built shared

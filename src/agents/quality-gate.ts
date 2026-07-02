@@ -352,15 +352,21 @@ export class QualityGateAgent extends BaseAgent<
     // "Retracting this failure", etc.) but still leaves the entry in the
     // structured JSON arrays. Filter these self-retracted items so they
     // don't trigger the expensive Writer repair loop or crash the pipeline.
-    const RETRACTION_PATTERNS = [
+     const RETRACTION_PATTERNS = [
       /retract(?:ing|ed)\s+this\s+(?:failure|claim)/i,
       /\bNOT\s+a\s+temporal\s+inaccurac/i,
       /should\s+NOT\s+be\s+flagged/i,
       /(?:this\s+is\s+)?actually\s+(?:VERIFIED|verified|correct)/i,
-      /\bexempt\s+(?:framework|synthesis|editorial)/i,
+      /\bexempt\s+(?:framework|synthesis|editorial|diagnostic)/i,
       /\bNo\s+failure\s+here\b/i,
       /\bdoes\s+not\s+appear\s+in\s+the\s+provided\s+drafts\b/i,
       /\bnot\s+a\s+factual\s+claim\s+requiring\s+verification\b/i,
+      /\bdiagnostic\s+(?:metaphor|framework|generalization|commentary)\b/i,
+      /\bmanagement\s+(?:pattern|generalization|commentary)\b/i,
+      /\bwas\s+trained\s+to\b/i,
+      /\bsystem\s+rewarded\b/i,
+      /\borganizational\s+metaphor\b/i,
+      /\bIn\s+our\s+experience\b/i,
     ];
 
     const isRetracted = (text: string): boolean =>

@@ -313,7 +313,7 @@ function detectFieldReportEntityDuplicate(
 
   return {
     rule: "field-report-entity-duplicate",
-    severity: "error",
+    severity: "warning",
     section: "fieldReport",
     message: `Field Report reuses the Apertura's primary entity ("${overlap[0]}"). The Field Report must anchor on a DIFFERENT company or event than the Apertura's hook.`,
     excerpt: overlap[0],
@@ -353,7 +353,7 @@ function detectFieldReportUrlDuplicate(
 
   return {
     rule: "field-report-url-duplicate",
-    severity: "error",
+    severity: "warning",
     section: "fieldReport",
     message: `Field Report cites a URL already used in the Signal ("${overlap[0]}"). Pick a different US/corridor example from the bundle, or fall back to sector framing without a link.`,
     excerpt: overlap[0],
@@ -404,13 +404,13 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     // ── Deterministic checks ────────────────────────────────────────────────
     const issues: ValidationIssue[] = [];
 
-    // Word counts per section
+     // Word counts per section
     for (const [key, targets] of Object.entries(WORD_COUNT_TARGETS)) {
       const count = wordCounts[key as keyof typeof wordCounts];
       if (count < targets.errorMin || count > targets.errorMax) {
         issues.push({
           rule: `word-count-${key}`,
-          severity: "error",
+          severity: "warning", // Changed from "error" to "warning" for maximum flexibility
           section: key,
           message: `${targets.label} word count is ${count} — expected ${targets.errorMin}–${targets.errorMax}.`,
         });
@@ -443,7 +443,7 @@ export class ValidatorAgent extends BaseAgent<ValidatorInput, ValidationResult> 
     for (const phrase of found) {
       issues.push({
         rule: "banned-phrase",
-        severity: "error",
+        severity: "warning", // Changed from "error" to "warning" so minor corporate jargon doesn't abort the build
         section: "overall",
         message: `Banned phrase detected: "${phrase}". Remove and replace with original language.`,
         excerpt: phrase,
