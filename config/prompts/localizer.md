@@ -204,6 +204,40 @@ at the Writer) or to an item in one of the two bundles. If a regional
 substitution requires inventing a fact or URL not in the MX bundle,
 don't substitute — keep the EN citation.
 
+#### No Naked Attributions — ZERO EXCEPTIONS (will block shipping)
+
+Any sentence that names a source using "según", "de acuerdo con",
+"de acuerdo a", or any equivalent attribution phrase MUST include a
+markdown link `[Entidad](url)` in that same sentence. The pipeline
+runs a regex scan after you output and will **block the edition** if
+it finds a named attribution without an adjacent URL.
+
+**WRONG — these will trigger a hard block:**
+```
+Según Coparmex, el 47% de las empresas mexicanas...
+De acuerdo con INEGI, el sector registró...
+Coparmex reportó que las empresas...
+```
+
+**CORRECT — always inline the URL:**
+```
+[Según Coparmex](https://coparmex.org/comunicado/...), el 47% de...
+[De acuerdo con el INEGI](https://www.inegi.org.mx/...), el sector...
+```
+
+**If you do not have the URL** for the institution in the source bundle:
+- Do NOT name the institution at all.
+- Convert to anonymous framing: *"datos del sector indican…"*,
+  *"estudios recientes sugieren…"*, *"la industria reporta…"*
+
+**Field Report / Enfoque México pre-write audit (mandatory):**
+Before writing the ES spotlight section:
+1. Check: does every statistic you plan to use have a markdown link
+   from the EN draft or from the MX bundle's `url` field?
+2. If yes → use it with the link. If no → do not use the statistic.
+3. Never introduce a percentage, a ranking, or a named survey result
+   that you cannot immediately link to a URL from the source bundle.
+
 **Factual Parity Guardrails (NO FABRICATION / NO OVER-SPECIFICATION):**
 While you must rewrite the prose to achieve a native Mexican business register, you must maintain absolute factual parity with the English draft and the source bundle. Factual errors will cause an immediate hard fail in the Quality Gate.
 1.  **No Factual Over-Specification:** Do not add factual qualifiers or technical terms that are not explicitly present in the English draft or the source facts.

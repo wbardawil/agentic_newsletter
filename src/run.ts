@@ -634,6 +634,94 @@ async function main(): Promise<void> {
     // on the final prose.
     esContent = rewriteContentOutletLinks(stage, bundle, "es");
 
+    // ── ES Citation Guard pre-scan ─────────────────────────────────────────
+    // Mirror of the EN pre-scan (post-Writer, pre-QG). Catches naked
+    // attributions introduced by the Localizer (e.g. "Según Coparmex…"
+    // without an adjacent URL) before they reach the terminal Citation Guard
+    // at the end of the pipeline. When issues are found a single Sonnet repair
+    // pass rewrites only the flagged sentences, giving the ES draft a recovery
+    // opportunity rather than a hard block.
+    const esPreGuardIssues = scanEdition(
+      esContent.sections.map((s) => ({ type: s.type, body: s.body })),
+      "es",
+    );
+    if (esPreGuardIssues.length > 0) {
+      console.warn(
+        `\n   ⚠️  ES Citation Guard (pre-QG) — ${esPreGuardIssues.length} naked attribution(s) in ES draft:`,
+      );
+      for (const issue of esPreGuardIssues) {
+        console.warn(`      • [${issue.section}] "${issue.entity} ${issue.verb}"`);
+        console.warn(`        … ${issue.excerpt} …`);
+      }
+      console.warn(`      Running ES attribution repair pass...\n`);
+
+      // Build a repair prompt: one call targeting only the flagged sections.
+      const flaggedSectionTypes = new Set(
+        esPreGuardIssues.map((i) => i.section.replace(/^es\//, "")),
+      );
+      const repairedSections = await Promise.all(
+        esContent.sections.map(async (s) => {
+          if (!flaggedSectionTypes.has(s.type)) return s;
+          const sectionIssues = esPreGuardIssues.filter(
+            (i) => i.section === `es/${s.type}`,
+          );
+          const attributionList = sectionIssues
+            .map((i) => `"${i.entity} ${i.verb}"`)
+            .join(", ");
+          try {
+            const repairResp = await apiClients.anthropic.messages.create({
+              model: "claude-sonnet-4-6",
+              max_tokens: 3000,
+              messages: [
+                {
+                  role: "user",
+                  content:
+                    `The Spanish newsletter section below contains naked attribution(s) — ` +
+                    `sentences that name a source (${attributionList}) without an adjacent ` +
+                    `markdown link. The pipeline will BLOCK the edition if these are not fixed.\n\n` +
+                    `For each naked attribution:\n` +
+                    `- If the URL for the named source is available in the text or is a well-known ` +
+                    `Mexican institution, add the URL as a markdown link inline.\n` +
+                    `- If the URL is NOT available, rewrite the sentence using anonymous framing: ` +
+                    `"datos del sector indican…", "la industria reporta…", or remove the name entirely.\n\n` +
+                    `Rules:\n` +
+                    `- Keep every other fact, URL, number, and markdown structure unchanged.\n` +
+                    `- Do not add new claims or change any meaning — only fix the naked attributions.\n` +
+                    `- Maintain native Mexican business-press register.\n\n` +
+                    `Output ONLY the rewritten section text:\n\n${s.body}`,
+                },
+              ],
+            });
+            costTracker.recordUsage(
+              "claude-sonnet-4-6",
+              repairResp.usage.input_tokens,
+              repairResp.usage.output_tokens,
+            );
+            const repairBlock = repairResp.content[0];
+            const repaired = repairBlock?.type === "text" ? repairBlock.text.trim() : s.body;
+            // Verify the repair actually cleared the issues
+            const stillFlagged = scanEdition([{ type: s.type, body: repaired }], "es");
+            if (stillFlagged.length > 0) {
+              logger.warn(
+                `ES citation repair could not clear all attributions in [${s.type}]: ` +
+                stillFlagged.map((i) => `"${i.entity} ${i.verb}"`).join(", "),
+              );
+            } else {
+              logger.info(`ES citation repair cleared all naked attributions in [${s.type}]`);
+            }
+            return { ...s, body: repaired };
+          } catch (repairErr) {
+            logger.warn(
+              `ES citation repair call failed for [${s.type}]: ` +
+              `${repairErr instanceof Error ? repairErr.message : String(repairErr)}`,
+            );
+            return s;
+          }
+        }),
+      );
+      esContent = { ...esContent, sections: repairedSections };
+    }
+
     console.log(`   ✓ Spanish edition ready (${esContent.sections.length} sections)\n`);
   }
 
@@ -899,6 +987,15 @@ async function main(): Promise<void> {
     }
   }
 
+  // ── Reconcile Validator result with Quality Gate outcome ─────────────────
+  // Done here — immediately after QG completes — so the reconciliation result
+  // appears in the CLI log adjacent to the Validator output that triggered it,
+  // rather than deep inside the JSON-construction block at the end of main().
+  // The computed value is reused verbatim when writing the draft JSON below.
+  const reconciledValidation = validatorOutput.success
+    ? reconcileValidation(validation, qualityGate)
+    : null;
+
   // ── Citation Guard (regex, deterministic) ────────────────────────────────
   // Second line of defense after Quality Gate. Catches "[Entity] + attribution
   // verb" patterns without an adjacent URL. Cheap, no LLM.
@@ -1058,7 +1155,7 @@ async function main(): Promise<void> {
       angle,
       enContent: content,
       esContent: esContent ?? null,
-      validation: validatorOutput.success ? reconcileValidation(validation, qualityGate) : null,
+      validation: reconciledValidation,
       qualityGate: qualityGate ?? null,
       designer: designer ?? null,
       costs: {

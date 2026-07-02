@@ -419,24 +419,44 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
   }
 
   /**
+   * Extract all markdown URLs from a text block.
+   * Used to build the forbidden-URL list when repairing Field Report distinctness.
+   */
+  private extractUrls(text: string): string[] {
+    const urlRe = /\]\((https?:\/\/[^)]+)\)/g;
+    const urls: string[] = [];
+    let m: RegExpExecArray | null;
+    while ((m = urlRe.exec(text)) !== null) {
+      if (m[1]) urls.push(m[1]);
+    }
+    return urls;
+  }
+
+  /**
    * If the main entity in the Field Report matches the main entity in any Apertura option,
-   * make a targeted Sonnet call to rewrite the Field Report with a different anchor.
-   * This prevents the Validator's `field-report-entity-distinct` hard failure.
+   * OR if the Field Report cites a URL already present in the Signal, make a targeted
+   * Sonnet call to rewrite the Field Report with a different anchor.
+   *
+   * This prevents both:
+   * - Validator `field-report-entity-distinct` hard failure (entity overlap with Apertura)
+   * - Validator `field-report-url-duplicate` error (URL overlap with Signal)
    */
   private async repairFieldReportDistinctness(
     aperturaOptions: AperturaOption[],
     fieldReport: string,
     sources: SourceItem[],
+    signal?: string,
   ): Promise<string> {
-    if (aperturaOptions.length === 0) return fieldReport;
+    if (aperturaOptions.length === 0 && !signal) return fieldReport;
 
-    // Extract first significant proper-noun-style token from the longest apertura option
-    const longestApertura = aperturaOptions.reduce((a, b) =>
-      b.body.length > a.body.length ? b : a,
-    );
-    const aperturaWords = longestApertura.body.split(/\s+/).slice(0, 60).join(" ");
+    // ── 1. Entity overlap check (existing logic) ──────────────────────────
+    const longestApertura = aperturaOptions.length > 0
+      ? aperturaOptions.reduce((a, b) => b.body.length > a.body.length ? b : a)
+      : null;
+    const aperturaWords = longestApertura
+      ? longestApertura.body.split(/\s+/).slice(0, 60).join(" ")
+      : "";
 
-    // Heuristic: look for words >= 3 chars starting with uppercase that appear in both sections
     const capitalTokenRe = /\b([A-Z][a-záéíóúüñA-Z]{2,}(?:\s+[A-Z][a-záéíóúüñA-Z]{2,})?)\b/g;
     const aperturaEntities = new Set<string>();
     let m: RegExpExecArray | null;
@@ -445,21 +465,53 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     }
 
     const fieldReportLower = fieldReport.toLowerCase();
-    const overlap = [...aperturaEntities].filter(
+    const entityOverlap = [...aperturaEntities].filter(
       (e) => e.length > 3 && fieldReportLower.includes(e),
     );
 
-    if (overlap.length === 0) return fieldReport;
+    // ── 2. URL overlap check (new) — compare Field Report URLs vs Signal URLs ──
+    const signalUrls = signal ? new Set(this.extractUrls(signal)) : new Set<string>();
+    const fieldReportUrls = this.extractUrls(fieldReport);
+    const urlOverlap = fieldReportUrls.filter((u) => signalUrls.has(u));
+
+    // If neither overlap exists, no repair needed
+    if (entityOverlap.length === 0 && urlOverlap.length === 0) return fieldReport;
 
     const REPAIR_MODEL = "claude-sonnet-4-6";
-    this.logger.info(
-      `Field Report distinctness repair: entity overlap detected [${overlap.slice(0, 3).join(", ")}] — rewriting Field Report anchor`,
-    );
 
+    if (entityOverlap.length > 0) {
+      this.logger.info(
+        `Field Report distinctness repair: entity overlap detected [${entityOverlap.slice(0, 3).join(", ")}] — rewriting Field Report anchor`,
+      );
+    }
+    if (urlOverlap.length > 0) {
+      this.logger.info(
+        `Field Report distinctness repair: URL overlap detected with Signal [${urlOverlap.slice(0, 2).join(", ")}] — rewriting Field Report anchor`,
+      );
+    }
+
+    // Build a combined set of forbidden URLs: Signal URLs + Apertura entity domains
+    const forbiddenUrls = urlOverlap.length > 0
+      ? `\nFORBIDDEN URLs (already cited in the Signal — do NOT reuse):\n${urlOverlap.map((u) => `- ${u}`).join("\n")}`
+      : "";
+
+    // Filter alternative sources: exclude entity overlap AND forbidden URL domains
+    const forbiddenDomains = new Set(
+      [...signalUrls].map((u) => {
+        try { return new URL(u).hostname; } catch { return ""; }
+      }).filter(Boolean),
+    );
     const alternativeSources = sources
-      .filter((s) => !overlap.some((e) => (s.title + " " + (s.outlet ?? "")).toLowerCase().includes(e)))
+      .filter((s) => {
+        const entityMatch = entityOverlap.some((e) =>
+          (s.title + " " + (s.outlet ?? "")).toLowerCase().includes(e),
+        );
+        let domainMatch = false;
+        try { domainMatch = forbiddenDomains.has(new URL(s.url).hostname); } catch { /* ignore */ }
+        return !entityMatch && !domainMatch;
+      })
       .slice(0, 5)
-      .map((s) => `- "${s.title}" (${s.outlet ?? "unknown"})\n  ${s.verbatimFacts.slice(0, 2).join(" ")}`)
+      .map((s) => `- "${s.title}" (${s.outlet ?? "unknown"})\n  URL: ${s.url}\n  ${s.verbatimFacts.slice(0, 2).join(" ")}`)
       .join("\n");
 
     const response = await this.deps.apiClients.anthropic.messages.create({
@@ -469,16 +521,18 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
         {
           role: "user",
           content:
-            `The Field Report below reuses the same company/entity as the Apertura. ` +
-            `This is a hard editorial failure — the two sections must anchor on different entities.\n\n` +
-            `APERTURA (first option, abbreviated):\n${aperturaWords}...\n\n` +
-            `FIELD REPORT TO REWRITE:\n${fieldReport}\n\n` +
-            `ALTERNATIVE SOURCES (pick one to anchor a new Field Report):\n${alternativeSources}\n\n` +
+            `The Field Report below has a distinctness violation — it must anchor on a ` +
+            `different entity AND a different source URL than the Signal and the Apertura.\n\n` +
+            (aperturaWords ? `APERTURA (first option, abbreviated):\n${aperturaWords}...\n\n` : "") +
+            `FIELD REPORT TO REWRITE:\n${fieldReport}\n` +
+            forbiddenUrls + `\n\n` +
+            `ALTERNATIVE SOURCES (pick one that does not conflict):\n${alternativeSources}\n\n` +
             `Instructions:\n` +
             `1. Rewrite the Field Report using one of the alternative sources as the anchor.\n` +
-            `2. Keep the same structure (~150 words, 3-4 short paragraphs).\n` +
-            `3. End with the operational implication for a $5M-$100M owner.\n` +
-            `4. Include a Markdown citation link to the source URL.\n` +
+            `2. The chosen source URL must NOT appear in the forbidden URLs list above.\n` +
+            `3. Keep the same structure (~150 words, 3-4 short paragraphs).\n` +
+            `4. End with the operational implication for a $5M-$100M owner.\n` +
+            `5. Include a Markdown citation link to the source URL.\n` +
             `Output only the rewritten Field Report text, nothing else.`,
         },
       ],
@@ -608,12 +662,14 @@ export class WriterAgent extends BaseAgent<WriterInput, LocalizedContent> {
     writerOutput.sections.insight = temporalFixed.insight;
     writerOutput.sections.fieldReport = temporalFixed.fieldReport;
 
-    // Field Report distinctness: prevent the Validator hard failure when the
-    // Field Report reuses the same company/entity anchor as the Apertura.
+    // Field Report distinctness: prevent both the Validator entity-distinct failure
+    // (Field Report reuses same entity as the Apertura) and the URL-duplicate failure
+    // (Field Report reuses a URL already cited in the Signal).
     writerOutput.sections.fieldReport = await this.repairFieldReportDistinctness(
       writerOutput.sections.aperturaOptions,
       writerOutput.sections.fieldReport,
       payload.sources,
+      writerOutput.sections.signal, // ← pass Signal so URL overlap can be detected
     );
 
     // Banned-phrase scan runs over every prose section. Insight has seen the

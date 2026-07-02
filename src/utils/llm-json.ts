@@ -6,14 +6,34 @@
 /**
  * Extracts a JSON string from LLM output.
  * Strips markdown code fences if present; falls back to first `{` … last `}`.
+ *
+ * Handles both:
+ * - ` ```json\n{…}\n``` ` (opening fence with optional language tag)
+ * - ` ```\n{…}\n``` ` (plain fence)
+ * - Trailing ` ``` ` appended after a complete JSON object
  */
 export function extractJson(text: string): string {
-  const fenced = /```(?:json)?\s*([\s\S]*?)```/.exec(text);
+  const trimmed = text.trim();
+
+  // Full-fence match: ```[json]\n…\n```
+  const fenced = /^```(?:json)?\s*\n?([\s\S]*?)\n?```\s*$/.exec(trimmed);
   if (fenced?.[1]) return fenced[1].trim();
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start !== -1 && end !== -1 && end > start) return text.slice(start, end + 1);
-  return text.trim();
+
+  // Partial-fence: model emitted JSON followed by ``` (no opening fence)
+  const trailingFence = trimmed.endsWith("```")
+    ? trimmed.slice(0, trimmed.lastIndexOf("```")).trim()
+    : null;
+  if (trailingFence) {
+    const s = trailingFence.indexOf("{");
+    const e = trailingFence.lastIndexOf("}");
+    if (s !== -1 && e !== -1 && e > s) return trailingFence.slice(s, e + 1);
+  }
+
+  // Plain fallback: extract from first { to last }
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start !== -1 && end !== -1 && end > start) return trimmed.slice(start, end + 1);
+  return trimmed;
 }
 
 /**
