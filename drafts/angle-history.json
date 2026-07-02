@@ -27,6 +27,73 @@
         }
       },
       "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
+    },
+    {
+      "editionId": "2026-27",
+      "recordedAt": "2026-07-02T21:47:45.299Z",
+      "angle": {
+        "headline": "Why Operating Models Break When You Add More Countries",
+        "thesis": "Cross-border businesses fail not because they lack strategy, but because they try to scale a single-country operating model across multiple jurisdictions without redesigning how decisions get made and executed.",
+        "targetPersona": "US-based business owners expanding into LATAM markets or LATAM-based owners expanding into the US, particularly those managing operations across 2+ countries",
+        "relevanceToAudience": "The T-MEC review process (item 14) and the rising complexity of cross-border operations (items 16, 6) expose a critical pattern: businesses that succeed in one country often fail when they try to replicate that model across borders because they don't redesign their operating model to handle multiple regulatory environments, currencies, and decision-making frameworks simultaneously.",
+        "suggestedSources": [
+          "2f3ca0a1-7277-4271-b20f-ddc06ca1e7fc",
+          "bc52e259-61f5-4f99-bb83-4f2af928701a",
+          "07379703-9685-47a0-87ef-3e8fa24d5637",
+          "ca7c2286-a2e6-4f4c-8d08-cb071c15bed1"
+        ],
+        "justification": {
+          "angleChoice": "This angle is superior to alternatives because it addresses a lived, concrete dysfunction that US-LATAM corridor operators face right now: the T-MEC review process (item 14) is forcing businesses to confront how fragile their cross-border operating models are. While items on AI adoption (9), succession planning, and workplace revolution exist in the bundle, none speak as directly to the ICP's immediate reality of managing operations across multiple jurisdictions. The Bunq expansion story (item 16) and Banco Plata's physical network deployment (item 6) demonstrate that even digital-first businesses must redesign their operating models for multi-country execution. The Fast Company piece (item 10) explicitly states that 65% of organizations are rewriting their business approaches every two years, and the top barrier is 'a disconnect between planning and execution' — which is precisely what happens when you scale a single-country model without redesigning the operating model. This angle avoids the competitive-signal trap of repeating surface-level trade policy coverage by focusing on the operational breakdown that trade complexity exposes.",
+          "osPillarChoice": "This is Operating Model OS, not Strategy OS or Technology OS, because the dysfunction is explicitly in execution, not direction or tooling. Item 14 shows that Mexican businesses understand the strategic importance of T-MEC (the CCE statement confirms this), but the challenge isn't strategic clarity — it's that their operating models were designed for a stable 16-year framework and now must adapt to annual reviews. Item 10 directly supports this: 'when asked about their top barrier to reinvention, 35% of CEOs said it's a disconnect between planning and execution.' Item 16 (Bunq) demonstrates this: they have a clear strategy (multi-currency accounts for cross-border users) but must wait up to 18 months for regulatory approval in Mexico, forcing them to redesign their operating model to serve European and Mexican customers simultaneously from a single platform. The bottleneck is not 'what to do' (Strategy OS) or 'what tools to use' (Technology OS) — it's 'how to execute decisions across multiple regulatory, currency, and operational contexts' (Operating Model OS). Item 9 reinforces this: organizations must 'redeploy talent quickly' and 'out-adapt their competitors' — both operational model challenges, not strategic ones.",
+          "peopleAngleChoice": "The challenge directly maps to the thesis because scaling across borders requires distributing decision-making authority, which creates a specific behavioral shift: the founder/owner must stop being the central approver for every cross-border decision. Kotter Step 5 (Empower) is the correct framework because the barrier is structural — centralized approval processes, single-country playbooks, and uniform policies all prevent local teams from acting on local conditions. The concrete action is removing these barriers by establishing clear decision rights and escalation protocols. This is evidenced in item 16, where Bunq must navigate both European and Mexican regulatory environments simultaneously, requiring them to empower local teams to execute within their jurisdictions. Item 4 (Ricardo Semler's management philosophy) supports this: 'replacing hierarchy with autonomy' is the behavioral shift required, and the framework activation is giving local operators the authority to execute within defined boundaries rather than requiring central approval for every decision."
+        },
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The leadership team must transition from making all cross-border decisions centrally to empowering local operators with clear decision rights and escalation protocols, which requires the founder to let go of approval authority on operational details they previously controlled.",
+          "framework": "Kotter Step 5: Empower — Remove the organizational barriers (centralized approval processes, single-country playbooks, uniform policies) that prevent local teams from executing within their jurisdictions while maintaining strategic alignment."
+        },
+        "quarterlyTheme": "Systems That Serve",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "Mexico's Secretary of Economy announced that the T-MEC will not be extended to 2042 and will instead be subject to annual reviews through 2036",
+              "supportingFactId": "2f3ca0a1-7277-4271-b20f-ddc06ca1e7fc",
+              "factIndex": 1,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "According to the US Bureau of Economic Analysis, Mexico maintained its position as the top supplier to the United States with a 16.9% share of merchandise imports",
+              "supportingFactId": "2f3ca0a1-7277-4271-b20f-ddc06ca1e7fc",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Bunq is waiting up to 18 months for regulatory approval from Mexico's CNBV before it can offer multi-currency accounts that manage Mexican and European accounts simultaneously from one platform",
+              "supportingFactId": "bc52e259-61f5-4f99-bb83-4f2af928701a",
+              "factIndex": 3,
+              "temporalSafety": "mixed"
+            },
+            {
+              "claim": "A survey of 700+ C-suite leaders found that 35% of CEOs identified the disconnect between planning and execution as their top barrier to reinvention",
+              "supportingFactId": "ca7c2286-a2e6-4f4c-8d08-cb071c15bed1",
+              "factIndex": 6,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Banco Plata is deploying 50 intelligent ATMs initially and plans to reach 300 units nationwide, with the first phase covering eight cities including Mexico City, Monterrey, and Guadalajara between June and August 2026",
+              "supportingFactId": "07379703-9685-47a0-87ef-3e8fa24d5637",
+              "factIndex": 4,
+              "temporalSafety": "mixed"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Bunq (Dutch neobank expanding to Mexico with multi-currency accounts)",
+            "sourceId": "bc52e259-61f5-4f99-bb83-4f2af928701a",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "[Ford's CEO Jim Farley told CNBC](https://www.cnbc.com/2026/07/02/ford-jim-farley-usmca.html) that the automaker assembled over 2 million vehicles in the United States last year. That is more than any other manufacturer, including 311,000 units for export. He is pushing for a level playing field wit"
     }
   ]
 }

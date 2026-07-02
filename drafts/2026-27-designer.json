@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-27-hero.png",
+      "publicUrl": null,
+      "prompt": "A precise pencil sketch illustration showing an organizational flowchart fragmenting into multiple parallel streams, each representing a different country jurisdiction. The central approval node—depicted as an overloaded architectural keystone—cracks under pressure while decision pathways queue and tangle. In contrast, a redesigned structure on the right shows clean, independent decision columns with clear horizontal lines marking authority thresholds. Use charcoal graphite for the congested left side, white space for breathing room, and a single orange line highlighting the new jurisdictional boundary that enables local execution. The composition suggests architectural blueprints being redrawn, with the headline \"Your team isn't slow. Your approval loop is.\" positioned as an editorial serif statement. Contemporary office environment, white background, large negative space, one central metaphor.",
+      "altText": {
+        "en": "Abstract illustration showing interconnected nodes in different colors, with some paths blocked and others flowing freely through a network structure",
+        "es": "Ilustración abstracta de nodos interconectados en distintos colores, con algunas rutas bloqueadas y otras fluyendo libremente en una estructura de red"
+      },
+      "caption": {
+        "en": "Your approval loop becomes the bottleneck the moment you add a second country.",
+        "es": "Tu circuito de aprobaciones se convierte en cuello de botella en cuanto sumas un segundo país."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
