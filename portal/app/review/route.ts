@@ -213,7 +213,7 @@ export async function GET(request: Request): Promise<Response> {
     // Publish to Supabase newsroom.
     // publishEdition reads review.json internally and gets heroImageUrl from there.
     try {
-      const result = await publishEdition(editionId);
+      const result = await publishEdition(editionId, { preloadedReview: updated });
       sendPublicationConfirmation({
         editionId: result.editionId,
         qaScore: result.qaScore,

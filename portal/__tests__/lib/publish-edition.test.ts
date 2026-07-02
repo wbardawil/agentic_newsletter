@@ -8,10 +8,12 @@ let sourcesFixture: unknown | (() => never);
 let reviewFixture: unknown | (() => never);
 let assetFixture: Buffer | (() => never) = Buffer.from("mock-image");
 
-const uploadAssetMock = vi.fn();
+const { mockUploadAsset } = vi.hoisted(() => ({
+  mockUploadAsset: vi.fn(),
+}));
 
 vi.mock("@/lib/supabase/storage", () => ({
-  uploadAsset: uploadAssetMock,
+  uploadAsset: mockUploadAsset,
 }));
 
 vi.mock("@/lib/github", async (importActual) => {
@@ -119,7 +121,7 @@ beforeEach(() => {
   upsertSingle.mockResolvedValue({ data: { id: "db-1" }, error: null });
   deleteEq.mockResolvedValue({ error: null });
   sourcesInsert.mockResolvedValue({ error: null });
-  uploadAssetMock.mockResolvedValue("https://storage.example.com/edition-assets/2026-19/hero.png");
+  mockUploadAsset.mockResolvedValue("https://storage.example.com/edition-assets/2026-19/hero.png");
   draftFixture = validDraft();
   sourcesFixture = { items: [{ title: "S", url: "https://x.example", summary: "sum", outlet: "Out" }] };
   reviewFixture = approvedReview();
@@ -206,8 +208,8 @@ describe("publishEdition — review gate", () => {
     const result = await publishEdition("2026-19");
     expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero.png");
     expect(fetchDraftAsset).toHaveBeenCalledWith(expect.any(String), expect.any(String), "drafts/2026-19/hero-conceptual.png");
-    expect(uploadAssetMock).toHaveBeenCalledOnce();
-    const uploadCall = uploadAssetMock.mock.calls[0];
+    expect(mockUploadAsset).toHaveBeenCalledOnce();
+    const uploadCall = mockUploadAsset.mock.calls[0];
     expect(uploadCall[0]).toBe("2026-19/hero-conceptual.png"); // storage path
     expect(uploadCall[1]).toBeInstanceOf(Buffer); // body
     expect(uploadCall[2]).toBe("image/png"); // content type
@@ -219,7 +221,7 @@ describe("publishEdition — review gate", () => {
     const result = await publishEdition("2026-19");
     expect(result.heroImageUrl).toBe("https://storage.example.com/edition-assets/2026-19/hero-v1.png");
     expect(fetchDraftAsset).not.toHaveBeenCalled();
-    expect(uploadAssetMock).not.toHaveBeenCalled();
+    expect(mockUploadAsset).not.toHaveBeenCalled();
   });
 
   it("sets heroImageUrl to null when both assetPath and publicUrl are null", async () => {
@@ -297,10 +299,10 @@ describe("publishEdition — review gate", () => {
 
 describe("publishEdition — hero_image_url propagation", () => {
   it("upserts with hero_image_url from asset upload", async () => {
-    uploadAssetMock.mockResolvedValue("https://storage.example.com/a-new-hero.png");
+    mockUploadAsset.mockResolvedValue("https://storage.example.com/a-new-hero.png");
     const result = await publishEdition("2026-19");
     expect(result.heroImageUrl).toBe("https://storage.example.com/a-new-hero.png");
-    expect(uploadAssetMock).toHaveBeenCalledOnce();
+    expect(mockUploadAsset).toHaveBeenCalledOnce();
     expect(upsertSingle).toHaveBeenCalledOnce();
   });
 });

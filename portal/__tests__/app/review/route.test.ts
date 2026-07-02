@@ -275,9 +275,11 @@ describe("content_approve", () => {
     expect(await response.text()).toContain("publicada");
   });
 
-  it("calls publishEdition with editionId only (heroImageUrl read internally)", async () => {
+  it("calls publishEdition with preloaded review state to prevent race conditions", async () => {
     await GET(makeRequest(signToken("content_approve")));
-    expect(mockPublishEdition).toHaveBeenCalledWith(EDITION);
+    expect(mockPublishEdition).toHaveBeenCalledWith(EDITION, {
+      preloadedReview: expect.any(Object),
+    });
   });
 
   it("does NOT dispatch any workflow", async () => {

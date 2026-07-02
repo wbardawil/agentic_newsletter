@@ -121,7 +121,7 @@ const ReviewGateSchema = z.object({
   image: z.object({
     status: z.string(),
     // The asset path lives on the draft branch, not in the final storage bucket.
-    assetPath: z.string().optional(),
+    assetPath: z.string().nullable().optional(),
     publicUrl: z.string().nullable().optional(),
   }),
   content: z.object({
@@ -152,6 +152,10 @@ function skipReviewGate(): boolean {
 
 // ── Main function ─────────────────────────────────────────────────────────────
 
+export interface PublishOptions {
+  preloadedReview?: any;
+}
+
 /**
  * Read, validate, review-gate, quality-gate, and mirror an approved edition
  * into Supabase. Throws PublishError on any failure.
@@ -159,7 +163,10 @@ function skipReviewGate(): boolean {
  * The hero image URL is read from `review.json` (`review.image.publicUrl`).
  * The caller does NOT need to pass it separately.
  */
-export async function publishEdition(editionId: string): Promise<PublishResult> {
+export async function publishEdition(
+  editionId: string,
+  options?: PublishOptions,
+): Promise<PublishResult> {
   const { repo, prefix } = repoConfig();
   const branch = branchFor(prefix, editionId);
 
@@ -214,27 +221,33 @@ export async function publishEdition(editionId: string): Promise<PublishResult> 
   let heroImageUrl: string | null = null;
 
   if (!skipReviewGate()) {
-    let reviewRaw: unknown;
-    try {
-      reviewRaw = await fetchDraftJson(repo, branch, `drafts/${editionId}-review.json`);
-    } catch (err) {
-      if (err instanceof GitHubError && err.code === "NOT_FOUND") {
+    let review;
+
+    if (options?.preloadedReview) {
+      review = options.preloadedReview;
+    } else {
+      let reviewRaw: unknown;
+      try {
+        reviewRaw = await fetchDraftJson(repo, branch, `drafts/${editionId}-review.json`);
+      } catch (err) {
+        if (err instanceof GitHubError && err.code === "NOT_FOUND") {
+          throw new PublishError(
+            "QUALITY_GATE",
+            `No review state found for edition ${editionId}. The draft must be reviewed and approved via the portal (/review) before publishing. Set SKIP_REVIEW_GATE=true to bypass during migration.`,
+          );
+        }
+        throw new PublishError("GITHUB", `Failed to load review state: ${err instanceof Error ? err.message : String(err)}`);
+      }
+
+      const reviewParsed = ReviewGateSchema.safeParse(reviewRaw);
+      if (!reviewParsed.success) {
         throw new PublishError(
           "QUALITY_GATE",
-          `No review state found for edition ${editionId}. The draft must be reviewed and approved via the portal (/review) before publishing. Set SKIP_REVIEW_GATE=true to bypass during migration.`,
+          `Review state for ${editionId} is malformed or incomplete. Cannot verify approvals.`,
         );
       }
-      throw new PublishError("GITHUB", `Failed to load review state: ${err instanceof Error ? err.message : String(err)}`);
+      review = reviewParsed.data;
     }
-
-    const reviewParsed = ReviewGateSchema.safeParse(reviewRaw);
-    if (!reviewParsed.success) {
-      throw new PublishError(
-        "QUALITY_GATE",
-        `Review state for ${editionId} is malformed or incomplete. Cannot verify approvals.`,
-      );
-    }
-    const review = reviewParsed.data;
 
     if (review.image.status !== "approved") {
       throw new PublishError(
