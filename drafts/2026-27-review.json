@@ -14,24 +14,28 @@
     "rejectionReason": null
   },
   "content": {
-    "status": "pending",
+    "status": "approved",
     "attempt": 1,
     "rejectedSections": [],
-    "approvedAt": null,
+    "approvedAt": "2026-07-02T22:09:54.025Z",
     "rejectedAt": null,
     "rejectionReason": null
   },
   "publish": {
-    "status": "blocked",
-    "blockedReason": "content_pending",
+    "status": "ready",
+    "blockedReason": null,
     "publishedAt": null
   },
   "events": [
     {
       "timestamp": "2026-07-02T22:09:46.258Z",
       "decision": "image_approve"
+    },
+    {
+      "timestamp": "2026-07-02T22:09:54.025Z",
+      "decision": "content_approve"
     }
   ],
   "createdAt": "2026-07-02T21:47:45.301Z",
-  "updatedAt": "2026-07-02T22:09:46.258Z"
+  "updatedAt": "2026-07-02T22:09:54.025Z"
 }
