@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-27-hero.png",
+      "publicUrl": null,
+      "prompt": "A clean pencil sketch illustration showing an architectural cross-section of a modern office workspace, rendered as if blueprints are becoming three-dimensional. The left side depicts traditional rigid cubicle frameworks in charcoal graphite lines—complete, closed, impenetrable. The right side shows an open scaffolding structure with modular work platforms at varying heights, where pathways connect different levels, suggesting flow and learning progression. Small abstract human figures ascend these platforms, each carrying geometric shapes representing deliverable work. One orange accent line traces the learning pathway from ground level upward through the scaffolding. White background. Large negative space above. Editorial serif headline at top reads: \"Your Workflow Has No Room For Learners.\" Small WB logo in bottom corner. Sophisticated hand-drawn texture throughout. The metaphor is structural: not hiring people to fill boxes, but building new frameworks where capability and contribution develop together.",
+      "altText": {
+        "en": "Hands guiding another pair of hands on a workbench with tools and materials",
+        "es": "Manos guiando otras manos sobre una mesa de trabajo con herramientas y materiales"
+      },
+      "caption": {
+        "en": "You cannot hire your way to AI readiness—you build it through deliberate apprenticeship.",
+        "es": "No puedes contratar tu camino hacia la preparación en IA—la construyes mediante aprendizaje estructurado."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
