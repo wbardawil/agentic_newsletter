@@ -38,9 +38,11 @@ function page(
   message: string,
   detail?: string,
   extra?: string,
+  actionUrl?: string,
+  actionLabel?: string,
 ): Response {
   const esc = (s: string) =>
-    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +55,8 @@ body { margin:0; padding:24px 16px; font-family:-apple-system,BlinkMacSystemFont
 h1 { font-family:"Cormorant Garamond",Garamond,serif; font-size:24px; margin:0 0 8px 0; }
 p { font-size:15px; line-height:1.6; color:#1F4E5F; margin:12px 0 0 0; }
 .extra { margin-top:12px; font-size:14px; color:#0F1A2B; }
+.btn { display:inline-block; margin-top:24px; background:#C7892A; color:#0F1A2B; padding:12px 24px; text-decoration:none; border-radius:6px; font-size:14px; font-weight:700; transition: opacity 0.2s; }
+.btn:hover { opacity:0.9; }
 .detail { margin-top:16px; padding:12px; background:#F4EFE6; border-radius:6px; font-family:ui-monospace,monospace; font-size:12px; color:#7A7466; word-break:break-word; }
 </style>
 </head>
@@ -60,6 +64,7 @@ p { font-size:15px; line-height:1.6; color:#1F4E5F; margin:12px 0 0 0; }
 <div class="box">
 <h1>${esc(title)}</h1>
 <p>${esc(message)}</p>
+${actionUrl ? `<a href="${esc(actionUrl)}" target="_blank" class="btn">${esc(actionLabel ?? "Ver en el portal →")}</a>` : ""}
 ${extra ? `<p class="extra">${esc(extra)}</p>` : ""}
 ${detail ? `<div class="detail">${esc(detail)}</div>` : ""}
 </div>
@@ -220,11 +225,18 @@ export async function GET(request: Request): Promise<Response> {
         sourcesMirrored: result.sourcesMirrored,
         heroImageUrl: result.heroImageUrl,
       }).catch((e) => console.error("[review] publication confirmation email failed:", e));
+
+      const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? process.env.PORTAL_BASE_URL ?? "").replace(/\/$/, "");
+      const articleUrl = siteUrl ? `${siteUrl}/edition/${result.editionId}` : undefined;
+
       return page(
         200,
         `Edición ${result.editionId} publicada ✓`,
         `La edición está disponible en el newsroom (QA ${result.qaScore}/100, ${result.sourcesMirrored} fuente(s) sincronizadas). Puedes cerrar esta pestaña.`,
         result.heroImageUrl ? `Hero image: ${result.heroImageUrl}` : undefined,
+        undefined,
+        articleUrl,
+        "Ver edición en el portal →",
       );
     } catch (err) {
       if (err instanceof PublishError) {

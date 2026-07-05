@@ -136,19 +136,9 @@ export async function sendPublicationConfirmation(opts: {
   sourcesMirrored: number;
   heroImageUrl?: string | null;
 }): Promise<void> {
-  // 1. Try environment-specific direct variables
-  let to = process.env.RESEND_TO || process.env.SMTP_TO || process.env.CURATOR_EMAIL;
-
-  // 2. Fallback to the first administrator email if no custom recipient is configured
-  if (!to && process.env.ADMIN_EMAILS) {
-    const emails = process.env.ADMIN_EMAILS.split(",").map((email) => email.trim()).filter(Boolean);
-    if (emails.length > 0) {
-      to = emails[0];
-    }
-  }
-
+  const to = process.env.RESEND_TO;
   if (!to) {
-    console.warn("[email] RESEND_TO, SMTP_TO, or ADMIN_EMAILS not set — skipping publication confirmation");
+    console.warn("[email] RESEND_TO not set — skipping publication confirmation");
     return;
   }
   const articleUrl = `${portalUrl()}/edition/${opts.editionId}`;
