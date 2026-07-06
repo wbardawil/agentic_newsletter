@@ -3,13 +3,13 @@
   "runId": "4c233c92-b43f-4427-b3dd-3a590f1f1def",
   "reviewVersion": 1,
   "image": {
-    "status": "pending",
+    "status": "approved",
     "attempt": 1,
     "assetPath": "drafts/2026-28-hero.png",
     "publicUrl": null,
     "prompt": "Hand-drawn pencil sketch illustration, editorial style, white background with expansive negative space. Center: an elegant AI circuit pattern suspended mid-air above a tangled foundation of fragmented paper scraps, broken arrows, and disconnected process boxes drawn in charcoal graphite. The AI element hovers cleanly rendered, while the foundation beneath dissolves into sketched chaos—missing connections, question marks at decision points, overlapping ownership zones. Subtle orange accent highlights one critical break in the workflow chain. Architectural metaphor: a precise tool placed on an unmapped, collapsing infrastructure. Matte finish, sophisticated business editorial aesthetic, minimal composition, strategic visual hierarchy. Small WB logo in bottom corner.",
     "rejectedPrompts": [],
-    "approvedAt": null,
+    "approvedAt": "2026-07-06T17:03:00.983Z",
     "rejectedAt": null,
     "rejectionReason": null
   },
@@ -23,10 +23,15 @@
   },
   "publish": {
     "status": "blocked",
-    "blockedReason": "image_pending",
+    "blockedReason": "content_pending",
     "publishedAt": null
   },
-  "events": [],
+  "events": [
+    {
+      "timestamp": "2026-07-06T17:03:00.983Z",
+      "decision": "image_approve"
+    }
+  ],
   "createdAt": "2026-07-06T16:34:13.650Z",
-  "updatedAt": "2026-07-06T16:34:13.650Z"
+  "updatedAt": "2026-07-06T17:03:00.983Z"
 }
