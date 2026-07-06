@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-28-hero.png",
+      "publicUrl": null,
+      "prompt": "Hand-drawn pencil sketch illustration, editorial style, white background with expansive negative space. Center: an elegant AI circuit pattern suspended mid-air above a tangled foundation of fragmented paper scraps, broken arrows, and disconnected process boxes drawn in charcoal graphite. The AI element hovers cleanly rendered, while the foundation beneath dissolves into sketched chaos—missing connections, question marks at decision points, overlapping ownership zones. Subtle orange accent highlights one critical break in the workflow chain. Architectural metaphor: a precise tool placed on an unmapped, collapsing infrastructure. Matte finish, sophisticated business editorial aesthetic, minimal composition, strategic visual hierarchy. Small WB logo in bottom corner.",
+      "altText": {
+        "en": "Tangled gray pipes and corroded valves in an abandoned industrial facility with debris scattered across the floor",
+        "es": "Tuberías grises enredadas y válvulas corroídas en una instalación industrial abandonada con escombros en el suelo"
+      },
+      "caption": {
+        "en": "You can't automate a process no one designed in the first place.",
+        "es": "No puedes automatizar un proceso que nadie diseñó desde el principio."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}

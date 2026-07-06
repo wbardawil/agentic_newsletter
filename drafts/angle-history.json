@@ -93,6 +93,72 @@
         }
       },
       "fieldReportSummary": "A recent [Fast Company piece](https://www.fastcompany.com/91568695/panic-isnt-an-ai-strategy) surfaces data from Writer's AI Adoption in the Enterprise research: 94% of executives face board demands to do more with less. 78% report AI creating tension between IT and other lines of business. 61% of C"
+    },
+    {
+      "editionId": "2026-28",
+      "recordedAt": "2026-07-06T16:34:13.648Z",
+      "angle": {
+        "headline": "Why Your AI Pilot Died in a Process Graveyard",
+        "thesis": "Mid-market companies are deploying AI tools to fix efficiency problems, but the tools fail because the broken processes underneath—unclear decision rights, manual handoffs, information silos—were never redesigned first.",
+        "targetPersona": "US-LATAM corridor business owners who have experimented with AI tools but seen limited ROI or adoption stall after the pilot phase",
+        "relevanceToAudience": "The US-LATAM corridor operator is under pressure to 'do more with less' and sees AI as the answer, but without fixing the operating model first—who decides what, how work flows between functions, how information moves—the technology becomes expensive shelfware. This angle names the specific sequence error: technology before operating model.",
+        "suggestedSources": [
+          "06eb789d-a69f-401e-8e71-5fac90014ea6",
+          "ec9cf524-345e-4827-971b-18325c9dbc6b",
+          "219288ed-3442-4390-803b-5d1f115f50cd"
+        ],
+        "justification": {
+          "angleChoice": "This is the most compelling angle because it names a lived dysfunction the ICP recognizes immediately: they tried AI, it didn't stick, and they blamed the tool or the vendor. The deeper truth—surfaced across three sources (06eb789d, ec9cf524, 219288ed)—is that the operating model was never ready. Small businesses are adopting AI (06eb789d reports majority usage last year, some calling it a 'lifeline'), but they're also hitting unexpected costs and adoption failures. Administrative assistants (ec9cf524) are using AI successfully by redesigning their own workflows first (no longer taking notes manually, automating meeting summaries), while those who don't adapt face displacement. A newsletter founder (219288ed) turned a side hustle into a multimillion-dollar business by systematizing content production. The pattern is consistent: technology works when the process is clear; it fails when the process is assumed. This angle is superior to a generic 'AI adoption' trend piece or a 'small business efficiency' listicle because it names the specific sequence error (technology before model) and connects it to the Business Transformation OS framework. Other potential angles (T-MEC uncertainty, billionaire tax, sports investment) either lack direct US-LATAM corridor relevance or don't connect to a systemic operating model dysfunction.",
+          "osPillarChoice": "This is Operating Model OS, not Strategy OS or Technology OS, because the dysfunction is in how the business executes, not in what it decides (Strategy) or which tools it uses (Technology). The sources show that the AI tools themselves work—small businesses report efficiency gains (06eb789d), administrative assistants successfully automate tasks (ec9cf524), content creators scale production (219288ed)—but only when the underlying process is redesigned first. The operating model—decision rights, handoffs, information flow—is the layer that must be fixed before technology can deliver value. This is the classic 'broken before you bought it' pattern: the business cannot scale because the owner is in every decision, processes are undocumented and tribal, and cross-functional handoffs rely on heroics. Deploying AI into this environment doesn't fix the model; it automates the chaos. Strategy OS would address whether AI aligns with the company's competitive positioning. Technology OS would address which AI vendor or architecture to choose. But the dysfunction here is that the model—who does what, when, and how—was never designed to support the technology.",
+          "peopleAngleChoice": "The 'challenge' maps directly to the thesis: leadership must admit the real reason the AI pilot failed. This is not a technology problem; it's a model problem. The discomfort is in naming the truth—that the company's processes were never documented, owned, or designed for scale—and accepting responsibility for the gap. The ADKAR 'Awareness' step activates the concrete action: the owner must pull the operating data that shows where AI adoption stalled (which teams didn't use it, where manual workarounds persisted, where information got stuck) and use that data to surface the pattern. Only when the leadership team sees the cost of the current model in their own numbers will they have the desire to redesign it. This is not a training problem or a change-management communications problem; it's a model-design problem. The framework action is: show the team the evidence of the broken model first, then build the desire to fix it."
+        },
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The leadership team must admit that the AI tool didn't fail because it was bad technology—it failed because they deployed it into a process no one had documented, owned, or designed for cross-functional handoffs.",
+          "framework": "ADKAR: Awareness — The owner must first surface the cost of undocumented processes in their own operating data (where AI adoption stalled, where manual workarounds persisted) before the team will have the desire to redesign the model."
+        },
+        "quarterlyTheme": "Systems That Serve",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "A majority of small businesses used AI last year, with some owners calling it a lifeline and stating it's the only reason the company is still in business.",
+              "supportingFactId": "06eb789d-a69f-401e-8e71-5fac90014ea6",
+              "factIndex": 3,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Small businesses adopting AI pay a median of about $21 per employee, compared with $11 across businesses of all sizes, and some owners reported accidentally running up big bills or fears of price increases.",
+              "supportingFactId": "06eb789d-a69f-401e-8e71-5fac90014ea6",
+              "factIndex": 5,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Administrative assistants who adapted to AI by redesigning workflows—such as setting up Copilot and ChatGPT to take meeting notes automatically—are staying ahead, while employment projections show a grim outlook for the profession overall.",
+              "supportingFactId": "ec9cf524-345e-4827-971b-18325c9dbc6b",
+              "factIndex": 5,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "One administrative professional stated that adapting and staying ahead of the curve is key to the constantly-changing role, saying 'All you do is have to evolve.'",
+              "supportingFactId": "ec9cf524-345e-4827-971b-18325c9dbc6b",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "A newsletter founder turned a Substack side hustle into a multimillion-dollar business, with income from writing and podcasting eclipsing his CFO salary.",
+              "supportingFactId": "219288ed-3442-4390-803b-5d1f115f50cd",
+              "factIndex": 2,
+              "temporalSafety": "safe"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Deanna Danger (administrative professional using AI to redesign workflows)",
+            "sourceId": "ec9cf524-345e-4827-971b-18325c9dbc6b",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "Anthropic signed a 20-year lease with TeraWulf for a purpose-built AI infrastructure campus in Hawesville, Kentucky. The site is a former Century Aluminum smelter that TeraWulf acquired earlier this year. [The deal is expected to generate about $19 billion of contracted revenue over the initial term"
     }
   ]
 }
