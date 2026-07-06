@@ -71,26 +71,36 @@ export async function POST(request: Request) {
     .limit(20);
   const history = historyData as Pick<Database["public"]["Tables"]["ai_messages"]["Row"], "role" | "content">[] | null;
 
-  const voiceBible = await loadVoiceBible();
-  const excerpts = await retrieveRelevantExcerpts(parsed.data.message, lang, 5);
-  const systemPrompt = [
-    buildSystemPrompt(lang, voiceBible),
-    buildContextBlock(excerpts),
-  ].filter(Boolean).join("\n\n");
+  let excerpts: any[] = [];
+  let stream: any;
+  try {
+    const voiceBible = await loadVoiceBible();
+    excerpts = await retrieveRelevantExcerpts(parsed.data.message, lang, 5);
+    const systemPrompt = [
+      buildSystemPrompt(lang, voiceBible),
+      buildContextBlock(excerpts),
+    ].filter(Boolean).join("\n\n");
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return NextResponse.json({ error: "ANTHROPIC_API_KEY not set" }, { status: 500 });
-  const anthropic = new Anthropic({ apiKey });
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) return NextResponse.json({ error: "ANTHROPIC_API_KEY not set" }, { status: 500 });
+    const anthropic = new Anthropic({ apiKey });
 
-  const stream = await anthropic.messages.stream({
-    model: "claude-opus-4-7",
-    max_tokens: 1024,
-    system: systemPrompt,
-    messages: (history ?? []).map((m) => ({
-      role: m.role as "user" | "assistant",
-      content: m.content,
-    })),
-  });
+    stream = await anthropic.messages.stream({
+      model: "claude-opus-4-7",
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: (history ?? []).map((m) => ({
+        role: m.role as "user" | "assistant",
+        content: m.content,
+      })),
+    });
+  } catch (err) {
+    console.error("AI Assistant Stream Init Error:", err);
+    return NextResponse.json(
+      { error: "Failed to initialize AI Assistant", details: (err as Error).message },
+      { status: 500 }
+    );
+  }
 
   const encoder = new TextEncoder();
   let fullText = "";

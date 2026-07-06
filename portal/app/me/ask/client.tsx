@@ -39,9 +39,20 @@ export function AskClient({ lang }: { lang: Lang }) {
     });
 
     if (!res.ok || !res.body) {
+      let errorMessage = "Error contacting the assistant.";
+      try {
+        const errorJson = await res.json();
+        if (errorJson?.details) {
+          errorMessage += ` (${errorJson.details})`;
+        } else if (errorJson?.error) {
+          errorMessage += ` (${errorJson.error})`;
+        }
+      } catch {
+        // Fallback if not JSON or parsing fails
+      }
       setMessages((cur) => {
         const copy = [...cur];
-        copy[copy.length - 1] = { role: "assistant", content: "Error contacting the assistant." };
+        copy[copy.length - 1] = { role: "assistant", content: errorMessage };
         return copy;
       });
       setPending(false);
