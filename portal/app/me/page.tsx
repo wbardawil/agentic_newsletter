@@ -34,6 +34,7 @@ export default async function MemberHome() {
     .maybeSingle();
   const latest = latestData as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "topic" | "pillar" | "byline" | "byline_role" | "published_at" | "shareable_sentence_en" | "shareable_sentence_es"> | null;
 
+  /*
   const { data: conveningsData } = await supabase
     .from("convenings")
     .select("id, city, starts_at, language, capacity")
@@ -41,6 +42,7 @@ export default async function MemberHome() {
     .order("starts_at", { ascending: true })
     .limit(3);
   const convenings = conveningsData as Pick<Database["public"]["Tables"]["convenings"]["Row"], "id" | "city" | "starts_at" | "language" | "capacity">[] | null;
+  */
 
   if (!member) {
     return (
@@ -125,6 +127,7 @@ export default async function MemberHome() {
           <Link className="text-sm mt-3 inline-block" href="/me/preferences">Edit →</Link>
         </div>
 
+        {/*
         <div className="card">
           <h3 className="text-lg mb-3">{i18n.upcomingConvenings}</h3>
           {(convenings ?? []).length === 0 ? (
@@ -146,6 +149,7 @@ export default async function MemberHome() {
           )}
           <Link className="text-sm mt-3 inline-block" href="/convenings">All convenings →</Link>
         </div>
+        */}
 
         <form action="/auth/sign-out" method="post">
           <button type="submit" className="text-sm text-[var(--color-fg-muted)] underline">

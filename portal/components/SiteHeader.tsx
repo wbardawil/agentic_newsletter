@@ -40,7 +40,7 @@ export async function SiteHeader({ lang }: { lang: Lang }) {
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/archive"     className="nav-link">{i18n.nav.archive}</Link>
             <Link href="/me/ask"      className="nav-link">{i18n.nav.ask}</Link>
-            <Link href="/convenings"  className="nav-link">{i18n.nav.convenings}</Link>
+            {/* <Link href="/convenings"  className="nav-link">{i18n.nav.convenings}</Link> */}
             {isAdmin ? <Link href="/admin/applications" className="nav-link">Admin</Link> : null}
           </nav>
         ) : null}

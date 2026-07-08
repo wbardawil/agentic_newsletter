@@ -24,7 +24,7 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             <li><Link href="/"           className="nav-link">{i18n.about.kicker === "El editor" ? "Letra" : "Letter"}</Link></li>
             <li><Link href="/about"      className="nav-link">{i18n.about.kicker}</Link></li>
             <li><Link href="/archive"    className="nav-link">{i18n.nav.archive}</Link></li>
-            <li><Link href="/convenings" className="nav-link">{i18n.nav.convenings}</Link></li>
+            {/* <li><Link href="/convenings" className="nav-link">{i18n.nav.convenings}</Link></li> */}
             <li><Link href="/apply"      className="nav-link">{i18n.nav.apply}</Link></li>
             <li><Link href="/sign-in"    className="nav-link">{i18n.nav.signIn}</Link></li>
           </ul>
