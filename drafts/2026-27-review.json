@@ -1,0 +1,41 @@
+{
+  "editionId": "2026-27",
+  "runId": "512e189f-d455-4812-b6f7-b325c6bc68ee",
+  "reviewVersion": 1,
+  "image": {
+    "status": "approved",
+    "attempt": 1,
+    "assetPath": "drafts/2026-27-hero.png",
+    "publicUrl": null,
+    "prompt": "A clean pencil sketch illustration showing an architectural cross-section of a modern office workspace, rendered as if blueprints are becoming three-dimensional. The left side depicts traditional rigid cubicle frameworks in charcoal graphite lines—complete, closed, impenetrable. The right side shows an open scaffolding structure with modular work platforms at varying heights, where pathways connect different levels, suggesting flow and learning progression. Small abstract human figures ascend these platforms, each carrying geometric shapes representing deliverable work. One orange accent line traces the learning pathway from ground level upward through the scaffolding. White background. Large negative space above. Editorial serif headline at top reads: \"Your Workflow Has No Room For Learners.\" Small WB logo in bottom corner. Sophisticated hand-drawn texture throughout. The metaphor is structural: not hiring people to fill boxes, but building new frameworks where capability and contribution develop together.",
+    "rejectedPrompts": [],
+    "approvedAt": "2026-07-03T23:29:32.617Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "approved",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": "2026-07-03T23:29:42.563Z",
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "ready",
+    "blockedReason": null,
+    "publishedAt": null
+  },
+  "events": [
+    {
+      "timestamp": "2026-07-03T23:29:32.617Z",
+      "decision": "image_approve"
+    },
+    {
+      "timestamp": "2026-07-03T23:29:42.563Z",
+      "decision": "content_approve"
+    }
+  ],
+  "createdAt": "2026-07-03T17:35:03.905Z",
+  "updatedAt": "2026-07-05T06:12:24.112Z"
+}
