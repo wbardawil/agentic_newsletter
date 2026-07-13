@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-29",
+  "runId": "bd558159-ffb0-4dd8-89d0-91d9f2ef3863",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "drafts/2026-29-hero.png",
+    "publicUrl": null,
+    "prompt": "A refined pencil sketch showing a single executive figure standing before an elegant architectural blueprint that splits into two distinct paths—one path shows structural scaffolding and load-bearing beams (representing strategic authority), the other dissolves into abstract gestural lines and negative space (representing personal identity). The figure's hand hovers between both paths, unable to choose. Rendered in charcoal graphite with minimal orange highlight on the decision point. White background, editorial newspaper illustration style, sophisticated hand-drawn texture. Large negative space frames the central metaphor. Small WB logo in bottom corner. The composition suggests the interior tension of distinguishing what can be delegated from what cannot be released.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-07-13T15:53:05.876Z",
+  "updatedAt": "2026-07-13T15:53:05.876Z"
+}
