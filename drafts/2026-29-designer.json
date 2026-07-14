@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-29-hero.png",
+      "publicUrl": null,
+      "prompt": "A refined pencil sketch showing a single executive figure standing before an elegant architectural blueprint that splits into two distinct paths—one path shows structural scaffolding and load-bearing beams (representing strategic authority), the other dissolves into abstract gestural lines and negative space (representing personal identity). The figure's hand hovers between both paths, unable to choose. Rendered in charcoal graphite with minimal orange highlight on the decision point. White background, editorial newspaper illustration style, sophisticated hand-drawn texture. Large negative space frames the central metaphor. Small WB logo in bottom corner. The composition suggests the interior tension of distinguishing what can be delegated from what cannot be released.",
+      "altText": {
+        "en": "Empty CEO nameplate on wooden desk with window light casting long shadow across polished surface",
+        "es": "Placa de CEO vacía sobre escritorio de madera con luz de ventana proyectando sombra larga sobre superficie pulida"
+      },
+      "caption": {
+        "en": "You mistake the office for the mission when succession feels like erasure.",
+        "es": "Confundes el cargo con la misión cuando la sucesión se siente como desaparición."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
