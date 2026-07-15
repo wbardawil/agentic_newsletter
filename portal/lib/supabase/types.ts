@@ -77,6 +77,24 @@ export type EditionSourceRow = {
   publisher: string | null;
 }
 
+/** Body-free public projection of published editions (view: editions_public). */
+export type EditionPublicRow = {
+  id: string;
+  edition_id: string;
+  edition_number: number;
+  published_at: string | null;
+  subject_en: string | null;
+  subject_es: string | null;
+  topic: string;
+  pillar: OsPillar | null;
+  quarterly_theme: string | null;
+  shareable_sentence_en: string | null;
+  shareable_sentence_es: string | null;
+  byline: string | null;
+  byline_role: string | null;
+  hero_image_url: string | null;
+}
+
 export type AiConversationRow = {
   id: string;
   member_id: string;
@@ -127,6 +145,7 @@ export type Database = {
     };
     Views: {
       convenings_with_counts: { Row: ConveningRow; Relationships: Rel };
+      editions_public: { Row: EditionPublicRow; Relationships: Rel };
     };
     Functions: Record<string, never>;
     Enums: Record<string, never>;
