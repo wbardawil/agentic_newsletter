@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { TOPIC_IDS } from "@/lib/topics";
-import { sendWelcomeEmail } from "@/lib/email";
+
 
 const Body = z.object({
   email: z.string().email().max(200),
@@ -111,10 +111,10 @@ export async function POST(request: Request) {
     // Non-fatal: user can still sign in; members row can be repaired manually.
   }
 
-  // 4. Send welcome email — fire-and-log
-  sendWelcomeEmail(email, full_name, preferred_language).catch((e) =>
-    console.error("[apply] welcome email failed:", e),
-  );
+  // 4. Send welcome email — deactivated (email module deleted on this branch)
+  // sendWelcomeEmail(email, full_name, preferred_language).catch((e: any) =>
+  //   console.error("[apply] welcome email failed:", e),
+  // );
 
   return NextResponse.json({ ok: true });
 }
