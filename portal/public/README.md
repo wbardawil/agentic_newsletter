@@ -4,7 +4,7 @@ Drop these files into `/portal/public/` so the header, favicon, and About hero r
 
 | File | Used by | Notes |
 |---|---|---|
-| `logo-horizontal.png` | Site header | White wordmark on transparent. Renders ~32px tall. The header background is `#22252a` so the logo must read on dark. |
+| `logo-horizontal.png` | Site header | White wordmark on transparent. Renders ~32px tall. The header background is `#222831` so the logo must read on dark. |
 | `logo-icon.png` | Header on mobile, social cards | "WB" monogram, square, transparent background. |
 | `favicon.png` | Browser tab | Square, 32×32 minimum (a 64×64 master is fine — Next will downscale). Wired in `app/layout.tsx`. |
 | `hero-transformation.jpg` | Future About / publisher section | Wide, dark-friendly. Not yet referenced in code. |

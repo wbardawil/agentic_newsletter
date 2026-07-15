@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Su organigrama no es su modelo operativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edición 2026-26 · ES · 2026-04-24</div>
+  <div class="np-bar"></div>
+  <h1>Su organigrama no es su modelo operativo</h1>
+</header>
+<div class="lead"><blockquote><strong>Resumen del Insight:</strong> La mayoría de los dueños confunde tener el puesto cubierto con tener el sistema resuelto. Ese es el error que convierte una renuncia en un hueco de capacidad que ninguna contratación cierra en un trimestre.</blockquote></div>
+<section class="story">
+<h2>LA SEÑAL</h2>
+<p><em>Esta semana: cuatro señales, un patrón. La máquina solo sobrevive aquello que ya quedó por escrito.</em></p>
+<ul>
+<li><strong>Estrategia:</strong> Forvis Mazars y GF Data cerraron 2025 con "señales mixtas" como frase dominante para las operaciones de mediana empresa respaldadas por private equity, según <a href="https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/" target="_blank" rel="noopener">Middle Market Growth</a>. <strong>La estrategia es ponerle precio a los supuestos que el forecast trata como constantes.</strong> <a href="https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/" target="_blank" rel="noopener">Leer en Middle Market Growth (ACG) -&gt;</a></li>
+<li><strong>Modelos Operativos:</strong> Todos los cofundadores de xAI salvo Elon Musk han salido de la empresa, junto con decenas de integrantes de ingeniería y programa, según <a href="https://www.fastcompany.com/91531084/inside-the-xai-exodus" target="_blank" rel="noopener">Fast Company</a>. La reorganización de febrero ya quedó desmantelada. <strong>Un modelo operativo es lo que sigue funcionando cuando se van.</strong> <a href="https://www.fastcompany.com/91531084/inside-the-xai-exodus" target="_blank" rel="noopener">Leer en Fast Company -&gt;</a></li>
+<li><strong>Tecnología:</strong> Los fraudes por Business Email Compromise superaron 2,800 millones de dólares en pérdidas, reencuadrados por <a href="https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/" target="_blank" rel="noopener">Chief Executive</a> como riesgo de consejo, no problema de TI. <strong>La tecnología no protege lo que el gobierno corporativo no ha decidido primero.</strong> <a href="https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/" target="_blank" rel="noopener">Leer en Chief Executive Magazine -&gt;</a></li>
+<li><strong>Capital Humano:</strong> El Reporte de Egresados 2026 de ZipRecruiter, citado por <a href="https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/" target="_blank" rel="noopener">Fortune</a>, muestra a más jóvenes de la Gen Z optando por emprender, trabajo por encargo y freelance, ante la desaparición de vacantes de entrada por la IA. <strong>La cartera de talento que planeó ya no empieza donde puso la vacante.</strong> <a href="https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/" target="_blank" rel="noopener">Leer en Fortune -&gt;</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>LA APERTURA</h2>
+<p>Todos los cofundadores de xAI, salvo el fundador, ya salieron. La reorganización de febrero es historia. Leí dos veces la pieza de Fast Company porque nombra algo que veo en empresas mucho más pequeñas cada trimestre. El dueño confunde el organigrama con la máquina. El organigrama tiene los puestos. Tiene las líneas. Tiene los nombres. Sin embargo, cuando la gente se va, las decisiones que tomaba se van con ella, porque esas decisiones nunca estuvieron en el sistema. Estuvieron en la persona. Lo que xAI descubre en público es lo que mis clientes descubren en privado.</p>
+</section>
+<section class="story">
+<h2>EL INSIGHT</h2>
+<p>La promovió hace dos años. Redactó la descripción del puesto. Trazó las líneas de reporte. Desde entonces ella ha dirigido la función, y la ha dirigido bien. La semana pasada le avisó que se va en sesenta días. Ahora usted mira la vacante y se da cuenta de que no sabe qué hace en realidad.</p>
+<p>Este es el momento en que la mayoría de los dueños descubre que construyó un plan de plantilla, no un modelo operativo.</p>
+<p>Desde afuera se ven idénticos. Ambos tienen puestos, líneas de reporte y personas sentadas en la silla. La diferencia aparece solo cuando la silla queda vacía. Un plan de plantilla pierde la función el día que la persona cruza la puerta. Un modelo operativo sigue operando porque las decisiones nunca estuvieron en la persona. Estuvieron en el sistema.</p>
+<p>Lo que vive dentro del mejor gerente no es solo conocimiento. Es un acervo de criterios. A qué proveedor llamar primero cuando el pedido va tarde. Cuánta discreción concederle a un cliente que pide neto a sesenta días. Cuándo escalar una contratación y cuándo moverse sin usted. Ha tomado estas decisiones mil veces. No están escritas en ninguna parte, salvo en su cabeza. La empresa que usted cree que maneja y la que quedará el día que ella se vaya no son la misma empresa.</p>
+<p>La mayoría de los asesores cataloga esto como un problema de documentación y le entrega una plantilla. No lo es. Es un problema de codificación de decisiones.</p>
+<p><strong>Lo que llamo la prueba de las decisiones codificadas</strong></p>
+<p>Para cada puesto crítico, tres preguntas. ¿Qué decisiones toma este puesto cada semana de las que depende el negocio? ¿Dónde están esas decisiones escritas como reglas, no como ejemplos? ¿Podría una persona del mismo nivel tomarlas dentro de noventa días de haber entrado?</p>
+<p>Si la respuesta a la tercera es no, tiene plantilla donde cree tener sistema. Está a una renuncia de un hueco de capacidad que ninguna contratación resuelve en un trimestre.</p>
+<p>La regla es el documento. No el manual. No la presentación de inducción. La regla: cuando ocurre X, hacemos Y salvo si Z. Es la unidad mínima de un modelo operativo, y es lo que sobrevive a la rotación. Una empresa con las reglas escritas puede perder a una persona y conservar su criterio. Una empresa cuyas reglas solo viven en las personas pierde ambas cosas.</p>
+<p><strong>Esta semana</strong></p>
+<p>Elija el puesto que más temería perder mañana. Siéntese una hora con esa persona. Pídale que liste las diez decisiones que toma con más frecuencia y la regla que aplica en cada una. No le pida que escriba un procedimiento. Pídale que escriba una regla. La distancia entre las reglas que logra articular y las decisiones que realmente toma es su exposición real, medida con precisión.</p>
+</section>
+<section class="story">
+<h2>EL REPORTE DE CAMPO</h2>
+<h2>Spotlight</h2>
+<p>Todos los cofundadores de xAI salvo Elon Musk han abandonado la empresa, junto con decenas de integrantes de los equipos de ingeniería y de programa, según <a href="https://www.fastcompany.com/91531084/inside-the-xai-exodus" target="_blank" rel="noopener">Fast Company</a>. Las salidas coinciden con quienes iban a encabezar la startup bajo una nueva estructura organizacional anunciada apenas en febrero.</p>
+<p>El patrón tiene peso porque xAI está en medio de una fusión con SpaceX, una opción de 60,000 millones de dólares sobre Cursor y una oferta pública. Ninguna de estas jugadas es teórica. Cada una exige un modelo operativo capaz de absorber una presión que el fundador no puede sostener en persona.</p>
+<p>Una empresa que pierde a sus arquitectos senior en plena reorganización no está perdiendo plantilla. Está perdiendo las decisiones que esas personas cargaban consigo, sin que nadie las haya documentado en ningún sistema.</p>
+<p>Para un dueño que dirige un negocio de entre 5 y 100 millones de dólares, la lectura es directa. El riesgo no es la salida que sale en los titulares. Es la silenciosa. La gerente que se va con tres años de criterio no escrito es quien se lleva el modelo operativo con ella.</p>
+</section>
+<section class="story">
+<h2>LA HERRAMIENTA</h2>
+<p><strong>Scribe</strong> - una extensión de navegador que graba un flujo de trabajo mientras usted lo ejecuta y lo convierte, de manera automática, en un documento paso a paso. Para el operador de mediana empresa, es la forma más directa de documentar los procedimientos que viven en la cabeza de su mejor gerente antes de que se vaya. La encuentra en <a href="https://scribehow.com" target="_blank" rel="noopener">scribehow.com</a>.</p>
+</section>
+<section class="story">
+<h2>LA BRÚJULA</h2>
+<p><strong>A vigilar esta semana:</strong> cuál de sus gerentes senior toma un día libre no planeado, y cuánto del negocio se detiene mientras no está. Trátelo como diagnóstico, no como crisis. Si la semana se tambalea, tiene plantilla donde cree tener sistema. El tamaño del tambaleo es el tamaño del trabajo de codificación que todavía le falta hacer.</p>
+</section>
+<section class="story">
+<h2>LA PUERTA</h2>
+<p>Si algo de este número resonó contigo, respóndeme - leo cada mensaje.</p>
+<p>Si le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.</p>
+<p>Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]</p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edición 2026-26 · ES · 2026-04-24</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-04-24</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> The Machine</p>
+<p><strong>Subject:</strong> Su organigrama no es su modelo operativo</p>
+<p><strong>Preheader:</strong> Un plan de plantilla no es un sistema. El crecimiento oculta la diferencia hasta que alguien se va.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qué mide en realidad una entrevista de tres días</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edición 2026-29 · ES · 2026-04-25</div>
+  <div class="np-bar"></div>
+  <h1>Qué mide en realidad una entrevista de tres días</h1>
+</header>
+<div class="lead"><blockquote><strong>Resumen del Insight:</strong> xAI perdió a todos sus cofundadores salvo Musk y a decenas de ingenieros pese a una valuación de 60,000 mdd y una salida a bolsa inminente. No fue cuestión de salarios, sino de un modelo operativo que trata al talento como pieza intercambiable en lugar de construir una máquina que multiplique su capacidad.</blockquote></div>
+<section class="story">
+<h2>LA SEÑAL</h2>
+<p><em>Esta semana: los modelos operativos que usted construyó sobre el juicio individual están siendo probados por los mercados de capital, las métricas de IA y la rotación de talento.</em></p>
+<ul>
+<li><strong>Estrategia:</strong> Lincoln International, banca de inversión de mercado medio que asesora a dueños de negocio y fondos de private equity, presentó esta semana su solicitud de salida a bolsa en Estados Unidos, <a href="https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo" target="_blank" rel="noopener">según Bloomberg</a>. <strong>Elija qué activos resisten el escrutinio público.</strong> <a href="https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo" target="_blank" rel="noopener">Leer en Bloomberg -&gt;</a></li>
+<li><strong>Modelos Operativos:</strong> El <a href="https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/" target="_blank" rel="noopener">National Center for the Middle Market</a> publicó una investigación que identifica cuatro estilos de toma de decisión entre líderes de empresas medianas, cada uno con vínculo medible al desempeño. <strong>El modelo operativo vive en cómo distribuye decisiones, no en quién las concentra.</strong> <a href="https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/" target="_blank" rel="noopener">Leer en Middle Market Growth (ACG) -&gt;</a></li>
+<li><strong>Tecnología:</strong> El CEO de Spellbook, Scott Stevenson, denunció públicamente a startups de IA por inflar sus ingresos con Contracted ARR, métrica que cuenta contratos firmados como si ya fueran recurrentes, <a href="https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson" target="_blank" rel="noopener">según Fast Company</a>. <strong>La tecnología amplifica la disciplina que ya cargan los libros.</strong> <a href="https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson" target="_blank" rel="noopener">Leer en Fast Company -&gt;</a></li>
+<li><strong>Capital Humano:</strong> Las pruebas de trabajo no remuneradas de varios días se están extendiendo conforme las postulaciones asistidas por IA vuelven indistinguibles a los candidatos en papel, <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">según Fast Company</a>. <strong>Cuando la empresa no sabe describir su propio trabajo, el proceso de selección lo paga el candidato.</strong> <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Leer en Fast Company -&gt;</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>LA APERTURA</h2>
+<p>Hay empresas que ya entrevistan a sus candidatos durante tres días seguidos. <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Fast Company</a> reporta que las pruebas de trabajo no remuneradas se extienden por distintas industrias, impulsadas por una avalancha de postulaciones asistidas con IA que lucen idénticas entre sí. La explicación oficial es que la entrevista dejó de ser confiable. No es la verdadera. Una prueba de tres días es una empresa admitiendo que no sabe describir su propio trabajo con la suficiente precisión para evaluar a un candidato de otra manera. La avalancha de IA no creó el problema. Lo dejó al descubierto. El modelo operativo que vivía únicamente en la práctica cotidiana del trabajo aparece ahora como un proceso de entrevista que ya no filtra.</p>
+</section>
+<section class="story">
+<h2>EL INSIGHT</h2>
+<p>Su proceso de contratación se alarga. Más rondas. Más pruebas. Ahora una jornada de tres días, sin paga, antes de que alguien firme una oferta. Cada ronda añadida revela menos sobre si el candidato puede hacer el trabajo.</p>
+<p>La lectura habitual es que la IA inundó las postulaciones y las volvió poco confiables. <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Fast Company</a> cita a la directora de una plataforma de capacitación que describe esto como la mayor sacudida en la historia moderna de la contratación. Esa parte es real. También es incompleta.</p>
+<p>El problema de fondo es que la empresa no sabe describir su propio trabajo. Cuando el trabajo vive solo en la práctica de hacerlo, la única manera de evaluar a un candidato es verlo practicarlo. Cada ronda extra de entrevista es un parche para un documento que falta. Usted está usando el tiempo no remunerado del candidato para producir la documentación que el modelo operativo nunca generó.</p>
+<p>La mayoría de los asesores encuadra esto como un problema de contratación y receta mejores pruebas. No es un problema de contratación. Es un documento ausente.</p>
+<p><strong>Descripción del puesto vs. descripción del trabajo</strong></p>
+<p>Una descripción de puesto nombra el rol: responsabilidades, requisitos, líneas de reporte. Una descripción del trabajo nombra el trabajo en sí: los insumos que entran, las decisiones que se toman, los resultados que salen. Casi todas las empresas tienen lo primero. Pocas tienen lo segundo.</p>
+<p>La descripción del trabajo es un artefacto del Operating Model OS. Cuando existe, tres cosas cambian. La contratación se acorta, porque usted puede evaluar el juicio del candidato contra una referencia escrita en lugar de tres días de observación. La inducción se acelera, porque el nuevo lee la descripción y sabe desde la primera semana cómo se ve el trabajo bien hecho. La salida se vuelve sobrevivible, porque la descripción del trabajo es lo que la persona deja al irse.</p>
+<p>La prueba es estrecha. ¿Podría un externo calificado leer un solo documento y entender no solo qué hace el rol, sino qué decisión dentro del rol se considera buena? Si no, lo que tiene es una vacante publicada. No tiene una descripción del trabajo.</p>
+<p>La mayoría de los dueños se niega a escribirla porque cree que el trabajo tiene demasiado matiz para plasmarlo en papel. Esa creencia es el problema del Operating Model OS en una sola oración. El matiz es real. La negativa a codificarlo es lo que mantiene al negocio atrapado en contrataciones que dependen del fundador y en evaluaciones de varios días.</p>
+<p><strong>Esta semana,</strong> elija un puesto del equipo que más cueste cubrir. Siéntese con quien lo ocupa hoy. Hágale tres preguntas. ¿Qué decisiones toma en una semana normal? ¿Cuáles son las difíciles? ¿En qué se equivocaría una persona nueva durante su primer mes? Anote las respuestas en una sola página. Esa página es el primer borrador de la descripción del trabajo. Es también el documento que terminará con la mayoría de sus entrevistas de tres días.</p>
+</section>
+<section class="story">
+<h2>EL REPORTE DE CAMPO</h2>
+<p>Sección: spotlight</p>
+<p>Chedraui anunció esta semana que llevará su formato Supercito de 353 a 1,000 tiendas en los próximos años, <a href="https://elceo.com/negocios/chedraui-acelera-con-supercito-va-por-1000-tiendas-para-competir-con-oxxo-y-3b/" target="_blank" rel="noopener">según El CEO</a>. La cadena veracruzana planea abrir 130 unidades este año y duplicar el ritmo en los siguientes.</p>
+<p>La decisión va más allá de la expansión. Es una apuesta sobre quién va a decidir aperturas, precios y surtidos cuando José Antonio Chedraui Eguia ya no esté en cada llamada. Un estudio publicado esta semana por el National Center for the Middle Market identifica cuatro estilos de decisión entre líderes de empresas medianas, cada uno con efectos medibles sobre desempeño y crecimiento. Lo relevante no es cuál estilo es el correcto. Lo relevante es que el estilo de decisión del director opera como un insumo invisible del modelo operativo y queda codificado en la empresa, casi siempre sin que nadie lo advierta.</p>
+<p>Para el dueño mexicano de una empresa de 5 a 100 mdd, la lectura es práctica. Su estilo de decisión ya está instalado en el modelo operativo. La pregunta es si lo instaló a propósito o por defecto. La siguiente generación de directivos necesita conocer las reglas lo suficientemente bien como para operar sin usted en la sala.</p>
+</section>
+<section class="story">
+<h2>LA HERRAMIENTA</h2>
+<p><strong>Tango</strong> - extensión de Chrome que captura un flujo de trabajo en pantalla conforme usted lo ejecuta y genera, de manera automática, la documentación paso a paso con capturas de pantalla. Para el trabajo de Operating Model OS, reduce de semanas a minutos la brecha entre "sabemos cómo se hace" y "tenemos escrito cómo se hace". Disponible en <a href="https://www.tango.us" target="_blank" rel="noopener">tango.us</a>.</p>
+</section>
+<section class="story">
+<h2>LA BRÚJULA</h2>
+<p><strong>A vigilar esta semana:</strong> cuáles de las operaciones del mercado medio que cierren este trimestre lo hacen a múltiplo premium pese al entorno revuelto. <a href="https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/" target="_blank" rel="noopener">GF Data y Forvis Mazars</a> registraron señales mixtas durante 2025, y 2026 arranca igual. Las transacciones que alcancen múltiplos premium compartirán un rasgo: el negocio se entiende sin el dueño en la sala. Esa comprensión es el modelo operativo, ya documentado. Los compradores pagarán más por ella este año.</p>
+</section>
+<section class="story">
+<h2>LA PUERTA</h2>
+<p>Si algo de este número resonó contigo, respóndeme - leo cada mensaje.</p>
+<p>Si le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.</p>
+<p>Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]</p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edición 2026-29 · ES · 2026-04-25</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-04-25</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> The Machine</p>
+<p><strong>Subject:</strong> Qué mide en realidad una entrevista de tres días</p>
+<p><strong>Preheader:</strong> Sus entrevistas más largas están exhibiendo la parte más débil de su modelo operativo.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

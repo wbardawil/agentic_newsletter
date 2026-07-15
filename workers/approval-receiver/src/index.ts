@@ -136,16 +136,20 @@ function htmlResponse(
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${safeTitle}</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
 <style>
-body { margin: 0; padding: 24px 16px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #F4EFE6; color: #0F1A2B; }
-.box { max-width: 480px; margin: 64px auto; padding: 32px; background: #FFF; border-radius: 12px; box-shadow: 0 1px 3px rgba(15,26,43,0.06); }
-h1 { font-family: "Cormorant Garamond", Garamond, serif; font-size: 24px; margin: 0 0 8px 0; color: #0F1A2B; }
-p { font-size: 15px; line-height: 1.6; color: #1F4E5F; margin: 12px 0 0 0; }
-.detail { margin-top: 16px; padding: 12px; background: #F4EFE6; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 12px; color: #7A7466; word-break: break-word; }
+/* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md). */
+body { margin: 0; padding: 24px 16px; font-family: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #222831; color: #B8C0CC; }
+.box { max-width: 480px; margin: 64px auto; padding: 32px; background: #2C333E; border-radius: 18px; border: 1px solid rgba(255,255,255,0.06); }
+.bar { width: 40px; height: 4px; background: #FD4002; margin: 0 0 14px 0; }
+h1 { font-family: Archivo, Manrope, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; margin: 0 0 8px 0; color: #FFFFFF; }
+p { font-size: 15px; line-height: 1.6; color: #B8C0CC; margin: 12px 0 0 0; }
+.detail { margin-top: 16px; padding: 12px; background: #1A1E25; border-radius: 8px; font-family: ui-monospace, monospace; font-size: 12px; color: #98A0AD; word-break: break-word; }
 </style>
 </head>
 <body>
 <div class="box">
+<div class="bar"></div>
 <h1>${safeTitle}</h1>
 <p>${safeMessage}</p>
 ${safeDetail ? `<div class="detail">${safeDetail}</div>` : ""}

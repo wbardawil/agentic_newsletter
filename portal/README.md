@@ -263,8 +263,8 @@ Drop `logo-horizontal.png`, `logo-icon.png`, `favicon.png`, and (later) `hero-tr
 
 The visual system (palette, typography, layout principles) is wadibardawil.com:
 
-- Dark-only mode. Backgrounds `#22252a`, surfaces `#2c2f36`, text white, muted text `#a0a4ac`.
-- Orange `#fd7014` is the **only** accent — reserved for CTAs and active states. Never decorative.
+- Dark-only mode. Backgrounds `#222831` (gunmetal), surfaces `#2C333E` (panel), text white, muted text `#98A0AD`. Archivo for headings, Manrope for body (Wadi Bardawil Brand System).
+- Orange `#FD4002` is the **only** accent — reserved for CTAs and active states. Never decorative.
 - System sans, 8 px radius, mobile-first, generous vertical padding (`py-28` to `py-32` on landing sections).
 - Public pages have no nav menu. Member-only routes get a minimal internal nav.
 

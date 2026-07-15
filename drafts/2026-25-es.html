@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Su plan de sucesión está contratando para un puesto que no existe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edición 2026-25 · ES · 2026-04-23</div>
+  <div class="np-bar"></div>
+  <h1>Su plan de sucesión está contratando para un puesto que no existe</h1>
+</header>
+<div class="lead"><blockquote><strong>Resumen del Insight:</strong> México ha intentado cada receta de política pública: privatización, nacionalización, T-MEC, gobiernos de doctores. Y el PIB sigue atorado en 2%. El país carga la misma disfunción que el empresario mediano: mucha complejidad y muy poca arquitectura operativa para convertir la actividad en resultado.</blockquote></div>
+<section class="story">
+<h2>LA SEÑAL</h2>
+<p><em>Esta semana: el modelo operativo es lo que sigue funcionando cuando la persona, la plaza o el supuesto desaparecen.</em></p>
+<ul>
+<li><strong>Estrategia:</strong> Las importaciones mexicanas de calzado chino cayeron 62% y las de textiles 26% en los primeros dos meses de 2026, tras aranceles de hasta 35% y restricciones al IMMEX. Las importaciones de partes de calzado subieron 104%.</li>
+</ul>
+<p>  <strong>La estrategia es la disciplina de distinguir cuáles supuestos de abastecimiento eran contratos y cuáles eran solo conveniencias.</strong></p>
+<p>  <a href="https://expansion.mx/economia/2026/04/23/menos-china-en-mexico-aranceles-hunden-importaciones-calzado" target="_blank" rel="noopener">Leer -&gt;</a></p>
+<ul>
+<li><strong>Modelos Operativos:</strong> Emilio Azcárraga Jean redujo su participación en Televisa de 46.7% a 23.5% y cedió el control del voto. Bernardo Gómez y Alfonso de Angoitia ahora dirigen la empresa.</li>
+</ul>
+<p>  <strong>Un modelo operativo es lo que sigue funcionando después de que el fundador deja de operarlo.</strong></p>
+<p>  <a href="https://expansion.mx/empresas/2026/04/23/emilio-azcarraga-jean-dejo-televisa-cedio-control-quien-dirige-actualmente" target="_blank" rel="noopener">Leer -&gt;</a></p>
+<ul>
+<li><strong>Tecnología:</strong> El 51% de las empresas encuestadas por LangChain ya tiene agentes de IA en producción, según el reporte State of AI Agents.</li>
+</ul>
+<p>  <strong>La tecnología amplifica lo que está escrito y borra lo que no.</strong></p>
+<p>  <a href="https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar" target="_blank" rel="noopener">Leer -&gt;</a></p>
+<ul>
+<li><strong>Capital Humano:</strong> Meta despedirá a 8,000 personas el 20 de mayo, el 10% de su plantilla global, y cancelará 6,000 contrataciones planeadas. Los recortes se presentan como eficiencia para compensar la inversión en IA.</li>
+</ul>
+<p>  <strong>La planeación de capital humano es la decisión sobre qué trabajo sobrevive a la próxima ronda de eficiencia.</strong></p>
+<p>  <a href="https://elpais.com/economia/2026-04-23/meta-despedira-a-cerca-de-8000-personas-el-10-de-su-plantilla-global-por-el-impacto-de-sus-inversiones-en-ia.html" target="_blank" rel="noopener">Leer -&gt;</a></p>
+</section>
+<section class="story">
+<h2>LA APERTURA</h2>
+<p>Un cliente de años me llamó el martes, con esa voz que uno reconoce cuando algo se rompió temprano. Su director de operaciones había renunciado esa mañana. Quince años en el puesto. Para la tarde me había mandado una lista de veintitrés asuntos que habría que resolver en los próximos cuarenta y cinco días. Relaciones con proveedores. Reglas para escalar quejas de clientes. La lógica detrás de sus niveles de inventario. Nada de eso estaba por escrito. No me pedía ayuda para encontrar un reemplazo. Ya había llamado a una cazatalentos. Me estaba preguntando algo más difícil: ¿cuál es el puesto que en realidad estamos contratando, si nadie aquí lo ha visto nunca documentado?</p>
+</section>
+<section class="story">
+<h2>EL INSIGHT</h2>
+<p>Usted cree que la sucesión es un problema de personas. Quién reemplaza a su director de operaciones. Quién toma el lugar del director comercial si se va. Quién podría entrar si usted se tomara noventa días. Lo trata como reclutamiento. Encontrar al indicado, sentarlo en la silla y la función continúa.</p>
+<p>La mayoría de los asesores estará de acuerdo con ese marco. Le ayudarán a construir banca de talento, correr planes de desarrollo, diseñar rutas de liderazgo. Nada de eso aguanta cuando la persona de verdad se va. El reemplazo entra y nada funciona como funcionaba dos semanas antes. Usted concluye que escogió mal. No escogió mal. Escogió a alguien para ocupar un puesto que nunca fue un puesto.</p>
+<p>Lo que de verdad pierde cuando alguien se va no son las habilidades. Son las decisiones no documentadas que esa persona tomaba cada semana. Los estándares que aplicaba en su cabeza. Las relaciones que mantenía sin un sistema. Las rutinas que existían porque ella existía. El siguiente contratado hereda un fantasma, no una función.</p>
+<p><strong>La prueba a prueba de persona</strong></p>
+<p>El Operating Model OS tiene un diagnóstico sencillo para esto, lo que llamo la prueba a prueba de persona. Para cualquier puesto crítico, haga una sola pregunta: si esta persona se fuera el lunes sin aviso, ¿qué dejaría de funcionar para el viernes? Esa lista es su deuda de modelo operativo. Es el trabajo que nunca se convirtió de persona a sistema.</p>
+<p>La deuda vive en tres capas. Primero, las decisiones recurrentes. ¿Qué decide este puesto cada semana, con qué insumos, bajo qué regla? Segundo, los estándares. ¿Cómo se ve lo bueno en esta función y a quién se le avisa cuando algo sale de lo normal? Tercero, los relevos. ¿Quién alimenta a este puesto y quién recibe de él?</p>
+<p>Un modelo operativo que pasa la prueba a prueba de persona no necesita héroes. Ese es el punto. No porque las personas dejen de importar. Importan más, porque por fin tienen una estructura a la que pueden contribuir, en vez de una que tienen que cargar. Cuando alguien se va, la máquina sigue funcionando. Cuando usted contrata, la persona nueva entra a un puesto definido, no a un hueco con forma de persona.</p>
+<p><strong>Esta semana</strong></p>
+<p>Escoja una función crítica de su negocio. No la que más le preocupa. La que más usa sin pensarlo. Escriba las tres decisiones recurrentes que toma. No lo que usted quiere que haga. Lo que de hecho hace un martes cualquiera. Si no puede escribirlo de una sentada, acaba de diagnosticar su primera brecha de modelo operativo. Esa brecha no es una crisis. Es el punto de partida.</p>
+</section>
+<section class="story">
+<h2>EL REPORTE DE CAMPO</h2>
+<p>Meta despedirá a 8,000 personas el 20 de mayo. Es el 10% de su plantilla global. La empresa también cancelará 6,000 contrataciones planeadas. Según <a href="https://elpais.com/economia/2026-04-23/meta-despedira-a-cerca-de-8000-personas-el-10-de-su-plantilla-global-por-el-impacto-de-sus-inversiones-en-ia.html" target="_blank" rel="noopener">el reporte de El País sobre la nota interna</a>, los recortes se presentan como una medida de eficiencia para compensar las inversiones en IA.</p>
+<p>El titular se lee como noticia tecnológica. No lo es. Es una noticia de modelo operativo. Meta apuesta a que su inversión en IA absorberá trabajo que antes hacían humanos. Esa apuesta solo funciona si el trabajo que se absorbe ya estaba documentado. Usted no puede entregarle una función a un modelo si la función vivía en la cabeza de quien la hacía.</p>
+<p>Para el dueño mexicano que ve esto desde el corredor, la pregunta no es si enfrentará la misma presión. La va a enfrentar. La pregunta es si su modelo operativo está escrito con la claridad suficiente para que la IA tome partes, o para que un equipo más chico lo opere. Los despidos de Meta no son la advertencia. La apuesta de Meta sí lo es. Están apostando a que su documentación alcanza. ¿Usted está apostando lo mismo?</p>
+</section>
+<section class="story">
+<h2>LA HERRAMIENTA</h2>
+<p><strong>Granola.</strong> Una libreta con IA que captura decisiones y tareas de cada junta en segundo plano, sin que usted tenga que tomar notas. Por qué importa para un operador de entre $5M y $100M: el primer obstáculo para documentar su modelo operativo es encontrar las decisiones. Granola convierte cada junta recurrente en un registro buscable de qué se decidió y quién lo decidió. <a href="https://granola.ai" target="_blank" rel="noopener">granola.ai</a></p>
+</section>
+<section class="story">
+<h2>LA BRÚJULA</h2>
+<p><strong>Observe esta semana:</strong> cuáles de sus directivos han cancelado, movido o acortado en silencio sus próximas vacaciones. Los que no logran tomarse una semana limpia son aquellos cuyo trabajo no se ha convertido de persona a sistema. Su calendario es el diagnóstico de su modelo operativo. Si tres personas de su equipo directivo no pueden salir una semana en el próximo trimestre, esa es la lista de puestos que se romperían si se fueran.</p>
+</section>
+<section class="story">
+<h2>LA PUERTA</h2>
+<p>Si algo de este número resonó contigo, respóndeme - leo cada mensaje.</p>
+<p>Si le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.</p>
+<p>Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]</p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edición 2026-25 · ES · 2026-04-23</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-04-23</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> The Machine</p>
+<p><strong>Subject:</strong> Su plan de sucesión está contratando para un puesto que no existe</p>
+<p><strong>Preheader:</strong> La sucesión no es un problema de personas. Es un problema de modelo operativo.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
