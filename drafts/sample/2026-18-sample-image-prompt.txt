@@ -1,21 +1,21 @@
-Editorial illustration, 1600x900 (16:9). editorial illustration; abstract geometric; restrained composition.
+Editorial illustration, 1600x900 (16:9). editorial photography or restrained illustration on dark backgrounds; executive aesthetic.
 
 Visual concept for "Your AI agent is doing exactly what you asked. That is the problem.":
-An abstract architectural composition rendered in deep navy (#0F1A2B) and muted teal (#1F4E5F) with selective ochre (#C7892A) accents. The visual metaphor: a structure being illuminated from within by an external light, revealing the joints and seams that had been invisible. Show this as overlapping geometric planes — a building schematic rendered partially in blueprint line and partially in solid form — where the solid sections reveal load-bearing elements that were not visible in the schematic. Negative space dominates the upper-right quadrant. Cream paper-grain background. Matte finish, hand-drawn feel.
+An abstract architectural composition rendered in dark gunmetal charcoals (#222831 family) and white line work with a single selective brand-orange (#FD4002) accent. The visual metaphor: a structure being illuminated from within by an external light, revealing the joints and seams that had been invisible. Show this as overlapping geometric planes — a building schematic rendered partially in blueprint line and partially in solid form — where the solid sections reveal load-bearing elements that were not visible in the schematic. Negative space dominates the upper-right quadrant. Dark gunmetal canvas. Matte finish, hand-drawn feel.
 
 Constraints (DO NOT produce these):
-  - no realistic photography of identifiable people
+  - no realistic photography of identifiable people unless cleared
   - no stock-photo executives in suits or boardrooms
   - no AI tropes (robot hands, glowing brains, circuit boards, futuristic UI panels)
   - no clichéd transformation imagery (caterpillar/butterfly, sunrise/sunset, ladder, mountaintop, lightbulb)
   - no text or words in the image — typography is added in layout, not generated
   - no flags, logos, brand marks, or trademarked imagery
+  - no decorative gradients — flat composition only
+  - no light backgrounds — imagery must read on the dark gunmetal canvas
 
 Preferences:
   - abstract geometric forms suggesting structure, sequence, and process
   - architectural metaphors: foundations, scaffolding, blueprints, load-bearing walls
-  - limited palette: 2–3 brand colors plus neutrals; avoid full-spectrum brightness
+  - limited palette: gunmetal charcoals (#222831 family) + white + brand orange #FD4002 highlight (used sparingly, only when the subject demands it)
   - negative space as a deliberate composition element
-  - muted, textured backgrounds (paper grain, soft gradient) rather than flat solid colors
-  - asymmetric balance; off-center focal points
   - matte finish; no shiny gradients, no neon, no chrome

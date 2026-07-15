@@ -1,0 +1,319 @@
+{
+  "runId": "b5242810-393a-4a20-92bb-45771fa2363a",
+  "editionId": "2026-23",
+  "generatedAt": "2026-04-23T17:12:15.551Z",
+  "contentHash": "27b2220c6098370b7031233bf545b1d0e0ef0c662e99174662fee8431bd9ec24",
+  "angle": {
+    "headline": "Why Your Best People Keep the Machine From Running",
+    "thesis": "Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
+    "targetPersona": "US-LATAM corridor operators with $10M-$50M revenue who have invested heavily in talent but still cannot step away from daily operations",
+    "relevanceToAudience": "The corridor operator faces a specific version of this trap: they hire bilingual, bicultural talent who can 'figure things out' across markets, but this very adaptability masks the absence of documented processes, creating dependency on heroes rather than building a machine that runs without them.",
+    "suggestedSources": [
+      "dfaf9a7f-b817-4530-a1a5-96b14c8083ca",
+      "60149c0e-36f6-47c7-b5c2-570c2a4e8f54",
+      "dacd95c6-12fe-4731-a06d-81cf1454e3a7",
+      "965522d1-403e-4b3c-ae54-46901e8c4e7d"
+    ],
+    "talkingPoints": [
+      "You keep hiring excellent people who 'get it' because standardized processes feel limiting, but excellence without system creates a business that only works when your best people show up.",
+      "Mexico's productivity trap mirrors your operating model: high activity, skilled workers, but low systematic output — the INPC data shows 55% informality not because of bad workers, but because structures reward individual heroics over documented execution.",
+      "The Creative Execution Gap: the ability to improvise across markets (creativity) becomes the enemy of scalability when it substitutes for written playbooks — you mistake creative problem-solving for operational maturity.",
+      "Document one recurring decision this week that currently requires your best person's judgment, then build the checklist that lets your median performer execute it at 80% quality."
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Your records are landing on a floor you never built",
+    "preheader": "Growth produces volume. Capacity compounds somewhere else.",
+    "subjectOptions": [
+      "Record revenue is a cruel diagnostic",
+      "Your records are landing on a floor you never built",
+      "51% of companies already run superagents in production"
+    ],
+    "sections": [
+      {
+        "id": "9ecd7350-8019-49bc-8335-fa9481801375",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: records land across the corridor while the institutional floor underneath them stops keeping up.*\n\n- **Strategy:** Mexico posted records in investment, remittances, and tax collection while GDP grew near 2% for a decade. The stagnation trap is what happens when the machine outruns its institutional floor. [Read ->](https://expansion.mx/economia/2026/04/23/mexico-trampa-de-estancamiento-economico)\n- **Operating Models:** Only 18.7% of Mexico's 161 million mobile lines are registered with 68 days left, as users defect to WhatsApp and e-SIMs. A rollout without a trust layer produces a registry, not compliance. [Read ->](https://expansion.mx/empresas/2026/04/23/usuarios-mexico-huyen-registro-celulares-alternativas)\n- **Technology:** LangChain reports 51% of companies now run superagents in production. The operating model question moved from 'should we deploy' to 'who owns the decisions these agents inherit.' [Read ->](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar)\n- **Human Capital:** The 2026 World Cup will surge Mexican tourism and construction hiring while 55% of the workforce remains informal, per INEGI. A boom on an informal base produces revenue, not capacity. [Read ->](https://expansion.mx/opinion/2026/04/23/mundial-2026-impulso-temporal-o-legado-sostenible-para-el-empleo-formal-en-mexico)",
+        "sourceRefs": []
+      },
+      {
+        "id": "f947b49e-e8e0-4e4d-8e02-c806f9aa3eff",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nA client in Monterrey walked me through his dashboard Tuesday morning. Record revenue month. Record pipeline. Three new hires. Then I asked one question. If you disappeared for two weeks, which of those numbers would still be true? He did not answer immediately. We spent the next hour mapping what his team actually owned versus what routed through him. The dashboard was honest. The machine behind it was not. He was running records on top of a floor he had never built.\n===OPTION_B:provocation===\nRecord revenue is the cruelest diagnostic I know. It tells you the market wants your product. It tells you nothing about whether your company can deliver it without you in the room. Three owners showed me their Q1 numbers this week. All three posted records. All three were exhausted. The records were real. The operating model that produced them was one person's willpower stretched across 80 hours. That is not a machine. That is a cliff.\n===OPTION_C:pattern===\nFour calls this week. Different cities, different sectors, different sizes. All four opened with the same sentence. 'We just had our best quarter, but something is off.' By minute ten, the same thing was always true. Revenue had grown. Headcount had grown. The system underneath had not. Each owner was carrying more decisions, more approvals, more vendor calls than a year ago. The records were landing on a floor that had not been rebuilt for the weight.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b0c953c7-064c-45c5-af02-66e78c9f3638",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your revenue is up. Your team is bigger. You added tools. And yet every week you feel the same thing you felt last year, only with more zeros attached. More decisions in your inbox. More approvals. More people waiting on you.\n\nThe symptom looks like a scale problem. It is not. It is a compounding problem.\n\nMost owners think growth produces capacity. It does not. Growth produces volume. Something else produces capacity: the institutional floor underneath the machine.\n\nAccording to [Expansión](https://expansion.mx/economia/2026/04/23/mexico-trampa-de-estancamiento-economico), Mexico has posted records in investment, remittances, and tax collection while GDP has grown near 2% for a decade. Economists call this a stagnation trap. Activity rises. The floor underneath it (rule of law, property rights, enforcement) does not. So effort never compounds into productivity.\n\nYour company has its own version. Revenue grows. Headcount grows. Tools multiply. The floor underneath (the decision rights, the data ownership, the SLAs between functions) does not. The business grows in size but not in capacity. And you feel it first, because every decision the floor should absorb routes to you instead.\n\nOperating Model OS requires three institutional artifacts before growth compounds. First, decision rights: who decides what, at what threshold, with what consultation. Second, SLAs between functions: what operations owes sales, what finance owes operations, what the timeline is when a commitment lands. Third, data ownership: which role owns each number, which role can change it, which role is accountable when it is wrong.\n\nMost mid-market companies have none of these written down. The owner carries all three in his head. When the company was ten people, that worked. At forty, it does not. At eighty, it becomes the ceiling he keeps hitting and cannot name.\n\nYou can see the pattern from outside. A company that keeps posting records while the owner keeps getting more exhausted. The market is pulling. The floor is not holding. That gap is not a motivation problem or a talent problem. It is a governance problem dressed up as a scale problem.\n\nThis week, pick one decision that came to you three times in the last thirty days. Not the biggest one. The most recurring one. Write the rule that makes that decision without you. One paragraph. Who decides. At what threshold. With what inputs. Circulate it to the two people affected. Watch what comes back.\n\nThat paragraph is the first brick of your institutional floor. You will need eighty of them. You start with one.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7cbc8e51-0220-4601-9fd3-3c575cfa49d6",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Warner Bros Discovery shareholders approved the $111 billion merger with Paramount this week, per [Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). The vote clears one of the last obstacles to a deal that consolidates two major studios and CNN under one owner, pending regulatory approval.\n\nNetflix withdrew its competing offer in February. The deal is expected to close later this year.\n\nFor a US-based operator running $5M-$100M, the signal is not entertainment. It is the pattern. When your largest customer, your largest vendor, or your largest distribution channel consolidates, the commercial terms you negotiated under the old structure expire the day the merger closes. The contracts may survive. The relationship that made them work does not. The people who gave you the handshake get new titles, new incentives, and new KPIs that do not include you.\n\nPull your top ten counterparties this quarter. For each, ask one question. If they were acquired next quarter, would our terms renew under a new owner? The companies that survive consolidation cycles are the ones that mapped relationship dependency before the call came.",
+        "sourceRefs": []
+      },
+      {
+        "id": "72d5105a-b3f5-4e36-b154-cb6f687df9e3",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Weekly Escalation Review** - Every Friday, list the decisions that reached you this week. Tag each as 'should have' or 'should not have.' Feed the list to Claude or ChatGPT and ask which decisions recur. The recurring ones are your next governance rules. A shared doc plus an AI summary beats any governance platform under $20M revenue.",
+        "sourceRefs": []
+      },
+      {
+        "id": "9347c0c7-3b2c-46b2-88e6-41a0e57bcd43",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** whether US importers begin disclosing their exposure to Mexican supply concentration. Chinese footwear imports to Mexico fell 62% and textiles 26% in early 2026, per [Expansión](https://expansion.mx/economia/2026/04/23/menos-china-en-mexico-aranceles-hunden-importaciones-calzado). When Mexico's import mix shifts this fast, corridor pricing follows within two quarters. The owners who surface their exposure first get the negotiating window. The ones who wait become price-takers.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7d445120-d206-4dab-b92a-e2427f524ec8",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Sus récords caen en un piso que nunca construyó",
+    "preheader": "El crecimiento produce volumen. La capacidad se construye en otra parte.",
+    "thesis": "La mayoría de las medianas empresas no deja de escalar por falta de talento, sino porque el modelo operativo se diseña alrededor de personas capaces y no de ejecución sistemática. Contratar 'estrellas' termina bloqueando la máquina.",
+    "sections": [
+      {
+        "id": "9ecd7350-8019-49bc-8335-fa9481801375",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: los récords llegan al corredor mientras el piso institucional que los sostiene deja de seguirles el paso.*\n\n- **Estrategia:** México registró récords en inversión, remesas y recaudación mientras el PIB creció cerca de 2% durante una década. La trampa de estancamiento aparece cuando la máquina adelanta a su piso institucional. [Leer ->](https://expansion.mx/economia/2026/04/23/mexico-trampa-de-estancamiento-economico)\n- **Modelos Operativos:** Solo 18.7% de los 161 millones de líneas móviles en México están registradas, con 68 días por delante. Los usuarios se están yendo a WhatsApp y e-SIM. Un despliegue sin capa de confianza produce un padrón, no cumplimiento. [Leer ->](https://expansion.mx/empresas/2026/04/23/usuarios-mexico-huyen-registro-celulares-alternativas)\n- **Tecnología:** LangChain reporta que 51% de las empresas ya operan superagentes en producción. La pregunta del modelo operativo pasó de 'debemos desplegar' a 'quién es dueño de las decisiones que estos agentes heredan'. [Leer ->](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar)\n- **Capital Humano:** El Mundial 2026 disparará la contratación en turismo y construcción, mientras 55% de la fuerza laboral sigue en la informalidad, según INEGI. Un boom sobre base informal produce ingresos, no capacidad. [Leer ->](https://expansion.mx/opinion/2026/04/23/mundial-2026-impulso-temporal-o-legado-sostenible-para-el-empleo-formal-en-mexico)",
+        "sourceRefs": []
+      },
+      {
+        "id": "f947b49e-e8e0-4e4d-8e02-c806f9aa3eff",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Un cliente en Monterrey me abrió su tablero el martes en la mañana. Mes récord en ingresos. Cartera récord. Tres contrataciones nuevas. Le hice una sola pregunta. Si usted desaparece dos semanas, ¿cuáles de esos números seguirían siendo ciertos? No respondió de inmediato. Pasamos la siguiente hora mapeando qué dominaba el equipo y qué pasaba por sus manos. El tablero era honesto. La máquina detrás, no. Los récords caían sobre un piso que él nunca había construido.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b0c953c7-064c-45c5-af02-66e78c9f3638",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Los ingresos suben. El equipo creció. Sumó herramientas. Y aun así cada semana siente lo mismo que hace un año, solo que con más ceros. Más decisiones en la bandeja. Más autorizaciones. Más gente esperando por usted.\n\nEl síntoma parece un problema de escala. No lo es. Es un problema de acumulación.\n\nLa mayoría de los dueños cree que el crecimiento produce capacidad. No la produce. El crecimiento produce volumen. La capacidad la produce otra cosa: el piso institucional debajo de la máquina.\n\nSegún [Expansión](https://expansion.mx/economia/2026/04/23/mexico-trampa-de-estancamiento-economico), México registra récords en inversión, remesas y recaudación mientras el PIB ha crecido cerca de 2% durante una década. Los economistas lo llaman trampa de estancamiento. La actividad sube. El piso (estado de derecho, derechos de propiedad, aplicación de la ley) no. El esfuerzo nunca se convierte en productividad.\n\nSu empresa tiene su propia versión. Los ingresos crecen. La plantilla crece. Las herramientas se multiplican. El piso debajo (los derechos de decisión, la propiedad de los datos, los SLA entre áreas) no. El negocio crece en tamaño, no en capacidad. Y usted lo siente primero, porque cada decisión que el piso debería absorber termina en su escritorio.\n\nOperating Model OS exige tres piezas institucionales antes de que el crecimiento componga. Primero, derechos de decisión: quién decide qué, con qué umbral y con qué consulta previa. Segundo, SLA entre áreas: qué le debe operaciones a ventas, qué le debe finanzas a operaciones, en qué plazo. Tercero, propiedad del dato: qué rol es dueño de cada número, quién puede cambiarlo, quién responde cuando está mal.\n\nLa mayoría de las medianas empresas no tiene ninguno de los tres por escrito. El dueño los carga en la cabeza. Cuando la empresa era de diez personas, funcionaba. En cuarenta, ya no. En ochenta, se vuelve el techo contra el que choca sin poder nombrarlo.\n\nEl patrón se ve desde afuera. Una empresa que sigue marcando récords mientras el dueño se agota más cada trimestre. El mercado jala. El piso no aguanta. Ese hueco no es un problema de motivación ni de talento. Es un problema de gobierno disfrazado de problema de escala.\n\nEsta semana, elija una decisión que haya llegado a usted tres veces en los últimos treinta días. No la más grande. La más recurrente. Escriba la regla que permite tomar esa decisión sin usted. Un párrafo. Quién decide. Con qué umbral. Con qué insumos. Circúlelo a las dos personas afectadas. Observe lo que regresa.\n\nEse párrafo es el primer ladrillo de su piso institucional. Va a necesitar ochenta. Empieza con uno.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7cbc8e51-0220-4601-9fd3-3c575cfa49d6",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Los accionistas de Warner Bros Discovery aprobaron esta semana la fusión de 111 mil millones de dólares con Paramount, según [Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). El voto remueve uno de los últimos obstáculos para consolidar dos grandes estudios y CNN bajo un solo dueño, a reserva de aprobación regulatoria.\n\nNetflix retiró su oferta competidora en febrero. La operación cerraría más adelante este año.\n\nPara un empresario mexicano que opera entre $5M y $100M, la señal no es el entretenimiento. Es el patrón. Cuando su cliente más grande, su proveedor más grande o su canal principal se consolida, los términos comerciales que negoció vencen el día que cierra la fusión. Los contratos pueden sobrevivir. La relación que los sostenía, no. La gente que le dio la palabra recibe nuevos títulos, nuevos incentivos y nuevos KPI que no lo incluyen.\n\nSaque a sus diez contrapartes más grandes del trimestre. Hágase una pregunta por cada una. Si los adquirieran el próximo trimestre, ¿renovarían los términos bajo el nuevo dueño? Las empresas que sobreviven los ciclos de consolidación son las que mapearon la dependencia relacional antes de que llegara la llamada.",
+        "sourceRefs": []
+      },
+      {
+        "id": "72d5105a-b3f5-4e36-b154-cb6f687df9e3",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Weekly Escalation Review:** cada viernes, liste las decisiones que llegaron a usted esta semana. Etiquete cada una como 'debió llegar' o 'no debió llegar'. Pegue la lista en Claude o ChatGPT y pregunte cuáles se repiten. Las recurrentes son sus próximas reglas de gobierno. Un documento compartido más un resumen con IA le gana a cualquier plataforma de gobierno corporativo por debajo de los 20 millones de dólares en ingresos.",
+        "sourceRefs": []
+      },
+      {
+        "id": "9347c0c7-3b2c-46b2-88e6-41a0e57bcd43",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**Observe esta semana:** si los importadores estadounidenses empiezan a revelar su exposición a la concentración de proveeduría mexicana. Las importaciones chinas de calzado a México cayeron 62% y las de textiles 26% en los primeros meses de 2026, según [Expansión](https://expansion.mx/economia/2026/04/23/menos-china-en-mexico-aranceles-hunden-importaciones-calzado). Cuando la mezcla de importaciones cambia tan rápido, el precio del corredor se ajusta en un máximo de dos trimestres. Los empresarios que mapeen su exposición primero se ganan la ventana de negociación. Los que esperan se vuelven tomadores de precio.",
+        "sourceRefs": []
+      },
+      {
+        "id": "7d445120-d206-4dab-b92a-e2427f524ec8",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 89,
+    "issues": [
+      {
+        "rule": "word-count-total",
+        "severity": "warning",
+        "section": "overall",
+        "message": "Total word count is 934 — target range is 950–1300."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "'Operating Model OS' is used as if it has specific institutional requirements ('requires three institutional artifacts') beyond just being a pillar label. The three artifacts (decision rights, SLAs, data ownership) are legitimate industry terms and should be presented directly without suggesting they come from a named framework with formal requirements.",
+        "excerpt": "Operating Model OS requires three institutional artifacts before growth compounds. First, decision rights: who decides what, at what threshold, with what consultation. Second, SLAs between functions: what operations owes sales, what finance owes operations, what the timeline is when a commitment lands. Third, data ownership: which role owns each number, which role can change it, which role is accountable when it is wrong."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "info",
+        "section": "insight",
+        "message": "'Institutional floor' appears repeatedly as a framework-sounding concept. While effective as metaphor, verify this isn't being positioned as established terminology. The phrase works because it's clearly the writer's framing device, but the repeated use ('the institutional floor underneath the machine,' 'institutional artifacts,' 'your institutional floor') risks sounding like a known framework.",
+        "excerpt": "Something else produces capacity: the institutional floor underneath the machine... That paragraph is the first brick of your institutional floor."
+      }
+    ],
+    "wordCounts": {
+      "signal": 153,
+      "apertura": 82,
+      "insight": 408,
+      "fieldReport": 173,
+      "tool": 58,
+      "compass": 60,
+      "total": 934
+    },
+    "shareableSentence": "Growth produces volume. Something else produces capacity: the institutional floor underneath the machine.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"Growth produces volume. Something else produces capacity: the institutional floor underneath the machine.\"",
+      "Reframe confirmed: \"The symptom looks like a scale problem. It is not. It is a compounding problem. Most owners think growth produces capacity. It does not. Growth produces volume. Something else produces capacity: the institutional floor underneath the machine.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Mexico posted records in investment, remittances, and tax collection while GDP grew near 2% for a decade",
+          "supportingFactId": "dfaf9a7f-b817-4530-a1a5-96b14c8083ca-2",
+          "language": "en"
+        },
+        {
+          "claim": "Only 18.7% of Mexico's 161 million mobile lines are registered with 68 days left",
+          "supportingFactId": "96121a62-4d74-41bc-94fa-31156a647d25-1",
+          "language": "en"
+        },
+        {
+          "claim": "LangChain reports 51% of companies now run superagents in production",
+          "supportingFactId": "60abb947-f849-4940-971c-384e0cc6c61d-6",
+          "language": "en"
+        },
+        {
+          "claim": "55% of the workforce remains informal, per INEGI",
+          "supportingFactId": "5b1b8cdd-9b71-437b-998c-572d0bb906fa-4",
+          "language": "en"
+        },
+        {
+          "claim": "Warner Bros Discovery shareholders approved the $111 billion merger with Paramount",
+          "supportingFactId": "1c5781d1-3d7b-4fdc-ad03-c8ffe28de50d-2",
+          "language": "en"
+        },
+        {
+          "claim": "Netflix withdrew its competing offer in February",
+          "supportingFactId": "1c5781d1-3d7b-4fdc-ad03-c8ffe28de50d-4",
+          "language": "en"
+        },
+        {
+          "claim": "Chinese footwear imports to Mexico fell 62% and textiles 26% in early 2026",
+          "supportingFactId": "dbddfb70-5178-4330-8a4b-cc7b52747f7d-3",
+          "language": "en"
+        },
+        {
+          "claim": "México registró récords en inversión, remesas y recaudación mientras el PIB creció cerca de 2% durante una década",
+          "supportingFactId": "dfaf9a7f-b817-4530-a1a5-96b14c8083ca-2",
+          "language": "es"
+        },
+        {
+          "claim": "Solo 18.7% de los 161 millones de líneas móviles en México están registradas, con 68 días por delante",
+          "supportingFactId": "96121a62-4d74-41bc-94fa-31156a647d25-1",
+          "language": "es"
+        },
+        {
+          "claim": "LangChain reporta que 51% de las empresas ya operan superagentes en producción",
+          "supportingFactId": "60abb947-f849-4940-971c-384e0cc6c61d-6",
+          "language": "es"
+        },
+        {
+          "claim": "55% de la fuerza laboral sigue en la informalidad, según INEGI",
+          "supportingFactId": "5b1b8cdd-9b71-437b-998c-572d0bb906fa-4",
+          "language": "es"
+        },
+        {
+          "claim": "Los accionistas de Warner Bros Discovery aprobaron la fusión de 111 mil millones de dólares con Paramount",
+          "supportingFactId": "1c5781d1-3d7b-4fdc-ad03-c8ffe28de50d-2",
+          "language": "es"
+        },
+        {
+          "claim": "Netflix retiró su oferta competidora en febrero",
+          "supportingFactId": "1c5781d1-3d7b-4fdc-ad03-c8ffe28de50d-4",
+          "language": "es"
+        },
+        {
+          "claim": "Las importaciones chinas de calzado a México cayeron 62% y las de textiles 26%",
+          "supportingFactId": "dbddfb70-5178-4330-8a4b-cc7b52747f7d-3",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0,
+      "closestPriorAngle": null,
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Expansión México"
+      ],
+      "outletCount": 1
+    },
+    "summary": "Draft passes all hard checks with strong voice match (88/100), though source diversity is limited to a single outlet across multiple citations."
+  },
+  "costs": {
+    "radar": {
+      "model": "",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 11651,
+      "outputTokens": 526,
+      "costUsd": 0.042843
+    },
+    "writer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 48,
+      "outputTokens": 12497,
+      "costUsd": 0.312665
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 2786,
+      "outputTokens": 577,
+      "costUsd": 0.017013
+    },
+    "localizer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 11319,
+      "outputTokens": 9996,
+      "costUsd": 0.30649499999999996
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 16796,
+      "outputTokens": 1298,
+      "costUsd": 0.06985799999999999
+    },
+    "totalUsd": 0.748874
+  }
+}

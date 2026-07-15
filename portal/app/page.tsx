@@ -19,8 +19,16 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="container-wide py-28 lg:py-32 grid gap-12 lg:grid-cols-12 lg:items-start">
+      {/* Hero — Cover archetype: canvas + W watermark, bottom-right at ~8%
+          opacity per Brand System DESIGN.md ("Marca de agua"). */}
+      <section className="relative overflow-hidden container-wide py-28 lg:py-32 grid gap-12 lg:grid-cols-12 lg:items-start">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/w-mark.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none select-none absolute -bottom-10 -right-6 w-64 lg:w-80 opacity-[0.08]"
+        />
         <div className="lg:col-span-7">
           <p className="pill mb-6">EN · ES · Weekly · Members only</p>
           <h1 className="heading-display mb-6">{i18n.hero}</h1>

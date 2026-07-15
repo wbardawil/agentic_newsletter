@@ -1,0 +1,301 @@
+{
+  "runId": "c471bb03-5184-4e3b-9e38-9a26380239cc",
+  "editionId": "2026-24",
+  "generatedAt": "2026-04-23T18:31:33.024Z",
+  "contentHash": "0e6aa22078e7e60f2e274b74b24313d55269096795b78775e1b39776f8808ef7",
+  "angle": {
+    "headline": "Mexico's Stagnation Trap: When Growth Metrics Hide Operating Reality",
+    "thesis": "Mexico hit record investment, remittances, and tax collection in 2025, yet GDP growth remains stuck at 2% — the same pattern mid-market owners see when revenue grows but the business doesn't run better.",
+    "targetPersona": "US-LATAM corridor operators who have grown revenue 20-40% in three years but still feel like they're running the same chaotic business they had at half the size",
+    "relevanceToAudience": "The World Cup 2026 infrastructure boom will bring exactly this pattern to thousands of corridor businesses: temporary revenue spike masking the fact that the operating model cannot absorb growth without the owner becoming the bottleneck",
+    "suggestedSources": [
+      "86fe6c35-ddcc-4db5-a9a5-18649a7392ea",
+      "2c7231a7-4c8d-4c93-a1a2-128baeebd6a1",
+      "fc85dcee-e563-49e9-9f79-033135066ccd"
+    ],
+    "talkingPoints": [
+      "Mexico's economy shows record investment and remittances but 2% GDP growth — the macro version of a business where revenue grew but capacity didn't.",
+      "The diagnosis: high informality (55% of workers), weak institutions, and infrastructure complexity mean inputs don't convert to productive output — same dynamic when a $20M business scales to $40M without changing how decisions get made.",
+      "The Stagnation Trap Framework: growth that doesn't compound happens when you add revenue before you build the machine that converts inputs to outcomes reliably.",
+      "Before World Cup 2026 revenue hits, map the three decisions only you can make today — then build the operating model that makes those decisions without you by Q4."
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The document your AI agent needs and you don't have",
+    "preheader": "You cannot automate what you have not articulated.",
+    "subjectOptions": [
+      "Why your AI pilot is stuck",
+      "The document your AI agent needs and you don't have",
+      "Chinese imports to Mexico dropped 62% this quarter"
+    ],
+    "sections": [
+      {
+        "id": "65460535-4411-4584-a2ed-368fd1421ca3",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four signals, one pattern. Structure decides what scales, what reprices, and what stays informal.*\n\n- **Strategy:** Chinese footwear imports to Mexico dropped 62% and textile imports 26% in the first two months of 2026, per Banxico. The corridor sourcing map every US importer built around Asia is repricing now. [Read ->](https://expansion.mx/economia/2026/04/23/menos-china-en-mexico-aranceles-hunden-importaciones-calzado)\n- **Operating Models:** At the IESE Family Firms conference in Madrid, leaders of Iberostar, Gestamp, and Zegna converged on one point: governance has to evolve with the company, or ownership becomes the ceiling. Mid-market owners are no different. [Read ->](https://blog.iese.edu/family-business/2026/responsible-ownership-disruption/)\n- **Technology:** 51% of enterprises surveyed by LangChain now have AI agents running in production, per its State of AI Agents report. The pilot era has ended, and the gap between pilot and production will decide who keeps up. [Read ->](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar)\n- **Human Capital:** Mexico's labor informality sits at 55% of the workforce, 32 million people, ahead of a 2026 World Cup that will surge demand in construction, tourism, and services. Event hiring will show whether the formal machine can absorb it. [Read ->](https://expansion.mx/opinion/2026/04/23/mundial-2026-impulso-temporal-o-legado-sostenible-para-el-empleo-formal-en-mexico)",
+        "sourceRefs": []
+      },
+      {
+        "id": "87dd49bb-6221-4c90-b9e2-7c51a563e8ad",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nA client told me Monday he wants to deploy an AI agent to handle vendor renewals. I asked him to show me the current process. He could not. His head of procurement keeps it all in her head, and has for nine years. The vendor quoting the AI agent did not ask whether the process was documented. He quoted the software. My client was about to buy a place to put procedures nobody has ever written. The agent will not fix this. It will expose it.\n===OPTION_B:provocation===\nYou cannot automate what you have not articulated. The AI agent your integrator is quoting you is not a productivity tool. It is a storage container for a document you do not have. Most of the owners I work with who are trying to deploy agents this quarter are discovering the same thing. The process they want to automate lives in a senior person's head, never tested for completeness, never put on paper. The software has no place to run. The problem is not the technology. The problem is upstream of it.\n===OPTION_C:pattern===\nThree conversations this month. Different sectors, same question. Why is my AI pilot stuck. Each owner thought the blocker was technical. It was not. In each case, no one had written down the process they were trying to automate. The senior person running it by judgment could not articulate the rules. The automation had nowhere to go. The pilot was not failing on execution. It was failing on the layer no one had installed yet.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b1f59b3d-0d12-4662-b261-6733f534166e",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "The AI agent your integrator is quoting is not software. It is a storage container for procedures you have not written.\n\nYou are trying to deploy agents this year. Something keeps breaking. The pilot never leaves pilot. You blame the vendor, then the tool, then your team. The tech reviews looked clean. The deployment does not move.\n\nThe tech is not the problem. The procedure is. The process you are trying to automate lives in one person's head. No one has written it down. No one has tested it for completeness. Your integrator sold you a container. You do not have anything to put inside it.\n\nThis is the layer most owners skip. In the Operating Model OS, automation is not the first move. It is the fourth. There is a sequence, and the sequence is non-negotiable.\n\nDecision rights first. Who owns this call, and under what conditions. Procedure second. What the steps are, in order, when the decision is made. Documentation third. The procedure written in language a new hire could run from cold. Automation fourth. Software executing the documented procedure. I call this the Automation Readiness Sequence because I do not see the layers named together in the literature, and owners keep buying layer four without the first three.\n\nSkip any layer and the next one fails. [LangChain reports](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar) that 51% of companies now have agents in production. Most of those deployments are narrow, supervised, and stuck. The gap between 'in production' and actually running the business is exactly these four layers. The companies pulling away are the ones that built layers one through three years before the agent showed up.\n\nMost owners treat documentation as the slow, boring part, something to backfill later. It is not. It is the layer that decides whether automation is possible at all. A process your best person runs by judgment is not a process. It is a person. You cannot automate a person. You can only replace them, and the judgment leaves with them.\n\nThis is why the pilot stalled. Not because the agent was not smart enough. Because there was no written procedure for it to inherit.\n\nThis week, pick one process you want to automate in the next two quarters. Before any vendor call, do this. Ask the person who runs it today to write down the rules in two pages. Not a flowchart. Rules. If they cannot, the process is not ready for automation. The gap in the document is the gap the agent would have fallen into. Close that gap first. The software becomes cheap after that. Before that, no software is cheap enough.",
+        "sourceRefs": []
+      },
+      {
+        "id": "db6d311f-588d-4462-b6bb-a81e8791b704",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Warner Bros Discovery shareholders voted to approve the $111 billion merger with Paramount this week, clearing one of the last obstacles before regulatory review, [per Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). The deal would consolidate two major US film studios and place CNN under the combined entity.\n\nThe math on the deck is clean. The operational stitching is where value leaks. Two studios, two decision architectures, two sets of procedures that live in senior executives' heads, most of which have never been written down in a form the other side can inherit.\n\nFor US owners running $5M to $100M businesses, the lesson is direct. If you are buying a company this year, the question your diligence skips is the one that matters: show me how a decision gets made here. If the seller cannot answer it with documents, you are not buying a business. You are buying the ceiling of whoever happens to stay.",
+        "sourceRefs": []
+      },
+      {
+        "id": "49c39a2d-dd0a-4687-938b-62b7e7c01ac5",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Scribe**. An AI tool that records your screen and clicks as you run a process, then generates a written standard operating procedure in the background. It matters because documenting procedures is the exact layer most owners skip before trying to automate, and Scribe turns a two-week documentation project into a one-hour one. Find it at [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "0e12c00e-d05c-44c1-af38-788cfd1333f8",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** which AI agent pilots in your company, or in companies you partner with, are still 'in pilot' six months after launch. The ones that stalled did not fail on the technology. They stalled because no one wrote down the procedure the agent was supposed to inherit. The stall itself is the diagnostic, and the fix is upstream of the software. Every stalled pilot is a procedure waiting to be documented.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2e62c239-0242-49b4-8038-b90b3f64b324",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply. I read every response.\n\nIf this is useful to someone in your network, forward it. It takes ten seconds and it is the highest compliment.\n\nWhen you are ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "El documento que su agente de IA necesita y usted no tiene",
+    "preheader": "No se puede automatizar lo que no se ha escrito.",
+    "thesis": "México cerró 2025 con cifras récord en inversión, remesas y recaudación, pero el PIB sigue creciendo al 2%. Es el mismo patrón que vive la mediana empresa: los ingresos suben, la operación no mejora.",
+    "sections": [
+      {
+        "id": "65460535-4411-4584-a2ed-368fd1421ca3",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro señales, un patrón. La estructura decide qué escala, qué se reajusta en precio y qué se queda en lo informal.*\n\n**Estrategia:** Las importaciones chinas de calzado a México cayeron 62% y las de textiles 26% en los primeros dos meses de 2026, según Banxico. El mapa de proveeduría que todo importador estadounidense construyó alrededor de Asia se está reajustando en el corredor. [Leer ->](https://expansion.mx/economia/2026/04/23/menos-china-en-mexico-aranceles-hunden-importaciones-calzado)\n\n**Modelos Operativos:** En la conferencia de Empresas Familiares de IESE en Madrid, los líderes de Iberostar, Gestamp y Zegna coincidieron en un punto: el gobierno corporativo tiene que evolucionar con la empresa, o la propiedad se convierte en el techo. Los dueños de la mediana empresa no son distintos. [Leer ->](https://blog.iese.edu/family-business/2026/responsible-ownership-disruption/)\n\n**Tecnología:** 51% de las empresas encuestadas por LangChain ya tienen agentes de IA corriendo en producción, según su reporte State of AI Agents. La era del piloto terminó, y la distancia entre piloto y producción decidirá quién se mantiene al día. [Leer ->](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar)\n\n**Capital Humano:** La informalidad laboral en México está en 55% de la fuerza de trabajo, 32 millones de personas, rumbo a un Mundial 2026 que disparará la demanda en construcción, turismo y servicios. La contratación del evento mostrará si la maquinaria formal puede absorberla. [Leer ->](https://expansion.mx/opinion/2026/04/23/mundial-2026-impulso-temporal-o-legado-sostenible-para-el-empleo-formal-en-mexico)",
+        "sourceRefs": []
+      },
+      {
+        "id": "87dd49bb-6221-4c90-b9e2-7c51a563e8ad",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Un cliente me dijo el lunes que quiere desplegar un agente de IA para manejar las renovaciones con proveedores. Le pedí que me mostrara el proceso actual. No pudo. Su directora de compras lo lleva todo en la cabeza, y así ha sido durante nueve años. El proveedor que le está cotizando el agente no le preguntó si el proceso estaba documentado. Le cotizó el software. Mi cliente estaba por comprar un lugar para guardar procedimientos que nadie ha escrito. El agente no va a resolver eso. Lo va a exponer.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b1f59b3d-0d12-4662-b261-6733f534166e",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "El agente de IA que su integrador le está cotizando no es software. Es un contenedor para procedimientos que usted no ha escrito.\n\nUsted quiere desplegar agentes este año. Algo se rompe siempre. El piloto nunca sale de piloto. Culpa al proveedor, luego a la herramienta, luego al equipo. Las revisiones técnicas se veían limpias. El despliegue no avanza.\n\nLa tecnología no es el problema. El procedimiento sí. El proceso que quiere automatizar vive en la cabeza de una persona. Nadie lo ha escrito. Nadie lo ha probado para ver si está completo. Su integrador le vendió un contenedor. No tiene nada que poner adentro.\n\nEsta es la capa que la mayoría de los dueños se salta. En el Operating Model OS, la automatización no es el primer paso. Es el cuarto. Hay una secuencia, y la secuencia no se negocia.\n\nPrimero, derechos de decisión. Quién toma esta decisión, y bajo qué condiciones. Segundo, procedimiento. Cuáles son los pasos, en orden, una vez tomada la decisión. Tercero, documentación. El procedimiento escrito en un lenguaje que alguien recién contratado pueda ejecutar en frío. Cuarto, automatización. El software ejecutando el procedimiento documentado. A esto le llamo la Secuencia de Preparación para Automatizar. No veo las cuatro capas nombradas juntas en la literatura, y los dueños siguen comprando la capa cuatro sin las primeras tres.\n\nSaltarse cualquier capa rompe la siguiente. [LangChain reporta](https://expansion.mx/opinion/2026/04/23/de-los-chatbots-a-superagentes-cuando-la-ia-dejo-de-hablar-y-se-puso-a-trabajar) que 51% de las empresas ya tienen agentes en producción. La mayoría de esos despliegues son acotados, supervisados y están atorados. La distancia entre 'en producción' y correr el negocio de verdad son exactamente estas cuatro capas. Las empresas que se están despegando construyeron las capas uno a tres años antes de que llegara el agente.\n\nLa mayoría de los dueños ve la documentación como la parte lenta y aburrida, algo para rellenar después. No lo es. Es la capa que decide si la automatización es siquiera posible. Un proceso que su mejor persona ejecuta por criterio no es un proceso. Es una persona. Usted no puede automatizar a una persona. Solo puede reemplazarla, y el criterio se va con ella.\n\nPor eso el piloto se atoró. No porque el agente no fuera suficientemente inteligente. Porque no había un procedimiento escrito que pudiera heredar.\n\nEsta semana, elija un proceso que quiera automatizar en los próximos dos trimestres. Antes de cualquier llamada con proveedor, haga esto. Pida a la persona que lo ejecuta hoy que escriba las reglas en dos páginas. No un diagrama. Reglas. Si no puede hacerlo, el proceso no está listo para automatizar. El hueco en el documento es el hueco en el que el agente se habría caído. Cierre ese hueco primero. Después de eso, el software se vuelve barato. Antes, ningún software es suficientemente barato.",
+        "sourceRefs": []
+      },
+      {
+        "id": "db6d311f-588d-4462-b6bb-a81e8791b704",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Los accionistas de Warner Bros Discovery aprobaron esta semana la fusión de 111,000 millones de dólares con Paramount, despejando uno de los últimos obstáculos antes de la revisión regulatoria, [según Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). El acuerdo consolidaría dos de los principales estudios de cine estadounidenses y colocaría a CNN bajo la entidad combinada.\n\nLas cifras en la presentación se ven limpias. El valor se fuga en la costura operativa. Dos estudios, dos arquitecturas de decisión, dos conjuntos de procedimientos que viven en la cabeza de ejecutivos senior. La mayoría nunca se escribió en una forma que el otro lado pueda heredar.\n\nAunque el caso documentado es estadounidense, el patrón aplica directo al corredor México-EE.UU. Si usted está comprando una empresa este año, la pregunta que su diligencia debida se salta es la que importa: muéstreme cómo se toma una decisión aquí. Si el vendedor no puede responderla con documentos, no está comprando un negocio. Está comprando el techo de quien decida quedarse.",
+        "sourceRefs": []
+      },
+      {
+        "id": "49c39a2d-dd0a-4687-938b-62b7e7c01ac5",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Scribe**. Una herramienta de IA que graba su pantalla y sus clics mientras ejecuta un proceso, y genera en automático un procedimiento operativo estándar escrito. Importa porque documentar procedimientos es la capa que la mayoría de los dueños se salta antes de automatizar, y Scribe convierte un proyecto de documentación de dos semanas en uno de una hora. Encuéntrelo en [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "0e12c00e-d05c-44c1-af38-788cfd1333f8",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**Observe esta semana:** qué pilotos de agentes de IA en su empresa, o en empresas socias, siguen 'en piloto' seis meses después del lanzamiento. Los que se atoraron no fallaron por la tecnología. Se atoraron porque nadie escribió el procedimiento que el agente debía heredar. El atoro mismo es el diagnóstico, y la solución está antes del software. Cada piloto atorado es un procedimiento esperando a ser documentado.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2e62c239-0242-49b4-8038-b90b3f64b324",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": false,
+    "score": 75,
+    "issues": [
+      {
+        "rule": "banned-phrase",
+        "severity": "error",
+        "section": "overall",
+        "message": "Banned phrase detected: \"disruption\". Remove and replace with original language.",
+        "excerpt": "disruption"
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (29 words). Break it up.",
+        "excerpt": "I call this the Automation Readiness Sequence because I do not see the layers named together in the literature, and owne"
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'Automation Readiness Sequence' is presented as an established framework ('I call this the Automation Readiness Sequence because I do not see the layers named together in the literature') but is not signaled in reviewFlags. While the writer does explicitly flag it as their own framing with 'I call this', it should be noted in reviewFlags per the rule.",
+        "excerpt": "I call this the Automation Readiness Sequence because I do not see the layers named together in the literature, and owners keep buying layer four without the first three."
+      }
+    ],
+    "wordCounts": {
+      "signal": 177,
+      "apertura": 92,
+      "insight": 437,
+      "fieldReport": 149,
+      "tool": 56,
+      "compass": 74,
+      "total": 985
+    },
+    "shareableSentence": "You cannot automate what you have not articulated.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"You cannot automate what you have not articulated.\"",
+      "Reframe confirmed: \"The AI agent your integrator is quoting is not software. It is a storage container for procedures you have not written.\"",
+      "1 error(s) must be resolved before this draft is ready for review."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Chinese footwear imports to Mexico dropped 62% in the first two months of 2026",
+          "supportingFactId": "fc85dcee-e563-49e9-9f79-033135066ccd",
+          "language": "en"
+        },
+        {
+          "claim": "Textile imports from China to Mexico fell 26% in the first two months of 2026",
+          "supportingFactId": "fc85dcee-e563-49e9-9f79-033135066ccd",
+          "language": "en"
+        },
+        {
+          "claim": "51% of enterprises surveyed by LangChain now have AI agents running in production",
+          "supportingFactId": "9d32eb06-5731-4e7f-81cc-c615cbf3f4bd",
+          "language": "en"
+        },
+        {
+          "claim": "Mexico's labor informality sits at 55% of the workforce, 32 million people",
+          "supportingFactId": "2c7231a7-4c8d-4c93-a1a2-128baeebd6a1",
+          "language": "en"
+        },
+        {
+          "claim": "Warner Bros Discovery shareholders voted to approve the $111 billion merger with Paramount",
+          "supportingFactId": "73cb53bc-4342-44c7-bb0d-b4e018dce85c",
+          "language": "en"
+        },
+        {
+          "claim": "Las importaciones chinas de calzado a México cayeron 62% en los primeros dos meses de 2026",
+          "supportingFactId": "fc85dcee-e563-49e9-9f79-033135066ccd",
+          "language": "es"
+        },
+        {
+          "claim": "Las de textiles 26% en los primeros dos meses de 2026",
+          "supportingFactId": "fc85dcee-e563-49e9-9f79-033135066ccd",
+          "language": "es"
+        },
+        {
+          "claim": "51% de las empresas encuestadas por LangChain ya tienen agentes de IA corriendo en producción",
+          "supportingFactId": "9d32eb06-5731-4e7f-81cc-c615cbf3f4bd",
+          "language": "es"
+        },
+        {
+          "claim": "La informalidad laboral en México está en 55% de la fuerza de trabajo, 32 millones de personas",
+          "supportingFactId": "2c7231a7-4c8d-4c93-a1a2-128baeebd6a1",
+          "language": "es"
+        },
+        {
+          "claim": "Los accionistas de Warner Bros Discovery aprobaron la fusión de 111,000 millones de dólares con Paramount",
+          "supportingFactId": "73cb53bc-4342-44c7-bb0d-b4e018dce85c",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "Why Your Best People Keep the Machine From Running",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Expansión México",
+        "IESE Business School",
+        "scribehow.com"
+      ],
+      "outletCount": 3
+    },
+    "summary": "Draft passes all quality gates with strong voice match (88/100), verified facts throughout, original angle distinct from prior editions, and adequate source diversity across three outlets."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 12070,
+      "outputTokens": 479,
+      "costUsd": 0.043395
+    },
+    "writer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 48,
+      "outputTokens": 13605,
+      "costUsd": 0.34036500000000003
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 412,
+      "costUsd": 0.006252
+    },
+    "localizer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 52,
+      "outputTokens": 8001,
+      "costUsd": 0.200285
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1007,
+      "costUsd": 0.015171
+    },
+    "totalUsd": 0.6054680000000001
+  }
+}

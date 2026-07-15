@@ -42,6 +42,7 @@ import { filterUsBundle } from "./utils/bundle-filter.js";
 import { findFieldReportDuplicates } from "./utils/es-url-uniqueness.js";
 import { replaceContentMxEntities } from "./utils/mx-entity-replacer.js";
 import { runVoiceSweep } from "./utils/es-voice-sweep.js";
+import { renderEditionHtml, type EditionHero } from "./utils/edition-html.js";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -153,108 +154,15 @@ function renderMarkdown(
   ].join("\n");
 }
 
-function mdToHtml(md: string): string {
-  const lines = md.split("\n");
-  const out: string[] = [];
-  let inList = false;
-
-  const inline = (s: string) =>
-    s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.+?)\*/g, "<em>$1</em>")
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-
-    if (line.startsWith("# ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h1>${inline(line.slice(2))}</h1>`);
-    } else if (line.startsWith("## ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h2>${inline(line.slice(3))}</h2>`);
-    } else if (line.startsWith("### ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h3>${inline(line.slice(4))}</h3>`);
-    } else if (line.startsWith("- ") || line.startsWith("* ")) {
-      if (!inList) { out.push("<ul>"); inList = true; }
-      out.push(`<li>${inline(line.slice(2))}</li>`);
-    } else if (line.startsWith("> ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<blockquote>${inline(line.slice(2))}</blockquote>`);
-    } else if (line === "---" || line === "***") {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push("<hr>");
-    } else if (line === "") {
-      if (inList) { out.push("</ul>"); inList = false; }
-    } else {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<p>${inline(line)}</p>`);
-    }
-  }
-  if (inList) out.push("</ul>");
-  return out.join("\n");
-}
-
 function renderHtml(
   editionId: string,
   angle: StrategicAngle,
   content: LocalizedContent,
   language: "en" | "es",
-  hero?: { filename: string; altText: string; caption: string },
+  hero?: EditionHero,
 ): string {
   const md = renderMarkdown(editionId, angle, content, language);
-  // Strip review-only annotations before HTML conversion — these are for
-  // markdown review only and must not appear in the Beehiiv-ready HTML.
-  const cleanMd = md.replace(/^>[ \t]*⚠️[^\n]*/gm, "").replace(/\n{3,}/g, "\n\n");
-  const body = mdToHtml(cleanMd);
-  // Hero image is referenced relatively — both HTML and PNG live in drafts/.
-  const heroHtml = hero
-    ? `<figure style="margin:0 0 1.5rem 0;"><img src="${hero.filename}" alt="${hero.altText.replace(/"/g, "&quot;")}" loading="lazy"><figcaption style="font-size:0.9rem;color:#555;margin-top:.4rem;font-style:italic;">${hero.caption.replace(/</g, "&lt;")}</figcaption></figure>`
-    : "";
-  return `<!DOCTYPE html>
-<html lang="${language}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${content.subject}</title>
-<style>
-  /* Mobile-first base — readable on 375px viewport */
-  * { box-sizing: border-box; }
-  body { font-family: Georgia, serif; width: 100%; max-width: 680px; margin: 0 auto; padding: 16px; color: #1a1a1a; line-height: 1.7; font-size: 17px; }
-  h1 { font-size: 1.35rem; margin-bottom: 4px; line-height: 1.3; }
-  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-  h3 { font-size: 1rem; }
-  p { margin: .9rem 0; }
-  blockquote { border-left: 3px solid #888; margin: 1.2rem 0; padding: .5rem 1rem; color: #555; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
-  ul { padding-left: 1.25rem; }
-  li { margin: .5rem 0; }
-  strong { font-weight: 700; }
-  a { color: #1a1a1a; }
-  /* External-link affordance — the reader on mobile has no hover, so the
-     icon tells them the link opens something. Applies only to target=_blank
-     anchors so in-page anchors don't get the arrow. */
-  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: #666; }
-  img { max-width: 100%; height: auto; }
-  /* Wider viewports — restore comfortable reading margins */
-  @media (min-width: 480px) {
-    body { padding: 24px 28px; font-size: 17px; }
-    h1 { font-size: 1.5rem; }
-    h2 { font-size: 1.15rem; margin-top: 2.5rem; }
-  }
-  @media (min-width: 680px) {
-    body { padding: 40px 20px; }
-  }
-</style>
-</head>
-<body>
-${heroHtml}${body}
-</body>
-</html>`;
+  return renderEditionHtml({ editionId, title: content.subject, markdown: md, language, hero });
 }
 
 // ── main ─────────────────────────────────────────────────────────────────────

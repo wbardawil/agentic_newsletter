@@ -5,6 +5,7 @@ import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { LangToggle } from "@/components/LangToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 /**
  * Sticky header. Public pages: logo + language toggle + sticky CTA only —
@@ -44,6 +45,7 @@ export async function SiteHeader({ lang }: { lang: Lang }) {
         ) : null}
 
         <div className="flex items-center gap-3">
+          <ThemeToggle label={lang === "es" ? "Cambiar tema" : "Toggle theme"} />
           <LangToggle current={lang} />
           {user ? (
             <Link href="/me" className="btn btn-ghost btn-sm">{i18n.nav.account}</Link>

@@ -1,0 +1,320 @@
+{
+  "runId": "d19b8c23-71e5-49d3-8931-901e6d5c2dae",
+  "editionId": "2026-28",
+  "generatedAt": "2026-04-25T02:37:13.702Z",
+  "contentHash": "1aca1636edd69cb1644d6dd8d3a9e2a9188020409cca8dcd42b4d1f64cab023b",
+  "angle": {
+    "headline": "The Real Reason Your Best People Leave (It's Not Compensation)",
+    "thesis": "Employee departures that look like retention failures are actually architecture failures—when capable people leave despite good pay, the problem is that the machine was never built to run without constant human override.",
+    "targetPersona": "Business owners who have lost key people in the past 18 months despite competitive compensation, particularly those who blame 'culture fit' or 'commitment' rather than examining how work actually gets done",
+    "relevanceToAudience": "The xAI exodus and Ford's 'come to Jesus moment' reveal the same pattern visible in mid-market US-LATAM operators: when the business model requires heroics instead of systems, even well-paid talent eventually leaves because they cannot scale themselves—and neither can you.",
+    "suggestedSources": [
+      "7daa7246-43c8-4547-8ae7-8191dc3a98ce",
+      "3d9d8274-358e-4743-9f94-8f11e896604b",
+      "4118e3eb-ac64-4c3f-adf5-fe685427ae69",
+      "f673c0f2-aed8-47e0-86b0-b810ce48c450"
+    ],
+    "talkingPoints": [
+      "When every xAI cofounder except Musk exits despite equity upside, and Ford's CEO warns of existential threats despite 122 years of history, the common thread is not people problems—it's that the operating model demands constant human override instead of repeatable architecture.",
+      "The diagnosis: you hired operators but built a business that requires magicians—people who can make decisions in the absence of clear frameworks, who can fill gaps that should have been designed out, who must personally translate between strategy and execution because no translation layer exists.",
+      "The Machine Test: can your business run a quarter without you making a single operational decision? If not, your best people aren't leaving because of money—they're leaving because they cannot build what does not have foundations.",
+      "Map every decision your top three people made last month, identify which ones repeated more than twice, and build the decision framework that makes those decisions without them—this is how you stop losing people to architecture debt."
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Why two same-EBITDA businesses now trade apart",
+    "preheader": "The market keeps separating businesses by what is encoded and what still lives in someone's head.",
+    "subjectOptions": [
+      "What buyers stop paying for",
+      "Why two same-EBITDA businesses now trade apart",
+      "Lincoln International filed. Read the diligence script."
+    ],
+    "sections": [
+      {
+        "id": "24f10ca3-a36c-4662-b9ac-c7c3e1ec8f19",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week, the market keeps separating businesses by what is encoded and what still lives in someone's head.*\n\n- **Strategy:** Ford CEO Jim Farley told Rolling Stone that carmakers face three \"perfect-storm moments\" that could prove existential, naming Chinese automakers as the first threat. **Strategy is naming which storms you can plan for and which you can only outlast.** [Read in Fortune ->](https://fortune.com/2026/04/24/ford-ceo-jim-farley-automakers-threats-three-perfect-storms-us-companies/)\n- **Operating Models:** Avem Partners acquired Precision Aircraft Machining Company and Catchment Capital agreed to buy fireproofing manufacturer Isolatek from SK Capital, the latest run of PE bids on documented industrial operations. **An operating model is what a buyer pays for after the founder leaves.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-manufacturing-industrials-m-a/)\n- **Technology:** Spellbook CEO Scott Stevenson publicly accused AI startups of inflating \"Contracted ARR\" to win VC funding, calling the metric a \"huge scam\" backed by major funds. **Technology cannot launder a metric the operating model never earned.** [Read in Fast Company ->](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson)\n- **Human Capital:** Employers are running multi-day, often unpaid work trials because applications and interviews no longer separate qualified candidates from AI-assisted ones. **Hiring lengthens when paper credentials get cheaper.** [Read in Fast Company ->](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants)",
+        "sourceRefs": []
+      },
+      {
+        "id": "8326358c-7b69-4204-af3c-8869b6e1f00f",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:provocation===\nThe market is starting to pay for what is encoded. Not what is performed. Not what is described in a deck. What is written down, runs without you, and survives a key person leaving on a Friday. I have sat in three diligence conversations this month where the multiple compressed at the same question. Not \"what is your EBITDA.\" The question was simpler. Show me the document where this decision gets made. Two of the three owners did not have one. The discount started there.",
+        "sourceRefs": []
+      },
+      {
+        "id": "aa2b5a61-4b50-4a46-a545-30ba1bf89daf",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your business looks the same to you whether it is encoded or not. Growth hides the gap. The team performs. The numbers print. You are still the one answering most of the real questions, but everyone is moving, so it feels like a system.\n\nThe buyer sees something different. The buyer is not paying for what runs. The buyer is paying for what runs without you.\n\nThe instinct is to read midmarket M&A as a multiples problem. [Forvis Mazars and GF Data](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/) called 2025 \"mixed signals\" for a third year running. The phrase hides the real story. The 2025 numbers are the average of two distributions, not one. Businesses with documented operating models traded at one multiple. Businesses where the operating model lived in the owner's head traded at another. The spread is widening.\n\nMost advisors call this an information problem and prescribe better data rooms. It is not an information problem. It is an encoding problem. A data room shows the buyer what you have. The operating model shows the buyer what runs. Those are different documents, and only one of them sets the price.\n\n**The Encoded Spread**\n\nWhat I have started calling the Encoded Spread is the gap between top-quartile and bottom-quartile multiples inside your sector. The variable that explains it is not size, growth rate, or industry. It is whether the decisions, rules, and knowledge that make the business work are written down somewhere a non-owner can read.\n\nThree layers sit underneath the spread. The first is decision rights: who decides what, in what range, with what threshold. The second is process portability, or whether a competent person can run a typical week without you in the room. The third is knowledge persistence, or whether customer history, vendor logic, and pricing rationale live in systems or in people. Each layer compounds. A business missing all three trades at the discount. A business with all three trades at the premium.\n\nThe discomfort here is that the spread is paid for by documents you have not written, not by performance you have not delivered. You can run the company well and still trade poorly. The buyer is not pricing the year you had. The buyer is pricing the year that runs after you leave.\n\n**This week**\n\nPick one operational area where you are the only person who can answer questions. Pricing exceptions. Vendor selection. Customer credit. Senior hiring. Write down the rule you have been using, in three sentences. Hand it to one person on your team. Tell them to make the next decision in that area without consulting you. The gap between the rule you wrote and the decision they make is what I call your operating model debt, named precisely for the first time.",
+        "sourceRefs": []
+      },
+      {
+        "id": "313e5bce-2372-41d4-9b6b-e34c865cbec5",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Lincoln International, a US-based mid-market investment bank that advises business owners and private equity funds, [filed for a US initial public offering this week](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo), disclosing growing net income.\n\nThe filing matters less for what Lincoln raises than for what it discloses. A public mid-market advisor has to publish how it earns, who its concentration risks are, and what its own key-person exposure looks like. The S-1 will become the reference template for diligence vocabulary in this segment.\n\nFor the US owner running a $5M to $100M business, this means one thing. The questions a buyer's advisor asks you in 2027 will not be improvised. They will follow a script that is now public, written by an advisor with every incentive to professionalize the language of mid-market diligence.\n\nThe owners who read that S-1 before they sit on the other side of the table will price differently than the owners who do not.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2f7b2352-1f9f-4364-9404-6ba314eeecaa",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Granola** is an AI notetaker that joins your calls, captures decisions, and produces structured meeting notes with named owners and next steps. Why it matters: most operating model rules never get encoded because they are made in meetings and dissolve into memory the next day. Granola turns the meeting itself into the artifact. Find it at [granola.ai](https://granola.ai).",
+        "sourceRefs": []
+      },
+      {
+        "id": "1c36e7e3-b3f5-49aa-a468-a86254189a80",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** the language Lincoln International uses to disclose key-person risk and revenue concentration in its S-1. That section will become the de facto template for mid-market diligence questions over the next eighteen months. If the disclosures read narrowly, expect tighter scripts in your next buyer meeting. If they read broadly, expect more weight on documented operating models. Either way, your future buyer is reading it before they read your CIM.",
+        "sourceRefs": []
+      },
+      {
+        "id": "eab791b9-a498-49a9-9633-e02c87f7477d",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué dos negocios con el mismo EBITDA ya valen distinto",
+    "preheader": "El mercado separa a las empresas según lo que está documentado y lo que sigue viviendo en la cabeza del dueño.",
+    "thesis": "Las salidas de gente capaz que parecen fallas de retención son, en realidad, fallas de arquitectura: cuando alguien valioso se va a pesar de la buena paga, el problema es que el negocio nunca se construyó para correr sin la intervención constante del dueño.",
+    "sections": [
+      {
+        "id": "24f10ca3-a36c-4662-b9ac-c7c3e1ec8f19",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: el mercado sigue separando a las empresas por lo que está documentado y lo que aún vive en la cabeza de alguien.*\n\n- **Estrategia:** Jim Farley, CEO de Ford, dijo a Rolling Stone que las armadoras enfrentan tres \"tormentas perfectas\" que podrían ser existenciales, y nombró a las automotrices chinas como la primera amenaza. **La estrategia es saber cuáles tormentas se planean y cuáles solo se aguantan.** [Leer en Fortune ->](https://fortune.com/2026/04/24/ford-ceo-jim-farley-automakers-threats-three-perfect-storms-us-companies/)\n- **Modelos Operativos:** Avem Partners adquirió Precision Aircraft Machining Company y Catchment Capital pactó comprar a Isolatek, fabricante de tecnologías contra incendios, a SK Capital, en otra ronda de ofertas de private equity sobre operaciones industriales documentadas. **Un modelo operativo es lo que el comprador paga cuando el fundador ya no está.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/pe-weekly-manufacturing-industrials-m-a/)\n- **Tecnología:** Scott Stevenson, CEO de Spellbook, acusó públicamente a startups de IA de inflar el \"Contracted ARR\" para ganar fondeo de venture capital, y calificó la métrica como un \"fraude enorme\" respaldado por los principales fondos. **Una métrica que el modelo nunca ganó no se salva con tecnología.** [Leer en Fast Company ->](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson)\n- **Capital Humano:** Las empresas están corriendo pruebas laborales de varios días, muchas veces sin pago, porque las solicitudes y entrevistas ya no separan a los candidatos calificados de los asistidos por IA. **Contratar tarda más cuando las credenciales en papel se abaratan.** [Leer en Fast Company ->](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants)",
+        "sourceRefs": []
+      },
+      {
+        "id": "8326358c-7b69-4204-af3c-8869b6e1f00f",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "El mercado ya paga por lo que está escrito. No por lo que se actúa. No por lo que se describe en una presentación. Por lo que está documentado, corre sin usted y sobrevive a que alguien clave renuncie un viernes. Este mes estuve en tres conversaciones de due diligence donde el múltiplo se comprimió en la misma pregunta. No fue \"¿cuál es su EBITDA?\". Fue más simple. Muéstreme el documento donde se toma esta decisión. Dos de los tres dueños no lo tenían. El descuento empezó ahí.",
+        "sourceRefs": []
+      },
+      {
+        "id": "aa2b5a61-4b50-4a46-a545-30ba1bf89daf",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Para usted, el negocio se ve igual esté documentado o no. El crecimiento esconde la brecha. El equipo entrega. Los números salen. Usted sigue siendo quien responde la mayoría de las preguntas reales, pero todos están en movimiento, así que parece un sistema.\n\nEl comprador ve otra cosa. El comprador no paga por lo que funciona. Paga por lo que funciona sin usted.\n\nLa tentación es leer el M&A de la mediana empresa como un problema de múltiplos. [Forvis Mazars y GF Data](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/) calificaron al 2025 como un año de \"señales mixtas\" por tercer ejercicio consecutivo. La frase cubre la historia real. El número del 2025 es el promedio de dos distribuciones, no de una. Las empresas con modelos operativos documentados se vendieron a un múltiplo. Las empresas donde el modelo operativo vivía en la cabeza del dueño, a otro. La brecha se ensancha.\n\nLa mayoría de los asesores llama a esto un problema de información y receta mejores data rooms. No es un problema de información. Es un problema de documentación. El data room le muestra al comprador lo que usted tiene. El modelo operativo le muestra al comprador lo que corre. Son dos documentos distintos, y solo uno define el precio.\n\n**El Diferencial Documentado**\n\nLo que he empezado a llamar el Diferencial Documentado es la brecha entre el múltiplo del cuartil superior y el del cuartil inferior dentro de su sector. La variable que la explica no es tamaño, ritmo de crecimiento ni industria. Es si las decisiones, las reglas y el conocimiento que hacen funcionar al negocio están escritos en algún lugar que un no-dueño pueda leer.\n\nDebajo de la brecha hay tres capas. La primera son los derechos de decisión: quién decide qué, en qué rango, con qué umbral. La segunda es la portabilidad del proceso, es decir, si una persona competente puede operar una semana típica sin usted en la sala. La tercera es la persistencia del conocimiento, esto es, si el historial del cliente, la lógica del proveedor y la racionalidad del precio viven en sistemas o en personas. Cada capa se compone con la anterior. Una empresa sin las tres se vende con descuento. Una empresa con las tres se vende con prima.\n\nLa incomodidad aquí es que el diferencial se paga con documentos que usted no escribió, no con desempeño que no entregó. Puede operar bien la compañía y aun así venderla mal. El comprador no le pone precio al año que tuvo. Le pone precio al año que corre cuando usted ya no está.\n\n**Esta semana**\n\nElija un área operativa donde usted es la única persona que puede responder preguntas. Excepciones de precio. Selección de proveedores. Crédito a clientes. Contratación senior. Escriba en tres oraciones la regla que ha venido aplicando. Entréguesela a alguien del equipo. Pídale que tome la siguiente decisión en esa área sin consultarle. La brecha entre la regla que escribió y la decisión que tome es lo que llamo su deuda de modelo operativo, nombrada con precisión por primera vez.",
+        "sourceRefs": []
+      },
+      {
+        "id": "313e5bce-2372-41d4-9b6b-e34c865cbec5",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nLincoln International, banco de inversión estadounidense del mercado medio que asesora a dueños de negocio y a fondos de private equity, [presentó esta semana su solicitud para una oferta pública inicial en Estados Unidos](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo), con utilidad neta en aumento.\n\nLo relevante del expediente no es cuánto levanta Lincoln. Es lo que queda obligado a revelar. Un asesor del mercado medio que cotiza en bolsa debe publicar cómo genera ingresos, cuáles son sus riesgos de concentración y qué tan expuesto está al personal clave. Ese S-1 se convertirá en la plantilla de referencia para el vocabulario de due diligence en este segmento.\n\nPara el dueño que opera un negocio de entre 5 y 100 mdd en el corredor, esto se reduce a una sola cosa. Las preguntas que el asesor del comprador le hará en 2027 no serán improvisadas. Seguirán un guion ya público, escrito por un asesor con todos los incentivos para profesionalizar el lenguaje del due diligence en mediana empresa.\n\n**Enfoque México.** Esta misma semana, Iberdrola [cerró la venta de su filial mexicana a Cox](https://elceo.com/negocios/iberdrola-se-despide-de-mexico-concluye-venta-de-su-filial-local-a-cox/) en una operación de 3,463 millones de euros (unos 4,000 mdd), incluyendo 2,600 MW de capacidad instalada documentada. Lo que cambió de manos no fue una operación; fue un activo que ya opera sin sus fundadores.\n\nLos dueños que lean ese S-1 antes de sentarse del otro lado de la mesa negociarán desde una posición distinta que quienes no lo hagan.",
+        "sourceRefs": []
+      },
+      {
+        "id": "2f7b2352-1f9f-4364-9404-6ba314eeecaa",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Granola** es un tomador de notas con IA que se integra a sus llamadas, captura las decisiones y produce minutas estructuradas con responsables asignados y pasos a seguir. Por qué importa: la mayoría de las reglas del modelo operativo nunca queda documentada porque se decide en juntas y se diluye en la memoria al día siguiente. Granola convierte la junta misma en el documento. Disponible en [granola.ai](https://granola.ai).",
+        "sourceRefs": []
+      },
+      {
+        "id": "1c36e7e3-b3f5-49aa-a468-a86254189a80",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** el lenguaje que use Lincoln International para revelar el riesgo de personal clave y la concentración de ingresos en su S-1. Esa sección se convertirá en la plantilla de facto de las preguntas de due diligence en mediana empresa durante los próximos dieciocho meses. Si las revelaciones resultan acotadas, anticipe guiones más apretados en su próxima junta con un comprador. Si resultan amplias, anticipe mayor presión sobre los modelos operativos documentados. De cualquier modo, su próximo comprador ya lo está leyendo antes de leer su CIM.",
+        "sourceRefs": []
+      },
+      {
+        "id": "eab791b9-a498-49a9-9633-e02c87f7477d",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 80,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 193 — target range is 95–185."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (26 words). Break it up.",
+        "excerpt": "The gap between the rule you wrote and the decision they make is what I call your operating model debt, named precisely "
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'Encoded Spread' is introduced as if it is an established concept ('What I have started calling') but is not an industry-standard term and not a pre-approved Wadi framework. Consider using 'valuation gap' or 'multiple dispersion' which are established industry terms, or flag this as new nomenclature in reviewFlags.",
+        "excerpt": "What I have started calling the Encoded Spread is the gap between top-quartile and bottom-quartile multiples inside your sector."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'operating model debt' is introduced as a named concept ('what I call your operating model debt, named precisely for the first time') but is not an established industry term and not a pre-approved Wadi framework. While the writer signals this is their own framing, it should be flagged in reviewFlags as new nomenclature introduced in this edition.",
+        "excerpt": "The gap between the rule you wrote and the decision they make is what I call your operating model debt, named precisely for the first time."
+      }
+    ],
+    "wordCounts": {
+      "signal": 193,
+      "apertura": 85,
+      "insight": 457,
+      "fieldReport": 152,
+      "tool": 57,
+      "compass": 73,
+      "total": 1017
+    },
+    "shareableSentence": "The buyer is not pricing the year you had. The buyer is pricing the year that runs after you leave.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"The buyer is not pricing the year you had. The buyer is pricing the year that runs after you leave.\"",
+      "Reframe confirmed: \"Most advisors call this an information problem and prescribe better data rooms. It is not an information problem. It is an encoding problem. A data room shows the buyer what you have. The operating model shows the buyer what runs.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Ford CEO Jim Farley told Rolling Stone that carmakers face three 'perfect-storm moments' that could prove existential",
+          "supportingFactId": "3d9d8274-358e-4743-9f94-8f11e896604b-1",
+          "language": "en"
+        },
+        {
+          "claim": "Farley named Chinese automakers as the first threat",
+          "supportingFactId": "3d9d8274-358e-4743-9f94-8f11e896604b-5",
+          "language": "en"
+        },
+        {
+          "claim": "Avem Partners acquired Precision Aircraft Machining Company",
+          "supportingFactId": "1f4aed65-987c-4ec2-b8fc-468ccb922b69-2",
+          "language": "en"
+        },
+        {
+          "claim": "Catchment Capital agreed to buy Isolatek from SK Capital",
+          "supportingFactId": "1f4aed65-987c-4ec2-b8fc-468ccb922b69-4",
+          "language": "en"
+        },
+        {
+          "claim": "Spellbook CEO Scott Stevenson publicly accused AI startups of inflating 'Contracted ARR'",
+          "supportingFactId": "02eae908-80db-4288-b896-009d641c38a2-3",
+          "language": "en"
+        },
+        {
+          "claim": "Stevenson called the metric a 'huge scam'",
+          "supportingFactId": "02eae908-80db-4288-b896-009d641c38a2-4",
+          "language": "en"
+        },
+        {
+          "claim": "Employers are running multi-day, often unpaid work trials",
+          "supportingFactId": "44ed69cd-1f51-4d15-91a6-4b92f0281d9d-1",
+          "language": "en"
+        },
+        {
+          "claim": "Forvis Mazars and GF Data called 2025 'mixed signals' for a third year running",
+          "supportingFactId": "55424b99-072d-4767-84eb-9b388d9c799c-1",
+          "language": "en"
+        },
+        {
+          "claim": "Lincoln International filed for a US initial public offering",
+          "supportingFactId": "ef5270b2-9dcf-472c-801a-f5dd3995e57e-1",
+          "language": "en"
+        },
+        {
+          "claim": "Lincoln disclosed growing net income",
+          "supportingFactId": "ef5270b2-9dcf-472c-801a-f5dd3995e57e-1",
+          "language": "en"
+        },
+        {
+          "claim": "Iberdrola cerró la venta de su filial mexicana a Cox en una operación de 3,463 millones de euros",
+          "supportingFactId": "f1e239bf-d593-4d02-8cf7-5c6cdb87054b-1",
+          "language": "es"
+        },
+        {
+          "claim": "La operación incluyó 2,600 MW de capacidad instalada",
+          "supportingFactId": "f1e239bf-d593-4d02-8cf7-5c6cdb87054b-4",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your Best People Keep the Machine From Running — Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Bloomberg",
+        "Fast Company",
+        "Fortune",
+        "Middle Market Growth (ACG)",
+        "granola.ai"
+      ],
+      "outletCount": 5
+    },
+    "summary": "Draft passes all quality gates with strong fact verification, distinct strategic angle, solid voice match, and excellent source diversity across five distinct outlets."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10474,
+      "outputTokens": 566,
+      "costUsd": 0.039912
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 650,
+      "outputTokens": 12370,
+      "costUsd": 0.307196
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 579,
+      "costUsd": 0.008757
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1031,
+      "outputTokens": 13272,
+      "costUsd": 0.32979500000000006
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1167,
+      "costUsd": 0.017571
+    },
+    "totalUsd": 0.7032310000000002
+  }
+}

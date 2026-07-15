@@ -4,27 +4,175 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Your AI agent is doing exactly what you asked. That is the problem.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 <style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
   * { box-sizing: border-box; }
-  body { font-family: Georgia, serif; max-width: 680px; margin: 0 auto; padding: 24px; color: #0F1A2B; line-height: 1.7; font-size: 17px; background: #F4EFE6; }
-  h1 { font-family: "Cormorant Garamond", Garamond, serif; font-size: 1.6rem; line-height: 1.25; margin: 0 0 8px 0; }
-  h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: .12em; margin-top: 2.5rem; color: #1F4E5F; border-bottom: 1px solid #C7892A; padding-bottom: 6px; }
-  p { margin: 1rem 0; }
-  blockquote { border-left: 3px solid #C7892A; margin: 1.2rem 0; padding: .5rem 1rem; color: #1F4E5F; font-style: italic; }
-  hr { border: none; border-top: 1px solid rgba(199,137,42,0.3); margin: 1.5rem 0; }
-  strong { color: #0F1A2B; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
 </style>
 </head>
 <body>
-<h1>The Transformation Letter — Edition 2026-18-sample</h1>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edition 2026-18-sample · EN</div>
+  <div class="np-bar"></div>
+  <h1>Your AI agent is doing exactly what you asked. That is the problem.</h1>
+</header>
+
+<section class="story">
 <p><strong>Subject:</strong> Your AI agent is doing exactly what you asked. That is the problem.</p>
 <p><strong>Preheader:</strong> The agent is reliable. Your operating model is not. The deployment is the audit.</p>
 <p><strong>OS Pillar:</strong> Operating Model OS</p>
 <p><strong>People dimension:</strong> ADKAR: Awareness — The owner must accept that the agent's reliability surfaces gaps the org has been tolerating — and resist blaming the AI for failures it merely exposes.</p>
-<hr>
+</section>
+<section class="story">
 <h2>THE APERTURA</h2>
 <p>Two patterns from this week's enterprise-AI reporting: agentic workflows are the largest line item in new mid-market AI budgets, and the pilots are failing at roughly twice the rate of last year's RPA wave. The reporting reads them as a maturity problem — the models are not ready, the prompts need work, the integrations are brittle. They are not failing because the models are not ready. They are failing because the operating models on the receiving end were never written down. The agent is not the variable being tested. The variable is what the agent reveals.</p>
-<hr>
+</section>
+<section class="story">
 <h2>THE INSIGHT</h2>
 <p>You deployed an AI agent expecting it to compress a workflow. It did. The agent does its part in seconds. The work still stalls. The instinct is to blame the model.</p>
 <p>It is not the model. The agent is doing exactly what you asked, against the operating model you actually have — not the one you think you have. It escalates to whoever the configuration said to escalate to. It cites whichever system you connected as the source of truth. It follows the process documentation that exists. Where decision rights are undefined, it requests authorization. Where the system of record is fragmented, it confidently surfaces inconsistent data. The agent is reliable. Your operating model is not.</p>
@@ -32,15 +180,45 @@
 <p>The first move is yours. Before the team can absorb the change, before the process owners can rewrite anything, the owner has to recognize what the agent is showing. The reflex is to demand a better model, not to read the deployment as the audit it has become. The owners who get value from this technology are the ones who let the agent's failures redirect them. The ones who keep tuning prompts in search of a fix that does not depend on changing how the business runs are paying for the most expensive set of consulting findings they will ever receive, and ignoring them.</p>
 <p><strong>The Operating Model OS shows three structural gaps when an agent is deployed against it.</strong> A decision rights map: the agent escalates to whoever the config says, and you discover that role is undefined. A system of record: the agent reports the version of the customer's status from the source you connected, and your team reports a different one because they have been silently reconciling between three. Process documentation that survives turnover: the agent executes the documented version, and the team's actual workflow — the one that has been getting things done for years — was never written down.</p>
 <p>This week, pick the one place the agent is failing or surprising you most. Not the one with the highest impact — the one that is the most surprising. Ask the question that earns its keep: what artifact am I missing here? Then write the first draft of that artifact. The agent's failure is not a bug report. It is the prescription.</p>
-<hr>
+</section>
+<section class="story">
 <h2>THE FIELD REPORT</h2>
 <p>The pattern across this week's mid-market AI deployment retros is consistent across industries: companies report higher-than-expected agent reliability and lower-than-expected workflow throughput. Industry analysts read the gap as integration friction. The pattern is older than agents. Companies that survive on improvisation produce processes that look written but are actually carried in people's heads. Automation reveals the gap; it does not create it. RPA exposed the same fault line in finance ops a decade ago. Agents are exposing it now in a wider range of operations — quote-to-cash, vendor onboarding, customer credit, hiring intake. For corridor operators specifically, the lesson rhymes with the ERP failures of the 2010s: the technology that succeeds is the one deployed against an operating model already documented enough to teach a stranger. The other technology becomes the most expensive set of consulting findings the business will ever receive.</p>
-<hr>
+</section>
+<section class="story">
 <h2>THE COMPASS</h2>
 <p>There is a question this letter has not resolved: when the agent surfaces a gap in your operating model, is the right move to write the missing artifact, or to question whether the workflow should exist at all? Some processes that survived as folklore should not survive as code. The agent's failure may be telling you to write more — or to do less. Knowing which is harder than it sounds, and the cost of getting it wrong is invisible until later. Worth sitting with this week before the next deployment decision.</p>
-<hr>
+</section>
+<section class="story">
 <h2>THE DOOR</h2>
 <p>If something in this issue landed, reply — I read every response.</p>
 <p>When you're ready to work together directly, here is how we start: [link]</p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edition 2026-18-sample · EN</div>
+  
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
 </body>
 </html>

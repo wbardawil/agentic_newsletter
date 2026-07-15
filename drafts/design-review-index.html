@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design review — The Transformation Letter</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('wb-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+:root{--bg:#1A1E25;--panel:#2C333E;--ink:#FFFFFF;--body:#D3D9E1;--muted:#A6AEBA;--line:rgba(255,255,255,0.14);--accent:#FD4002;color-scheme:dark;}
+@media (prefers-color-scheme: light){:root:not([data-theme=dark]){--bg:#F4F5F7;--panel:#FFFFFF;--ink:#222831;--body:#2E3540;--muted:#6B7480;--line:rgba(34,40,49,0.16);color-scheme:light;}}
+:root[data-theme=light]{--bg:#F4F5F7;--panel:#FFFFFF;--ink:#222831;--body:#2E3540;--muted:#6B7480;--line:rgba(34,40,49,0.16);color-scheme:light;}
+* { box-sizing: border-box; }
+body { background:var(--bg); color:var(--body); font-family:Manrope,system-ui,sans-serif; max-width:680px; margin:0 auto; padding:40px 20px; font-size:16px; }
+.head { position:relative; }
+.eyebrow { color:var(--accent); font-weight:700; font-size:12px; letter-spacing:3px; text-transform:uppercase; }
+.bar { width:40px; height:4px; background:var(--accent); margin:10px 0 16px; }
+#wb-theme-toggle { position:absolute; top:-6px; right:0; width:34px; height:34px; border-radius:50%; background:transparent; border:1px solid var(--line); color:var(--muted); font-size:16px; cursor:pointer; }
+#wb-theme-toggle:hover { color:var(--accent); border-color:var(--accent); }
+h1 { font-family:Archivo,sans-serif; font-weight:800; color:var(--ink); font-size:1.7rem; letter-spacing:-0.01em; margin:0 0 8px; }
+p { color:var(--muted); }
+table { width:100%; border-collapse:collapse; margin-top:24px; }
+td { padding:12px 8px; border-bottom:1px solid var(--line); }
+td.id { color:var(--ink); font-weight:600; }
+a { color:var(--ink); text-decoration-color:var(--accent); text-decoration-thickness:1.5px; text-underline-offset:3px; padding:4px 10px; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+a:hover { color:var(--accent); }
+.na { color:var(--muted); }
+.extra { margin-top:32px; }
+</style>
+</head>
+<body>
+<div class="head">
+<div class="eyebrow">Design review</div>
+<button id="wb-theme-toggle" type="button" title="Toggle theme">◐</button>
+<div class="bar"></div>
+<h1>The Transformation Letter — all pages, new brand skin</h1>
+</div>
+<p>Every edition in both themes: dark and light. Use ◐ here or on any page — your choice sticks everywhere.</p>
+<table>
+<tr><td class=id>2026-29</td><td><a href="2026-29-en.html">EN</a></td><td><a href="2026-29-es.html">ES</a></td></tr>
+<tr><td class=id>2026-28</td><td><a href="2026-28-en.html">EN</a></td><td><a href="2026-28-es.html">ES</a></td></tr>
+<tr><td class=id>2026-27</td><td><a href="2026-27-en.html">EN</a></td><td><a href="2026-27-es.html">ES</a></td></tr>
+<tr><td class=id>2026-26 - 01</td><td><a href="2026-26 - 01-en.html">EN</a></td><td><a href="2026-26 - 01-es.html">ES</a></td></tr>
+<tr><td class=id>2026-26</td><td><a href="2026-26-en.html">EN</a></td><td><a href="2026-26-es.html">ES</a></td></tr>
+<tr><td class=id>2026-25</td><td><a href="2026-25-en.html">EN</a></td><td><a href="2026-25-es.html">ES</a></td></tr>
+<tr><td class=id>2026-24</td><td><a href="2026-24-en.html">EN</a></td><td><a href="2026-24-es.html">ES</a></td></tr>
+<tr><td class=id>2026-23</td><td><a href="2026-23-en.html">EN</a></td><td><a href="2026-23-es.html">ES</a></td></tr>
+<tr><td class=id>2026-18</td><td><a href="2026-18-en.html">EN</a></td><td><a href="2026-18-es.html">ES</a></td></tr>
+</table>
+<div class="extra">
+<p><a href="sample/2026-18-sample-en.html">Sample edition</a> &nbsp; <a href="sample/2026-18-sample-digest.html">Curator digest email</a> &nbsp; <a href="http://localhost:3000/">Portal (landing)</a></p>
+</div>
+<script>
+document.getElementById('wb-theme-toggle').addEventListener('click', function(){
+  var r=document.documentElement, c=r.getAttribute('data-theme'), n;
+  if(c==='light'||c==='dark'){n=c==='light'?'dark':'light';}
+  else{n=window.matchMedia('(prefers-color-scheme: light)').matches?'dark':'light';}
+  r.setAttribute('data-theme',n);
+  try{localStorage.setItem('wb-theme',n)}catch(e){}
+});
+</script>
+</body>
+</html>

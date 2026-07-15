@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What a three-day interview actually measures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edition 2026-29 · EN · 2026-04-25</div>
+  <div class="np-bar"></div>
+  <h1>What a three-day interview actually measures</h1>
+</header>
+<div class="lead"><blockquote><strong>Insight summary:</strong> xAI lost every cofounder except Musk and dozens of engineers despite $60B valuation and imminent IPO-not because of compensation, but because the operating model treats talent as interchangeable components instead of building a machine that multiplies their capability.</blockquote></div>
+<section class="story">
+<h2>THE SIGNAL</h2>
+<p><em>This week: the operating models you built on individual judgment are being tested by capital markets, AI metrics, and talent flux.</em></p>
+<ul>
+<li><strong>Strategy:</strong> Lincoln International, a mid-market investment bank advising business owners and private equity funds, filed for a US IPO this week, <a href="https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo" target="_blank" rel="noopener">per Bloomberg</a>. <strong>Strategy is choosing which assets are durable enough to survive public scrutiny.</strong> <a href="https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo" target="_blank" rel="noopener">Read in Bloomberg -&gt;</a></li>
+<li><strong>Operating Models:</strong> The <a href="https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/" target="_blank" rel="noopener">National Center for the Middle Market</a> released research identifying four decision-making styles among mid-market leaders, each with measurable links to growth performance. <strong>The operating model is the distribution of decisions across a company, not the concentration of them in one person.</strong> <a href="https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/" target="_blank" rel="noopener">Read in Middle Market Growth (ACG) -&gt;</a></li>
+<li><strong>Technology:</strong> Spellbook CEO Scott Stevenson publicly called out AI startups for inflating revenue with Contracted ARR, a metric that counts signed contracts as if they were already recurring, <a href="https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson" target="_blank" rel="noopener">per Fast Company</a>. <strong>Technology amplifies whatever discipline the books already carry.</strong> <a href="https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson" target="_blank" rel="noopener">Read in Fast Company -&gt;</a></li>
+<li><strong>Human Capital:</strong> Unpaid multi-day work trials are spreading as AI-assisted applications make candidates indistinguishable on paper, <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">per Fast Company</a>. <strong>Human capital systems break down when a company cannot describe its own work.</strong> <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Read in Fast Company -&gt;</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>THE APERTURA</h2>
+<p>Companies are now interviewing job candidates for three days at a time. <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Fast Company</a> reports unpaid work trials are spreading across industries, prompted by a flood of AI-assisted applications that all look the same. The explanation offered is that interviews have become unreliable. That is not the real explanation. A three-day work trial is a company admitting it cannot describe its own work well enough to evaluate a candidate any other way. The AI flood did not create this problem. It exposed it. The operating model that lived only inside the practice of the work is now showing up as an interview process that has stopped screening.</p>
+</section>
+<section class="story">
+<h2>THE INSIGHT</h2>
+<p>Your hiring process keeps getting longer. More rounds. More assessments. Now a three-day work trial, unpaid, before anyone signs an offer. Each added round reveals less about whether the candidate can actually do the job.</p>
+<p>The conventional reading is that AI has flooded applications and made them unreliable. <a href="https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants" target="_blank" rel="noopener">Fast Company</a> quotes a training platform CEO describing this as the largest upheaval in modern hiring history. That part is real. It is also incomplete.</p>
+<p>The deeper problem is that your company cannot describe its own work. When the work lives only inside the practice of it, the only way to evaluate a candidate is to watch them practice. Every extra round of interviewing is a workaround for a missing artifact. You are using a candidate's unpaid time to do the documentation your operating model never produced.</p>
+<p>Most advisors call this a hiring problem and prescribe better assessments. It is not a hiring problem. It is a missing document.</p>
+<p><strong>Job Description vs. Work Description</strong></p>
+<p>A job description names the role: responsibilities, requirements, reporting lines. A work description names the work itself: the inputs that arrive, the decisions that get made, the outputs that leave. Most companies have the first. Very few have the second.</p>
+<p>The work description is an Operating Model OS artifact. When it exists, three things change. Hiring gets shorter, because you can evaluate a candidate's judgment against a written reference instead of three days of observation. Onboarding gets faster, because a new hire reads the work description and knows what good looks like in week one. Departures get survivable, because the work description is what the person leaves behind when they go.</p>
+<p>The test is narrow. Could a qualified outsider read one document and understand not just what the role does, but what a good decision inside the role looks like? If not, you have a job posting. You do not have a work description.</p>
+<p>Most owners refuse to write this because they believe the work is too nuanced to put on paper. That belief is the Operating Model OS problem in one sentence. The nuance is real. The refusal to encode it is what keeps you trapped in founder-dependent hiring and multi-day evaluations.</p>
+<p><strong>This week</strong></p>
+<p>Pick one role on your team that feels hardest to hire for. Sit with the person doing it now. Ask three questions. What decisions do you make in a normal week? Which ones are hard? What would a new person get wrong in month one? Write the answers on a single page. That page is the first draft of your work description. It is also the document that will end most of your three-day interviews.</p>
+</section>
+<section class="story">
+<h2>THE FIELD REPORT</h2>
+<p>The <a href="https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/" target="_blank" rel="noopener">National Center for the Middle Market</a> published research this week identifying four distinct decision-making styles among strategic leaders in mid-market companies. Each style, according to NCMM executive director Doug Farren, links to different performance and growth outcomes.</p>
+<p>The point is not which style is correct. The point is that a CEO's decision-making style operates as an invisible input to the operating model. An owner who decides by consensus produces a different company than an owner who decides alone and informs. Neither style is wrong. Both get encoded in the business, usually without anyone noticing.</p>
+<p>For a US-based owner running a $5M to $100M business, the implication is practical. Your decision style is already installed in your company's operating model. The question is whether you installed it deliberately or by default. The next generation of managers needs to know the rules well enough to operate without you in the room.</p>
+</section>
+<section class="story">
+<h2>THE TOOL</h2>
+<p><strong>Tango</strong> - a Chrome extension that captures a screen workflow while you perform it and auto-generates step-by-step documentation with screenshots. For Operating Model OS work, it shortens the gap between "we know how to do this" and "we have written how we do this" from weeks to minutes. Find it at <a href="https://www.tango.us" target="_blank" rel="noopener">tango.us</a>.</p>
+</section>
+<section class="story">
+<h2>THE COMPASS</h2>
+<p><strong>Watch for this week:</strong> which of the mid-market deals that close this quarter clear at a premium despite the choppy environment. <a href="https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/" target="_blank" rel="noopener">GF Data and Forvis Mazars</a> flagged mixed signals across 2025, and 2026 is opening the same way. The transactions that land at premium multiples will share a trait: the business is legible to a buyer without the owner in the room. That legibility is the operating model, documented. Buyers will pay up for it this year.</p>
+</section>
+<section class="story">
+<h2>THE DOOR</h2>
+<p>If something in this issue landed, reply - I read every response.</p>
+<p>If this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.</p>
+<p>When you're ready to work together directly, here is how we start: [link]</p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edition 2026-29 · EN · 2026-04-25</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-04-25</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> The Machine</p>
+<p><strong>Subject:</strong> What a three-day interview actually measures</p>
+<p><strong>Preheader:</strong> Your longest interviews are revealing the weakest part of your operating model.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

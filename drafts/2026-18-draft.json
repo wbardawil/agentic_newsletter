@@ -1,0 +1,271 @@
+{
+  "runId": "286db1f9-6bc2-491e-a362-5df85b63a4d5",
+  "editionId": "2026-18",
+  "generatedAt": "2026-05-03T22:43:48.720Z",
+  "contentHash": "fca7cbb70e0b238bd576a68c2ec9e5f1c650c97545e74fd9696f7ee42d7dba90",
+  "angle": {
+    "headline": "The Fabricator Who Built Industry 4.0 Before the Strategy",
+    "thesis": "Lance Thrailkill's 70-year-old fabrication company invested in digital transformation and vertical integration without first clarifying which decisions the technology should enable — a sequence error that turns precision tools into expensive distractions.",
+    "targetPersona": "Manufacturing and industrial business owners ($10M-$50M revenue) who deployed ERP, MES, or automation systems but still make most critical decisions manually based on gut feel and tribal knowledge",
+    "relevanceToAudience": "US-LATAM corridor manufacturers are under pressure to adopt Industry 4.0 to compete with global suppliers, but most deploy the technology stack before defining the decision architecture it should serve — creating systems that generate reports no one uses and dashboards that don't change behavior",
+    "suggestedSources": [
+      "c2c7d01d-0e05-4cd3-b896-cf2816d8019e",
+      "c301f3f4-1493-495b-a023-7300bcbe2b93",
+      "b90c0653-bef5-4da8-b711-a9a24c4cf6e0"
+    ],
+    "talkingPoints": [
+      "Thrailkill invested in vertical integration and Industry 4.0 before clarifying which strategic decisions the technology should enable — precision without direction.",
+      "This happens because technology vendors sell capabilities ('real-time visibility') while owners need decision frameworks ('which orders do we accept, which do we decline, and why').",
+      "The framework is Strategy Before Systems: define the recurring decisions that create competitive advantage, then deploy technology to execute those decisions at scale.",
+      "The concrete action: identify the three highest-stakes decisions you make weekly that currently depend on your judgment alone, then ask whether your systems could make those decisions if the logic were explicit."
+    ],
+    "osPillar": "Strategy OS",
+    "peopleAngle": {
+      "challenge": "The owner must trust that explicitly naming decision rules will strengthen rather than constrain the business, when their entire identity is built on being the best decision-maker in the room",
+      "framework": "ADKAR: Desire"
+    },
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The rule that lives only in your head",
+    "preheader": "What Berkshire without Buffett reveals about strategy that runs on one person's head.",
+    "subjectOptions": [
+      "The rule that lives only in your head",
+      "What Berkshire's first meeting without Buffett reveals",
+      "Why writing decision rules feels like losing your edge"
+    ],
+    "sections": [
+      {
+        "id": "3dce693f-ce74-4a44-b58d-29495ac5d0d4",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: each signal exposes the same fault line between what one person decides and what the system can carry.*\n\n- **Strategy:** Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO, and [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5) reports more than 20 shareholders, analysts, and executives left Omaha doubting the gathering's future. **Strategy is what survives when the strongest decision-maker is gone.** [Read in Business Insider ->](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5)\n- **Operating Models:** [Bloomberg](https://www.bloomberg.com/news/videos/2026-05-03/sununu-spirit-bailout-made-no-financial-sense-video) reports the Spirit Airlines collapse is cascading through US airports, stranding passengers mid-journey while rival carriers scramble to absorb routes. **An operating model cannot depend on the next quarter going well.** [Read in Bloomberg ->](https://www.bloomberg.com/news/videos/2026-05-03/sununu-spirit-bailout-made-no-financial-sense-video)\n- **Technology:** [Bloomberg](https://www.bloomberg.com/news/articles/2026-05-03/big-tech-earnings-show-split-between-ai-trade-winners-and-losers) reports Big Tech earnings showed the AI boom intact, but investors are now sorting winners from losers inside the trade. **Technology returns favor the company that encoded a specific use case.** [Read in Bloomberg ->](https://www.bloomberg.com/news/articles/2026-05-03/big-tech-earnings-show-split-between-ai-trade-winners-and-losers)\n- **Human Capital:** [Vistage](https://www.vistage.com/research-center/personal-development/wellness/modern-ceo-burnout-digital-fatigue/?utm_source=rss&utm_medium=rss&utm_campaign=modern-ceo-burnout-digital-fatigue) names modern CEO burnout as the fatigue loop of a hyper-connected world, with digital overload eroding the executive's clarity. **Human capital starts with the owner's capacity to think.** [Read in Vistage Research Center ->](https://www.vistage.com/research-center/personal-development/wellness/modern-ceo-burnout-digital-fatigue/?utm_source=rss&utm_medium=rss&utm_campaign=modern-ceo-burnout-digital-fatigue)",
+        "sourceRefs": []
+      },
+      {
+        "id": "2938f7a6-43e3-4d3b-a6f4-983fbc52585d",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:provocation===\nBerkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett at the helm. According to [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), more than 20 shareholders, analysts, and executives left Omaha doubting the gathering had a future. The meeting did not lose its sponsors. It lost the man whose judgment the room had come to see. That is not nostalgia talking. That is a diagnosis. A strategy that needs the founder in the room to be legible is not yet a strategy. It is a habit of trust the building cannot inherit. The owners reading this letter still have time to do something Berkshire cannot do anymore.",
+        "sourceRefs": []
+      },
+      {
+        "id": "80b7c172-d43f-4c43-934b-e5e4678425d7",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your team brings every meaningful decision back to you. You read this as evidence of competence. You are, in fact, the best decision-maker in the room. The conventional advice is to delegate more. You have tried. The decisions that matter still come back to you, because every one of them eventually reaches a judgment only you seem able to make.\n\nMost advisors call this a delegation problem. It is not. It is an articulation problem. Your team escalates because they cannot reconstruct the rule you would apply. The rule exists. It lives in your head, sharpened over fifteen years of repetition. It has never left your head.\n\nWriting the rule down feels like a downgrade. You are trading judgment for procedure. You are constraining a business that has grown because you kept the calls flexible. So you do not write it. And the business stays only as large as you can hold in your own working memory.\n\nHere is the reframe. The unwritten rule is not flexibility. It is dependency. When the rule is in your head, the business cannot decide without you. When the rule is on paper, the rule travels. Your team carries it into the meeting you are not in. Writing the rule does not constrain the business. It releases the business from your calendar.\n\nWhat I call the Strategic Decision Rule has three components. The trigger names the kind of decision the rule applies to. The test names the criterion that decides the call. The boundary names where the rule stops applying and the decision returns to you. Take a vendor renewal under fifty thousand dollars: if the team hit the SLA two of the last three quarters, renew. Above that threshold, or with a price increase over ten percent, escalate. That is a rule. It is also the most concentrated form of leadership you can produce.\n\nThe fear underneath this is not strategic. It is personal. If the rule is on paper, what is left for you to decide? The answer is the next rule. And the one after that. The owner who writes rules does not become smaller. He becomes the only person in the company whose job is to keep articulating the next layer of judgment the business has not yet encoded.\n\nThis week, pull the last five decisions that came to you and that you wish had not. For each one, write the rule that would have let the team decide without you. Three lines: trigger, test, boundary. Send them, by role, to the people who would have applied them. What you will discover is not whether the rules are right. It is whether you are willing to let them travel.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0345ff3a-3520-40eb-ae7a-bfaad7e7ed40",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO this week. Greg Abel hosted. According to [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), more than 20 shareholders, analysts, and executives interviewed in Omaha cast doubt on the gathering's future without Buffett onstage.\n\nThe diagnosis is not that Abel is unequal to the role. It is that Buffett's investment philosophy lived more in his persona than in his system. The meeting was a ritual built around watching one man think. Without him, the ritual loses its center.\n\nFor US-based owners running a $5M to $100M business, the implication is direct. The strategy you have been refining for twenty years is at risk if it has never left your head. The succession question is not 'who replaces me.' It is 'what do I leave behind that does not need me to make sense of it.'",
+        "sourceRefs": []
+      },
+      {
+        "id": "9421fce8-ea3b-4e82-b2ff-a3b0d78fb266",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**The Decision Rule One-Pager:** a three-line template that captures one rule. Trigger (when this rule fires). Test (the criterion that decides). Boundary (when the decision escalates back to you). Why it matters for a $5M to $100M operator: if you cannot write the rule in 60 seconds, it is not yet a rule. It is your judgment, still locked in your head. Build it in any doc tool. The constraint is the format, not the platform.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0fbb5a5a-2a4b-4c8d-8300-90a5eac63d93",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** how many times you hear a variation of 'I wanted to check with you on...' from your team. That phrase is the audible signature of an unwritten rule. Each instance is a rule waiting to be written, and an hour of your week waiting to be returned. Count them. The number tells you the size of the document you have not yet written.",
+        "sourceRefs": []
+      },
+      {
+        "id": "208a8cb5-62b2-4a20-8ce6-ea6f68737b1c",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "La regla que solo vive en su cabeza",
+    "preheader": "Lo que la primera asamblea de Berkshire sin Buffett revela sobre la estrategia que se sostiene en una sola cabeza.",
+    "thesis": "La regla no escrita que vive en la cabeza del dueño no es flexibilidad: es dependencia. Mientras no esté en papel, el negocio no decide sin él.",
+    "sections": [
+      {
+        "id": "3dce693f-ce74-4a44-b58d-29495ac5d0d4",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cada señal expone la misma falla entre lo que decide una persona y lo que el sistema puede sostener.*\n\n- **Estrategia:** Berkshire Hathaway celebró su primera asamblea de accionistas en seis décadas sin Warren Buffett como CEO, y [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5) reporta que más de 20 accionistas, analistas y ejecutivos salieron de Omaha dudando del futuro del encuentro. **La estrategia es lo que sobrevive cuando el mejor decisor ya no está.** [Leer en Business Insider ->](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5)\n- **Modelos Operativos:** [Bloomberg](https://www.bloomberg.com/news/videos/2026-05-03/sununu-spirit-bailout-made-no-financial-sense-video) reporta que el colapso de Spirit Airlines está cascadeando por aeropuertos de Estados Unidos, dejando pasajeros varados mientras las aerolíneas rivales absorben los itinerarios. **Un modelo operativo no puede apostar a que el próximo trimestre lo rescate.** [Leer en Bloomberg ->](https://www.bloomberg.com/news/videos/2026-05-03/sununu-spirit-bailout-made-no-financial-sense-video)\n- **Tecnología:** [Bloomberg](https://www.bloomberg.com/news/articles/2026-05-03/big-tech-earnings-show-split-between-ai-trade-winners-and-losers) reporta que los reportes de las grandes tecnológicas confirmaron que el auge de la IA sigue intacto, pero los inversionistas ya separan ganadores y perdedores dentro de la misma apuesta. **El retorno favorece a quien codificó un caso de uso específico.** [Leer en Bloomberg ->](https://www.bloomberg.com/news/articles/2026-05-03/big-tech-earnings-show-split-between-ai-trade-winners-and-losers)\n- **Capital Humano:** [Vistage](https://www.vistage.com/research-center/personal-development/wellness/modern-ceo-burnout-digital-fatigue/?utm_source=rss&utm_medium=rss&utm_campaign=modern-ceo-burnout-digital-fatigue) describe el burnout del CEO moderno como fatiga de un mundo hiperconectado, donde la sobrecarga digital erosiona la claridad del directivo. **El capital humano empieza por la capacidad del dueño para pensar.** [Leer en Vistage Research Center ->](https://www.vistage.com/research-center/personal-development/wellness/modern-ceo-burnout-digital-fatigue/?utm_source=rss&utm_medium=rss&utm_campaign=modern-ceo-burnout-digital-fatigue)",
+        "sourceRefs": []
+      },
+      {
+        "id": "2938f7a6-43e3-4d3b-a6f4-983fbc52585d",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Berkshire Hathaway celebró su primera asamblea de accionistas en seis décadas sin Warren Buffett al frente. Según [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), más de 20 accionistas, analistas y ejecutivos salieron de Omaha sin certeza de que el ritual tenga futuro. La asamblea no perdió a sus patrocinadores. Perdió al hombre cuyo juicio venían a observar. No es nostalgia: es un diagnóstico. Una estrategia que necesita al fundador en la sala para comprenderse no es aún una estrategia. Es un hábito de confianza que la organización no puede heredar. Los dueños que leen esta carta todavía están a tiempo de hacer algo que Berkshire ya no puede hacer.",
+        "sourceRefs": []
+      },
+      {
+        "id": "80b7c172-d43f-4c43-934b-e5e4678425d7",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su equipo le escala cada decisión importante. Usted lo lee como evidencia de su competencia: en efecto, es el mejor decisor de la sala. El consejo convencional es delegar más. Ya lo intentó. Las decisiones que importan siguen llegando a su escritorio porque cada una termina en un juicio que solo usted parece capaz de emitir.\n\nLa mayoría de los asesores diagnostica esto como un problema de delegación. No lo es. Es un problema de articulación. Su equipo escala porque no logra reconstruir la regla que usted aplicaría. La regla existe. Vive en su cabeza, afilada por quince años de repetición. Nunca ha salido de ahí.\n\nEscribir la regla se siente como un retroceso. Cambia juicio por procedimiento. Le pone barandales a un negocio que creció precisamente porque las decisiones se mantuvieron flexibles. Por eso no la escribe. Y el negocio se queda del tamaño que cabe en la memoria de trabajo de una sola persona.\n\nConviene reencuadrar esto. La regla no escrita no es flexibilidad: es dependencia. Cuando la regla vive en su cabeza, el negocio no puede decidir sin usted. Cuando la regla está en papel, la regla viaja. Su equipo la lleva a la junta donde usted no estuvo. Escribirla no le pone candados al negocio. Lo libera de su calendario.\n\nLo que llamo la Regla Estratégica de Decisión tiene tres componentes. El disparador nombra el tipo de decisión al que aplica. El criterio nombra la prueba que define la llamada. El límite nombra dónde la regla deja de aplicar y la decisión regresa a su escritorio. Tome un caso concreto: la renovación de un proveedor por debajo de un millón de pesos. Si cumplió el SLA dos de los últimos tres trimestres, se renueva. Por encima de ese monto, o con un alza superior al 10%, sube a usted. Eso es una regla. Y es la forma más concentrada de liderazgo que puede producir.\n\nEl miedo de fondo no es estratégico: es personal. Si la regla está en papel, ¿qué le queda por decidir? La respuesta es la siguiente regla. Y la siguiente. El dueño que escribe reglas no se vuelve más pequeño. Se vuelve la única persona en la empresa cuyo trabajo es articular la próxima capa de juicio que el negocio aún no ha codificado.\n\nEsta semana, tome las últimas cinco decisiones que llegaron a usted y que hubiera preferido no recibir. Para cada una, escriba la regla que habría permitido al equipo decidir sin usted. Tres líneas: disparador, criterio, límite. Mándelas, por puesto, a las personas que las habrían aplicado. Lo que va a descubrir no es si las reglas son correctas. Es si está dispuesto a dejarlas viajar.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0345ff3a-3520-40eb-ae7a-bfaad7e7ed40",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "## Spotlight\n\nBerkshire Hathaway celebró esta semana su primera asamblea de accionistas en seis décadas sin Warren Buffett como CEO. Greg Abel ofició. Según [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), más de 20 accionistas, analistas y ejecutivos entrevistados en Omaha pusieron en duda el futuro del encuentro sin Buffett en el escenario.\n\nEl diagnóstico no es que Abel no esté a la altura del puesto. Es que la filosofía de inversión de Buffett vivió más en la persona que en el sistema. La asamblea era un ritual construido alrededor de ver pensar a un hombre. Sin él, el ritual pierde su centro.\n\nEnfoque México: para el dueño de una empresa mediana —entre 100 y 2 mil mdp— la lectura es directa. La estrategia que lleva dos décadas afinando está en riesgo si nunca ha salido de su cabeza. En el negocio familiar mexicano, donde la segunda generación suele heredar relaciones antes que documentos, la pregunta de sucesión no es quién lo reemplaza. Es qué deja detrás que no lo necesite a usted para tener sentido.",
+        "sourceRefs": []
+      },
+      {
+        "id": "9421fce8-ea3b-4e82-b2ff-a3b0d78fb266",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**The Decision Rule One-Pager** es una plantilla de tres líneas que captura una sola regla: disparador (cuándo aplica), criterio (qué define la decisión) y límite (cuándo vuelve a usted). Le importa al operador de una empresa de entre 100 y 2 mil mdp porque, si no puede escribir la regla en 60 segundos, todavía no es una regla: es su juicio, atrapado en su cabeza. Constrúyala en cualquier procesador de texto; la disciplina está en el formato, no en la plataforma.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0fbb5a5a-2a4b-4c8d-8300-90a5eac63d93",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuántas veces escucha alguna variante de \"quería consultarte sobre...\" de su equipo. Esa frase es la firma audible de una regla no escrita. Cada repetición es una regla que espera quedar por escrito, y una hora de su semana esperando recuperarse. Cuéntelas. El número le indica el tamaño del documento que todavía no ha redactado.",
+        "sourceRefs": []
+      },
+      {
+        "id": "208a8cb5-62b2-4a20-8ce6-ea6f68737b1c",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 95,
+    "issues": [
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The term 'Strategic Decision Rule' appears as a capitalized framework without being signaled as the writer's own framing. It should either be introduced with 'what I call...' language or replaced with established terminology like 'decision framework' or 'decision protocol'.",
+        "excerpt": "What I call the Strategic Decision Rule has three components."
+      }
+    ],
+    "wordCounts": {
+      "signal": 184,
+      "apertura": 105,
+      "insight": 449,
+      "fieldReport": 144,
+      "tool": 76,
+      "compass": 67,
+      "total": 1025
+    },
+    "shareableSentence": "The unwritten rule is not flexibility. It is dependency.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"The unwritten rule is not flexibility. It is dependency.\"",
+      "Reframe confirmed: \"Most advisors call this a delegation problem. It is not. It is an articulation problem. Your team escalates because they cannot reconstruct the rule you would apply. [...] The unwritten rule is not flexibility. It is dependency.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO",
+          "supportingFactId": "8aec29b3-99c3-4467-af2b-121b6d422422",
+          "language": "en"
+        },
+        {
+          "claim": "More than 20 shareholders, analysts, and executives left Omaha doubting the gathering's future",
+          "supportingFactId": "8aec29b3-99c3-4467-af2b-121b6d422422",
+          "language": "en"
+        },
+        {
+          "claim": "Greg Abel hosted the meeting",
+          "supportingFactId": "8aec29b3-99c3-4467-af2b-121b6d422422",
+          "language": "en"
+        },
+        {
+          "claim": "Spirit Airlines collapse is cascading through US airports, stranding passengers mid-journey",
+          "supportingFactId": "ecbcba28-b266-47cf-bc3b-39fe3feea576",
+          "language": "en"
+        },
+        {
+          "claim": "Big Tech earnings showed the AI boom intact, but investors are sorting winners from losers",
+          "supportingFactId": "c301f3f4-1493-495b-a023-7300bcbe2b93",
+          "language": "en"
+        },
+        {
+          "claim": "Vistage names modern CEO burnout as the fatigue loop of a hyper-connected world",
+          "supportingFactId": "c9a23024-0403-4db4-ab1c-abc0000d9645",
+          "language": "en"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "When Your Team Can't Decide Without You, You Don't Have a Business — The four decision-making styles identified in mid-market leaders determine whether a company scales or stalls — and most owners don't realize their instinct to decide everything is the bottleneck.",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Bloomberg",
+        "Business Insider",
+        "Vistage Research Center"
+      ],
+      "outletCount": 3
+    },
+    "summary": "Draft passes all quality gates — facts verified, angle distinct from prior work (decision-making bottleneck vs. unwritten rules), voice matches golden examples with strong advisor cadence and clear framework discipline, and three distinct outlets cited inline."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10471,
+      "outputTokens": 544,
+      "costUsd": 0.039573
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 896,
+      "outputTokens": 10358,
+      "costUsd": 0.255424
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 416,
+      "costUsd": 0.006312
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1236,
+      "outputTokens": 8610,
+      "costUsd": 0.21197
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 723,
+      "costUsd": 0.010911
+    },
+    "totalUsd": 0.5241899999999999
+  }
+}

@@ -120,66 +120,75 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
   const v = draft.validation;
   const recs = (v?.recommendations ?? []).slice(0, 3);
 
+  // Brand system (Wadi Bardawil): gunmetal #222831 canvas, panel #2C333E,
+  // orange #FD4002 reserved for the one primary action. Inline styles + solid
+  // hex throughout — email clients ignore <style> blocks and rgba is unreliable.
   const reviewBtn = links.prUrl
-    ? `<a href="${escapeHtml(links.prUrl)}" style="display:inline-block;padding:12px 20px;background:#0F1A2B;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Review draft on GitHub →</a>`
+    ? `<a href="${escapeHtml(links.prUrl)}" style="display:inline-block;padding:12px 20px;background:#2C333E;color:#FFFFFF;text-decoration:none;border-radius:11px;border:1px solid #4E5866;font-weight:600;margin:4px 4px 4px 0;">Review draft on GitHub →</a>`
     : "";
   // When the approval Worker is configured, the primary CTA is one-click
   // approve. Fall back to the manual workflow_dispatch deep-link otherwise.
+  // Either way it is the single orange moment of the email.
   const publishBtn = links.approveUrl
-    ? `<a href="${escapeHtml(links.approveUrl)}" style="display:inline-block;padding:12px 20px;background:#C7892A;color:#0F1A2B;text-decoration:none;border-radius:6px;font-weight:700;margin:4px 4px 4px 0;">✓ Approve and publish →</a>`
-    : `<a href="${escapeHtml(links.publishWorkflowUrl)}" style="display:inline-block;padding:12px 20px;background:#1F4E5F;color:#F4EFE6;text-decoration:none;border-radius:6px;font-weight:600;margin:4px 4px 4px 0;">Publish to Beehiiv when ready →</a>`;
+    ? `<a href="${escapeHtml(links.approveUrl)}" style="display:inline-block;padding:12px 20px;background:#FD4002;color:#FFFFFF;text-decoration:none;border-radius:11px;font-weight:700;margin:4px 4px 4px 0;">✓ Approve and publish →</a>`
+    : `<a href="${escapeHtml(links.publishWorkflowUrl)}" style="display:inline-block;padding:12px 20px;background:#FD4002;color:#FFFFFF;text-decoration:none;border-radius:11px;font-weight:700;margin:4px 4px 4px 0;">Publish to Beehiiv when ready →</a>`;
+
+  const displayFont = "Archivo,'Segoe UI',Arial,sans-serif";
+  const bodyFont = "Manrope,'Segoe UI',Arial,sans-serif";
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>${escapeHtml(renderSubject(draft))}</title>
 </head>
-<body style="margin:0;padding:0;background:#F4EFE6;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#0F1A2B;">
-<div style="max-width:640px;margin:0 auto;padding:24px 16px;">
-  <p style="font-size:13px;color:#7A7466;margin:0 0 4px 0;letter-spacing:0.04em;text-transform:uppercase;">The Transformation Letter</p>
-  <h1 style="font-family:'Cormorant Garamond',Garamond,serif;font-size:28px;line-height:1.2;margin:0 0 16px 0;">Draft ready — Edition ${escapeHtml(draft.editionId)}</h1>
+<body style="margin:0;padding:0;background:#14171D;font-family:${bodyFont};color:#D3D9E1;">
+<div style="max-width:640px;margin:0 auto;padding:24px 16px;background:#222831;">
+  <p style="font-size:12px;color:#FD4002;margin:0 0 6px 0;letter-spacing:3px;text-transform:uppercase;font-weight:700;">The Transformation Letter</p>
+  <div style="width:40px;height:4px;background:#FD4002;margin:0 0 14px 0;"></div>
+  <h1 style="font-family:${displayFont};font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-0.2px;margin:0 0 16px 0;color:#FFFFFF;">Draft ready — Edition ${escapeHtml(draft.editionId)}</h1>
 
-  <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-top:1px solid #C7892A;border-bottom:1px solid #C7892A;padding:12px 0;margin:16px 0;">
+  <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-top:1px solid #4E5866;border-bottom:1px solid #4E5866;padding:12px 0;margin:16px 0;">
     <tr>
-      <td style="padding:8px 0;font-size:14px;"><strong>QA score</strong></td>
-      <td style="padding:8px 0;font-size:14px;text-align:right;">${v ? `${v.score}/100 ${v.isValid ? "✓ valid" : "⚠️ invalid"}` : "not run"}</td>
+      <td style="padding:8px 0;font-size:14px;color:#FFFFFF;"><strong>QA score</strong></td>
+      <td style="padding:8px 0;font-size:14px;text-align:right;color:#D3D9E1;">${v ? `${v.score}/100 ${v.isValid ? "✓ valid" : "⚠️ invalid"}` : "not run"}</td>
     </tr>
     <tr>
-      <td style="padding:8px 0;font-size:14px;"><strong>OS pillar</strong></td>
-      <td style="padding:8px 0;font-size:14px;text-align:right;">${escapeHtml(a.osPillar)}</td>
+      <td style="padding:8px 0;font-size:14px;color:#FFFFFF;"><strong>OS pillar</strong></td>
+      <td style="padding:8px 0;font-size:14px;text-align:right;color:#D3D9E1;">${escapeHtml(a.osPillar)}</td>
     </tr>
     ${
       a.peopleAngle
         ? `<tr>
-      <td style="padding:8px 0;font-size:14px;vertical-align:top;"><strong>People dimension</strong></td>
-      <td style="padding:8px 0;font-size:14px;text-align:right;">${escapeHtml(a.peopleAngle.framework)}<br><span style="color:#7A7466;font-style:italic;">${escapeHtml(a.peopleAngle.challenge)}</span></td>
+      <td style="padding:8px 0;font-size:14px;vertical-align:top;color:#FFFFFF;"><strong>People dimension</strong></td>
+      <td style="padding:8px 0;font-size:14px;text-align:right;color:#D3D9E1;">${escapeHtml(a.peopleAngle.framework)}<br><span style="color:#AEB6C2;font-style:italic;">${escapeHtml(a.peopleAngle.challenge)}</span></td>
     </tr>`
         : ""
     }
     <tr>
-      <td style="padding:8px 0;font-size:14px;"><strong>Total words</strong></td>
-      <td style="padding:8px 0;font-size:14px;text-align:right;">${v?.wordCounts?.total ?? "?"}</td>
+      <td style="padding:8px 0;font-size:14px;color:#FFFFFF;"><strong>Total words</strong></td>
+      <td style="padding:8px 0;font-size:14px;text-align:right;color:#D3D9E1;">${v?.wordCounts?.total ?? "?"}</td>
     </tr>
   </table>
 
-  <h2 style="font-family:'Cormorant Garamond',Garamond,serif;font-size:22px;line-height:1.3;margin:24px 0 8px 0;color:#1F4E5F;">${escapeHtml(a.headline)}</h2>
-  <p style="font-size:15px;line-height:1.55;color:#0F1A2B;margin:0 0 16px 0;">${escapeHtml(a.thesis)}</p>
+  <h2 style="font-family:${displayFont};font-size:21px;font-weight:800;line-height:1.25;letter-spacing:-0.2px;margin:24px 0 8px 0;color:#FFFFFF;">${escapeHtml(a.headline)}</h2>
+  <p style="font-size:15px;line-height:1.55;color:#D3D9E1;margin:0 0 16px 0;">${escapeHtml(a.thesis)}</p>
 
-  <p style="font-size:13px;color:#7A7466;margin:16px 0 4px 0;"><strong>Subject (EN):</strong> ${escapeHtml(c.subject)}</p>
-  <p style="font-size:13px;color:#7A7466;margin:0 0 16px 0;"><strong>Preheader:</strong> ${escapeHtml(c.preheader)}</p>
+  <p style="font-size:13px;color:#AEB6C2;margin:16px 0 4px 0;"><strong style="color:#FFFFFF;">Subject (EN):</strong> ${escapeHtml(c.subject)}</p>
+  <p style="font-size:13px;color:#AEB6C2;margin:0 0 16px 0;"><strong style="color:#FFFFFF;">Preheader:</strong> ${escapeHtml(c.preheader)}</p>
 
   ${
     v?.shareableSentence
-      ? `<blockquote style="border-left:3px solid #C7892A;padding:8px 16px;margin:16px 0;font-style:italic;color:#0F1A2B;background:#FFF;">${escapeHtml(v.shareableSentence)}</blockquote>`
+      ? `<blockquote style="border-left:3px solid #FD4002;padding:10px 16px;margin:16px 0;font-style:italic;color:#D3D9E1;background:#2C333E;border-radius:0 11px 11px 0;">${escapeHtml(v.shareableSentence)}</blockquote>`
       : ""
   }
 
   ${
     recs.length > 0
-      ? `<h3 style="font-size:14px;margin:24px 0 8px 0;color:#7A7466;text-transform:uppercase;letter-spacing:0.04em;">Validator notes</h3>
-  <ul style="margin:0 0 16px 0;padding-left:20px;font-size:14px;line-height:1.5;">
+      ? `<h3 style="font-size:12px;margin:24px 0 8px 0;color:#FD4002;text-transform:uppercase;letter-spacing:2px;font-weight:700;">Validator notes</h3>
+  <ul style="margin:0 0 16px 0;padding-left:20px;font-size:14px;line-height:1.5;color:#D3D9E1;">
     ${recs.map((r) => `<li style="margin-bottom:6px;">${escapeHtml(r)}</li>`).join("")}
   </ul>`
       : ""
@@ -190,13 +199,13 @@ export function renderDigestHtml(draft: DraftJson, links: DigestLinks): string {
     ${publishBtn}
   </div>
 
-  <hr style="border:none;border-top:1px solid #C7892A;margin:24px 0;opacity:0.4;">
-  <p style="font-size:12px;color:#7A7466;line-height:1.5;margin:0;">
+  <hr style="border:none;border-top:1px solid #4E5866;margin:24px 0;">
+  <p style="font-size:12px;color:#8A93A0;line-height:1.5;margin:0;">
     The draft is on the <code>drafts/${escapeHtml(draft.editionId)}</code> branch.
     Edit copy via the GitHub mobile editor and merge when the editorial is right.
     ${
       links.approveUrl
-        ? `Tapping <strong>Approve and publish</strong> dispatches the Beehiiv publish workflow via a signed link valid for 7 days.`
+        ? `Tapping <strong style="color:#AEB6C2;">Approve and publish</strong> dispatches the Beehiiv publish workflow via a signed link valid for 7 days.`
         : `Publishing to Beehiiv is a deliberate manual action — tap "Publish to Beehiiv" above to open the workflow page, paste the edition ID, and tap Run.`
     }
   </p>
