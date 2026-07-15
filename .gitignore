@@ -42,3 +42,7 @@ logs
 drafts/*
 drafts/sample/
 !drafts/angle-history.json
+
+# Local backups of in-progress work (e.g. deferred integrations).
+# Restore by moving the contents back into place.
+.local-backups/

@@ -39,6 +39,11 @@ function getSmtpConfig() {
   const pass = process.env.SMTP_PASS;
 
   if (host && portStr && user && pass) {
+    // SMTP_TLS_REJECT_UNAUTHORIZED defaults to "false" to handle providers
+    // (e.g. Brevo/SendinBlue) whose relay hosts present a self-signed cert
+    // in the TLS chain. Set to "true" in production if your SMTP host has a
+    // fully trusted certificate chain.
+    const rejectUnauthorized = process.env.SMTP_TLS_REJECT_UNAUTHORIZED === "true";
     return {
       host,
       port: parseInt(portStr, 10),
@@ -46,6 +51,9 @@ function getSmtpConfig() {
       auth: {
         user,
         pass,
+      },
+      tls: {
+        rejectUnauthorized,
       },
     };
   }
@@ -106,21 +114,54 @@ async function send(payload: {
 
 // ── Public helpers ────────────────────────────────────────────────────────────
 
-/** Sent immediately after a new application is saved to Supabase. */
-export async function sendApplicationConfirmation(to: string, name: string): Promise<void> {
-  await send({
-    to,
-    subject: "We received your application — The Transformation Letter",
-    html: `
+/**
+ * Sent immediately after a new member account is created.
+ * Replaces the old application-confirmation + approval-notification emails.
+ * Supports bilingual (EN/ES) output based on member preference.
+ */
+export async function sendWelcomeEmail(
+  to: string,
+  name: string,
+  preferredLang?: string | null,
+): Promise<void> {
+  const lang = normalizeLang(preferredLang);
+  const signInUrl = `${portalUrl()}/sign-in`;
+
+  const subject = lang === "es"
+    ? "Bienvenido a The Transformation Letter"
+    : "Welcome to The Transformation Letter";
+
+  const html = lang === "es"
+    ? `
+<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
+  <p>Hola ${escHtml(name)},</p>
+  <p>Tu cuenta en <strong>The Transformation Letter</strong> está lista.</p>
+  <p>Ahora tienes acceso al archivo bilingüe completo y al asistente de IA de Transformación. Ingresa con el correo y la contraseña que configuraste:</p>
+  <p style="margin:24px 0">
+    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
+      Ingresar al portal →
+    </a>
+  </p>
+  <p style="margin-top:32px">— Wadi</p>
+  <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
+  <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnósticos para owner-operators de $5–100M</p>
+</div>`
+    : `
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
   <p>Hi ${escHtml(name)},</p>
-  <p>We received your application to <strong>The Transformation Letter</strong>. Thank you for taking the time.</p>
-  <p>We review each application personally. You'll hear back from us within a few business days — one way or another.</p>
+  <p>Your account on <strong>The Transformation Letter</strong> is ready.</p>
+  <p>You now have access to the full bilingual archive and the Transformation AI assistant. Sign in with the email and password you set:</p>
+  <p style="margin:24px 0">
+    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
+      Access the portal →
+    </a>
+  </p>
   <p style="margin-top:32px">— Wadi</p>
   <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
   <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnostics for $5–100M owner-operators</p>
-</div>`,
-  });
+</div>`;
+
+  await send({ to, subject, html });
 }
 
 /**
@@ -169,58 +210,6 @@ export async function sendPublicationConfirmation(opts: {
   <p style="font-size:12px;color:#6B7280">The Transformation Letter · Edición ${escHtml(opts.editionId)}</p>
 </div>`,
   });
-}
-
-/**
- * Sent when an admin marks an application as approved.
- * Points the applicant to /sign-in so they can claim their magic link.
- * Supports bilingual (EN/ES) output based on applicant preference.
- */
-export async function sendApprovalNotification(
-  to: string,
-  name: string,
-  preferredLang?: string | null
-): Promise<void> {
-  const lang = normalizeLang(preferredLang);
-  const signInUrl = `${portalUrl()}/sign-in`;
-
-  const subject = lang === "es"
-    ? "Ya estás adentro — The Transformation Letter"
-    : "You're in — The Transformation Letter";
-
-  const html = lang === "es"
-    ? `
-<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
-  <p>Hola ${escHtml(name)},</p>
-  <p>Tu postulación a <strong>The Transformation Letter</strong> ha sido aprobada.</p>
-  <p>Para acceder al archivo bilingüe completo y al asistente de IA de Transformación, inicia sesión con tu correo:</p>
-  <p style="margin:24px 0">
-    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
-      Acceder al archivo →
-    </a>
-  </p>
-  <p>Solo ingresa el correo electrónico que usaste en tu postulación — te enviaremos un enlace mágico de acceso.</p>
-  <p style="margin-top:32px">— Wadi</p>
-  <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
-  <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnósticos para owner-operators de $5–100M</p>
-</div>`
-    : `
-<div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#0F1A2B;line-height:1.6">
-  <p>Hi ${escHtml(name)},</p>
-  <p>Your application to <strong>The Transformation Letter</strong> has been approved.</p>
-  <p>To access the full bilingual archive and the Transformation AI assistant, sign in with your email:</p>
-  <p style="margin:24px 0">
-    <a href="${signInUrl}" style="background:#C7892A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;font-family:sans-serif;font-size:15px;font-weight:700">
-      Access the archive →
-    </a>
-  </p>
-  <p>Just enter the email address you used on your application — we'll send you a magic link.</p>
-  <p style="margin-top:32px">— Wadi</p>
-  <hr style="border:none;border-top:1px solid #E5E7EB;margin:32px 0">
-  <p style="font-size:12px;color:#6B7280">The Transformation Letter · Diagnostics for $5–100M owner-operators</p>
-</div>`;
-
-  await send({ to, subject, html });
 }
 
 function escHtml(s: string): string {
