@@ -113,18 +113,20 @@ export default async function MemberHome() {
         <div className="card">
           <h3 className="text-lg mb-3">{i18n.yourPreferences}</h3>
           <dl className="text-sm grid grid-cols-[8rem_1fr] gap-y-1">
-            <dt className="text-[var(--color-fg-muted)]">Region</dt><dd>{member.region ?? "—"}</dd>
-            <dt className="text-[var(--color-fg-muted)]">Industry</dt><dd>{member.industry ?? "—"}</dd>
-            <dt className="text-[var(--color-fg-muted)]">Role</dt><dd>{member.role ?? "—"}</dd>
-            <dt className="text-[var(--color-fg-muted)]">Language</dt><dd>{member.preferred_language}</dd>
-            <dt className="text-[var(--color-fg-muted)]">Topics</dt>
+            <dt className="text-[var(--color-fg-muted)]">{memberLang === "es" ? "Región" : "Region"}</dt><dd>{member.region ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">{memberLang === "es" ? "Industria" : "Industry"}</dt><dd>{member.industry ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">{memberLang === "es" ? "Cargo" : "Role"}</dt><dd>{member.role ?? "—"}</dd>
+            <dt className="text-[var(--color-fg-muted)]">{memberLang === "es" ? "Idioma" : "Language"}</dt><dd>{member.preferred_language}</dd>
+            <dt className="text-[var(--color-fg-muted)]">{memberLang === "es" ? "Temas" : "Topics"}</dt>
             <dd>
               {(member.topics_of_interest ?? []).length > 0
                 ? (member.topics_of_interest ?? []).map((id) => topicLabel(id, memberLang)).join(", ")
                 : "—"}
             </dd>
           </dl>
-          <Link className="text-sm mt-3 inline-block" href="/me/preferences">Edit →</Link>
+          <Link className="text-sm mt-3 inline-block" href="/me/preferences">
+            {memberLang === "es" ? "Editar →" : "Edit →"}
+          </Link>
         </div>
 
         {/*

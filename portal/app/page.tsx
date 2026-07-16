@@ -40,7 +40,9 @@ export default async function HomePage() {
           className="pointer-events-none select-none absolute -bottom-10 -right-6 w-64 lg:w-80 opacity-[0.08]"
         />
         <div className="lg:col-span-7">
-          <p className="pill mb-6">EN · ES · Weekly · Members only</p>
+          <p className="pill mb-6">
+            {lang === "es" ? "EN · ES · Semanal · Solo miembros" : "EN · ES · Weekly · Members only"}
+          </p>
           {/* Tagline estático de marca */}
           <h1 className="heading-display mb-8">{i18n.hero}</h1>
 
@@ -153,7 +155,7 @@ export default async function HomePage() {
       <section className="border-t border-[var(--color-line)]">
         <div className="container-wide py-28 lg:py-32 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="pill mb-4">People · Always-on</p>
+            <p className="pill mb-4">{lang === "es" ? "Personas · Siempre activo" : "People · Always-on"}</p>
             <h2 className="heading-section">{i18n.peopleHeading}</h2>
           </div>
           <p className="lg:col-span-7 text-executive text-[1.2rem] text-[var(--color-fg)]/90">
