@@ -26,6 +26,7 @@ import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderDigestHtml, renderDigestText } from "./send-draft-digest.js";
+import { renderEditionHtml } from "../utils/edition-html.js";
 
 // ── Synthetic edition (matches the LATEST schema as of this commit) ─────
 
@@ -171,69 +172,7 @@ function renderMarkdown(): string {
   ].join("\n");
 }
 
-function mdToHtml(md: string): string {
-  const lines = md.split("\n");
-  const out: string[] = [];
-  let inList = false;
-  const inline = (s: string) =>
-    s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.+?)\*/g, "<em>$1</em>")
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-    if (line.startsWith("# ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h1>${inline(line.slice(2))}</h1>`);
-    } else if (line.startsWith("## ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h2>${inline(line.slice(3))}</h2>`);
-    } else if (line.startsWith("### ")) {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<h3>${inline(line.slice(4))}</h3>`);
-    } else if (line.startsWith("- ")) {
-      if (!inList) { out.push("<ul>"); inList = true; }
-      out.push(`<li>${inline(line.slice(2))}</li>`);
-    } else if (line === "---") {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push("<hr>");
-    } else if (line === "") {
-      if (inList) { out.push("</ul>"); inList = false; }
-    } else {
-      if (inList) { out.push("</ul>"); inList = false; }
-      out.push(`<p>${inline(line)}</p>`);
-    }
-  }
-  if (inList) out.push("</ul>");
-  return out.join("\n");
-}
 
-function renderHtml(md: string): string {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${EN_CONTENT.subject}</title>
-<style>
-  * { box-sizing: border-box; }
-  body { font-family: Georgia, serif; max-width: 680px; margin: 0 auto; padding: 24px; color: #0F1A2B; line-height: 1.7; font-size: 17px; background: #F4EFE6; }
-  h1 { font-family: "Cormorant Garamond", Garamond, serif; font-size: 1.6rem; line-height: 1.25; margin: 0 0 8px 0; }
-  h2 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: .12em; margin-top: 2.5rem; color: #1F4E5F; border-bottom: 1px solid #C7892A; padding-bottom: 6px; }
-  p { margin: 1rem 0; }
-  blockquote { border-left: 3px solid #C7892A; margin: 1.2rem 0; padding: .5rem 1rem; color: #1F4E5F; font-style: italic; }
-  hr { border: none; border-top: 1px solid rgba(199,137,42,0.3); margin: 1.5rem 0; }
-  strong { color: #0F1A2B; }
-</style>
-</head>
-<body>
-${mdToHtml(md)}
-</body>
-</html>`;
-}
 
 // ── Designer image prompt (the real thing the Designer would send) ───────
 
@@ -257,7 +196,7 @@ function composeImagePrompt(): string {
     `Editorial illustration, ${tokens.layout.heroDimensions.width}x${tokens.layout.heroDimensions.height} (16:9). ${tokens.imageStyle.approach}.`,
     ``,
     `Visual concept for "${ANGLE.headline}":`,
-    `An abstract architectural composition rendered in deep navy (#0F1A2B) and muted teal (#1F4E5F) with selective ochre (#C7892A) accents. The visual metaphor: a structure being illuminated from within by an external light, revealing the joints and seams that had been invisible. Show this as overlapping geometric planes — a building schematic rendered partially in blueprint line and partially in solid form — where the solid sections reveal load-bearing elements that were not visible in the schematic. Negative space dominates the upper-right quadrant. Cream paper-grain background. Matte finish, hand-drawn feel.`,
+    `An abstract architectural composition rendered in dark gunmetal charcoals (#222831 family) and white line work with a single selective brand-orange (#FD4002) accent. The visual metaphor: a structure being illuminated from within by an external light, revealing the joints and seams that had been invisible. Show this as overlapping geometric planes — a building schematic rendered partially in blueprint line and partially in solid form — where the solid sections reveal load-bearing elements that were not visible in the schematic. Negative space dominates the upper-right quadrant. Dark gunmetal canvas. Matte finish, hand-drawn feel.`,
     ``,
     `Constraints (DO NOT produce these):`,
     ...tokens.imageStyle.constraints.map((c) => `  - ${c}`),
@@ -274,7 +213,7 @@ function main(): void {
   mkdirSync(outDir, { recursive: true });
 
   const md = renderMarkdown();
-  const html = renderHtml(md);
+  const html = renderEditionHtml({ editionId: EDITION_ID, title: EN_CONTENT.subject, markdown: md, language: "en" });
   const imagePrompt = composeImagePrompt();
 
   const draft = {

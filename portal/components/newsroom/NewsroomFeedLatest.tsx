@@ -18,17 +18,23 @@ export function NewsroomFeedLatest({
   channelFiltered: boolean;
 }) {
   return (
-    <section className="newsroom-section border-t border-[var(--color-newsroom-border)]">
-      <div className="container-wide">
-        <h2 className="newsroom-heading-section mb-8">{labels.latest}</h2>
+    <section className="border-t border-[var(--color-line)]">
+      <div className="container-wide py-14 lg:py-16">
+        <h2 className="heading-section mb-8">{labels.latest}</h2>
         {items.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((item) => <NewsroomArticleCard key={item.edition_id} item={item} lang={lang} />)}
+            {items.map((item) => (
+              <NewsroomArticleCard key={item.edition_id} item={item} lang={lang} />
+            ))}
           </div>
         ) : (
-          <div className="rounded-lg border border-[var(--color-newsroom-border)] bg-white p-6 text-[var(--color-newsroom-muted)]">
+          <div className="card text-[var(--color-fg-muted)]">
             <p>{channelFiltered ? labels.emptyChannel : labels.empty}</p>
-            {channelFiltered ? <Link href={"/newsroom" as Route} className="btn btn-md newsroom-cta mt-5">{labels.resetChannel}</Link> : null}
+            {channelFiltered ? (
+              <Link href={"/newsroom" as Route} className="btn btn-ghost btn-sm mt-5">
+                {labels.resetChannel}
+              </Link>
+            ) : null}
           </div>
         )}
       </div>

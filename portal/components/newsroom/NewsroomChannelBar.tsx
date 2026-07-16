@@ -13,20 +13,31 @@ export function NewsroomChannelBar({
   lang: Lang;
   allLabel: string;
 }) {
-  const inactiveClass = "newsroom-pill newsroom-pill-outline transition-colors";
-  const activeClass = "newsroom-pill transition-colors";
+  const activeClass =
+    "pill transition-colors";
+  const inactiveClass =
+    "inline-flex items-center rounded-full border border-[var(--color-line)] px-3 py-1 text-xs font-semibold leading-none text-[var(--color-fg-muted)] transition-colors hover:border-[var(--color-cta)] hover:text-[var(--color-cta)]";
 
   return (
-    <nav className="sticky top-0 z-10 border-b border-[var(--color-newsroom-border)] bg-[var(--color-newsroom-cream)]/95 backdrop-blur">
+    <nav className="sticky top-0 z-10 border-b border-[var(--color-line)] bg-[var(--color-bg)]/95 backdrop-blur">
       <div className="container-wide flex gap-3 overflow-x-auto py-4">
-        <Link href={"/newsroom" as Route} className={!active ? activeClass : inactiveClass} aria-current={!active ? "page" : undefined}>
+        <Link
+          href={"/newsroom" as Route}
+          className={!active ? activeClass : inactiveClass}
+          aria-current={!active ? "page" : undefined}
+        >
           {allLabel}
         </Link>
         {TOPICS.map((topic) => {
           const isActive = active === topic.id;
           const href = `/newsroom/topic/${topic.id}` as Route;
           return (
-            <Link key={topic.id} href={href} className={isActive ? activeClass : inactiveClass} aria-current={isActive ? "page" : undefined}>
+            <Link
+              key={topic.id}
+              href={href}
+              className={isActive ? activeClass : inactiveClass}
+              aria-current={isActive ? "page" : undefined}
+            >
               {lang === "es" ? topic.es : topic.en}
             </Link>
           );

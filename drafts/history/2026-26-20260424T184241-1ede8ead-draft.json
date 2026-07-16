@@ -1,0 +1,294 @@
+{
+  "runId": "1ede8ead-163c-4aac-836d-0b578d1b6947",
+  "editionId": "2026-26",
+  "generatedAt": "2026-04-24T18:42:41.603Z",
+  "contentHash": "d98ffde784a9bac5149309d193462f9f3f4a06f62fd3ee6c75702ad592ddb5fc",
+  "angle": {
+    "headline": "The Team You Have Cannot Execute The Strategy You Want",
+    "thesis": "Most business owners deploy AI and automation before building the team capable of operating it, turning promising technology into expensive shelfware that requires the owner's constant intervention.",
+    "targetPersona": "Business owners who have attempted digital transformation or AI implementation and found themselves more involved in operations, not less, despite the investment",
+    "relevanceToAudience": "The US-LATAM corridor is experiencing simultaneous pressure from tariff uncertainty (T-MEC negotiations ongoing) and AI deployment expectations, forcing owners to make technology bets without the organizational foundation to execute them — a pattern that explains why 74% of US SMBs are re-evaluating tech investments after buyer's remorse.",
+    "suggestedSources": [
+      "b61acedf-8d10-4ddc-9607-3f24c5a20174",
+      "61a14f36-c13c-4316-a23c-675a537b04bd",
+      "2eb6480b-88bf-47d0-9186-804dcf9ea8fb"
+    ],
+    "talkingPoints": [
+      "You bought the AI tools, hired the consultants, launched the digital transformation — but the owner is still the bottleneck on every decision",
+      "The technology failed because the operating model has no mechanism to delegate judgment, only tasks — AI amplifies decisions, it does not make them",
+      "The Capability-Before-Technology Principle: the team must be able to execute the strategy manually before automation can scale it",
+      "Map every critical business decision to a specific role below the owner, then automate the information flow that supports that decision — not the decision itself"
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "The reason your AI tool sits unused (it isn't the vendor)",
+    "preheader": "Tech regret is a sequence problem, not a vendor problem.",
+    "subjectOptions": [
+      "Why your new software isn't sticking",
+      "The reason your AI tool sits unused (it isn't the vendor)",
+      "3 in 4 US SMBs are now rethinking their tech stack"
+    ],
+    "sections": [
+      {
+        "id": "691cd8b6-ea90-46f6-9b9c-e69965b3c807",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: the tools keep arriving, the operating models underneath them are not ready, and the gap is getting expensive.*\n\n- **Strategy:** Federal banking agencies finalized changes to the community bank leverage ratio framework on April 23, tightening how smaller US banks measure capital adequacy. **Strategy is the discipline of reading regulatory floors as pricing signals, not paperwork.** [Read in Federal Reserve — Press Releases ->](https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260423a.htm)\n- **Operating Models:** A new Accenture and Wharton report, cited by HR Executive, finds nearly three-quarters of US SMBs re-evaluating their current tech investments after software-buying regret. **Operating models decide whether a tool compounds value or becomes the line item the next CFO cancels.** [Read in HR Executive ->](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/)\n- **Technology:** Instacart co-founder Apoorva Mehta launched a hedge fund that replaces fundamental portfolio managers with an army of AI agents, per Bloomberg. **Technology is never installed; it is absorbed, and absorption requires a system the machine can join.** [Read in Bloomberg ->](https://www.bloomberg.com/news/articles/2026-04-24/instacart-co-founder-debuts-hedge-fund-where-ai-calls-the-shots)\n- **Human Capital:** Chief Executive Magazine argues employees must evolve into AI-augmented value creators for their companies to compete from here. **Human capital stops being headcount the day you can name what each person does that the machine cannot.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/to-survive-ai-your-employees-must-evolve-asap/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "54fea636-5e54-4e67-8aa6-f5b45c46a375",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:observation===\nAn owner called me yesterday. He had signed the contract three months ago. The agent platform was live, technically. His team was still doing the work the old way. He asked me what went wrong with the vendor. Nothing went wrong with the vendor. The process the tool was meant to automate had never been written down. It lived in two people's heads, one of whom had left in February. The platform was working as designed. It had nothing to work on. The invoice kept arriving anyway, and the owner kept asking the wrong question.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5abaa497-c5b5-48f7-8565-a909c158bd7d",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You bought the tool. Your team keeps doing the work the old way. You did not fail at change management. You failed at sequence.\n\nMost owners read tech regret as a training problem. Their people resisted the new system. The rollout was rushed. The vendor oversold. So the fix is another round of training, a stricter mandate, a new vendor next quarter. None of it sticks, because the diagnosis is wrong.\n\nSoftware does not automate work. It automates an encoded version of work. When the process lives in two senior people's heads, the tool has nothing to automate. What you bought is not a productivity system. You bought a very expensive storage container waiting for a document you never wrote.\n\nA fresh [Accenture and Wharton study, reported by HR Executive](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/), shows that nearly three-quarters of US small and mid-sized businesses are re-evaluating their current tech stack. The narrative is buyer's remorse. The reality is something different. These companies did not choose the wrong tool. They installed the right tool on a floor that could not hold it.\n\n**The three conditions**\n\nBefore any tool can compound value inside the Operating Model OS, three things must exist underneath it. The process must be written, in enough detail that a new manager could run it without asking. The decision rights must be named, so the tool knows which choices to surface and which to execute. And the data must live in one place the tool can read, not scattered across spreadsheets, inboxes, and a senior person's memory.\n\nI have yet to meet a $5M to $100M owner who has all three in place before the tool arrives. Most have zero. They buy the platform first, because the platform is visible and the floor underneath it is not. The invoice comes in dollars. The absence comes in silence. The tool sits unused, and the owner blames the team.\n\nThis is the layer most companies never diagnose. You cannot skip what lives below the tool. You can delay it, but you pay for the delay every time a vendor renews and nothing has changed.\n\n**This week**\n\nPick the tool in your stack that has disappointed you most. Do not cancel it. Do not call the vendor. Instead, write down the process it was supposed to automate, on one page, in full. If you cannot write it, you have named your real problem, and it is not the software. If you can write it, compare what you wrote to what the tool is actually doing. The gap tells you exactly what to fix, and it was never a feature.",
+        "sourceRefs": []
+      },
+      {
+        "id": "e70833f4-86e5-4eb4-bebf-e5ff15dcdb74",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "The [HR Executive report](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/) published this week cites Expert Market research showing that close to three-quarters of US small and mid-sized businesses are re-evaluating their current tech investments. A separate Accenture and Wharton study, referenced in the same piece, frames the issue as preventable with HR influence applied earlier in the buying process.\n\nTechnology and software rank as the second-highest investment priority for 2026, with technology and AI investments ranking third. The spending continues. The regret also continues.\n\nFor US operators running $5M to $100M businesses, the operational implication is direct. The cycle is not a vendor problem or a training problem. It is a sequence problem. The companies moving first on AI without encoded processes are funding experiments their successors will quietly cancel. The ones writing the process first are buying tools their team can actually use on Monday morning.",
+        "sourceRefs": []
+      },
+      {
+        "id": "bd92d742-caa0-4a26-a9e5-a77d1d20181b",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Scribe** - a browser extension that captures your team's workflow as they work and turns each click into a written, screenshotted process document in minutes. It matters because the fastest way to encode a process is to record someone doing it, not to schedule a documentation workshop that never happens. Find it at [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "0a1a5e8e-a21b-427d-8a73-40987a144764",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** which vendor in your stack sends you a renewal notice in the next thirty days, and whether your team can name what it is used for without checking their inbox. If they hesitate, the tool is not in your operating model. It is in your expense report. That gap is the first signal of a stack rationalization you have not yet scheduled, and your CFO already sees it.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0af38015-d463-4984-9e91-59114596ab06",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Por qué su herramienta de IA sigue sin usarse (no es el proveedor)",
+    "preheader": "El arrepentimiento tecnológico es un problema de secuencia, no de proveedor.",
+    "thesis": "La mayoría de los empresarios instala IA y automatización antes de construir el equipo capaz de operarla. La tecnología prometedora termina como software caro que nadie usa y que exige la intervención constante del dueño.",
+    "sections": [
+      {
+        "id": "691cd8b6-ea90-46f6-9b9c-e69965b3c807",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: las herramientas siguen llegando, los modelos operativos debajo no están listos, y la brecha se está volviendo cara.*\n\n- **Estrategia:** Las agencias bancarias federales finalizaron el 23 de abril los cambios al marco del community bank leverage ratio, ajustando cómo los bancos medianos estadounidenses miden la adecuación de capital. **Leer los mínimos regulatorios como señales de precio marca la diferencia entre anticiparse y reaccionar tarde.** [Leer en Federal Reserve — Press Releases ->](https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260423a.htm)\n- **Modelos Operativos:** Un nuevo informe de Accenture y Wharton, citado por HR Executive, encuentra que cerca de tres cuartas partes de las pymes estadounidenses están reevaluando sus inversiones tecnológicas tras el arrepentimiento del software. **El modelo operativo decide si una herramienta multiplica valor o se convierte en el rubro que el próximo CFO cancela.** [Leer en HR Executive ->](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/)\n- **Tecnología:** Apoorva Mehta, cofundador de Instacart, lanzó un hedge fund que reemplaza a los gestores fundamentales de portafolio con agentes de IA, según Bloomberg. **La absorción de tecnología exige un sistema al que la máquina pueda sumarse.** [Leer en Bloomberg ->](https://www.bloomberg.com/news/articles/2026-04-24/instacart-co-founder-debuts-hedge-fund-where-ai-calls-the-shots)\n- **Capital Humano:** Chief Executive Magazine sostiene que los empleados deben evolucionar a creadores de valor asistidos por IA para que sus empresas compitan de aquí en adelante. **El capital humano deja de ser plantilla cuando sabe nombrar qué hace cada persona que la máquina no puede.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/to-survive-ai-your-employees-must-evolve-asap/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "54fea636-5e54-4e67-8aa6-f5b45c46a375",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Un empresario me llamó ayer. Había firmado el contrato tres meses atrás. La plataforma de agentes estaba activa, técnicamente. Su equipo seguía trabajando igual que siempre. Me preguntó qué había fallado con el proveedor. Nada había fallado con el proveedor. El proceso que la herramienta venía a automatizar nunca se documentó. Vivía en la cabeza de dos personas, una de las cuales se fue en febrero. La plataforma funcionaba como debía. Sencillamente no tenía nada sobre qué operar. La factura seguía llegando puntual, y el dueño seguía haciéndose la pregunta equivocada.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5abaa497-c5b5-48f7-8565-a909c158bd7d",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Compró la herramienta. Su equipo sigue trabajando igual que antes. No falló en la gestión del cambio. Falló en la secuencia.\n\nLa lectura habitual del arrepentimiento tecnológico es que hay un problema de capacitación. La gente se resistió. El despliegue fue apresurado. El proveedor prometió más de la cuenta. De ahí que la solución parezca obvia: otra ronda de capacitación, un mandato más estricto, un proveedor nuevo el siguiente trimestre. Nada de eso funciona, porque el diagnóstico está mal.\n\nEl software no automatiza trabajo. Automatiza una versión codificada del trabajo. Cuando el proceso vive en la cabeza de dos personas clave, la herramienta no tiene nada que automatizar. Lo que compró no es un sistema de productividad: es un contenedor muy caro esperando un documento que nunca redactó.\n\nUn [estudio reciente de Accenture y Wharton, reportado por HR Executive](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/), muestra que cerca de tres cuartas partes de las pymes estadounidenses están reevaluando sus inversiones tecnológicas actuales. La narrativa es arrepentimiento del comprador. La realidad es otra. Estas empresas no eligieron mal la herramienta. La instalaron sobre una base que no podía sostenerla.\n\n**Las tres condiciones**\n\nAntes de que cualquier herramienta multiplique valor dentro del Operating Model OS, tres cosas tienen que existir debajo. El proceso tiene que estar escrito, con suficiente detalle para que un gerente nuevo lo ejecute sin preguntar. Los derechos de decisión tienen que estar definidos, para que la herramienta sepa qué opciones presentar y cuáles ejecutar. Y los datos tienen que vivir en un solo lugar legible para la herramienta, no dispersos entre hojas de cálculo, correos y la memoria de un veterano.\n\nAún no conozco a un dueño de empresa mediana mexicana con las tres condiciones listas antes de que llegue la herramienta. La mayoría no tiene ninguna. Compran la plataforma primero, porque la plataforma se ve y los cimientos no. La factura llega en dólares. La ausencia llega en silencio. La herramienta se queda sin usar y el dueño culpa al equipo.\n\nEsta es la capa que casi nadie diagnostica. No se puede saltarse lo que vive debajo de la herramienta. Se puede posponer, pero ese aplazamiento se cobra cada vez que el proveedor renueva y nada ha cambiado.\n\n**Esta semana**\n\nElija la herramienta que más lo ha decepcionado. No la cancele. No llame al proveedor. En cambio, escriba en una página, completo, el proceso que se suponía iba a automatizar. Si no puede escribirlo, acaba de identificar su problema real, y no es el software. Si logra escribirlo, compare lo que escribió contra lo que la herramienta está haciendo de verdad. La brecha le dice exactamente qué arreglar, y nunca fue una función.",
+        "sourceRefs": []
+      },
+      {
+        "id": "e70833f4-86e5-4eb4-bebf-e5ff15dcdb74",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "## Spotlight\n\nEl [informe de HR Executive](https://hrexecutive.com/how-hr-can-break-the-tech-regret-cycle/) publicado esta semana cita datos de Expert Market según los cuales cerca de tres cuartas partes de las pymes estadounidenses están reevaluando sus inversiones tecnológicas actuales. Un estudio aparte de Accenture y Wharton, referido en la misma nota, plantea que el problema es prevenible si Recursos Humanos entra antes en el proceso de compra.\n\nLa tecnología y el software ocupan el segundo lugar como prioridad de inversión para 2026; la inversión en IA, el tercero. El gasto sigue. El arrepentimiento también.\n\nPara el empresario mediano que opera entre 5 y 100 millones de dólares, la implicación operativa es directa. El ciclo no es un problema de proveedor ni de capacitación. Es un problema de secuencia. Las empresas que se lanzan primero a la IA sin procesos documentados están financiando experimentos que sus sucesores cancelarán en silencio. Las que escriben el proceso primero adquieren herramientas que su equipo puede usar el lunes por la mañana.\n\n**Enfoque México.** Apple acaba de lanzar su plataforma Business en México, apuntando directo a las pymes con [rezagos en digitalización](https://elceo.com/tecnologia/apple-va-por-las-pymes-mexicanas-con-su-plataforma-business/). La oferta es atractiva: Blueprints, Zero Touch, cuentas administradas, integración con Google Workspace o Microsoft Entra ID. El riesgo es el mismo que describe el informe de Accenture. Sin procesos escritos, sin responsables de decisión claramente designados y sin datos concentrados en un solo lugar, la consola más elegante del mundo termina siendo otro gasto mensual que el próximo director de finanzas recorta.",
+        "sourceRefs": []
+      },
+      {
+        "id": "bd92d742-caa0-4a26-a9e5-a77d1d20181b",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Scribe** es una extensión de navegador que captura el flujo de trabajo de su equipo en tiempo real y convierte cada clic en un documento escrito con capturas de pantalla, en minutos. Vale la pena porque lo más directo para codificar un proceso es grabar a alguien ejecutándolo, no agendar un taller de documentación que nunca sucede. Encuéntrelo en [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "0a1a5e8e-a21b-427d-8a73-40987a144764",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** qué proveedor de sus herramientas le manda un aviso de renovación en los próximos treinta días, y si su equipo puede decir para qué se usa sin revisar el correo. Si dudan, la herramienta no está en el modelo operativo. Está en el informe de gastos. Esa brecha es el primer indicio de una racionalización tecnológica que usted aún no tiene en agenda, y que su CFO ya detectó.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0af38015-d463-4984-9e91-59114596ab06",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 84,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 203 — target range is 95–185."
+      },
+      {
+        "rule": "sentence-length",
+        "severity": "warning",
+        "section": "insight",
+        "message": "Sentence exceeds 25 words (26 words). Break it up.",
+        "excerpt": "A fresh [Accenture and Wharton study, reported by HR Executive](https://hrexecutive.com/how-hr-can-break-the-tech-regret"
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'Operating Model OS' appears without qualification as if it's an established term the reader should recognize. While it is a Wadi-branded framework (approved), it is not signaled as such in this first usage within the Insight section. Consider: 'Before any tool can compound value inside your operating model...'",
+        "excerpt": "Before any tool can compound value inside the Operating Model OS, three things must exist underneath it."
+      },
+      {
+        "rule": "general-clarity",
+        "severity": "info",
+        "section": "insight",
+        "message": "The three conditions enumeration feels slightly rushed. The second condition ('decision rights must be named') may not land immediately for all readers without a concrete example. Consider whether this could benefit from one more clarifying phrase.",
+        "excerpt": "The process must be written, in enough detail that a new manager could run it without asking. The decision rights must be named, so the tool knows which choices to surface and which to execute. And the data must live in one place the tool can read, not scattered across spreadsheets, inboxes, and a senior person's memory."
+      }
+    ],
+    "wordCounts": {
+      "signal": 203,
+      "apertura": 95,
+      "insight": 433,
+      "fieldReport": 141,
+      "tool": 54,
+      "compass": 72,
+      "total": 998
+    },
+    "shareableSentence": "Software does not automate work. It automates an encoded version of work.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"Software does not automate work. It automates an encoded version of work.\"",
+      "Reframe confirmed: \"You did not fail at change management. You failed at sequence. [...] Most owners read tech regret as a training problem. Their people resisted the new system. The rollout was rushed. The vendor oversold. So the fix is another round of training, a stricter mandate, a new vendor next quarter. None of it sticks, because the diagnosis is wrong.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Federal banking agencies finalized changes to the community bank leverage ratio framework on April 23",
+          "supportingFactId": "3247a934-30e7-4e67-a438-5d0828f132c9",
+          "language": "en"
+        },
+        {
+          "claim": "A new Accenture and Wharton report finds nearly three-quarters of US SMBs re-evaluating their current tech investments",
+          "supportingFactId": "61a14f36-c13c-4316-a23c-675a537b04bd",
+          "language": "en"
+        },
+        {
+          "claim": "Instacart co-founder Apoorva Mehta launched a hedge fund that replaces fundamental portfolio managers with AI agents",
+          "supportingFactId": "b51d515a-d0c4-49bd-aa60-49ecf5c2c6b0",
+          "language": "en"
+        },
+        {
+          "claim": "Technology and software rank as the second-highest investment priority for 2026",
+          "supportingFactId": "61a14f36-c13c-4316-a23c-675a537b04bd",
+          "language": "en"
+        },
+        {
+          "claim": "Apple lanzó su plataforma Business en México apuntando a las pymes",
+          "supportingFactId": "7104ee7c-685e-40b4-a13d-e844ec35cf09",
+          "language": "es"
+        },
+        {
+          "claim": "Las agencias bancarias federales finalizaron el 23 de abril los cambios al community bank leverage ratio",
+          "supportingFactId": "3247a934-30e7-4e67-a438-5d0828f132c9",
+          "language": "es"
+        },
+        {
+          "claim": "Cerca de tres cuartas partes de las pymes estadounidenses están reevaluando sus inversiones tecnológicas",
+          "supportingFactId": "61a14f36-c13c-4316-a23c-675a537b04bd",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.35,
+      "closestPriorAngle": "Why Your Best People Keep the Machine From Running — Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Bloomberg",
+        "Chief Executive Magazine",
+        "Federal Reserve — Press Releases",
+        "HR Executive",
+        "scribehow.com"
+      ],
+      "outletCount": 5
+    },
+    "summary": "Draft passes all quality gates with strong voice match (82/100), verified facts, distinct angle, and diverse sourcing across 5 outlets."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10879,
+      "outputTokens": 436,
+      "costUsd": 0.039177000000000003
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 646,
+      "outputTokens": 8307,
+      "costUsd": 0.205639
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 612,
+      "costUsd": 0.009252
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1023,
+      "outputTokens": 12121,
+      "costUsd": 0.301176
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 816,
+      "costUsd": 0.012306
+    },
+    "totalUsd": 0.56755
+  }
+}

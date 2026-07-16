@@ -11,6 +11,8 @@ export function ApplyForm({ lang }: { lang: Lang }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [topics, setTopics] = useState<TopicId[]>([]);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   function toggle(id: TopicId) {
     setTopics((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
@@ -18,10 +20,22 @@ export function ApplyForm({ lang }: { lang: Lang }) {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitting(true);
     setError(null);
 
+    if (password.length < 8) {
+      setError(i18n.passwordTooShort);
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError(i18n.passwordMismatch);
+      return;
+    }
+
+    setSubmitting(true);
+
     const fd = new FormData(e.currentTarget);
+    // Remove confirmPassword from payload — not needed server-side
+    fd.delete("confirm_password");
     const payload = { ...Object.fromEntries(fd.entries()), topics_of_interest: topics };
 
     const res = await fetch("/api/apply", {
@@ -119,6 +133,38 @@ export function ApplyForm({ lang }: { lang: Lang }) {
         <label className="field-label" htmlFor="motivation">{i18n.motivation}</label>
         <textarea required minLength={20} maxLength={2000} id="motivation" name="motivation" rows={5} className="field-textarea" />
         <p className="text-xs text-[var(--color-fg-muted)] mt-1">{i18n.motivationHelp}</p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <div>
+          <label className="field-label" htmlFor="password">{i18n.password}</label>
+          <input
+            required
+            type="password"
+            id="password"
+            name="password"
+            minLength={8}
+            className="field-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="new-password"
+          />
+          <p className="text-xs text-[var(--color-fg-muted)] mt-1">{i18n.passwordHelp}</p>
+        </div>
+        <div>
+          <label className="field-label" htmlFor="confirm_password">{i18n.confirmPassword}</label>
+          <input
+            required
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            minLength={8}
+            className="field-input"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            autoComplete="new-password"
+          />
+        </div>
       </div>
 
       {error ? <p className="text-sm text-red-700">{error}</p> : null}

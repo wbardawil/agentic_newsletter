@@ -1,0 +1,307 @@
+{
+  "runId": "a0e47479-7c81-43e7-8f31-881c0f8efbb5",
+  "editionId": "2026-29",
+  "generatedAt": "2026-04-25T02:50:19.377Z",
+  "contentHash": "780169629ad2a815757a334020e5f7e6d12d9414527914c5cc83e369d7a9a031",
+  "angle": {
+    "headline": "Why Your Best People Keep Leaving After You Invest in Them",
+    "thesis": "xAI lost every cofounder except Musk and dozens of engineers despite $60B valuation and imminent IPO—not because of compensation, but because the operating model treats talent as interchangeable components instead of building a machine that multiplies their capability.",
+    "targetPersona": "Business owners who have lost key people after investing in training, technology, or expansion—especially those who blame 'loyalty' or market competition instead of examining how their operating model uses (or burns out) talent",
+    "relevanceToAudience": "US-LATAM corridor operators are competing for talent across two labor markets with different expectations, often losing people to US tech companies or regional competitors after investing heavily in their development—the xAI exodus reveals that throwing money and opportunity at retention without fixing the underlying operating model only delays the inevitable departure",
+    "suggestedSources": [
+      "3f77110b-b46f-4c19-8156-4866147c3e2b",
+      "c74ea62c-81a5-4410-8c1b-51dda94c10b3",
+      "5de52f2a-18b9-4b6d-8846-000d0a0175e0",
+      "b6d0a99c-ac92-4dba-a9ff-04604e8c0d8c"
+    ],
+    "talkingPoints": [
+      "xAI lost every cofounder and dozens of engineers despite $60B valuation and imminent IPO—the exits overlap with people meant to lead under a new organizational structure announced in February",
+      "The diagnosis: Musk keeps 'reorienting the overall direction' which means the operating model changes faster than people can build competence—they leave not because they lack opportunity but because the machine keeps getting redesigned around them",
+      "The Capability Multiplier Model: an operating model either multiplies what your people can do (they become more valuable inside than outside) or it extracts what they already know (they become more valuable elsewhere)",
+      "Ask: When someone joins your company, do they gain capabilities they cannot access anywhere else, or do they just execute tasks you have not systematized yet—if it is the latter, you are training them for their next employer"
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "What a three-day interview actually measures",
+    "preheader": "Your longest interviews are revealing the weakest part of your operating model.",
+    "subjectOptions": [
+      "Your hiring process is a diagnosis",
+      "What a three-day interview actually measures",
+      "The operating model buyers pay a premium for"
+    ],
+    "sections": [
+      {
+        "id": "a437f713-631d-4b9a-a951-b2c5271d923f",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: the operating models you built on individual judgment are being tested by capital markets, AI metrics, and talent flux.*\n\n- **Strategy:** Lincoln International, a mid-market investment bank advising business owners and private equity funds, filed for a US IPO this week, [per Bloomberg](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo). **Strategy is choosing which assets are durable enough to survive public scrutiny.** [Read in Bloomberg ->](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo)\n- **Operating Models:** The [National Center for the Middle Market](https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/) released research identifying four decision-making styles among mid-market leaders, each with measurable links to growth performance. **The operating model is the distribution of decisions across a company, not the concentration of them in one person.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/)\n- **Technology:** Spellbook CEO Scott Stevenson publicly called out AI startups for inflating revenue with Contracted ARR, a metric that counts signed contracts as if they were already recurring, [per Fast Company](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson). **Technology amplifies whatever discipline the books already carry.** [Read in Fast Company ->](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson)\n- **Human Capital:** Unpaid multi-day work trials are spreading as AI-assisted applications make candidates indistinguishable on paper, [per Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants). **Human capital systems break down when a company cannot describe its own work.** [Read in Fast Company ->](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants)",
+        "sourceRefs": []
+      },
+      {
+        "id": "dc147152-307f-4017-a71f-f3ac0fedacbf",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:provocation===\nCompanies are now interviewing job candidates for three days at a time. [Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants) reports unpaid work trials are spreading across industries, prompted by a flood of AI-assisted applications that all look the same. The explanation offered is that interviews have become unreliable. That is not the real explanation. A three-day work trial is a company admitting it cannot describe its own work well enough to evaluate a candidate any other way. The AI flood did not create this problem. It exposed it. The operating model that lived only inside the practice of the work is now showing up as an interview process that has stopped screening.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1908fec0-e2e0-42b0-a338-a890d1e3ebfb",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "Your hiring process keeps getting longer. More rounds. More assessments. Now a three-day work trial, unpaid, before anyone signs an offer. Each added round reveals less about whether the candidate can actually do the job.\n\nThe conventional reading is that AI has flooded applications and made them unreliable. [Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants) quotes a training platform CEO describing this as the largest upheaval in modern hiring history. That part is real. It is also incomplete.\n\nThe deeper problem is that your company cannot describe its own work. When the work lives only inside the practice of it, the only way to evaluate a candidate is to watch them practice. Every extra round of interviewing is a workaround for a missing artifact. You are using a candidate's unpaid time to do the documentation your operating model never produced.\n\nMost advisors call this a hiring problem and prescribe better assessments. It is not a hiring problem. It is a missing document.\n\n**Job Description vs. Work Description**\n\nA job description names the role: responsibilities, requirements, reporting lines. A work description names the work itself: the inputs that arrive, the decisions that get made, the outputs that leave. Most companies have the first. Very few have the second.\n\nThe work description is an Operating Model OS artifact. When it exists, three things change. Hiring gets shorter, because you can evaluate a candidate's judgment against a written reference instead of three days of observation. Onboarding gets faster, because a new hire reads the work description and knows what good looks like in week one. Departures get survivable, because the work description is what the person leaves behind when they go.\n\nThe test is narrow. Could a qualified outsider read one document and understand not just what the role does, but what a good decision inside the role looks like? If not, you have a job posting. You do not have a work description.\n\nMost owners refuse to write this because they believe the work is too nuanced to put on paper. That belief is the Operating Model OS problem in one sentence. The nuance is real. The refusal to encode it is what keeps you trapped in founder-dependent hiring and multi-day evaluations.\n\n**This week**\n\nPick one role on your team that feels hardest to hire for. Sit with the person doing it now. Ask three questions. What decisions do you make in a normal week? Which ones are hard? What would a new person get wrong in month one? Write the answers on a single page. That page is the first draft of your work description. It is also the document that will end most of your three-day interviews.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b96b7e6b-2858-4278-a267-a218b48109f4",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "The [National Center for the Middle Market](https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/) published research this week identifying four distinct decision-making styles among strategic leaders in mid-market companies. Each style, according to NCMM executive director Doug Farren, links to different performance and growth outcomes.\n\nThe point is not which style is correct. The point is that a CEO's decision-making style operates as an invisible input to the operating model. An owner who decides by consensus produces a different company than an owner who decides alone and informs. Neither style is wrong. Both get encoded in the business, usually without anyone noticing.\n\nFor a US-based owner running a $5M to $100M business, the implication is practical. Your decision style is already installed in your company's operating model. The question is whether you installed it deliberately or by default. The next generation of managers needs to know the rules well enough to operate without you in the room.",
+        "sourceRefs": []
+      },
+      {
+        "id": "38559c73-764a-470d-adf2-5e6753434259",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Tango** - a Chrome extension that captures a screen workflow while you perform it and auto-generates step-by-step documentation with screenshots. For Operating Model OS work, it shortens the gap between \"we know how to do this\" and \"we have written how we do this\" from weeks to minutes. Find it at [tango.us](https://www.tango.us).",
+        "sourceRefs": []
+      },
+      {
+        "id": "146b8eef-a648-4954-bf4a-b592bbb7101a",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** which of the mid-market deals that close this quarter clear at a premium despite the choppy environment. [GF Data and Forvis Mazars](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/) flagged mixed signals across 2025, and 2026 is opening the same way. The transactions that land at premium multiples will share a trait: the business is legible to a buyer without the owner in the room. That legibility is the operating model, documented. Buyers will pay up for it this year.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ce021682-2880-4f10-b2e8-de482b132953",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Qué mide en realidad una entrevista de tres días",
+    "preheader": "Sus entrevistas más largas están exhibiendo la parte más débil de su modelo operativo.",
+    "thesis": "xAI perdió a todos sus cofundadores salvo Musk y a decenas de ingenieros pese a una valuación de 60,000 mdd y una salida a bolsa inminente. No fue cuestión de salarios, sino de un modelo operativo que trata al talento como pieza intercambiable en lugar de construir una máquina que multiplique su capacidad.",
+    "sections": [
+      {
+        "id": "a437f713-631d-4b9a-a951-b2c5271d923f",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: los modelos operativos que usted construyó sobre el juicio individual están siendo probados por los mercados de capital, las métricas de IA y la rotación de talento.*\n\n- **Estrategia:** Lincoln International, banca de inversión de mercado medio que asesora a dueños de negocio y fondos de private equity, presentó esta semana su solicitud de salida a bolsa en Estados Unidos, [según Bloomberg](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo). **Elija qué activos resisten el escrutinio público.** [Leer en Bloomberg ->](https://www.bloomberg.com/news/articles/2026-04-24/mid-market-investment-bank-lincoln-international-files-for-ipo)\n- **Modelos Operativos:** El [National Center for the Middle Market](https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/) publicó una investigación que identifica cuatro estilos de toma de decisión entre líderes de empresas medianas, cada uno con vínculo medible al desempeño. **El modelo operativo vive en cómo distribuye decisiones, no en quién las concentra.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/podcast-national-center-middle-market-four-decision-makers/)\n- **Tecnología:** El CEO de Spellbook, Scott Stevenson, denunció públicamente a startups de IA por inflar sus ingresos con Contracted ARR, métrica que cuenta contratos firmados como si ya fueran recurrentes, [según Fast Company](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson). **La tecnología amplifica la disciplina que ya cargan los libros.** [Leer en Fast Company ->](https://www.fastcompany.com/91532292/ai-startups-arr-carr-scott-stevenson)\n- **Capital Humano:** Las pruebas de trabajo no remuneradas de varios días se están extendiendo conforme las postulaciones asistidas por IA vuelven indistinguibles a los candidatos en papel, [según Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants). **Cuando la empresa no sabe describir su propio trabajo, el proceso de selección lo paga el candidato.** [Leer en Fast Company ->](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants)",
+        "sourceRefs": []
+      },
+      {
+        "id": "dc147152-307f-4017-a71f-f3ac0fedacbf",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Hay empresas que ya entrevistan a sus candidatos durante tres días seguidos. [Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants) reporta que las pruebas de trabajo no remuneradas se extienden por distintas industrias, impulsadas por una avalancha de postulaciones asistidas con IA que lucen idénticas entre sí. La explicación oficial es que la entrevista dejó de ser confiable. No es la verdadera. Una prueba de tres días es una empresa admitiendo que no sabe describir su propio trabajo con la suficiente precisión para evaluar a un candidato de otra manera. La avalancha de IA no creó el problema. Lo dejó al descubierto. El modelo operativo que vivía únicamente en la práctica cotidiana del trabajo aparece ahora como un proceso de entrevista que ya no filtra.",
+        "sourceRefs": []
+      },
+      {
+        "id": "1908fec0-e2e0-42b0-a338-a890d1e3ebfb",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "Su proceso de contratación se alarga. Más rondas. Más pruebas. Ahora una jornada de tres días, sin paga, antes de que alguien firme una oferta. Cada ronda añadida revela menos sobre si el candidato puede hacer el trabajo.\n\nLa lectura habitual es que la IA inundó las postulaciones y las volvió poco confiables. [Fast Company](https://www.fastcompany.com/91530997/the-rise-of-days-long-and-often-unpaid-work-trials-for-job-applicants) cita a la directora de una plataforma de capacitación que describe esto como la mayor sacudida en la historia moderna de la contratación. Esa parte es real. También es incompleta.\n\nEl problema de fondo es que la empresa no sabe describir su propio trabajo. Cuando el trabajo vive solo en la práctica de hacerlo, la única manera de evaluar a un candidato es verlo practicarlo. Cada ronda extra de entrevista es un parche para un documento que falta. Usted está usando el tiempo no remunerado del candidato para producir la documentación que el modelo operativo nunca generó.\n\nLa mayoría de los asesores encuadra esto como un problema de contratación y receta mejores pruebas. No es un problema de contratación. Es un documento ausente.\n\n**Descripción del puesto vs. descripción del trabajo**\n\nUna descripción de puesto nombra el rol: responsabilidades, requisitos, líneas de reporte. Una descripción del trabajo nombra el trabajo en sí: los insumos que entran, las decisiones que se toman, los resultados que salen. Casi todas las empresas tienen lo primero. Pocas tienen lo segundo.\n\nLa descripción del trabajo es un artefacto del Operating Model OS. Cuando existe, tres cosas cambian. La contratación se acorta, porque usted puede evaluar el juicio del candidato contra una referencia escrita en lugar de tres días de observación. La inducción se acelera, porque el nuevo lee la descripción y sabe desde la primera semana cómo se ve el trabajo bien hecho. La salida se vuelve sobrevivible, porque la descripción del trabajo es lo que la persona deja al irse.\n\nLa prueba es estrecha. ¿Podría un externo calificado leer un solo documento y entender no solo qué hace el rol, sino qué decisión dentro del rol se considera buena? Si no, lo que tiene es una vacante publicada. No tiene una descripción del trabajo.\n\nLa mayoría de los dueños se niega a escribirla porque cree que el trabajo tiene demasiado matiz para plasmarlo en papel. Esa creencia es el problema del Operating Model OS en una sola oración. El matiz es real. La negativa a codificarlo es lo que mantiene al negocio atrapado en contrataciones que dependen del fundador y en evaluaciones de varios días.\n\n**Esta semana,** elija un puesto del equipo que más cueste cubrir. Siéntese con quien lo ocupa hoy. Hágale tres preguntas. ¿Qué decisiones toma en una semana normal? ¿Cuáles son las difíciles? ¿En qué se equivocaría una persona nueva durante su primer mes? Anote las respuestas en una sola página. Esa página es el primer borrador de la descripción del trabajo. Es también el documento que terminará con la mayoría de sus entrevistas de tres días.",
+        "sourceRefs": []
+      },
+      {
+        "id": "b96b7e6b-2858-4278-a267-a218b48109f4",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "Sección: spotlight\n\nChedraui anunció esta semana que llevará su formato Supercito de 353 a 1,000 tiendas en los próximos años, [según El CEO](https://elceo.com/negocios/chedraui-acelera-con-supercito-va-por-1000-tiendas-para-competir-con-oxxo-y-3b/). La cadena veracruzana planea abrir 130 unidades este año y duplicar el ritmo en los siguientes.\n\nLa decisión va más allá de la expansión. Es una apuesta sobre quién va a decidir aperturas, precios y surtidos cuando José Antonio Chedraui Eguia ya no esté en cada llamada. Un estudio publicado esta semana por el National Center for the Middle Market identifica cuatro estilos de decisión entre líderes de empresas medianas, cada uno con efectos medibles sobre desempeño y crecimiento. Lo relevante no es cuál estilo es el correcto. Lo relevante es que el estilo de decisión del director opera como un insumo invisible del modelo operativo y queda codificado en la empresa, casi siempre sin que nadie lo advierta.\n\nPara el dueño mexicano de una empresa de 5 a 100 mdd, la lectura es práctica. Su estilo de decisión ya está instalado en el modelo operativo. La pregunta es si lo instaló a propósito o por defecto. La siguiente generación de directivos necesita conocer las reglas lo suficientemente bien como para operar sin usted en la sala.",
+        "sourceRefs": []
+      },
+      {
+        "id": "38559c73-764a-470d-adf2-5e6753434259",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Tango** - extensión de Chrome que captura un flujo de trabajo en pantalla conforme usted lo ejecuta y genera, de manera automática, la documentación paso a paso con capturas de pantalla. Para el trabajo de Operating Model OS, reduce de semanas a minutos la brecha entre \"sabemos cómo se hace\" y \"tenemos escrito cómo se hace\". Disponible en [tango.us](https://www.tango.us).",
+        "sourceRefs": []
+      },
+      {
+        "id": "146b8eef-a648-4954-bf4a-b592bbb7101a",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuáles de las operaciones del mercado medio que cierren este trimestre lo hacen a múltiplo premium pese al entorno revuelto. [GF Data y Forvis Mazars](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/) registraron señales mixtas durante 2025, y 2026 arranca igual. Las transacciones que alcancen múltiplos premium compartirán un rasgo: el negocio se entiende sin el dueño en la sala. Esa comprensión es el modelo operativo, ya documentado. Los compradores pagarán más por ella este año.",
+        "sourceRefs": []
+      },
+      {
+        "id": "ce021682-2880-4f10-b2e8-de482b132953",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 85,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 196 — target range is 95–185."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The phrase 'work description' is presented as an established Operating Model OS artifact but is not pre-approved and not signaled as the writer's own framing. The industry term 'job specification' or 'role documentation' would work, or this needs explicit attribution as the writer's terminology.",
+        "excerpt": "The work description is an Operating Model OS artifact. When it exists, three things change."
+      },
+      {
+        "rule": "rule-7-compass-specificity",
+        "severity": "warning",
+        "section": "compass",
+        "message": "The watch item 'which of the mid-market deals that close this quarter clear at a premium' is trackable but relies on information the reader likely cannot access directly (private M&A transaction multiples). A more actionable signal would be observable from the reader's position.",
+        "excerpt": "Watch for this week: which of the mid-market deals that close this quarter clear at a premium despite the choppy environment."
+      }
+    ],
+    "wordCounts": {
+      "signal": 196,
+      "apertura": 107,
+      "insight": 442,
+      "fieldReport": 150,
+      "tool": 52,
+      "compass": 77,
+      "total": 1024
+    },
+    "shareableSentence": "A three-day work trial is a company admitting it cannot describe its own work well enough to evaluate a candidate any other way.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"A three-day work trial is a company admitting it cannot describe its own work well enough to evaluate a candidate any other way.\"",
+      "Reframe confirmed: \"The conventional reading is that AI has flooded applications and made them unreliable. [...] That part is real. It is also incomplete. The deeper problem is that your company cannot describe its own work.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Lincoln International filed for a US IPO this week",
+          "supportingFactId": "5374a177-7f6b-41c9-9db1-5a2ce6915a07",
+          "language": "en"
+        },
+        {
+          "claim": "National Center for the Middle Market released research identifying four decision-making styles among mid-market leaders",
+          "supportingFactId": "3772d19a-87ea-49c0-9a38-e95febb231ea",
+          "language": "en"
+        },
+        {
+          "claim": "Spellbook CEO Scott Stevenson publicly called out AI startups for inflating revenue with Contracted ARR",
+          "supportingFactId": "bccf4cc6-af81-4140-843b-fe2bdab516fe",
+          "language": "en"
+        },
+        {
+          "claim": "Unpaid multi-day work trials are spreading as AI-assisted applications make candidates indistinguishable on paper",
+          "supportingFactId": "3b9815a6-c2da-450f-98bb-be95d521f2cd",
+          "language": "en"
+        },
+        {
+          "claim": "Fast Company reports unpaid work trials are spreading across industries",
+          "supportingFactId": "3b9815a6-c2da-450f-98bb-be95d521f2cd",
+          "language": "en"
+        },
+        {
+          "claim": "Training platform CEO describes this as the largest upheaval in modern hiring history",
+          "supportingFactId": "3b9815a6-c2da-450f-98bb-be95d521f2cd",
+          "language": "en"
+        },
+        {
+          "claim": "NCMM executive director Doug Farren says each decision-making style links to different performance and growth outcomes",
+          "supportingFactId": "3772d19a-87ea-49c0-9a38-e95febb231ea",
+          "language": "en"
+        },
+        {
+          "claim": "GF Data and Forvis Mazars flagged mixed signals across 2025",
+          "supportingFactId": "1dade5ac-ad4e-4bbc-ad7b-1ee33b162593",
+          "language": "en"
+        },
+        {
+          "claim": "Chedraui anunció que llevará su formato Supercito de 353 a 1,000 tiendas en los próximos años",
+          "supportingFactId": "e7c7f5c0-3db6-4800-bbd0-50de4acdc91a",
+          "language": "es"
+        },
+        {
+          "claim": "La cadena planea abrir 130 unidades este año",
+          "supportingFactId": "e7c7f5c0-3db6-4800-bbd0-50de4acdc91a",
+          "language": "es"
+        },
+        {
+          "claim": "José Antonio Chedraui Eguia es mencionado como director",
+          "supportingFactId": "e7c7f5c0-3db6-4800-bbd0-50de4acdc91a",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "When Your Best People Leave Because You Won't Let Them Lead",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 82,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Bloomberg",
+        "Fast Company",
+        "Middle Market Growth (ACG)",
+        "tango.us"
+      ],
+      "outletCount": 4
+    },
+    "summary": "Draft passes all checks with strong voice match (82/100), clear fact verification across all claims, meaningful angle distinction from prior editions, and healthy source diversity across four distinct outlets."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10855,
+      "outputTokens": 579,
+      "costUsd": 0.041249999999999995
+    },
+    "writer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 789,
+      "outputTokens": 10589,
+      "costUsd": 0.261758
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 532,
+      "costUsd": 0.008052
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1164,
+      "outputTokens": 11922,
+      "costUsd": 0.295194
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1070,
+      "costUsd": 0.016116
+    },
+    "totalUsd": 0.6223700000000001
+  }
+}

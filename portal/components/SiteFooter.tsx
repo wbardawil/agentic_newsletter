@@ -2,9 +2,12 @@ import Link from "next/link";
 
 import type { Lang } from "@/lib/i18n/dictionary";
 import { t } from "@/lib/i18n/dictionary";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
-export function SiteFooter({ lang }: { lang: Lang }) {
+export async function SiteFooter({ lang }: { lang: Lang }) {
   const i18n = t(lang);
+  const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
   return (
     <footer className="mt-32 border-t border-[var(--color-line)] bg-[var(--color-bg)]">
       <div className="container-wide py-14 grid gap-10 md:grid-cols-12">
@@ -25,8 +28,14 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             <li><Link href="/about"      className="nav-link">{i18n.about.kicker}</Link></li>
             <li><Link href="/archive"    className="nav-link">{i18n.nav.archive}</Link></li>
             {/* <li><Link href="/convenings" className="nav-link">{i18n.nav.convenings}</Link></li> */}
-            <li><Link href="/apply"      className="nav-link">{i18n.nav.apply}</Link></li>
-            <li><Link href="/sign-in"    className="nav-link">{i18n.nav.signIn}</Link></li>
+            {!user ? (
+              <>
+                <li><Link href="/apply"      className="nav-link">{i18n.nav.apply}</Link></li>
+                <li><Link href="/sign-in"    className="nav-link">{i18n.nav.signIn}</Link></li>
+              </>
+            ) : (
+              <li><Link href="/me"         className="nav-link">{i18n.nav.account}</Link></li>
+            )}
           </ul>
         </div>
 

@@ -20,8 +20,8 @@
     "regenerate-image": "node --import tsx src/regenerate-image.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:portal": "vitest run --config vitest.portal.config.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "rerender:html": "node --import tsx src/scripts/rerender-draft-html.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",

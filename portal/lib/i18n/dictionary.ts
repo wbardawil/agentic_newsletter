@@ -43,6 +43,11 @@ export type Dict = {
     language: string;
     motivation: string;
     motivationHelp: string;
+    password: string;
+    passwordHelp: string;
+    confirmPassword: string;
+    passwordTooShort: string;
+    passwordMismatch: string;
     submit: string;
     submitting: string;
     successTitle: string;
@@ -50,7 +55,7 @@ export type Dict = {
     sizeOptions: { value: string; label: string }[];
     regionOptions: { value: string; label: string }[];
   };
-  signIn: { title: string; sub: string; email: string; submit: string; check: string };
+  signIn: { title: string; sub: string; email: string; password: string; submit: string; forgotPassword: string };
   member: {
     welcome: string;
     latestIssue: string;
@@ -154,11 +159,16 @@ const en: Dict = {
     language: "Preferred language",
     motivation: "What are you trying to transform, and what have you already tried?",
     motivationHelp: "Two or three sentences is enough. Be specific about the gap you are stuck on.",
-    submit: "Submit application",
-    submitting: "Submitting…",
-    successTitle: "Application received.",
+    password: "Password",
+    passwordHelp: "Minimum 8 characters.",
+    confirmPassword: "Confirm password",
+    passwordTooShort: "Password must be at least 8 characters.",
+    passwordMismatch: "Passwords do not match.",
+    submit: "Create my account",
+    submitting: "Creating account…",
+    successTitle: "Welcome to The Transformation Letter.",
     successBody:
-      "We will write back within five business days. If accepted, you will get a sign-in link to the portal.",
+      "Your account is ready. Sign in now with the email and password you just set.",
     sizeOptions: [
       { value: "under_5m", label: "Under $5M" },
       { value: "5m_25m", label: "$5M – $25M" },
@@ -179,10 +189,11 @@ const en: Dict = {
   },
   signIn: {
     title: "Sign in",
-    sub: "Magic links only. We do not store passwords.",
-    email: "Member email",
-    submit: "Send magic link",
-    check: "Check your inbox. The link expires in 10 minutes.",
+    sub: "Enter your email and password to access the portal.",
+    email: "Email",
+    password: "Password",
+    submit: "Sign in",
+    forgotPassword: "Forgot your password?",
   },
   member: {
     welcome: "Welcome back.",
@@ -328,11 +339,16 @@ const es: Dict = {
     language: "Idioma preferido",
     motivation: "¿Qué estás intentando transformar y qué has probado ya?",
     motivationHelp: "Dos o tres frases bastan. Sé específico sobre el gap donde estás estancado.",
-    submit: "Enviar postulación",
-    submitting: "Enviando…",
-    successTitle: "Postulación recibida.",
+    password: "Contraseña",
+    passwordHelp: "Mínimo 8 caracteres.",
+    confirmPassword: "Confirmar contraseña",
+    passwordTooShort: "La contraseña debe tener al menos 8 caracteres.",
+    passwordMismatch: "Las contraseñas no coinciden.",
+    submit: "Crear mi cuenta",
+    submitting: "Creando cuenta…",
+    successTitle: "Bienvenido a The Transformation Letter.",
     successBody:
-      "Te respondemos en cinco días hábiles. Si entras, te llega un magic link al portal.",
+      "Tu cuenta está lista. Ingresa ahora con el correo y la contraseña que acabas de configurar.",
     sizeOptions: [
       { value: "under_5m", label: "Menos de $5M" },
       { value: "5m_25m", label: "$5M – $25M" },
@@ -353,10 +369,11 @@ const es: Dict = {
   },
   signIn: {
     title: "Ingresar",
-    sub: "Solo magic links. No guardamos contraseñas.",
-    email: "Correo de miembro",
-    submit: "Enviar magic link",
-    check: "Revisa tu correo. El link expira en 10 minutos.",
+    sub: "Ingresa tu correo y contraseña para acceder al portal.",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    submit: "Ingresar",
+    forgotPassword: "¿Olvidaste tu contraseña?",
   },
   member: {
     welcome: "Bienvenido de vuelta.",

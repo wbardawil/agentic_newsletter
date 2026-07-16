@@ -12,9 +12,8 @@ export type Region =
   | "other";
 export type OsPillar = "Strategy OS" | "Operating Model OS" | "Technology OS";
 export type Language = "en" | "es";
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
-export interface MemberRow {
+export type MemberRow = {
   id: string;
   email: string;
   full_name: string | null;
@@ -31,7 +30,7 @@ export interface MemberRow {
   updated_at: string;
 }
 
-export interface ApplicationRow {
+export type ApplicationRow = {
   id: string;
   email: string;
   full_name: string;
@@ -49,7 +48,7 @@ export interface ApplicationRow {
   created_at: string;
 }
 
-export interface EditionRow {
+export type EditionRow = {
   id: string;
   edition_id: string;
   edition_number: number;
@@ -69,7 +68,7 @@ export interface EditionRow {
   is_published: boolean;
 }
 
-export interface EditionSourceRow {
+export type EditionSourceRow = {
   id: string;
   edition_id: string;
   title: string;
@@ -79,7 +78,7 @@ export interface EditionSourceRow {
 }
 
 /** Body-free public projection of published editions (view: editions_public). */
-export interface EditionPublicRow {
+export type EditionPublicRow = {
   id: string;
   edition_id: string;
   edition_number: number;
@@ -96,23 +95,23 @@ export interface EditionPublicRow {
   hero_image_url: string | null;
 }
 
-export interface AiConversationRow {
+export type AiConversationRow = {
   id: string;
   member_id: string;
   title: string;
   created_at: string;
 }
 
-export interface AiMessageRow {
+export type AiMessageRow = {
   id: string;
   conversation_id: string;
   role: "user" | "assistant";
   content: string;
-  citations: Json | null;
+  citations: { edition_id: string; quote: string }[] | null;
   created_at: string;
 }
 
-export interface ConveningRow {
+export type ConveningRow = {
   id: string;
   city: string;
   region: Region;
@@ -123,45 +122,30 @@ export interface ConveningRow {
   rsvp_count: number;
 }
 
-export interface ConveningsWithCountsRow {
-  id: string;
-  city: string;
-  region: Region;
-  starts_at: string;
-  capacity: number;
-  description: string;
-  language: Language;
-  rsvp_count: number;
-}
-
-export interface ConveningRsvpRow {
+export type ConveningRsvpRow = {
   member_id: string;
   convening_id: string;
   status: "confirmed" | "waitlist" | "cancelled";
   created_at: string;
 }
 
+type Rel = [];
+
 export type Database = {
   public: {
     Tables: {
-      members: { Row: MemberRow; Insert: Partial<MemberRow> & { id: string; email: string }; Update: Partial<MemberRow>; Relationships: [] };
-      applications: { Row: ApplicationRow; Insert: Omit<ApplicationRow, "id" | "created_at" | "status" | "decided_by" | "decided_at"> & { status?: ApplicationStatus }; Update: Partial<ApplicationRow>; Relationships: [] };
-      editions: { Row: EditionRow; Insert: Partial<EditionRow> & { edition_id: string }; Update: Partial<EditionRow>; Relationships: [] };
-      edition_sources: { Row: EditionSourceRow; Insert: Omit<EditionSourceRow, "id">; Update: Partial<EditionSourceRow>; Relationships: [] };
-      ai_conversations: { Row: AiConversationRow; Insert: Omit<AiConversationRow, "id" | "created_at"> & { id?: string }; Update: Partial<AiConversationRow>; Relationships: [] };
-      ai_messages: { Row: AiMessageRow; Insert: Omit<AiMessageRow, "id" | "created_at" | "citations"> & { id?: string; citations?: Json | null }; Update: Partial<AiMessageRow>; Relationships: [] };
-      convenings: { Row: ConveningRow; Insert: Omit<ConveningRow, "id" | "rsvp_count"> & { id?: string }; Update: Partial<ConveningRow>; Relationships: [] };
-      convening_rsvps: { Row: ConveningRsvpRow; Insert: ConveningRsvpRow; Update: Partial<ConveningRsvpRow>; Relationships: [] };
+      members: { Row: MemberRow; Insert: Partial<MemberRow> & { id: string; email: string }; Update: Partial<MemberRow>; Relationships: Rel };
+      applications: { Row: ApplicationRow; Insert: Partial<ApplicationRow> & { email: string; full_name: string; company: string; role: string; company_size_band: CompanySizeBand; region: Region; motivation: string }; Update: Partial<ApplicationRow>; Relationships: Rel };
+      editions: { Row: EditionRow; Insert: Partial<EditionRow> & { edition_id: string }; Update: Partial<EditionRow>; Relationships: Rel };
+      edition_sources: { Row: EditionSourceRow; Insert: Partial<EditionSourceRow> & { edition_id: string; title: string; url: string }; Update: Partial<EditionSourceRow>; Relationships: Rel };
+      ai_conversations: { Row: AiConversationRow; Insert: Partial<AiConversationRow> & { member_id: string }; Update: Partial<AiConversationRow>; Relationships: Rel };
+      ai_messages: { Row: AiMessageRow; Insert: Partial<AiMessageRow> & { conversation_id: string; role: "user" | "assistant"; content: string }; Update: Partial<AiMessageRow>; Relationships: Rel };
+      convenings: { Row: ConveningRow; Insert: Partial<ConveningRow> & { city: string; region: Region; starts_at: string; capacity: number; description: string }; Update: Partial<ConveningRow>; Relationships: Rel };
+      convening_rsvps: { Row: ConveningRsvpRow; Insert: Partial<ConveningRsvpRow> & { member_id: string; convening_id: string }; Update: Partial<ConveningRsvpRow>; Relationships: Rel };
     };
     Views: {
-      convenings_with_counts: {
-        Row: ConveningsWithCountsRow;
-        Relationships: [];
-      };
-      editions_public: {
-        Row: EditionPublicRow;
-        Relationships: [];
-      };
+      convenings_with_counts: { Row: ConveningRow; Relationships: Rel };
+      editions_public: { Row: EditionPublicRow; Relationships: Rel };
     };
     Functions: Record<string, never>;
     Enums: Record<string, never>;

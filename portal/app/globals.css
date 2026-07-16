@@ -1,27 +1,45 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
- * wadibardawil.com brand tokens.
- * Dark-only palette. Orange #fd7014 reserved for CTAs and highlights.
- * System sans, 8px radius, generous vertical spacing.
+ * Wadi Bardawil brand system tokens (Brand System DESIGN.md — gunmetal +
+ * naranja, Archivo display / Manrope body, matches wadibardawil.com).
+ * Dark-only palette. Orange #FD4002 reserved for CTAs and highlights.
  * ------------------------------------------------------------------------- */
 @theme {
-  --color-bg:        #22252a;  /* page background, header, primary dark */
-  --color-surface:   #2c2f36;  /* card / elevated surface */
-  --color-surface-2: #393e46;  /* secondary surface, borders */
-  --color-line:      #3a3f47;  /* dividers */
+  --color-bg:        #222831;  /* gunmetal — page background, header, primary dark */
+  --color-surface:   #2C333E;  /* panel — card / elevated surface */
+  --color-surface-2: #39414D;  /* secondary surface, borders */
+  --color-line:      #3D4550;  /* dividers */
   --color-fg:        #ffffff;  /* primary text */
-  --color-fg-muted:  #a0a4ac;  /* secondary text, captions */
-  --color-cta:       #fd7014;  /* CTA + highlights only */
-  --color-cta-hover: #ff8635;
+  --color-fg-muted:  #AEB6C2;  /* secondary text, captions */
+  --color-cta:       #FD4002;  /* CTA + highlights only */
+  --color-cta-hover: #D63601;  /* orange pressed */
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: var(--font-archivo), var(--font-manrope), ui-sans-serif,
+               system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
                "Liberation Mono", monospace;
 
   --radius:    0.5rem;
   --radius-lg: 0.75rem;
+}
+
+/* Light mode — the Brand System's --wb-light (#F4F5F7) variation. Follows
+ * the visitor's system preference; the header toggle sets [data-theme] and
+ * overrides it. Orange stays identical in both modes. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-bg: #F4F5F7; --color-surface: #FFFFFF; --color-surface-2: #E4E7EC;
+    --color-line: #D8DCE2; --color-fg: #222831; --color-fg-muted: #5A626E;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --color-bg: #F4F5F7; --color-surface: #FFFFFF; --color-surface-2: #E4E7EC;
+  --color-line: #D8DCE2; --color-fg: #222831; --color-fg-muted: #5A626E;
+  color-scheme: light;
 }
 
 @layer base {
@@ -37,7 +55,8 @@
 
   h1, h2, h3, h4 {
     color: var(--color-fg);
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-weight: 800;
     letter-spacing: -0.015em;
     line-height: 1.1;
   }
@@ -85,6 +104,9 @@
   /* CTAs. Orange filled / orange outline. No other accent uses orange. */
   .btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
+    /* Default (md) padding so `btn btn-primary` without a size class still
+       renders as a real button; .btn-sm/.btn-xl override it. */
+    padding: 0.7rem 1.15rem; font-size: 0.95rem;
     border-radius: var(--radius);
     font-weight: 600; letter-spacing: 0.01em;
     transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;

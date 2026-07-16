@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
-import type { Database } from "@/lib/supabase/types";
 import { TOPIC_IDS } from "@/lib/topics";
-import { sendApplicationConfirmation } from "@/lib/email";
+
 
 const Body = z.object({
   email: z.string().email().max(200),
@@ -20,6 +19,7 @@ const Body = z.object({
     .max(TOPIC_IDS.length)
     .default([]),
   motivation: z.string().min(20).max(2000),
+  password: z.string().min(8).max(72),
 });
 
 export async function POST(request: Request) {
@@ -39,27 +39,82 @@ export async function POST(request: Request) {
   }
 
   const supabase = getSupabaseAdminClient();
-  const insert: Database["public"]["Tables"]["applications"]["Insert"] = {
-    ...parsed.data,
-    industry: parsed.data.industry ?? null,
-    status: "pending",
-  };
-  const { error } = await (supabase.from("applications") as any).insert(insert);
+  const { email, password, full_name, company, role, company_size_band, region,
+          industry, preferred_language, topics_of_interest, motivation } = parsed.data;
 
-  if (error) {
-    if (error.code === "23505") {
+  // 1. Create the Supabase auth user (email confirmed immediately — no email verification step)
+  const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+    email,
+    password,
+    email_confirm: true,
+  });
+
+  if (authError) {
+    // Supabase returns a specific message for duplicate email
+    if (
+      authError.message?.toLowerCase().includes("already") ||
+      authError.message?.toLowerCase().includes("duplicate") ||
+      authError.message?.toLowerCase().includes("unique")
+    ) {
       return NextResponse.json(
-        { error: "An application from this email is already pending review." },
+        { error: "An account with this email already exists. Please sign in." },
         { status: 409 },
       );
     }
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("[apply] auth.admin.createUser error:", authError);
+    return NextResponse.json({ error: authError.message }, { status: 500 });
   }
 
-  // Fire-and-log: never block the 200 on email failure.
-  sendApplicationConfirmation(parsed.data.email, parsed.data.full_name).catch((e) =>
-    console.error("[apply] confirmation email failed:", e),
+  const userId = authData.user.id;
+
+  // 2. Insert application record (status: approved — no admin review needed)
+  const { error: appError } = await (supabase.from("applications") as any).insert({
+    email,
+    full_name,
+    company,
+    role,
+    company_size_band,
+    region,
+    industry: industry ?? null,
+    preferred_language,
+    topics_of_interest,
+    motivation,
+    status: "approved",
+    decided_at: new Date().toISOString(),
+  });
+
+  if (appError) {
+    console.error("[apply] applications insert error:", appError);
+    // Non-fatal: auth user already created. Continue to members row.
+  }
+
+  // 3. Create members row directly (bypasses the DB trigger race condition)
+  const { error: memberError } = await (supabase.from("members") as any).upsert(
+    {
+      id: userId,
+      email,
+      full_name,
+      company,
+      role,
+      company_size_band,
+      region,
+      industry: industry ?? null,
+      preferred_language,
+      topics_of_interest,
+      status: "active",
+    },
+    { onConflict: "id" },
   );
+
+  if (memberError) {
+    console.error("[apply] members upsert error:", memberError);
+    // Non-fatal: user can still sign in; members row can be repaired manually.
+  }
+
+  // 4. Send welcome email — deactivated (email module deleted on this branch)
+  // sendWelcomeEmail(email, full_name, preferred_language).catch((e: any) =>
+  //   console.error("[apply] welcome email failed:", e),
+  // );
 
   return NextResponse.json({ ok: true });
 }

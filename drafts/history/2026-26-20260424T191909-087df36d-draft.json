@@ -1,0 +1,301 @@
+{
+  "runId": "087df36d-6b57-4b98-9872-2b8104e5b25d",
+  "editionId": "2026-26",
+  "generatedAt": "2026-04-24T19:19:09.563Z",
+  "contentHash": "6440feef92822b3e773747024c1d945a4d9530fc5677f7595196fca70e4e3995",
+  "angle": {
+    "headline": "When Your Team Can't Decide Without You, You Don't Have a Business",
+    "thesis": "The four decision-making styles identified in mid-market leaders determine whether a company scales or stalls — and most owners don't realize their instinct to decide everything is the bottleneck.",
+    "targetPersona": "The $10M–$50M owner who is the most capable person in their company and personally approves every major decision, including those their team should own",
+    "relevanceToAudience": "US-LATAM corridor operators face compressed decision cycles due to cross-border complexity, yet most centralize all strategic calls through the owner — creating a structural ceiling exactly when nearshoring and tariff uncertainty demand faster execution",
+    "suggestedSources": [
+      "abdb1d76-4799-4d59-8c66-c77f0ffb1f5b",
+      "ade2e323-a9ae-4523-a897-3bbf93e70909",
+      "00bf147a-36c4-45af-9746-9edf9d1ad5f9",
+      "7ed3b723-c6d7-4a56-88ad-959629569c16"
+    ],
+    "talkingPoints": [
+      "Your team waits for you to make decisions because you've trained them to — and that training is now the constraint on revenue growth.",
+      "The NCMM research identified four decision-making styles in mid-market leaders, each with measurable performance outcomes — the issue isn't that you decide, it's that you're the only one who can.",
+      "Decision architecture is the missing layer between strategy and execution: defining which decisions require owner approval, which require consultation, and which belong entirely to the team.",
+      "Map every recurring decision in your business to one of three tiers — owner-only, collaborative, or delegated — then train your leadership team to execute within that architecture for 90 days."
+    ],
+    "osPillar": "Operating Model OS",
+    "quarterlyTheme": "The Machine"
+  },
+  "enContent": {
+    "language": "en",
+    "subject": "Your org chart is not your operating model",
+    "preheader": "A staffing plan is not a system. Growth hides the difference until someone leaves.",
+    "subjectOptions": [
+      "Your org chart is not your operating model",
+      "The thing that walks out when your best manager walks out",
+      "What xAI's cofounder exodus reveals about your ops"
+    ],
+    "sections": [
+      {
+        "id": "926b01bf-7953-4184-8519-ed50c6f00562",
+        "type": "news",
+        "heading": "The Signal",
+        "body": "*This week: four signals, one pattern. The machine only survives what you have already written down.*\n\n- **Strategy:** According to [Middle Market Growth](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/), Forvis Mazars and GF Data closed 2025 with \"mixed signals\" now the defining phrase for private equity-backed mid-market transactions. **Strategy is the discipline of pricing the assumptions your forecast treats as constants.** [Read in Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/)\n- **Operating Models:** Every xAI cofounder except Elon Musk has exited, alongside dozens of engineering and program staff, per [Fast Company](https://www.fastcompany.com/91531084/inside-the-xai-exodus). The February reorg is already gutted. **An operating model is not who holds the seats. It is what still runs when they leave.** [Read in Fast Company ->](https://www.fastcompany.com/91531084/inside-the-xai-exodus)\n- **Technology:** Business Email Compromise scams have crossed $2.8 billion in losses, reframed by [Chief Executive](https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/) as a boardroom risk, not an IT problem. **Technology never protects what governance has not already decided.** [Read in Chief Executive Magazine ->](https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/)\n- **Human Capital:** ZipRecruiter's 2026 Graduate Report, cited in [Fortune](https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/), shows more Gen Z grads turning to entrepreneurship, gig work, and freelancing as entry-level jobs vanish to AI. **The talent pipeline you planned for no longer begins where you put the job posting.** [Read in Fortune ->](https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "54759c18-d543-4ff3-a801-0518651bcb6a",
+        "type": "lead",
+        "heading": "The Apertura",
+        "body": "===OPTION_A:provocation===\nEvery cofounder of xAI except the founder has walked out the door. The February reorg is already a fiction. I read the Fast Company piece twice because it names something I watch in much smaller companies every quarter. The owner confuses the chart for the machine. The chart has the roles. The chart has the lines. The chart has the names. But when the people leave, the decisions they were making leave with them, because the decisions were never in the system. They were in the person. What xAI is discovering in public is what my clients discover in private.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5bdd0b7c-c3e6-429e-b53f-05a4ee87f687",
+        "type": "analysis",
+        "heading": "The Insight",
+        "body": "You promoted her two years ago. You wrote the job description. You drew the reporting lines. She has been running the function ever since, and running it well. Last week she told you she is leaving in sixty days. Now you are staring at the role and realizing you do not know what she actually does.\n\nThis is the moment most owners discover that they built a staffing plan, not an operating model.\n\nThe two look identical from the outside. Both have roles, reporting structures, and people in seats. The difference shows up only when a seat empties. A staffing plan loses the function the moment the person walks out. An operating model keeps running because the decisions were never in the person to begin with. They were in the system.\n\nWhat lives in your best manager is not just knowledge. It is a library of judgments. Which vendor to call first when the order is late. How much discretion to give a customer who asks for net-sixty. When to escalate a hire and when to move without you. She has made these calls a thousand times. They live nowhere except in her head. The company you think you are running and the company that will exist the day she leaves are not the same company.\n\nMost advisors call this a documentation problem and hand you a template. It is not a documentation problem. It is a decision-encoding problem.\n\n**What I call the Encoded Decisions Test**\n\nFor every critical role, three questions. What decisions does this role make each week that the business depends on? Where are those decisions written as rules, not as examples? Could a peer of similar seniority make the same decisions within ninety days of stepping in?\n\nIf the answer to the third question is no, you have staffing where you think you have a system. You are one resignation away from a capability gap no hire can fix in a quarter.\n\nThe rule is the artifact. Not the playbook. Not the onboarding deck. The rule: when X happens, we do Y unless Z. It is the smallest unit of an operating model, and it is what survives turnover. A company whose rules are written can lose a person and keep its judgment. A company whose rules live only in people loses both.\n\n**This week**\n\nPick the one role you would most fear losing tomorrow. Sit with that person for an hour. Ask her to list the ten decisions she makes most often and the rule she uses for each one. Do not ask her to write a procedure. Ask her to write a rule. The gap between the rules she articulates and the decisions she actually makes is your real exposure, measured precisely.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ece66b3-f131-4edd-95fd-23ba8e2c323f",
+        "type": "spotlight",
+        "heading": "The Field Report",
+        "body": "Every xAI cofounder other than Elon Musk has now left the company, alongside dozens of engineering and program staff, according to [Fast Company](https://www.fastcompany.com/91531084/inside-the-xai-exodus). The departures overlap with the people meant to lead the startup under a new organizational structure announced only in February.\n\nThe pattern matters because xAI is in the middle of a merger with SpaceX, a $60 billion option on Cursor, and a public offering. None of these are theoretical moves. Each requires an operating model that can absorb a stress the founder cannot personally absorb.\n\nA company that loses its senior architects mid-reorganization is not losing headcount. It is losing the decisions those people were carrying, uploaded nowhere.\n\nFor a US-based owner running a $5M to $100M business, the implication is direct. Your exposure is not the headline departure. It is the quiet one. The manager who leaves with three years of unwritten judgment is the person who takes your operating model with her.",
+        "sourceRefs": []
+      },
+      {
+        "id": "843e5352-c88b-4e9c-ad34-cf57bbabf780",
+        "type": "tool",
+        "heading": "The Tool",
+        "body": "**Scribe** - a browser extension that records a workflow as you do it and turns it into a step-by-step document automatically. For a $5M to $100M operator, it is the lowest-friction way to pull procedures out of your best manager's head before she leaves. Find it at [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "c6ed6525-1ebf-45e3-a7e4-1d15c9454f76",
+        "type": "quickTakes",
+        "heading": "The Compass",
+        "body": "**Watch for this week:** which of your senior managers takes an unplanned day off, and how much of the business stalls while they are out. Treat it as a diagnostic, not a crisis. If the week wobbles, you have staffing where you think you have a system. The size of the wobble is the size of the encoding work you have not yet done.",
+        "sourceRefs": []
+      },
+      {
+        "id": "67f5a6c6-341c-47ca-b46f-0591e0b88b29",
+        "type": "cta",
+        "heading": "The Door",
+        "body": "If something in this issue landed, reply - I read every response.\n\nIf this is useful to someone in your network, forward it - it takes ten seconds and it's the highest compliment.\n\nWhen you're ready to work together directly, here is how we start: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "esContent": {
+    "language": "es",
+    "subject": "Su organigrama no es su modelo operativo",
+    "preheader": "Un plan de plantilla no es un sistema. El crecimiento oculta la diferencia hasta que alguien se va.",
+    "thesis": "La mayoría de los dueños confunde tener el puesto cubierto con tener el sistema resuelto. Ese es el error que convierte una renuncia en un hueco de capacidad que ninguna contratación cierra en un trimestre.",
+    "sections": [
+      {
+        "id": "926b01bf-7953-4184-8519-ed50c6f00562",
+        "type": "news",
+        "heading": "LA SEÑAL",
+        "body": "*Esta semana: cuatro señales, un patrón. La máquina solo sobrevive aquello que ya quedó por escrito.*\n\n- **Estrategia:** Forvis Mazars y GF Data cerraron 2025 con \"señales mixtas\" como frase dominante para las operaciones de mediana empresa respaldadas por private equity, según [Middle Market Growth](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/). **La estrategia es ponerle precio a los supuestos que el forecast trata como constantes.** [Leer en Middle Market Growth (ACG) ->](https://middlemarketgrowth.org/growthtv-forvis-gf-data-q4-2025/)\n- **Modelos Operativos:** Todos los cofundadores de xAI salvo Elon Musk han salido de la empresa, junto con decenas de integrantes de ingeniería y programa, según [Fast Company](https://www.fastcompany.com/91531084/inside-the-xai-exodus). La reorganización de febrero ya quedó desmantelada. **Un modelo operativo es lo que sigue funcionando cuando se van.** [Leer en Fast Company ->](https://www.fastcompany.com/91531084/inside-the-xai-exodus)\n- **Tecnología:** Los fraudes por Business Email Compromise superaron 2,800 millones de dólares en pérdidas, reencuadrados por [Chief Executive](https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/) como riesgo de consejo, no problema de TI. **La tecnología no protege lo que el gobierno corporativo no ha decidido primero.** [Leer en Chief Executive Magazine ->](https://chiefexecutive.net/the-2-8-billion-email-what-ceos-get-wrong-about-bec-fraud/)\n- **Capital Humano:** El Reporte de Egresados 2026 de ZipRecruiter, citado por [Fortune](https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/), muestra a más jóvenes de la Gen Z optando por emprender, trabajo por encargo y freelance, ante la desaparición de vacantes de entrada por la IA. **La cartera de talento que planeó ya no empieza donde puso la vacante.** [Leer en Fortune ->](https://fortune.com/2026/04/24/gen-z-entrepreneurship-gig-work-freelance-entry-level-jobs-corporate-america/)",
+        "sourceRefs": []
+      },
+      {
+        "id": "54759c18-d543-4ff3-a801-0518651bcb6a",
+        "type": "lead",
+        "heading": "LA APERTURA",
+        "body": "Todos los cofundadores de xAI, salvo el fundador, ya salieron. La reorganización de febrero es historia. Leí dos veces la pieza de Fast Company porque nombra algo que veo en empresas mucho más pequeñas cada trimestre. El dueño confunde el organigrama con la máquina. El organigrama tiene los puestos. Tiene las líneas. Tiene los nombres. Sin embargo, cuando la gente se va, las decisiones que tomaba se van con ella, porque esas decisiones nunca estuvieron en el sistema. Estuvieron en la persona. Lo que xAI descubre en público es lo que mis clientes descubren en privado.",
+        "sourceRefs": []
+      },
+      {
+        "id": "5bdd0b7c-c3e6-429e-b53f-05a4ee87f687",
+        "type": "analysis",
+        "heading": "EL INSIGHT",
+        "body": "La promovió hace dos años. Redactó la descripción del puesto. Trazó las líneas de reporte. Desde entonces ella ha dirigido la función, y la ha dirigido bien. La semana pasada le avisó que se va en sesenta días. Ahora usted mira la vacante y se da cuenta de que no sabe qué hace en realidad.\n\nEste es el momento en que la mayoría de los dueños descubre que construyó un plan de plantilla, no un modelo operativo.\n\nDesde afuera se ven idénticos. Ambos tienen puestos, líneas de reporte y personas sentadas en la silla. La diferencia aparece solo cuando la silla queda vacía. Un plan de plantilla pierde la función el día que la persona cruza la puerta. Un modelo operativo sigue operando porque las decisiones nunca estuvieron en la persona. Estuvieron en el sistema.\n\nLo que vive dentro del mejor gerente no es solo conocimiento. Es un acervo de criterios. A qué proveedor llamar primero cuando el pedido va tarde. Cuánta discreción concederle a un cliente que pide neto a sesenta días. Cuándo escalar una contratación y cuándo moverse sin usted. Ha tomado estas decisiones mil veces. No están escritas en ninguna parte, salvo en su cabeza. La empresa que usted cree que maneja y la que quedará el día que ella se vaya no son la misma empresa.\n\nLa mayoría de los asesores cataloga esto como un problema de documentación y le entrega una plantilla. No lo es. Es un problema de codificación de decisiones.\n\n**Lo que llamo la prueba de las decisiones codificadas**\n\nPara cada puesto crítico, tres preguntas. ¿Qué decisiones toma este puesto cada semana de las que depende el negocio? ¿Dónde están esas decisiones escritas como reglas, no como ejemplos? ¿Podría una persona del mismo nivel tomarlas dentro de noventa días de haber entrado?\n\nSi la respuesta a la tercera es no, tiene plantilla donde cree tener sistema. Está a una renuncia de un hueco de capacidad que ninguna contratación resuelve en un trimestre.\n\nLa regla es el documento. No el manual. No la presentación de inducción. La regla: cuando ocurre X, hacemos Y salvo si Z. Es la unidad mínima de un modelo operativo, y es lo que sobrevive a la rotación. Una empresa con las reglas escritas puede perder a una persona y conservar su criterio. Una empresa cuyas reglas solo viven en las personas pierde ambas cosas.\n\n**Esta semana**\n\nElija el puesto que más temería perder mañana. Siéntese una hora con esa persona. Pídale que liste las diez decisiones que toma con más frecuencia y la regla que aplica en cada una. No le pida que escriba un procedimiento. Pídale que escriba una regla. La distancia entre las reglas que logra articular y las decisiones que realmente toma es su exposición real, medida con precisión.",
+        "sourceRefs": []
+      },
+      {
+        "id": "0ece66b3-f131-4edd-95fd-23ba8e2c323f",
+        "type": "spotlight",
+        "heading": "EL REPORTE DE CAMPO",
+        "body": "## Spotlight\n\nTodos los cofundadores de xAI salvo Elon Musk han abandonado la empresa, junto con decenas de integrantes de los equipos de ingeniería y de programa, según [Fast Company](https://www.fastcompany.com/91531084/inside-the-xai-exodus). Las salidas coinciden con quienes iban a encabezar la startup bajo una nueva estructura organizacional anunciada apenas en febrero.\n\nEl patrón tiene peso porque xAI está en medio de una fusión con SpaceX, una opción de 60,000 millones de dólares sobre Cursor y una oferta pública. Ninguna de estas jugadas es teórica. Cada una exige un modelo operativo capaz de absorber una presión que el fundador no puede sostener en persona.\n\nUna empresa que pierde a sus arquitectos senior en plena reorganización no está perdiendo plantilla. Está perdiendo las decisiones que esas personas cargaban consigo, sin que nadie las haya documentado en ningún sistema.\n\nPara un dueño que dirige un negocio de entre 5 y 100 millones de dólares, la lectura es directa. El riesgo no es la salida que sale en los titulares. Es la silenciosa. La gerente que se va con tres años de criterio no escrito es quien se lleva el modelo operativo con ella.",
+        "sourceRefs": []
+      },
+      {
+        "id": "843e5352-c88b-4e9c-ad34-cf57bbabf780",
+        "type": "tool",
+        "heading": "LA HERRAMIENTA",
+        "body": "**Scribe** - una extensión de navegador que graba un flujo de trabajo mientras usted lo ejecuta y lo convierte, de manera automática, en un documento paso a paso. Para el operador de mediana empresa, es la forma más directa de documentar los procedimientos que viven en la cabeza de su mejor gerente antes de que se vaya. La encuentra en [scribehow.com](https://scribehow.com).",
+        "sourceRefs": []
+      },
+      {
+        "id": "c6ed6525-1ebf-45e3-a7e4-1d15c9454f76",
+        "type": "quickTakes",
+        "heading": "LA BRÚJULA",
+        "body": "**A vigilar esta semana:** cuál de sus gerentes senior toma un día libre no planeado, y cuánto del negocio se detiene mientras no está. Trátelo como diagnóstico, no como crisis. Si la semana se tambalea, tiene plantilla donde cree tener sistema. El tamaño del tambaleo es el tamaño del trabajo de codificación que todavía le falta hacer.",
+        "sourceRefs": []
+      },
+      {
+        "id": "67f5a6c6-341c-47ca-b46f-0591e0b88b29",
+        "type": "cta",
+        "heading": "LA PUERTA",
+        "body": "Si algo de este número resonó contigo, respóndeme - leo cada mensaje.\nSi le es útil a alguien en tu red, reenvíalo - es el mayor cumplido.\nCuando estés listo para trabajar juntos directamente, así es como empezamos: [link]",
+        "sourceRefs": []
+      }
+    ]
+  },
+  "validation": {
+    "isValid": true,
+    "score": 90,
+    "issues": [
+      {
+        "rule": "word-count-signal",
+        "severity": "warning",
+        "section": "signal",
+        "message": "Signal word count is 197 — target range is 95–185."
+      },
+      {
+        "rule": "rule-15-invented-concept",
+        "severity": "warning",
+        "section": "insight",
+        "message": "The Encoded Decisions Test appears as a named framework without explicit in-text signaling. Should either be flagged in reviewFlags as writer's own framing or reworded as 'what I call' construction.",
+        "excerpt": "**What I call the Encoded Decisions Test**"
+      }
+    ],
+    "wordCounts": {
+      "signal": 197,
+      "apertura": 100,
+      "insight": 458,
+      "fieldReport": 157,
+      "tool": 48,
+      "compass": 64,
+      "total": 1024
+    },
+    "shareableSentence": "A staffing plan loses the function the moment the person walks out. An operating model keeps running because the decisions were never in the person to begin with.",
+    "recommendations": [
+      "Shareable sentence candidate (Rule 14): \"A staffing plan loses the function the moment the person walks out. An operating model keeps running because the decisions were never in the person to begin with.\"",
+      "Reframe confirmed: \"This is the moment most owners discover that they built a staffing plan, not an operating model. The two look identical from the outside. Both have roles, reporting structures, and people in seats. The difference shows up only when a seat empties. A staffing plan loses the function the moment the person walks out. An operating model keeps running because the decisions were never in the person to begin with. They were in the system.\"",
+      "Draft passes automated checks. Replace the Apertura placeholder with your real field observation before publishing."
+    ]
+  },
+  "qualityGate": {
+    "passed": true,
+    "hardFailures": [],
+    "factCheck": {
+      "verifiedClaims": [
+        {
+          "claim": "Forvis Mazars and GF Data closed 2025 with 'mixed signals' now the defining phrase for private equity-backed mid-market transactions",
+          "supportingFactId": "00bf147a-36c4-45af-9746-9edf9d1ad5f9-1",
+          "language": "en"
+        },
+        {
+          "claim": "Every xAI cofounder except Elon Musk has exited, alongside dozens of engineering and program staff",
+          "supportingFactId": "96cfd925-3132-4f2a-9104-334e21fcc7dc-1",
+          "language": "en"
+        },
+        {
+          "claim": "The February reorg is already gutted",
+          "supportingFactId": "96cfd925-3132-4f2a-9104-334e21fcc7dc-3",
+          "language": "en"
+        },
+        {
+          "claim": "Business Email Compromise scams have crossed $2.8 billion in losses",
+          "supportingFactId": "f2941fa2-c4be-416f-9245-37ec791b2c4a-1",
+          "language": "en"
+        },
+        {
+          "claim": "ZipRecruiter's 2026 Graduate Report shows more Gen Z grads turning to entrepreneurship, gig work, and freelancing as entry-level jobs vanish to AI",
+          "supportingFactId": "b8e51cbf-1d18-46a3-813d-e430fc061a5d-5",
+          "language": "en"
+        },
+        {
+          "claim": "xAI is in the middle of a merger with SpaceX, a $60 billion option on Cursor, and a public offering",
+          "supportingFactId": "96cfd925-3132-4f2a-9104-334e21fcc7dc-2",
+          "language": "en"
+        },
+        {
+          "claim": "Forvis Mazars y GF Data cerraron 2025 con 'señales mixtas' como frase dominante para las operaciones de mediana empresa respaldadas por private equity",
+          "supportingFactId": "00bf147a-36c4-45af-9746-9edf9d1ad5f9-1",
+          "language": "es"
+        },
+        {
+          "claim": "Todos los cofundadores de xAI salvo Elon Musk han salido de la empresa, junto con decenas de integrantes de ingeniería y programa",
+          "supportingFactId": "96cfd925-3132-4f2a-9104-334e21fcc7dc-1",
+          "language": "es"
+        },
+        {
+          "claim": "Los fraudes por Business Email Compromise superaron 2,800 millones de dólares en pérdidas",
+          "supportingFactId": "f2941fa2-c4be-416f-9245-37ec791b2c4a-1",
+          "language": "es"
+        },
+        {
+          "claim": "El Reporte de Egresados 2026 de ZipRecruiter muestra a más jóvenes de la Gen Z optando por emprender, trabajo por encargo y freelance, ante la desaparición de vacantes de entrada por la IA",
+          "supportingFactId": "b8e51cbf-1d18-46a3-813d-e430fc061a5d-5",
+          "language": "es"
+        },
+        {
+          "claim": "xAI está en medio de una fusión con SpaceX, una opción de 60,000 millones de dólares sobre Cursor y una oferta pública",
+          "supportingFactId": "96cfd925-3132-4f2a-9104-334e21fcc7dc-2",
+          "language": "es"
+        }
+      ],
+      "unverifiedClaims": []
+    },
+    "angleOriginality": {
+      "similarityScore": 0.25,
+      "closestPriorAngle": "Why Your Best People Keep the Machine From Running — Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
+      "recommendation": "pass"
+    },
+    "voiceMatch": {
+      "voiceScore": 88,
+      "deviations": []
+    },
+    "sourceDiversity": {
+      "distinctOutlets": [
+        "Chief Executive Magazine",
+        "Fast Company",
+        "Fortune",
+        "Middle Market Growth (ACG)",
+        "scribehow.com"
+      ],
+      "outletCount": 5
+    },
+    "summary": "Draft passes all quality gates with strong voice match (88/100), clean fact verification, original angle distinct from prior editions, and healthy source diversity across four outlets."
+  },
+  "costs": {
+    "radar": {
+      "model": "none",
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    },
+    "strategist": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 10639,
+      "outputTokens": 494,
+      "costUsd": 0.039327
+    },
+    "writer": {
+      "model": "claude-opus-4-7",
+      "inputTokens": 48,
+      "outputTokens": 12237,
+      "costUsd": 0.306165
+    },
+    "validator": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 24,
+      "outputTokens": 429,
+      "costUsd": 0.006507000000000001
+    },
+    "localizer": {
+      "model": "claude-sonnet-4-6",
+      "inputTokens": 1149,
+      "outputTokens": 9980,
+      "costUsd": 0.246789
+    },
+    "qualityGate": {
+      "model": "claude-sonnet-4-5",
+      "inputTokens": 22,
+      "outputTokens": 1274,
+      "costUsd": 0.019176
+    },
+    "totalUsd": 0.617964
+  }
+}
