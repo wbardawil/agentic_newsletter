@@ -10,6 +10,7 @@ export default async function HomePage() {
   const i18n = t(lang).landing;
 
   const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
   const { data: allLatest } = await supabase
     .from("editions")
     .select("edition_id, edition_number, subject_en, subject_es, shareable_sentence_en, shareable_sentence_es, topic, pillar, byline, byline_role, published_at")
@@ -67,8 +68,11 @@ export default async function HomePage() {
           )}
 
           <div className="flex flex-wrap gap-3">
-            <Link href="/apply"   className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
-            <Link href="/archive" className="btn btn-cta-outline btn-xl">{i18n.secondaryCta}</Link>
+            {!user ? (
+              <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
+            ) : (
+              <Link href="/archive" className="btn btn-cta btn-xl">{i18n.secondaryCta} →</Link>
+            )}
           </div>
         </div>
 
@@ -166,7 +170,11 @@ export default async function HomePage() {
             <p className="text-executive">{i18n.audienceBody}</p>
           </div>
           <div className="lg:col-span-5 lg:text-right">
-            <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
+            {!user ? (
+              <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
+            ) : (
+              <Link href="/archive" className="btn btn-cta btn-xl">{i18n.secondaryCta} →</Link>
+            )}
           </div>
         </div>
       </section>
