@@ -26,7 +26,7 @@ export default async function ApplyPage({
   return (
     <section className="container-prose py-16">
       <h1 className="text-4xl mb-2">{i18n.title}</h1>
-      <p className="text-[var(--color-fg-muted)] mb-8">{i18n.subtitle}</p>
+      {i18n.subtitle ? <p className="text-[var(--color-fg-muted)] mb-8">{i18n.subtitle}</p> : <div className="mb-6" />}
       <ApplyForm lang={lang} />
     </section>
   );

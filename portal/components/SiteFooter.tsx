@@ -22,9 +22,11 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
         </div>
 
         <div className="md:col-span-3">
-          <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-3">Letter</p>
+          <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-3">
+            {lang === "es" ? "Edición" : "Edition"}
+          </p>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/"           className="nav-link">{i18n.about.kicker === "El editor" ? "Letra" : "Letter"}</Link></li>
+            <li><Link href="/"           className="nav-link">{lang === "es" ? "Edición" : "Edition"}</Link></li>
             <li><Link href="/about"      className="nav-link">{i18n.about.kicker}</Link></li>
             <li><Link href="/archive"    className="nav-link">{i18n.nav.archive}</Link></li>
             {/* <li><Link href="/convenings" className="nav-link">{i18n.nav.convenings}</Link></li> */}
@@ -40,12 +42,18 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
         </div>
 
         <div className="md:col-span-4">
-          <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-3">Contact</p>
+          <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-3">
+            {lang === "es" ? "Contacto" : "Contact"}
+          </p>
           <ul className="space-y-2 text-sm">
-            <li><a href="mailto:wadi@wadibardawil.com" className="nav-link">wadi@wadibardawil.com</a></li>
-            <li><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a></li>
-            <li><a href="https://wadibardawil.com" target="_blank" rel="noreferrer" className="nav-link">wadibardawil.com</a></li>
-            <li className="text-[var(--color-fg-muted)]">Monterrey, Mexico · Serving Mexico &amp; United States</li>
+            <li><a href="mailto:wb@wadibardawil.com" className="nav-link">wb@wadibardawil.com</a></li>
+            <li><a href="https://www.linkedin.com/in/wadibardawil/" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/wbardawil/" target="_blank" rel="noreferrer" className="nav-link">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61583226644816" target="_blank" rel="noreferrer" className="nav-link">Facebook</a></li>
+            <li><a href="https://wadibardawil.com" target="_blank" rel="noreferrer" className="nav-link">www.wadibardawil.com</a></li>
+            <li className="text-[var(--color-fg-muted)]">
+              {lang === "es" ? "Monterrey, México · Sirviendo a México y EE.UU." : "Monterrey, Mexico · Serving Mexico & United States"}
+            </li>
           </ul>
         </div>
       </div>

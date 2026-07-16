@@ -86,8 +86,8 @@ export function ApplyForm({ lang }: { lang: Lang }) {
           <label className="field-label" htmlFor="region">{i18n.region}</label>
           <select required id="region" name="region" className="field-select" defaultValue="">
             <option value="" disabled />
-            {i18n.regionOptions.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+            {i18n.regionOptions.filter((o) => !o.hidden).map((o, idx) => (
+              <option key={idx} value={o.value}>{o.label}</option>
             ))}
           </select>
         </div>
@@ -107,7 +107,7 @@ export function ApplyForm({ lang }: { lang: Lang }) {
       <fieldset>
         <legend className="field-label">{apply2.topicsInterest}</legend>
         <div className="flex flex-wrap gap-2">
-          {TOPICS.map((topic) => {
+          {TOPICS.filter((t) => !["conscious_capital", "family_business", "family_office"].includes(t.id)).map((topic) => {
             const active = topics.includes(topic.id);
             return (
               <button
