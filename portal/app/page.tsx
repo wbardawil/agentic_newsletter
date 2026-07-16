@@ -10,12 +10,21 @@ export default async function HomePage() {
   const i18n = t(lang).landing;
 
   const supabase = await getSupabaseServerClient();
-  const { data: latest } = await supabase
+  const { data: allLatest } = await supabase
     .from("editions")
     .select("edition_id, edition_number, subject_en, subject_es, shareable_sentence_en, shareable_sentence_es, topic, pillar, byline, byline_role, published_at")
     .eq("is_published", true)
     .order("published_at", { ascending: false })
-    .limit(3);
+    .limit(4);
+
+  const [heroEdition, ...recentEditions] = allLatest ?? [];
+
+  const heroTitle = heroEdition
+    ? (lang === "es" ? heroEdition.subject_es ?? heroEdition.subject_en : heroEdition.subject_en ?? heroEdition.subject_es)
+    : null;
+  const heroExcerpt = heroEdition
+    ? (lang === "es" ? heroEdition.shareable_sentence_es ?? heroEdition.shareable_sentence_en : heroEdition.shareable_sentence_en ?? heroEdition.shareable_sentence_es)
+    : null;
 
   return (
     <>
@@ -31,9 +40,32 @@ export default async function HomePage() {
         />
         <div className="lg:col-span-7">
           <p className="pill mb-6">EN · ES · Weekly · Members only</p>
-          <h1 className="heading-display mb-6">{i18n.hero}</h1>
-          <p className="pull-quote mb-8">{i18n.filterSentence}</p>
-          <p className="text-executive max-w-xl mb-10">{i18n.subFilter}</p>
+          {/* Tagline estático de marca */}
+          <h1 className="heading-display mb-8">{i18n.hero}</h1>
+
+          {/* Edición más reciente: título como enlace + extracto diagnóstico */}
+          {heroEdition && heroTitle ? (
+            <div className="mb-10 border-l-2 border-[var(--color-cta)] pl-5">
+              <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-2">
+                #{heroEdition.edition_number} · {topicLabel(heroEdition.topic, lang)}
+                {heroEdition.pillar ? ` · ${heroEdition.pillar}` : ""}
+              </p>
+              <Link
+                href={`/newsroom/${heroEdition.edition_id}`}
+                className="block text-[1.35rem] font-bold leading-snug text-[var(--color-fg)] hover:text-[var(--color-cta)] transition-colors mb-3"
+              >
+                {heroTitle}
+              </Link>
+              {heroExcerpt ? (
+                <p className="text-[var(--color-fg-muted)] leading-relaxed text-sm">
+                  {heroExcerpt}
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <p className="pull-quote mb-10">{i18n.filterSentence}</p>
+          )}
+
           <div className="flex flex-wrap gap-3">
             <Link href="/apply"   className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
             <Link href="/archive" className="btn btn-cta-outline btn-xl">{i18n.secondaryCta}</Link>
@@ -45,14 +77,17 @@ export default async function HomePage() {
             {lang === "es" ? "Ediciones recientes" : "Recent issues"}
           </p>
           <ul className="space-y-7">
-            {(latest ?? []).map((e) => (
+            {recentEditions.map((e) => (
               <li key={e.edition_id}>
                 <p className="text-[var(--color-fg-muted)] uppercase tracking-wider text-[0.7rem] mb-1">
                   #{e.edition_number} · {topicLabel(e.topic, lang)}{e.pillar ? ` · ${e.pillar}` : ""}
                 </p>
-                <p className="text-[1.05rem] font-semibold leading-snug">
+                <Link
+                  href={`/newsroom/${e.edition_id}`}
+                  className="block text-[1.05rem] font-semibold leading-snug text-[var(--color-fg)] hover:text-[var(--color-cta)] transition-colors"
+                >
                   {lang === "es" ? e.subject_es ?? e.subject_en : e.subject_en ?? e.subject_es}
-                </p>
+                </Link>
                 {e.byline ? (
                   <p className="text-xs text-[var(--color-fg-muted)] mt-1">
                     {lang === "es" ? "por" : "by"} {e.byline}{e.byline_role ? ` · ${e.byline_role}` : ""}
@@ -65,7 +100,7 @@ export default async function HomePage() {
                 ) : null}
               </li>
             ))}
-            {(!latest || latest.length === 0) ? (
+            {recentEditions.length === 0 ? (
               <li className="text-sm text-[var(--color-fg-muted)]">
                 {lang === "es" ? "Próxima edición en camino." : "First issue on the way."}
               </li>
