@@ -46,11 +46,11 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
             {lang === "es" ? "Contacto" : "Contact"}
           </p>
           <ul className="space-y-2 text-sm">
-            <li><a href="mailto:wadi@wadibardawil.com" className="nav-link">wadi@wadibardawil.com</a></li>
+            <li><a href="mailto:wb@wadibardawil.com" className="nav-link">wb@wadibardawil.com</a></li>
             <li><a href="https://www.linkedin.com/in/wadibardawil/" target="_blank" rel="noreferrer" className="nav-link">LinkedIn</a></li>
             <li><a href="https://www.instagram.com/wbardawil/" target="_blank" rel="noreferrer" className="nav-link">Instagram</a></li>
             <li><a href="https://www.facebook.com/profile.php?id=61583226644816" target="_blank" rel="noreferrer" className="nav-link">Facebook</a></li>
-            <li><a href="https://wadibardawil.com" target="_blank" rel="noreferrer" className="nav-link">wadibardawil.com</a></li>
+            <li><a href="https://wadibardawil.com" target="_blank" rel="noreferrer" className="nav-link">www.wadibardawil.com</a></li>
             <li className="text-[var(--color-fg-muted)]">
               {lang === "es" ? "Monterrey, México · Sirviendo a México y EE.UU." : "Monterrey, Mexico · Serving Mexico & United States"}
             </li>

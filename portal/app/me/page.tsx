@@ -58,7 +58,7 @@ export default async function MemberHome() {
             : "If you have already applied, we will let you know by email once you are in."}
         </p>
         <Link href="/apply" className="btn btn-primary">
-          {memberLang === "es" ? "Postular" : "Apply"}
+          {memberLang === "es" ? "Unirme" : "Apply"}
         </Link>
       </section>
     );

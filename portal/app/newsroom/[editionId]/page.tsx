@@ -124,7 +124,7 @@ export default async function NewsroomEditionPage({ params }: { params: Promise<
               ) : (
                 <>
                   <Link href={"/apply" as Route} className="btn btn-cta btn-md">
-                    {lang === "es" ? "Postular" : "Apply"} →
+                    {lang === "es" ? "Unirme" : "Apply"} →
                   </Link>
                   <Link href={`/sign-in?next=/newsroom/${editionId}` as Route} className="btn btn-cta-outline btn-md">
                     {lang === "es" ? "Iniciar sesión" : "Sign in"}
