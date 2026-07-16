@@ -123,7 +123,7 @@ export default async function HomePage() {
             <p className="text-executive">{i18n.coverageSub}</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {TOPICS.map((topic) => (
+            {TOPICS.filter((t) => !["conscious_capital", "family_business", "family_office"].includes(t.id)).map((topic) => (
               <article key={topic.id} className="card">
                 <h3 className="text-xl font-bold mb-2">{lang === "es" ? topic.es : topic.en}</h3>
                 <p className="text-[var(--color-fg-muted)] leading-relaxed text-sm">
