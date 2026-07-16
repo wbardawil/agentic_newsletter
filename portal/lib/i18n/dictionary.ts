@@ -53,7 +53,7 @@ export type Dict = {
     successTitle: string;
     successBody: string;
     sizeOptions: { value: string; label: string }[];
-    regionOptions: { value: string; label: string }[];
+    regionOptions: { value: string; label: string; hidden?: boolean }[];
   };
   signIn: { title: string; sub: string; email: string; password: string; submit: string; forgotPassword: string };
   member: {
@@ -108,7 +108,7 @@ const en: Dict = {
   brand: {
     name: "The Transformation Letter",
     tagline:
-      "Diagnostics for $5–100M owner-operators across business transformation, conscious capital, family business, family office, AI, and tech — in the US-LATAM corridor.",
+      "Diagnostics for $5–100M owner-operators across business transformation, AI, and technology — in the US-LATAM corridor.",
   },
   nav: {
     archive: "Archive",
@@ -128,7 +128,7 @@ const en: Dict = {
     secondaryCta: "Read the archive",
     coverageHeading: "What we cover",
     coverageSub:
-      "Six adjacent topics, one audience. Every issue ends in a concrete recommendation and the People-side shift it creates.",
+      "Three adjacent topics, one audience. Every issue ends in a concrete recommendation and the People-side shift it creates.",
     sequenceHeading: "The Business Transformation OS — three layers. One sequence.",
     sequenceBody:
       "Strategy before Operating Model. Operating Model before Technology. The sequence is the insight, and it anchors every transformation issue.",
@@ -143,12 +143,11 @@ const en: Dict = {
       "Every recommendation names the human shift it creates — anchored in ADKAR, Kotter, or McKinsey 7S — because change-management is where most transformations actually fail.",
     audienceHeading: "Built for the owner-operator already in the room when the hard decisions get made.",
     audienceBody:
-      "Owner-operators of $5–100M businesses across Miami, Monterrey, Bogotá, Panama City, and Mexico City. Bilingual EN/ES. One issue per week. Members-only.",
+      "Owner-operators of $5–100M businesses across the United States & Canada, Mexico, Latin America, Brazil, Europe, the Middle East, Asia-Pacific, and Africa. Bilingual EN/ES. One issue per week. Members-only.",
   },
   apply: {
     title: "Apply to The Transformation Letter",
-    subtitle:
-      "Membership is gated. We read every application — the goal is to keep the room full of the right operators.",
+    subtitle: "",
     name: "Full name",
     email: "Work email",
     company: "Company",
@@ -177,14 +176,22 @@ const en: Dict = {
       { value: "over_100m", label: "Over $100M" },
     ],
     regionOptions: [
-      { value: "miami", label: "Miami" },
-      { value: "monterrey", label: "Monterrey" },
-      { value: "bogota", label: "Bogotá" },
-      { value: "panama_city", label: "Panama City" },
-      { value: "mexico_city", label: "Mexico City" },
-      { value: "other_us", label: "Other (US)" },
-      { value: "other_latam", label: "Other (LATAM)" },
-      { value: "other", label: "Other" },
+      { value: "miami", label: "Miami", hidden: true },
+      { value: "monterrey", label: "Monterrey", hidden: true },
+      { value: "bogota", label: "Bogotá", hidden: true },
+      { value: "panama_city", label: "Panama City", hidden: true },
+      { value: "mexico_city", label: "Mexico City", hidden: true },
+      { value: "other_us", label: "Other (US)", hidden: true },
+      { value: "other_latam", label: "Other (LATAM)", hidden: true },
+      { value: "other", label: "Other", hidden: true },
+      { value: "other_us", label: "United States & Canada" },
+      { value: "mexico_city", label: "Mexico" },
+      { value: "other_latam", label: "Latin America" },
+      { value: "other_latam", label: "Brazil" },
+      { value: "other", label: "Europe" },
+      { value: "other", label: "Middle East" },
+      { value: "other", label: "Asia-Pacific" },
+      { value: "other", label: "Africa" },
     ],
   },
   signIn: {
@@ -286,13 +293,13 @@ const es: Dict = {
   brand: {
     name: "The Transformation Letter",
     tagline:
-      "Diagnósticos para owner-operators de $5–100M sobre transformación de negocio, capital consciente, empresa familiar, family office, IA y tecnología — en el corredor US-LATAM.",
+      "Diagnósticos para owner-operators de $5–100M sobre transformación de negocio, IA y tecnología — en el corredor US-LATAM.",
   },
   nav: {
     archive: "Archivo",
     convenings: "Encuentros",
     ask: "Preguntar",
-    apply: "Postular",
+    apply: "Unirme",
     signIn: "Ingresar",
     signOut: "Salir",
     account: "Cuenta",
@@ -304,11 +311,11 @@ const es: Dict = {
       "Tu negocio ya está corriendo un OS — solo que se construyó por accidente, no por diseño.",
     subFilter:
       "Diagnósticos semanales para owner-operators que ya probaron todo lo que sabían cómo probar.",
-    primaryCta: "Postular para entrar",
+    primaryCta: "Unirme para entrar",
     secondaryCta: "Leer el archivo",
     coverageHeading: "Qué cubrimos",
     coverageSub:
-      "Seis temas adyacentes, una sola audiencia. Cada edición termina en una recomendación concreta y el cambio humano que produce.",
+      "Tres temas adyacentes, una sola audiencia. Cada edición termina en una recomendación concreta y el cambio humano que produce.",
     sequenceHeading: "El Business Transformation OS — tres capas. Una secuencia.",
     sequenceBody:
       "Estrategia antes que Modelo Operativo. Modelo Operativo antes que Tecnología. La secuencia es la idea, y ancla cada edición sobre transformación.",
@@ -323,12 +330,11 @@ const es: Dict = {
       "Cada recomendación nombra el cambio humano que crea — anclado en ADKAR, Kotter o McKinsey 7S — porque la gestión del cambio es donde la mayoría de las transformaciones realmente fallan.",
     audienceHeading: "Para el owner-operator que ya está en la sala cuando se toman las decisiones difíciles.",
     audienceBody:
-      "Owner-operators de negocios de $5–100M en Miami, Monterrey, Bogotá, Ciudad de Panamá y Ciudad de México. Bilingüe EN/ES. Una edición por semana. Solo miembros.",
+      "Owner-operators de negocios de $5–100M en Estados Unidos y Canadá, México, Latinoamérica, Brasil, Europa, Medio Oriente, Asia-Pacífico y África. Bilingüe EN/ES. Una edición por semana. Solo miembros.",
   },
   apply: {
-    title: "Postular a The Transformation Letter",
-    subtitle:
-      "El acceso es por aplicación. Leemos cada postulación — la idea es mantener la sala con los operadores correctos.",
+    title: "Unirme a The Transformation Letter",
+    subtitle: "",
     name: "Nombre completo",
     email: "Correo de trabajo",
     company: "Empresa",
@@ -357,14 +363,22 @@ const es: Dict = {
       { value: "over_100m", label: "Más de $100M" },
     ],
     regionOptions: [
-      { value: "miami", label: "Miami" },
-      { value: "monterrey", label: "Monterrey" },
-      { value: "bogota", label: "Bogotá" },
-      { value: "panama_city", label: "Ciudad de Panamá" },
-      { value: "mexico_city", label: "Ciudad de México" },
-      { value: "other_us", label: "Otro (EE.UU.)" },
-      { value: "other_latam", label: "Otro (LATAM)" },
-      { value: "other", label: "Otro" },
+      { value: "miami", label: "Miami", hidden: true },
+      { value: "monterrey", label: "Monterrey", hidden: true },
+      { value: "bogota", label: "Bogotá", hidden: true },
+      { value: "panama_city", label: "Ciudad de Panamá", hidden: true },
+      { value: "mexico_city", label: "Ciudad de México", hidden: true },
+      { value: "other_us", label: "Otro (EE.UU.)", hidden: true },
+      { value: "other_latam", label: "Otro (LATAM)", hidden: true },
+      { value: "other", label: "Otro", hidden: true },
+      { value: "other_us", label: "Estados Unidos y Canadá" },
+      { value: "mexico_city", label: "México" },
+      { value: "other_latam", label: "Latinoamérica" },
+      { value: "other_latam", label: "Brasil" },
+      { value: "other", label: "Europa" },
+      { value: "other", label: "Medio Oriente" },
+      { value: "other", label: "Asia-Pacífico" },
+      { value: "other", label: "África" },
     ],
   },
   signIn: {

@@ -77,8 +77,8 @@ export function PreferencesForm({
           <label className="field-label">{i18n.region}</label>
           <select name="region" defaultValue={initial.region ?? ""} className="field-select">
             <option value="" />
-            {apply.regionOptions.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+            {apply.regionOptions.filter((o) => !o.hidden).map((o, idx) => (
+              <option key={idx} value={o.value}>{o.label}</option>
             ))}
           </select>
         </div>
@@ -95,7 +95,7 @@ export function PreferencesForm({
       <fieldset>
         <legend className="field-label">{i18n.topicsInterest}</legend>
         <div className="flex flex-wrap gap-2">
-          {TOPICS.map((topic) => {
+          {TOPICS.filter((t) => !["conscious_capital", "family_business", "family_office"].includes(t.id)).map((topic) => {
             const active = topics.includes(topic.id);
             return (
               <button
