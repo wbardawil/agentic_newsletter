@@ -43,12 +43,23 @@ export default async function HomePage() {
           <p className="pill mb-6">
             {lang === "es" ? "EN · ES · Semanal · Solo miembros" : "EN · ES · Weekly · Members only"}
           </p>
-          {/* Tagline estático de marca */}
-          <h1 className="heading-display mb-8">{i18n.hero}</h1>
 
-          {/* Edición más reciente con imagen */}
+          {/* Edición más reciente como encabezado principal */}
           {heroEdition && heroTitle ? (
             <div className="mb-10 space-y-6">
+              <div>
+                <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-2">
+                  #{heroEdition.edition_number} · {topicLabel(heroEdition.topic, lang)}
+                  {heroEdition.pillar ? ` · ${heroEdition.pillar}` : ""}
+                </p>
+                <Link
+                  href={`/newsroom/${heroEdition.edition_id}`}
+                  className="block text-3xl md:text-4xl font-extrabold leading-tight text-[var(--color-fg)] hover:text-[var(--color-cta)] transition-colors"
+                >
+                  {heroTitle}
+                </Link>
+              </div>
+
               {heroEdition.hero_image_url ? (
                 <Link href={`/newsroom/${heroEdition.edition_id}`} className="relative block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-line)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -59,34 +70,31 @@ export default async function HomePage() {
                   />
                 </Link>
               ) : null}
-              <div className="border-l-2 border-[var(--color-cta)] pl-5">
-                <p className="text-xs uppercase tracking-wider text-[var(--color-fg-muted)] mb-2">
-                  #{heroEdition.edition_number} · {topicLabel(heroEdition.topic, lang)}
-                  {heroEdition.pillar ? ` · ${heroEdition.pillar}` : ""}
+
+              {heroExcerpt ? (
+                <p className="text-[var(--color-fg-muted)] leading-relaxed text-sm md:text-base max-w-xl pl-5 border-l-2 border-[var(--color-cta)]">
+                  {heroExcerpt}
                 </p>
-                <Link
-                  href={`/newsroom/${heroEdition.edition_id}`}
-                  className="block text-xl md:text-2xl font-bold leading-snug text-[var(--color-fg)] hover:text-[var(--color-cta)] transition-colors mb-3"
-                >
-                  {heroTitle}
-                </Link>
-                {heroExcerpt ? (
-                  <p className="text-[var(--color-fg-muted)] leading-relaxed text-sm md:text-base max-w-xl">
-                    {heroExcerpt}
-                  </p>
-                ) : null}
-              </div>
+              ) : null}
             </div>
           ) : (
-            <p className="pull-quote mb-10">{i18n.filterSentence}</p>
+            <div>
+              <h1 className="heading-display mb-8">{i18n.hero}</h1>
+              <p className="pull-quote mb-10">{i18n.filterSentence}</p>
+            </div>
           )}
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-6">
             {!user ? (
-              <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
+              <Link href="/apply" className="btn btn-cta btn-xl shrink-0">{i18n.primaryCta} →</Link>
             ) : (
-              <Link href="/archive" className="btn btn-cta btn-xl">{i18n.secondaryCta} →</Link>
+              <Link href="/archive" className="btn btn-cta btn-xl shrink-0">{i18n.secondaryCta} →</Link>
             )}
+            {heroEdition ? (
+              <p className="text-xs md:text-sm text-[var(--color-fg-muted)] max-w-sm leading-normal">
+                {i18n.hero}
+              </p>
+            ) : null}
           </div>
         </div>
 
