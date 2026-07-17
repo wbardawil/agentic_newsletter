@@ -165,7 +165,7 @@ const en: Dict = {
     passwordMismatch: "Passwords do not match.",
     submit: "Create my account",
     submitting: "Creating account…",
-    successTitle: "Welcome to The Transformation Letter.",
+    successTitle: "Welcome to\nThe Transformation Letter",
     successBody:
       "Your account is ready. Sign in now with the email and password you just set.",
     sizeOptions: [
@@ -203,7 +203,7 @@ const en: Dict = {
     forgotPassword: "Forgot your password?",
   },
   member: {
-    welcome: "Welcome back.",
+    welcome: "Welcome back",
     latestIssue: "Latest issue",
     yourPreferences: "Your preferences",
     askAssistant: "Ask the Transformation AI",
@@ -352,7 +352,7 @@ const es: Dict = {
     passwordMismatch: "Las contraseñas no coinciden.",
     submit: "Crear mi cuenta",
     submitting: "Creando cuenta…",
-    successTitle: "Bienvenido a The Transformation Letter.",
+    successTitle: "Bienvenido a\nThe Transformation Letter",
     successBody:
       "Tu cuenta está lista. Ingresa ahora con el correo y la contraseña que acabas de configurar.",
     sizeOptions: [
@@ -390,7 +390,7 @@ const es: Dict = {
     forgotPassword: "¿Olvidaste tu contraseña?",
   },
   member: {
-    welcome: "Bienvenido de vuelta.",
+    welcome: "Bienvenido de vuelta",
     latestIssue: "Última edición",
     yourPreferences: "Tus preferencias",
     askAssistant: "Preguntarle a la IA",
