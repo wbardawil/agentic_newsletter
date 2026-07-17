@@ -71,6 +71,17 @@ export default async function EditionPage({
         </nav>
       </header>
 
+      {edition.hero_image_url ? (
+        <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-lg">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={edition.hero_image_url ?? undefined}
+            alt={subject ?? undefined}
+            className="object-cover w-full h-full"
+          />
+        </div>
+      ) : null}
+
       <div
         className="prose prose-neutral max-w-none"
         dangerouslySetInnerHTML={{ __html: renderBody(body ?? "", lang) }}

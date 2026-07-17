@@ -94,17 +94,6 @@ export default async function ArchivePage({
               ) : null}
             </div>
 
-            {e.hero_image_url ? (
-              <Link href={`/archive/${e.edition_id}`} className="relative block aspect-[16/9] max-w-xl overflow-hidden rounded-lg border border-[var(--color-line)] mt-3 mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={e.hero_image_url}
-                  alt={lang === "es" ? e.subject_es ?? "" : e.subject_en ?? ""}
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
-                />
-              </Link>
-            ) : null}
-
             {(lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en) ? (
               <p className="text-[var(--color-fg)]/85">
                 {lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en}
