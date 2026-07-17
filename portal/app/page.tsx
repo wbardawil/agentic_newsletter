@@ -84,17 +84,12 @@ export default async function HomePage() {
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+          <div className="flex flex-wrap gap-3">
             {!user ? (
-              <Link href="/apply" className="btn btn-cta btn-xl shrink-0">{i18n.primaryCta} →</Link>
+              <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
             ) : (
-              <Link href="/archive" className="btn btn-cta btn-xl shrink-0">{i18n.secondaryCta} →</Link>
+              <Link href="/archive" className="btn btn-cta btn-xl">{i18n.secondaryCta} →</Link>
             )}
-            {heroEdition ? (
-              <p className="text-xs md:text-sm text-[var(--color-fg-muted)] max-w-sm leading-normal">
-                {i18n.hero}
-              </p>
-            ) : null}
           </div>
         </div>
 
