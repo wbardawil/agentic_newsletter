@@ -17,7 +17,7 @@ export default async function ApplyPage({
   if (ok === "1") {
     return (
       <section className="container-prose py-20">
-        <h1 className="text-4xl mb-3">{i18n.successTitle}</h1>
+        <h1 className="text-4xl mb-3 whitespace-pre-line">{i18n.successTitle}</h1>
         <p className="text-[var(--color-fg-muted)] text-lg">{i18n.successBody}</p>
       </section>
     );

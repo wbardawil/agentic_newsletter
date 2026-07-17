@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { getLangFromCookies } from "@/lib/i18n/server";
 import { t } from "@/lib/i18n/dictionary";
+import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata = {
   title: "About — Wadi Bardawil · The Transformation Letter",
@@ -13,6 +14,9 @@ export default async function AboutPage() {
   const lang = await getLangFromCookies();
   const i18n = t(lang).about;
   const landing = t(lang).landing;
+
+  const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   return (
     <>
@@ -41,18 +45,28 @@ export default async function AboutPage() {
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <a className="nav-link" href="mailto:wadi@wadibardawil.com">
-                  wadi@wadibardawil.com
+                <a className="nav-link" href="mailto:wb@wadibardawil.com">
+                  wb@wadibardawil.com
                 </a>
               </li>
               <li>
-                <a className="nav-link" href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noreferrer">
-                  linkedin.com/in/wadibardawil
+                <a className="nav-link" href="https://www.linkedin.com/in/wadibardawil/" target="_blank" rel="noreferrer">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="https://www.instagram.com/wbardawil/" target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="https://www.facebook.com/profile.php?id=61583226644816" target="_blank" rel="noreferrer">
+                  Facebook
                 </a>
               </li>
               <li>
                 <a className="nav-link" href="https://wadibardawil.com" target="_blank" rel="noreferrer">
-                  wadibardawil.com
+                  www.wadibardawil.com
                 </a>
               </li>
               <li className="text-[var(--color-fg-muted)]">
@@ -61,9 +75,11 @@ export default async function AboutPage() {
             </ul>
           </div>
 
-          <Link href="/apply" className="btn btn-cta btn-md w-full justify-center">
-            {landing.primaryCta} →
-          </Link>
+          {!user ? (
+            <Link href="/apply" className="btn btn-cta btn-md w-full justify-center">
+              {landing.primaryCta} →
+            </Link>
+          ) : null}
         </aside>
       </section>
     </>
