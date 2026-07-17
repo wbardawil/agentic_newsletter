@@ -83,7 +83,7 @@ export default async function NewsroomEditionPage({ params }: { params: Promise<
           <>
             <div
               className="prose prose-neutral max-w-none mt-8"
-              dangerouslySetInnerHTML={{ __html: renderBody(body) }}
+              dangerouslySetInnerHTML={{ __html: renderBody(body, lang) }}
             />
             {sources && sources.length > 0 ? (
               <section className="mt-12 border-t border-[var(--color-line)] pt-6">

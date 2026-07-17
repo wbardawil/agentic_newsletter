@@ -28,7 +28,7 @@ export function NewsroomChannelBar({
         >
           {allLabel}
         </Link>
-        {TOPICS.map((topic) => {
+        {TOPICS.filter((topic) => !["conscious_capital", "family_business", "family_office"].includes(topic.id)).map((topic) => {
           const isActive = active === topic.id;
           const href = `/newsroom/topic/${topic.id}` as Route;
           return (

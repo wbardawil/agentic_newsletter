@@ -88,7 +88,12 @@ export default async function HomePage() {
             {!user ? (
               <Link href="/apply" className="btn btn-cta btn-xl">{i18n.primaryCta} →</Link>
             ) : (
-              <Link href="/archive" className="btn btn-cta btn-xl">{i18n.secondaryCta} →</Link>
+              <Link
+                href={heroEdition ? `/archive/${heroEdition.edition_id}` : "/archive"}
+                className="btn btn-cta btn-xl"
+              >
+                {lang === "es" ? "Leer la edición" : "Read the issue"} →
+              </Link>
             )}
           </div>
         </div>
