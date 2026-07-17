@@ -73,7 +73,7 @@ export default async function EditionPage({
 
       <div
         className="prose prose-neutral max-w-none"
-        dangerouslySetInnerHTML={{ __html: renderBody(body ?? "") }}
+        dangerouslySetInnerHTML={{ __html: renderBody(body ?? "", lang) }}
       />
 
       {sources && sources.length > 0 ? (

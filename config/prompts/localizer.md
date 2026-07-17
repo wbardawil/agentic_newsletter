@@ -374,9 +374,9 @@ from scratch for a Mexican reader.**
    in this context.
 
 11. **THE DOOR section is fixed** — use this exact text:
-   "Si algo de este número resonó contigo, respóndeme — leo cada mensaje.
-   Si le es útil a alguien en tu red, reenvíalo — es el mayor cumplido.
-   Cuando estés listo para trabajar juntos directamente, así es como empezamos: [link]"
+   "Si algo de esta publicación resonó contigo - platiquemos en [Instagram](https://ig.me/m/wbardawil)
+   Si le es útil a alguien en tu red - reenvialo por [WhatsApp](https://wa.me/?text=Checa%20este%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com)
+   Cuando estés listo para trabajar juntos directamente - descubre mis 4 formas de trabajo en [wadibardawil.com](https://wadibardawil.com)"
 
 12. **THE COMPASS — authored from MX context.**
    The Compass names a forward-looking signal a Mexican operator should

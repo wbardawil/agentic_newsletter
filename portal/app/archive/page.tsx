@@ -24,7 +24,7 @@ export default async function ArchivePage({
 
   let query = supabase
     .from("editions")
-    .select("edition_id, edition_number, subject_en, subject_es, topic, pillar, byline, byline_role, published_at, shareable_sentence_en, shareable_sentence_es")
+    .select("edition_id, edition_number, subject_en, subject_es, topic, pillar, byline, byline_role, published_at, shareable_sentence_en, shareable_sentence_es, hero_image_url")
     .eq("is_published", true)
     .order("published_at", { ascending: false });
 
@@ -40,7 +40,7 @@ export default async function ArchivePage({
   }
 
   const { data: dataRows } = await query;
-  const data = dataRows as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "topic" | "pillar" | "byline" | "byline_role" | "published_at" | "shareable_sentence_en" | "shareable_sentence_es">[] | null;
+  const data = dataRows as Pick<Database["public"]["Tables"]["editions"]["Row"], "edition_id" | "edition_number" | "subject_en" | "subject_es" | "topic" | "pillar" | "byline" | "byline_role" | "published_at" | "shareable_sentence_en" | "shareable_sentence_es" | "hero_image_url">[] | null;
 
   return (
     <section className="container-wide py-12">
@@ -93,6 +93,18 @@ export default async function ArchivePage({
                 </>
               ) : null}
             </div>
+
+            {e.hero_image_url ? (
+              <Link href={`/archive/${e.edition_id}`} className="relative block aspect-[16/9] max-w-xl overflow-hidden rounded-lg border border-[var(--color-line)] mt-3 mb-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={e.hero_image_url}
+                  alt={lang === "es" ? e.subject_es ?? "" : e.subject_en ?? ""}
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                />
+              </Link>
+            ) : null}
+
             {(lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en) ? (
               <p className="text-[var(--color-fg)]/85">
                 {lang === "es" ? e.shareable_sentence_es : e.shareable_sentence_en}

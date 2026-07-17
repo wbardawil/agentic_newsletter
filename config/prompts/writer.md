@@ -224,11 +224,11 @@ A forward-looking signal to track.
 
 Output this text exactly, unchanged:
 ---
-If something in this issue landed, reply — I read every response.
+If something in this publication resonated with you - let's chat on [Instagram](https://ig.me/m/wbardawil)
 
-If this is useful to someone in your network, forward it — it takes ten seconds and it's the highest compliment.
+If it's useful to someone in your network - forward it via [WhatsApp](https://wa.me/?text=Check%20out%20this%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com)
 
-When you're ready to work together directly, here is how we start: [link]
+When you're ready to work together directly - discover my 4 ways of working at [wadibardawil.com](https://wadibardawil.com)
 ---
 
 ### Section −1 — SUBJECT LINE OPTIONS
