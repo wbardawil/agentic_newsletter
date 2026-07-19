@@ -31,11 +31,7 @@ export default async function EditionPage({
 
   if (!edition) notFound();
 
-  const { data: sourcesData } = await supabase
-    .from("edition_sources")
-    .select("title, url, snippet, publisher")
-    .eq("edition_id", edition.id);
-  const sources = sourcesData as Pick<Database["public"]["Tables"]["edition_sources"]["Row"], "title" | "url" | "snippet" | "publisher">[] | null;
+
 
   const cookieLang = await getLangFromCookies();
   const lang = overrideLang === "es" ? "es" : overrideLang === "en" ? "en" : cookieLang;
@@ -87,20 +83,7 @@ export default async function EditionPage({
         dangerouslySetInnerHTML={{ __html: renderBody(body ?? "", lang) }}
       />
 
-      {sources && sources.length > 0 ? (
-        <section className="mt-12 border-t border-[var(--color-line)] pt-6">
-          <h3 className="text-lg mb-3">{lang === "es" ? "Fuentes" : "Sources"}</h3>
-          <ol className="space-y-2 text-sm list-decimal pl-5">
-            {sources.map((s, i) => (
-              <li key={i}>
-                <a href={s.url} target="_blank" rel="noreferrer">{s.title}</a>
-                {s.publisher ? <span className="text-[var(--color-fg-muted)]"> — {s.publisher}</span> : null}
-                {s.snippet ? <div className="text-[var(--color-fg-muted)] mt-1">{s.snippet}</div> : null}
-              </li>
-            ))}
-          </ol>
-        </section>
-      ) : null}
+
     </article>
   );
 }
