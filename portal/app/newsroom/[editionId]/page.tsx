@@ -13,7 +13,6 @@ import type { Database } from "@/lib/supabase/types";
 import { renderBody } from "@/lib/markdown";
 
 type FullEdition = Database["public"]["Tables"]["editions"]["Row"];
-type SourceRow = Pick<Database["public"]["Tables"]["edition_sources"]["Row"], "title" | "url" | "snippet" | "publisher">;
 
 export default async function NewsroomEditionPage({ params }: { params: Promise<{ editionId: string }> }) {
   const { editionId } = await params;
@@ -32,7 +31,6 @@ export default async function NewsroomEditionPage({ params }: { params: Promise<
   // Check user session and get full premium body if member/admin
   const { data: { user } } = await supabase.auth.getUser();
   let full: FullEdition | null = null;
-  let sources: SourceRow[] | null = null;
 
   if (user) {
     const { data: fullData } = await supabase
@@ -42,14 +40,6 @@ export default async function NewsroomEditionPage({ params }: { params: Promise<
       .eq("is_published", true)
       .maybeSingle();
     full = (fullData as FullEdition | null) ?? null;
-
-    if (full) {
-      const { data: src } = await supabase
-        .from("edition_sources")
-        .select("title, url, snippet, publisher")
-        .eq("edition_id", full.id);
-      sources = (src as SourceRow[] | null) ?? null;
-    }
   }
 
   const body = full ? (lang === "es" ? full.body_es ?? full.body_en : full.body_en ?? full.body_es) : null;
@@ -80,28 +70,10 @@ export default async function NewsroomEditionPage({ params }: { params: Promise<
         </header>
 
         {body ? (
-          <>
-            <div
-              className="prose prose-neutral max-w-none mt-8"
-              dangerouslySetInnerHTML={{ __html: renderBody(body, lang) }}
-            />
-            {sources && sources.length > 0 ? (
-              <section className="mt-12 border-t border-[var(--color-line)] pt-6">
-                <h3 className="text-lg mb-3">
-                  {lang === "es" ? "Fuentes" : "Sources"}
-                </h3>
-                <ol className="space-y-2 text-sm list-decimal pl-5">
-                  {sources.map((s, i) => (
-                    <li key={i}>
-                      <a href={s.url} target="_blank" rel="noreferrer" className="underline">{s.title}</a>
-                      {s.publisher ? <span className="text-[var(--color-fg-muted)]"> — {s.publisher}</span> : null}
-                      {s.snippet ? <div className="text-[var(--color-fg-muted)] mt-1">{s.snippet}</div> : null}
-                    </li>
-                  ))}
-                </ol>
-              </section>
-            ) : null}
-          </>
+          <div
+            className="prose prose-neutral max-w-none mt-8"
+            dangerouslySetInnerHTML={{ __html: renderBody(body, lang) }}
+          />
         ) : (
           <div className="card space-y-4 mt-8">
             <h2 className="text-xl font-bold mb-2">

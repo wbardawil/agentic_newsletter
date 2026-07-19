@@ -8,8 +8,8 @@ export function renderBody(input: string, lang: "es" | "en" = "es"): string {
   // Overwrite the Door section dynamically so all past and future articles are immediately updated with the new text and links
   let processed = input;
 
-  const doorPatternEs = /##\s*LA\s*PUERTA[\s\S]*/i;
-  const doorPatternEn = /##\s*THE\s*DOOR[\s\S]*/i;
+  const doorPatternEs = /##\s*LA\s*PUERTA[\s\S]*?(?=\n+##|$)/i;
+  const doorPatternEn = /##\s*THE\s*DOOR[\s\S]*?(?=\n+##|$)/i;
 
   const newDoorEs = `## LA PUERTA\n\nSi algo de esta publicación resonó contigo - platiquemos en [Instagram](https://ig.me/m/wbardawil)\n\nSi le es útil a alguien en tu red - reenvialo por [WhatsApp](https://wa.me/?text=Checa%20este%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com)\n\nCuando estés listo para trabajar juntos directamente - descubre mis 4 formas de trabajo en [wadibardawil.com](https://wadibardawil.com)`;
 
