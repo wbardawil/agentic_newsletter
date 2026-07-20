@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Llegó la IA. Nadie reescribió el puesto.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edición 2026-30 · ES · 2026-07-20</div>
+  <div class="np-bar"></div>
+  <h1>Llegó la IA. Nadie reescribió el puesto.</h1>
+</header>
+<figure class="hero"><img src="2026-30-hero.png" alt="Plano arquitectónico con pantallas digitales translúcidas superpuestas mostrando nodos de flujo de trabajo desconectados" loading="lazy"><figcaption>Implementaste la tecnología, pero el modelo operativo sigue corriendo con la lógica de la década pasada.</figcaption></figure><div class="lead"><blockquote><strong>Resumen del Insight:</strong> Las medianas empresas están instalando IA para ganar eficiencia, pero no capturan valor estratégico porque no rediseñaron el modelo operativo que debía sostenerla. El cuello de botella no es la tecnología: es el puesto que nadie volvió a escribir.</blockquote></div>
+<section class="story">
+<h2>LA SEÑAL</h2>
+<p><em>Esta semana: la tecnología entra más rápido de lo que el modelo operativo alcanza a absorberla, y la carga cae sobre el equipo.</em></p>
+<ul>
+<li><strong>Estrategia:</strong> El CEO de Volvo Car, Håkan Samuelsson, respondió al asesor comercial de la Casa Blanca Peter Navarro, quien tildó de "piratas" a las automotrices chinas, y las colocó como los nuevos líderes de la industria junto a Audi, BMW y Mercedes. <strong>La estrategia empieza por nombrar a los competidores que uno se niega a ver.</strong> <a href="https://fortune.com/2026/07/20/volvo-car-ceo-pushes-back-on-navarros-pirate-china-comments/" target="_blank" rel="noopener">Leer en Fortune -&gt;</a></li>
+<li><strong>Modelos Operativos:</strong> Un texto de Fast Company sostiene que, en la medida en que la IA absorbe el trabajo rutinario, delegar deja de ser un truco de productividad y se convierte en el mecanismo que forma criterio en la capa siguiente al dueño. <strong>Delegar solo compone cuando está diseñado.</strong> <a href="https://www.fastcompany.com/91569517/are-you-delegating-wrong-delegating-leadership-management" target="_blank" rel="noopener">Leer en Fast Company -&gt;</a></li>
+<li><strong>Tecnología:</strong> Una encuesta de TD Cowen a 80 líderes biofarma concluye que la IA está comprimiendo costos y plazos preclínicos hasta en 70%. <strong>Solo compone donde el proceso ya estaba escrito.</strong> <a href="https://www.axios.com/2026/07/20/artificial-intelligence-drug-development-impact" target="_blank" rel="noopener">Leer en Axios Business -&gt;</a></li>
+<li><strong>Capital Humano:</strong> Un estudio de Kyndryl a 1,100 líderes en ocho países encuentra que solo 23% considera a su fuerza de trabajo plenamente lista para la IA, seis puntos menos que hace un año. <strong>El equipo espera que alguien le nombre el nuevo lugar.</strong> <a href="https://hrexecutive.com/kyndryl-chro-3-strategies-to-become-an-ai-pacesetter/" target="_blank" rel="noopener">Leer en HR Executive -&gt;</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>LA APERTURA</h2>
+<p>Solo 23% de los líderes senior afirma que su equipo está plenamente listo para la IA que ya desplegaron, <a href="https://hrexecutive.com/kyndryl-chro-3-strategies-to-become-an-ai-pacesetter/" target="_blank" rel="noopener">según un nuevo estudio de Kyndryl a 1,100 líderes en ocho países</a>. Seis puntos menos en un año. Cerca del 80% admite que la IA avanza más rápido que su fuerza de trabajo, su gobernanza y su modelo operativo. Apenas 9% califica como "Pacesetter". La lectura fácil es que se trata de un problema de habilidades: más capacitación, más talleres. No lo es. Las herramientas se instalaron sobre puestos que nadie reescribió. El equipo no va lento. La descripción del puesto se quedó vieja.</p>
+</section>
+<section class="story">
+<h2>EL INSIGHT</h2>
+<p>Usted compró la IA. El equipo la usa, más o menos. Y aun así el trabajo no avanza más rápido. Las decisiones siguen llegando a su escritorio. Las personas a quienes entregó la herramienta se ven corteses en las juntas y poco convencidas en privado. Usted lo interpreta como un problema de adopción y agenda otra capacitación.</p>
+<p>No es un problema de adopción.</p>
+<p>El error está antes de la herramienta. En nuestra experiencia, los líderes despliegan IA suponiendo que las descripciones de puesto existentes van a absorberla. No ocurre así. El puesto que existía antes fue escrito para un trabajo que la herramienta ya se llevó en parte. Nadie le explicó a la persona en ese puesto en qué consiste ahora su trabajo. Sigue viendo el mismo título, los mismos objetivos, la misma ruta de escalamiento. La IA aparece como un becario no solicitado que ejecuta fragmentos de su trabajo mientras las fronteras de propiedad permanecen intactas.</p>
+<p>La resistencia pasiva que usted lee como fricción técnica es otra cosa. Es la respuesta racional de un profesional al que nadie le ha dicho qué le pertenece ahora. La herramienta redistribuye su trabajo en silencio. Nadie nombra el nuevo puesto. Eso se siente menos como un ascenso y más como una degradación en cámara lenta. El silencio no es confusión. Es defensa propia.</p>
+<p>Aquí empieza el trabajo del Operating Model OS, antes de abrir cualquier presentación de capacitación. El artefacto necesario es un Mapa de Rediseño de Puesto. Para cada puesto afectado por la IA, hay tres preguntas que el líder tiene que responder por escrito, con nombre y apellido: ¿Qué decisiones son ahora responsabilidad de este puesto y antes no lo eran? ¿Qué trabajo que antes realizaba este puesto ahora lo ejecuta la herramienta? ¿Qué juicio nuevo tiene que ejercer la persona sobre lo que la herramienta produce?</p>
+<p>Esas tres respuestas son el nuevo puesto. Mientras no estén en papel, usted no desplegó IA: instaló software encima de un flujo que el equipo está negociando en silencio. El discurso sobre la visión de la IA no va a cerrar esa brecha. Solo el rediseño la cierra, porque es el rediseño lo que le muestra a la persona cómo luce el trabajo diario ahora. No la estrategia detrás.</p>
+<p>Esta semana, elija un puesto donde la IA ya esté desplegada. Dedique treinta minutos a responder las tres preguntas. Escríbalas. Después compártalas con la persona en ese puesto y pregúntele qué le faltó. La conversación que viene es el despliegue verdadero. Lo del trimestre pasado fue la factura.</p>
+</section>
+<section class="story">
+<h2>EL REPORTE DE CAMPO</h2>
+<h2>Spotlight</h2>
+<p>Maria Black cumplió 30 años en ADP y se convirtió en su séptima directora general. <a href="https://hrexecutive.com/how-adp-ceo-maria-black-leads-through-uncertain-times/" target="_blank" rel="noopener">En entrevista con HR Executive</a> señaló que la pregunta que todo director general intenta responder es cómo se ve una fuerza de trabajo que combina humanos e IA. Cita investigación de Gartner: muchos líderes de recursos humanos reconocen que sus tecnologías actuales no cubren del todo las necesidades del negocio, y cerca de la mitad no puede medir el retorno de lo que ya compró. Su filtro son dos preguntas: qué es lo correcto para los clientes y qué es lo correcto para los colaboradores.</p>
+<p>Para el operador de mediana empresa, la lectura es directa. El problema no es cuál IA adquirir después. Las herramientas que ya aparecen en el balance se instalaron antes de que nadie redefiniera en qué consiste hoy el puesto del colaborador. La mitad del mercado no puede medir el retorno porque ese retorno depende de un rediseño de puesto que nunca ocurrió. En nuestra opinión, la ventaja se inclina hacia el operador dispuesto a hacer ese rediseño por escrito antes de firmar la siguiente licencia.</p>
+</section>
+<section class="story">
+<h2>LA HERRAMIENTA</h2>
+<p><strong>Scribe</strong> - Una herramienta de captura de pantalla que convierte cualquier flujo que usted ejecute en la computadora en un documento paso a paso, de forma automática. Resulta útil porque no se puede rediseñar un puesto sin ver primero qué hace ese puesto hoy. Está en <a href="https://scribehow.com" target="_blank" rel="noopener">scribehow.com</a>.</p>
+</section>
+<section class="story">
+<h2>LA BRÚJULA</h2>
+<p><strong>El indicador de la semana:</strong> cuántas veces alguien de su equipo le consulta algo sobre una tarea que la IA supuestamente ya está resolviendo. Cada uno de esos escalamientos no refleja una carencia de capacitación. Es una línea sin escribir en la descripción del puesto. Cuéntelos de lunes a viernes. Ese número es su Mapa de Rediseño de Puesto, primer borrador, entregado por quienes viven dentro de la brecha.</p>
+</section>
+<section class="story">
+<h2>LA PUERTA</h2>
+<p>Si algo de esta publicación resonó contigo - platiquemos en <a href="https://ig.me/m/wbardawil" target="_blank" rel="noopener">Instagram</a></p>
+<p>Si le es útil a alguien en tu red - reenvialo por <a href="https://wa.me/?text=Checa%20este%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com" target="_blank" rel="noopener">WhatsApp</a></p>
+<p>Cuando estés listo para trabajar juntos directamente - descubre mis 4 formas de trabajo en <a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a></p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edición 2026-30 · ES · 2026-07-20</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-07-20</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> Systems That Serve</p>
+<p><strong>Subject:</strong> Llegó la IA. Nadie reescribió el puesto.</p>
+<p><strong>Preheader:</strong> Lo que usted lee como resistencia es, en realidad, un puesto sin dueño.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
