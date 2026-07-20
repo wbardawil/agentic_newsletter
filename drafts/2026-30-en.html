@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The AI landed. Nobody rewrote the job.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edition 2026-30 · EN · 2026-07-20</div>
+  <div class="np-bar"></div>
+  <h1>The AI landed. Nobody rewrote the job.</h1>
+</header>
+<figure class="hero"><img src="2026-30-hero.png" alt="Blueprint architectural drawing overlaid with translucent digital interface screens showing disconnected workflow nodes" loading="lazy"><figcaption>You deployed the technology, but the operating model still runs on last decade's logic.</figcaption></figure><div class="lead"><blockquote><strong>Insight summary:</strong> Mid-market firms are adopting AI point solutions for efficiency but failing to capture strategic value because they haven't redesigned their operating model to support them—the bottleneck is process, not technology.</blockquote></div>
+<section class="story">
+<h2>THE SIGNAL</h2>
+<p><em>This week: the technology is landing faster than the operating model can absorb it, and the workforce is being asked to close the gap.</em></p>
+<ul>
+<li><strong>Strategy:</strong> Volvo Car CEO Håkan Samuelsson pushed back on White House trade adviser Peter Navarro's "pirate" framing of Chinese automakers, calling them the new industry leaders alongside Audi, BMW, and Mercedes. <strong>Strategy is naming which competitors you refuse to see.</strong> <a href="https://fortune.com/2026/07/20/volvo-car-ceo-pushes-back-on-navarros-pirate-china-comments/" target="_blank" rel="noopener">Read →</a></li>
+</ul>
+<ul>
+<li><strong>Operating Models:</strong> A Fast Company piece argues that as AI handles routine work, delegation stops being a productivity move and becomes the mechanism that builds judgment in the layer below the owner. <strong>Delegation only compounds when it is designed.</strong> <a href="https://www.fastcompany.com/91569517/are-you-delegating-wrong-delegating-leadership-management" target="_blank" rel="noopener">Read →</a></li>
+</ul>
+<ul>
+<li><strong>Technology:</strong> A TD Cowen survey of 80 biopharma leaders finds AI is compressing preclinical drug development costs and timelines by up to 70 percent. <strong>Technology compounds only where the process was already written down.</strong> <a href="https://www.axios.com/2026/07/20/artificial-intelligence-drug-development-impact" target="_blank" rel="noopener">Read →</a></li>
+</ul>
+<ul>
+<li><strong>Human Capital:</strong> A Kyndryl study of 1,100 senior leaders across eight countries finds only 23 percent say their workforce is fully ready for AI, a six-point drop in a year. <strong>The workforce is waiting for someone to name the new job.</strong> <a href="https://hrexecutive.com/kyndryl-chro-3-strategies-to-become-an-ai-pacesetter/" target="_blank" rel="noopener">Read →</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>THE APERTURA</h2>
+<p>Only twenty-three percent of senior leaders say their workforce is fully ready for the AI they have already deployed, <a href="https://hrexecutive.com/kyndryl-chro-3-strategies-to-become-an-ai-pacesetter/" target="_blank" rel="noopener">according to a new Kyndryl study of 1,100 leaders across eight countries</a>. Down six points in a single year. Nearly eighty percent say the pace of AI is outrunning their workforce, governance, and operating models. Only nine percent qualify as "Pacesetters." The reading everyone reaches for is a skills problem. Buy more training. Run more workshops. It is not a skills problem. The tools were installed on top of roles nobody rewrote. The team is not slow. The job description was never updated.</p>
+</section>
+<section class="story">
+<h2>THE INSIGHT</h2>
+<p>You bought the AI. The team is using it, sort of. But the work is not moving faster. Decisions still route through you. The people you deployed the tool to sound polite in meetings and unconvinced in private. You call this an adoption problem and schedule more training.</p>
+<p>It is not an adoption problem.</p>
+<p>The mistake is upstream of the tool. In our experience, leaders deploy AI assuming the existing role definitions will absorb it. They will not. The role that existed before the tool was written for a job the tool has now partially taken over. No one has told the person in the role what their new job actually is. They still see the same title, the same objectives, the same escalation path. The AI shows up like an unpaid intern nobody asked for, doing pieces of their work while the boundaries of ownership stay unchanged.</p>
+<p>The passive resistance you are reading as technical friction is something else. It is the rational response of a professional who has not been told what they now own. The tool quietly redistributes their work. No one names the new role. That feels less like an upgrade and more like a demotion in slow motion. Their silence is not confusion. It is self-protection.</p>
+<p>This is where the Operating Model OS work begins, before any training deck is opened. The artifact required is a Role Redesign Map. For every role touched by the AI deployment, three questions have to be answered on paper, by name, by the leader. What decisions does this role now own that it did not own before? What work that previously belonged to this role now belongs to the tool? What new judgment must the human exercise on top of what the tool produces?</p>
+<p>Those three answers are the new job. Until they exist in writing, you have not deployed AI. You have installed software on top of a workflow the team is now silently negotiating in the dark. The vision speech about AI will not close the gap. Only the redesign will, because it is the redesign that shows the person what the daily work now looks like. Not the strategy behind it.</p>
+<p>This week, pick one role where AI is already deployed. Sit down for thirty minutes and answer the three questions. Write it out. Then share it with the person in that role and ask what you got wrong. The conversation that follows is the actual deployment. What you did last quarter was the invoice.</p>
+</section>
+<section class="story">
+<h2>THE FIELD REPORT</h2>
+<p>Maria Black marked her 30th year at ADP by becoming its seventh CEO. She <a href="https://hrexecutive.com/how-adp-ceo-maria-black-leads-through-uncertain-times/" target="_blank" rel="noopener">told HR Executive</a> that the top question every CEO is now trying to answer is what a workforce that includes both AI and humans actually looks like. She points to Gartner research showing many HR leaders admit their current technologies do not fully meet business needs, and about half cannot measure the ROI of the tech they have already bought. Her filter is two questions: what is the right thing for clients, and what is the right thing for associates.</p>
+<p>For the mid-market operator, the reading of this shift is direct. The problem is not which AI to buy next. The tools already sitting on the balance sheet were installed before anyone rewrote what the associate role now is. Half the market cannot measure the return because the return depends on a role redesign that never happened. In our view, the advantage moves toward the operator willing to do that redesign in writing before signing the next license.</p>
+</section>
+<section class="story">
+<h2>THE TOOL</h2>
+<p><strong>Scribe</strong> - A screen-capture tool that turns any workflow you run on your computer into a step-by-step document, automatically. It matters because you cannot redesign a role until you can see what the role actually does today. Find it at <a href="https://scribehow.com" target="_blank" rel="noopener">scribehow.com</a>.</p>
+</section>
+<section class="story">
+<h2>THE COMPASS</h2>
+<p><strong>Watch for this week:</strong> how many times a member of your team asks you a question about a task the AI is supposed to be handling. Every one of those escalations is not a training gap. It is an unwritten line in the role. Count them Monday through Friday. The number is your Role Redesign Map, first draft, delivered by the people who are living inside the gap.</p>
+</section>
+<section class="story">
+<h2>THE DOOR</h2>
+<p>If something in this publication resonated with you - let's chat on <a href="https://ig.me/m/wbardawil" target="_blank" rel="noopener">Instagram</a></p>
+<p>If it's useful to someone in your network - forward it via <a href="https://wa.me/?text=Check%20out%20this%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com" target="_blank" rel="noopener">WhatsApp</a></p>
+<p>When you're ready to work together directly - discover my 4 ways of working at <a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a></p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edition 2026-30 · EN · 2026-07-20</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-07-20</p>
+<p><strong>OS Pillar:</strong> Operating Model OS</p>
+<p><strong>Quarterly Theme:</strong> Systems That Serve</p>
+<p><strong>Subject:</strong> The AI landed. Nobody rewrote the job.</p>
+<p><strong>Preheader:</strong> The passive resistance is not adoption. It's a missing role.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
