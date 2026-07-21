@@ -49,6 +49,27 @@ export function parseNewsletterBody(bodyMarkdown: string, lang: "es" | "en" = "e
     .replace(duplicateHeaderRe, "")
     .replace(/\n{3,}/g, "\n\n");
 
+  // 1.6. Resolve apertura multi-option blocks in legacy/historic data already stored
+  // in Supabase before the pipeline fix was applied. Selects Option B (or A as fallback)
+  // and strips the ===OPTION_X:type=== delimiter tokens so they never render as text.
+  if (/===OPTION_[ABC]:\w+===/.test(fullMarkdown)) {
+    fullMarkdown = fullMarkdown.replace(
+      /(##\s+(?:THE|LA)\s+APERTURA[^\n]*\n)([\s\S]*?)(?=\n##\s+|\n---\s*(?:\n|$)|$)/i,
+      (_, heading, body) => {
+        if (!/===OPTION_[ABC]:\w+===/.test(body)) return heading + body;
+        const parts = body.split(/===OPTION_[ABC]:\w+===/);
+        const headers = [...body.matchAll(/===OPTION_([ABC]):\w+===/g)];
+        const indexB = headers.findIndex((h) => h[1] === "B");
+        const chosenIdx = indexB >= 0 ? indexB : 0;
+        return heading + "\n" + (parts[chosenIdx + 1] ?? "").trim();
+      }
+    );
+  }
+
+  // 1.7. Strip section-separator "---" lines so they don't render as visible text
+  // inside story cards. Cards are already visually separated by the UI layout.
+  fullMarkdown = fullMarkdown.replace(/^---$/gm, "").replace(/\n{3,}/g, "\n\n");
+
   // 2. Split on lines starting with '## '
   const parts = fullMarkdown.split(/^##\s+/gm);
   const leadPart = parts[0] || "";

@@ -89,6 +89,29 @@ export function normalizeTopic(topic: string | undefined): PortalTopic {
 }
 
 /**
+ * Resolve the apertura options block to a single body string.
+ *
+ * The Writer agent encodes three candidate hooks as:
+ *   ===OPTION_A:statistic===\n<body A>
+ *   ===OPTION_B:provocation===\n<body B>
+ *   ===OPTION_C:pattern===\n<body C>
+ *
+ * The curator picks one during the approval gate (default: Option B).
+ * This function extracts only Option B (or Option A as fallback) so the
+ * raw option tokens never reach Supabase or the portal renderer.
+ *
+ * ⚠️ KEEP IN SYNC with `src/utils/edition-markdown.ts` → resolveAperturaBody()
+ */
+function resolveAperturaBody(body: string): string {
+  if (!/===OPTION_[ABC]:\w+===/.test(body)) return body;
+  const parts = body.split(/===OPTION_[ABC]:\w+===/);
+  const headers = [...body.matchAll(/===OPTION_([ABC]):\w+===/g)];
+  const indexB = headers.findIndex((h) => h[1] === "B");
+  const chosenIdx = indexB >= 0 ? indexB : 0;
+  return (parts[chosenIdx + 1] ?? "").trim();
+}
+
+/**
  * Render a localized edition to the exact Markdown body that ships to Beehiiv.
  * Mirror of `src/utils/edition-markdown.ts` so the portal archive is identical
  * to what subscribers receive.
@@ -120,6 +143,11 @@ export function transformInlineLinksToFootnotes(
   };
 
   const processedSections = sections.map((s) => {
+    // Resolve apertura multi-option block before any further processing
+    if (s.type === "lead") {
+      s = { ...s, body: resolveAperturaBody(s.body) };
+    }
+
     // Skip the Signal (news) and CTA (cta) links from converting to footnotes
     if (s.type === "news" || s.type === "cta") {
       return s;
