@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser";
-import { BASE_PATH, withBase } from "@/lib/site";
+import { siteUrl, withBase } from "@/lib/site";
 import type { Lang } from "@/lib/i18n/dictionary";
 
 interface Labels {
@@ -22,7 +22,7 @@ export function ForgotPasswordForm({ lang, labels }: { lang: Lang; labels: Label
     setError(null);
 
     const supabase = getSupabaseBrowserClient();
-    const redirectTo = `${window.location.origin}${BASE_PATH}/auth/callback?next=/reset-password`;
+    const redirectTo = siteUrl("/auth/callback?next=/reset-password");
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
 
