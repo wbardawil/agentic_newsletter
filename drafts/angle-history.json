@@ -1,125 +1,6 @@
 {
   "entries": [
     {
-      "editionId": "2026-21",
-      "recordedAt": "2026-05-18T23:36:28.068Z",
-      "angle": {
-        "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
-        "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
-        "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
-        "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
-        "suggestedSources": [
-          "887df2c7-5c37-47de-972e-3723e53c27aa",
-          "e49b75f7-9084-427c-a123-ac85800f4241",
-          "ce90c745-3e04-4f27-a973-30ad67bf9f85",
-          "3ad324f7-787e-4c65-81e2-400a8fc7684b"
-        ],
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
-          "framework": "Kotter Step 2: Build the Guiding Coalition"
-        },
-        "quarterlyTheme": "The Machine",
-        "justification": {
-          "angleChoice": "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
-          "osPillarChoice": "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
-          "peopleAngleChoice": "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business."
-        }
-      },
-      "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
-    },
-    {
-      "editionId": "2026-27",
-      "recordedAt": "2026-07-03T17:35:03.903Z",
-      "angle": {
-        "headline": "The Apprenticeship Returns: Why AI Hiring Breaks the Traditional Talent Model",
-        "thesis": "Mid-market firms are discovering that traditional upskilling and recruiting strategies cannot fill the AI talent gap because they're addressing the wrong problem—the issue isn't finding AI experts, it's building AI-ready teams from the ground up through structured apprenticeships that connect entry-level talent to real business problems.",
-        "targetPersona": "US-LATAM mid-market operators with 50-500 employees who are facing pressure to deploy AI but cannot compete for senior AI talent against tech giants, and who recognize that their existing workforce lacks the baseline skills to effectively utilize AI tools",
-        "relevanceToAudience": "The US-LATAM corridor operator faces acute talent scarcity in both geographies—US firms cannot afford Silicon Valley AI salaries, and LATAM operations struggle with limited local AI expertise. The apprenticeship model offers a third path: develop the talent you need rather than compete for talent you cannot afford, while building organizational AI literacy from the bottom up.",
-        "suggestedSources": [
-          "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-          "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-          "92f2bb3e-138d-4451-b3c6-e23c67b6ab6a"
-        ],
-        "justification": {
-          "angleChoice": "This angle is superior to other potential angles in the bundle (USMCA uncertainty, CEO succession, AI panic) because it addresses a concrete operating model dysfunction that every mid-market operator in the US-LATAM corridor is experiencing right now: the gap between AI ambition and AI capability. The Achieve Partners source (232077b0) provides a named, working solution (apprenticeships with demonstrable EBITDA impact) that directly challenges the conventional wisdom that upskilling existing staff or competing for senior talent are the only paths forward. This is not a 'trend' piece about AI adoption—it's a systems redesign story about how talent pipelines must change when the traditional talent market cannot supply what you need. The competitive-signal tag on the Fast Company AI panic piece (f5b0dd36) confirms that our audience has already seen generic 'AI strategy' commentary; this angle goes deeper by naming the talent acquisition system as the real bottleneck, not the technology itself.",
-          "osPillarChoice": "This angle belongs exclusively to Operating Model OS because it addresses how work flows through the organization and how capability is built and scaled—not what strategic direction to set (Strategy OS) or which technology to deploy (Technology OS). The dysfunction is visible in the operating model: traditional recruiting and upskilling processes cannot produce the talent velocity required for AI transformation. The Achieve Partners apprenticeship model (232077b0) explicitly redesigns the talent pipeline as an integrated operating system component, not as an HR program. The Fast Company source (f5b0dd36) confirms that 94% of executives face board pressure to 'do more with less,' which is an operating model constraint, not a strategy problem. The solution requires changing how talent is sourced, developed, and integrated into production workflows—classic Operating Model OS territory. It is not Strategy OS because the strategic decision to adopt AI is already made; it is not Technology OS because the technology exists and works—the bottleneck is in the operating model's inability to staff and execute it.",
-          "peopleAngleChoice": "The challenge maps directly to the thesis because the apprenticeship model requires leadership to stop treating talent acquisition as a transaction ('hire the expert') and start treating it as a system ('build the capability'). This is a fundamental mental model shift that most mid-market operators resist because it requires redesigning work to accommodate learning curves, which feels like a productivity loss in the short term. Kotter Step 5 (Empower action by removing obstacles) is the precise framework because the obstacle is not lack of desire or awareness—it's the structural reality that current job designs, workflow processes, and performance expectations do not allow space for apprentices to learn while producing value. The concrete action the owner must take is to redesign specific roles and workflows to create apprenticeship pathways—for example, pairing junior talent with AI projects that have real business impact but built-in learning scaffolding, or restructuring team responsibilities so that senior staff can mentor without sacrificing their own output. This is not a training program; it is a workflow redesign that makes the apprenticeship model operationally viable within the existing business rhythm."
-        },
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "Leadership teams must shift from viewing talent acquisition as a hiring problem to seeing it as a capability-building system, requiring them to redesign how work flows through the organization to accommodate learners who produce value while they develop skills.",
-          "framework": "Kotter Step 5: Empower action by removing obstacles — the owner must redesign job structures and workflow processes to create apprenticeship pathways that allow entry-level talent to contribute meaningfully to AI initiatives without requiring the business to pause for training, thereby removing the structural barrier that makes 'we don't have time to train' the default objection."
-        },
-        "quarterlyTheme": "Systems That Serve",
-        "evidenceMap": {
-          "insightClaims": [
-            {
-              "claim": "Daniel Pianko, cofounder and managing director at private equity firm Achieve Partners, stated that upskilling is an important component to a human capital management strategy, but isn't enough to fill today's AI talent gap",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "Achieve Partners offers a look into the firm's apprenticeship program that begins filling the AI talent gap for portfolio companies at the very top of the talent acquisition funnel—with demonstrable impact on EBITDA growth",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "WRITER's latest AI Adoption in the Enterprise report shows that 94% of executives are facing board demands to do more with less",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "78% of executives are watching AI drive a massive wedge between IT and other lines of business, and 74% say it's causing tension between executives and employees",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "61% of C-suite executives are afraid of losing their jobs over AI rollout performance",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 2,
-              "temporalSafety": "safe"
-            }
-          ],
-          "fieldReportAnchor": {
-            "company": "Achieve Partners",
-            "sourceId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-            "isDistinctFromAperturaHook": true
-          }
-        }
-      },
-      "fieldReportSummary": "A recent [Fast Company piece](https://www.fastcompany.com/91568695/panic-isnt-an-ai-strategy) surfaces data from Writer's AI Adoption in the Enterprise research: 94% of executives face board demands to do more with less. 78% report AI creating tension between IT and other lines of business. 61% of C"
-    },
-    {
-      "editionId": "2026-23",
-      "recordedAt": "2026-04-23T17:12:15.544Z",
-      "angle": {
-        "headline": "Why Your Best People Keep the Machine From Running",
-        "thesis": "Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
-        "targetPersona": "US-LATAM corridor operators with $10M-$50M revenue who have invested heavily in talent but still cannot step away from daily operations",
-        "relevanceToAudience": "The corridor operator faces a specific version of this trap: they hire bilingual, bicultural talent who can 'figure things out' across markets, but this very adaptability masks the absence of documented processes, creating dependency on heroes rather than building a machine that runs without them.",
-        "suggestedSources": [
-          "dfaf9a7f-b817-4530-a1a5-96b14c8083ca",
-          "60149c0e-36f6-47c7-b5c2-570c2a4e8f54",
-          "dacd95c6-12fe-4731-a06d-81cf1454e3a7",
-          "965522d1-403e-4b3c-ae54-46901e8c4e7d"
-        ],
-        "talkingPoints": [
-          "You keep hiring excellent people who 'get it' because standardized processes feel limiting, but excellence without system creates a business that only works when your best people show up.",
-          "Mexico's productivity trap mirrors your operating model: high activity, skilled workers, but low systematic output — the INPC data shows 55% informality not because of bad workers, but because structures reward individual heroics over documented execution.",
-          "The Creative Execution Gap: the ability to improvise across markets (creativity) becomes the enemy of scalability when it substitutes for written playbooks — you mistake creative problem-solving for operational maturity.",
-          "Document one recurring decision this week that currently requires your best person's judgment, then build the checklist that lets your median performer execute it at 80% quality."
-        ],
-        "osPillar": "Operating Model OS",
-        "quarterlyTheme": "The Machine"
-      },
-      "fieldReportSummary": "Warner Bros Discovery shareholders approved the $111 billion merger with Paramount this week, per [Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). The vote clears one of the last obstacles to a deal that consolidates two major studios and CNN"
-    },
-    {
       "editionId": "2026-24",
       "recordedAt": "2026-04-23T18:31:33.013Z",
       "angle": {
@@ -294,6 +175,72 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO this week. Greg Abel hosted. According to [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), more than 20 shareholde"
+    },
+    {
+      "editionId": "2026-31",
+      "recordedAt": "2026-07-27T15:56:13.652Z",
+      "angle": {
+        "headline": "The Hidden Cost of Rapid Growth Without Process",
+        "thesis": "Mid-market companies are hitting a ceiling where founder-led efficiency becomes the bottleneck: the business can't scale because the operating model was designed around the people they have, not the system the business needs.",
+        "targetPersona": "Founder-CEOs of $10M–$100M companies in the US-LATAM corridor who have successfully built lean, profitable businesses but now struggle to delegate, systematize, or grow without working harder",
+        "relevanceToAudience": "This speaks directly to the profitable mid-market owner who has succeeded by being hands-on but now faces the paradox that their own involvement has become the constraint on the next phase of growth. The source material from Fast Company and Chief Executive reveals this is not a time-management problem but an operating model design flaw.",
+        "suggestedSources": [
+          "48a04f53-1603-4b6f-854c-2116e4740041",
+          "539d181b-031b-4e9d-97e4-09ecadf1980f",
+          "700b0a1f-6252-424f-8b84-94619dce40c5"
+        ],
+        "justification": {
+          "angleChoice": "The Fast Company article (48a04f53-1603-4b6f-854c-2116e4740041) explicitly describes the founder's dilemma: a profitable, lean business where the founder wants to shift from working 'in' to 'on' the business but doesn't know how. This is not a generic growth story—it's a specific operating model dysfunction where success was built on founder efficiency, and now that same pattern blocks the next stage. The Chief Executive cash-flow research (539d181b-031b-4e9d-97e4-09ecadf1980f) and Vistage confidence data (700b0a1f-6252-424f-8b84-94619dce40c5) provide supporting context that mid-market CEOs are navigating confidence shifts and pricing pressure, making this the moment they need to think about how their business runs without them. This angle is superior to generic AI adoption, succession, or trade policy angles because it names a lived experience: the profitable founder who has run out of hours in the day and doesn't know how to escape their own success pattern.",
+          "osPillarChoice": "This is an Operating Model OS issue, not Strategy or Technology. The dysfunction is not unclear direction (Strategy OS) or wrong tools (Technology OS)—it's that the business was architected around the founder's personal capacity and judgment, making it impossible to scale or delegate. The Fast Company source explicitly states the answer is 'rarely better time management'—it's about redesigning how the business runs. The founder has built an operating model where they are the critical path for every decision, which is a structural flaw in how execution is organized. Strategy OS would apply if the vision were unclear; Technology OS would apply if the tools were misaligned. Here, the problem is the execution architecture itself.",
+          "peopleAngleChoice": "The challenge maps to ADKAR's Desire stage because the founder intellectually knows they need to delegate but emotionally believes their involvement is what makes the business work. The Fast Company article describes founders asking 'How do I get out of the weeds?' but the real question is whether they believe the business can maintain quality without them. The framework activates a concrete action: the founder must first be shown the cost of the current pattern in measurable terms (time lost, strategic opportunities missed, personal toll) before they will commit to redesigning the operating model. This is not about teaching them how to delegate (Knowledge/Ability)—it's about creating the internal motivation to let go of the heroic founder pattern."
+        },
+        "osPillar": "Operating Model OS",
+        "peopleAngle": {
+          "challenge": "The founder must shift from believing their personal involvement is what makes the business work to trusting that a well-designed system can preserve quality and judgment without their constant presence.",
+          "framework": "ADKAR: Desire — The founder must first confront the emotional cost of remaining in the weeds (lost time, family trade-offs, strategic drift) before they will have the motivation to redesign the operating model around systems rather than personal heroics."
+        },
+        "quarterlyTheme": "Systems That Serve",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "A founder of a highly profitable company that had been operating successfully for nearly two decades asked 'How do I get out of the weeds? How do I spend more time on strategy and less time managing everything myself?'",
+              "supportingFactId": "48a04f53-1603-4b6f-854c-2116e4740041",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "The founder had built an extraordinary business with a remarkably lean team, generating strong margins with growth opportunities everywhere, yet the conversation wasn't about revenue—it was about time.",
+              "supportingFactId": "48a04f53-1603-4b6f-854c-2116e4740041",
+              "factIndex": 5,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "The answer to the founder's question is rarely 'better time management'.",
+              "supportingFactId": "48a04f53-1603-4b6f-854c-2116e4740041",
+              "factIndex": 6,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Small business confidence is rising as CEOs adjust pricing strategies, protect profits and plan investments, according to the July WSJ/Vistage Index.",
+              "supportingFactId": "700b0a1f-6252-424f-8b84-94619dce40c5",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "A Chief Executive Research study examines the behavioral reflexes of American business leaders to sudden changes in liquidity, with results that are not always what you'd expect.",
+              "supportingFactId": "539d181b-031b-4e9d-97e4-09ecadf1980f",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "The profitable, nearly two-decades-old company whose founder sought to shift from managing operations to focusing on strategy",
+            "sourceId": "48a04f53-1603-4b6f-854c-2116e4740041",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "The Greenhouse hiring platform currently hosts 175,000 live jobs, and each posting draws an average of 254 applications, [according to CEO Daniel Chait in Fortune](https://fortune.com/2026/07/27/greenhouse-ceo-daniel-chait-ai-doom-loop-job-seekers-spam-interview-applications-unemployment/). Applicat"
     }
   ]
 }
