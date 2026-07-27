@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-30",
+  "runId": "45cb66d2-84b1-425e-98f3-74f0a7356d4f",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "drafts/2026-30-hero.png",
+    "publicUrl": null,
+    "prompt": "A hand-drawn editorial illustration showing a pristine architect's blueprint on a drafting table, viewed from above. The blueprint's clean lines fade into incomplete sketches at the edges. A single mechanical pencil rests diagonally across the paper, suspended mid-stroke, as if the designer walked away before defining the critical elements. In the negative space beyond the blueprint, faint pencil marks suggest erased attempts—ghosted job titles, crossed-out org charts, abandoned role definitions. One small section of the blueprint is highlighted in orange: an empty box labeled \"role\" with no connecting lines. Sophisticated pencil sketch style. Editorial newspaper quality. White background. Minimal composition. Strategic absence as the visual statement. Include small WB logo in corner.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-07-20T15:21:21.311Z",
+  "updatedAt": "2026-07-20T15:21:21.312Z"
+}

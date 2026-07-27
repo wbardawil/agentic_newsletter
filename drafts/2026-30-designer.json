@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-30-hero.png",
+      "publicUrl": null,
+      "prompt": "A hand-drawn editorial illustration showing a pristine architect's blueprint on a drafting table, viewed from above. The blueprint's clean lines fade into incomplete sketches at the edges. A single mechanical pencil rests diagonally across the paper, suspended mid-stroke, as if the designer walked away before defining the critical elements. In the negative space beyond the blueprint, faint pencil marks suggest erased attempts—ghosted job titles, crossed-out org charts, abandoned role definitions. One small section of the blueprint is highlighted in orange: an empty box labeled \"role\" with no connecting lines. Sophisticated pencil sketch style. Editorial newspaper quality. White background. Minimal composition. Strategic absence as the visual statement. Include small WB logo in corner.",
+      "altText": {
+        "en": "Blueprint architectural drawing overlaid with translucent digital interface screens showing disconnected workflow nodes",
+        "es": "Plano arquitectónico con pantallas digitales translúcidas superpuestas mostrando nodos de flujo de trabajo desconectados"
+      },
+      "caption": {
+        "en": "You deployed the technology, but the operating model still runs on last decade's logic.",
+        "es": "Implementaste la tecnología, pero el modelo operativo sigue corriendo con la lógica de la década pasada."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
