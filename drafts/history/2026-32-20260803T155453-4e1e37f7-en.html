@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The market is repricing AI narratives. Boards next.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Apply the saved theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("wb-theme"); } catch (e) {}
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Wadi Bardawil brand system — gunmetal + naranja (Brand System DESIGN.md).
+     Dark is the brand default; light is the --wb-light variation. */
+  :root {
+    --wb-bg: #1A1E25; --wb-panel: #242A34; --wb-panel-border: rgba(255,255,255,0.07);
+    --wb-ink: #FFFFFF; --wb-body: #D3D9E1; --wb-muted: #A6AEBA; --wb-soft: #E4E8EE;
+    --wb-line: rgba(255,255,255,0.14); --wb-folio: #8A93A0;
+    --wb-accent: #FD4002; --wb-accent-press: #D63601;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+  }
+  :root[data-theme="light"] { --wb-bg: #F4F5F7; --wb-panel: #FFFFFF; --wb-panel-border: rgba(34,40,49,0.09);
+    --wb-ink: #222831; --wb-body: #2E3540; --wb-muted: #6B7480; --wb-soft: #454D59;
+    --wb-line: rgba(34,40,49,0.16); --wb-folio: #6B7480; color-scheme: light; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--wb-bg);
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    width: 100%; max-width: 640px; margin: 0 auto; padding: 28px 14px 40px;
+    color: var(--wb-body); line-height: 1.6; font-size: 16.5px;
+  }
+
+  /* ── Nameplate — centered email masthead ─────────────────────────────── */
+  .np { position: relative; text-align: center; padding: 10px 0 6px; }
+  .np-tile {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: var(--wb-accent); color: #FFFFFF;
+    border-radius: 10px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .np-name {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    font-size: 1.28rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wb-ink); line-height: 1.2;
+  }
+  .np-issue {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 0.76rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--wb-muted);
+    margin-top: 6px;
+  }
+  .np-bar { width: 64px; height: 5px; background: var(--wb-accent); margin: 18px auto; }
+  .np h1 {
+    font-family: Archivo, Manrope, sans-serif; font-weight: 800;
+    color: var(--wb-ink); font-size: 1.75rem; line-height: 1.18;
+    letter-spacing: -0.01em; margin: 0 auto 10px; max-width: 32ch; text-wrap: balance;
+  }
+  #wb-theme-toggle {
+    position: absolute; top: 0; right: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: transparent; border: 1px solid var(--wb-line);
+    color: var(--wb-muted); font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  #wb-theme-toggle:hover { color: var(--wb-accent); border-color: var(--wb-accent); }
+
+  /* ── Lead callout — the issue's thesis, right under the headline ──────── */
+  .lead blockquote {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-left: 4px solid var(--wb-accent); border-radius: 0 14px 14px 0;
+    margin: 1.2rem 0 1.6rem; padding: 1rem 1.2rem; color: var(--wb-body);
+    text-align: left;
+  }
+
+  /* ── Story cards — tight blocks with labeled section dividers ─────────── */
+  .story {
+    background: var(--wb-panel); border: 1px solid var(--wb-panel-border);
+    border-radius: 16px; padding: 1.35rem 1.4rem 1.15rem; margin: 1.15rem 0;
+  }
+  .story h2 {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Manrope, sans-serif; font-weight: 800;
+    font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--wb-accent); margin: 0 0 1rem;
+  }
+  .story h2::before, .story h2::after { content: ""; flex: 1; height: 1px; background: var(--wb-line); }
+  .story > p:first-of-type { margin-top: 0; }
+  .story > :last-child { margin-bottom: 0.2rem; }
+
+  h3 { font-family: Archivo, Manrope, sans-serif; font-weight: 700; color: var(--wb-ink); font-size: 1.02rem; }
+  p { margin: .9rem 0; }
+  strong { font-weight: 700; color: var(--wb-ink); }
+  em { color: var(--wb-muted); }
+  blockquote {
+    background: transparent; border-left: 3px solid var(--wb-accent);
+    margin: 1.1rem 0; padding: .2rem 0 .2rem 1rem; color: var(--wb-body);
+  }
+  ul { list-style: none; padding-left: 0; }
+  li { margin: .55rem 0; padding-left: 1.3rem; position: relative; color: var(--wb-body); }
+  li::before { content: ""; position: absolute; left: 0; top: .52em; width: 8px; height: 8px; background: var(--wb-accent); }
+  a { color: var(--wb-ink); text-decoration-color: var(--wb-accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--wb-accent); }
+  /* External-link affordance — mobile readers have no hover; the arrow says
+     the link opens something. Only target=_blank anchors get it. */
+  a[target="_blank"]::after { content: " ↗"; font-size: 0.85em; color: var(--wb-accent); }
+  img { max-width: 100%; height: auto; border-radius: 12px; }
+  .hero { margin: 0 0 1.4rem; text-align: center; }
+  .hero figcaption { font-size: 0.88rem; color: var(--wb-muted); margin-top: .5rem; font-style: italic; }
+
+  /* ── Sign-off footer — centered, like an email's closing block ────────── */
+  .wb-foot { text-align: center; margin-top: 2.2rem; padding-top: 0.4rem; }
+  .wb-foot .np-bar { margin: 16px auto; }
+  .foot-lockup {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 3px; color: var(--wb-ink); text-transform: uppercase;
+  }
+  .foot-lockup .np-tile { width: 26px; height: 26px; font-size: 14px; border-radius: 6px; margin: 0; }
+  .foot-links { margin: 12px 0 4px; font-size: 0.85rem; }
+  .foot-links a { color: var(--wb-muted); text-decoration-color: var(--wb-line); margin: 0 8px; }
+  .foot-links a:hover { color: var(--wb-accent); }
+  .foot-folio {
+    font-family: Manrope, sans-serif; font-weight: 600; font-size: 11.5px;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--wb-folio); margin-top: 8px;
+  }
+  .foot-fine { border-top: 1px solid var(--wb-line); margin-top: 18px; padding-top: 12px; }
+  .foot-fine p { font-size: 0.72rem; color: var(--wb-folio); margin: .2rem 0; }
+  .foot-fine strong { color: var(--wb-muted); font-weight: 600; }
+
+  @media (min-width: 480px) {
+    body { padding: 36px 24px 48px; }
+    .np h1 { font-size: 2rem; }
+    .story { padding: 1.5rem 1.7rem 1.3rem; }
+  }
+  /* Desktop — widen the reading column so the letter doesn't feel like a
+     phone view; email-narrow only below tablet. */
+  @media (min-width: 900px) {
+    body { max-width: 920px; padding: 48px 40px 60px; font-size: 17.5px; }
+    .np h1 { font-size: 2.45rem; max-width: 30ch; }
+    .story { padding: 2rem 2.6rem 1.7rem; }
+    .lead blockquote { padding: 1.3rem 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<header class="np">
+  <button id="wb-theme-toggle" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  <span class="np-tile">W</span>
+  <div class="np-name">The Transformation Letter</div>
+  <div class="np-issue">Edition 2026-32 · EN · 2026-08-03</div>
+  <div class="np-bar"></div>
+  <h1>The market is repricing AI narratives. Boards next.</h1>
+</header>
+<figure class="hero"><img src="2026-32-hero.png" alt="Boardroom table with empty chairs facing a wall-mounted screen displaying rising AI investment graphs alongside flat operational metrics" loading="lazy"><figcaption>Your board sees the AI budget line climbing while the operating model remains unchanged.</figcaption></figure><div class="lead"><blockquote><strong>Insight summary:</strong> Boards are demanding AI productivity gains that executives describe as 95% future-tense, creating a gap that forces leadership teams to either manufacture false progress narratives or admit their operating model isn't ready for the technology they're deploying.</blockquote></div>
+<section class="story">
+<h2>THE SIGNAL</h2>
+<p><em>This week: the gap between AI as narrative and AI as operating result is widening, and it is starting to reprice strategies, workforces, and moats.</em></p>
+<ul>
+<li><strong>Strategy:</strong> New Fed research on 490,000 earnings calls finds that 95% of AI productivity claims are future tense, while aggregate productivity shows minimal actual gains. <strong>Strategy is what your P&amp;L confirms, not what your earnings call promises.</strong> <a href="https://hrexecutive.com/ai-productivity-claims-are-95-still-to-come-fed-finds/" target="_blank" rel="noopener">Read →</a></li>
+<li><strong>Operating Models:</strong> Apparel brand Farm Rio is deploying Inspectorio software to digitize its supply chain and improve traceability as it scales internationally. <strong>The operating model is the source code of your growth ceiling.</strong> <a href="https://www.supplychaindive.com/news/farm-rio-targets-digitized-supply-chain-improved-traceability/826737/" target="_blank" rel="noopener">Read →</a></li>
+<li><strong>Technology:</strong> AI coding agents are starting to write the low-level software behind Nvidia's CUDA, the layer that has protected its lead for two decades. <strong>A moat rusts the moment its assumptions become writeable by what it enables.</strong> <a href="https://www.businessinsider.com/nvidia-cuda-new-threats-ai-coding-agents-2026-8" target="_blank" rel="noopener">Read →</a></li>
+<li><strong>Human Capital:</strong> 22% of CHROs say a leader in their firm has halted entry-level hiring because of AI, even as only one in five organizations reports significant value from AI. <strong>Cutting the bottom of the pyramid to fund an unproven technology is a bet, not a plan.</strong> <a href="https://hrexecutive.com/amazon-tests-gartners-entry-level-jobs-warning/" target="_blank" rel="noopener">Read →</a></li>
+</ul>
+</section>
+<section class="story">
+<h2>THE APERTURA</h2>
+<p>The AI productivity your peers describe on earnings calls is not the AI productivity their businesses are running. <a href="https://hrexecutive.com/ai-productivity-claims-are-95-still-to-come-fed-finds/" target="_blank" rel="noopener">New Fed research covering 490,000 earnings calls</a> found that 95% of AI productivity claims are future tense, even as aggregate productivity shows minimal actual gains. Separately, <a href="https://hrexecutive.com/amazon-tests-gartners-entry-level-jobs-warning/" target="_blank" rel="noopener">95% of firms have deployed AI, and only one in five reports significant value</a>. The narrative is running well ahead of the number. Boards are pricing the narrative. Owners are being asked to fund the narrative. Narrative is not strategy.</p>
+</section>
+<section class="story">
+<h2>THE INSIGHT</h2>
+<p>Your board wants a story about AI. You are giving them one. That is the problem.</p>
+<p>The board asks a version of the same question every quarter. What are we doing with AI. What is our exposure. What is the return. And every quarter you assemble the deck: the pilots underway, the vendors in evaluation, the use cases mapped, the head of AI hired. The deck is not dishonest. It is complete on its own terms. It is also, quietly, the wrong artifact.</p>
+<p>The real problem is not that the board is asking. It is that the question forces you to report deployment activity instead of operational outcomes. So you do. And the reporting habit hardens into a strategy: keep the story ahead of the number.</p>
+<p>The number is not moving. The Fed's read of 490,000 earnings calls confirms what most operational data already suggests. <a href="https://hrexecutive.com/ai-productivity-claims-are-95-still-to-come-fed-finds/" target="_blank" rel="noopener">95% of AI productivity claims across US public companies are future tense</a>. Ninety-five percent of firms have deployed AI. <a href="https://hrexecutive.com/amazon-tests-gartners-entry-level-jobs-warning/" target="_blank" rel="noopener">Only one in five sees significant value</a>. The gap is not a lag. The gap is a strategy problem.</p>
+<p>The conventional response is to accelerate. More pilots, more agents, more platform spend. That response mistakes narrative urgency for operational urgency. The narrative urgency is real. The board feels it. The market rewards it. But treating a narrative signal as an operational signal is how technology gets deployed on top of processes that were never redesigned. The tool inherits the old workflow. The old workflow was the constraint. Nothing changes.</p>
+<p>Real urgency belongs upstream. Before you scale AI, you have to name one thing. What operating metric the deployment is supposed to move, by how much, and by when. If you cannot state that, you are not deploying a strategy. You are deploying a story. The moment the board can measure the number instead of hear the story, the story stops working.</p>
+<p>In most mid-market firms, the leadership team has never been asked whether a deployment is moving the metric before the deployment scales. The team is rewarded for shipping tools, not for pausing them. You have to change what gets rewarded before you can change what gets built. That reset only takes when the owner brings the number into the room the board is already sitting in.</p>
+<p><strong>This week.</strong> Bring one number to your next board meeting. Output per person, cycle time on your top three processes, or gross margin per employee, measured before AI deployment and now. If the delta is zero, pause the next deployment and put the process on the table instead. The number is the only artifact the board cannot rewrite into a story.</p>
+</section>
+<section class="story">
+<h2>THE FIELD REPORT</h2>
+<p>Caterpillar's stock lost nearly a quarter of its value last month heading into earnings. Investors were reassessing whether the enthusiasm behind treating it as an AI play had run too far ahead of the underlying business, <a href="https://www.bloomberg.com/news/articles/2026-08-03/caterpillar-faces-earnings-test-after-ai-selloff-punished-stock" target="_blank" rel="noopener">according to Bloomberg</a>.</p>
+<p>Our view is that the Caterpillar selloff is an early tell. Every operator whose valuation, board conversation, or capital access has been pulled forward by an AI narrative should be watching this. When a stock loses a quarter of its value, the market has decided the AI thesis moved faster than the numbers. That is the market doing what most boards have not yet done. It is repricing the story against the P&amp;L. For US operators in the $5M to $100M range, this arrives one step later, and quieter. Lenders will start asking what changed operationally. Buyers will start asking to see the metric, not the deck. What this signals is that the window for narrative productivity is closing. The operators who redesigned processes before scaling technology will have a number to show when it does.</p>
+</section>
+<section class="story">
+<h2>THE TOOL</h2>
+<p><strong>Celonis (Process Mining)</strong> - Software that reconstructs how your processes actually run by reading event logs from your existing systems, exposing the gap between the process on paper and the process in reality. It matters because you cannot redesign a workflow you have not measured. Every AI deployment on top of an unmeasured workflow inherits its constraints. Explore at <a href="https://www.celonis.com" target="_blank" rel="noopener">celonis.com</a>.</p>
+</section>
+<section class="story">
+<h2>THE COMPASS</h2>
+<p><strong>Watch for this week:</strong> count how many times your leadership team reports AI progress in deployment terms. Pilots launched, tools onboarded, hours saved in demo. Then count the times they report it in operational terms tied to a P&amp;L line. The ratio is your Strategy OS diagnosis. If deployment language outnumbers operational language, you have a narrative running, not a strategy.</p>
+</section>
+<section class="story">
+<h2>THE DOOR</h2>
+<p>If something in this publication resonated with you - let's chat on <a href="https://ig.me/m/wbardawil" target="_blank" rel="noopener">Instagram</a></p>
+<p>If it's useful to someone in your network - forward it via <a href="https://wa.me/?text=Check%20out%20this%20newsletter%3A%20https%3A%2F%2Fnewsletter.wadibardawil.com" target="_blank" rel="noopener">WhatsApp</a></p>
+<p>When you're ready to work together directly - discover my 4 ways of working at <a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a></p>
+</section>
+<footer class="wb-foot">
+  <div class="np-bar"></div>
+  <div class="foot-lockup"><span class="np-tile">W</span>Wadi Bardawil</div>
+  <div class="foot-links"><a href="https://wadibardawil.com" target="_blank" rel="noopener">wadibardawil.com</a><a href="https://linkedin.com/in/wadibardawil" target="_blank" rel="noopener">LinkedIn</a></div>
+  <div class="foot-folio">Edition 2026-32 · EN · 2026-08-03</div>
+  <div class="foot-fine"><p><strong>Drafted:</strong> 2026-08-03</p>
+<p><strong>OS Pillar:</strong> Strategy OS</p>
+<p><strong>Quarterly Theme:</strong> Systems That Serve</p>
+<p><strong>Subject:</strong> The market is repricing AI narratives. Boards next.</p>
+<p><strong>Preheader:</strong> Narrative is not strategy. The number is.</p>
+<p><em>Draft generated by the pipeline. Review and edit before sending.</em></p></div>
+</footer>
+<script>
+  (function () {
+    var btn = document.getElementById("wb-theme-toggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var current = root.getAttribute("data-theme");
+      var next;
+      if (current === "light" || current === "dark") {
+        next = current === "light" ? "dark" : "light";
+      } else {
+        var systemLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        next = systemLight ? "dark" : "light";
+      }
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("wb-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

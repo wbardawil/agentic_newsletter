@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-32",
+  "runId": "4e1e37f7-0e10-48df-8fad-0793880ec5bb",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "drafts/2026-32-hero.png",
+    "publicUrl": null,
+    "prompt": "A pristine corporate boardroom rendered in elegant pencil sketch, viewed from above at a slight angle. The long executive table is covered entirely in scattered AI vendor proposals, deployment roadmaps, and pilot program documents—all drawn with precise graphite lines showing dense text and charts. At the head of the table sits a single, stark quarterly earnings report, isolated in clean negative space, with one number circled in brand orange. The circled figure shows zero percent productivity gain. Architectural blueprints of process redesign lie rolled and unused beneath the table's edge. The composition uses dramatic negative white space around the margins, emphasizing the gap between the volume of AI narrative documents and the singular operational truth. Sophisticated editorial illustration style, matte gunmetal shadows, cream paper tones, minimal orange accent only on the circled zero.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-08-03T15:54:53.353Z",
+  "updatedAt": "2026-08-03T15:54:53.354Z"
+}

@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-32-hero.png",
+      "publicUrl": null,
+      "prompt": "A pristine corporate boardroom rendered in elegant pencil sketch, viewed from above at a slight angle. The long executive table is covered entirely in scattered AI vendor proposals, deployment roadmaps, and pilot program documents—all drawn with precise graphite lines showing dense text and charts. At the head of the table sits a single, stark quarterly earnings report, isolated in clean negative space, with one number circled in brand orange. The circled figure shows zero percent productivity gain. Architectural blueprints of process redesign lie rolled and unused beneath the table's edge. The composition uses dramatic negative white space around the margins, emphasizing the gap between the volume of AI narrative documents and the singular operational truth. Sophisticated editorial illustration style, matte gunmetal shadows, cream paper tones, minimal orange accent only on the circled zero.",
+      "altText": {
+        "en": "Boardroom table with empty chairs facing a wall-mounted screen displaying rising AI investment graphs alongside flat operational metrics",
+        "es": "Mesa de directorio con sillas vacías frente a pantalla mostrando gráficos de inversión en IA ascendentes junto a métricas operativas planas"
+      },
+      "caption": {
+        "en": "Your board sees the AI budget line climbing while the operating model remains unchanged.",
+        "es": "Tu directorio ve crecer la partida de IA mientras el modelo operativo permanece intacto."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
