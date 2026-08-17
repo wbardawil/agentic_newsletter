@@ -1,0 +1,32 @@
+{
+  "editionId": "2026-34",
+  "runId": "51f9a9ac-2a3e-4e8a-b31e-b28430dfc888",
+  "reviewVersion": 1,
+  "image": {
+    "status": "pending",
+    "attempt": 1,
+    "assetPath": "drafts/2026-34-hero.png",
+    "publicUrl": null,
+    "prompt": "A precise pencil sketch illustration showing an elegant transparent inbox constructed from architectural wireframes and blueprint lines, hovering above a clean white surface. Below it, important letters and documents fall silently through invisible floor panels into darkness, their edges traced in delicate graphite. A few critical messages glow faintly with orange highlights as they slip through the gaps. The composition emphasizes structured emptiness—what appears organized above conceals loss below. Sophisticated editorial style, hand-drawn lines, minimal elements, large negative space, gunmetal charcoals with sparse orange accent, matte finish, contemporary office environment suggested through clean geometric forms.",
+    "rejectedPrompts": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "content": {
+    "status": "pending",
+    "attempt": 1,
+    "rejectedSections": [],
+    "approvedAt": null,
+    "rejectedAt": null,
+    "rejectionReason": null
+  },
+  "publish": {
+    "status": "blocked",
+    "blockedReason": "image_pending",
+    "publishedAt": null
+  },
+  "events": [],
+  "createdAt": "2026-08-17T13:51:04.804Z",
+  "updatedAt": "2026-08-17T13:51:04.804Z"
+}
