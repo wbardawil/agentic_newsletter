@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "kind": "hero",
+      "imagePath": "/home/runner/work/agentic_newsletter/agentic_newsletter/drafts/2026-34-hero.png",
+      "publicUrl": null,
+      "prompt": "A precise pencil sketch illustration showing an elegant transparent inbox constructed from architectural wireframes and blueprint lines, hovering above a clean white surface. Below it, important letters and documents fall silently through invisible floor panels into darkness, their edges traced in delicate graphite. A few critical messages glow faintly with orange highlights as they slip through the gaps. The composition emphasizes structured emptiness—what appears organized above conceals loss below. Sophisticated editorial style, hand-drawn lines, minimal elements, large negative space, gunmetal charcoals with sparse orange accent, matte finish, contemporary office environment suggested through clean geometric forms.",
+      "altText": {
+        "en": "Abstract visualization of layered transparent screens with scattered data points, some highlighted in red while others fade into blue shadows",
+        "es": "Visualización abstracta de pantallas transparentes superpuestas con puntos de datos dispersos, algunos resaltados en rojo mientras otros se desvanecen en sombras azules"
+      },
+      "caption": {
+        "en": "Your AI filters are making judgment calls you haven't yet defined as decisions.",
+        "es": "Tus filtros de IA están tomando decisiones que aún no has definido como tales."
+      },
+      "attempt": 1
+    }
+  ],
+  "imageModel": "gemini-3-pro-image"
+}
