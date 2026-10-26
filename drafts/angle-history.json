@@ -1,125 +1,6 @@
 {
   "entries": [
     {
-      "editionId": "2026-21",
-      "recordedAt": "2026-05-18T23:36:28.068Z",
-      "angle": {
-        "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
-        "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
-        "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
-        "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
-        "suggestedSources": [
-          "887df2c7-5c37-47de-972e-3723e53c27aa",
-          "e49b75f7-9084-427c-a123-ac85800f4241",
-          "ce90c745-3e04-4f27-a973-30ad67bf9f85",
-          "3ad324f7-787e-4c65-81e2-400a8fc7684b"
-        ],
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
-          "framework": "Kotter Step 2: Build the Guiding Coalition"
-        },
-        "quarterlyTheme": "The Machine",
-        "justification": {
-          "angleChoice": "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
-          "osPillarChoice": "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
-          "peopleAngleChoice": "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business."
-        }
-      },
-      "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
-    },
-    {
-      "editionId": "2026-27",
-      "recordedAt": "2026-07-03T17:35:03.903Z",
-      "angle": {
-        "headline": "The Apprenticeship Returns: Why AI Hiring Breaks the Traditional Talent Model",
-        "thesis": "Mid-market firms are discovering that traditional upskilling and recruiting strategies cannot fill the AI talent gap because they're addressing the wrong problem—the issue isn't finding AI experts, it's building AI-ready teams from the ground up through structured apprenticeships that connect entry-level talent to real business problems.",
-        "targetPersona": "US-LATAM mid-market operators with 50-500 employees who are facing pressure to deploy AI but cannot compete for senior AI talent against tech giants, and who recognize that their existing workforce lacks the baseline skills to effectively utilize AI tools",
-        "relevanceToAudience": "The US-LATAM corridor operator faces acute talent scarcity in both geographies—US firms cannot afford Silicon Valley AI salaries, and LATAM operations struggle with limited local AI expertise. The apprenticeship model offers a third path: develop the talent you need rather than compete for talent you cannot afford, while building organizational AI literacy from the bottom up.",
-        "suggestedSources": [
-          "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-          "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-          "92f2bb3e-138d-4451-b3c6-e23c67b6ab6a"
-        ],
-        "justification": {
-          "angleChoice": "This angle is superior to other potential angles in the bundle (USMCA uncertainty, CEO succession, AI panic) because it addresses a concrete operating model dysfunction that every mid-market operator in the US-LATAM corridor is experiencing right now: the gap between AI ambition and AI capability. The Achieve Partners source (232077b0) provides a named, working solution (apprenticeships with demonstrable EBITDA impact) that directly challenges the conventional wisdom that upskilling existing staff or competing for senior talent are the only paths forward. This is not a 'trend' piece about AI adoption—it's a systems redesign story about how talent pipelines must change when the traditional talent market cannot supply what you need. The competitive-signal tag on the Fast Company AI panic piece (f5b0dd36) confirms that our audience has already seen generic 'AI strategy' commentary; this angle goes deeper by naming the talent acquisition system as the real bottleneck, not the technology itself.",
-          "osPillarChoice": "This angle belongs exclusively to Operating Model OS because it addresses how work flows through the organization and how capability is built and scaled—not what strategic direction to set (Strategy OS) or which technology to deploy (Technology OS). The dysfunction is visible in the operating model: traditional recruiting and upskilling processes cannot produce the talent velocity required for AI transformation. The Achieve Partners apprenticeship model (232077b0) explicitly redesigns the talent pipeline as an integrated operating system component, not as an HR program. The Fast Company source (f5b0dd36) confirms that 94% of executives face board pressure to 'do more with less,' which is an operating model constraint, not a strategy problem. The solution requires changing how talent is sourced, developed, and integrated into production workflows—classic Operating Model OS territory. It is not Strategy OS because the strategic decision to adopt AI is already made; it is not Technology OS because the technology exists and works—the bottleneck is in the operating model's inability to staff and execute it.",
-          "peopleAngleChoice": "The challenge maps directly to the thesis because the apprenticeship model requires leadership to stop treating talent acquisition as a transaction ('hire the expert') and start treating it as a system ('build the capability'). This is a fundamental mental model shift that most mid-market operators resist because it requires redesigning work to accommodate learning curves, which feels like a productivity loss in the short term. Kotter Step 5 (Empower action by removing obstacles) is the precise framework because the obstacle is not lack of desire or awareness—it's the structural reality that current job designs, workflow processes, and performance expectations do not allow space for apprentices to learn while producing value. The concrete action the owner must take is to redesign specific roles and workflows to create apprenticeship pathways—for example, pairing junior talent with AI projects that have real business impact but built-in learning scaffolding, or restructuring team responsibilities so that senior staff can mentor without sacrificing their own output. This is not a training program; it is a workflow redesign that makes the apprenticeship model operationally viable within the existing business rhythm."
-        },
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "Leadership teams must shift from viewing talent acquisition as a hiring problem to seeing it as a capability-building system, requiring them to redesign how work flows through the organization to accommodate learners who produce value while they develop skills.",
-          "framework": "Kotter Step 5: Empower action by removing obstacles — the owner must redesign job structures and workflow processes to create apprenticeship pathways that allow entry-level talent to contribute meaningfully to AI initiatives without requiring the business to pause for training, thereby removing the structural barrier that makes 'we don't have time to train' the default objection."
-        },
-        "quarterlyTheme": "Systems That Serve",
-        "evidenceMap": {
-          "insightClaims": [
-            {
-              "claim": "Daniel Pianko, cofounder and managing director at private equity firm Achieve Partners, stated that upskilling is an important component to a human capital management strategy, but isn't enough to fill today's AI talent gap",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "Achieve Partners offers a look into the firm's apprenticeship program that begins filling the AI talent gap for portfolio companies at the very top of the talent acquisition funnel—with demonstrable impact on EBITDA growth",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "WRITER's latest AI Adoption in the Enterprise report shows that 94% of executives are facing board demands to do more with less",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "78% of executives are watching AI drive a massive wedge between IT and other lines of business, and 74% say it's causing tension between executives and employees",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "61% of C-suite executives are afraid of losing their jobs over AI rollout performance",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 2,
-              "temporalSafety": "safe"
-            }
-          ],
-          "fieldReportAnchor": {
-            "company": "Achieve Partners",
-            "sourceId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-            "isDistinctFromAperturaHook": true
-          }
-        }
-      },
-      "fieldReportSummary": "A recent [Fast Company piece](https://www.fastcompany.com/91568695/panic-isnt-an-ai-strategy) surfaces data from Writer's AI Adoption in the Enterprise research: 94% of executives face board demands to do more with less. 78% report AI creating tension between IT and other lines of business. 61% of C"
-    },
-    {
-      "editionId": "2026-23",
-      "recordedAt": "2026-04-23T17:12:15.544Z",
-      "angle": {
-        "headline": "Why Your Best People Keep the Machine From Running",
-        "thesis": "Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
-        "targetPersona": "US-LATAM corridor operators with $10M-$50M revenue who have invested heavily in talent but still cannot step away from daily operations",
-        "relevanceToAudience": "The corridor operator faces a specific version of this trap: they hire bilingual, bicultural talent who can 'figure things out' across markets, but this very adaptability masks the absence of documented processes, creating dependency on heroes rather than building a machine that runs without them.",
-        "suggestedSources": [
-          "dfaf9a7f-b817-4530-a1a5-96b14c8083ca",
-          "60149c0e-36f6-47c7-b5c2-570c2a4e8f54",
-          "dacd95c6-12fe-4731-a06d-81cf1454e3a7",
-          "965522d1-403e-4b3c-ae54-46901e8c4e7d"
-        ],
-        "talkingPoints": [
-          "You keep hiring excellent people who 'get it' because standardized processes feel limiting, but excellence without system creates a business that only works when your best people show up.",
-          "Mexico's productivity trap mirrors your operating model: high activity, skilled workers, but low systematic output — the INPC data shows 55% informality not because of bad workers, but because structures reward individual heroics over documented execution.",
-          "The Creative Execution Gap: the ability to improvise across markets (creativity) becomes the enemy of scalability when it substitutes for written playbooks — you mistake creative problem-solving for operational maturity.",
-          "Document one recurring decision this week that currently requires your best person's judgment, then build the checklist that lets your median performer execute it at 80% quality."
-        ],
-        "osPillar": "Operating Model OS",
-        "quarterlyTheme": "The Machine"
-      },
-      "fieldReportSummary": "Warner Bros Discovery shareholders approved the $111 billion merger with Paramount this week, per [Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). The vote clears one of the last obstacles to a deal that consolidates two major studios and CNN"
-    },
-    {
       "editionId": "2026-24",
       "recordedAt": "2026-04-23T18:31:33.013Z",
       "angle": {
@@ -294,6 +175,72 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO this week. Greg Abel hosted. According to [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), more than 20 shareholde"
+    },
+    {
+      "editionId": "2026-44",
+      "recordedAt": "2026-10-26T19:22:19.631Z",
+      "angle": {
+        "headline": "When Strategy Lives in the CEO's Head, Not the System",
+        "thesis": "Brazilian markets collapsed 16% not because Lula won, but because investors never trusted that any strategic direction could survive a leadership transition—the same dysfunction US-LATAM corridor owners face when their entire operating model depends on them personally.",
+        "targetPersona": "US-LATAM corridor business owners aged 45-65 who are the primary decision-maker and recognize they are the bottleneck but haven't systematized their strategic knowledge",
+        "relevanceToAudience": "The Brazil election shock exposes what happens when markets (or stakeholders, banks, customers) realize the business has no durable strategy beyond the current leader. US-LATAM operators face this same risk: their cross-border model works because they personally know both markets, but they haven't built systems that let the business think strategically without them.",
+        "suggestedSources": [
+          "f112fec8-cef9-4fde-b577-9a936dd90115",
+          "0007eabb-28be-475f-8a74-0e9c4c11a850",
+          "af80840f-a64e-46d1-bb4c-8a07a54dbddd"
+        ],
+        "justification": {
+          "angleChoice": "The Brazil market collapse is not primarily about political ideology—it's about the market's sudden realization that strategic direction was never institutionalized beyond Lula personally. This maps directly to a dysfunction US-LATAM operators live daily: their cross-border strategy works because they personally bridge two cultures, two regulatory environments, two market dynamics. But if they step back, get sick, or exit, the strategy disappears with them. This angle is stronger than the AI adoption angle (items 1, 5) because those are about tool selection, not strategic architecture. It's stronger than the Mexico-US trade tensions (items 4, 13) because those are external constraints, not internal dysfunctions. The Brazil angle connects market-level evidence to a personal, lived experience: the owner IS the strategy. Sources f112fec8 (Bovespa crash, 'inversionistas no esperan la victoria'), 0007eabb (Bloomberg's $6B equity sales disruption), and af80840f (Lula victory dealing setback) all document that markets punished Brazil not for the electoral outcome itself but for the uncertainty of what strategic direction survives the transition.",
+          "osPillarChoice": "This is Strategy OS, not Operating Model OS, because the dysfunction is not about execution systems—it's about how strategic direction is formed, communicated, and preserved. The Brazil market reaction demonstrates that when strategy lives in a leader's head rather than in durable frameworks, every transition becomes an existential threat. Operating Model OS would apply if the problem were 'the business can't execute without the owner in every decision.' Technology OS would apply if the problem were 'systems were deployed before strategy was clear.' But here, the problem is upstream: the strategy itself is not systematized. It's tacit knowledge, not encoded knowledge. US-LATAM operators face this acutely because their strategic advantage (understanding both markets) is personal, not institutional. The Brazil sources explicitly show this: investors didn't trust continuity of strategic direction (f112fec8: 'el resultado fue contrario a las expectativas de los inversionistas'), not continuity of operational execution.",
+          "peopleAngleChoice": "The People challenge maps directly to the thesis: the owner must accept that their personal strategic insight, which has been their competitive advantage, must now be externalized and codified into systems that outlive their direct involvement. This triggers identity loss—'if I'm not the only one who can see the strategy, who am I?' Kotter Step 1 (Urgency) activates the concrete behavior change: the owner must surface evidence of the current cost—board members getting contradictory strategic messages, key hires leaving because they can't see long-term direction, banks hesitating on expansion capital because they can't assess strategic risk beyond the owner. The framework step is not just 'create urgency'—it's 'show the leadership team the receipts of what strategy-in-head-only has already cost.' This is the prerequisite to the owner being willing to build Strategy OS systems that distribute strategic thinking beyond themselves."
+        },
+        "osPillar": "Strategy OS",
+        "peopleAngle": {
+          "challenge": "The owner must confront that their strategic knowledge exists only in their head, creating existential risk the moment they step back, and must accept that codifying it means surrendering the identity of being the only one who can see the whole picture.",
+          "framework": "Kotter Step 1: Urgency — The owner must show their leadership team actual evidence of the cost of strategy-in-head-only (delayed decisions when owner is absent, contradictory messages to different stakeholders, strategic reversals when new information arrives to owner alone) to create shared urgency for building durable strategic systems."
+        },
+        "quarterlyTheme": "The Long Game",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "Brazil's Bovespa index fell more than 16% at market open following Lula da Silva's reelection, triggering a circuit breaker suspension for the first time since March 2020.",
+              "supportingFactId": "f112fec8-cef9-4fde-b577-9a936dd90115",
+              "factIndex": 1,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Andre Mazini of Citigroup stated that the market reaction was due to investors not expecting Lula's victory after he lost the first round to Flávio Bolsonaro.",
+              "supportingFactId": "f112fec8-cef9-4fde-b577-9a936dd90115",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Brazilian companies had approximately $6 billion in equity sales lined up for the weeks after the vote, expecting Flávio Bolsonaro to win.",
+              "supportingFactId": "0007eabb-28be-475f-8a74-0e9c4c11a850",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Lula's victory preserved a major counterweight to President Trump's influence in Latin America, with tensions over trade and tariffs threatening to persist.",
+              "supportingFactId": "af80840f-a64e-46d1-bb4c-8a07a54dbddd",
+              "factIndex": 1,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Bolsonaro told reporters he would not accept the election results and said they should be annulled.",
+              "supportingFactId": "af80840f-a64e-46d1-bb4c-8a07a54dbddd",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Brazilian equity markets and the $6 billion pipeline of postponed capital raises",
+            "sourceId": "0007eabb-28be-475f-8a74-0e9c4c11a850",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "Wonder is not yet public, but it is already performing the logic of a company that intends to be. [According to CNBC](https://www.cnbc.com/2026/10/25/wonder-ipo-texas-automation.html), Marc Lore's food startup is betting on Texas expansion, automation, and user-built restaurant concepts as it positi"
     }
   ]
 }
