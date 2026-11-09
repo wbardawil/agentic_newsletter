@@ -1,125 +1,6 @@
 {
   "entries": [
     {
-      "editionId": "2026-21",
-      "recordedAt": "2026-05-18T23:36:28.068Z",
-      "angle": {
-        "headline": "Why Your M&A Diligence Process Finds Everything Except What Kills Deals",
-        "thesis": "Middle-market owners spend six figures on diligence that audits the past but never diagnoses whether the target can operate without its founder — the single variable that determines post-close performance.",
-        "targetPersona": "Business owners in growth-through-acquisition mode, particularly those who've completed one deal and are now considering their second, operating with $10M-$75M revenue across the US-LATAM corridor",
-        "relevanceToAudience": "With USMCA at its six-year review and nearshoring momentum creating acquisition opportunities across the corridor, owners are evaluating targets in Mexico and LATAM — but standard diligence frameworks were built for US-only deals and miss the founder-dependency risk that is magnified across borders and jurisdictions.",
-        "suggestedSources": [
-          "887df2c7-5c37-47de-972e-3723e53c27aa",
-          "e49b75f7-9084-427c-a123-ac85800f4241",
-          "ce90c745-3e04-4f27-a973-30ad67bf9f85",
-          "3ad324f7-787e-4c65-81e2-400a8fc7684b"
-        ],
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "The seller's leadership team has never operated without the founder's real-time input, and the buyer's integration team lacks the trust or context to make decisions during the 90-day transition window when founder dependency becomes operationally visible.",
-          "framework": "Kotter Step 2: Build the Guiding Coalition"
-        },
-        "quarterlyTheme": "The Machine",
-        "justification": {
-          "angleChoice": "Most M&A diligence answers 'Does this business make money?' but never asks 'Can this business make decisions without the seller in the room?' — the real post-close question.",
-          "osPillarChoice": "The failure happens because diligence is structured to audit the past (financials, compliance, IP) rather than diagnose the operating model's ability to execute independently — particularly across time zones and legal systems in corridor deals.",
-          "peopleAngleChoice": "The Machine Test: before you sign the LOI, spend one week asking only this: 'Who makes what decisions when the owner is unavailable?' If the answer is 'it waits' or 'it escalates,' you are buying a job, not a business."
-        }
-      },
-      "fieldReportSummary": "[Meta announced this week](https://www.businessinsider.com/meta-layoffs-internal-memo-ai-job-cuts-faq-2026-5) that it will cut 10% of staff on Wednesday, eliminating around 8,000 roles in three waves of notifications timed to 4am local time across regions. In a memo to employees, HR chief Janelle G"
-    },
-    {
-      "editionId": "2026-27",
-      "recordedAt": "2026-07-03T17:35:03.903Z",
-      "angle": {
-        "headline": "The Apprenticeship Returns: Why AI Hiring Breaks the Traditional Talent Model",
-        "thesis": "Mid-market firms are discovering that traditional upskilling and recruiting strategies cannot fill the AI talent gap because they're addressing the wrong problem—the issue isn't finding AI experts, it's building AI-ready teams from the ground up through structured apprenticeships that connect entry-level talent to real business problems.",
-        "targetPersona": "US-LATAM mid-market operators with 50-500 employees who are facing pressure to deploy AI but cannot compete for senior AI talent against tech giants, and who recognize that their existing workforce lacks the baseline skills to effectively utilize AI tools",
-        "relevanceToAudience": "The US-LATAM corridor operator faces acute talent scarcity in both geographies—US firms cannot afford Silicon Valley AI salaries, and LATAM operations struggle with limited local AI expertise. The apprenticeship model offers a third path: develop the talent you need rather than compete for talent you cannot afford, while building organizational AI literacy from the bottom up.",
-        "suggestedSources": [
-          "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-          "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-          "92f2bb3e-138d-4451-b3c6-e23c67b6ab6a"
-        ],
-        "justification": {
-          "angleChoice": "This angle is superior to other potential angles in the bundle (USMCA uncertainty, CEO succession, AI panic) because it addresses a concrete operating model dysfunction that every mid-market operator in the US-LATAM corridor is experiencing right now: the gap between AI ambition and AI capability. The Achieve Partners source (232077b0) provides a named, working solution (apprenticeships with demonstrable EBITDA impact) that directly challenges the conventional wisdom that upskilling existing staff or competing for senior talent are the only paths forward. This is not a 'trend' piece about AI adoption—it's a systems redesign story about how talent pipelines must change when the traditional talent market cannot supply what you need. The competitive-signal tag on the Fast Company AI panic piece (f5b0dd36) confirms that our audience has already seen generic 'AI strategy' commentary; this angle goes deeper by naming the talent acquisition system as the real bottleneck, not the technology itself.",
-          "osPillarChoice": "This angle belongs exclusively to Operating Model OS because it addresses how work flows through the organization and how capability is built and scaled—not what strategic direction to set (Strategy OS) or which technology to deploy (Technology OS). The dysfunction is visible in the operating model: traditional recruiting and upskilling processes cannot produce the talent velocity required for AI transformation. The Achieve Partners apprenticeship model (232077b0) explicitly redesigns the talent pipeline as an integrated operating system component, not as an HR program. The Fast Company source (f5b0dd36) confirms that 94% of executives face board pressure to 'do more with less,' which is an operating model constraint, not a strategy problem. The solution requires changing how talent is sourced, developed, and integrated into production workflows—classic Operating Model OS territory. It is not Strategy OS because the strategic decision to adopt AI is already made; it is not Technology OS because the technology exists and works—the bottleneck is in the operating model's inability to staff and execute it.",
-          "peopleAngleChoice": "The challenge maps directly to the thesis because the apprenticeship model requires leadership to stop treating talent acquisition as a transaction ('hire the expert') and start treating it as a system ('build the capability'). This is a fundamental mental model shift that most mid-market operators resist because it requires redesigning work to accommodate learning curves, which feels like a productivity loss in the short term. Kotter Step 5 (Empower action by removing obstacles) is the precise framework because the obstacle is not lack of desire or awareness—it's the structural reality that current job designs, workflow processes, and performance expectations do not allow space for apprentices to learn while producing value. The concrete action the owner must take is to redesign specific roles and workflows to create apprenticeship pathways—for example, pairing junior talent with AI projects that have real business impact but built-in learning scaffolding, or restructuring team responsibilities so that senior staff can mentor without sacrificing their own output. This is not a training program; it is a workflow redesign that makes the apprenticeship model operationally viable within the existing business rhythm."
-        },
-        "osPillar": "Operating Model OS",
-        "peopleAngle": {
-          "challenge": "Leadership teams must shift from viewing talent acquisition as a hiring problem to seeing it as a capability-building system, requiring them to redesign how work flows through the organization to accommodate learners who produce value while they develop skills.",
-          "framework": "Kotter Step 5: Empower action by removing obstacles — the owner must redesign job structures and workflow processes to create apprenticeship pathways that allow entry-level talent to contribute meaningfully to AI initiatives without requiring the business to pause for training, thereby removing the structural barrier that makes 'we don't have time to train' the default objection."
-        },
-        "quarterlyTheme": "Systems That Serve",
-        "evidenceMap": {
-          "insightClaims": [
-            {
-              "claim": "Daniel Pianko, cofounder and managing director at private equity firm Achieve Partners, stated that upskilling is an important component to a human capital management strategy, but isn't enough to fill today's AI talent gap",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "Achieve Partners offers a look into the firm's apprenticeship program that begins filling the AI talent gap for portfolio companies at the very top of the talent acquisition funnel—with demonstrable impact on EBITDA growth",
-              "supportingFactId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "WRITER's latest AI Adoption in the Enterprise report shows that 94% of executives are facing board demands to do more with less",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 0,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "78% of executives are watching AI drive a massive wedge between IT and other lines of business, and 74% say it's causing tension between executives and employees",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 1,
-              "temporalSafety": "safe"
-            },
-            {
-              "claim": "61% of C-suite executives are afraid of losing their jobs over AI rollout performance",
-              "supportingFactId": "f5b0dd36-f65b-4ab0-aaaf-c59ecefe75b4",
-              "factIndex": 2,
-              "temporalSafety": "safe"
-            }
-          ],
-          "fieldReportAnchor": {
-            "company": "Achieve Partners",
-            "sourceId": "232077b0-07eb-49ae-a99c-8a6ea789ddc3",
-            "isDistinctFromAperturaHook": true
-          }
-        }
-      },
-      "fieldReportSummary": "A recent [Fast Company piece](https://www.fastcompany.com/91568695/panic-isnt-an-ai-strategy) surfaces data from Writer's AI Adoption in the Enterprise research: 94% of executives face board demands to do more with less. 78% report AI creating tension between IT and other lines of business. 61% of C"
-    },
-    {
-      "editionId": "2026-23",
-      "recordedAt": "2026-04-23T17:12:15.544Z",
-      "angle": {
-        "headline": "Why Your Best People Keep the Machine From Running",
-        "thesis": "Most mid-market businesses fail to scale not because they lack talent, but because their operating model is designed around individual capability rather than systematic execution — the owner's instinct to hire 'A-players' actually prevents the machine from working.",
-        "targetPersona": "US-LATAM corridor operators with $10M-$50M revenue who have invested heavily in talent but still cannot step away from daily operations",
-        "relevanceToAudience": "The corridor operator faces a specific version of this trap: they hire bilingual, bicultural talent who can 'figure things out' across markets, but this very adaptability masks the absence of documented processes, creating dependency on heroes rather than building a machine that runs without them.",
-        "suggestedSources": [
-          "dfaf9a7f-b817-4530-a1a5-96b14c8083ca",
-          "60149c0e-36f6-47c7-b5c2-570c2a4e8f54",
-          "dacd95c6-12fe-4731-a06d-81cf1454e3a7",
-          "965522d1-403e-4b3c-ae54-46901e8c4e7d"
-        ],
-        "talkingPoints": [
-          "You keep hiring excellent people who 'get it' because standardized processes feel limiting, but excellence without system creates a business that only works when your best people show up.",
-          "Mexico's productivity trap mirrors your operating model: high activity, skilled workers, but low systematic output — the INPC data shows 55% informality not because of bad workers, but because structures reward individual heroics over documented execution.",
-          "The Creative Execution Gap: the ability to improvise across markets (creativity) becomes the enemy of scalability when it substitutes for written playbooks — you mistake creative problem-solving for operational maturity.",
-          "Document one recurring decision this week that currently requires your best person's judgment, then build the checklist that lets your median performer execute it at 80% quality."
-        ],
-        "osPillar": "Operating Model OS",
-        "quarterlyTheme": "The Machine"
-      },
-      "fieldReportSummary": "Warner Bros Discovery shareholders approved the $111 billion merger with Paramount this week, per [Expansión](https://expansion.mx/tecnologia/2026/04/23/accionistas-warner-bros-aprueban-venta-paramount). The vote clears one of the last obstacles to a deal that consolidates two major studios and CNN"
-    },
-    {
       "editionId": "2026-24",
       "recordedAt": "2026-04-23T18:31:33.013Z",
       "angle": {
@@ -294,6 +175,74 @@
         "quarterlyTheme": "The Machine"
       },
       "fieldReportSummary": "Berkshire Hathaway held its first shareholder meeting in six decades without Warren Buffett as CEO this week. Greg Abel hosted. According to [Business Insider](https://www.businessinsider.com/omaha-trip-warren-buffett-berkshire-shareholder-meeting-weekend-abel-future-2026-5), more than 20 shareholde"
+    },
+    {
+      "editionId": "2026-46",
+      "recordedAt": "2026-11-09T23:03:02.042Z",
+      "angle": {
+        "headline": "The CEO Succession Crisis Hidden in Every Growth Story",
+        "thesis": "Mid-market companies treat succession as a transaction to delay rather than a strategic capability to build, creating a hidden 'key-man risk' that surfaces only when crisis forces the conversation—by which time the options have narrowed to damage control.",
+        "targetPersona": "Founder-CEOs and family business owners in the $50M-$500M revenue range who have built successful operations but avoided the uncomfortable conversation about who runs the business when they can't.",
+        "relevanceToAudience": "The Nvidia-Jensen Huang affair investigation exposes what happens when even a $4.5 trillion company has no clear succession plan. For mid-market owners in the US-LATAM corridor, the lesson is stark: succession isn't a future problem—it's a current strategic vulnerability that determines whether your business can survive your absence, planned or otherwise.",
+        "suggestedSources": [
+          "4c8ba74e-aa08-44bd-b74d-60ed0958c4ac",
+          "2ac16ef6-2298-476e-850e-872854719f59",
+          "d164ed70-b409-47fe-9e8f-5169ff57d3f5",
+          "02820cac-aaca-443f-9800-874efed59ec3",
+          "38043456-1e75-4061-9afb-1c067c54d66f"
+        ],
+        "justification": {
+          "angleChoice": "The Nvidia investigation (sources 4c8ba74e, 2ac16ef6, d164ed70) provides a rare public window into succession failure at scale. Axios reports Nvidia 'has no obvious successor to Jensen Huang—and that's a problem' and quotes experts saying 'you just can't' run without a succession plan. Fast Company notes the board 'may be unwilling or unable to challenge the rockstar CEO' because the business has become 'inextricable from Huang himself.' This is not a tech-only problem—it's the Strategy OS dysfunction every founder faces: they build the company around their own decision-making until the company cannot function without them. The DC Studios leadership shake-up (sources 02820cac, 38043456) provides a contrasting Field Report: Skydance replaced James Gunn and Peter Safran after only four years, demonstrating what happens when ownership changes force succession decisions. For US-LATAM mid-market owners, this angle cuts deeper than 'have a plan'—it names the unspoken pattern where succession gets treated as a distant transaction rather than a strategic capability to build now. This is a Strategy OS issue because the dysfunction is in how the business thinks about continuity and risk, not in the mechanics of execution.",
+          "osPillarChoice": "This is Strategy OS because the dysfunction occurs at the level of strategic thinking and decision architecture—specifically, how the business conceptualizes its own continuity and defines 'key-man risk.' Nvidia's problem, per Fast Company (d164ed70), is that 'there may be little Nvidia's board can do' because Huang 'is involved in nearly every aspect of the company's business...with more than 60 executives reporting directly to him.' Axios (4c8ba74e) quotes a corporate governance expert saying 'CEO succession planning is a standard practice for big public companies, and it's not clear whether Nvidia has a confidential plan.' The failure is not in execution (Operating Model OS) or in systems (Technology OS)—it's in the strategic decision to defer succession planning until crisis forces it. The Skydance-DC Studios case (02820cac) shows the contrast: when ownership changes, succession happens whether leaders are ready or not. The sources show this is about how the business thinks about risk, not how it runs day-to-day or what tools it uses.",
+          "peopleAngleChoice": "The 'challenge' directly addresses the psychological barrier named in the thesis: founders delay succession because it requires confronting their own obsolescence. Fortune (2ac16ef6) quotes Huang saying the secret to being CEO this long is 'don't get fired, and two, don't get bored'—a frame that treats succession as failure rather than strategy. The Kotter Step 1 framework activates a concrete action: the owner must create urgency by making the cost of the current pattern visible. The specific action is to calculate the 30-day absence cost (lost revenue, stalled decisions, team paralysis) and present that number to the board or advisory council with a timeline for building bench strength. This shifts succession from abstract future planning to a present-day risk the leadership team can see in their own data. The framework choice is Kotter Step 1 because without urgency, succession stays theoretical—the owner needs a forcing function to move it from 'someday' to 'this quarter.'"
+        },
+        "osPillar": "Strategy OS",
+        "peopleAngle": {
+          "challenge": "The founder must confront the identity loss that comes with planning their own succession, shifting from 'I am the business' to 'the business must outlive my role'—a psychological transition that requires naming the fear before building the plan.",
+          "framework": "Kotter Step 1: Urgency — The owner must create urgency by quantifying the cost of the current pattern: calculate the actual dollar impact if they were unavailable for 30 days, then use that number to make succession planning a board-level priority with a specific timeline."
+        },
+        "quarterlyTheme": "The Long Game",
+        "evidenceMap": {
+          "insightClaims": [
+            {
+              "claim": "Axios reported that Nvidia 'has no obvious successor to Jensen Huang' and quoted corporate governance experts saying 'CEO succession planning is a standard practice for big public companies, and it's not clear whether Nvidia has a confidential plan.'",
+              "supportingFactId": "4c8ba74e-aa08-44bd-b74d-60ed0958c4ac",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Fast Company reported that Nvidia's board 'may be unwilling or unable to challenge' Huang because he 'is involved in nearly every aspect of the company's business—from product development to its relationships with customers and government officials—with more than 60 executives reporting directly to him.'",
+              "supportingFactId": "d164ed70-b409-47fe-9e8f-5169ff57d3f5",
+              "factIndex": 5,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Huang admitted to having an affair and Nvidia launched an independent investigation, raising questions about whether he can continue as CEO—yet Nvidia stated 'Jensen is committed to continuing to lead Nvidia as CEO without interruption.'",
+              "supportingFactId": "2ac16ef6-2298-476e-850e-872854719f59",
+              "factIndex": 2,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Skydance announced that DC Studios co-CEOs James Gunn and Peter Safran are stepping down after four years, to be replaced by Marvel veteran Jeremy Latcham, demonstrating how ownership changes force succession decisions.",
+              "supportingFactId": "02820cac-aaca-443f-9800-874efed59ec3",
+              "factIndex": 4,
+              "temporalSafety": "safe"
+            },
+            {
+              "claim": "Fortune reported that Huang has led Nvidia since its 1993 founding and said in January the secret to being CEO this long is 'don't get fired, and two, don't get bored'—framing longevity as avoidance rather than succession readiness.",
+              "supportingFactId": "2ac16ef6-2298-476e-850e-872854719f59",
+              "factIndex": 0,
+              "temporalSafety": "safe"
+            }
+          ],
+          "fieldReportAnchor": {
+            "company": "Skydance / DC Studios",
+            "sourceId": "02820cac-aaca-443f-9800-874efed59ec3",
+            "isDistinctFromAperturaHook": true
+          }
+        }
+      },
+      "fieldReportSummary": "Rodney Strong Vineyards faced its earliest harvest in decades this year - compressed timelines, supply chain stress, and decisions that had to be made faster than any playbook anticipated, [according to Entrepreneur](https://www.entrepreneur.com/building-a-business/california-wine-country-saw-its-ea"
     }
   ]
 }
